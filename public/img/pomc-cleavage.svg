@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img">
+<defs>
+    <linearGradient id="strandP" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#163E5C"/><stop offset="1" stop-color="#0C6B73"/></linearGradient></defs>
+
+<rect width="1200" height="560" fill="#FBFDFD"/>
+<text x="70" y="80" font-family="Space Grotesk, system-ui, sans-serif" font-size="26" letter-spacing="0.03em" fill="#08171F" text-anchor="start">POMC</text>
+<text x="70" y="104" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" letter-spacing="0.03em" fill="#5C7077" text-anchor="start">proopiomelanocortin · the single precursor</text>
+<rect x="70" y="137" width="1060" height="26" rx="13" fill="url(#strandP)"/>
+<line x1="210" y1="128" x2="210" y2="172" stroke="#FBFDFD" stroke-width="6"/>
+<circle cx="210" cy="150" r="6.5" fill="#1FC8C2"/>
+<line x1="360" y1="128" x2="360" y2="172" stroke="#FBFDFD" stroke-width="6"/>
+<circle cx="360" cy="150" r="6.5" fill="#1FC8C2"/>
+<line x1="560" y1="128" x2="560" y2="172" stroke="#FBFDFD" stroke-width="6"/>
+<circle cx="560" cy="150" r="6.5" fill="#1FC8C2"/>
+<line x1="760" y1="128" x2="760" y2="172" stroke="#FBFDFD" stroke-width="6"/>
+<circle cx="760" cy="150" r="6.5" fill="#1FC8C2"/>
+<line x1="930" y1="128" x2="930" y2="172" stroke="#FBFDFD" stroke-width="6"/>
+<circle cx="930" cy="150" r="6.5" fill="#1FC8C2"/>
+<text x="1130" y="124" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" letter-spacing="0.03em" fill="#5C7077" text-anchor="end">↑ cleavage sites</text>
+<path d="M215,172 C215,220 215,280 215,318" fill="none" stroke="#D7E0E2" stroke-width="2"/>
+<circle cx="215" cy="172" r="4" fill="#0C6B73"/>
+<rect x="120.0" y="330" width="190" height="96" rx="14" fill="#EEF3F4" stroke="#D7E0E2"/>
+<circle cx="142.0" cy="360" r="5.5" fill="#1FC8C2"/>
+<text x="158.0" y="366" font-family="Space Grotesk, system-ui, sans-serif" font-size="19" letter-spacing="0.03em" fill="#08171F" text-anchor="start">α-MSH</text>
+<text x="140.0" y="392" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12.5" letter-spacing="0.03em" fill="#5C7077" text-anchor="start">appetite · pigmentation</text>
+<path d="M458,172 C458,220 458,280 458,318" fill="none" stroke="#D7E0E2" stroke-width="2"/>
+<circle cx="458" cy="172" r="4" fill="#0C6B73"/>
+<rect x="363.0" y="330" width="190" height="96" rx="14" fill="#EEF3F4" stroke="#D7E0E2"/>
+<circle cx="385.0" cy="360" r="5.5" fill="#1FC8C2"/>
+<text x="401.0" y="366" font-family="Space Grotesk, system-ui, sans-serif" font-size="19" letter-spacing="0.03em" fill="#08171F" text-anchor="start">ACTH</text>
+<text x="383.0" y="392" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12.5" letter-spacing="0.03em" fill="#5C7077" text-anchor="start">adrenal cortisol axis</text>
+<path d="M742,172 C742,220 742,280 742,318" fill="none" stroke="#D7E0E2" stroke-width="2"/>
+<circle cx="742" cy="172" r="4" fill="#0C6B73"/>
+<rect x="647.0" y="330" width="190" height="96" rx="14" fill="#EEF3F4" stroke="#D7E0E2"/>
+<circle cx="669.0" cy="360" r="5.5" fill="#1FC8C2"/>
+<text x="685.0" y="366" font-family="Space Grotesk, system-ui, sans-serif" font-size="19" letter-spacing="0.03em" fill="#08171F" text-anchor="start">β-endorphin</text>
+<text x="667.0" y="392" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12.5" letter-spacing="0.03em" fill="#5C7077" text-anchor="start">opioid analgesia</text>
+<path d="M985,172 C985,220 985,280 985,318" fill="none" stroke="#D7E0E2" stroke-width="2"/>
+<circle cx="985" cy="172" r="4" fill="#0C6B73"/>
+<rect x="890.0" y="330" width="190" height="96" rx="14" fill="#EEF3F4" stroke="#D7E0E2"/>
+<circle cx="912.0" cy="360" r="5.5" fill="#1FC8C2"/>
+<text x="928.0" y="366" font-family="Space Grotesk, system-ui, sans-serif" font-size="19" letter-spacing="0.03em" fill="#08171F" text-anchor="start">γ-MSH</text>
+<text x="910.0" y="392" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12.5" letter-spacing="0.03em" fill="#5C7077" text-anchor="start">cardiovascular tone</text>
+<text x="70" y="500" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14.5" letter-spacing="0.03em" fill="#5C7077" text-anchor="start">One precursor protein, enzymatically cleaved into a family of signalling peptides.</text>
+</svg>

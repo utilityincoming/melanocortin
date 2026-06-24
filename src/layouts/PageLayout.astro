@@ -25,7 +25,7 @@ const { title, description, kicker, status, author, updated, reviewed } = Astro.
           </p>
         )
       }
-      <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      <h1 class="mt-3 font-display text-4xl leading-tight font-semibold tracking-tight">
         {title}
       </h1>
       {
@@ -46,7 +46,7 @@ const { title, description, kicker, status, author, updated, reviewed } = Astro.
       }
     </header>
     <div
-      class="mt-8 leading-relaxed [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_li]:mt-1.5 [&_li_a]:text-[var(--accent)] [&_li_a]:underline [&_li_a]:decoration-dotted [&_p]:mt-4 [&_p_a]:text-[var(--accent)] [&_p_a]:underline [&_p_a]:decoration-dotted [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5"
+      class="mt-8 leading-relaxed [&_h2]:mt-10 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_li]:mt-1.5 [&_li_a]:text-[var(--accent)] [&_li_a]:underline [&_li_a]:decoration-dotted [&_p]:mt-4 [&_p_a]:text-[var(--accent)] [&_p_a]:underline [&_p_a]:decoration-dotted [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5"
     >
       <slot />
     </div>

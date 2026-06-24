@@ -13,11 +13,14 @@ const path = Astro.url.pathname;
     class="mx-auto flex max-w-5xl items-center justify-between gap-6 px-6 py-4"
     aria-label="Primary"
   >
-    <a href="/" class="group flex items-center gap-2.5 font-serif text-lg font-semibold tracking-tight no-underline">
-      <span
-        class="inline-block h-5 w-5 rounded-full"
-        style="background: radial-gradient(circle at 30% 30%, var(--color-pigment-300), var(--color-pigment-700));"
-        aria-hidden="true"></span>
+    <a href="/" class="group flex items-center gap-2.5 font-display text-lg font-semibold tracking-tight no-underline">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="shrink-0" aria-hidden="true">
+        <line x1="3" y1="12" x2="21" y2="12" stroke="var(--color-indigo)" stroke-width="2.2" stroke-linecap="round" />
+        <circle cx="3" cy="12" r="2.4" fill="var(--color-indigo)" />
+        <circle cx="21" cy="12" r="2.4" fill="var(--color-indigo)" />
+        <circle cx="12" cy="12" r="4.6" fill="var(--color-signal)" opacity="0.18" />
+        <circle cx="12" cy="12" r="3.1" fill="var(--color-signal)" />
+      </svg>
       melanocortin
     </a>
     <ul class="hidden items-center gap-6 text-sm sm:flex">
