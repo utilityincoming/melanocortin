@@ -1,49 +1,7 @@
 # melanocortin
-A knowledge hub on the melanocortin system — the POMC-derived peptides, the MC1R–MC5R receptors, and the drugs that target them — explained clearly, cited carefully, and built to load fast.
+Melanocortin.com is a signal-over-noise knowledge hub on the melanocortin system — the POMC-derived peptides, the MC1R through MC5R receptors, and the drugs that target them — written for people who actually read the mechanism. The GLP-1 era pulled a lot of us into caring about the biology of appetite and metabolism not as spectators but as participants, and for anyone primed by that, melanocortins are the next node worth understanding: leptin signals to POMC neurons, POMC is cleaved into α-MSH, α-MSH activates MC4R in the hypothalamus, and MC4R is one of the master switches for energy balance — the same receptor setmelanotide targets, and the same circuitry the GLP-1 conversation keeps circling back to. It's the family where pigmentation, metabolism, inflammation, and sexual function all run through five receptors, which makes it a genuinely under-mapped frontier in peptide science.
 
+The reason the project exists is that the science is rich but the open web isn't: melanocortins live in dense journals on one side and hype, half-truths, and forum lore on the other, with very little in between. This is the in-between — an open, rigorously organised reference that respects the reader's intelligence and serves several audiences on the same pages: researchers who want real mechanism and primary citations, clinicians and curious readers who want an accurate plain-language picture, the forward-thinking peptide and metabolic-health community that's done with bro-science, and anyone arriving from a search engine who deserves a credible answer instead of a content farm.
 
-Status: early development. The content model and design system are being scaffolded; the structure below reflects where the project is headed.
-
-
-
-What this is
-
-Melanocortins are one of biology's most quietly versatile signalling families: a single precursor protein, cleaved into peptides that govern skin pigmentation, the stress-hormone axis, appetite and energy balance, inflammation, and more. The science is rich, but it's scattered across journals and thin on the open web.
-
-This project is an attempt to fix that — an open, well-organised reference that serves three audiences on the same pages:
-
-
-students and researchers who need mechanism and citations,
-clinicians and curious readers who want an accurate plain-language picture,
-anyone arriving from a search engine who deserves a credible answer rather than a content farm.
-
-
-It is an educational resource, not medical advice (see Editorial standards).
-
-Coverage
-
-The site is organised as a pillar-and-cluster knowledge base:
-
-
-The melanocortin system — the overview pillar, and how POMC is processed into its peptide products.
-
-Editorial standards
-
-Accuracy and honesty are the whole point of the project:
-
-
-Content is for education and general information only. It is not medical advice, diagnosis, or treatment, and it is no substitute for a qualified clinician.
-Pages carry a visible author and a last-reviewed date.
-Therapeutic and clinical-pipeline information dates quickly and is verified against current sources before publication.
-Where the science is uncertain or contested, the page says so rather than papering over it.
-
-License
-
-Recommended dual license for a content + code repository:
-
-
-Site content (text, diagrams) — Creative Commons Attribution 4.0 (CC BY 4.0)
-Source code — MIT
-The five receptors — a page each for MC1R through MC5R: tissue, ligands, function, and what goes wrong when they fail.
-Therapeutics — approved and investigational melanocortin drugs, and the emerging frontier.
-Glossary and references — defined terms and a shared, citeable source registry.
+It's built so pages are content-first, fast, and search-friendly, with light interactive pieces like a POMC cleavage tree and a receptor explorer only where they earn their place, and every page has to carry an author, a last-reviewed date, and real citations before it can ship. The editorial stance is the part that matters most here, because the peptide space runs on anecdote and this hub runs on evidence: it's education and general information only — not medical advice, and deliberately not a sourcing guide, dosing chart, or protocol — everything is cited, pipeline details are kept current, and where the science is contested or early the page says so rather than smoothing it over. The aim is to help you understand the biology, then take that understanding to a professional.
+The project is open and early-stage — content under Creative Commons (CC BY 4.0), code under MIT, and contributions are welcome as long as every claim comes with a citation.
