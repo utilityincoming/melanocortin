@@ -1,0 +1,99 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ReceptorFacts from '../../components/ReceptorFacts.astro';
+import Cite from '../../components/Cite.astro';
+import References from '../../components/References.astro';
+import { receptors } from '../../data/receptors';
+
+const receptor = receptors.find((r) => r.slug === 'mc2r')!;
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Cooray SN, Clark AJL.',
+    title: 'The melanocortin receptors and their accessory proteins.',
+    source: 'Front Endocrinol (Lausanne). 4:9.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
+  },
+  {
+    authors: 'Chan LF, Metherell LA, Clark AJL, et al.',
+    title:
+      'The majority of ACTH receptor (MC2R) mutations found in familial glucocorticoid deficiency type 1 lead to defective trafficking of the receptor to the cell surface.',
+    source: 'J Clin Endocrinol Metab. 94(9):3865–71.',
+    year: '2009',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2635546/',
+  },
+];
+---
+
+<PageLayout
+  title="MC2R — the ACTH receptor"
+  kicker="Receptor · Melanocortin 2 receptor"
+  description="The adrenal receptor at the bottom of the stress axis. Uniquely, it answers only to ACTH — and it cannot even reach the cell surface without a dedicated chaperone, MRAP."
+  updated="23 June 2026"
+>
+  <ReceptorFacts receptor={receptor} />
+
+  <p>
+    MC2R is the odd one out of the melanocortin family. Where the other four
+    receptors respond to several melanocortin peptides, MC2R answers to just one —
+    ACTH — and it sits in just one main place: the cortex of the adrenal gland,
+    where it forms the final step of the body's stress-hormone axis.<Cite n={1} />
+  </p>
+
+  <h2>The end of the stress axis</h2>
+  <p>
+    Stress and circadian cues drive the hypothalamus to release CRH, which makes
+    the pituitary secrete ACTH, which travels in the blood to the adrenal cortex
+    and binds MC2R. Like its relatives, MC2R couples to Gs and raises cyclic AMP;
+    through protein kinase A this switches on the steroidogenic machinery that
+    produces cortisol (and contributes to adrenal androgens).<Cite n={2} /> This
+    hypothalamic–pituitary–adrenal (HPA) loop is the circuit that the
+    <a href="/system">overview pillar</a> describes ACTH serving — and MC2R is its
+    receiving end.
+  </p>
+
+  <h2>Why only ACTH?</h2>
+  <p>
+    The melanocortins share a common His-Phe-Arg-Trp core, which is enough to
+    activate MC1R and MC3R–MC5R. MC2R is different: it additionally requires a
+    stretch of ACTH present only in the full ACTH molecule and not in the shorter
+    MSH peptides, so α-, β-, and γ-MSH cannot meaningfully switch it on.<Cite n={1} />
+    That selectivity is what keeps the pigment-and-appetite arm of the system from
+    accidentally triggering cortisol release.
+  </p>
+
+  <h2>It needs a chaperone: MRAP</h2>
+  <p>
+    On its own, MC2R cannot reach the cell surface. It depends on a small
+    single-pass accessory protein, the melanocortin-2-receptor accessory protein
+    (MRAP), which forms an unusual antiparallel dimer that escorts the receptor out
+    of the endoplasmic reticulum and helps it respond to ACTH.<Cite n={2} /> The
+    discovery of MRAP reframed MC2R as a two-component system — receptor plus
+    chaperone — and explained a class of disease that maps not to the receptor
+    itself but to its escort.
+  </p>
+
+  <h2>When it fails: familial glucocorticoid deficiency</h2>
+  <p>
+    Loss-of-function mutations in MC2R cause familial glucocorticoid deficiency
+    (FGD) type 1, in which the adrenal cortex cannot mount a normal cortisol
+    response to ACTH — presenting with low cortisol, very high ACTH, and risks such
+    as hypoglycaemia and recurrent infection. Most disease-causing MC2R mutations
+    work by stranding the receptor inside the cell rather than abolishing its
+    function outright.<Cite n={3} /> Mutations in MRAP cause a closely related form,
+    FGD type 2 — a reminder that, here, the chaperone is as load-bearing as the
+    receptor.<Cite n={2} />
+  </p>
+
+  <p><a href="/receptors">← Back to all receptors</a></p>
+
+  <References items={references} />
+</PageLayout>

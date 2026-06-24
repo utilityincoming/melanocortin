@@ -34,6 +34,7 @@ export const receptors: Receptor[] = [
       'The ACTH receptor — drives adrenal steroidogenesis and cortisol output at the bottom of the HPA stress axis.',
     whenItFails:
       'Mutations cause familial glucocorticoid deficiency; the receptor needs the accessory protein MRAP to reach the cell surface.',
+    detailed: true,
   },
   {
     id: 'MC3R',
@@ -45,6 +46,7 @@ export const receptors: Receptor[] = [
       'Tunes energy partitioning, the timing of puberty and growth, and natriuresis; a brake complementing MC4R.',
     whenItFails:
       'Disruption shifts fat mass and feeding rhythm; a key modulator of the linear-growth/puberty axis.',
+    detailed: true,
   },
   {
     id: 'MC4R',
@@ -68,5 +70,6 @@ export const receptors: Receptor[] = [
       'Regulates exocrine secretion — notably sebum and lipid production — and contributes to immune modulation.',
     whenItFails:
       'Knockout models show defective sebaceous secretion and altered thermoregulation; human role still being mapped.',
+    detailed: true,
   },
 ];

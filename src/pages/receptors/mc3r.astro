@@ -1,0 +1,90 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ReceptorFacts from '../../components/ReceptorFacts.astro';
+import Cite from '../../components/Cite.astro';
+import References from '../../components/References.astro';
+import { receptors } from '../../data/receptors';
+
+const receptor = receptors.find((r) => r.slug === 'mc3r')!;
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Lam BYH, Williamson A, Finer S, et al.',
+    title:
+      'MC3R links nutritional state to childhood growth and the timing of puberty.',
+    source: 'Nature. 599(7885):436–41.',
+    year: '2021',
+    url: 'https://www.nature.com/articles/s41586-021-04088-9',
+  },
+  {
+    authors: 'Cooray SN, Clark AJL.',
+    title: 'The melanocortin receptors and their accessory proteins.',
+    source: 'Front Endocrinol (Lausanne). 4:9.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
+  },
+];
+---
+
+<PageLayout
+  title="MC3R — the energy-partitioning receptor"
+  kicker="Receptor · Melanocortin 3 receptor"
+  description="MC4R's quieter sibling in the hypothalamus. Rather than switching appetite on and off, MC3R governs how the body spends its energy — and, it turns out, the timing of growth and puberty."
+  updated="23 June 2026"
+>
+  <ReceptorFacts receptor={receptor} />
+
+  <p>
+    MC3R shares the hypothalamus with MC4R and responds to the same melanocortin
+    peptides, yet it does a different job. For years it was the harder of the two
+    central receptors to pin down — clearly involved in energy balance, but not in
+    the simple "eat / don't eat" way of MC4R.<Cite n={1} /> Recent human genetics has
+    given it a much sharper identity.
+  </p>
+
+  <h2>Energy partitioning, not just intake</h2>
+  <p>
+    Like the rest of the family, MC3R couples to Gs and cyclic AMP, and γ-MSH is a
+    relatively potent agonist at this subtype while AgRP antagonises it.<Cite n={3} />
+    But the phenotype of losing MC3R is distinctive: animal models point less to
+    raw appetite and more to how energy is <em>partitioned</em> — the balance of
+    fat versus lean mass and the efficiency with which food is used. MC3R also acts
+    within the hypothalamic circuitry itself, modulating the POMC and AgRP neurons
+    that feed into MC4R.<Cite n={1} />
+  </p>
+
+  <h2>The growth-and-puberty switch</h2>
+  <p>
+    The clearest picture of MC3R's purpose came in 2021. People carrying
+    loss-of-function MC3R variants — including a rare individual with two defective
+    copies — were found to have later puberty, reduced linear growth, lower lean
+    mass, and lower circulating IGF-1; mice lacking Mc3r showed delayed sexual
+    maturation and a reproductive cycle that no longer responded normally to
+    nutritional state.<Cite n={2} /> The interpretation is elegant: the same
+    nutrient-sensing melanocortin system bifurcates — signalling through MC4R to
+    control how much energy is acquired, and through MC3R to decide how that energy
+    is <em>spent</em> on growing up.<Cite n={2} />
+  </p>
+
+  <h2>Inflammation and the periphery</h2>
+  <p>
+    MC3R is not confined to the brain. It is expressed in the gut, heart, kidney,
+    placenta, and on immune cells, where melanocortin signalling through MC3R is
+    broadly anti-inflammatory and pro-resolving — part of why the receptor is
+    studied as a target in inflammatory disease.<Cite n={1} /> For how MC3R sits
+    alongside the other four receptors, see the
+    <a href="/system">overview pillar</a>; for the appetite arm it complements, see
+    <a href="/receptors/mc4r">MC4R</a>.
+  </p>
+
+  <p><a href="/receptors">← Back to all receptors</a></p>
+
+  <References items={references} />
+</PageLayout>

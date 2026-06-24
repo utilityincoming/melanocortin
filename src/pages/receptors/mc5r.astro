@@ -1,0 +1,83 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ReceptorFacts from '../../components/ReceptorFacts.astro';
+import Cite from '../../components/Cite.astro';
+import References from '../../components/References.astro';
+import { receptors } from '../../data/receptors';
+
+const receptor = receptors.find((r) => r.slug === 'mc5r')!;
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Chen W, Kelly MA, Opitz-Araya X, et al.',
+    title:
+      'Exocrine gland dysfunction in MC5-R-deficient mice: evidence for coordinated regulation of exocrine gland function by melanocortin peptides.',
+    source: 'Cell. 91(6):789–98.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/9413988/',
+  },
+  {
+    authors: 'Rodrigues AR, Almeida H, Gouveia AM.',
+    title: 'Melanocortin 5 receptor signaling pathway in health and disease.',
+    source: 'Review (PMC7511443).',
+    year: '2020',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7511443/',
+  },
+];
+---
+
+<PageLayout
+  title="MC5R — the exocrine receptor"
+  kicker="Receptor · Melanocortin 5 receptor"
+  description="The least understood of the five, but with a clear signature role: regulating exocrine glands, most notably the sebaceous glands that oil skin and fur."
+  updated="23 June 2026"
+>
+  <ReceptorFacts receptor={receptor} />
+
+  <p>
+    MC5R is the melanocortin family's generalist. Its messenger RNA shows up in a
+    strikingly wide range of tissues, which long made its core function hard to
+    name. The answer came from removing it: the defining role of MC5R is the
+    control of exocrine glands.<Cite n={1} />
+  </p>
+
+  <h2>The sebum signal</h2>
+  <p>
+    When the Mc5r gene is knocked out in mice, the animals develop a severe defect
+    in water repulsion and thermoregulation, traced to reduced production of
+    sebaceous lipids — the oily secretion that waterproofs fur and skin. The
+    knockout also impairs other exocrine tissues, including the Harderian,
+    lacrimal, and preputial glands, implying that one receptor coordinates
+    secretion across several gland types.<Cite n={2} /> Mechanistically MC5R behaves
+    like its relatives — coupling to Gs and raising cyclic AMP — with α-MSH and ACTH
+    as agonists.<Cite n={3} />
+  </p>
+
+  <h2>From mouse to human</h2>
+  <p>
+    Because the sebaceous role is so clean in mice, MC5R is of interest in human
+    skin biology — for example in the regulation of sebum and the differentiation
+    of sebaceous glands, with relevance to conditions such as acne. Beyond skin,
+    MC5R has been linked to immune modulation and to lipid handling in other
+    tissues, though its full human physiology is still being mapped and is less
+    settled than that of MC1R or MC4R.<Cite n={3} /> Where the science is genuinely
+    unresolved, this page says so rather than overstating it.
+  </p>
+
+  <p>
+    For how MC5R fits the broader system, see the
+    <a href="/system">overview pillar</a>; the related skin receptor is
+    <a href="/receptors/mc1r">MC1R</a>.
+  </p>
+
+  <p><a href="/receptors">← Back to all receptors</a></p>
+
+  <References items={references} />
+</PageLayout>
