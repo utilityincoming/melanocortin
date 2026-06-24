@@ -1,14 +1,18 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Byline from '../components/Byline.astro';
 
 interface Props {
   title: string;
   description?: string;
   kicker?: string;
   status?: string;
+  author?: string;
+  updated?: string;
+  reviewed?: boolean;
 }
 
-const { title, description, kicker, status } = Astro.props;
+const { title, description, kicker, status, author, updated, reviewed } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — melanocortin.com`} description={description}>
@@ -31,6 +35,7 @@ const { title, description, kicker, status } = Astro.props;
           </p>
         )
       }
+      {updated && <Byline author={author} updated={updated} reviewed={reviewed} />}
       {
         status && (
           <p class="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--text-muted)]">

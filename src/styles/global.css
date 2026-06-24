@@ -82,6 +82,9 @@ body {
   color: var(--text);
 }
 
-a {
-  color: inherit;
+/* In @layer base so Tailwind text-color utilities on links still win. */
+@layer base {
+  a {
+    color: inherit;
+  }
 }

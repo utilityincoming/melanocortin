@@ -1,29 +1,159 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Harno E, Gali Ramamoorthy T, Coll AP, White A.',
+    title: 'POMC: The Physiological Power of Hormone Processing.',
+    source: 'Physiol Rev. 98(4):2381–2430.',
+    year: '2018',
+    url: 'https://journals.physiology.org/doi/full/10.1152/physrev.00024.2017',
+  },
+  {
+    authors: 'Cooray SN, Clark AJL.',
+    title: 'The melanocortin receptors and their accessory proteins.',
+    source: 'Front Endocrinol (Lausanne). 4:9.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
+  },
+  {
+    authors: 'Harno E, et al.',
+    title: 'Biosynthesis, trafficking, and secretion of POMC-derived peptides.',
+    source: 'Review (PMC4899099).',
+    year: '2016',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4899099/',
+  },
+];
 ---
 
 <PageLayout
   title="The melanocortin system"
   kicker="Overview pillar"
-  description="A single precursor protein, POMC, cleaved into the peptides that govern pigmentation, the stress axis, appetite, and inflammation."
-  status="In development — full article in progress"
+  description="A single precursor protein, cleaved tissue by tissue into the peptides that govern pigmentation, the stress axis, appetite, and inflammation — read by five receptors and held in check by two natural antagonists."
+  updated="23 June 2026"
 >
   <p>
-    Pro-opiomelanocortin (POMC) is one of biology's most economical signalling
-    arrangements: a single precursor protein that tissue-specific enzymes cleave
-    into a family of melanocortin peptides — α-, β-, and γ-MSH and ACTH — each
-    acting on its own subset of five G-protein-coupled receptors.
+    The melanocortin system is one of biology's most economical signalling
+    arrangements. A single gene encodes a single precursor protein —
+    pro-opiomelanocortin, or POMC — which is then cut into a family of short
+    peptides. Those peptides act on five related receptors, are opposed by two
+    natural antagonists, and between them regulate processes as different as the
+    colour of your hair, the cortisol released under stress, how much you eat,
+    and how inflammation resolves.<Cite n={1} /> The economy is the point: the same
+    molecular toolkit is reused across organs, with specificity coming not from
+    the messenger but from where it is made and which receptor receives it.
   </p>
-  <p>This pillar page will cover:</p>
+
+  <h2>One gene, many messages</h2>
+  <p>
+    POMC is a prohormone — a long, inert precursor that has to be cut to become
+    active. The cutting is done by enzymes called prohormone convertases,
+    chiefly PC1/3 and PC2, which snip the chain at specific pairs of basic amino
+    acids.<Cite n={2} /> Crucially, different tissues carry different convertases, so
+    the <em>same</em> POMC molecule yields <em>different</em> products depending on
+    where it is processed.<Cite n={4} />
+  </p>
   <ul>
-    <li>POMC processing — how prohormone convertases produce different peptides in the pituitary, hypothalamus, and skin.</li>
-    <li>The melanocortin peptides and their relative receptor affinities.</li>
-    <li>The endogenous antagonists — agouti and AgRP — and why inverse agonism matters here.</li>
-    <li>How the same system reaches pigmentation, the HPA axis, energy balance, and inflammation.</li>
-    <li>Links down into each of the five receptor pages.</li>
+    <li>
+      In the <strong>anterior pituitary</strong>, PC1/3 dominates. Processing
+      largely stops at adrenocorticotropic hormone (ACTH) and β-lipotropin.
+    </li>
+    <li>
+      In the <strong>hypothalamus</strong>, <strong>intermediate pituitary</strong>,
+      and <strong>skin</strong>, both PC1/3 and PC2 are present, so ACTH is cut
+      further into α-melanocyte-stimulating hormone (α-MSH), and β-lipotropin
+      into β-endorphin.<Cite n={2} />
+    </li>
   </ul>
   <p>
-    Until the full article is reviewed and published, start with the
-    <a href="/receptors">receptor overview</a>.
+    This is why ACTH is the dominant pituitary output that drives the adrenal
+    gland, while α-MSH — the classic pigment and appetite signal — is generated
+    in the brain and skin.
   </p>
+
+  <h2>The melanocortin peptides</h2>
+  <p>
+    The peptides cut from POMC fall into two functional groups. The
+    <strong>melanocortins</strong> proper — α-, β-, and γ-MSH and ACTH — share a
+    common core sequence (His-Phe-Arg-Trp) that is the business end for receptor
+    binding.<Cite n={1} /> Alongside them, the same precursor releases β-endorphin, an
+    opioid peptide, underscoring how much functional range is packed into one
+    gene.<Cite n={2} />
+  </p>
+  <p>
+    Different melanocortins prefer different receptors. α-MSH is the broadest
+    agonist; ACTH is the only peptide that meaningfully activates the adrenal
+    receptor; and the relative potencies of β- and γ-MSH vary by receptor
+    subtype.<Cite n={3} />
+  </p>
+
+  <h2>Five receptors that read the signal</h2>
+  <p>
+    The melanocortins act through five G-protein-coupled receptors, MC1R through
+    MC5R. All five couple to the stimulatory G-protein Gs, raising intracellular
+    cyclic AMP when activated — a shared mechanism that nonetheless produces very
+    different outcomes because each receptor sits in a different tissue.<Cite n={3} />
+  </p>
+  <ul>
+    <li><a href="/receptors/mc1r">MC1R</a> — melanocytes; the switch between red/yellow and brown/black pigment.</li>
+    <li><a href="/receptors/mc2r">MC2R</a> — adrenal cortex; the ACTH receptor that drives cortisol.</li>
+    <li><a href="/receptors/mc3r">MC3R</a> — hypothalamus and periphery; energy partitioning and inflammation.</li>
+    <li><a href="/receptors/mc4r">MC4R</a> — central nervous system; the master control of appetite and weight.</li>
+    <li><a href="/receptors/mc5r">MC5R</a> — exocrine glands; secretion, including sebum.</li>
+  </ul>
+  <p>
+    Two of the receptors are unusual. MC2R responds only to ACTH and cannot even
+    reach the cell surface without a dedicated chaperone, the melanocortin
+    receptor accessory protein MRAP — a reminder that the system's specificity is
+    built from accessory machinery as much as from the receptors
+    themselves.<Cite n={3} /> See the <a href="/receptors">receptor overview</a> for a
+    page on each.
+  </p>
+
+  <h2>The brakes: agouti and AgRP</h2>
+  <p>
+    Most signalling systems are switched on by agonists and simply fade when the
+    agonist leaves. The melanocortin system is rarer: it has endogenous
+    <em>antagonists</em> that actively oppose it. Agouti signalling protein blocks
+    MC1R in the skin — the mechanism behind the banded coat colour of agouti
+    mice — while agouti-related peptide (AgRP) blocks MC3R and MC4R in the brain,
+    and at MC4R behaves as an inverse agonist, pushing activity below
+    baseline.<Cite n={1} /> The push-and-pull of α-MSH against AgRP in the hypothalamus
+    is one of the body's central controllers of appetite.
+  </p>
+
+  <h2>What the system does</h2>
+  <p>
+    Because the same peptides reach different receptors in different tissues, the
+    melanocortin system shows up across an unusually wide span of
+    physiology:<Cite n={1} />
+  </p>
+  <ul>
+    <li><strong>Pigmentation</strong> — α-MSH at MC1R drives protective eumelanin and the UV-tanning response.</li>
+    <li><strong>The stress axis</strong> — ACTH at MC2R is the final step of the hypothalamic–pituitary–adrenal axis, releasing cortisol.</li>
+    <li><strong>Energy balance</strong> — α-MSH at MC4R suppresses appetite; loss of MC4R signalling is the commonest single-gene cause of severe obesity.</li>
+    <li><strong>Inflammation</strong> — melanocortins at MC1R and MC3R are broadly anti-inflammatory and pro-resolving.</li>
+    <li><strong>Exocrine and other roles</strong> — secretion, natriuresis, sexual function, and thermoregulation all carry a melanocortin contribution.</li>
+  </ul>
+
+  <h2>Why it matters in the clinic</h2>
+  <p>
+    Each of these levers is now a drug target. Agonists of MC4R are used for rare
+    genetic obesity, MC1R agonists for a light-sensitivity disorder, and
+    melanocortin agonists for sexual dysfunction — with a broader
+    anti-inflammatory frontier still being explored. The
+    <a href="/therapeutics">therapeutics section</a> covers approved and
+    investigational drugs, each verified against current sources.
+  </p>
+
+  <References items={references} />
 </PageLayout>

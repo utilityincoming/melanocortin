@@ -1,0 +1,14 @@
+---
+interface Props {
+  author?: string;
+  updated: string;
+  reviewed?: boolean;
+}
+const { author = 'melanocortin.com editorial', updated, reviewed = false } = Astro.props;
+---
+
+<div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--text-muted)]">
+  <span>By <span class="text-[var(--text)]">{author}</span></span>
+  <span aria-hidden="true">·</span>
+  <span>{reviewed ? 'Last reviewed' : 'Last updated'} {updated}</span>
+</div>
