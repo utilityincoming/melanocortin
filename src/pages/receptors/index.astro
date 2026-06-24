@@ -1,0 +1,37 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { receptors } from '../../data/receptors';
+---
+
+<PageLayout
+  title="The five receptors"
+  kicker="Receptors"
+  description="MC1R through MC5R — five G-protein-coupled receptors that read the melanocortin signal in different tissues."
+>
+  <p>
+    The melanocortin peptides act through five receptors, each with its own
+    tissue distribution, ligand preferences, and physiology. Each links to a
+    dedicated page (in progress).
+  </p>
+
+  <div class="mt-8 not-prose flex flex-col gap-4">
+    {
+      receptors.map((r) => (
+        <a
+          href={`/receptors/${r.slug}`}
+          class="group block rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
+        >
+          <div class="flex items-baseline justify-between gap-4">
+            <span class="font-mono text-lg font-semibold tracking-tight group-hover:text-[var(--accent)]">
+              {r.id}
+            </span>
+            <span class="text-xs text-[var(--text-muted)]">{r.tissue}</span>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+            {r.function}
+          </p>
+        </a>
+      ))
+    }
+  </div>
+</PageLayout>

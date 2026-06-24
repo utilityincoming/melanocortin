@@ -1,0 +1,36 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const terms = [
+  { term: 'POMC', def: 'Pro-opiomelanocortin — the precursor protein cleaved into melanocortin and other peptides.' },
+  { term: 'MSH', def: 'Melanocyte-stimulating hormone — the α, β, and γ melanocortin peptides.' },
+  { term: 'ACTH', def: 'Adrenocorticotropic hormone — a POMC product that drives adrenal cortisol release via MC2R.' },
+  { term: 'AgRP', def: 'Agouti-related peptide — an endogenous antagonist/inverse agonist at MC3R and MC4R.' },
+  { term: 'Eumelanin', def: 'The brown/black pigment favoured when MC1R signalling is high.' },
+  { term: 'Pheomelanin', def: 'The red/yellow pigment favoured when MC1R signalling is low.' },
+  { term: 'GPCR', def: 'G-protein-coupled receptor — the receptor class all five melanocortin receptors belong to.' },
+  { term: 'HPA axis', def: 'Hypothalamic–pituitary–adrenal axis — the stress-hormone circuit ACTH and MC2R sit within.' },
+];
+---
+
+<PageLayout
+  title="Glossary & references"
+  kicker="Reference"
+  description="Defined terms and a shared, citeable source registry."
+  status="Seed entries — expanding alongside the articles"
+>
+  <dl class="not-prose mt-2 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+    {
+      terms.map((t) => (
+        <div class="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
+          <dt class="font-mono text-sm font-semibold text-[var(--accent)]">{t.term}</dt>
+          <dd class="text-sm leading-relaxed text-[var(--text-muted)]">{t.def}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <p>
+    A shared reference registry — so every factual claim across the site can link
+    to its primary source — is being built alongside the articles.
+  </p>
+</PageLayout>

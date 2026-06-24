@@ -1,0 +1,49 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { receptors } from '../../data/receptors';
+
+export function getStaticPaths() {
+  return receptors.map((r) => ({
+    params: { mc: r.slug },
+    props: { receptor: r },
+  }));
+}
+
+const { receptor } = Astro.props;
+
+const facts = [
+  { label: 'Tissue', value: receptor.tissue },
+  { label: 'Ligands', value: receptor.ligands },
+  { label: 'Function', value: receptor.function },
+  { label: 'When it fails', value: receptor.whenItFails },
+];
+---
+
+<PageLayout
+  title={receptor.id}
+  kicker="Receptor"
+  description={receptor.name}
+  status="Stub — full page in development"
+>
+  <dl class="not-prose mt-2 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+    {
+      facts.map((f) => (
+        <div class="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
+          <dt class="font-mono text-xs uppercase tracking-wide text-[var(--accent)]">
+            {f.label}
+          </dt>
+          <dd class="text-sm leading-relaxed">{f.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p>
+    This is a summary card. The full reference page — structure, signalling
+    pathway, expression, pharmacology, and cited clinical relevance — is in
+    development.
+  </p>
+  <p>
+    <a href="/receptors">← Back to all receptors</a>
+  </p>
+</PageLayout>

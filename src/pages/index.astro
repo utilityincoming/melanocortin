@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const receptors = [
+  { id: 'MC1R', note: 'Skin & hair pigmentation' },
+  { id: 'MC2R', note: 'Adrenal cortisol (the ACTH receptor)' },
+  { id: 'MC3R', note: 'Energy balance & inflammation' },
+  { id: 'MC4R', note: 'Appetite & body weight' },
+  { id: 'MC5R', note: 'Exocrine gland function' },
+];
+
+const pillars = [
+  {
+    href: '/system',
+    kicker: 'Overview',
+    title: 'The melanocortin system',
+    body: 'How a single precursor — POMC — is cleaved into the peptides that signal across pigmentation, the stress axis, appetite, and inflammation.',
+  },
+  {
+    href: '/receptors',
+    kicker: 'Five receptors',
+    title: 'MC1R through MC5R',
+    body: 'A page for each receptor: where it lives, what binds it, what it does, and what goes wrong when it fails.',
+  },
+  {
+    href: '/therapeutics',
+    kicker: 'Drugs',
+    title: 'Therapeutics & the frontier',
+    body: 'Approved and investigational melanocortin drugs — from setmelanotide and afamelanotide to the emerging pipeline.',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+      POMC · MC1R–MC5R · the melanocortin axis
+    </p>
+    <h1 class="mt-5 max-w-3xl font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
+      One precursor protein. <span class="text-[var(--accent)]">A dozen jobs</span> across the body.
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+      Melanocortins govern skin pigmentation, the stress-hormone axis, appetite,
+      energy balance, and inflammation — yet the science is scattered across
+      journals and thin on the open web. This is an attempt to fix that:
+      clearly explained, carefully cited, and built to load fast.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a
+        href="/system"
+        class="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+      >
+        Start with the overview
+      </a>
+      <a
+        href="/receptors"
+        class="rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      >
+        Browse the receptors
+      </a>
+    </div>
+  </section>
+
+  <!-- Receptors strip -->
+  <section class="border-y border-[var(--border)] bg-[var(--bg-elevated)]">
+    <div class="mx-auto grid max-w-5xl grid-cols-2 divide-x divide-y divide-[var(--border)] px-0 sm:grid-cols-5 sm:divide-y-0">
+      {
+        receptors.map((r) => (
+          <a
+            href={`/receptors/${r.id.toLowerCase()}`}
+            class="group flex flex-col gap-1 px-6 py-7 no-underline transition-colors hover:bg-[var(--accent-soft)]"
+          >
+            <span class="font-mono text-lg font-semibold tracking-tight group-hover:text-[var(--accent)]">
+              {r.id}
+            </span>
+            <span class="text-xs leading-snug text-[var(--text-muted)]">{r.note}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight">How the reference is organised</h2>
+    <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
+      A pillar-and-cluster knowledge base — broad overviews that link down into
+      specific, citeable detail.
+    </p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      {
+        pillars.map((p) => (
+          <a
+            href={p.href}
+            class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
+          >
+            <span class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
+              {p.kicker}
+            </span>
+            <span class="mt-3 font-serif text-xl font-semibold tracking-tight">{p.title}</span>
+            <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{p.body}</span>
+            <span class="mt-4 text-sm font-medium text-[var(--accent)]">Read →</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Editorial promise -->
+  <section class="mx-auto max-w-5xl px-6 pb-4">
+    <div class="rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-8">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Built on honesty</h2>
+      <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text)]">
+        Every page carries a visible author and a last-reviewed date. Therapeutic
+        and clinical-pipeline information is verified against current sources
+        before publication. Where the science is uncertain or contested, the page
+        says so — rather than papering over it.
+      </p>
+      <p class="mt-4 text-sm text-[var(--text-muted)]">
+        This is an educational resource, not medical advice.
+        <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">Read the editorial standards →</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

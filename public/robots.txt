@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://melanocortin.com/sitemap-index.xml
