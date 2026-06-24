@@ -55,7 +55,7 @@ export const receptors: Receptor[] = [
     tissue: 'Hypothalamus & wider CNS',
     ligands: 'α-MSH (agonist); AgRP (inverse agonist)',
     function:
-      'The central rheostat of appetite and body weight — and the target of the obesity drug setmelanotide.',
+      'The central rheostat of appetite and body weight — and the target of the anti-obesity agent setmelanotide.',
     whenItFails:
       'The most common monogenic cause of severe early-onset obesity in humans.',
     detailed: true,

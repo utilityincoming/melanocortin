@@ -5,21 +5,21 @@ import References from '../components/References.astro';
 
 const approved = [
   {
-    drug: 'Setmelanotide',
+    name: 'Setmelanotide',
     brand: 'Imcivree',
     target: 'MC4R agonist',
     use: 'Rare genetic & hypothalamic obesity',
     href: '#setmelanotide',
   },
   {
-    drug: 'Afamelanotide',
+    name: 'Afamelanotide',
     brand: 'Scenesse',
     target: 'MC1R agonist',
     use: 'Erythropoietic protoporphyria',
     href: '#afamelanotide',
   },
   {
-    drug: 'Bremelanotide',
+    name: 'Bremelanotide',
     brand: 'Vyleesi',
     target: 'Non-selective MCR agonist',
     use: 'Hypoactive sexual desire disorder',
@@ -44,11 +44,11 @@ const references = [
     url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-fda-approval-imcivreer-1',
   },
   {
-    authors: 'Drugs.com.',
-    title: 'Scenesse (afamelanotide) FDA approval history.',
-    source: 'Reference.',
+    authors: 'HCPLive.',
+    title: 'FDA approves afamelanotide to treat erythropoietic protoporphyria.',
+    source: 'News.',
     year: '2019',
-    url: 'https://www.drugs.com/history/scenesse.html',
+    url: 'https://www.hcplive.com/view/fda-afamelanotide-erythropoietic-protoporphyria',
   },
   {
     authors: 'American College of Clinical Pharmacy.',
@@ -93,16 +93,16 @@ const references = [
 
 <PageLayout
   title="Therapeutics & the frontier"
-  kicker="Drugs"
-  description="Three melanocortin drugs are FDA-approved, each exploiting a different receptor in a different organ. A broader frontier — oral agonists, biased ligands, anti-inflammatory uses — is in trials."
+  kicker="Pharmacology"
+  description="Three melanocortin agents are FDA-approved, each exploiting a different receptor in a different organ. A broader frontier — oral agonists, biased ligands, anti-inflammatory uses — is in trials."
   updated="23 June 2026"
 >
   <p>
     For decades the melanocortin system was a topic for physiology textbooks, not
-    pharmacies. That has changed. Three drugs are now approved, and what unites
+    pharmacies. That has changed. Three agents are now approved, and what unites
     them is instructive: each targets a <em>different</em> receptor to treat a
     <em>different</em> disease, a direct demonstration that the same peptide family
-    is reused across organs. The receptor pages explain the biology each drug
+    is reused across organs. The receptor pages explain the biology each one
     exploits — <a href="/receptors/mc4r">MC4R</a>,
     <a href="/receptors/mc1r">MC1R</a>, and the wider
     <a href="/system">system</a>.
@@ -112,7 +112,7 @@ const references = [
     <table class="w-full text-left text-sm">
       <thead class="bg-[var(--bg-elevated)] text-xs uppercase tracking-wide text-[var(--text-muted)]">
         <tr>
-          <th class="px-4 py-3 font-medium">Drug</th>
+          <th class="px-4 py-3 font-medium">Agent</th>
           <th class="px-4 py-3 font-medium">Target</th>
           <th class="hidden px-4 py-3 font-medium sm:table-cell">Approved for</th>
         </tr>
@@ -123,7 +123,7 @@ const references = [
             <tr>
               <td class="px-4 py-3">
                 <a href={d.href} class="font-medium text-[var(--accent)] no-underline hover:underline">
-                  {d.drug}
+                  {d.name}
                 </a>
                 <span class="block text-xs text-[var(--text-muted)]">{d.brand}</span>
               </td>
@@ -178,7 +178,7 @@ const references = [
     Bremelanotide is a non-selective melanocortin agonist; at therapeutic doses its
     relevant activity is at MC1R and <a href="/receptors/mc4r">MC4R</a>, and it is
     thought to act on MC4R-bearing circuits in the brain to influence sexual
-    desire — a mechanism entirely different from blood-flow drugs used for erectile
+    desire — a mechanism entirely different from blood-flow agents used for erectile
     dysfunction.<Cite n={5} /> The FDA approved it in June 2019 for acquired,
     generalised hypoactive sexual desire disorder (HSDD) in premenopausal women,
     the first on-demand treatment for that condition.<Cite n={6} />
@@ -190,8 +190,8 @@ const references = [
     each dose causes a transient rise in blood pressure with a fall in heart rate —
     which is why it is contraindicated in uncontrolled hypertension or known
     cardiovascular disease.<Cite n={5} /> Those cardiovascular effects are a recurring
-    consideration across MC4R-active drugs. For why the nausea and skin-darkening
-    happen at all, see <a href="/effects">why melanocortin drugs make you queasy
+    consideration across MC4R-active agents. For why the nausea and skin-darkening
+    happen at all, see <a href="/effects">why melanocortin agonists make you queasy
     and tan</a>.
   </p>
 
@@ -231,7 +231,7 @@ const references = [
   </div>
 
   <p class="mt-8 text-sm text-[var(--text-muted)]">
-    Drug indications, dosing, and eligibility are clinical decisions. This page
+    Indications, dosing, and eligibility are clinical decisions. This page
     describes mechanism and regulatory status for education only — it is not
     medical advice. See the <a href="/about">editorial standards</a>.
   </p>
