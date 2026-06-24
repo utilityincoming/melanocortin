@@ -1,36 +1,81 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import { terms } from '../data/glossary';
 
-const terms = [
-  { term: 'POMC', def: 'Pro-opiomelanocortin — the precursor protein cleaved into melanocortin and other peptides.' },
-  { term: 'MSH', def: 'Melanocyte-stimulating hormone — the α, β, and γ melanocortin peptides.' },
-  { term: 'ACTH', def: 'Adrenocorticotropic hormone — a POMC product that drives adrenal cortisol release via MC2R.' },
-  { term: 'AgRP', def: 'Agouti-related peptide — an endogenous antagonist/inverse agonist at MC3R and MC4R.' },
-  { term: 'Eumelanin', def: 'The brown/black pigment favoured when MC1R signalling is high.' },
-  { term: 'Pheomelanin', def: 'The red/yellow pigment favoured when MC1R signalling is low.' },
-  { term: 'GPCR', def: 'G-protein-coupled receptor — the receptor class all five melanocortin receptors belong to.' },
-  { term: 'HPA axis', def: 'Hypothalamic–pituitary–adrenal axis — the stress-hormone circuit ACTH and MC2R sit within.' },
-];
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+// Sort case-insensitively and group by uppercase first letter.
+const sorted = [...terms].sort((a, b) =>
+  a.term.toLowerCase().localeCompare(b.term.toLowerCase())
+);
+const groups = new Map<string, typeof terms>();
+for (const t of sorted) {
+  const letter = t.term[0].toUpperCase();
+  if (!groups.has(letter)) groups.set(letter, []);
+  groups.get(letter)!.push(t);
+}
+const letters = [...groups.keys()];
 ---
 
 <PageLayout
-  title="Glossary & references"
+  title="Glossary"
   kicker="Reference"
-  description="Defined terms and a shared, citeable source registry."
-  status="Seed entries — expanding alongside the articles"
+  description="Plain-language definitions of the melanocortin terms used across the site, cross-linked to the pages that cover them in depth."
+  updated="23 June 2026"
 >
-  <dl class="not-prose mt-2 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+  <nav class="not-prose mt-2 flex flex-wrap gap-1.5" aria-label="Jump to letter">
     {
-      terms.map((t) => (
-        <div class="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
-          <dt class="font-mono text-sm font-semibold text-[var(--accent)]">{t.term}</dt>
-          <dd class="text-sm leading-relaxed text-[var(--text-muted)]">{t.def}</dd>
-        </div>
+      letters.map((l) => (
+        <a
+          href={`#letter-${l}`}
+          class="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--border)] font-mono text-sm no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        >
+          {l}
+        </a>
       ))
     }
-  </dl>
-  <p>
-    A shared reference registry — so every factual claim across the site can link
-    to its primary source — is being built alongside the articles.
+  </nav>
+
+  <div class="not-prose mt-8 flex flex-col gap-10">
+    {
+      letters.map((l) => (
+        <section>
+          <h2
+            id={`letter-${l}`}
+            class="scroll-mt-24 border-b border-[var(--border)] pb-2 font-serif text-2xl font-semibold tracking-tight text-[var(--accent)]"
+          >
+            {l}
+          </h2>
+          <dl class="mt-4 divide-y divide-[var(--border)]">
+            {groups.get(l)!.map((t) => (
+              <div
+                id={slugify(t.term)}
+                class="grid scroll-mt-24 grid-cols-1 gap-1 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6"
+              >
+                <dt class="font-mono text-sm font-semibold">
+                  {t.href ? (
+                    <a href={t.href} class="text-[var(--accent)] no-underline hover:underline">
+                      {t.term}
+                    </a>
+                  ) : (
+                    <span>{t.term}</span>
+                  )}
+                </dt>
+                <dd class="text-sm leading-relaxed text-[var(--text-muted)]">{t.def}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))
+    }
+  </div>
+
+  <p class="mt-12 text-sm text-[var(--text-muted)]">
+    Terms link to the page that covers them in depth. Missing one?
+    <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">Corrections are welcome.</a>
   </p>
 </PageLayout>
