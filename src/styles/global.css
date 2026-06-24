@@ -1,38 +1,40 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------ *
- * melanocortin.com — design tokens
- * A clean, editorial scientific palette. Warm "melanin" amber accent
- * over an ink/paper neutral scale, with a calm dark mode.
+ * melanocortin.com — "pigment & parchment"
+ * A warm, editorial identity built from the subject itself: melanin.
+ * Sienna-amber pigment on a cream/sepia parchment ground, set in a
+ * serif. Deliberately warm and organic — the opposite of a cool,
+ * clinical data-platform look — and distinct from sister sites.
  * ------------------------------------------------------------------ */
 
 @theme {
-  /* Brand — warm pigment amber */
-  --color-pigment-50: #fdf6ec;
-  --color-pigment-100: #f8e6cd;
-  --color-pigment-200: #f0cb98;
-  --color-pigment-300: #e6ab63;
-  --color-pigment-400: #db8f3c;
-  --color-pigment-500: #c9742a;
-  --color-pigment-600: #a85a22;
-  --color-pigment-700: #85441f;
-  --color-pigment-800: #5f3219;
-  --color-pigment-900: #3d2111;
+  /* Pigment — the melanin accent, amber deepening to sienna */
+  --color-pigment-50: #fdf5ea;
+  --color-pigment-100: #f8e6c9;
+  --color-pigment-200: #f0c993;
+  --color-pigment-300: #e3a559;
+  --color-pigment-400: #d2832f;
+  --color-pigment-500: #b96a23;
+  --color-pigment-600: #9a531f;
+  --color-pigment-700: #7c411d;
+  --color-pigment-800: #5a2f17;
+  --color-pigment-900: #3a1f10;
 
-  /* Ink — neutral text/surface scale (slightly warm) */
-  --color-ink-50: #f7f6f4;
-  --color-ink-100: #ecebe7;
-  --color-ink-200: #d8d6cf;
-  --color-ink-300: #b9b6ac;
-  --color-ink-400: #908c80;
-  --color-ink-500: #6f6b60;
-  --color-ink-600: #565248;
-  --color-ink-700: #423f38;
-  --color-ink-800: #2a2823;
-  --color-ink-900: #1a1916;
-  --color-ink-950: #121110;
+  /* Parchment — a warm sepia neutral scale (text + surfaces) */
+  --color-ink-50: #faf6ee;
+  --color-ink-100: #f1ebdf;
+  --color-ink-200: #e0d8c8;
+  --color-ink-300: #c0b6a3;
+  --color-ink-400: #948a76;
+  --color-ink-500: #6f6555;
+  --color-ink-600: #564d3f;
+  --color-ink-700: #423a2f;
+  --color-ink-800: #2b261d;
+  --color-ink-900: #1c1812;
+  --color-ink-950: #120f0a;
 
-  /* Typography */
+  /* Typography — editorial serif display, system sans body */
   --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
     'Times New Roman', serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
@@ -43,11 +45,12 @@
 
 :root {
   --bg: var(--color-ink-50);
-  --bg-elevated: #ffffff;
+  --bg-elevated: #fffdf8;
   --text: var(--color-ink-900);
   --text-muted: var(--color-ink-500);
   --border: var(--color-ink-200);
   --accent: var(--color-pigment-600);
+  --accent-strong: var(--color-pigment-700);
   --accent-soft: var(--color-pigment-100);
   color-scheme: light;
 }
@@ -59,7 +62,8 @@
     --text: var(--color-ink-100);
     --text-muted: var(--color-ink-400);
     --border: var(--color-ink-800);
-    --accent: var(--color-pigment-400);
+    --accent: var(--color-pigment-300);
+    --accent-strong: var(--color-pigment-200);
     --accent-soft: var(--color-ink-800);
     color-scheme: dark;
   }
@@ -79,7 +83,7 @@ body {
 
 ::selection {
   background-color: var(--accent-soft);
-  color: var(--text);
+  color: var(--color-ink-900);
 }
 
 /* In @layer base so Tailwind text-color utilities on links still win. */

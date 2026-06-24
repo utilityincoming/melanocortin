@@ -33,32 +33,40 @@ const pillars = [
 
 <BaseLayout>
   <!-- Hero -->
-  <section class="mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
-    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-      POMC · MC1R–MC5R · the melanocortin axis
-    </p>
-    <h1 class="mt-5 max-w-3xl font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
-      One precursor protein. <span class="text-[var(--accent)]">A dozen jobs</span> across the body.
-    </h1>
-    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-      Melanocortins govern skin pigmentation, the stress-hormone axis, appetite,
-      energy balance, and inflammation — yet the science is scattered across
-      journals and thin on the open web. This is an attempt to fix that:
-      clearly explained, carefully cited, and built to load fast.
-    </p>
-    <div class="mt-9 flex flex-wrap items-center gap-3">
-      <a
-        href="/system"
-        class="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
-      >
-        Start with the overview
-      </a>
-      <a
-        href="/receptors"
-        class="rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-      >
-        Browse the receptors
-      </a>
+  <section class="relative overflow-hidden">
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(78% 95% at 18% -12%, var(--accent-soft), transparent 60%);"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+        POMC · MC1R–MC5R · the melanocortin axis
+      </p>
+      <h1 class="mt-5 max-w-3xl font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
+        One precursor protein. <span class="text-[var(--accent)]">A dozen jobs</span> across the body.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+        Melanocortins govern skin pigmentation, the stress-hormone axis, appetite,
+        energy balance, and inflammation — yet the science is scattered across
+        journals and thin on the open web. This is an attempt to fix that:
+        clearly explained, carefully cited, and built to load fast.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a
+          href="/system"
+          class="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+        >
+          Start with the overview
+        </a>
+        <a
+          href="/receptors"
+          class="rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        >
+          Browse the receptors
+        </a>
+      </div>
     </div>
   </section>
 
