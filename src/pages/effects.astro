@@ -1,0 +1,130 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+
+const references = [
+  {
+    authors: 'US FDA.',
+    title: 'VYLEESI (bremelanotide injection) prescribing information.',
+    source: 'Label, NDA 210557.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210557s000lbl.pdf',
+  },
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Nasti TH, Timares L.',
+    title:
+      'MC1R, eumelanin and pheomelanin: their role in determining the susceptibility to skin cancer.',
+    source: 'Photochem Photobiol. 91(1):188–200.',
+    year: '2015',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4299862/',
+  },
+  {
+    authors: 'American College of Clinical Pharmacy.',
+    title: 'FDA approves SCENESSE implant for erythropoietic protoporphyria.',
+    source: 'News (controlled-release dosing).',
+    year: '2019',
+    url: 'https://accp1.org/Members/ACCP1/5Publications_and_News/FDA-Approves-SCENESSE-Implant-Erythropoietic-Protoporphyria.aspx',
+  },
+];
+---
+
+<PageLayout
+  title="Why melanocortin drugs make you queasy and tan"
+  kicker="Pharmacology"
+  description="The two effects almost everyone who takes a melanocortin agonist runs into — nausea and skin darkening — aren't random. They come straight from the receptors, and understanding why explains the whole challenge of designing these drugs."
+  updated="23 June 2026"
+>
+  <p>
+    Nausea and a creeping tan are the two things people notice on almost any
+    melanocortin agonist — the approved drugs, and the unapproved "research
+    peptides" alike. They feel like bugs. They are really the system doing exactly
+    what it does, just in tissues you weren't aiming at. Both trace directly to
+    the <a href="/receptors">receptors</a>, and once you see the mechanism, the
+    awkward commercial history of these drugs stops being a mystery.
+  </p>
+
+  <h2>The nausea: a central MC4R effect</h2>
+  <p>
+    The <a href="/receptors/mc4r">MC4R</a> in your brain is the appetite brake:
+    when α-MSH switches it on, you feel full and stop eating.<Cite n={2} /> Push that
+    same circuitry harder than a meal ever would, and "full" tips into "queasy."
+    Nausea is, in effect, appetite suppression turned up past the useful range —
+    which is why it is a signature of MC4R-active drugs rather than a quirk of any
+    one of them. In bremelanotide's trials, 40% of patients reported nausea, 13%
+    needed anti-emetics, and 8% stopped the drug over it.<Cite n={1} />
+  </p>
+  <p>
+    Crucially, it is driven by the <em>peak</em>, not just the dose. A drug
+    injected as a single subcutaneous bolus reaches its high-water mark in the
+    blood within about an hour — a steep spike that hits the receptors hard and
+    fast. The body adapts: most patients found the nausea eased by their second
+    dose.<Cite n={1} /> This is also why <em>how</em> a melanocortin is delivered
+    matters as much as how much. Afamelanotide avoids the spike entirely by using
+    a controlled-release implant that meters the peptide out over weeks rather than
+    minutes.<Cite n={4} /> A crude bolus maximises the peak — and the queasiness;
+    a slow-release vehicle shaves it down.
+  </p>
+
+  <h2>The tan: an MC1R / eumelanin effect</h2>
+  <p>
+    The same peptides that act on MC4R also hit <a href="/receptors/mc1r">MC1R</a>
+    on your melanocytes — and most of these drugs are not selective. Activating
+    MC1R raises cAMP, drives the pigment regulator MITF, and pushes melanocytes to
+    make brown-black eumelanin.<Cite n={3} /> So a drug aimed at appetite or libido
+    quietly does what melanotan is abused to do on purpose: it tans you. In
+    bremelanotide's case this shows up as focal hyperpigmentation of the face,
+    gums, and breasts.<Cite n={1} />
+  </p>
+  <p>
+    And it is not even-handed. Melanocytes that tan well respond more, so the
+    effect is stronger — and more visibly persistent — in people with darker skin
+    or a strong tanning response; bremelanotide's own label flags a higher risk of
+    hyperpigmentation in patients with darker skin, and notes it did not always
+    resolve.<Cite n={1} /> The very same mechanism is the <em>point</em> of
+    afamelanotide, where building protective eumelanin ahead of sunlight is the
+    therapeutic goal.<Cite n={3} /> One receptor, one pigment pathway — desirable or
+    unwanted depending entirely on what you were treating.
+  </p>
+
+  <h2>Why the field swings between "wildly potent" and "underperforms"</h2>
+  <p>
+    Put those two effects together and you have the central problem of melanocortin
+    drug design: a narrow therapeutic window. The unregulated peptides sold online
+    are <em>wildly potent</em> precisely because they are non-selective and
+    self-dosed — strong effects, and strong nausea and pigmentation to match, with
+    no quality control. The approved drugs, dosed conservatively to pass trials,
+    can still carry enough of these effects to <em>underperform</em> in the market:
+    bremelanotide was an injection taken before sex with a 40% nausea rate and a
+    risk of darkening your skin, and it sold accordingly.<Cite n={1} />
+  </p>
+  <p>
+    That tension is also why the science has so much room to grow. The biology is
+    proven and the targets are validated; the unsolved engineering problem is
+    <strong>precision</strong> — selective agonists that hit one receptor and not
+    the other four, and smarter delivery that widens the window between effect and
+    side effect. That is exactly where the <a href="/therapeutics">therapeutic
+    frontier</a> is moving: receptor-selective and biased agonists, and oral or
+    controlled-release formulations built to lose the spike.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">This is an explainer, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page describes <em>why</em> these effects happen — the pharmacology. It
+      is not dosing guidance and not medical advice, and it is not an endorsement
+      of unapproved products. Approved melanocortin drugs are prescribed and
+      monitored by clinicians for specific conditions; see the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <References items={references} />
+</PageLayout>
