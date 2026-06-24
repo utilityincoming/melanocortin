@@ -6,6 +6,9 @@ export interface Receptor {
   ligands: string;
   function: string;
   whenItFails: string;
+  /** True when a hand-written full page exists at /receptors/<slug>.astro
+   *  (so the dynamic [mc] stub route skips it to avoid a route collision). */
+  detailed?: boolean;
 }
 
 export const receptors: Receptor[] = [
@@ -19,6 +22,7 @@ export const receptors: Receptor[] = [
       'Switches melanocytes from red/yellow pheomelanin toward brown/black eumelanin — the master control of pigmentation and UV response.',
     whenItFails:
       'Loss-of-function variants drive red hair, fair skin, and raised melanoma risk.',
+    detailed: true,
   },
   {
     id: 'MC2R',
@@ -52,6 +56,7 @@ export const receptors: Receptor[] = [
       'The central rheostat of appetite and body weight — and the target of the obesity drug setmelanotide.',
     whenItFails:
       'The most common monogenic cause of severe early-onset obesity in humans.',
+    detailed: true,
   },
   {
     id: 'MC5R',

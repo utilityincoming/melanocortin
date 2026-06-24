@@ -1,0 +1,26 @@
+---
+import type { Receptor } from '../data/receptors';
+interface Props {
+  receptor: Receptor;
+}
+const { receptor } = Astro.props;
+const facts = [
+  { label: 'Tissue', value: receptor.tissue },
+  { label: 'Ligands', value: receptor.ligands },
+  { label: 'Function', value: receptor.function },
+  { label: 'When it fails', value: receptor.whenItFails },
+];
+---
+
+<dl class="not-prose mt-2 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+  {
+    facts.map((f) => (
+      <div class="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
+        <dt class="font-mono text-xs uppercase tracking-wide text-[var(--accent)]">
+          {f.label}
+        </dt>
+        <dd class="text-sm leading-relaxed">{f.value}</dd>
+      </div>
+    ))
+  }
+</dl>

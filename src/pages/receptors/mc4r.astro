@@ -1,0 +1,127 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ReceptorFacts from '../../components/ReceptorFacts.astro';
+import Cite from '../../components/Cite.astro';
+import References from '../../components/References.astro';
+import { receptors } from '../../data/receptors';
+
+const receptor = receptors.find((r) => r.slug === 'mc4r')!;
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Yeo GSH, et al.',
+    title:
+      'The melanocortin-4 receptor pathway and the emergence of precision medicine in obesity management.',
+    source: 'Review (PMC11893075).',
+    year: '2025',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11893075/',
+  },
+  {
+    authors: 'Collet T-H, et al.',
+    title:
+      'Melanocortin 4 receptor pathway dysfunction in obesity: patient stratification aimed at MC4R agonist treatment.',
+    source: 'J Clin Endocrinol Metab. 103(7):2601–12.',
+    year: '2018',
+    url: 'https://academic.oup.com/jcem/article/103/7/2601/4990775',
+  },
+  {
+    authors: 'StatPearls.',
+    title: 'Setmelanotide.',
+    source: 'NCBI Bookshelf (NBK589641).',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
+  },
+];
+---
+
+<PageLayout
+  title="MC4R — the appetite rheostat"
+  kicker="Receptor · Melanocortin 4 receptor"
+  description="The brain's central controller of appetite and body weight. Loss of MC4R signalling is the commonest single-gene cause of severe obesity, and restoring it is the basis of the drug setmelanotide."
+  updated="23 June 2026"
+>
+  <ReceptorFacts receptor={receptor} />
+
+  <p>
+    Of the five melanocortin receptors, MC4R is the one most directly tied to a
+    common human disease. Expressed almost entirely in the central nervous
+    system — densely in the paraventricular nucleus (PVN) of the hypothalamus —
+    it is the point where the brain converts a hormonal read-out of the body's
+    energy stores into the decision to eat or to stop.<Cite n={1} />
+  </p>
+
+  <h2>The leptin–melanocortin circuit</h2>
+  <p>
+    MC4R sits at the business end of one of the body's best-understood appetite
+    pathways. When fat stores are full, adipose tissue releases leptin, which
+    crosses into the brain and acts on two opposing neuron populations in the
+    arcuate nucleus:<Cite n={2} />
+  </p>
+  <ul>
+    <li>
+      <strong>POMC neurons</strong>, which leptin <em>activates</em> — releasing
+      α-MSH that travels to the PVN and switches MC4R on, suppressing appetite and
+      raising energy expenditure.
+    </li>
+    <li>
+      <strong>AgRP/NPY neurons</strong>, which leptin <em>inhibits</em> — these
+      release agouti-related peptide, an inverse agonist that drives MC4R activity
+      below baseline and promotes feeding.
+    </li>
+  </ul>
+  <p>
+    Appetite, in other words, is set by a tug-of-war between α-MSH and AgRP at
+    this one receptor. Like its relatives, MC4R couples to the stimulatory
+    G-protein Gs and signals through cyclic AMP when activated.<Cite n={1} /> Because
+    the whole chain — leptin → leptin receptor → POMC → α-MSH → MC4R — is a
+    relay, a break at any link produces a similar phenotype of relentless hunger.
+  </p>
+
+  <h2>When it fails: monogenic obesity</h2>
+  <p>
+    Loss-of-function mutations in MC4R cause early-onset obesity with hyperphagia,
+    and collectively they are the most common monogenic form of obesity —
+    reported in the order of a few percent of people with severe, childhood-onset
+    obesity, though exact estimates vary by population and ascertainment.<Cite n={3} />
+    Mutations further upstream — in leptin (LEP), the leptin receptor (LEPR),
+    POMC, or the processing enzyme PCSK1 — converge on the same pathway and
+    produce overlapping syndromes.<Cite n={2} />
+  </p>
+
+  <h2>Setmelanotide: refilling the signal</h2>
+  <p>
+    The therapeutic logic is direct: if the problem is too little MC4R activity,
+    supply an agonist. Setmelanotide (marketed as Imcivree) is an MC4R agonist
+    that works best when the receptor itself is intact but its upstream input is
+    missing — which is why its clearest benefit is in deficiencies of POMC, PCSK1,
+    and LEPR rather than in obesity caused by MC4R mutations themselves.<Cite n={4} />
+  </p>
+  <p>
+    It was first approved by the FDA in November 2020 for obesity due to POMC,
+    PCSK1, or LEPR deficiency, extended in 2022 to Bardet–Biedl syndrome, and in
+    2026 to acquired hypothalamic obesity.<Cite n={4} /> Dosing and eligibility are
+    clinical decisions; this page describes mechanism, not treatment. See the
+    <a href="/therapeutics">therapeutics section</a> for the full drug entry.
+  </p>
+
+  <h2>Beyond appetite</h2>
+  <p>
+    MC4R is not only about hunger. The same receptor contributes to energy
+    expenditure, glucose and insulin handling, blood-pressure regulation, and
+    erectile function — which is both why melanocortin drugs have cardiovascular
+    considerations and why the pathway is studied well beyond
+    obesity.<Cite n={1} /> For how MC4R fits the wider system, see the
+    <a href="/system">overview pillar</a>.
+  </p>
+
+  <p><a href="/receptors">← Back to all receptors</a></p>
+
+  <References items={references} />
+</PageLayout>

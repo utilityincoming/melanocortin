@@ -1,0 +1,113 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ReceptorFacts from '../../components/ReceptorFacts.astro';
+import Cite from '../../components/Cite.astro';
+import References from '../../components/References.astro';
+import { receptors } from '../../data/receptors';
+
+const receptor = receptors.find((r) => r.slug === 'mc1r')!;
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Nasti TH, Timares L.',
+    title:
+      'MC1R, eumelanin and pheomelanin: their role in determining the susceptibility to skin cancer.',
+    source: 'Photochem Photobiol. 91(1):188–200.',
+    year: '2015',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4299862/',
+  },
+  {
+    authors: 'Beaumont KA, et al.',
+    title:
+      'Altered cell surface expression of human MC1R variant receptor alleles associated with red hair and skin cancer risk.',
+    source: 'Hum Mol Genet. 14(15):2145–54.',
+    year: '2005',
+    url: 'https://academic.oup.com/hmg/article/14/15/2145/551635',
+  },
+  {
+    authors: 'Cooray SN, Clark AJL.',
+    title: 'The melanocortin receptors and their accessory proteins.',
+    source: 'Front Endocrinol (Lausanne). 4:9.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
+  },
+];
+---
+
+<PageLayout
+  title="MC1R — the pigment switch"
+  kicker="Receptor · Melanocortin 1 receptor"
+  description="The receptor on melanocytes that decides between protective brown-black eumelanin and reddish pheomelanin. Its weak variants explain red hair and fair skin — and carry an independent melanoma risk."
+  updated="23 June 2026"
+>
+  <ReceptorFacts receptor={receptor} />
+
+  <p>
+    MC1R is the melanocortin system's contribution to how you look — and to how
+    well your skin defends itself against the sun. Sitting on the surface of
+    melanocytes, it is the master switch that sets which kind of melanin those
+    cells produce.<Cite n={1} />
+  </p>
+
+  <h2>The pigment switch</h2>
+  <p>
+    Melanocytes can make two broad classes of pigment: <strong>eumelanin</strong>,
+    the brown-black pigment that absorbs UV and protects DNA, and
+    <strong>pheomelanin</strong>, a reddish-yellow pigment that is a poor
+    sunscreen and can itself generate damaging free radicals. When α-MSH (or ACTH)
+    activates MC1R, the receptor — coupled to Gs — raises cyclic AMP, drives the
+    pigment master-regulator MITF, and shifts production toward
+    eumelanin.<Cite n={2} /> When MC1R signalling is weak, the balance tips toward
+    pheomelanin: the visible result is red or blond hair, fair skin that burns
+    rather than tans, and freckling.<Cite n={2} />
+  </p>
+  <p>
+    The system also has a built-in brake. Agouti signalling protein antagonises
+    MC1R, lowering its activity — the same mechanism that produces banded coat
+    colour in other mammals.<Cite n={1} />
+  </p>
+
+  <h2>The "red hair" variants</h2>
+  <p>
+    MC1R is one of the most variable genes in the human genome. A handful of
+    strongly penetrant loss-of-function alleles — classically R151C, R160W, and
+    D294H — are associated with the red-hair, fair-skin phenotype. These variants
+    largely fail because the mutant receptor is mis-trafficked and under-expressed
+    at the cell surface, so less signal gets through even when α-MSH is
+    present.<Cite n={3} />
+  </p>
+
+  <h2>Why it matters: skin cancer risk</h2>
+  <p>
+    Carrying red-hair-colour MC1R variants raises the risk of cutaneous melanoma
+    and of non-melanoma skin cancers — and the effect persists even after
+    accounting for fair skin and red hair, pointing to a contribution beyond
+    visible pigmentation.<Cite n={2} /> Part of the explanation is that pheomelanin
+    amplifies UV-induced DNA damage, and may even contribute to melanoma formation
+    through oxidative damage in the relative absence of UV.<Cite n={2} /> Strong MC1R
+    signalling, by contrast, supports not just eumelanin synthesis but also DNA
+    repair and antioxidant defences in melanocytes.<Cite n={2} />
+  </p>
+
+  <h2>Beyond pigment</h2>
+  <p>
+    MC1R is not confined to the skin. It is also expressed on immune cells, where
+    melanocortin signalling is broadly anti-inflammatory — one reason the receptor
+    is of interest well outside dermatology.<Cite n={4} /> Therapeutically, the α-MSH
+    analogue afamelanotide is an MC1R agonist used to raise protective eumelanin in
+    erythropoietic protoporphyria; see the
+    <a href="/therapeutics">therapeutics section</a> for that entry, and the
+    <a href="/system">overview pillar</a> for how MC1R fits the wider system.
+  </p>
+
+  <p><a href="/receptors">← Back to all receptors</a></p>
+
+  <References items={references} />
+</PageLayout>
