@@ -10,8 +10,8 @@ import { receptors } from '../../data/receptors';
 >
   <p>
     The melanocortin peptides act through five receptors, each with its own
-    tissue distribution, ligand preferences, and physiology. Each links to a
-    dedicated page (in progress).
+    tissue distribution, ligand preferences, and physiology. MC1R and MC4R have
+    full reference pages; the rest are summary cards being expanded.
   </p>
 
   <div class="mt-8 not-prose flex flex-col gap-4">
@@ -22,8 +22,19 @@ import { receptors } from '../../data/receptors';
           class="group block rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
         >
           <div class="flex items-baseline justify-between gap-4">
-            <span class="font-mono text-lg font-semibold tracking-tight group-hover:text-[var(--accent)]">
-              {r.id}
+            <span class="flex items-baseline gap-2.5">
+              <span class="font-mono text-lg font-semibold tracking-tight group-hover:text-[var(--accent)]">
+                {r.id}
+              </span>
+              {r.detailed ? (
+                <span class="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[0.65rem] font-medium tracking-wide text-[var(--accent)] uppercase">
+                  Full page
+                </span>
+              ) : (
+                <span class="text-[0.65rem] tracking-wide text-[var(--text-muted)] uppercase">
+                  Summary
+                </span>
+              )}
             </span>
             <span class="text-xs text-[var(--text-muted)]">{r.tissue}</span>
           </div>
