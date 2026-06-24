@@ -32,48 +32,33 @@ const pillars = [
 ---
 
 <BaseLayout>
-  <!-- Hero — deep-ink band -->
-  <section class="bg-[var(--color-ink)] text-[var(--color-paper)]">
-    <div class="mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-24">
-      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--signal)]">
-        POMC · MC1R–MC5R · the melanocortin axis
-      </p>
-      <h1 class="mt-5 max-w-3xl font-display text-4xl leading-[1.05] font-semibold tracking-tight sm:text-6xl">
-        One precursor protein. <span class="text-[var(--signal)]">A dozen jobs</span> across the body.
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-mist)]">
-        Melanocortins govern skin pigmentation, the stress-hormone axis, appetite,
-        energy balance, and inflammation — yet the science is scattered across
-        journals and thin on the open web. This is an attempt to fix that:
-        clearly explained, carefully cited, and built to load fast.
-      </p>
-      <div class="mt-9 flex flex-wrap items-center gap-3">
-        <a
-          href="/system"
-          class="rounded-md bg-[var(--signal)] px-5 py-2.5 text-sm font-semibold text-[var(--color-ink)] no-underline transition-opacity hover:opacity-90"
-        >
-          Start with the overview
-        </a>
-        <a
-          href="/receptors"
-          class="rounded-md border border-[var(--color-ink-line)] px-5 py-2.5 text-sm font-medium text-[var(--color-paper)] no-underline transition-colors hover:border-[var(--signal)] hover:text-[var(--signal)]"
-        >
-          Browse the receptors
-        </a>
-      </div>
-
-      <figure class="mt-14">
-        <img
-          src="/img/hero-receptor-membrane.svg"
-          width="1200"
-          height="780"
-          alt="α-MSH binding the MC4R seven-transmembrane receptor in the lipid bilayer, coupling to Gαs and cyclic AMP below."
-          class="w-full rounded-xl border border-[var(--color-ink-line)]"
-        />
-        <figcaption class="mt-3 font-mono text-xs tracking-wide text-[var(--color-mist)]">
-          Receptor activation · α-MSH → MC4R → Gαs → cAMP
-        </figcaption>
-      </figure>
+  <!-- Hero -->
+  <section class="mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+      POMC · MC1R–MC5R · the melanocortin axis
+    </p>
+    <h1 class="mt-5 max-w-3xl font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
+      One precursor protein. <span class="text-[var(--accent)]">A dozen jobs</span> across the body.
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+      Melanocortins govern skin pigmentation, the stress-hormone axis, appetite,
+      energy balance, and inflammation — yet the science is scattered across
+      journals and thin on the open web. This is an attempt to fix that:
+      clearly explained, carefully cited, and built to load fast.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a
+        href="/system"
+        class="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+      >
+        Start with the overview
+      </a>
+      <a
+        href="/receptors"
+        class="rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      >
+        Browse the receptors
+      </a>
     </div>
   </section>
 
@@ -98,7 +83,7 @@ const pillars = [
 
   <!-- Pillars -->
   <section class="mx-auto max-w-5xl px-6 py-20">
-    <h2 class="font-display text-2xl font-semibold tracking-tight">How the reference is organised</h2>
+    <h2 class="font-serif text-2xl font-semibold tracking-tight">How the reference is organised</h2>
     <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
       A pillar-and-cluster knowledge base — broad overviews that link down into
       specific, citeable detail.
@@ -113,7 +98,7 @@ const pillars = [
             <span class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
               {p.kicker}
             </span>
-            <span class="mt-3 font-display text-xl font-semibold tracking-tight">{p.title}</span>
+            <span class="mt-3 font-serif text-xl font-semibold tracking-tight">{p.title}</span>
             <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{p.body}</span>
             <span class="mt-4 text-sm font-medium text-[var(--accent)]">Read →</span>
           </a>
@@ -122,11 +107,10 @@ const pillars = [
     </div>
   </section>
 
-  <!-- Editorial promise — ambient peptide-lattice band -->
-  <section class="border-y border-[var(--border)] bg-[var(--surface)] bg-[url(/img/molecular-texture.svg)] bg-cover bg-center">
-    <div class="mx-auto max-w-5xl px-6 py-16">
-      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Editorial standard</p>
-      <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight">Built on honesty</h2>
+  <!-- Editorial promise -->
+  <section class="mx-auto max-w-5xl px-6 pb-4">
+    <div class="rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-8">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Built on honesty</h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text)]">
         Every page carries a visible author and a last-reviewed date. Therapeutic
         and clinical-pipeline information is verified against current sources
