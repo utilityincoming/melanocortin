@@ -1,0 +1,172 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+
+const references = [
+  {
+    authors: 'DermNet NZ.',
+    title: 'Melanotan II.',
+    source: 'Clinical dermatology reference.',
+    year: '2023',
+    url: 'https://dermnetnz.org/topics/melanotan-ii',
+  },
+  {
+    authors: 'Therapeutic Goods Administration (Australia).',
+    title: 'Don’t risk using tanning products containing melanotan.',
+    source: 'Regulator advisory.',
+    year: '2023',
+    url: 'https://www.tga.gov.au/news/blog/dont-risk-using-tanning-products-containing-melanotan',
+  },
+  {
+    authors: 'UNSW Sydney (Newsroom).',
+    title: 'What is Melanotan-II — the drug the TGA urges consumers to avoid?',
+    source: 'News explainer.',
+    year: '2023',
+    url: 'https://www.unsw.edu.au/newsroom/news/2023/01/what-is-melanotan-ii---the-drug-that-the-tga-urges-consumers-to-',
+  },
+  {
+    authors: 'Cancer Research UK.',
+    title: 'Melanotan injections are sold illegally and possibly unsafe.',
+    source: 'Science blog.',
+    year: '2009',
+    url: 'https://news.cancerresearchuk.org/2009/01/28/melanotan-injections-are-illegal-and-possibly-unsafe/',
+  },
+];
+---
+
+<PageLayout
+  title="Melanotan and Melanotan II: what they are, why they tan you, and the real risks"
+  kicker="Explainer"
+  description="The 'tanning peptides' sold online are synthetic versions of a melanocortin hormone. Here's the actual pharmacology, how the two melanotans relate to the approved drugs they spawned, and the documented risks — explained plainly, not sold."
+  updated="2026"
+>
+  <p>
+    Search for a way to tan without the sun and you will quickly meet
+    "melanotan" — peptides sold online as injections or nasal sprays that
+    genuinely darken skin. They are real pharmacology, not a gimmick: synthetic
+    relatives of the body's own pigment hormone, α-MSH. But the most popular one
+    is also unapproved everywhere, sold illegally, and tied to documented harms.
+    This page explains what these compounds are and why they do what they do — it
+    is education, not endorsement, and not medical advice.
+  </p>
+
+  <h2>Two melanotans — and the medicines they became</h2>
+  <p>
+    The confusing part is that "melanotan" names a small family, and most of it
+    grew up to be legitimate. All of it traces to work at the University of
+    Arizona to make stable analogues of α-MSH.<Cite n={1} />
+  </p>
+  <ul>
+    <li>
+      <strong>Melanotan-I</strong> — the more selective
+      <a href="/receptors/mc1r">MC1R</a> analogue. It became an
+      <em>approved drug</em>: afamelanotide (Scenesse), a controlled-release
+      implant for a rare light-sensitivity disorder. See the
+      <a href="/therapeutics#afamelanotide">therapeutics entry</a>.
+    </li>
+    <li>
+      <strong>Melanotan II (MT-II)</strong> — a more potent, <em>non-selective</em>
+      melanocortin agonist that hits MC1R, MC3R, MC4R and MC5R. It was the one
+      pushed as a tanning agent, and it is the one that <em>never</em> became a
+      medicine. This is the "melanotan" sold on the grey market.<Cite n={1} />
+    </li>
+    <li>
+      <strong>Its offspring</strong> — bremelanotide (Vyleesi), derived from the
+      MT-II scaffold, became an approved treatment for low sexual desire. See the
+      <a href="/therapeutics#bremelanotide">therapeutics entry</a>.
+    </li>
+  </ul>
+  <p>
+    So two of the three melanotan-lineage molecules cleared trials and reached
+    pharmacies under controlled doses and forms. The middle one — MT-II — stayed
+    in vials marked "research chemical, not for human use," which is how it dodges
+    the rules it can't pass.<Cite n={2} />
+  </p>
+
+  <h2>Why it tans you</h2>
+  <p>
+    The tanning is straightforward melanocortin biology. MT-II activates
+    <a href="/receptors/mc1r">MC1R</a> on your melanocytes, which raises cyclic
+    AMP and pushes pigment production toward brown-black eumelanin — the same
+    switch the sun's UV would normally flip, but triggered chemically and
+    <em>without</em> sunlight.<Cite n={1} /> That is genuinely why it appeals to people
+    who burn rather than tan: it can build pigment in skin that otherwise won't.
+  </p>
+
+  <h2>Why it also does much more than tan</h2>
+  <p>
+    Here is the catch the marketing skips: MT-II is <em>non-selective</em>, so it
+    doesn't only hit the pigment receptor. Activating
+    <a href="/receptors/mc4r">MC4R</a> in the brain is why users report nausea
+    (commonly 50% or more), facial flushing, loss of appetite, drowsiness,
+    yawning, and spontaneous erections — the last effect so reliable that it
+    became the entire basis of the spin-off drug bremelanotide.<Cite n={1} /> If
+    you want the full mechanism of why melanocortin agonists make you queasy and
+    darken, see <a href="/effects">why melanocortin agonists make you queasy and
+    tan</a>.
+  </p>
+
+  <h2>The risks that matter</h2>
+  <p>
+    Beyond the everyday side effects, three categories of risk are why
+    dermatologists and regulators single this compound out.
+  </p>
+  <ul>
+    <li>
+      <strong>Moles and melanoma.</strong> MT-II darkens existing moles and is
+      associated with the rapid appearance of new ones. Dermatologists' deeper
+      concern is that driving pigment cells this hard could accelerate already-
+      abnormal moles toward melanoma, and there are case reports of melanoma
+      emerging during or shortly after use.<Cite n={1} /><Cite n={4} /> Causation
+      isn't proven, but the mechanism is plausible and the reports are real — and
+      a chemical tan can mask exactly the mole changes you're meant to watch for.
+    </li>
+    <li>
+      <strong>Serious, if uncommon, events.</strong> Published case reports include
+      rhabdomyolysis (muscle breakdown), kidney dysfunction, and neurological
+      effects after MT-II injection.<Cite n={1} /> These come from uncontrolled use,
+      where dose and product quality are unknown variables.
+    </li>
+    <li>
+      <strong>An unregulated product.</strong> Because it is sold illegally, no
+      one verifies what is in the vial — purity, dose, sterility, or
+      contaminants — and self-injection or nasal use adds its own risks.<Cite n={2} /><Cite n={3} />
+    </li>
+  </ul>
+
+  <h2>It is not approved, and not legal to sell</h2>
+  <p>
+    Melanotan II has never completed the safety trials a medicine requires, and it
+    is unlicensed in the US, UK, EU, and Australia. The FDA, the UK's MHRA,
+    Australia's TGA, and European regulators have all warned against it, and
+    regulators have moved against sellers.<Cite n={2} /><Cite n={3} /><Cite n={4} />
+    The "research chemical" label on what's clearly being marketed for human use is
+    a way around approval, not evidence of safety.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    The biology is real: melanotan does build a sunless tan, through exactly the
+    MC1R pathway this site describes. But the popular version, MT-II, is
+    unapproved, illegal to sell, of unknown quality, and carries genuine
+    documented risks — including to the very moles a tan can hide. The only
+    approved melanocortin that builds protective pigment, afamelanotide, exists
+    for a rare medical condition, not cosmetic tanning. There is, at present, no
+    approved melanocortin tanning product. We document the science so the decision
+    is an informed one.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what melanotan is and why it acts as it does. It does not
+      provide dosing, sourcing, or usage instructions, and it is not medical
+      advice or an endorsement of an unapproved product. If you are worried about a
+      mole or a reaction, see a clinician. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <References items={references} />
+</PageLayout>
