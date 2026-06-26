@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { ogPages } from '../data/og-manifest.mjs';
 
 interface Props {
   title?: string;
@@ -21,7 +22,14 @@ const {
 
 const site = Astro.site ?? new URL('https://melanocortin.com');
 const canonical = new URL(Astro.url.pathname, site);
-const ogImage = new URL('/og/default.png', site);
+
+// Per-page social card, falling back to the default for anything not in the manifest.
+const ogSlug =
+  Astro.url.pathname === '/'
+    ? 'home'
+    : Astro.url.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+const hasCard = ogPages.some((p) => p.slug === ogSlug);
+const ogImage = new URL(`/og/${hasCard ? ogSlug : 'default'}.png`, site);
 
 // ---- Breadcrumb trail from the path -------------------------------------
 const SEG_LABELS: Record<string, string> = {

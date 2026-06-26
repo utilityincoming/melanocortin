@@ -1,0 +1,141 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'Does Ozempic work on the brain?',
+    a: 'Yes. Although GLP-1 is a gut hormone, GLP-1 drugs like semaglutide reduce appetite largely by acting on hunger-regulating circuits in the hypothalamus and brainstem, not only on the gut and pancreas.',
+  },
+  {
+    q: 'Do GLP-1 drugs work through the melanocortin system?',
+    a: 'Partly. GLP-1 receptor agonists activate POMC neurons and quiet AgRP/NPY neurons, which feeds the melanocortin (MC4R) satiety pathway. But they do not fully depend on it: people with MC4R mutations still lose weight on a GLP-1 drug, so parallel circuits are also involved.',
+  },
+  {
+    q: 'Why do GLP-1 drugs reduce appetite?',
+    a: 'They mimic the gut hormone GLP-1, signalling fullness to the brain’s appetite centres and slowing gastric emptying, which together lower how much you eat.',
+  },
+  {
+    q: 'Is MC4R the same target as Ozempic?',
+    a: 'No. Semaglutide targets the GLP-1 receptor, not MC4R. But the two pathways meet — GLP-1 signalling feeds into the MC4R appetite circuit — which is why they are discussed together and explored in combination.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Dong Y, et al.',
+    title:
+      'Time- and metabolic-state-dependent effects of GLP-1R agonists on NPY/AgRP and POMC neuronal activity in vivo.',
+    source: 'Mol Metab. 54:101352.',
+    year: '2021',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8590079/',
+  },
+  {
+    authors: 'Iepsen EW, et al.',
+    title:
+      'Patients with obesity caused by melanocortin-4 receptor mutations can be treated with a glucagon-like peptide-1 receptor agonist.',
+    source: 'Cell Metab. 28(1):23–32.',
+    year: '2018',
+    url: 'https://www.sciencedirect.com/science/article/pii/S1550413118303152',
+  },
+  {
+    authors: 'StatPearls.',
+    title: 'Setmelanotide.',
+    source: 'NCBI Bookshelf (NBK589641).',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
+  },
+];
+---
+
+<PageLayout
+  title="How GLP-1 drugs (Ozempic, Wegovy) work on appetite — and the melanocortin connection"
+  kicker="Appetite"
+  description="Semaglutide and tirzepatide quiet hunger by acting on the brain's appetite circuitry — the same leptin–melanocortin system this site is built around. Here's exactly where they plug in, and the honest uncertainty about how much they depend on it."
+  updated="2026"
+>
+  <p>
+    The defining drugs of the moment — semaglutide (Ozempic, Wegovy), tirzepatide
+    (Mounjaro, Zepbound) — are GLP-1 receptor agonists, and the question everyone
+    asks is <em>how</em> they make people eat less. The short answer is that they
+    work on the brain. The more interesting answer, for this site, is that the
+    circuit they act on is the one melanocortin biology has described all along.
+  </p>
+
+  <h2>The body's appetite thermostat</h2>
+  <p>
+    Hunger and fullness are set in the hypothalamus by a small, well-mapped
+    circuit. The fat-derived hormone leptin activates POMC neurons in the arcuate
+    nucleus, which release α-MSH onto <a href="/receptors/mc4r">MC4R</a> — and
+    MC4R activation is the body's core "stop eating" signal. Pulling the other way
+    are AgRP neurons, which drive hunger and block MC4R. Appetite is the balance
+    between them, which is why losing either POMC or MC4R causes severe obesity,
+    and why MC4R mutations are the commonest single-gene cause of it.<Cite n={1} />
+    The <a href="/system">overview pillar</a> covers this circuit in full.
+  </p>
+
+  <h2>Where GLP-1 plugs in</h2>
+  <p>
+    GLP-1 receptor agonists engage this same circuit. In the arcuate nucleus they
+    activate the satiety-promoting POMC neurons and quiet the hunger-promoting
+    AgRP/NPY neurons — tilting the balance toward fullness and feeding directly
+    into the melanocortin pathway downstream.<Cite n={2} /> In other words, part of
+    how a GLP-1 drug suppresses appetite is by raising melanocortin tone and
+    handing the signal to MC4R, the same receptor the obesity drug setmelanotide
+    targets directly.
+  </p>
+
+  <h2>But the melanocortin pathway isn't the whole story</h2>
+  <p>
+    Here is where an honest account has to slow down. If GLP-1 drugs worked
+    <em>only</em> through MC4R, people with disabling MC4R mutations shouldn't
+    respond to them — yet they do. In a key study, patients with obesity caused by
+    MC4R mutations still lost weight on a GLP-1 receptor agonist, which means the
+    melanocortin pathway is <em>not</em> an obligatory gateway for GLP-1's
+    effect.<Cite n={3} /> The drug appears to have parallel routes — through other
+    hypothalamic and brainstem neurons — that can bypass MC4R. So the accurate
+    picture is that GLP-1 strongly <em>engages</em> the melanocortin system without
+    being wholly <em>dependent</em> on it. Where the science is still being worked
+    out, this page says so.
+  </p>
+
+  <h2>One hub, many drugs</h2>
+  <p>
+    Step back and a pattern appears: leptin, the melanocortin peptides,
+    setmelanotide, and now GLP-1 drugs all converge on or around the same
+    hypothalamic appetite circuit. That convergence is why MC4R agonists such as
+    setmelanotide remain the right tool for specific genetic defects that sit
+    <em>inside</em> the melanocortin pathway, while GLP-1 drugs act more broadly —
+    and why combining the two is an active area of interest.<Cite n={1} /><Cite n={4} />
+    The <a href="/therapeutics">therapeutics section</a> covers the melanocortin
+    agents directly.
+  </p>
+
+  <h2>The bottom line</h2>
+  <p>
+    The GLP-1 era did not replace the melanocortin story — it validated it. The
+    hypothalamic appetite thermostat that melanocortin research spent decades
+    mapping turned out to be exactly the dial the world's best-selling weight
+    drugs turn. Understanding MC4R is, increasingly, how you understand modern
+    obesity medicine.
+  </p>
+
+  <p class="mt-8 text-sm text-[var(--text-muted)]">
+    This page explains mechanism for education only — it is not medical advice or
+    guidance on using any medication. See the
+    <a href="/about">editorial standards</a>.
+  </p>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+</PageLayout>
