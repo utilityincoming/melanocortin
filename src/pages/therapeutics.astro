@@ -25,6 +25,13 @@ const approved = [
     use: 'Hypoactive sexual desire disorder',
     href: '#bremelanotide',
   },
+  {
+    name: 'Repository corticotropin',
+    brand: 'Acthar Gel',
+    target: 'Pan-MCR agonist (ACTH)',
+    use: 'Infantile spasms · MS relapses · sarcoidosis',
+    href: '#corticotropin',
+  },
 ];
 
 const references = [
@@ -88,24 +95,71 @@ const references = [
     year: '2022',
     url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9434962/',
   },
+  {
+    authors: 'US FDA / DailyMed.',
+    title: 'ACTHAR (repository corticotropin injection) prescribing information.',
+    source: 'Label.',
+    year: '2024',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7b48ddec-e815-45f4-9ca0-5c0daaf56f30',
+  },
+  {
+    authors: 'Gong R.',
+    title:
+      'The renaissance of corticotropin therapy: melanocortin signalling beyond steroidogenesis.',
+    source: 'Review (H.P. Acthar Gel & cosyntropin, PMC2697107).',
+    year: '2009',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2697107/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Positive topline phase 2 results: oral MC1R agonist PL-8177 in ulcerative colitis.',
+    source: 'Press release.',
+    year: '2025',
+    url: 'https://palatin.com/press_releases/palatin-announces-positive-topline-results-from-phase-2-ulcerative-colitis-uc-study-of-oral-melanocortin-1-receptor-agonist-pl8177/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'FDA confirms acceptability of remaining phase 3 trials for PL-9643 in dry eye disease.',
+    source: 'Press release.',
+    year: '2024',
+    url: 'https://www.prnewswire.com/news-releases/fda-confirms-acceptability-of-palatins-remaining-phase-3-pivotal-clinical-trials-for-pl9643-in-dry-eye-disease-ded-302232457.html',
+  },
+  {
+    authors: 'Tanabe Pharma America.',
+    title:
+      'Positive topline phase 3 (INSPIRE) results for dersimelagon in EPP and XLP.',
+    source: 'Press release.',
+    year: '2026',
+    url: 'https://www.prnewswire.com/news-releases/tanabe-pharma-america-announces-positive-topline-results-for-dersimelagon-in-erythropoietic-protoporphyria-epp-and-x-linked-protoporphyria-xlp-302663740.html',
+  },
+  {
+    authors: 'Zhu X, et al.',
+    title:
+      'Melanocortin-4 receptor antagonist TCMCB07 ameliorates cancer- and chronic kidney disease–associated cachexia.',
+    source: 'J Clin Invest. 130(9):4921–34.',
+    year: '2020',
+    url: 'https://www.jci.org/articles/view/138392',
+  },
 ];
 ---
 
 <PageLayout
   title="Therapeutics & the frontier"
   kicker="Pharmacology"
-  description="Three melanocortin agents are FDA-approved, each exploiting a different receptor in a different organ. A broader frontier — oral agonists, biased ligands, anti-inflammatory uses — is in trials."
+  description="Four melanocortin agents are FDA-approved — across obesity, photoprotection, sexual desire, and inflammation — each exploiting a different receptor. A broad pipeline of oral agonists, antagonists, and biased ligands is in trials."
   updated="2026"
 >
   <p>
     For decades the melanocortin system was a topic for physiology textbooks, not
-    pharmacies. That has changed. Three agents are now approved, and what unites
+    pharmacies. That has changed. Several agents are now approved, and what unites
     them is instructive: each targets a <em>different</em> receptor to treat a
     <em>different</em> disease, a direct demonstration that the same peptide family
     is reused across organs. The receptor pages explain the biology each one
     exploits — <a href="/receptors/mc4r">MC4R</a>,
-    <a href="/receptors/mc1r">MC1R</a>, and the wider
-    <a href="/system">system</a>.
+    <a href="/receptors/mc1r">MC1R</a>, <a href="/receptors/mc2r">MC2R</a>, and the
+    wider <a href="/system">system</a>.
   </p>
 
   <div class="not-prose mt-6 overflow-hidden rounded-lg border border-[var(--border)]">
@@ -195,29 +249,91 @@ const references = [
     and tan</a>.
   </p>
 
-  <h2>The frontier</h2>
+  <h2 id="corticotropin" class="scroll-mt-24">Repository corticotropin (Acthar Gel) — the original</h2>
   <p>
-    Several directions are in active development:
+    The oldest melanocortin medicine is also the one least often recognised as one.
+    Repository corticotropin injection — a purified porcine ACTH preparation in a
+    slow-release gelatin, marketed as Acthar Gel — has been used since the 1950s,
+    long before the receptors were cloned. ACTH is itself a melanocortin peptide,
+    so the drug is, in effect, a pan-melanocortin agonist.<Cite n={9} /> It is
+    FDA-approved across a strikingly broad set of conditions, including infantile
+    spasms in children under two, acute exacerbations of multiple sclerosis in
+    adults, and symptomatic sarcoidosis, and is also used in nephrotic
+    syndrome.<Cite n={9} />
   </p>
+  <p>
+    Its mechanism is the interesting part. The classic explanation is purely
+    endocrine — ACTH drives <a href="/receptors/mc2r">MC2R</a> in the adrenal
+    cortex to release cortisol, so the drug was seen as an indirect steroid. But
+    melanocortin receptors also sit on immune cells, and a proposed
+    steroid-<em>independent</em> anti-inflammatory action through those receptors is
+    now invoked to explain benefit in conditions where steroids alone underperform.
+    How much of the clinical effect is steroid-independent is still debated, and the
+    product has drawn scrutiny over cost — but conceptually it is the first proof
+    that engaging this system treats disease.<Cite n={9} /><Cite n={10} /> Synthetic
+    ACTH fragments such as cosyntropin are used diagnostically, in the ACTH
+    stimulation test of adrenal function.<Cite n={10} />
+  </p>
+
+  <h2>Agonist or antagonist? Two ways to use one system</h2>
+  <p>
+    Most melanocortin medicines <em>switch the system on</em>. But because the
+    pathway has a natural brake — <a href="/receptors/mc4r">AgRP</a> opposing α-MSH
+    — it can also be treated by <em>blocking</em> it, and that mirror-image strategy
+    is therapeutically distinct.
+  </p>
+  <p>
+    The clearest example is wasting. In cancer, chronic kidney disease, and other
+    serious illness, an overactive central melanocortin tone drives cachexia —
+    appetite collapses and lean mass is lost. Setmelanotide's logic run in reverse
+    applies here: an <strong>MC4R antagonist</strong> lifts appetite and preserves
+    weight and lean mass. TCMCB07, a cyclic-peptide MC4R antagonist, does exactly
+    this in models of cancer- and kidney-disease-associated cachexia and has moved
+    into clinical testing.<Cite n={14} /> The same receptor, agonised for obesity and
+    antagonised for wasting, captures how versatile the target is.
+  </p>
+
+  <h2>The frontier</h2>
+  <p>Several directions are in active development:</p>
   <ul>
     <li>
       <strong>Oral MC1R agonists.</strong> Dersimelagon (MT-7117), a small-molecule
       oral MC1R agonist, raised symptom-free light exposure in a phase 2 trial in
-      EPP/XLP and is being studied in diffuse cutaneous systemic sclerosis — an
-      attempt to bring MC1R's anti-inflammatory and pro-pigment actions into a
-      pill.<Cite n={7} /><Cite n={8} />
+      EPP/XLP, and its phase 3 programme (INSPIRE) reported a positive primary
+      endpoint in 2026 — potentially an oral alternative to the afamelanotide
+      implant. It is also being studied in diffuse cutaneous systemic
+      sclerosis.<Cite n={7} /><Cite n={13} /><Cite n={8} />
     </li>
     <li>
-      <strong>Next-generation MC4R agonists.</strong> Work continues on agonists and
-      biased ligands aimed at appetite efficacy while minimising the blood-pressure
-      liabilities seen with non-selective melanocortin activation.<Cite n={5} />
+      <strong>Melanocortin agonists for inflammation.</strong> Palatin's PL-8177, an
+      oral MC1R agonist, showed clinical remission in a small phase 2 ulcerative
+      colitis study (33% vs 0% on placebo), though the trial was too small to prove
+      significance.<Cite n={11} /> Its ophthalmic agonist PL-9643 met multiple
+      sign endpoints in the phase 3 MELODY-1 trial for dry eye disease, with further
+      phase 3 studies under way.<Cite n={12} /> Both pursue MC1R/MC3R's
+      pro-resolving, anti-inflammatory actions rather than pigment or appetite.
     </li>
     <li>
-      <strong>Anti-inflammatory melanocortins.</strong> Agonists at MC1R and
-      <a href="/receptors/mc3r">MC3R</a> are being explored for their pro-resolving
-      effects in inflammatory disease, a use distinct from pigment or appetite.
+      <strong>Next-generation and dual agonists.</strong> Work continues on
+      selective and biased <a href="/receptors/mc4r">MC4R</a> agonists aimed at
+      appetite efficacy while minimising the blood-pressure liabilities of
+      non-selective activation, and on dual <a href="/receptors/mc3r">MC3R</a>/MC4R
+      approaches to body weight.<Cite n={5} />
     </li>
   </ul>
+
+  <h2>Every route, one system</h2>
+  <p>
+    A striking feature of the field is how many <em>forms</em> these agents now take
+    — and the route is not a detail. A controlled-release implant or an oral pill
+    spreads exposure and softens the concentration peak that drives nausea, whereas
+    a bolus injection maximises it. Approved and investigational melanocortin agents
+    already span a daily injection (setmelanotide), a bimonthly implant
+    (afamelanotide), an on-demand autoinjector (bremelanotide), an intramuscular gel
+    (corticotropin), oral tablets (dersimelagon, PL-8177), and an eye drop
+    (PL-9643). Why the peak matters is covered in
+    <a href="/effects">why melanocortin agonists make you queasy and tan</a>.
+  </p>
 
   <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
     <p class="font-medium text-[var(--text)]">A note on unlicensed "tanning peptides"</p>
