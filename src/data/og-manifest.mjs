@@ -17,6 +17,7 @@ export const ogPages = [
   { slug: 'melanotan', eyebrow: 'EXPLAINER', title: 'Melanotan & Melanotan II' },
   { slug: 'bremelanotide', eyebrow: 'EXPLAINER', title: 'Bremelanotide (PT-141)' },
   { slug: 'glp1-appetite', eyebrow: 'APPETITE · GLP-1', title: 'GLP-1 drugs & the appetite system' },
+  { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
   { slug: 'glossary', eyebrow: 'REFERENCE', title: 'Glossary' },
   { slug: 'about', eyebrow: 'ABOUT', title: 'Editorial standards' },
 ];

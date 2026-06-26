@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Byline from '../components/Byline.astro';
+import { receptors } from '../data/receptors';
+import {
+  ligands,
+  receptorIds,
+  receptorTag,
+  ACTION_LABEL,
+  KIND_LABEL,
+} from '../data/ligands';
+
+const receptorsLite = receptorIds.map((id) => {
+  const r = receptors.find((x) => x.id === id)!;
+  return { id, name: r.name, tissue: r.tissue, fn: r.function, tag: receptorTag[id] };
+});
+
+const data = {
+  ligands,
+  receptors: receptorsLite,
+  actionLabel: ACTION_LABEL,
+  kindLabel: KIND_LABEL,
+};
+---
+
+<BaseLayout
+  title="Receptor–ligand explorer — melanocortin.com"
+  description="An interactive map of which melanocortin peptides and drugs act on which of the five receptors (MC1R–MC5R) — agonist, antagonist, or inverse agonist — and what each interaction does."
+  pageType="article"
+  dateModified="2026"
+>
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Interactive</p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      Receptor–ligand explorer
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+      Which melanocortin acts on which receptor — and what happens when it does.
+      Select any ligand or receptor to trace the interactions across the system.
+    </p>
+    <Byline updated="2026" />
+
+    <!-- Legend -->
+    <ul class="ex-legend not-prose mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[var(--text-muted)]">
+      <li><span class="dot agonist"></span> Agonist</li>
+      <li><span class="dot partial"></span> Partial / weaker</li>
+      <li><span class="dot antagonist"></span> Antagonist</li>
+      <li><span class="dot inverse"></span> Inverse agonist</li>
+      <li><span class="dot none"></span> No notable activity</li>
+    </ul>
+
+    <!-- Matrix -->
+    <div class="mt-5 overflow-x-auto">
+      <table class="ex-matrix w-full border-collapse text-sm">
+        <thead>
+          <tr>
+            <th class="ex-corner" scope="col"><span class="sr-only">Ligand</span></th>
+            {
+              receptorsLite.map((r) => (
+                <th scope="col">
+                  <button type="button" class="ex-head" data-receptor={r.id}>
+                    <span class="font-mono font-semibold">{r.id}</span>
+                    <span class="ex-tag">{r.tag}</span>
+                  </button>
+                </th>
+              ))
+            }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ligands.map((l) => (
+              <tr data-row={l.id}>
+                <th scope="row" class="ex-rowhead">
+                  <button type="button" class="ex-lig" data-ligand={l.id}>
+                    <span>{l.name}</span>
+                    <span class={`ex-kind ex-kind-${l.kind}`}>{KIND_LABEL[l.kind]}</span>
+                  </button>
+                </th>
+                {
+                  receptorIds.map((rid) => (
+                    <td data-receptor={rid}>
+                      <span
+                        class={`dot ${l.actions[rid] ?? 'none'}`}
+                        title={`${l.name} → ${rid}: ${l.actions[rid] ? ACTION_LABEL[l.actions[rid]!] : 'no notable activity'}`}
+                        aria-label={`${l.name} ${rid} ${l.actions[rid] ?? 'none'}`}
+                      />
+                    </td>
+                  ))
+                }
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Detail panel -->
+    <div
+      id="ex-detail"
+      class="not-prose mt-6 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6"
+      aria-live="polite"
+    >
+      <p class="text-sm text-[var(--text-muted)]">
+        Select a <strong class="text-[var(--text)]">ligand</strong> (row) or a
+        <strong class="text-[var(--text)]">receptor</strong> (column) above to see
+        the interactions and what they do.
+      </p>
+    </div>
+
+    <p class="mt-8 text-sm text-[var(--text-muted)]">
+      Activity profiles are simplified for clarity; where selectivity is
+      approximate, weaker activity is shown as “partial.” For education, not
+      medical advice — see the <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
+      Receptor detail draws on the <a href="/receptors" class="underline decoration-dotted hover:text-[var(--accent)]">receptor pages</a>.
+    </p>
+
+    <script type="application/json" id="ex-data" set:html={JSON.stringify(data)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .dot {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    vertical-align: middle;
+  }
+  .dot.agonist { background: var(--accent); }
+  .dot.partial { background: var(--color-pigment-300); }
+  .dot.antagonist { border: 2px solid var(--text-muted); }
+  .dot.inverse {
+    border: 2px solid var(--text-muted);
+    position: relative;
+  }
+  .dot.inverse::after {
+    content: '';
+    position: absolute;
+    inset: 50% 2px auto 2px;
+    height: 2px;
+    margin-top: -1px;
+    background: var(--text-muted);
+  }
+  .dot.none {
+    width: 10px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--border);
+  }
+  .ex-legend li { display: flex; align-items: center; gap: 7px; }
+
+  .ex-matrix th,
+  .ex-matrix td {
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .ex-matrix thead th { border-bottom: 2px solid var(--border); text-align: center; }
+  .ex-corner { width: 1%; }
+  .ex-matrix td { text-align: center; padding: 12px 8px; }
+
+  .ex-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    padding: 10px 8px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: background-color 0.15s;
+  }
+  .ex-head:hover { background: var(--accent-soft); }
+  .ex-tag {
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .ex-rowhead { text-align: left; }
+  .ex-lig {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px 10px 4px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .ex-lig:hover { color: var(--accent); }
+  .ex-kind {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Selection highlight (toggled by script) */
+  tr.row-sel td,
+  tr.row-sel .ex-rowhead { background: var(--accent-soft); }
+  td.col-sel { background: var(--accent-soft); }
+  .ex-head.col-sel { background: var(--accent-soft); }
+</style>
+
+<script>
+  type Action = 'agonist' | 'partial' | 'antagonist' | 'inverse' | null;
+  interface Ligand {
+    id: string; name: string; kind: string; note: string; href?: string;
+    actions: Record<string, Action>;
+  }
+  interface RecLite { id: string; name: string; tissue: string; fn: string; tag: string; }
+  interface Data {
+    ligands: Ligand[];
+    receptors: RecLite[];
+    actionLabel: Record<string, string>;
+    kindLabel: Record<string, string>;
+  }
+
+  const el = document.getElementById('ex-data');
+  if (el) {
+    const data: Data = JSON.parse(el.textContent || '{}');
+    const detail = document.getElementById('ex-detail')!;
+    const esc = (s: string) =>
+      s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    function clearSel() {
+      document.querySelectorAll('.row-sel').forEach((n) => n.classList.remove('row-sel'));
+      document.querySelectorAll('.col-sel').forEach((n) => n.classList.remove('col-sel'));
+    }
+
+    function row(label: string, body: string) {
+      return `<div class="mt-1"><span class="font-mono text-xs uppercase tracking-wide" style="color:var(--accent)">${label}</span> ${body}</div>`;
+    }
+
+    function selectLigand(id: string) {
+      const l = data.ligands.find((x) => x.id === id);
+      if (!l) return;
+      clearSel();
+      document.querySelector(`tr[data-row="${id}"]`)?.classList.add('row-sel');
+      const acts = data.receptors
+        .filter((r) => l.actions[r.id])
+        .map((r) => {
+          const a = l.actions[r.id]!;
+          return `<li class="mt-1.5"><span class="font-mono font-semibold">${r.id}</span> <span class="text-[var(--text-muted)]">(${esc(r.tag)})</span> — ${data.actionLabel[a]}</li>`;
+        })
+        .join('');
+      const link = l.href
+        ? ` <a href="${l.href}" class="underline decoration-dotted hover:text-[var(--accent)]">Read more →</a>`
+        : '';
+      detail.innerHTML =
+        `<p class="font-serif text-xl font-semibold tracking-tight">${esc(l.name)} <span class="ml-1 align-middle text-xs font-normal uppercase tracking-wide text-[var(--text-muted)]">${data.kindLabel[l.kind]}</span></p>` +
+        `<p class="mt-2 leading-relaxed text-[var(--text-muted)]">${esc(l.note)}${link}</p>` +
+        (acts
+          ? `<p class="mt-4 text-sm font-medium">Acts on</p><ul class="mt-1 text-sm">${acts}</ul>`
+          : `<p class="mt-4 text-sm text-[var(--text-muted)]">No notable activity at the five receptors.</p>`);
+    }
+
+    function selectReceptor(rid: string) {
+      const r = data.receptors.find((x) => x.id === rid);
+      if (!r) return;
+      clearSel();
+      document.querySelector(`.ex-head[data-receptor="${rid}"]`)?.classList.add('col-sel');
+      document.querySelectorAll(`td[data-receptor="${rid}"]`).forEach((n) => n.classList.add('col-sel'));
+      const group = (label: string, test: (a: Action) => boolean) => {
+        const names = data.ligands
+          .filter((l) => test(l.actions[rid]))
+          .map((l) => esc(l.name))
+          .join(', ');
+        return names ? row(label, `<span class="text-[var(--text-muted)]">${names}</span>`) : '';
+      };
+      detail.innerHTML =
+        `<p class="font-serif text-xl font-semibold tracking-tight">${r.id} <span class="ml-1 align-middle text-xs font-normal uppercase tracking-wide text-[var(--text-muted)]">${esc(r.tag)}</span></p>` +
+        `<p class="mt-2 leading-relaxed text-[var(--text-muted)]">${esc(r.fn)} <a href="/receptors/${rid.toLowerCase()}" class="underline decoration-dotted hover:text-[var(--accent)]">Receptor page →</a></p>` +
+        `<div class="mt-4 text-sm">` +
+        group('Agonists', (a) => a === 'agonist' || a === 'partial') +
+        group('Antagonists', (a) => a === 'antagonist') +
+        group('Inverse', (a) => a === 'inverse') +
+        `</div>`;
+    }
+
+    document.querySelectorAll<HTMLElement>('[data-ligand]').forEach((b) =>
+      b.addEventListener('click', () => selectLigand(b.dataset.ligand!))
+    );
+    document.querySelectorAll<HTMLElement>('[data-receptor].ex-head').forEach((b) =>
+      b.addEventListener('click', () => selectReceptor(b.dataset.receptor!))
+    );
+  }
+</script>
