@@ -2,6 +2,22 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'Why do melanocortin peptides cause nausea?',
+    a: 'Nausea is largely an MC4R effect in the brain — the same receptor that curbs appetite, pushed past the useful range. It is driven by the concentration peak, which is why a fast injection is worse than a slow-release form, and why it tends to ease with repeat dosing.',
+  },
+  {
+    q: 'Why do melanotan and PT-141 darken your skin?',
+    a: 'They activate MC1R on pigment cells, which raises eumelanin, the brown-black pigment. Most of these peptides are non-selective, so even when the intended target is appetite or libido, the pigment receptor is hit too.',
+  },
+  {
+    q: 'Is the skin darkening from melanocortin peptides permanent?',
+    a: 'A general tan fades as pigment turns over, but focal hyperpigmentation — of moles or gums, for example — does not always fully resolve, and people with darker skin are more affected. Any new or changing mole warrants review by a clinician.',
+  },
+];
 
 const references = [
   {
@@ -125,6 +141,8 @@ const references = [
       <a href="/about">editorial standards</a>.
     </p>
   </div>
+
+  <FAQ items={faqs} />
 
   <References items={references} />
 </PageLayout>

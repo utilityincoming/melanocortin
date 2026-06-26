@@ -1,0 +1,44 @@
+---
+export interface QA {
+  q: string;
+  a: string;
+}
+interface Props {
+  items: QA[];
+  heading?: string;
+}
+const { items, heading = 'Common questions' } = Astro.props;
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+---
+
+<section class="not-prose mt-14 border-t border-[var(--border)] pt-8">
+  <h2 class="font-serif text-2xl font-semibold tracking-tight">{heading}</h2>
+  <div class="mt-4 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+    {
+      items.map((it) => (
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-medium marker:content-['']">
+            <span>{it.q}</span>
+            <span
+              class="shrink-0 text-xl leading-none text-[var(--accent)] transition-transform duration-200 group-open:rotate-45"
+              aria-hidden="true"
+            >
+              +
+            </span>
+          </summary>
+          <p class="pb-4 leading-relaxed text-[var(--text-muted)]">{it.a}</p>
+        </details>
+      ))
+    }
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</section>

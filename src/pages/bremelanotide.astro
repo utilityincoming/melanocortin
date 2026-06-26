@@ -2,6 +2,30 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'Is PT-141 FDA approved?',
+    a: 'Yes — as bremelanotide (Vyleesi), but only for acquired, generalised hypoactive sexual desire disorder in premenopausal women, given as a subcutaneous injection. The "PT-141" sold online as a research peptide or compounded nasal spray is not approved.',
+  },
+  {
+    q: 'Does PT-141 work for men?',
+    a: 'Early trials in men with erectile dysfunction — including some who had not responded to Viagra — did show an effect, but the intranasal program was halted over blood-pressure increases and FDA approval for men was never pursued. Any use in men is off-label.',
+  },
+  {
+    q: 'How is PT-141 different from Viagra?',
+    a: 'Viagra and other PDE5 inhibitors work peripherally, improving blood flow in response to arousal that is already present. Bremelanotide works in the brain, activating melanocortin (MC4R) circuits that drive sexual desire itself, so it can act without direct physical stimulation.',
+  },
+  {
+    q: 'What is the difference between PT-141 and Vyleesi?',
+    a: 'They are the same molecule. Vyleesi is the FDA-approved, regulated form — a fixed 1.75 mg autoinjector — whereas "PT-141" usually refers to the unapproved grey-market version, of unknown purity and dose.',
+  },
+  {
+    q: 'What are the side effects of bremelanotide?',
+    a: 'In the approval trials nausea affected about 40% of women, and each dose causes a transient rise in blood pressure with a fall in heart rate, so it is contraindicated in uncontrolled hypertension or known cardiovascular disease. Repeated dosing can cause focal skin and gum darkening.',
+  },
+];
 
 const references = [
   {
@@ -154,6 +178,8 @@ const references = [
       <a href="/about">editorial standards</a>.
     </p>
   </div>
+
+  <FAQ items={faqs} />
 
   <References items={references} />
 </PageLayout>

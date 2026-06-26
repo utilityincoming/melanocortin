@@ -3,9 +3,25 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import FAQ from '../../components/FAQ.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc4r')!;
+
+const faqs = [
+  {
+    q: 'What does the MC4R receptor do?',
+    a: 'MC4R is the brain’s central control of appetite and body weight: when α-MSH activates it, you feel full and energy expenditure rises. The same receptor also influences blood pressure and sexual function.',
+  },
+  {
+    q: 'What is MC4R deficiency?',
+    a: 'Loss-of-function mutations in MC4R cause early-onset obesity with intense hunger (hyperphagia). Collectively they are the most common single-gene (monogenic) cause of severe obesity in humans.',
+  },
+  {
+    q: 'Can MC4R be targeted for weight loss?',
+    a: 'Yes. The MC4R agonist setmelanotide is approved for certain rare genetic and acquired hypothalamic obesity. Conversely, blocking MC4R is being studied to treat wasting (cachexia) — the same receptor, used in opposite directions.',
+  },
+];
 
 const references = [
   {
@@ -122,6 +138,8 @@ const references = [
   </p>
 
   <p><a href="/receptors">← Back to all receptors</a></p>
+
+  <FAQ items={faqs} />
 
   <References items={references} />
 </PageLayout>

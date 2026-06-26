@@ -2,6 +2,30 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'Is melanotan legal?',
+    a: 'Melanotan II is not an approved medicine in the US, UK, EU, or Australia, and selling it is illegal. It is marketed as a "research chemical, not for human use" to sidestep approval, and regulators including the FDA, the UK’s MHRA, and Australia’s TGA have warned against it.',
+  },
+  {
+    q: 'Does melanotan cause melanoma or skin cancer?',
+    a: 'Melanotan II darkens existing moles and is associated with the rapid appearance of new ones, and there are case reports of melanoma emerging during or shortly after use. Causation is not proven, but the mechanism is plausible — and a chemical tan can mask the very mole changes that signal skin cancer.',
+  },
+  {
+    q: 'What is the difference between Melanotan I and Melanotan II?',
+    a: 'Melanotan-I is the more MC1R-selective analogue, which became the approved drug afamelanotide (Scenesse). Melanotan II is a more potent, non-selective version that was pushed as a tanning agent and never approved — it is the one sold on the grey market.',
+  },
+  {
+    q: 'Is melanotan the same as afamelanotide?',
+    a: 'They are related but not the same. Afamelanotide is the approved, controlled-release Melanotan-I medicine used for a rare light-sensitivity disorder; melanotan II is the unapproved grey-market tanning peptide.',
+  },
+  {
+    q: 'Why does melanotan make you feel sick?',
+    a: 'Because it is non-selective, melanotan II also activates MC4R in the brain, which causes nausea, flushing, and loss of appetite alongside the tanning — the same melanocortin pharmacology behind the approved drugs’ side effects.',
+  },
+];
 
 const references = [
   {
@@ -167,6 +191,8 @@ const references = [
       <a href="/about">editorial standards</a>.
     </p>
   </div>
+
+  <FAQ items={faqs} />
 
   <References items={references} />
 </PageLayout>
