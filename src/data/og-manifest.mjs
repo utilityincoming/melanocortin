@@ -18,6 +18,7 @@ export const ogPages = [
   { slug: 'bremelanotide', eyebrow: 'EXPLAINER', title: 'Bremelanotide (PT-141)' },
   { slug: 'glp1-appetite', eyebrow: 'APPETITE · GLP-1', title: 'GLP-1 drugs & the appetite system' },
   { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
+  { slug: 'dose-curve', eyebrow: 'INTERACTIVE', title: 'Dose, delivery & the side-effect peak' },
   { slug: 'glossary', eyebrow: 'REFERENCE', title: 'Glossary' },
   { slug: 'about', eyebrow: 'ABOUT', title: 'Editorial standards' },
 ];
