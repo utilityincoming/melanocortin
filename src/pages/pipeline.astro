@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Byline from '../components/Byline.astro';
+import FAQ from '../components/FAQ.astro';
+import { pipeline, stages } from '../data/pipeline';
+
+// Warm pigment ramp: light → deep as an agent advances toward approval.
+const stageColor = [
+  'var(--color-pigment-200)',
+  'var(--color-pigment-300)',
+  'var(--color-pigment-400)',
+  'var(--color-pigment-500)',
+  'var(--color-pigment-700)',
+];
+
+const sorted = [...pipeline].sort((a, b) => {
+  const rank = (e: (typeof pipeline)[number]) =>
+    e.status === 'discontinued' ? 100 : 4 - e.stage;
+  return rank(a) - rank(b);
+});
+
+// Distribution for the headline bar (advancing categories + a balanced "paused").
+const counts = {
+  Approved: pipeline.filter((e) => e.status === 'approved').length,
+  'Phase 3': pipeline.filter((e) => e.status === 'active' && e.stage === 3).length,
+  'Phase 2': pipeline.filter((e) => e.status === 'active' && e.stage === 2).length,
+  Discovery: pipeline.filter((e) => e.status === 'active' && e.stage <= 1).length,
+  Paused: pipeline.filter((e) => e.status === 'discontinued').length,
+};
+const barColor: Record<string, string> = {
+  Approved: 'var(--color-pigment-700)',
+  'Phase 3': 'var(--color-pigment-500)',
+  'Phase 2': 'var(--color-pigment-400)',
+  Discovery: 'var(--color-pigment-300)',
+  Paused: 'var(--color-ink-400)',
+};
+const total = Object.values(counts).reduce((a, b) => a + b, 0);
+const segments = Object.entries(counts).filter(([, n]) => n > 0);
+
+const faqs = [
+  {
+    q: 'How many melanocortin drugs are approved?',
+    a: 'Four are FDA-approved: setmelanotide (MC4R, rare genetic and hypothalamic obesity), afamelanotide (MC1R, erythropoietic protoporphyria), bremelanotide (sexual desire), and the long-standing repository corticotropin / ACTH (inflammatory and seizure indications).',
+  },
+  {
+    q: 'What melanocortin drugs are in clinical trials?',
+    a: 'Late-stage candidates include the oral MC1R agonist dersimelagon (positive Phase 3 in protoporphyria) and Palatin’s ophthalmic PL-9643 (Phase 3, dry eye). In Phase 2 are PL-8177 (oral, ulcerative colitis) and the MC4R antagonist TCMCB07 (cachexia), with dual MC3R/MC4R and biased MC4R agonists for obesity in discovery.',
+  },
+];
+---
+
+<BaseLayout
+  title="Melanocortin therapeutics pipeline — a 2026 snapshot — melanocortin.com"
+  description="A dated snapshot of melanocortin drugs across development: four approved and a deepening pipeline of agonists and antagonists in Phase 2–3 across obesity, dermatology, ophthalmology, and inflammation."
+  pageType="article"
+  dateModified="2026"
+>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Pipeline</p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      The melanocortin pipeline
+    </h1>
+    <p class="mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
+      From <strong class="text-[var(--text)]">zero approved melanocortin medicines before 2019 to four today</strong>
+      — with a deepening pipeline of agonists and antagonists behind them. A dated
+      snapshot of where the field stands.
+    </p>
+    <Byline updated="2026" />
+
+    <!-- Distribution bar -->
+    <div class="not-prose mt-8">
+      <div class="flex h-4 overflow-hidden rounded-full">
+        {
+          segments.map(([label, n]) => (
+            <div
+              style={`width:${(n / total) * 100}%;background:${barColor[label]}`}
+              title={`${label}: ${n}`}
+            />
+          ))
+        }
+      </div>
+      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs text-[var(--text-muted)]">
+        {
+          segments.map(([label, n]) => (
+            <li class="flex items-center gap-1.5">
+              <span class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${barColor[label]}`} />
+              <span class="font-medium text-[var(--text)]">{n}</span> {label}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Stage axis -->
+    <div class="not-prose mt-10 hidden grid-cols-5 gap-1 sm:grid">
+      {
+        stages.map((s) => (
+          <span class="text-center font-mono text-[10px] uppercase tracking-wide text-[var(--text-muted)]">{s}</span>
+        ))
+      }
+    </div>
+
+    <!-- Agent ladders -->
+    <div class="not-prose mt-3 flex flex-col gap-3">
+      {
+        sorted.map((e) => (
+          <div class={`rounded-lg border border-[var(--border)] p-4 ${e.status === 'discontinued' ? 'opacity-70' : ''}`}>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <span class="font-medium">
+                {e.href ? (
+                  <a href={e.href} class="text-[var(--text)] no-underline hover:text-[var(--accent)]">{e.name}</a>
+                ) : (
+                  e.name
+                )}
+                <span class="ml-2 font-mono text-xs text-[var(--text-muted)]">{e.target}</span>
+              </span>
+              {
+                e.status === 'approved' ? (
+                  <span class="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[11px] font-medium text-[var(--accent-strong)]">
+                    Approved {e.since}
+                  </span>
+                ) : e.status === 'discontinued' ? (
+                  <span class="rounded-full border border-[var(--border)] px-2 py-0.5 text-[11px] text-[var(--text-muted)]">
+                    Discontinued
+                  </span>
+                ) : (
+                  <span class="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[11px] font-medium text-[var(--accent-strong)]">
+                    {stages[e.stage]}
+                  </span>
+                )
+              }
+            </div>
+            <p class="mt-1 text-sm text-[var(--text-muted)]">
+              {e.indication} · <span class="italic">{e.sponsor}</span>
+              {e.note && <span> · {e.note}</span>}
+            </p>
+            <div class="mt-3 flex gap-1" aria-hidden="true">
+              {
+                stages.map((_, i) => (
+                  <div
+                    class="h-2 flex-1 rounded-full"
+                    style={
+                      i <= e.stage
+                        ? `background:${e.status === 'discontinued' ? 'var(--color-ink-400)' : stageColor[i]}`
+                        : 'background:var(--border)'
+                    }
+                  />
+                ))
+              }
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 text-sm leading-relaxed text-[var(--text-muted)]">
+      Pipeline snapshot, <strong class="text-[var(--text)]">2026</strong>. Phases
+      reflect the furthest stage reached and date quickly; this page is verified
+      against current sources at review. It is informational, not medical or
+      investment advice. Approved agents are detailed in the
+      <a href="/therapeutics" class="underline decoration-dotted hover:text-[var(--accent)]">therapeutics section</a>.
+    </p>
+
+    <FAQ items={faqs} />
+  </section>
+</BaseLayout>
