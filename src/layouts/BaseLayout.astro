@@ -6,14 +6,100 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  /** 'article' for content pages → emits MedicalWebPage + author/date. */
+  pageType?: 'website' | 'article';
+  /** Year-only by site policy (we don't disclose update dates beyond year). */
+  dateModified?: string;
 }
 
 const {
   title = 'Melanocortin — the POMC peptides and their receptors, explained',
   description = 'An open, citation-first reference on the melanocortin system: POMC-derived peptides, the MC1R–MC5R receptors, and the therapeutics that target them.',
+  pageType = 'website',
+  dateModified = '2026',
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const site = Astro.site ?? new URL('https://melanocortin.com');
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL('/og/default.png', site);
+
+// ---- Breadcrumb trail from the path -------------------------------------
+const SEG_LABELS: Record<string, string> = {
+  system: 'The melanocortin system',
+  receptors: 'Receptors',
+  therapeutics: 'Therapeutics',
+  effects: 'Effects',
+  glossary: 'Glossary',
+  about: 'Editorial standards',
+  melanotan: 'Melanotan',
+  bremelanotide: 'Bremelanotide',
+};
+const labelFor = (seg: string) =>
+  SEG_LABELS[seg] ??
+  (/^mc\dr$/i.test(seg) ? seg.toUpperCase() : seg.charAt(0).toUpperCase() + seg.slice(1));
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const crumbs = [{ name: 'Home', url: site.href }];
+let acc = '';
+for (const seg of segments) {
+  acc += `/${seg}`;
+  crumbs.push({ name: labelFor(seg), url: new URL(acc, site).href });
+}
+
+// ---- JSON-LD graph ------------------------------------------------------
+const orgId = new URL('/#organization', site).href;
+const siteId = new URL('/#website', site).href;
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': orgId,
+    name: 'melanocortin.com',
+    url: site.href,
+    logo: new URL('/favicon.svg', site).href,
+    description:
+      'An open, citation-first reference on the melanocortin system.',
+  },
+  {
+    '@type': 'WebSite',
+    '@id': siteId,
+    url: site.href,
+    name: 'melanocortin.com',
+    publisher: { '@id': orgId },
+    inLanguage: 'en',
+  },
+  {
+    '@type': pageType === 'article' ? 'MedicalWebPage' : 'WebPage',
+    '@id': `${canonical.href}#webpage`,
+    url: canonical.href,
+    name: title,
+    description,
+    isPartOf: { '@id': siteId },
+    inLanguage: 'en',
+    breadcrumb: { '@id': `${canonical.href}#breadcrumb` },
+    primaryImageOfPage: ogImage.href,
+    ...(pageType === 'article'
+      ? {
+          datePublished: dateModified,
+          dateModified,
+          author: { '@id': orgId },
+          publisher: { '@id': orgId },
+          about: { '@type': 'MedicalEntity', name: 'Melanocortin system' },
+        }
+      : {}),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical.href}#breadcrumb`,
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
+  },
+];
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 
 <!doctype html>
@@ -24,17 +110,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#faf6ee" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={pageType === 'article' ? 'article' : 'website'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="melanocortin.com" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="melanocortin.com — the melanocortin system, explained" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="flex min-h-screen flex-col">
     <Nav />
