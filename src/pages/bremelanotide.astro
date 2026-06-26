@@ -1,0 +1,159 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+
+const references = [
+  {
+    authors: 'Molinoff PB, Shadiack AM, Earle D, Diamond LE, Quon CY.',
+    title: 'PT-141: a melanocortin agonist for the treatment of sexual dysfunction.',
+    source: 'Ann N Y Acad Sci. 994:96–102.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12851303/',
+  },
+  {
+    authors: 'Diamond LE, et al.',
+    title:
+      'Double-blind, placebo-controlled evaluation of intranasal PT-141, a melanocortin receptor agonist, in healthy males and patients with mild-to-moderate erectile dysfunction.',
+    source: 'Int J Impot Res. 16(1):51–9.',
+    year: '2004',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/14963471/',
+  },
+  {
+    authors: 'US FDA / DailyMed.',
+    title: 'VYLEESI (bremelanotide injection) prescribing information.',
+    source: 'Label, NDA 210557.',
+    year: '2019',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8c9607a2-5b57-4a59-b159-cf196deebdd9',
+  },
+  {
+    authors: 'Kingsberg SA, et al.',
+    title:
+      'Bremelanotide for the treatment of hypoactive sexual desire disorder: two randomized phase 3 trials (RECONNECT).',
+    source: 'Obstet Gynecol. 134(5):899–908.',
+    year: '2019',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6819021/',
+  },
+  {
+    authors: 'Palatin Technologies / AMAG.',
+    title:
+      'FDA approves new treatment for hypoactive sexual desire disorder in premenopausal women.',
+    source: 'Press release.',
+    year: '2019',
+    url: 'https://www.prnewswire.com/news-releases/fda-approves-new-treatment-for-hypoactive-sexual-desire-disorder-in-premenopausal-women-300872998.html',
+  },
+];
+---
+
+<PageLayout
+  title="Bremelanotide (PT-141): from a tanning peptide's side effect to an approved desire drug"
+  kicker="Explainer"
+  description="PT-141 began as an offshoot of the tanning peptide Melanotan II, when its trials produced an unexpected effect. Here's how it works on the brain rather than the bloodstream, what's actually approved, and how that differs from the grey-market 'PT-141' sold online."
+  updated="2026"
+>
+  <p>
+    Bremelanotide — better known by its development code <strong>PT-141</strong> —
+    is the most unexpected branch of the <a href="/melanotan">melanotan</a> family
+    tree. It is the one melanocortin that treats not pigment, appetite, or
+    inflammation, but sexual desire, and it got there entirely by accident.
+  </p>
+
+  <h2>From a tanning side effect to a drug</h2>
+  <p>
+    In the early trials of <a href="/melanotan">Melanotan II</a> — the peptide
+    being pushed as a sunless tan — researchers kept noticing a striking,
+    consistent side effect: spontaneous sexual arousal. Rather than discard it,
+    chemists chased it: they re-worked the MT-II scaffold to strip out most of the
+    pigment activity while keeping the pro-sexual effect, and the result was
+    PT-141.<Cite n={1} /> So where afamelanotide is the tanning side of the melanotan
+    story made into a medicine, bremelanotide is the <em>other</em> side effect
+    made into one.
+  </p>
+
+  <h2>Desire in the brain, not blood flow downstream</h2>
+  <p>
+    This is what makes it genuinely different from the familiar erection pills.
+    Sildenafil (Viagra) and the other PDE5 inhibitors work peripherally — they
+    improve blood flow to the genitals in response to arousal that is
+    <em>already</em> present. Bremelanotide works upstream, in the brain: as a
+    melanocortin agonist it activates <a href="/receptors/mc4r">MC4R</a> (and
+    <a href="/receptors/mc3r">MC3R</a>) in hypothalamic and limbic circuits that
+    govern sexual <em>motivation</em> itself.<Cite n={1} /> It engages desire and
+    central arousal rather than the plumbing — which is why it can act without
+    direct physical stimulation, and why it is positioned for low desire rather
+    than mechanical dysfunction.
+  </p>
+
+  <h2>The nasal spray that wasn't</h2>
+  <p>
+    PT-141 was first developed as an intranasal spray for erectile dysfunction.
+    The early data were real: intranasal PT-141 produced statistically significant
+    erectile responses in men with ED, including some who had not responded to
+    sildenafil.<Cite n={1} /><Cite n={2} /> But the same melanocortin pharmacology that
+    drives the effect also raises blood pressure, and that signal — together with
+    nausea — ended the intranasal erectile-dysfunction program.<Cite n={2} /> The
+    compound was reformulated as a subcutaneous injection and redirected, and it
+    ultimately reached approval not for men with ED but for women with low desire.
+  </p>
+  <p>
+    That history matters for two reasons. It is why the approved product is an
+    injection rather than the "nasal spray" still sold informally, and it is why
+    cardiovascular caution runs through everything about this molecule.
+  </p>
+
+  <h2>What's approved — and what's sold</h2>
+  <p>
+    As <strong>Vyleesi</strong>, bremelanotide was approved by the FDA in June 2019
+    for acquired, generalised hypoactive sexual desire disorder (HSDD) in
+    <em>premenopausal women</em> — the first on-demand treatment for that
+    condition — on the strength of the two phase 3 RECONNECT trials.<Cite n={4} /><Cite n={5} />
+    It is a fixed 1.75 mg subcutaneous autoinjection taken as needed before
+    anticipated activity.<Cite n={3} />
+  </p>
+  <p>
+    Everything else is off-label or grey-market. PT-141 is sold online as a
+    "research peptide" — in vials and as compounded nasal sprays — and used by both
+    men and women for libido, none of which is FDA-approved. As with
+    <a href="/melanotan">melanotan</a>, the unapproved supply carries the familiar
+    problems: unverified purity and dose, and self-administration of a drug with a
+    real blood-pressure signal.
+  </p>
+
+  <h2>Side effects — the melanocortin signature</h2>
+  <p>
+    Bremelanotide's profile is a clean illustration of melanocortin pharmacology,
+    because it is a non-selective agonist hitting more than its intended receptor.
+    In the approved trials, nausea affected about 40% of women, and each dose
+    causes a transient rise in blood pressure with a fall in heart rate — which is
+    why Vyleesi is contraindicated in uncontrolled hypertension or known
+    cardiovascular disease.<Cite n={3} /> With repeated dosing, focal skin and gum
+    hyperpigmentation can appear — the <a href="/receptors/mc1r">MC1R</a> pigment
+    effect resurfacing, the same one PT-141 was engineered to minimise but never
+    fully lost.<Cite n={3} /> For why these effects are inseparable from the mechanism,
+    see <a href="/effects">why melanocortin agonists make you queasy and tan</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Bremelanotide is a real, approved, genuinely novel drug — the only one that
+    treats desire through the brain's melanocortin circuitry rather than blood
+    flow. But its approval is narrow (premenopausal women with HSDD), its
+    tolerability is modest (nausea, a blood-pressure rise), and the broad "PT-141
+    for everyone" sold online is unapproved, of unknown quality, and revives a
+    delivery route its own makers abandoned over safety. The science is real; the
+    grey market around it is not the same thing as the medicine.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what bremelanotide / PT-141 is and how it works. It does
+      not provide dosing, sourcing, or usage instructions, and it is not medical
+      advice or an endorsement of unapproved use. Sexual-health and cardiovascular
+      decisions belong with a clinician. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <References items={references} />
+</PageLayout>
