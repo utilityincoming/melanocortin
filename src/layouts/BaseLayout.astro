@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { ogPages } from '../data/og-manifest.mjs';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -146,5 +147,6 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
       <slot />
     </main>
     <Footer />
+    <Analytics />
   </body>
 </html>
