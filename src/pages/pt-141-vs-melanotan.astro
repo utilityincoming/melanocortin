@@ -1,0 +1,169 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'Are PT-141 and Melanotan the same thing?',
+    a: 'No. They come from the same molecular family and are sold in the same grey market, which is why they get confused — but they are built for opposite jobs. Melanotan II is a tanning peptide (its main target is the pigment receptor MC1R); PT-141 (bremelanotide) was re-engineered from it to drop the tanning effect and keep the effect on sexual desire (MC4R).',
+  },
+  {
+    q: 'Which one is FDA approved?',
+    a: 'PT-141 is — as bremelanotide (Vyleesi), for hypoactive sexual desire disorder in premenopausal women. Melanotan II is not approved anywhere. The tanning peptide that did get approved is its cousin Melanotan I (afamelanotide / Scenesse), and only for a rare light-sensitivity disease, not cosmetic tanning.',
+  },
+  {
+    q: 'Does PT-141 make you tan?',
+    a: 'Much less than Melanotan II, because it was specifically redesigned to minimise MC1R (pigment) activity. But it is not perfectly selective, so repeated use can still cause focal skin and gum darkening — the pigment effect resurfacing.',
+  },
+  {
+    q: 'Does Melanotan II affect libido?',
+    a: 'Yes — that overlap is exactly where PT-141 came from. Melanotan II users frequently reported spontaneous arousal, and chemists chased that side effect into a separate drug. So both peptides touch both systems; they just differ in which effect they were built to maximise.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Molinoff PB, Shadiack AM, Earle D, Diamond LE, Quon CY.',
+    title: 'PT-141: a melanocortin agonist for the treatment of sexual dysfunction.',
+    source: 'Ann N Y Acad Sci. 994:96–102.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12851303/',
+  },
+  {
+    authors: 'US FDA / DailyMed.',
+    title: 'VYLEESI (bremelanotide injection) prescribing information.',
+    source: 'Label, NDA 210557.',
+    year: '2019',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8c9607a2-5b57-4a59-b159-cf196deebdd9',
+  },
+  {
+    authors: 'Dorr RT, et al.',
+    title:
+      'Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide, in a pilot phase-I clinical study.',
+    source: 'Life Sci. 58(20):1777–84.',
+    year: '1996',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8637400/',
+  },
+  {
+    authors: 'Habbema L, et al.',
+    title:
+      'Risks of unregulated use of alpha-melanocyte-stimulating hormone analogues: a review.',
+    source: 'Int J Dermatol. 56(10):975–980.',
+    year: '2017',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/28703278/',
+  },
+];
+---
+
+<PageLayout
+  title="PT-141 vs Melanotan: same family, opposite jobs"
+  kicker="Comparison"
+  description="PT-141 and Melanotan are constantly confused — they share a molecular family and a grey market. But one was built to tan you and one to affect desire. Here's the clean breakdown of what each is, which is approved, and how to tell them apart."
+  updated="2026"
+>
+  <p>
+    Few pairs of peptides get mixed up as often as <strong>PT-141</strong> and
+    <strong>Melanotan</strong>. They sound related, they're sold on the same sites in
+    the same little vials, and they genuinely do come from the same molecular family.
+    But they were built to do almost opposite things, and only one of them is an
+    approved medicine. Here is the clean version.
+  </p>
+
+  <h2>The shared origin — why they're related at all</h2>
+  <p>
+    Both descend from α-MSH, the natural <a href="/system">melanocortin</a> peptide.
+    <a href="/melanotan">Melanotan II</a> came first, designed as a non-selective
+    agonist to drive <a href="/receptors/mc1r">MC1R</a> and produce a sunless tan.<Cite n={3} />
+    In its early use, one side effect kept showing up: spontaneous sexual arousal.
+    Rather than discard it, chemists re-worked the Melanotan II scaffold to strip out
+    most of the pigment activity while keeping the pro-sexual effect — and the result
+    was <a href="/bremelanotide">PT-141</a>, later approved as bremelanotide.<Cite n={1} />
+    So PT-141 is, quite literally, one of Melanotan's side effects turned into its own
+    drug.
+  </p>
+
+  <h2>Same family, opposite jobs</h2>
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--muted)]"></th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Melanotan II</th>
+          <th class="py-2 font-semibold text-[var(--text)]">PT-141 (bremelanotide)</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--muted)]">Built for</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Tanning (sunless pigment)</td>
+          <td class="py-2 text-[var(--text)]">Sexual desire</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--muted)]">Main receptor</td>
+          <td class="py-2 pr-4 text-[var(--text)]">MC1R (pigment)</td>
+          <td class="py-2 text-[var(--text)]">MC4R (central arousal)</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--muted)]">FDA approved?</td>
+          <td class="py-2 pr-4 text-[var(--text)]">No — grey market only</td>
+          <td class="py-2 text-[var(--text)]">Yes — as Vyleesi (HSDD in premenopausal women)</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--muted)]">Approved form</td>
+          <td class="py-2 pr-4 text-[var(--text)]">None</td>
+          <td class="py-2 text-[var(--text)]">1.75 mg subcutaneous autoinjector</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 font-medium text-[var(--muted)]">Signature risks</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Darkening &amp; changing moles, nausea, unregulated purity</td>
+          <td class="py-2 text-[var(--text)]">Nausea, transient blood-pressure rise, focal darkening</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    The table hides one subtlety worth stating plainly: <em>both</em> peptides touch
+    <em>both</em> systems, because neither is perfectly selective. Melanotan II can
+    stir libido; PT-141 can still darken skin.<Cite n={2} /> The difference is which effect
+    each was engineered to maximise and which to suppress — not that either one is
+    clean.
+  </p>
+
+  <h2>Don't forget the third name: Melanotan I</h2>
+  <p>
+    Part of the confusion is that "Melanotan" itself refers to two different things.
+    <strong>Melanotan I</strong> is the MC1R-selective version — and it is the one
+    that actually became a medicine, as <a href="/therapeutics#afamelanotide">afamelanotide
+    (Scenesse)</a>, approved for a rare light-sensitivity disorder rather than
+    cosmetic tanning. <strong>Melanotan II</strong> is the non-selective,
+    grey-market tanning peptide. So the family has one approved tanning drug
+    (Melanotan I, narrow use), one approved desire drug (PT-141), and one unapproved
+    peptide sold for tanning (Melanotan II).
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    If you remember one thing: <strong>PT-141 is the approved desire drug; Melanotan
+    II is the unapproved tanning peptide; they overlap because PT-141 was carved out
+    of Melanotan II.</strong> The approved product (Vyleesi) is a regulated injection
+    of known dose; the "PT-141" and "Melanotan" sold as research peptides are of
+    unverified purity and carry real risks — a blood-pressure signal for PT-141, and
+    for Melanotan II the added, specific concern that driving pigment cells can
+    darken and change moles.<Cite n={4} /> Same family, very different footing.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains how these peptides differ. It does not provide dosing,
+      sourcing, or usage instructions, and it is not medical advice or an endorsement
+      of unapproved use. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+</PageLayout>

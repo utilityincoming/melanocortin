@@ -1,0 +1,165 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'What is hypothalamic obesity?',
+    a: 'It is severe, relentless weight gain caused by physical damage to the hypothalamus — the brain region that houses the appetite thermostat. It is not a willpower problem: the brain’s "you are full" signal is physically interrupted, so hunger stays switched on regardless of how much a person eats.',
+  },
+  {
+    q: 'What causes it?',
+    a: 'Most often a brain tumour near the hypothalamus — especially craniopharyngioma — or the surgery and radiation used to treat it. Roughly half of people treated for childhood craniopharyngioma develop it. Head trauma and other suprasellar tumours can cause it too.',
+  },
+  {
+    q: 'Why is it so hard to treat with diet or standard drugs?',
+    a: 'Because the damage sits upstream of the melanocortin appetite circuit. Diet and exercise fight against a brain that is actively defending a higher weight, and older obesity drugs and even bariatric surgery have worked poorly because they don’t restore the missing signal.',
+  },
+  {
+    q: 'Is there a treatment now?',
+    a: 'Yes. In 2026 the FDA approved setmelanotide (Imcivree), an MC4R agonist, as the first therapy for acquired hypothalamic obesity — it re-supplies the satiety signal downstream of the injury. In its pivotal trial it produced about a 20% placebo-adjusted BMI reduction over a year.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Roth CL, et al.',
+    title:
+      'Treatment of hypothalamic obesity in people with hypothalamic injury: new drugs are on the horizon.',
+    source: 'Front Endocrinol / PMC10533996.',
+    year: '2023',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10533996/',
+  },
+  {
+    authors: 'van Iersel L, et al.',
+    title:
+      'Pathophysiology and individualized treatment of hypothalamic obesity following craniopharyngioma and other suprasellar tumors: a systematic review.',
+    source: 'Endocr Rev. 40(1):193–235.',
+    year: '2019',
+    url: 'https://academic.oup.com/edrv/article/40/1/193/5103298',
+  },
+  {
+    authors: 'Roth CL, et al.',
+    title:
+      'Hypothalamic obesity in craniopharyngioma patients: disturbed energy homeostasis related to extent of hypothalamic damage.',
+    source: 'PMC4600159.',
+    year: '2015',
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4600159/',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title:
+      'FDA approval of IMCIVREE (setmelanotide) for patients with acquired hypothalamic obesity.',
+    source: 'Press release.',
+    year: '2026',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-fda-approval-imcivreer-1',
+  },
+];
+---
+
+<PageLayout
+  title="Hypothalamic obesity: when the brain's hunger brake is physically broken"
+  kicker="Explainer"
+  description="Hypothalamic obesity isn't a willpower failure — it's what happens when injury to the hypothalamus severs the melanocortin appetite brake. Here's the mechanism, why diet and older drugs failed, and why an MC4R agonist finally works."
+  updated="2026"
+>
+  <p>
+    Of all the ways the <a href="/system">melanocortin system</a> can fail, the most
+    stark is mechanical: not a gene misspelled at birth, but a working appetite
+    circuit physically cut by injury. That is <strong>hypothalamic obesity</strong> —
+    and it is the clearest possible proof that body weight is regulated by a brain
+    circuit, because when you damage the circuit, the regulation breaks.
+  </p>
+
+  <h2>What actually breaks</h2>
+  <p>
+    The hypothalamus houses the body's appetite thermostat. The fat hormone leptin
+    reports how much energy is stored; that signal drives <a href="/system">POMC</a>
+    neurons to release α-MSH; α-MSH activates <a href="/receptors/mc4r">MC4R</a>, which
+    produces the sensation of fullness and keeps energy expenditure up.<Cite n={2} /> A
+    tumour, surgery, or radiation in this small region physically destroys the
+    neurons that carry that signal. Measurements bear this out: people with
+    hypothalamic injury from craniopharyngioma have markedly reduced α-MSH — a
+    melanocortin pathway running on empty not because the parts are faulty, but
+    because the wiring is severed.<Cite n={3} />
+  </p>
+  <p>
+    The consequence is a brain that never hears "you are full." Hunger stays switched
+    on, and at the same time damage to the region's autonomic outputs lowers energy
+    expenditure and pushes calories into fat storage.<Cite n={2} /> Weight climbs on both
+    ends of the ledger at once — more intake, less burn — which is why the gain is so
+    rapid and so hard to reverse.
+  </p>
+
+  <h2>Who it happens to</h2>
+  <p>
+    The classic cause is <strong>craniopharyngioma</strong>, the most common
+    non-glial brain tumour of childhood. Survival is excellent, but the tumour and
+    the treatment sit right on the hypothalamus, and roughly half of survivors go on
+    to develop severe hypothalamic obesity — one of the heaviest long-term burdens on
+    their quality of life.<Cite n={2} /> Other suprasellar tumours, head trauma, and
+    hypothalamic radiation can do the same. It is, above all, a condition of people
+    who survived something serious and were then handed a second, metabolic injury.
+  </p>
+
+  <h2>Why diet and the old playbook failed</h2>
+  <p>
+    This is the part that matters most, and the part most often misunderstood.
+    Hypothalamic obesity does not respond to the standard advice because the standard
+    advice assumes an intact appetite brake. Asking someone to eat less works against
+    a brain that is <em>actively defending</em> a higher weight — every attempt is
+    fought by a hunger signal that has no off switch. Historically, older appetite
+    drugs, stimulants, and even bariatric surgery produced disappointing results
+    here, precisely because none of them restored the missing melanocortin signal;
+    they worked around a circuit rather than reconnecting it.<Cite n={1} /> The failure
+    was never the patient's discipline. It was that the tool never matched the
+    lesion.
+  </p>
+
+  <h2>Why an MC4R agonist finally fits</h2>
+  <p>
+    The logic that makes <a href="/setmelanotide">setmelanotide</a> work here is
+    almost elegant. The injury sits <em>upstream</em> of MC4R — it wipes out the
+    neurons that would normally deliver α-MSH — but the receptor itself, on the
+    surviving downstream neurons, is usually intact. A synthetic MC4R agonist
+    bypasses the damaged wiring and stimulates those remaining receptors directly,
+    re-creating the fullness signal the injury erased.<Cite n={1} /> You cannot repair
+    the destroyed neurons, but you can feed the circuit from below the break.
+  </p>
+  <p>
+    In 2026 that logic became the first approved treatment for the condition. In the
+    pivotal TRANSCEND trial, setmelanotide produced roughly a 20% placebo-adjusted
+    reduction in BMI over 52 weeks, with most treated patients losing meaningful
+    weight and reporting reduced hunger — after decades in which the medical answer
+    was essentially "there isn't one."<Cite n={4} /> For how that drug works in full, see
+    the <a href="/setmelanotide">setmelanotide page</a>; for how it differs from the
+    broad-acting <a href="/glp1-appetite">GLP-1 drugs</a>, the contrast is the whole
+    point — this is a targeted repair, not a general appetite suppressant.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Hypothalamic obesity is the melanocortin system's most literal lesson: damage the
+    appetite circuit and appetite regulation collapses, no matter how motivated the
+    person is. That reframing — from moral failing to severed wiring — is itself part
+    of the treatment, and it is why the arrival of a drug that plugs back into the
+    circuit from below is a genuinely hopeful turn for a group of patients who spent
+    a long time being told, wrongly, to simply try harder.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the mechanism of hypothalamic obesity and why a particular
+      class of drug addresses it. It is not medical advice or a treatment plan. If you
+      or someone you care for is affected, an endocrinologist can advise on
+      diagnosis and options. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+</PageLayout>

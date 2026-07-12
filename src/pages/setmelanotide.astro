@@ -1,0 +1,193 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'What is setmelanotide (Imcivree) approved for?',
+    a: 'It is approved for chronic weight management in three settings, all involving the melanocortin appetite pathway: rare genetic obesity from POMC, PCSK1, or leptin-receptor (LEPR) deficiency (2020); Bardet–Biedl syndrome (2022); and acquired hypothalamic obesity (2026). It is not approved — or intended — as a general weight-loss drug for common obesity.',
+  },
+  {
+    q: 'How is setmelanotide different from Ozempic or Wegovy?',
+    a: 'GLP-1 drugs act broadly on gut-hormone and brain circuits and work in common obesity. Setmelanotide is targeted: it re-supplies the specific MC4R "I am full" signal that is missing in defined diseases of the melanocortin pathway. It treats a broken circuit rather than dialling down appetite in general.',
+  },
+  {
+    q: 'What is acquired hypothalamic obesity?',
+    a: 'It is relentless weight gain caused by physical injury to the hypothalamus — most often from a brain tumour such as craniopharyngioma or its treatment — which damages the melanocortin "brake" on appetite. Setmelanotide is the first therapy approved for it, on the strength of the Phase 3 TRANSCEND trial.',
+  },
+  {
+    q: 'How well does setmelanotide work?',
+    a: 'In TRANSCEND, the hypothalamic-obesity trial, participants on setmelanotide had roughly a 20% placebo-adjusted reduction in BMI over 52 weeks, and about 80% achieved a BMI reduction of 5% or more, alongside meaningful improvements in hunger. Effect sizes in the rare-genetic-obesity programs were also large.',
+  },
+  {
+    q: 'What are the side effects of setmelanotide?',
+    a: 'The most characteristic is skin darkening — the same MC1R pigment effect seen across melanocortin agonists. Others include injection-site reactions, nausea, diarrhoea, and headache. Spontaneous penile erections can occur in males, and the label carries a warning about depression and suicidal ideation.',
+  },
+];
+
+const references = [
+  {
+    authors: 'US FDA.',
+    title:
+      'FDA approves first treatment for weight management for people with certain rare genetic conditions.',
+    source: 'News release.',
+    year: '2020',
+    url: 'https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-first-treatment-weight-management-people-certain-rare-genetic-conditions',
+  },
+  {
+    authors: 'Markham A. / StatPearls.',
+    title: 'Setmelanotide.',
+    source: 'NCBI Bookshelf (NBK589641) — mechanism, indications, adverse effects.',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title:
+      'FDA approval of IMCIVREE (setmelanotide) for patients with acquired hypothalamic obesity.',
+    source: 'Press release.',
+    year: '2026',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-fda-approval-imcivreer-1',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title:
+      'Pivotal Phase 3 TRANSCEND trial meets primary endpoint with −19.8% placebo-adjusted BMI reduction (N=120).',
+    source: 'Press release.',
+    year: '2026',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-pivotal-phase-3-transcend-trial',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title:
+      'New England Journal of Medicine publication of Phase 3 TRANSCEND trial results in acquired hypothalamic obesity.',
+    source: 'Press release.',
+    year: '2026',
+    url: 'https://www.biospace.com/press-releases/rhythm-pharmaceuticals-announces-the-new-england-journal-of-medicine-publication-of-phase-3-transcend-trial-results-in-acquired-hypothalamic-obesity',
+  },
+];
+---
+
+<PageLayout
+  title="Setmelanotide (Imcivree): the MC4R drug that treats a broken appetite circuit"
+  kicker="Explainer"
+  description="Setmelanotide is the first drug built to switch the melanocortin appetite pathway back on. It isn't a general weight-loss drug — it's a targeted fix for specific diseases where the MC4R 'I am full' signal is missing, now including acquired hypothalamic obesity."
+  updated="2026"
+>
+  <p>
+    Setmelanotide — sold as <strong>Imcivree</strong> — is the drug that turned the
+    <a href="/receptors/mc4r">MC4R</a> appetite circuit from a textbook diagram into
+    a medicine. It is a first-in-class melanocortin-4 receptor agonist, and it does
+    something none of the blockbuster weight-loss drugs do: rather than dialling
+    appetite down in general, it re-supplies a specific satiety signal to people in
+    whom that exact signal is missing.
+  </p>
+
+  <h2>The circuit it repairs</h2>
+  <p>
+    The body's core appetite thermostat runs in a line: the fat hormone leptin tells
+    the hypothalamus how much energy is stored, that signal drives
+    <a href="/system">POMC</a> neurons to release α-MSH, and α-MSH activates MC4R to
+    produce the sensation of fullness and to raise energy expenditure.<Cite n={2} /> Break
+    any link <em>above</em> the receptor and the brake fails — the brain never
+    receives "you are full," so hunger is relentless and weight climbs regardless of
+    willpower. Setmelanotide is a synthetic α-MSH-like agonist that binds MC4R
+    directly, restoring the downstream signal that the missing upstream input can no
+    longer generate.<Cite n={2} />
+  </p>
+  <p>
+    That mechanism explains the drug's unusual precision. It works best exactly where
+    the defect sits above the receptor — in POMC itself, in the processing enzyme
+    PCSK1, or in the leptin receptor (LEPR) — and it is not designed for obesity
+    caused by damage to MC4R itself, because a broken receptor cannot be switched on.
+  </p>
+
+  <h2>Three approvals, tracking the science outward</h2>
+  <p>
+    Setmelanotide's approval history reads as a widening circle around that one
+    circuit. The FDA first cleared it in November 2020 for obesity due to POMC,
+    PCSK1, or LEPR deficiency confirmed by genetic testing — the first therapy ever
+    approved for those rare diseases.<Cite n={1} /> In 2022 it was extended to
+    <strong>Bardet–Biedl syndrome</strong>, a genetic disorder that also disrupts
+    melanocortin signalling, and the eligible age was later lowered to 2 years.<Cite n={2} />
+  </p>
+  <p>
+    The most consequential expansion came in <strong>March 2026</strong>, when the FDA
+    approved it for <a href="/hypothalamic-obesity">acquired hypothalamic
+    obesity</a> — weight gain driven not by an inherited gene fault but by physical
+    injury to the hypothalamus, most often from a brain tumour like craniopharyngioma
+    or its treatment.<Cite n={3} /> It is the first and only approved therapy for that
+    condition, and it moves setmelanotide from ultra-rare genetics toward a larger
+    group of patients who had no targeted option at all.
+  </p>
+
+  <h2>What the pivotal trial showed</h2>
+  <p>
+    The hypothalamic-obesity approval rests on <strong>TRANSCEND</strong>, the
+    largest and longest placebo-controlled trial ever run in the condition: 120
+    patients aged 4 and up, randomised 2:1 to once-daily subcutaneous setmelanotide
+    or placebo for 52 weeks.<Cite n={4} /> The result was a roughly 20% placebo-adjusted
+    reduction in BMI (a −19.8% difference across the trial), with about 80% of
+    treated patients achieving a BMI reduction of 5% or more, plus clinically
+    meaningful improvements in hunger and no new safety signals.<Cite n={4} /> The full
+    results were published in the <em>New England Journal of Medicine</em> in
+    2026.<Cite n={5} />
+  </p>
+
+  <h2>Why it is not "the next Ozempic"</h2>
+  <p>
+    Because it acts on the appetite system, setmelanotide gets grouped with the
+    <a href="/glp1-appetite">GLP-1 drugs</a> — but the two work in almost opposite
+    styles. Semaglutide and tirzepatide are broad: they engage gut-hormone receptors
+    and a wide swath of brain circuitry, and they reduce appetite in common obesity
+    of no single cause. Setmelanotide is narrow by design — a key cut for one lock. It
+    is powerful in the melanocortin-pathway diseases it targets and largely beside
+    the point in ordinary obesity, which is why its labels name specific genetic and
+    hypothalamic conditions rather than "weight loss" at large. The interesting
+    frontier is combining the two: early trials pairing low-dose MC4R activation with
+    a GLP-1 drug suggest the melanocortin arm can help hold weight off after the
+    GLP-1 is stopped.<Cite n={2} />
+  </p>
+
+  <h2>Side effects — the melanocortin signature</h2>
+  <p>
+    Setmelanotide is a clean illustration of why melanocortin agonists share a family
+    resemblance. Its most characteristic effect is <strong>skin darkening</strong>:
+    the drug is not perfectly selective, and partial activation of
+    <a href="/receptors/mc1r">MC1R</a> increases eumelanin — the very pigment pathway
+    that receptor governs.<Cite n={2} /> Injection-site reactions, nausea, diarrhoea, and
+    headache are common; spontaneous penile erections can occur in males; and the
+    label carries a warning about depression and suicidal ideation, reflecting how
+    deeply melanocortin circuits sit inside the brain.<Cite n={2} /> For why these effects
+    are inseparable from the mechanism, see
+    <a href="/effects">why melanocortin agonists make you queasy and tan</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Setmelanotide is a genuine milestone: the first drug that treats obesity by
+    fixing a specific, identifiable break in the brain's appetite wiring, and — as of
+    2026 — the first therapy for hypothalamic obesity after decades with nothing. Its
+    power is also its limit. It is precise, not universal; it is a daily injection; and
+    it darkens the skin as a matter of mechanism, not accident. Understood for what it
+    is — a targeted repair for melanocortin-pathway disease, not a mass-market
+    slimming drug — it is one of the clearest proofs that this receptor is a real,
+    druggable master switch for body weight.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what setmelanotide is and how it works. It does not provide
+      dosing or usage instructions and is not medical advice. Setmelanotide is a
+      prescription drug for specific diagnosed conditions; treatment decisions belong
+      with a clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+</PageLayout>
