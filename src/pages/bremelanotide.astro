@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -74,7 +75,22 @@ const references = [
   kicker="Explainer"
   description="PT-141 began as an offshoot of the tanning peptide Melanotan II, when its trials produced an unexpected effect. Here's how it works on the brain rather than the bloodstream, what's actually approved, and how that differs from the grey-market 'PT-141' sold online."
   updated="2026"
+  about={[
+    { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
+    { name: 'Melanotan II', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanotan_II'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'Bremelanotide (PT-141, brand name Vyleesi) is an FDA-approved melanocortin agonist for hypoactive sexual desire disorder in premenopausal women — the first on-demand treatment for the condition.',
+      'It works in the brain, activating MC4R circuits that drive sexual desire, rather than improving blood flow like Viagra and other PDE5 inhibitors.',
+      'It descends from the tanning peptide Melanotan II — chemists turned its arousal side effect into a drug.',
+      'The approved product is a 1.75 mg subcutaneous autoinjector; the “PT-141” sold online as vials or nasal sprays is unapproved and of unknown purity.',
+      'Side effects include nausea (about 40%) and a transient rise in blood pressure, so it is contraindicated in uncontrolled hypertension or known cardiovascular disease.',
+    ]}
+  />
+
   <p>
     Bremelanotide — better known by its development code <strong>PT-141</strong> —
     is the most unexpected branch of the <a href="/melanotan">melanotan</a> family

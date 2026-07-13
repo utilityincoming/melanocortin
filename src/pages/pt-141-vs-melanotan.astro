@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -62,7 +63,22 @@ const references = [
   kicker="Comparison"
   description="PT-141 and Melanotan are constantly confused — they share a molecular family and a grey market. But one was built to tan you and one to affect desire. Here's the clean breakdown of what each is, which is approved, and how to tell them apart."
   updated="2026"
+  about={[
+    { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
+    { name: 'Melanotan II', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanotan_II'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'PT-141 (bremelanotide) and Melanotan II come from the same molecular family but were built for opposite jobs: PT-141 for sexual desire, Melanotan II for tanning.',
+      'PT-141 is FDA-approved as Vyleesi for low sexual desire in premenopausal women; Melanotan II is not approved anywhere and is sold only on the grey market.',
+      'PT-141 was engineered out of Melanotan II — chemists chased Melanotan II’s arousal side effect and stripped out most of the tanning activity.',
+      'Neither peptide is perfectly selective: Melanotan II can raise libido, and PT-141 can still darken skin.',
+      'A third name adds to the confusion — Melanotan I (afamelanotide / Scenesse) is the MC1R-selective cousin that became an approved medicine for a rare light-sensitivity disorder.',
+    ]}
+  />
+
   <p>
     Few pairs of peptides get mixed up as often as <strong>PT-141</strong> and
     <strong>Melanotan</strong>. They sound related, they're sold on the same sites in

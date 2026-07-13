@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -75,7 +76,22 @@ const references = [
   kicker="Explainer"
   description="Setmelanotide is the first drug built to switch the melanocortin appetite pathway back on. It isn't a general weight-loss drug — it's a targeted fix for specific diseases where the MC4R 'I am full' signal is missing, now including acquired hypothalamic obesity."
   updated="2026"
+  about={[
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Hypothalamic obesity', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Hypothalamic_obesity'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'Setmelanotide (brand name Imcivree) is a first-in-class MC4R agonist that treats obesity caused by specific breaks in the brain’s melanocortin appetite pathway — not common obesity.',
+      'It holds three FDA approvals: rare genetic obesity from POMC, PCSK1 or LEPR deficiency (2020), Bardet–Biedl syndrome (2022), and acquired hypothalamic obesity (2026).',
+      'In its pivotal TRANSCEND trial for hypothalamic obesity, it cut BMI by about 20% versus placebo over 52 weeks, with roughly 80% of patients losing at least 5% of BMI.',
+      'Unlike broad-acting GLP-1 drugs such as Ozempic and Wegovy, setmelanotide is a targeted repair of one circuit — powerful in its diseases, largely inactive in ordinary obesity.',
+      'Its signature side effect is skin darkening from partial MC1R activation; the label also warns of depression and suicidal ideation.',
+    ]}
+  />
+
   <p>
     Setmelanotide — sold as <strong>Imcivree</strong> — is the drug that turned the
     <a href="/receptors/mc4r">MC4R</a> appetite circuit from a textbook diagram into

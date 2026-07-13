@@ -10,9 +10,11 @@ interface Props {
   author?: string;
   updated?: string;
   reviewed?: boolean;
+  about?: Array<{ name: string; type?: string; sameAs?: string[] }>;
 }
 
-const { title, description, kicker, status, author, updated, reviewed } = Astro.props;
+const { title, description, kicker, status, author, updated, reviewed, about } =
+  Astro.props;
 ---
 
 <BaseLayout
@@ -20,6 +22,7 @@ const { title, description, kicker, status, author, updated, reviewed } = Astro.
   description={description}
   pageType="article"
   dateModified={updated ?? '2026'}
+  about={about}
 >
   <article class="mx-auto max-w-3xl px-6 py-16">
     <header class="border-b border-[var(--border)] pb-8">
@@ -35,7 +38,7 @@ const { title, description, kicker, status, author, updated, reviewed } = Astro.
       </h1>
       {
         description && (
-          <p class="mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
+          <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
             {description}
           </p>
         )

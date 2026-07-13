@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -64,7 +65,21 @@ const references = [
   kicker="Explainer"
   description="The 'tanning peptides' sold online are synthetic versions of a melanocortin hormone. Here's the actual pharmacology, how the two melanotans relate to the approved drugs they spawned, and the documented risks — explained plainly, not sold."
   updated="2026"
+  about={[
+    { name: 'Melanotan II', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanotan_II'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      '“Melanotan” refers to two different peptides: Melanotan I, the MC1R-selective one that became the approved drug afamelanotide, and Melanotan II, the non-selective grey-market tanning peptide.',
+      'Melanotan II tans by activating MC1R to boost eumelanin independently of sunlight — but it is not an approved medicine and is illegal to sell.',
+      'Because it is non-selective it also hits MC4R, causing nausea, flushing, appetite loss and spontaneous erections; that arousal effect spawned the separate drug bremelanotide.',
+      'Its most serious risk is to pigment cells: it darkens existing moles, is linked to new ones, and can mask the mole changes that signal melanoma.',
+    ]}
+  />
+
   <p>
     Search for a way to tan without the sun and you will quickly meet
     "melanotan" — peptides sold online as injections or nasal sprays that

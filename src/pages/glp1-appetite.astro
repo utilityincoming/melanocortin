@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -62,7 +63,21 @@ const references = [
   kicker="Appetite"
   description="Semaglutide and tirzepatide quiet hunger by acting on the brain's appetite circuitry — the same leptin–melanocortin system this site is built around. Here's exactly where they plug in, and the honest uncertainty about how much they depend on it."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Tirzepatide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Tirzepatide'] },
+    { name: 'Semaglutide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Semaglutide'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'GLP-1 weight-loss drugs (semaglutide, tirzepatide) act on the same leptin–melanocortin appetite circuit this site is built around.',
+      'They activate POMC neurons and quiet the hunger-driving AgRP neurons, feeding the MC4R “stop eating” signal.',
+      'But they do not fully depend on MC4R: people with MC4R mutations still lose weight on them, so parallel circuits are also involved.',
+      'MC4R agonists like setmelanotide remain the precise tool for genetic defects inside the melanocortin pathway, while GLP-1 drugs act more broadly — and combining the two is an active frontier.',
+    ]}
+  />
+
   <p>
     The defining drugs of the moment — semaglutide (Ozempic, Wegovy), tirzepatide
     (Mounjaro, Zepbound) — are GLP-1 receptor agonists, and the question everyone

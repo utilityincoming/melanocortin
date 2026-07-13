@@ -11,6 +11,8 @@ interface Props {
   pageType?: 'website' | 'article';
   /** Year-only by site policy (we don't disclose update dates beyond year). */
   dateModified?: string;
+  /** Entities the page is about, for answer-engine grounding (schema.org `about` + `sameAs`). */
+  about?: Array<{ name: string; type?: string; sameAs?: string[] }>;
 }
 
 const {
@@ -18,6 +20,7 @@ const {
   description = 'An open, citation-first reference on the melanocortin system: POMC-derived peptides, the MC1R–MC5R receptors, and the therapeutics that target them.',
   pageType = 'website',
   dateModified = '2026',
+  about = [],
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://melanocortin.com');
@@ -92,7 +95,18 @@ const graph: Record<string, unknown>[] = [
           dateModified,
           author: { '@id': orgId },
           publisher: { '@id': orgId },
-          about: { '@type': 'MedicalEntity', name: 'Melanocortin system' },
+          about: about.length
+            ? about.map((e) => ({
+                '@type': e.type ?? 'MedicalEntity',
+                name: e.name,
+                ...(e.sameAs?.length ? { sameAs: e.sameAs } : {}),
+              }))
+            : { '@type': 'MedicalEntity', name: 'Melanocortin system' },
+          // Voice/answer-engine hint: the lede + key-takeaways carry the extractable answer.
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['.page-lede', '.key-takeaways'],
+          },
         }
       : {}),
   },

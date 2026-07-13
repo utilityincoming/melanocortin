@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -64,7 +65,23 @@ const references = [
   kicker="Explainer"
   description="Hypothalamic obesity isn't a willpower failure — it's what happens when injury to the hypothalamus severs the melanocortin appetite brake. Here's the mechanism, why diet and older drugs failed, and why an MC4R agonist finally works."
   updated="2026"
+  about={[
+    { name: 'Hypothalamic obesity', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Hypothalamic_obesity'] },
+    { name: 'Craniopharyngioma', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Craniopharyngioma'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'Hypothalamic obesity is severe, relentless weight gain caused by physical damage to the hypothalamus — not by overeating or a lack of willpower.',
+      'Its most common cause is a childhood brain tumour (craniopharyngioma) or the surgery and radiation used to treat it; roughly half of those survivors develop it.',
+      'The injury severs the melanocortin appetite brake, so the brain never registers fullness while energy expenditure also falls — weight rises on both sides of the ledger at once.',
+      'Diet, older appetite drugs, and even bariatric surgery worked poorly because none of them restored the missing MC4R signal.',
+      'In 2026 setmelanotide became the first approved treatment, bypassing the damage by activating surviving MC4R receptors directly (about a 20% placebo-adjusted BMI reduction).',
+    ]}
+  />
+
   <p>
     Of all the ways the <a href="/system">melanocortin system</a> can fail, the most
     stark is mechanical: not a gene misspelled at birth, but a working appetite

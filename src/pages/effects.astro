@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -57,7 +58,20 @@ const references = [
   kicker="Pharmacology"
   description="The two effects almost everyone who takes a melanocortin agonist runs into — nausea and skin darkening — aren't random. They come straight from the receptors, and understanding why explains the whole challenge of designing these compounds."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'The two effects nearly everyone on a melanocortin agonist notices — nausea and skin darkening — are built into the mechanism, not incidental quirks.',
+      'The nausea comes from activating MC4R in the brainstem and hypothalamus, and it tends to track the peak drug concentration after a dose.',
+      'The tan comes from activating MC1R on pigment cells, which raises eumelanin — the same pathway the approved tanning drug afamelanotide uses on purpose.',
+      'Because most melanocortin drugs are not perfectly receptor-selective, the therapeutic effect and these side effects are hard to separate — the central challenge in designing them.',
+    ]}
+  />
+
   <p>
     Nausea and a creeping tan are the two things people notice on almost any
     melanocortin agonist — the approved agents, and the unapproved "research
