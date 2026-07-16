@@ -8,6 +8,8 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://melanocortin.com',
+  // Canonical URLs are slash-free; keep routing + sitemap consistent with them.
+  trailingSlash: 'never',
   output: 'server',
   adapter: vercel({
     webAnalytics: { enabled: true },
