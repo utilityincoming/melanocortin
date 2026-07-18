@@ -2,6 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
 
@@ -160,4 +161,6 @@ const references = [
   <FAQ items={faqs} />
 
   <References items={references} />
+
+  <RelatedPages slug="effects" />
 </PageLayout>
