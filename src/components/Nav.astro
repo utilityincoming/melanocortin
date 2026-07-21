@@ -1,19 +1,15 @@
 ---
-const primary = [
+// The interactive tools (explorer, dose-curve, pipeline) are intentionally kept
+// out of the nav — they are treated as beta and reachable via in-content links
+// and the sitemap, not featured as top-level navigation.
+const links = [
   { href: '/system', label: 'The system' },
   { href: '/receptors', label: 'Receptors' },
   { href: '/therapeutics', label: 'Therapeutics' },
+  { href: '/glossary', label: 'Glossary' },
 ];
-const tools = [
-  { href: '/explorer', label: 'Receptor–ligand explorer', note: 'Which peptide hits which receptor' },
-  { href: '/dose-curve', label: 'Dose & side-effect model', note: 'Why the peak, not the dose, drives nausea' },
-  { href: '/pipeline', label: 'Therapeutics pipeline', note: 'A dated snapshot of drugs in development' },
-];
-const glossary = { href: '/glossary', label: 'Glossary' };
-
 const path = Astro.url.pathname;
 const isActive = (href: string) => path.startsWith(href);
-const toolsActive = tools.some((t) => isActive(t.href));
 ---
 
 <header class="relative border-b border-[var(--border)]">
@@ -32,7 +28,7 @@ const toolsActive = tools.some((t) => isActive(t.href));
     <!-- Desktop links -->
     <ul class="hidden items-center gap-6 text-sm sm:flex">
       {
-        primary.map((l) => (
+        links.map((l) => (
           <li>
             <a
               href={l.href}
@@ -48,70 +44,6 @@ const toolsActive = tools.some((t) => isActive(t.href));
           </li>
         ))
       }
-
-      <!-- Tools disclosure (no-JS <details> dropdown) -->
-      <li class="relative">
-        <details class="group/tools">
-          <summary
-            class:list={[
-              'flex cursor-pointer list-none items-center gap-1 no-underline transition-colors hover:text-[var(--accent)] [&::-webkit-details-marker]:hidden',
-              toolsActive ? 'text-[var(--accent)] font-medium' : 'text-[var(--text-muted)]',
-            ]}
-          >
-            Tools
-            <svg
-              class="h-3.5 w-3.5 transition-transform group-open/tools:rotate-180"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </summary>
-          <div
-            class="absolute right-0 top-full z-50 mt-3 w-72 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-2 shadow-sm"
-          >
-            <ul class="flex flex-col">
-              {
-                tools.map((t) => (
-                  <li>
-                    <a
-                      href={t.href}
-                      class:list={[
-                        'flex flex-col gap-0.5 rounded-md px-3 py-2.5 no-underline transition-colors hover:bg-[var(--accent-soft)]',
-                        isActive(t.href) ? 'bg-[var(--accent-soft)]' : '',
-                      ]}
-                    >
-                      <span
-                        class:list={[
-                          'text-sm font-medium',
-                          isActive(t.href) ? 'text-[var(--accent)]' : 'text-[var(--text)]',
-                        ]}
-                      >
-                        {t.label}
-                      </span>
-                      <span class="text-xs leading-snug text-[var(--text-muted)]">{t.note}</span>
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </details>
-      </li>
-
-      <li>
-        <a
-          href={glossary.href}
-          class:list={[
-            'no-underline transition-colors hover:text-[var(--accent)]',
-            isActive(glossary.href)
-              ? 'text-[var(--accent)] font-medium'
-              : 'text-[var(--text-muted)]',
-          ]}
-        >
-          {glossary.label}
-        </a>
-      </li>
     </ul>
 
     <!-- Mobile menu (no-JS <details> disclosure) -->
@@ -130,12 +62,12 @@ const toolsActive = tools.some((t) => isActive(t.href));
       <div class="absolute inset-x-0 top-full z-50 border-b border-[var(--border)] bg-[var(--bg)] shadow-sm">
         <ul class="mx-auto flex max-w-5xl flex-col px-6 py-2 text-sm">
           {
-            primary.map((l) => (
+            links.map((l) => (
               <li>
                 <a
                   href={l.href}
                   class:list={[
-                    'block border-b border-[var(--border)] py-3 no-underline transition-colors hover:text-[var(--accent)]',
+                    'block border-b border-[var(--border)] py-3 no-underline transition-colors last:border-0 hover:text-[var(--accent)]',
                     isActive(l.href)
                       ? 'font-medium text-[var(--accent)]'
                       : 'text-[var(--text)]',
@@ -146,43 +78,6 @@ const toolsActive = tools.some((t) => isActive(t.href));
               </li>
             ))
           }
-
-          <li class="border-b border-[var(--border)] py-3">
-            <span class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
-              Tools
-            </span>
-            <ul class="mt-2 flex flex-col gap-1">
-              {
-                tools.map((t) => (
-                  <li>
-                    <a
-                      href={t.href}
-                      class:list={[
-                        'block py-1.5 no-underline transition-colors hover:text-[var(--accent)]',
-                        isActive(t.href) ? 'font-medium text-[var(--accent)]' : 'text-[var(--text)]',
-                      ]}
-                    >
-                      {t.label}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </li>
-
-          <li>
-            <a
-              href={glossary.href}
-              class:list={[
-                'block py-3 no-underline transition-colors hover:text-[var(--accent)]',
-                isActive(glossary.href)
-                  ? 'font-medium text-[var(--accent)]'
-                  : 'text-[var(--text)]',
-              ]}
-            >
-              {glossary.label}
-            </a>
-          </li>
         </ul>
       </div>
     </details>
