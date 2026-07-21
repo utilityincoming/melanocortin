@@ -85,7 +85,7 @@ export const ligands: Ligand[] = [
     kind: 'approved',
     note: 'A superpotent α-MSH analogue used for MC1R-driven pigmentation in erythropoietic protoporphyria.',
     actions: { MC1R: 'agonist', MC2R: null, MC3R: 'agonist', MC4R: 'agonist', MC5R: 'agonist' },
-    href: '/therapeutics#afamelanotide',
+    href: '/afamelanotide',
   },
   {
     id: 'bremelanotide',
@@ -101,7 +101,7 @@ export const ligands: Ligand[] = [
     kind: 'investigational',
     note: 'Investigational oral, selective MC1R agonist (MT-7117).',
     actions: { MC1R: 'agonist', MC2R: null, MC3R: null, MC4R: null, MC5R: null },
-    href: '/therapeutics',
+    href: '/dersimelagon',
   },
   {
     id: 'melanotan-2',

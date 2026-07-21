@@ -100,6 +100,16 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'Setmelanotide (Imcivree)',
     blurb: 'The MC4R drug that repairs a specific break in the appetite circuit.',
   },
+  afamelanotide: {
+    href: '/afamelanotide',
+    title: 'Afamelanotide (Scenesse)',
+    blurb: 'The first approved EPP drug — an α-MSH copy that builds protective pigment via MC1R.',
+  },
+  dersimelagon: {
+    href: '/dersimelagon',
+    title: 'Dersimelagon (MT-7117)',
+    blurb: 'The investigational oral MC1R agonist — the pill chasing afamelanotide’s target.',
+  },
   'pt-141-vs-melanotan': {
     href: '/pt-141-vs-melanotan',
     title: 'PT-141 vs Melanotan',
@@ -139,12 +149,14 @@ export const RELATED: Record<string, string[]> = {
   'beta-msh': ['alpha-msh', 'receptors/mc4r', 'system'],
   'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'system'],
   asip: ['receptors/mc1r', 'agrp', 'alpha-msh', 'melanotan'],
-  melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'effects', 'receptors/mc1r'],
+  afamelanotide: ['receptors/mc1r', 'dersimelagon', 'melanotan', 'alpha-msh'],
+  dersimelagon: ['afamelanotide', 'receptors/mc1r', 'pipeline', 'therapeutics'],
+  melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'receptors/mc1r'],
   bremelanotide: ['pt-141-vs-melanotan', 'melanotan', 'effects', 'receptors/mc4r'],
   setmelanotide: ['hypothalamic-obesity', 'glp1-appetite', 'receptors/mc4r', 'alpha-msh'],
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'glp1-appetite', 'receptors/mc4r'],
   'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],
   effects: ['dose-curve', 'receptors/mc1r', 'alpha-msh', 'therapeutics'],
-  therapeutics: ['setmelanotide', 'bremelanotide', 'pipeline', 'alpha-msh'],
+  therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'pipeline'],
 };

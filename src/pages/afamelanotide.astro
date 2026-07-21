@@ -1,0 +1,156 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is afamelanotide (Scenesse)?',
+    a: 'Afamelanotide is a synthetic, longer-lasting copy of the natural hormone α-MSH. Sold as Scenesse, it is an FDA-approved drug that activates the MC1R pigment receptor to build up protective skin pigment, used to help people with the rare light-sensitivity disorder erythropoietic protoporphyria (EPP) tolerate more time in the light.',
+  },
+  {
+    q: 'What is afamelanotide approved for?',
+    a: 'The FDA approved it on 8 October 2019 — the first treatment ever for EPP — to increase pain-free light exposure in adults with a history of phototoxic reactions from the condition. It is not a cosmetic tanning product; it is an orphan drug for a specific painful disease.',
+  },
+  {
+    q: 'How is afamelanotide given?',
+    a: 'Unusually, it is neither a pill nor a self-injection. It is a 16 mg controlled-release implant, about the size of a grain of rice, placed under the skin by a trained clinician roughly every two months. The implant slowly releases the drug, keeping protective pigment topped up.',
+  },
+  {
+    q: 'Is afamelanotide the same as Melanotan?',
+    a: 'It shares the same origin. Afamelanotide began as "Melanotan-I," an α-MSH analogue developed from melanocortin research, and it is the regulated, approved medicine that lineage produced. That makes it the legitimate counterpart to Melanotan II — the unapproved grey-market tanning peptide — rather than the same thing sold two ways.',
+  },
+];
+
+const references = [
+  {
+    authors: 'US FDA.',
+    title: 'SCENESSE (afamelanotide) implant, for subcutaneous use — prescribing information.',
+    source: 'FDA label (NDA 210797) — mechanism, indication, and dosing.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+  {
+    authors: 'Drugs.com.',
+    title: 'Scenesse (afamelanotide) FDA approval history.',
+    source: 'Summary of the 8 October 2019 approval for erythropoietic protoporphyria.',
+    year: '2019',
+    url: 'https://www.drugs.com/history/scenesse.html',
+  },
+  {
+    authors: 'HCPLive.',
+    title: 'FDA approves afamelanotide to treat erythropoietic protoporphyria.',
+    source: 'News coverage of the first FDA-approved EPP therapy.',
+    year: '2019',
+    url: 'https://www.hcplive.com/view/fda-afamelanotide-erythropoietic-protoporphyria',
+  },
+];
+---
+
+<PageLayout
+  title="Afamelanotide (Scenesse): the approved drug that treats light by building a tan"
+  kicker="Approved drug"
+  description="Afamelanotide is the first FDA-approved treatment for erythropoietic protoporphyria — a superpotent α-MSH copy that switches on MC1R to build protective pigment independent of sunlight. It's also the regulated medicine the Melanotan lineage actually produced."
+  updated="2026"
+  about={[
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Erythropoietic protoporphyria', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Erythropoietic_protoporphyria'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Afamelanotide (brand name Scenesse) is a synthetic, longer-lasting analogue of α-MSH and a selective MC1R agonist — a durable copy of the body’s natural pigment signal.',
+      'It was FDA-approved on 8 October 2019, the first treatment ever for erythropoietic protoporphyria (EPP), to increase pain-free light exposure in affected adults.',
+      'Its trick is to drive protective eumelanin independent of sunlight, so patients build up pigment in advance rather than relying on the light that hurts them.',
+      'It is delivered as a 16 mg controlled-release implant placed under the skin by a clinician about every two months — not a pill or self-injection.',
+      'It is the approved, regulated medicine of the “Melanotan-I” lineage — the legitimate counterpart to the unapproved tanning peptide Melanotan II.',
+    ]}
+  />
+
+  <p>
+    Afamelanotide — sold as <strong>Scenesse</strong> — is the clearest therapeutic use
+    of the melanocortin pigment system: a drug that treats a light-sensitivity disease
+    by building a protective tan on purpose. It is a synthetic, sturdier copy of
+    <a href="/alpha-msh">α-MSH</a>, and it works by doing deliberately what sunlight
+    normally does by accident — switching on <a href="/receptors/mc1r">MC1R</a> to make
+    dark, shielding pigment.<Cite n={1} />
+  </p>
+
+  <h2>The disease it treats</h2>
+  <p>
+    <strong>Erythropoietic protoporphyria (EPP)</strong> is a rare inherited disorder in
+    which a molecule called protoporphyrin IX builds up in the skin. In sunlight that
+    build-up makes the skin burn with intense, disabling pain — so severe that patients
+    often structure their whole lives around avoiding light.<Cite n={3} /> Before 2019 there
+    was no approved treatment; the only option was avoidance.
+  </p>
+
+  <h2>How it works — pigment on demand</h2>
+  <p>
+    Afamelanotide binds predominantly to MC1R and drives eumelanin production
+    <em>independently of sunlight</em>.<Cite n={1} /> That independence is the whole point.
+    A person with EPP cannot safely build a tan the normal way, because the ultraviolet
+    exposure that would do it is exactly what causes them pain. Afamelanotide supplies
+    the receptor signal directly, so protective pigment accumulates in advance — lengthening
+    the time patients can tolerate light before symptoms start.<Cite n={1} />
+  </p>
+  <p>
+    The FDA approved it on <strong>8 October 2019</strong> to increase pain-free light
+    exposure in adults with a history of phototoxic reactions from EPP — the first therapy
+    ever cleared for the condition, granted under Priority Review and Orphan Drug
+    designation.<Cite n={2} />
+  </p>
+
+  <h2>An unusual delivery system</h2>
+  <p>
+    Afamelanotide is as distinctive in form as in mechanism. Rather than a pill or a
+    self-injection, it is a <strong>16 mg controlled-release implant</strong> — roughly the
+    size of a grain of rice — inserted under the skin by a trained clinician about every
+    two months.<Cite n={1} /> The implant releases the drug slowly, keeping the protective
+    pigment topped up between visits. That design suits a preventive, always-on job:
+    maintaining a baseline of photoprotection rather than reacting dose by dose.
+  </p>
+
+  <h2>The Melanotan connection</h2>
+  <p>
+    Afamelanotide is also the answer to a common confusion. It began life as
+    <strong>"Melanotan-I,"</strong> one of the α-MSH analogues that came out of early
+    melanocortin research into synthetic tanning agents. Afamelanotide is the branch of
+    that work that was carried all the way through trials to approval — the regulated
+    medicine the lineage produced. The <a href="/melanotan">grey-market tanning peptide
+    Melanotan II</a> is the other, unapproved branch. They are relatives, not the same
+    product, and the difference between them is exactly the difference between a tested,
+    approved drug and an unregulated one. See <a href="/pt-141-vs-melanotan">PT-141 vs
+    Melanotan</a> for how tangled this family tree gets.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Afamelanotide is a small, elegant proof that the melanocortin pigment switch is
+    genuinely druggable and genuinely useful. It does not cure EPP — it manages it, by
+    turning a cosmetic side effect of melanocortin agonists, skin darkening, into the
+    therapeutic goal. For the receptor it acts on, see
+    <a href="/receptors/mc1r">MC1R — the pigment switch</a>; for the oral drug chasing the
+    same target, see <a href="/dersimelagon">dersimelagon</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what afamelanotide is and how it works. It does not provide
+      dosing or usage instructions and is not medical advice. Afamelanotide is a
+      prescription drug for a specific diagnosed condition; treatment decisions belong
+      with a clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="afamelanotide" />
+</PageLayout>
