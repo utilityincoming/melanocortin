@@ -1,0 +1,196 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'Do oral peptides work?',
+    a: 'Most do not, in the sense that matters: very little of the dose reaches your bloodstream. Peptides are short proteins, and the digestive system is built to take proteins apart. Stomach acid and gut enzymes destroy most of a swallowed peptide before it can be absorbed, so oral bioavailability is typically under 1–2% unless the drug is specially engineered and formulated to survive.',
+  },
+  {
+    q: 'Are sublingual peptides better than swallowing them?',
+    a: 'Usually only a little, and rarely enough to matter. Placing a peptide under the tongue does avoid stomach acid, but peptides are large, water-loving, charged molecules that cross the mouth’s lining poorly. Sublingual and buccal absorption of peptides is low and highly variable, which is why most “sublingual peptide” products promise far more than the pharmacology delivers.',
+  },
+  {
+    q: 'Why are melanocortin drugs injected?',
+    a: 'Because they are peptides. Setmelanotide and bremelanotide are subcutaneous injections and afamelanotide is an implant — all injection-based — precisely because a swallowed peptide would be digested before it worked. The one oral melanocortin drug, dersimelagon, is oral because it is a small molecule, not a peptide.',
+  },
+  {
+    q: 'Is injection really the best route for peptides?',
+    a: 'For getting a reliable, predictable dose into the body, subcutaneous injection is the honest default for peptides. It bypasses the gut and the liver’s first-pass metabolism entirely, giving high and consistent systemic exposure. That predictability matters most for super-potent peptides with a narrow margin between effect and side effect — where an unreliable dose is not a convenience but a liability.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Pharmaceutics (MDPI).',
+    title:
+      'Barriers and strategies for oral peptide and protein therapeutics delivery: update on clinical advances.',
+    source: 'Review of the gastrointestinal barriers to oral peptide absorption.',
+    year: '2025',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12030352/',
+  },
+  {
+    authors: 'Frontiers in Drug Delivery.',
+    title:
+      'Navigating the complexity of oral peptide delivery: challenges and strategies to enhance oral bioavailability.',
+    source: 'Review of why oral peptide bioavailability is so low and how it is tackled.',
+    year: '2026',
+    url: 'https://www.frontiersin.org/journals/drug-delivery/articles/10.3389/fddev.2026.1809842/full',
+  },
+  {
+    authors: 'Open-access review (PMC).',
+    title:
+      'Lipid-based nanoparticles as oral drug delivery systems: overcoming poor gastrointestinal absorption of peptide and protein therapeutics.',
+    source: 'On proteolytic degradation and first-pass metabolism of oral peptides.',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10997935/',
+  },
+  {
+    authors: 'Journal of Controlled Release (ScienceDirect).',
+    title: 'The challenge of proteolytic enzymes in intestinal peptide delivery.',
+    source: 'On the enzymatic breakdown of peptides in the gut.',
+    year: '1997',
+    url: 'https://www.sciencedirect.com/science/article/abs/pii/S0168365996015866',
+  },
+];
+---
+
+<PageLayout
+  title="Why oral and sublingual peptides mostly don't work: route, bioavailability, and the case for injection"
+  kicker="Delivery"
+  description="Peptides are short proteins, and the gut is built to dismantle proteins. That single fact explains why swallowed and under-the-tongue peptides mostly fail, why every approved melanocortin peptide is injected, and why route — not just dose — decides whether one of these drugs does anything at all."
+  updated="2026"
+  about={[
+    { name: 'Peptide therapeutics', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Peptide_therapeutics'] },
+    { name: 'Bioavailability', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Bioavailability'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Peptides are short proteins, and the digestive system exists to take proteins apart — so a swallowed peptide is mostly destroyed before it can be absorbed.',
+      'Oral bioavailability for peptides is typically under 1–2%: stomach acid, gut enzymes, poor membrane permeability, and first-pass liver metabolism each take a cut.',
+      'Sublingual and “buccal” peptides avoid stomach acid but still cross the mouth’s lining poorly — absorption is low and highly variable, and most such products oversell.',
+      'Subcutaneous injection bypasses the gut and the liver entirely, giving high and predictable systemic exposure — the honest default for delivering a peptide.',
+      'This is why every approved melanocortin peptide is injected or implanted, and why the one oral melanocortin drug (dersimelagon) is oral: it is a small molecule, not a peptide.',
+    ]}
+  />
+
+  <p>
+    One question sits underneath almost every practical decision about these drugs, and
+    the internet answers it badly: <strong>does the route you take a peptide by actually
+    matter?</strong> It matters enormously — often more than the dose on the label — and
+    the reason comes down to a single, unglamorous fact of biology. A peptide is a short
+    protein, and your digestive system is a machine built specifically to take proteins
+    apart.<Cite n={1} />
+  </p>
+
+  <h2>Why swallowing a peptide mostly wastes it</h2>
+  <p>
+    When you swallow a peptide, it runs a gauntlet designed to destroy exactly that kind
+    of molecule. First the stomach's acid (around pH 1–2) begins breaking it down. Then a
+    battery of digestive enzymes — pepsin, trypsin, chymotrypsin and others — cleave its
+    peptide bonds, the same way they dismantle the protein in a meal.<Cite n={4} /> Whatever
+    survives still has to cross the intestinal wall, and peptides are poorly suited to
+    that: they are relatively large, water-loving, and often electrically charged, all of
+    which make them cross cell membranes badly.<Cite n={1} /> Finally, anything absorbed
+    passes first through the liver, which removes another share before the drug ever
+    reaches general circulation.
+  </p>
+  <p>
+    Add those losses together and the result is stark. For most peptides, oral
+    bioavailability — the fraction of the dose that actually reaches the bloodstream
+    intact — is under 1–2%.<Cite n={2} /> Turning a peptide into a genuinely effective oral
+    drug takes heavy molecular engineering and specialised formulation to protect it and
+    push it across the gut wall; it is a hard pharmaceutical problem, not something a
+    capsule or a powder achieves on its own.<Cite n={1} />
+  </p>
+
+  <h2>Sublingual and nasal — better, but oversold</h2>
+  <p>
+    The obvious workaround is to skip the stomach. Placing a peptide under the tongue
+    (sublingual) or against the cheek (buccal) does avoid gastric acid — but it runs into
+    the second barrier anyway. Peptides cross the lining of the mouth poorly for the same
+    physical reasons they cross the gut wall poorly: size, water-solubility, and charge.
+    Absorption by these routes is low and highly variable, which is why the large market
+    in "sublingual peptides" promises much more than the pharmacology supports.<Cite n={3} />
+  </p>
+  <p>
+    Nasal delivery is a more genuine case — for some small peptides it works meaningfully,
+    and a few neuropeptides even reach the brain more directly through the nose. But it,
+    too, is variable and depends heavily on the exact molecule and formulation. That
+    variability is precisely the problem with the grey-market
+    <a href="/melanotan">melanotan</a> and "<a href="/bremelanotide">PT-141</a>" nasal
+    sprays: an inconsistent, poorly-characterised dose of a potent melanocortin is the
+    opposite of what these drugs need.
+  </p>
+
+  <h2>Why injection is the honest default</h2>
+  <p>
+    Subcutaneous injection exists as the standard peptide route for a simple reason: it
+    sidesteps the entire problem. Injected under the skin, a peptide bypasses stomach
+    acid, gut enzymes, the intestinal wall, and the liver's first pass altogether,
+    delivering a high and — importantly — <em>predictable</em> fraction of the dose into
+    the body.<Cite n={2} /> It also gives control over the shape of the concentration curve
+    over time, which for these drugs is not a technicality.
+  </p>
+  <p>
+    That predictability is the whole point for melanocortins specifically. These are
+    super-potent peptides with a narrow margin between the effect you want and the side
+    effects you don't — and, as the <a href="/dose-curve">dose–curve model</a> shows, it
+    is the <em>peak</em> concentration that drives the nausea and other
+    <a href="/effects">mechanism-based effects</a>. A route that delivers an unknown,
+    erratic amount doesn't just risk doing nothing; it risks doing the wrong thing at the
+    wrong moment. For a potent drug with a narrow window, an unreliable dose is a
+    liability, not a convenience.
+  </p>
+
+  <h2>The melanocortin tell</h2>
+  <p>
+    You can read this principle straight off the drug catalogue. Every approved
+    melanocortin <em>peptide</em> is delivered by injection or implant:
+    <a href="/setmelanotide">setmelanotide</a> and <a href="/bremelanotide">bremelanotide</a>
+    are subcutaneous injections, and <a href="/afamelanotide">afamelanotide</a> is a
+    subcutaneous implant. None of them is a pill, because none of them could survive being
+    one.<Cite n={1} />
+  </p>
+  <p>
+    The exception proves the rule beautifully. <a href="/dersimelagon">Dersimelagon</a> is
+    the one melanocortin drug you can take as a tablet — and it is the one that is
+    <strong>not a peptide</strong>. It is a small molecule built from the ground up to hit
+    the same <a href="/receptors/mc1r">MC1R</a> target, small and stable enough to pass
+    through the gut where a peptide cannot. The route wasn't a marketing choice; it was
+    dictated by what kind of molecule the drug is.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    "Route of administration" sounds like a footnote and is actually one of the first
+    things worth knowing about any peptide. A swallowed or under-the-tongue peptide is,
+    with few exceptions, mostly digested before it works — so a cheaper oral or sublingual
+    version of an injectable peptide is usually not a bargain but a much weaker, less
+    predictable product. The pharmacology here is not controversial and not new; it is
+    just rarely stated plainly. For how the delivered concentration then shapes what you
+    feel, see the <a href="/dose-curve">dose, delivery & side-effect model</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the pharmacology of how peptides are absorbed by different
+      routes. It does not provide dosing, sourcing, or usage instructions, and it is not
+      medical advice or an endorsement of unapproved use. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="oral-peptides" />
+</PageLayout>
