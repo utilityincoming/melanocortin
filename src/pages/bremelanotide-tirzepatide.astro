@@ -1,0 +1,140 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is the bremelanotide + tirzepatide combination?',
+    a: 'It is an investigational obesity strategy from Palatin (study BMT-801) that pairs a low dose of the MC4R agonist bremelanotide with the GLP-1/GIP drug tirzepatide. The idea is to engage two different appetite systems at once, using less of each.',
+  },
+  {
+    q: 'What did the Phase 2 study show?',
+    a: 'The 8-week Phase 2 study met its primary endpoint with high statistical significance. Low doses of both drugs produced about 4.4% weight loss, and low-dose bremelanotide matched tirzepatide on appetite suppression — with no added safety concerns.',
+  },
+  {
+    q: 'Why is the weight-regain result important?',
+    a: 'It is the standout finding. After treatment stopped, more than half the lost weight came back within two weeks in the tirzepatide-only group — a well-known problem with GLP-1 drugs. But in the group that also received bremelanotide, weight regain was effectively halted. That points to melanocortin activation helping hold weight off, not just take it off.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'MC4R agonist bremelanotide co-administered with GLP-1/GIP tirzepatide meets primary endpoint in Phase 2 obesity study.',
+    source: 'Press release — BMT-801 primary endpoint and weight-loss result.',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-mc4r-agonist-bremelanotide-co-administered-with-glp-1gip-tirzepatide-meets-primary-endpoint-in-phase-2-obesity-study-302414708.html',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Positive appetite-suppression results from Phase 2 obesity study of MC4R agonist bremelanotide and tirzepatide.',
+    source: 'Press release — appetite and weight-regain findings.',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatin-reports-positive-appetite-suppression-results-from-phase-2-obesity-study-of-mc4r-agonist-bremelanotide-and-tirzepatide-302431194.html',
+  },
+  {
+    authors: 'Applied Clinical Trials.',
+    title:
+      'Palatin: results from Phase II obesity study of MC4R bremelanotide plus GLP-1/GIP tirzepatide.',
+    source: 'Independent coverage of the BMT-801 results.',
+    year: '2025',
+    url: 'https://www.appliedclinicaltrialsonline.com/view/palatin-results-phaseii-obesity-study-mc4r-bremelanotide-glp1-gip-tirzepatide',
+  },
+];
+---
+
+<PageLayout
+  title="Bremelanotide + tirzepatide (BMT-801): pairing an MC4R agonist with a GLP-1 to hold weight off"
+  kicker="Investigational"
+  description="Palatin's BMT-801 study paired a low dose of the MC4R agonist bremelanotide with the GLP-1/GIP drug tirzepatide. It met its Phase 2 endpoint — but the striking result was weight-regain: halted in the melanocortin group after treatment stopped."
+  updated="2026"
+  about={[
+    { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
+    { name: 'Tirzepatide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Tirzepatide'] },
+    { name: 'Obesity', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Obesity'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'BMT-801 is Palatin’s investigational obesity combination: a low dose of the MC4R agonist bremelanotide co-administered with the GLP-1/GIP drug tirzepatide.',
+      'It engages two appetite systems at once — the melanocortin circuit and the gut-hormone circuit — using low doses of each.',
+      'The 8-week Phase 2 study met its primary endpoint with high statistical significance, producing about 4.4% weight loss.',
+      'The standout result was weight-regain: after stopping, the tirzepatide-only group regained over half the lost weight in two weeks, but regain was effectively halted in the group that also got bremelanotide.',
+      'Low-dose bremelanotide matched tirzepatide on appetite suppression, with no added safety concerns.',
+    ]}
+  />
+
+  <p>
+    This is the melanocortin system meeting the blockbuster obesity drugs on purpose. Palatin's
+    <strong>BMT-801</strong> study paired a low dose of the MC4R agonist
+    <a href="/bremelanotide">bremelanotide</a> with <strong>tirzepatide</strong> — the
+    GLP-1/GIP drug behind Mounjaro and Zepbound — to see whether hitting two appetite systems at
+    once beats leaning hard on either alone.<Cite n={1} />
+  </p>
+
+  <h2>Two appetite systems, low doses of each</h2>
+  <p>
+    Tirzepatide works through gut-hormone (GLP-1 and GIP) circuits; bremelanotide works through
+    the brain's <a href="/receptors/mc4r">MC4R</a> melanocortin circuit. They are different
+    routes to the same destination — reduced appetite — which is exactly why combining them is
+    interesting: you might get the effect of both while keeping the dose of each low enough to
+    limit side effects.<Cite n={1} /> The <a href="/glp1-appetite">GLP-1 and melanocortin
+    pathways</a> are already known to intersect, so pairing them is less a gamble than a
+    hypothesis with a mechanism behind it.
+  </p>
+
+  <h2>The Phase 2 result</h2>
+  <p>
+    The 8-week Phase 2 study met its primary endpoint with high statistical significance:
+    low doses of both drugs produced about <strong>4.4% weight loss</strong>, and — notably —
+    low-dose bremelanotide <strong>matched tirzepatide on appetite suppression</strong>, with no
+    added safety or tolerability concerns.<Cite n={1} /><Cite n={2} /> For a combination using
+    reduced doses, matching the established drug on appetite is a meaningful signal.
+  </p>
+
+  <h2>The result that matters most: holding weight off</h2>
+  <p>
+    The headline finding wasn't the weight lost but the weight <em>kept off</em>. Weight regain
+    after stopping a GLP-1 drug is one of the biggest problems in obesity medicine — the pounds
+    come back. In BMT-801, after treatment stopped, the tirzepatide-only group regained
+    <strong>more than half</strong> of its lost weight within two weeks. But in the group that
+    also received bremelanotide, <strong>weight regain was effectively halted</strong>.<Cite n={2} />
+    That points to melanocortin activation doing something GLP-1 drugs struggle with: helping the
+    body <em>defend</em> a lower weight rather than snap back toward the old one. If it holds up,
+    it addresses one of the field's central unmet needs.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    BMT-801 is a Phase 2 signal, not a finished drug — an 8-week study with modest weight loss by
+    design, since the point was low-dose combination rather than maximal loss. But the
+    weight-regain result is the kind of finding that could reframe how melanocortin drugs fit into
+    obesity care: not as another way to lose weight, but as a way to keep it off after a GLP-1
+    does the losing. For the melanocortin half of the pair, see
+    <a href="/bremelanotide">bremelanotide</a>; for the intersection it exploits, see
+    <a href="/glp1-appetite">GLP-1 drugs & appetite</a>; for the oral MC4R drug chasing the same
+    space, see <a href="/pl-7737">PL-7737</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug combination and its trial status. It does not
+      provide dosing or usage instructions and is not medical advice. This combination is not
+      approved; its safety and efficacy are still being established. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="bremelanotide-tirzepatide" />
+</PageLayout>

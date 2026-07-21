@@ -57,7 +57,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 4,
     status: 'approved',
     since: '1952',
-    href: '/therapeutics#corticotropin',
+    href: '/acthar-gel',
   },
   {
     name: 'Dersimelagon',
@@ -77,7 +77,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 2,
     status: 'active',
     note: 'Phase 2 (BMT-801) met its primary endpoint in 2025; low-dose MC4R activation added to a GLP-1 also curbed weight regain',
-    href: '/glp1-appetite',
+    href: '/bremelanotide-tirzepatide',
   },
   {
     name: 'PL-9643',
@@ -107,7 +107,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 1,
     status: 'active',
     note: 'Oral MC4R agonist entering the clinic (2026) as an obesity monotherapy and GLP-1 add-on',
-    href: '/glp1-appetite',
+    href: '/pl-7737',
   },
   {
     name: 'Mifomelatide (TCMCB07)',
@@ -127,7 +127,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 2,
     status: 'active',
     note: 'Repurposing MC1R’s anti-inflammatory action',
-    href: '/therapeutics',
+    href: '/dersimelagon',
   },
   {
     name: 'Dual MC3R/MC4R agonists',

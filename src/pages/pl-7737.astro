@@ -1,0 +1,138 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is PL-7737?',
+    a: 'PL-7737 is Palatin’s investigational oral MC4R agonist for obesity. Unlike the injected MC4R peptide setmelanotide, it is a small molecule designed to be taken as a pill — aimed both at common obesity and at rare disorders of the MC4R appetite pathway.',
+  },
+  {
+    q: 'How is PL-7737 different from setmelanotide?',
+    a: 'They hit the same target — MC4R, the appetite receptor — but PL-7737 is an oral small molecule rather than a subcutaneous peptide. That is the same jump dersimelagon made for the MC1R pigment receptor: turning an injected peptide idea into a swallowable pill by using a small molecule instead.',
+  },
+  {
+    q: 'What stage is PL-7737 at?',
+    a: 'Early. As of 2026 it has strong preclinical data and FDA Orphan Drug Designation for leptin-receptor-deficiency obesity, with first-in-human Phase 1 testing beginning around 2026. It is a promising candidate, not a proven or approved drug.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Positive preclinical efficacy data for oral MC4R agonist PL7737 in an animal model of obesity.',
+    source: 'Press release — preclinical weight-loss results and tirzepatide combination.',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-positive-preclinical-efficacy-data-for-oral-mc4r-agonist-pl7737-in-animal-model-of-obesity-302505219.html',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Oral MC4R agonist PL7737 receives FDA Orphan Drug Designation for obesity due to leptin receptor deficiency.',
+    source: 'Press release — rare MC4R-pathway indication.',
+    year: '2025',
+    url: 'https://palatin.com/press_releases/palatins-oral-mc4r-agonist-pl7737-receives-fda-orphan-drug-designation-for-obesity-due-to-leptin-receptor-deficiency/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title: 'Second quarter fiscal year 2026 financial results and corporate update.',
+    source: 'Press release — PL7737 development timeline into Phase 1.',
+    year: '2026',
+    url: 'https://www.prnewswire.com/news-releases/palatin-reports-second-quarter-fiscal-year-2026-financial-results-and-provides-corporate-update-302688156.html',
+  },
+];
+---
+
+<PageLayout
+  title="PL-7737: the oral MC4R agonist aiming to be a pill for obesity"
+  kicker="Investigational"
+  description="PL-7737 is Palatin's investigational oral MC4R agonist — an attempt to do for the appetite receptor what dersimelagon did for the pigment receptor: turn an injected-peptide idea into a swallowable small molecule, for both common obesity and rare MC4R-pathway disease."
+  updated="2026"
+  about={[
+    { name: 'PL-7737', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Obesity', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Obesity'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'PL-7737 is Palatin’s investigational oral MC4R agonist for obesity — a small molecule designed as a pill, not an injected peptide.',
+      'It targets MC4R, the brain’s appetite rheostat — the same receptor as setmelanotide, but by mouth.',
+      'It is aimed at both common obesity and rare MC4R-pathway disorders; it holds FDA Orphan Drug Designation for leptin-receptor-deficiency obesity.',
+      'In preclinical models it drove weight loss and worked synergistically when combined with the GLP-1/GIP drug tirzepatide.',
+      'It is early — strong preclinical data and first-in-human Phase 1 testing around 2026, not an approved drug.',
+    ]}
+  />
+
+  <p>
+    PL-7737 is Palatin's bet that the <a href="/receptors/mc4r">MC4R</a> appetite switch can
+    be drugged with a pill. The approved MC4R agonist, <a href="/setmelanotide">setmelanotide</a>,
+    is a daily injection; PL-7737 is a small molecule built to be swallowed instead — the same
+    move <a href="/dersimelagon">dersimelagon</a> made for the pigment receptor, applied to the
+    appetite one.<Cite n={1} />
+  </p>
+
+  <h2>An oral small molecule, not a peptide</h2>
+  <p>
+    The strategy here follows a pattern that recurs across the melanocortin pipeline. Peptides
+    like setmelanotide must be injected, because a swallowed peptide is digested before it
+    works. A <em>small molecule</em> can be engineered to survive the gut and be absorbed as a
+    tablet — so PL-7737 aims to deliver MC4R activation in the most convenient possible form for
+    a chronic condition like obesity.<Cite n={1} /> Convenience is not a footnote in obesity
+    treatment; it shapes who will actually take a drug long-term.
+  </p>
+
+  <h2>Two markets in one molecule</h2>
+  <p>
+    PL-7737 is being positioned for two overlapping problems. The larger is
+    <strong>common obesity</strong>, where preclinical work showed weight loss on its own and
+    stronger results when combined with the GLP-1/GIP drug tirzepatide — echoing the
+    combination logic Palatin is pursuing with
+    <a href="/bremelanotide-tirzepatide">bremelanotide plus tirzepatide</a>.<Cite n={1} /> The
+    other is <strong>rare MC4R-pathway disease</strong>: PL-7737 holds FDA Orphan Drug
+    Designation for obesity caused by leptin-receptor (LEPR) deficiency,<Cite n={2} /> the same
+    kind of upstream defect that setmelanotide treats. One oral molecule, aimed at both the mass
+    market and the rare-disease niche.
+  </p>
+
+  <h2>Status</h2>
+  <p>
+    PL-7737 is early. As of 2026 it has strong preclinical efficacy data and orphan designation,
+    with first-in-human Phase 1 single- and multiple-ascending-dose testing beginning around
+    2026 and early clinical data expected to follow.<Cite n={3} /> Promising preclinical results
+    are a starting line, not a finish; whether the oral MC4R approach translates to humans is
+    exactly what those trials will test.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    PL-7737 is one to watch rather than one to conclude on. If it works, it would make MC4R
+    activation available as a pill and slot naturally into the emerging strategy of pairing
+    melanocortin drugs with GLP-1s. If it doesn't, it will join the long list of appetite drugs
+    that looked good in mice. For the receptor it targets, see
+    <a href="/receptors/mc4r">MC4R</a>; for the combination idea, see
+    <a href="/bremelanotide-tirzepatide">bremelanotide + tirzepatide</a>; for the whole field,
+    the <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial status. It does not provide
+      dosing or usage instructions and is not medical advice. PL-7737 is not approved; its
+      safety and efficacy are still being established. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="pl-7737" />
+</PageLayout>

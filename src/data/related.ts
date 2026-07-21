@@ -125,6 +125,21 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'TCMCB07 — setmelanotide in reverse',
     blurb: 'An MC4R antagonist for cachexia — the appetite switch run backwards.',
   },
+  'acthar-gel': {
+    href: '/acthar-gel',
+    title: 'Acthar Gel — the original',
+    blurb: 'Repository corticotropin: the 1952 ACTH drug, and a notorious pricing tale.',
+  },
+  'pl-7737': {
+    href: '/pl-7737',
+    title: 'PL-7737 — an oral MC4R pill',
+    blurb: 'Palatin’s investigational oral MC4R agonist for obesity — setmelanotide’s target, by mouth.',
+  },
+  'bremelanotide-tirzepatide': {
+    href: '/bremelanotide-tirzepatide',
+    title: 'Bremelanotide + tirzepatide',
+    blurb: 'An MC4R agonist paired with a GLP-1 — the combo that halted weight regain.',
+  },
   'pt-141-vs-melanotan': {
     href: '/pt-141-vs-melanotan',
     title: 'PT-141 vs Melanotan',
@@ -159,7 +174,7 @@ export const PAGES: Record<string, PageMeta> = {
 
 export const RELATED: Record<string, string[]> = {
   'alpha-msh': ['system', 'receptors/mc1r', 'receptors/mc4r', 'agrp'],
-  acth: ['receptors/mc2r', 'alpha-msh', 'system'],
+  acth: ['receptors/mc2r', 'alpha-msh', 'acthar-gel'],
   agrp: ['alpha-msh', 'receptors/mc4r', 'asip', 'tcmcb07'],
   'beta-msh': ['alpha-msh', 'receptors/mc4r', 'system'],
   'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'system'],
@@ -169,12 +184,15 @@ export const RELATED: Record<string, string[]> = {
   'pl-8177': ['alpha-msh', 'receptors/mc1r', 'pl-9643', 'therapeutics'],
   'pl-9643': ['alpha-msh', 'pl-8177', 'therapeutics', 'pipeline'],
   tcmcb07: ['setmelanotide', 'agrp', 'receptors/mc4r', 'pipeline'],
+  'acthar-gel': ['acth', 'receptors', 'setmelanotide', 'pipeline'],
+  'pl-7737': ['receptors/mc4r', 'setmelanotide', 'bremelanotide-tirzepatide', 'dersimelagon'],
+  'bremelanotide-tirzepatide': ['bremelanotide', 'glp1-appetite', 'receptors/mc4r', 'pl-7737'],
   melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'receptors/mc1r'],
   bremelanotide: ['pt-141-vs-melanotan', 'melanotan', 'effects', 'receptors/mc4r'],
   setmelanotide: ['hypothalamic-obesity', 'glp1-appetite', 'receptors/mc4r', 'tcmcb07'],
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'glp1-appetite', 'receptors/mc4r'],
-  'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],
+  'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'bremelanotide-tirzepatide', 'therapeutics'],
   effects: ['dose-curve', 'receptors/mc1r', 'alpha-msh', 'therapeutics'],
   therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'pipeline'],
 };

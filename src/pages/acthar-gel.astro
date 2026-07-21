@@ -1,0 +1,158 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is Acthar Gel (repository corticotropin)?',
+    a: 'Acthar Gel is a long-acting, injectable preparation of ACTH — the melanocortin hormone — purified from pig pituitaries. Approved in 1952, it is the oldest melanocortin drug by decades, used for conditions such as infantile spasms and acute multiple-sclerosis flares.',
+  },
+  {
+    q: 'Is Acthar Gel a melanocortin drug?',
+    a: 'Yes — it is essentially ACTH, and ACTH is a melanocortin. Unlike the modern, selective agents, it is a pan-melanocortin agonist: it activates all five melanocortin receptors. It works partly by stimulating the adrenal glands to make cortisol and partly through direct melanocortin-receptor anti-inflammatory effects.',
+  },
+  {
+    q: 'Why is Acthar Gel controversial?',
+    a: 'Its price. For decades the drug cost under $40 a vial. After Questcor acquired the rights in 2001 and Mallinckrodt bought Questcor in 2014, the price was hiked repeatedly to roughly $39,000 a vial — about a 97,000% increase — even though cheap generic steroids treat many of the same conditions. Medicare spent billions on it, drawing a congressional investigation.',
+  },
+  {
+    q: 'Does Acthar Gel work better than steroids?',
+    a: 'That is the central question, and the honest answer is that it is disputed. For infantile spasms it has a clear role, but for many other indications its benefit over far cheaper corticosteroids has not been convincingly demonstrated — one reason its cost has drawn so much scrutiny.',
+  },
+];
+
+const references = [
+  {
+    authors: 'US FDA.',
+    title: 'H.P. Acthar Gel (repository corticotropin injection) — prescribing information.',
+    source: 'FDA label — composition, indications, and mechanism.',
+    year: '2024',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/008372s074lbl.pdf',
+  },
+  {
+    authors: 'Drugs.com.',
+    title: 'Corticotropin, repository — monograph for professionals.',
+    source: 'Reference on repository corticotropin and its melanocortin activity.',
+    year: '2024',
+    url: 'https://www.drugs.com/monograph/corticotropin-repository.html',
+  },
+  {
+    authors: 'KFF Health News.',
+    title:
+      'Old drug turned “cash cow” as company pumped price to $40K a vial, emails show.',
+    source: 'Investigative reporting on Acthar Gel’s pricing history.',
+    year: '2020',
+    url: 'https://kffhealthnews.org/news/mallinckrodt-orphan-drug-acthar-turned-cash-cow-as-drugmaker-raised-price-to-40000-per-vial-emails-show/',
+  },
+];
+---
+
+<PageLayout
+  title="Repository corticotropin (Acthar Gel): the original melanocortin drug — and a pricing cautionary tale"
+  kicker="Approved drug"
+  description="Acthar Gel is the oldest melanocortin drug — an injectable ACTH preparation approved in 1952, decades before the receptors were understood. It's also one of medicine's most notorious pricing stories: from under $40 a vial to nearly $39,000."
+  updated="2026"
+  about={[
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'Corticotropin', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'Infantile spasms', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Epileptic_spasms'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Acthar Gel (repository corticotropin) is a long-acting injectable preparation of ACTH, purified from pig pituitaries — the oldest melanocortin drug, approved in 1952.',
+      'It is essentially the hormone ACTH, and therefore a pan-melanocortin agonist that activates all five receptors — the opposite of the selective, modern agents.',
+      'It works both indirectly (stimulating the adrenal glands to release cortisol) and directly (melanocortin-receptor anti-inflammatory effects).',
+      'It retains a clear role in infantile spasms and is used in acute MS flares, but its advantage over cheap generic steroids for many uses is disputed.',
+      'Its price is infamous: from under $40 a vial to roughly $39,000 — about a 97,000% increase — making it a landmark case in US drug-pricing debate.',
+    ]}
+  />
+
+  <p>
+    Before there was a word for the "melanocortin system," there was Acthar Gel. Approved
+    in <strong>1952</strong>, it is the oldest melanocortin drug by a wide margin — a
+    reminder that this pathway was being used as medicine decades before anyone had cloned
+    a melanocortin receptor. It is also, today, one of the most cautionary stories in the
+    whole field: a crude old drug kept alive less by unique benefit than by an extraordinary
+    price.<Cite n={3} />
+  </p>
+
+  <h2>What it actually is</h2>
+  <p>
+    Acthar Gel is <strong>repository corticotropin</strong> — a long-acting ("repository")
+    gel preparation of <a href="/acth">ACTH</a>, the melanocortin hormone, purified from
+    the pituitary glands of pigs.<Cite n={1} /> Because it is essentially ACTH, it is a
+    <em>pan-melanocortin agonist</em>: it activates all five
+    <a href="/receptors">melanocortin receptors</a>, the exact opposite of the careful
+    receptor-selectivity that defines modern agents like
+    <a href="/setmelanotide">setmelanotide</a> or <a href="/dersimelagon">dersimelagon</a>.
+    It is the melanocortin drug as a blunt instrument.
+  </p>
+
+  <h2>How it works — two mechanisms, one debate</h2>
+  <p>
+    Acthar has two ways to act, and the balance between them is the source of decades of
+    argument. The classic route is <strong>indirect</strong>: like natural ACTH, it drives
+    the adrenal glands to release cortisol, so much of its effect is simply that of a
+    steroid produced in the body.<Cite n={1} /> The more interesting claim is a
+    <strong>direct</strong> one: by binding melanocortin receptors on immune cells, it may
+    exert anti-inflammatory and immune-modulating effects beyond cortisol alone.<Cite n={2} />
+    Whether that direct effect adds anything a cheap generic steroid cannot supply is exactly
+    the question its critics raise.
+  </p>
+
+  <h2>What it treats</h2>
+  <p>
+    Acthar's clearest, least-disputed role is in <strong>infantile spasms</strong>, a
+    severe infant epilepsy, where it is approved as monotherapy in children under two.<Cite n={1} />
+    It is also approved for acute exacerbations of <strong>multiple sclerosis</strong> and
+    carries a long list of older indications spanning rheumatic, kidney, and inflammatory
+    diseases.<Cite n={1} /> Across much of that list, though, its benefit over inexpensive
+    corticosteroids has never been convincingly shown — which is what makes its cost so hard
+    to justify.
+  </p>
+
+  <h2>The price cautionary tale</h2>
+  <p>
+    For most of its life Acthar was cheap — under <strong>$40 a vial</strong> for decades.
+    That changed when Questcor Pharmaceuticals acquired the rights in 2001 and began raising
+    the price aggressively, past $31,000 a vial; Mallinckrodt then bought Questcor for
+    $5.8 billion in 2014 and continued the climb to roughly <strong>$39,000 a vial</strong> —
+    an increase on the order of <strong>97,000%</strong> from where it started.<Cite n={3} />
+    Medicare spending on the drug ran into the billions, and the pricing drew investigative
+    reporting and a congressional inquiry.<Cite n={3} /> For many patients a course of Acthar
+    can exceed $100,000, against roughly $100 for a generic steroid treating the same
+    condition.<Cite n={3} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Acthar Gel occupies a strange place in the melanocortin story. Scientifically it is the
+    ancestor — proof that this pathway was therapeutic long before it was understood — and it
+    still helps children with infantile spasms. But it is also the field's clearest warning
+    that an old, non-selective, incompletely-understood drug can persist less on merit than
+    on price. The modern agents on this site are, in part, the answer to it: selective,
+    tested, mechanistically defined. For the hormone Acthar is built from, see
+    <a href="/acth">ACTH</a>; for the wider landscape, the
+    <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what Acthar Gel is, how it works, and its pricing history. It does
+      not provide dosing or usage instructions and is not medical advice. Treatment decisions
+      belong with a clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="acthar-gel" />
+</PageLayout>
