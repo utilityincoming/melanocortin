@@ -29,7 +29,7 @@ export const ligands: Ligand[] = [
     kind: 'endogenous',
     note: 'The broad-spectrum melanocortin agonist; the classic pigment and appetite signal.',
     actions: { MC1R: 'agonist', MC2R: null, MC3R: 'agonist', MC4R: 'agonist', MC5R: 'agonist' },
-    href: '/system',
+    href: '/alpha-msh',
   },
   {
     id: 'b-msh',
@@ -37,7 +37,7 @@ export const ligands: Ligand[] = [
     kind: 'endogenous',
     note: 'A POMC-derived melanocortin with broad agonist activity.',
     actions: { MC1R: 'agonist', MC2R: null, MC3R: 'agonist', MC4R: 'agonist', MC5R: 'agonist' },
-    href: '/system',
+    href: '/beta-msh',
   },
   {
     id: 'g-msh',
@@ -45,7 +45,7 @@ export const ligands: Ligand[] = [
     kind: 'endogenous',
     note: 'Relatively selective for MC3R; weaker at the other subtypes.',
     actions: { MC1R: 'partial', MC2R: null, MC3R: 'agonist', MC4R: 'partial', MC5R: 'partial' },
-    href: '/receptors/mc3r',
+    href: '/gamma-msh',
   },
   {
     id: 'acth',
@@ -53,7 +53,7 @@ export const ligands: Ligand[] = [
     kind: 'endogenous',
     note: 'The only natural agonist of MC2R; also activates the other receptors.',
     actions: { MC1R: 'agonist', MC2R: 'agonist', MC3R: 'agonist', MC4R: 'agonist', MC5R: 'agonist' },
-    href: '/receptors/mc2r',
+    href: '/acth',
   },
   {
     id: 'asip',
@@ -61,7 +61,7 @@ export const ligands: Ligand[] = [
     kind: 'endogenous',
     note: 'Endogenous antagonist at MC1R (coat colour) and MC4R.',
     actions: { MC1R: 'antagonist', MC2R: null, MC3R: null, MC4R: 'antagonist', MC5R: null },
-    href: '/receptors/mc1r',
+    href: '/asip',
   },
   {
     id: 'agrp',
@@ -69,7 +69,7 @@ export const ligands: Ligand[] = [
     kind: 'endogenous',
     note: 'The hunger peptide; opposes α-MSH at MC3R and MC4R, where it is an inverse agonist.',
     actions: { MC1R: null, MC2R: null, MC3R: 'antagonist', MC4R: 'inverse', MC5R: null },
-    href: '/receptors/mc4r',
+    href: '/agrp',
   },
   {
     id: 'setmelanotide',

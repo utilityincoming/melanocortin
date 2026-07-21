@@ -1,0 +1,120 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is β-MSH?',
+    a: 'Beta-melanocyte-stimulating hormone (β-MSH) is one of the melanocortin peptides cut from the POMC precursor. Like α-MSH, it is a broad-spectrum agonist across the pigment and appetite receptors, and in humans it is a meaningful part of the brain’s melanocortin appetite signalling.',
+  },
+  {
+    q: 'How is β-MSH different from α-MSH?',
+    a: 'They are close relatives with overlapping activity — both activate MC1R, MC3R, MC4R, and MC5R. The most interesting difference is species-specific: humans produce β-MSH in the brain, whereas common lab rodents do not, which makes β-MSH particularly relevant when translating melanocortin appetite biology to people.',
+  },
+  {
+    q: 'Is β-MSH linked to obesity?',
+    a: 'There is evidence pointing that way. Because β-MSH contributes to the human melanocortin satiety signal at MC4R, rare variants that impair its production or function have been associated with obesity in people — consistent with the broader theme that weakening MC4R signalling promotes weight gain.',
+  },
+];
+
+const references = [
+  {
+    authors: 'MedlinePlus Genetics.',
+    title: 'POMC gene.',
+    source: 'Reference on the POMC precursor and the peptides it produces, including β-MSH.',
+    year: '2024',
+    url: 'https://medlineplus.gov/download/genetics/gene/pomc.pdf',
+  },
+  {
+    authors: 'ScienceDirect Topics.',
+    title: 'Melanocortin — an overview.',
+    source: 'Aggregated reference on the MSH peptides and their receptor activity.',
+    year: '2024',
+    url: 'https://www.sciencedirect.com/topics/neuroscience/melanocortin',
+  },
+];
+---
+
+<PageLayout
+  title="β-MSH (beta-melanocyte-stimulating hormone): the POMC peptide tied to human appetite"
+  kicker="Endogenous ligand"
+  description="β-MSH is a broad-spectrum melanocortin cut from POMC. Its standout feature is species-specific: humans make it in the brain and rodents largely don't, which puts β-MSH at the centre of translating melanocortin appetite biology to people."
+  updated="2026"
+  about={[
+    { name: 'Beta-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocyte-stimulating_hormone'] },
+    { name: 'Proopiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'β-MSH is a melanocortin peptide cut from POMC, with broad agonist activity across MC1R, MC3R, MC4R, and MC5R — much like α-MSH.',
+      'Its defining feature is species-specific: humans produce β-MSH in the brain, whereas common laboratory rodents largely do not.',
+      'That makes β-MSH especially relevant to human appetite biology, where it contributes to the MC4R satiety signal alongside α-MSH.',
+      'Rare variants affecting β-MSH have been linked to obesity in people, fitting the wider pattern that weaker MC4R signalling promotes weight gain.',
+      'It is one of the reasons melanocortin findings in mice do not always map cleanly onto humans.',
+    ]}
+  />
+
+  <p>
+    β-MSH — beta-melanocyte-stimulating hormone — is one of the quieter members of the
+    melanocortin family, but it carries an outsized lesson about why this system matters
+    in people specifically. Like <a href="/alpha-msh">α-MSH</a>, it is a broad-spectrum
+    agonist cut from <a href="/system">POMC</a>. Unlike α-MSH, its story is largely a
+    human one.<Cite n={2} />
+  </p>
+
+  <h2>A broad-spectrum POMC peptide</h2>
+  <p>
+    β-MSH is produced by the same POMC processing that yields the other melanocortins,
+    and its receptor activity looks familiar: agonism across
+    <a href="/receptors/mc1r">MC1R</a>, <a href="/receptors/mc3r">MC3R</a>,
+    <a href="/receptors/mc4r">MC4R</a>, and <a href="/receptors/mc5r">MC5R</a>.<Cite n={1} />
+    In that sense it is another copy of the broad melanocortin signal, overlapping
+    heavily with α-MSH rather than carving out a distinct receptor niche.
+  </p>
+
+  <h2>The human-specific twist</h2>
+  <p>
+    What makes β-MSH worth its own page is a quirk of species. Humans generate β-MSH in
+    the brain as part of their melanocortin appetite machinery; the mice and rats that
+    most melanocortin research is done in largely do not.<Cite n={1} /> That gap is easy to
+    overlook and important to remember: a satiety signal that is real in people can be
+    effectively absent in the standard animal model, which is one reason melanocortin
+    appetite findings do not always translate cleanly across species.
+  </p>
+  <p>
+    Because β-MSH contributes to the human MC4R "fullness" signal, it also shows up in
+    the genetics of body weight. Rare variants that impair β-MSH production or function
+    have been associated with obesity in people — the same direction of effect seen when
+    any part of the <a href="/receptors/mc4r">MC4R</a> pathway is weakened.<Cite n={1} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    β-MSH is a reminder that the melanocortin system is not identical from one species
+    to the next. Its broad receptor activity makes it look like a second α-MSH, but its
+    human-specific role in appetite gives it a distinct place in the story — and a
+    cautionary note for anyone reading mouse data as if it were human data. For the
+    receptor at the centre of that appetite signalling, see
+    <a href="/receptors/mc4r">MC4R — the appetite rheostat</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of a natural signalling peptide. It is not a
+      description of any product or treatment, and it is not medical advice. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="beta-msh" />
+</PageLayout>
