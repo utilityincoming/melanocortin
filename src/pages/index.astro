@@ -29,6 +29,27 @@ const pillars = [
     body: 'Approved and investigational melanocortin agents — from setmelanotide and afamelanotide to the emerging pipeline.',
   },
 ];
+
+const tools = [
+  {
+    href: '/explorer',
+    kicker: 'Interactive',
+    title: 'Receptor–ligand explorer',
+    body: 'A map of which melanocortin peptides and drugs act on which of the five receptors — agonist, antagonist, or inverse agonist — and what each interaction does.',
+  },
+  {
+    href: '/dose-curve',
+    kicker: 'Interactive',
+    title: 'Dose & side-effect model',
+    body: 'Why melanocortin injections cause more nausea than pills or implants. Compare subcutaneous, oral, and slow-release delivery — it’s the concentration peak, not the dose.',
+  },
+  {
+    href: '/pipeline',
+    kicker: 'Tracker',
+    title: 'Therapeutics pipeline',
+    body: 'A dated snapshot of melanocortin drugs across development — approved agents plus agonists and antagonists in Phase 2–3 across obesity, dermatology, and inflammation.',
+  },
+];
 ---
 
 <BaseLayout>
@@ -112,6 +133,34 @@ const pillars = [
           </a>
         ))
       }
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="border-t border-[var(--border)] bg-[var(--bg-elevated)]">
+    <div class="mx-auto max-w-5xl px-6 py-20">
+      <h2 class="font-serif text-2xl font-semibold tracking-tight">Tools & interactive models</h2>
+      <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
+        Where the reference gets hands-on — interrogate the pathway, the delivery
+        pharmacology, and the clinical pipeline directly.
+      </p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        {
+          tools.map((t) => (
+            <a
+              href={t.href}
+              class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
+            >
+              <span class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
+                {t.kicker}
+              </span>
+              <span class="mt-3 font-serif text-xl font-semibold tracking-tight">{t.title}</span>
+              <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{t.body}</span>
+              <span class="mt-4 text-sm font-medium text-[var(--accent)]">Open →</span>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </section>
 
