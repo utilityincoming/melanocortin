@@ -85,6 +85,11 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'Why they make you queasy & tan',
     blurb: 'The nausea and skin-darkening that come built into the mechanism, not by accident.',
   },
+  'oral-peptides': {
+    href: '/oral-peptides',
+    title: 'Why oral peptides mostly don’t work',
+    blurb: 'Route, bioavailability, and why every approved melanocortin peptide is injected.',
+  },
   melanotan: {
     href: '/melanotan',
     title: 'Melanotan & Melanotan II',
@@ -170,11 +175,12 @@ export const RELATED: Record<string, string[]> = {
   'pl-9643': ['alpha-msh', 'pl-8177', 'therapeutics', 'pipeline'],
   tcmcb07: ['setmelanotide', 'agrp', 'receptors/mc4r', 'pipeline'],
   melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'receptors/mc1r'],
-  bremelanotide: ['pt-141-vs-melanotan', 'melanotan', 'effects', 'receptors/mc4r'],
+  bremelanotide: ['pt-141-vs-melanotan', 'melanotan', 'oral-peptides', 'receptors/mc4r'],
   setmelanotide: ['hypothalamic-obesity', 'glp1-appetite', 'receptors/mc4r', 'tcmcb07'],
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'glp1-appetite', 'receptors/mc4r'],
   'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],
-  effects: ['dose-curve', 'receptors/mc1r', 'alpha-msh', 'therapeutics'],
+  effects: ['dose-curve', 'oral-peptides', 'alpha-msh', 'receptors/mc1r'],
+  'oral-peptides': ['dose-curve', 'effects', 'bremelanotide', 'dersimelagon'],
   therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'pipeline'],
 };
