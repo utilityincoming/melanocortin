@@ -15,6 +15,36 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'The melanocortin system',
     blurb: 'How one precursor, POMC, becomes the peptides that signal across pigment, stress, appetite, and inflammation.',
   },
+  'alpha-msh': {
+    href: '/alpha-msh',
+    title: 'α-MSH — the prototype signal',
+    blurb: 'The peptide cut from POMC that activates four of the five receptors, and the template every melanocortin drug copies.',
+  },
+  acth: {
+    href: '/acth',
+    title: 'ACTH — the stress-axis melanocortin',
+    blurb: 'The one POMC peptide with its own receptor (MC2R), running the adrenal cortisol axis.',
+  },
+  agrp: {
+    href: '/agrp',
+    title: 'AgRP — the hunger signal',
+    blurb: 'The peptide that fights α-MSH at MC4R to drive eating — antagonist and inverse agonist in one.',
+  },
+  'beta-msh': {
+    href: '/beta-msh',
+    title: 'β-MSH — the human-appetite peptide',
+    blurb: 'A broad POMC melanocortin humans make in the brain but lab rodents largely don’t.',
+  },
+  'gamma-msh': {
+    href: '/gamma-msh',
+    title: 'γ-MSH — the MC3R-selective one',
+    blurb: 'The selective melanocortin whose real job is sodium balance and blood pressure.',
+  },
+  asip: {
+    href: '/asip',
+    title: 'Agouti protein (ASIP) — the pigment brake',
+    blurb: 'The natural MC1R blocker that switches skin and coat colour from dark to light.',
+  },
   receptors: {
     href: '/receptors',
     title: 'The five receptors',
@@ -25,10 +55,20 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'MC1R — the pigment switch',
     blurb: 'The receptor behind eumelanin, tanning, and much of skin-cancer risk.',
   },
+  'receptors/mc2r': {
+    href: '/receptors/mc2r',
+    title: 'MC2R — the ACTH receptor',
+    blurb: 'The adrenal odd-one-out that answers only to ACTH and drives cortisol.',
+  },
   'receptors/mc3r': {
     href: '/receptors/mc3r',
     title: 'MC3R — energy partitioning',
     blurb: 'The quieter appetite receptor and its role in how the body divides energy.',
+  },
+  'receptors/mc5r': {
+    href: '/receptors/mc5r',
+    title: 'MC5R — exocrine glands',
+    blurb: 'The least-mapped receptor, governing sebaceous and other exocrine gland function.',
   },
   'receptors/mc4r': {
     href: '/receptors/mc4r',
@@ -59,6 +99,16 @@ export const PAGES: Record<string, PageMeta> = {
     href: '/setmelanotide',
     title: 'Setmelanotide (Imcivree)',
     blurb: 'The MC4R drug that repairs a specific break in the appetite circuit.',
+  },
+  afamelanotide: {
+    href: '/afamelanotide',
+    title: 'Afamelanotide (Scenesse)',
+    blurb: 'The first approved EPP drug — an α-MSH copy that builds protective pigment via MC1R.',
+  },
+  dersimelagon: {
+    href: '/dersimelagon',
+    title: 'Dersimelagon (MT-7117)',
+    blurb: 'The investigational oral MC1R agonist — the pill chasing afamelanotide’s target.',
   },
   'pt-141-vs-melanotan': {
     href: '/pt-141-vs-melanotan',
@@ -93,12 +143,20 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
-  melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'effects', 'receptors/mc1r'],
+  'alpha-msh': ['system', 'receptors/mc1r', 'receptors/mc4r', 'agrp'],
+  acth: ['receptors/mc2r', 'alpha-msh', 'system'],
+  agrp: ['alpha-msh', 'receptors/mc4r', 'asip', 'setmelanotide'],
+  'beta-msh': ['alpha-msh', 'receptors/mc4r', 'system'],
+  'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'system'],
+  asip: ['receptors/mc1r', 'agrp', 'alpha-msh', 'melanotan'],
+  afamelanotide: ['receptors/mc1r', 'dersimelagon', 'melanotan', 'alpha-msh'],
+  dersimelagon: ['afamelanotide', 'receptors/mc1r', 'pipeline', 'therapeutics'],
+  melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'receptors/mc1r'],
   bremelanotide: ['pt-141-vs-melanotan', 'melanotan', 'effects', 'receptors/mc4r'],
-  setmelanotide: ['hypothalamic-obesity', 'glp1-appetite', 'receptors/mc4r', 'effects'],
+  setmelanotide: ['hypothalamic-obesity', 'glp1-appetite', 'receptors/mc4r', 'alpha-msh'],
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'glp1-appetite', 'receptors/mc4r'],
   'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],
-  effects: ['dose-curve', 'receptors/mc1r', 'receptors/mc4r', 'therapeutics'],
-  therapeutics: ['setmelanotide', 'bremelanotide', 'pipeline', 'effects'],
+  effects: ['dose-curve', 'receptors/mc1r', 'alpha-msh', 'therapeutics'],
+  therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'pipeline'],
 };

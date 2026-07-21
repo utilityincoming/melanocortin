@@ -1,0 +1,145 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is ACTH?',
+    a: 'Adrenocorticotropic hormone (ACTH) is a 39-amino-acid peptide released by the anterior pituitary and cut from the same precursor protein, POMC, that produces the MSH peptides. Its main job is to travel to the adrenal glands and trigger the release of the stress hormone cortisol.',
+  },
+  {
+    q: 'Is ACTH a melanocortin?',
+    a: 'Yes. ACTH is a member of the melanocortin family — it shares POMC as its parent and even contains α-MSH’s active core sequence within it. What makes ACTH unique is that it is the only natural peptide that activates MC2R, the melanocortin receptor found almost exclusively in the adrenal cortex.',
+  },
+  {
+    q: 'Why does high ACTH cause skin darkening?',
+    a: 'Because ACTH is a melanocortin, at high levels it can also activate MC1R, the skin’s pigment receptor. This is why conditions with very high ACTH — such as Addison’s disease — produce a characteristic bronzing of the skin. The pigment effect is a reminder of ACTH’s shared ancestry with the MSH peptides.',
+  },
+  {
+    q: 'How does ACTH make cortisol?',
+    a: 'ACTH binds MC2R on adrenal cortical cells, but MC2R only works when paired with a helper protein called MRAP. Together they activate the Gs → cAMP signalling pathway, which switches on the enzymes that manufacture cortisol. It is the final step of the hypothalamic–pituitary–adrenal (HPA) stress axis.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Yamamoto R, Kaur J. / StatPearls.',
+    title: 'Physiology, Adrenocorticotropic Hormone (ACTH).',
+    source: 'NCBI Bookshelf (NBK500031) — synthesis, HPA axis, and cortisol regulation.',
+    year: '2025',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK500031/',
+  },
+  {
+    authors: 'StatPearls.',
+    title: 'Physiology, Cortisol.',
+    source: 'NCBI Bookshelf (NBK538239) — the adrenal hormone ACTH controls.',
+    year: '2023',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK538239/',
+  },
+  {
+    authors: 'ScienceDirect Topics.',
+    title: 'Melanocortin — an overview.',
+    source: 'Aggregated reference on POMC-derived peptides and their receptors.',
+    year: '2024',
+    url: 'https://www.sciencedirect.com/topics/neuroscience/melanocortin',
+  },
+];
+---
+
+<PageLayout
+  title="ACTH (adrenocorticotropic hormone): the melanocortin that runs the stress axis"
+  kicker="Endogenous ligand"
+  description="ACTH is the one POMC peptide with its own dedicated receptor. It runs the adrenal stress axis by switching on cortisol through MC2R — but its melanocortin roots still show when levels run high and the skin darkens."
+  updated="2026"
+  about={[
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'Melanocortin 2 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_2_receptor'] },
+    { name: 'Proopiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'ACTH is a 39-amino-acid peptide cut from POMC — a full member of the melanocortin family that even contains α-MSH’s active core within its sequence.',
+      'It is the only natural agonist of MC2R, the melanocortin receptor found almost exclusively in the adrenal cortex, where ACTH drives the release of cortisol.',
+      'MC2R cannot work alone — it needs the accessory protein MRAP to reach the cell surface and respond to ACTH, then signals through Gs → cAMP to switch on cortisol synthesis.',
+      'ACTH sits at the end of the hypothalamic–pituitary–adrenal (HPA) stress axis, translating a brain stress signal into an adrenal hormone response.',
+      'Because it is a melanocortin, very high ACTH also activates MC1R and darkens the skin — the bronzing seen in Addison’s disease.',
+    ]}
+  />
+
+  <p>
+    ACTH — adrenocorticotropic hormone — is the melanocortin that got its own job.
+    Every other peptide in this family is a broad-spectrum signal read by several
+    receptors, but ACTH is the one with a dedicated receptor and a single headline
+    role: it runs the body's stress-hormone axis. It is still, unmistakably, a
+    melanocortin — cut from the same <a href="/system">POMC</a> precursor and
+    containing α-MSH's core sequence — but its day job is cortisol, not pigment.<Cite n={1} />
+  </p>
+
+  <h2>One precursor, a specialised product</h2>
+  <p>
+    Like <a href="/alpha-msh">α-MSH</a>, ACTH is carved out of POMC by processing
+    enzymes; it is a 39-amino-acid peptide released mainly by the anterior pituitary.<Cite n={1} />
+    Its sequence actually <em>contains</em> the α-MSH fragment, which is why the two
+    behave like close relatives. The difference is targeting: where α-MSH ignores
+    <a href="/receptors/mc2r">MC2R</a>, ACTH is the only natural key that fits it.
+  </p>
+
+  <h2>The only ligand for MC2R</h2>
+  <p>
+    MC2R is the odd one out among the five receptors — it lives almost exclusively in
+    the adrenal cortex and responds to ACTH alone.<Cite n={1} /> It is also uniquely
+    dependent: MC2R cannot even reach the cell surface without a partner protein called
+    <strong>MRAP</strong> (MC2R accessory protein). Once ACTH binds the MC2R–MRAP
+    complex, the receptor activates the Gs → cAMP pathway, which switches on the
+    steroidogenic enzymes that manufacture <strong>cortisol</strong>.<Cite n={1} />
+  </p>
+  <p>
+    This is the final handoff of the <strong>hypothalamic–pituitary–adrenal (HPA)
+    axis</strong>: stress signals in the brain drive the pituitary to release ACTH,
+    ACTH drives the adrenal to release cortisol, and cortisol raises blood glucose,
+    mobilises energy, and dampens inflammation as part of the stress response.<Cite n={2} />
+  </p>
+
+  <h2>When the melanocortin roots show</h2>
+  <p>
+    ACTH's family resemblance becomes visible when its levels run high. Because it is a
+    melanocortin, excess ACTH spills over onto <a href="/receptors/mc1r">MC1R</a>, the
+    skin's pigment receptor, and darkens the skin.<Cite n={3} /> The classic example is
+    <strong>Addison's disease</strong>, where failing adrenals remove cortisol's brake
+    on the pituitary; ACTH climbs, and the skin takes on a characteristic bronze tone.
+    It is a clean demonstration that ACTH never stopped being a melanocortin — it just
+    usually keeps that side of itself in the background.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    ACTH is the exception that proves the rule of this system. Where the other
+    melanocortins are generalists, ACTH is a specialist with its own receptor, its own
+    accessory protein, and its own axis to run. Yet the pigment darkening at high
+    levels gives the game away: it is POMC's peptide for the stress response, built on
+    the same chassis as the signals for skin, appetite, and inflammation. For the
+    receptor's side of the story, see <a href="/receptors/mc2r">MC2R — the ACTH
+    receptor</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of a natural hormone. It is not a description of
+      any product or treatment, and it is not medical advice. Conditions involving ACTH
+      or cortisol are diagnosed and managed by clinicians. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="acth" />
+</PageLayout>

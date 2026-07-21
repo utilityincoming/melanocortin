@@ -1,0 +1,126 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is γ-MSH?',
+    a: 'Gamma-melanocyte-stimulating hormone (γ-MSH) is a melanocortin peptide cut from POMC. Unlike the broad-spectrum α-MSH, it is relatively selective for the MC3R receptor and is best known not for pigment or appetite but for its role in sodium balance and blood pressure.',
+  },
+  {
+    q: 'What receptor does γ-MSH act on?',
+    a: 'γ-MSH is the most MC3R-preferring of the natural melanocortins — it is the melanocortin best able to engage MC3R at physiological concentrations, with only weaker activity at the other receptors. That selectivity is why MC3R and γ-MSH are so often discussed together.',
+  },
+  {
+    q: 'How does γ-MSH affect blood pressure?',
+    a: 'γ-MSH influences how the body handles sodium. It has natriuretic effects (promoting sodium excretion) and, through central nervous system pathways, can raise blood pressure by stimulating sympathetic outflow. This links the melanocortin system to cardiovascular and salt-balance physiology, largely via MC3R.',
+  },
+];
+
+const references = [
+  {
+    authors: 'PubMed.',
+    title: 'Gamma-MSH, sodium metabolism, and salt-sensitive hypertension.',
+    source: 'On γ-MSH’s role in sodium balance and blood-pressure regulation.',
+    year: '2004',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/14761863/',
+  },
+  {
+    authors: 'Open-access review (PMC).',
+    title: 'Role of the melanocortin system in the central regulation of cardiovascular functions.',
+    source: 'Review of melanocortin (including γ-MSH) effects on blood pressure and sympathetic tone.',
+    year: '2021',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8424695/',
+  },
+  {
+    authors: 'ScienceDirect Topics.',
+    title: 'Melanocortin — an overview.',
+    source: 'Aggregated reference on the MSH peptides and receptor selectivity.',
+    year: '2024',
+    url: 'https://www.sciencedirect.com/topics/neuroscience/melanocortin',
+  },
+];
+---
+
+<PageLayout
+  title="γ-MSH (gamma-melanocyte-stimulating hormone): the MC3R-selective melanocortin"
+  kicker="Endogenous ligand"
+  description="γ-MSH is the melanocortin that breaks the broad-spectrum mould. Relatively selective for MC3R, it is best known not for pigment or appetite but for a different job entirely — sodium balance and blood pressure."
+  updated="2026"
+  about={[
+    { name: 'Gamma-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocyte-stimulating_hormone'] },
+    { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'γ-MSH is a POMC-derived melanocortin that stands apart for being relatively selective — it is the melanocortin best able to engage MC3R at physiological concentrations.',
+      'Unlike α-MSH, it is only a weak agonist at MC1R, MC4R, and MC5R, so it drives little pigment or satiety signalling on its own.',
+      'Its signature role is in sodium balance and blood pressure, largely through MC3R — a very different job from the rest of the family.',
+      'It has natriuretic effects (promoting sodium excretion) and can raise blood pressure centrally by stimulating sympathetic outflow.',
+      'γ-MSH is the clearest example that "melanocortin" describes a family of related signals with genuinely different physiological jobs.',
+    ]}
+  />
+
+  <p>
+    γ-MSH — gamma-melanocyte-stimulating hormone — is the melanocortin that refuses to
+    fit the pattern. Most peptides in this family, led by <a href="/alpha-msh">α-MSH</a>,
+    are broad-spectrum signals that touch several receptors and headline in pigment and
+    appetite. γ-MSH is comparatively picky about its receptor, and its main claim to
+    fame is somewhere else entirely: the control of sodium and blood pressure.<Cite n={2} />
+  </p>
+
+  <h2>The selective one</h2>
+  <p>
+    Where α-MSH activates four of the five receptors strongly, γ-MSH is relatively
+    <a href="/receptors/mc3r">MC3R</a>-preferring — it is the natural melanocortin best
+    able to engage MC3R at physiological concentrations, with only weaker activity at
+    MC1R, MC4R, and MC5R.<Cite n={3} /> That selectivity is exactly why MC3R and γ-MSH tend
+    to be discussed as a pair: the receptor's quieter, harder-to-pin-down physiology and
+    its most selective ligand belong to the same story.
+  </p>
+
+  <h2>A job in salt and blood pressure</h2>
+  <p>
+    γ-MSH's distinctive role is in <strong>sodium balance</strong>. It is a natriuretic
+    signal — it promotes the excretion of sodium — and appears to participate in the
+    physiological regulation of the body's salt handling, an effect linked to MC3R
+    expressed in the kidney.<Cite n={1} /> At the same time, acting through central nervous
+    system pathways, γ-MSH can <strong>raise blood pressure</strong> by stimulating
+    sympathetic outflow.<Cite n={2} /> The result is a melanocortin whose physiology reads
+    like cardiovascular and renal biology rather than skin or appetite.
+  </p>
+  <p>
+    This is why the melanocortin system turns up in discussions of hypertension and
+    salt-sensitivity that seem, at first glance, to have nothing to do with pigment or
+    weight. γ-MSH is the thread connecting them.<Cite n={2} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    γ-MSH is the family's specialist in the way ACTH is: it took the melanocortin
+    chassis and pointed it at a different problem. It is a useful correction to the idea
+    that these peptides are interchangeable — the receptor a melanocortin prefers, and
+    the tissue it acts in, can change its job entirely. For the receptor at the centre of
+    γ-MSH's biology, see <a href="/receptors/mc3r">MC3R — energy partitioning</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of a natural signalling peptide. It is not a
+      description of any product or treatment, and it is not medical advice. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="gamma-msh" />
+</PageLayout>

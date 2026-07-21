@@ -1,0 +1,153 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is AgRP?',
+    a: 'Agouti-related peptide (AgRP) is the body’s built-in hunger signal. It is made by a specific set of neurons in the hypothalamus and works by blocking the melanocortin "I am full" signal at the MC4R and MC3R receptors, tilting the balance toward eating.',
+  },
+  {
+    q: 'How does AgRP differ from α-MSH?',
+    a: 'They are opposites at the same receptors. α-MSH activates MC4R to signal fullness; AgRP does the reverse — it is an antagonist and an inverse agonist, meaning it both blocks α-MSH and pushes the receptor below its resting activity. Appetite tone is the tug-of-war between these two signals.',
+  },
+  {
+    q: 'What does "inverse agonist" mean for AgRP?',
+    a: 'A plain antagonist just blocks the natural activator. An inverse agonist goes further: it lowers the receptor’s baseline signalling even when no activator is present. AgRP does both at MC4R, which is why it is such a powerful driver of hunger — it not only silences the fullness signal but actively turns the dial the other way.',
+  },
+  {
+    q: 'Is AgRP related to the agouti coat-colour protein?',
+    a: 'They are cousins, not the same molecule. AgRP (agouti-related peptide) works in the brain on appetite receptors MC3R and MC4R. The original agouti protein (ASIP) works in the skin on the pigment receptor MC1R. Both are natural melanocortin blockers, which is why they share a name and a mechanism but not a job.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Frontiers in Endocrinology.',
+    title: 'Arcuate AgRP neurons and the regulation of energy balance.',
+    source: 'Review of AgRP-neuron circuitry and its role in feeding.',
+    year: '2012',
+    url: 'https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2012.00169/full',
+  },
+  {
+    authors: 'Open-access review (PMC).',
+    title: 'AgRP neurons: regulators of feeding, energy expenditure, and behavior.',
+    source: 'Review of arcuate AgRP-neuron function and energy balance.',
+    year: '2022',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9040143/',
+  },
+  {
+    authors: 'PubMed.',
+    title:
+      'In vivo evidence for inverse agonism of agouti-related peptide in the central nervous system of POMC-deficient mice.',
+    source: 'On AgRP’s inverse-agonist activity at melanocortin receptors.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17909095/',
+  },
+  {
+    authors: 'ScienceDirect Topics.',
+    title: 'Agouti-Related Peptide — an overview.',
+    source: 'Aggregated reference on AgRP structure and receptor activity.',
+    year: '2024',
+    url: 'https://www.sciencedirect.com/topics/neuroscience/agouti-related-peptide',
+  },
+];
+---
+
+<PageLayout
+  title="AgRP (agouti-related peptide): the hunger signal that fights α-MSH"
+  kicker="Endogenous ligand"
+  description="AgRP is the body's built-in hunger peptide — the direct opponent of α-MSH at the appetite receptors. As both an antagonist and an inverse agonist at MC4R, it doesn't just block the 'full' signal, it actively drives eating."
+  updated="2026"
+  about={[
+    { name: 'Agouti-related peptide', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agouti-related_peptide'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'AgRP (agouti-related peptide) is the body’s endogenous hunger signal, released by a dedicated population of neurons in the hypothalamic arcuate nucleus.',
+      'It is the direct opponent of α-MSH: where α-MSH activates MC4R and MC3R to signal fullness, AgRP blocks them to promote eating.',
+      'At MC4R it is both an antagonist and an inverse agonist — it silences the fullness signal and pushes the receptor below its resting activity, a uniquely powerful way to drive hunger.',
+      'The push–pull between AgRP neurons and POMC (α-MSH) neurons in the arcuate nucleus is the core appetite thermostat of the melanocortin system.',
+      'It is a cousin of the skin’s agouti protein (ASIP): same trick — blocking a melanocortin receptor — but AgRP works on appetite, ASIP on pigment.',
+    ]}
+  />
+
+  <p>
+    If <a href="/alpha-msh">α-MSH</a> is the melanocortin system's "stop eating" signal,
+    AgRP is its "keep eating" signal — and the two are locked in a permanent tug-of-war.
+    Agouti-related peptide is the body's built-in orexigenic, or appetite-stimulating,
+    peptide, and understanding it is the other half of understanding how this system
+    controls body weight.<Cite n={1} />
+  </p>
+
+  <h2>A dedicated hunger circuit</h2>
+  <p>
+    AgRP is made by a specific set of neurons in the <strong>arcuate nucleus</strong> of
+    the hypothalamus, sitting right alongside the POMC neurons that make α-MSH.<Cite n={1} />
+    These two populations are the yin and yang of appetite: POMC neurons fire when the
+    body is fed and release α-MSH to signal fullness, while AgRP neurons fire when the
+    body is hungry and release AgRP to override that signal. Activating AgRP neurons
+    is one of the most powerful ways known to drive an animal to eat; silencing them
+    can suppress feeding to the point of starvation.<Cite n={2} />
+  </p>
+
+  <h2>Antagonist and inverse agonist</h2>
+  <p>
+    AgRP works at the same receptors as α-MSH — <a href="/receptors/mc4r">MC4R</a> and
+    <a href="/receptors/mc3r">MC3R</a> — but in the opposite direction, and it does so
+    in two ways.<Cite n={3} /> First, it is a <strong>competitive antagonist</strong>: it
+    occupies the receptor and blocks α-MSH from delivering its fullness message. Second,
+    and more unusually, it is an <strong>inverse agonist</strong> at MC4R — it drives
+    the receptor <em>below</em> its baseline activity even when no α-MSH is around.<Cite n={3} />
+  </p>
+  <p>
+    That distinction matters. A plain blocker would simply mute the "full" signal; an
+    inverse agonist turns the dial the other way. This dual action is why AgRP is such an
+    effective hunger driver, and why the MC4R circuit behaves like a two-directional
+    rheostat rather than a simple on/off switch. In humans, plasma AgRP levels track with
+    body mass, and disruptions of MC4R signalling cause severe obesity — the clinical
+    counterpart to this biology.<Cite n={2} />
+  </p>
+
+  <h2>Not the same as the agouti coat protein</h2>
+  <p>
+    AgRP is named for its resemblance to <a href="/asip">agouti signaling protein
+    (ASIP)</a>, the original "agouti" molecule that controls coat colour. The two are
+    genuine cousins with the same core trick — blocking a melanocortin receptor — but
+    they work in different places on different jobs. ASIP blocks
+    <a href="/receptors/mc1r">MC1R</a> in the skin to shift pigment from dark to light;
+    AgRP blocks MC4R and MC3R in the brain to shift energy balance toward eating. One
+    system, one mechanism, borrowed twice.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    AgRP completes the picture of melanocortin appetite control. You cannot understand
+    why <a href="/setmelanotide">setmelanotide</a> works, or why MC4R is called the
+    appetite rheostat, without the peptide on the other side of the balance. α-MSH says
+    full; AgRP says hungry; body weight settles wherever their tug-of-war comes to rest.
+    Drugs that target this system are, in effect, trying to lean on one end of that
+    rope.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of a natural signalling peptide. It is not a
+      description of any product, protocol, or treatment, and it is not medical advice.
+      See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="agrp" />
+</PageLayout>

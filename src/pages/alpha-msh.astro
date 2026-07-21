@@ -1,0 +1,234 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is α-MSH?',
+    a: 'Alpha-melanocyte-stimulating hormone (α-MSH) is a short 13-amino-acid peptide cut from the larger precursor protein POMC. It is the prototypical melanocortin — the body’s natural agonist for four of the five melanocortin receptors — and it drives skin pigmentation, satiety, energy balance, and anti-inflammatory signalling depending on where it is released.',
+  },
+  {
+    q: 'What does α-MSH do?',
+    a: 'The same molecule does different jobs in different tissues. In the skin it activates MC1R to make the dark pigment eumelanin. In the hypothalamus it activates MC4R to signal fullness and MC3R to tune energy partitioning. Across immune tissue it dampens inflammation. It is one signal read by several receptors, not several hormones.',
+  },
+  {
+    q: 'Is α-MSH the same as ACTH?',
+    a: 'They are cousins from the same parent protein. Both α-MSH and ACTH are carved out of POMC, and α-MSH’s core sequence is actually contained within ACTH. The key difference: ACTH is the only natural activator of MC2R (the adrenal cortisol receptor), while α-MSH does not act on MC2R at all.',
+  },
+  {
+    q: 'Why do melanocortin drugs copy α-MSH?',
+    a: 'Natural α-MSH is powerful but short-lived — enzymes break it down within minutes. Drugs such as afamelanotide, melanotan II, setmelanotide, and bremelanotide are engineered analogues: they keep α-MSH’s receptor-activating core but resist degradation and, in some cases, favour one receptor over the others. Each is essentially a more durable, more targeted impersonation of the natural peptide.',
+  },
+  {
+    q: 'What opposes α-MSH?',
+    a: 'At the appetite receptors MC3R and MC4R, α-MSH is countered by AgRP, the "hunger peptide," which acts as an antagonist and inverse agonist. In the skin, the agouti protein (ASIP) blocks α-MSH at MC1R, switching pigment production from dark eumelanin toward red-yellow pheomelanin. Melanocortin tone is always this push–pull between an activator and its brake.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Journal of Molecular Medicine.',
+    title: 'α-Melanocyte-stimulating hormone: production and degradation.',
+    source: 'Review of α-MSH synthesis from POMC and its rapid enzymatic turnover.',
+    year: '2010',
+    url: 'https://link.springer.com/article/10.1007/s00109-010-0651-0',
+  },
+  {
+    authors: 'Open-access review (PMC).',
+    title:
+      'Alpha-melanocyte stimulating hormone (α-MSH): biology, clinical relevance and implication in melanoma.',
+    source: 'Comprehensive review of α-MSH biology, receptor targets, and pigment signalling.',
+    year: '2023',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10463388/',
+  },
+  {
+    authors: 'Neuroendocrinology (Karger).',
+    title:
+      'Alpha-Melanocyte-Stimulating Hormone–Mediated Appetite Regulation in the Central Nervous System.',
+    source: 'Review of the arcuate POMC → α-MSH → MC4R satiety pathway.',
+    year: '2023',
+    url: 'https://karger.com/nen/article/113/9/885/836595/Alpha-Melanocyte-Stimulating-Hormone-Mediated',
+  },
+  {
+    authors: 'Peptides (via PubMed).',
+    title: 'α-Melanocyte stimulating hormone, inflammation and human melanoma.',
+    source: 'On the anti-inflammatory activity of α-MSH.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16274844/',
+  },
+  {
+    authors: 'ScienceDirect Topics.',
+    title: 'Alpha-Melanocyte-Stimulating Hormone — an overview.',
+    source: 'Aggregated reference on α-MSH structure, sources, and receptor activity.',
+    year: '2024',
+    url: 'https://www.sciencedirect.com/topics/neuroscience/alpha-melanocyte-stimulating-hormone',
+  },
+];
+---
+
+<PageLayout
+  title="α-MSH (alpha-melanocyte-stimulating hormone): the body's broad-spectrum melanocortin signal"
+  kicker="Endogenous ligand"
+  description="α-MSH is the prototypical melanocortin — a short peptide cut from POMC that activates four of the five receptors. One molecule that darkens skin, signals fullness, tunes energy balance, and calms inflammation, and the natural template every melanocortin drug is built to copy."
+  updated="2026"
+  about={[
+    { name: 'Alpha-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Alpha-melanocyte-stimulating_hormone'] },
+    { name: 'Proopiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'α-MSH is a 13-amino-acid peptide cut from the precursor protein POMC — the prototypical melanocortin and the body’s natural “on” signal for four of the five receptors (MC1R, MC3R, MC4R, MC5R).',
+      'One molecule, many jobs: it darkens skin through MC1R, signals fullness through MC4R, tunes energy partitioning through MC3R, and dampens inflammation across immune tissue.',
+      'It does not touch MC2R — the adrenal cortisol receptor answers only to ACTH, α-MSH’s longer sibling from the same POMC parent.',
+      'Its appetite signal is held in balance by AgRP, the hunger peptide, in a constant push–pull at MC4R; in skin, the agouti protein blocks it at MC1R.',
+      'Nearly every melanocortin drug — afamelanotide, melanotan II, setmelanotide, bremelanotide — is essentially a more stable, more selective copy of α-MSH.',
+    ]}
+  />
+
+  <p>
+    α-MSH — alpha-melanocyte-stimulating hormone — is the molecule the entire
+    melanocortin system is named after. It is small, just thirteen amino acids, yet
+    it is the natural key that fits four of the <a href="/receptors">five receptors</a>,
+    and it turns up wherever the body needs to set pigment, appetite, energy balance,
+    or inflammation. If the receptors are the switches of this system, α-MSH is the
+    prototypical finger that flips them.<Cite n={5} />
+  </p>
+
+  <h2>One cut from a bigger protein</h2>
+  <p>
+    α-MSH does not exist as its own gene. It is carved out of a much larger precursor,
+    <a href="/system">proopiomelanocortin (POMC)</a>, by processing enzymes that snip
+    the parent protein into a family of smaller peptides — α-MSH, the other MSH forms,
+    and ACTH among them.<Cite n={1} /> Because the same precursor yields several products,
+    which peptide dominates depends on the tissue: skin melanocytes and the pituitary
+    make α-MSH for pigment and hormonal signalling, while POMC neurons in the
+    hypothalamic arcuate nucleus and the brainstem release it to control feeding.<Cite n={3} />
+  </p>
+  <p>
+    That shared origin explains a common point of confusion. α-MSH’s active core
+    sequence is contained <em>within</em> ACTH — they are overlapping cuts of the same
+    protein — which is why the two behave like cousins rather than strangers. The
+    difference that matters is selectivity, and it comes up again and again on this
+    site: α-MSH ignores <a href="/receptors/mc2r">MC2R</a>, the adrenal receptor that
+    responds to ACTH alone.
+  </p>
+
+  <h2>Four receptors, four jobs</h2>
+  <p>
+    The remarkable thing about α-MSH is that a single molecule produces completely
+    different outcomes depending on which receptor reads it — the same signal, four
+    different meanings.<Cite n={2} />
+  </p>
+  <ul>
+    <li>
+      <strong><a href="/receptors/mc1r">MC1R</a> — pigment.</strong> In the skin,
+      α-MSH drives melanocytes to switch from red-yellow pheomelanin to dark, UV-shielding
+      eumelanin. This is the receptor behind tanning, hair colour, and much of
+      skin-cancer risk.<Cite n={2} />
+    </li>
+    <li>
+      <strong><a href="/receptors/mc4r">MC4R</a> — satiety.</strong> In the
+      hypothalamus, α-MSH released by POMC neurons activates MC4R to produce the
+      sensation of fullness and to raise energy expenditure. This is the circuit that
+      <a href="/setmelanotide">setmelanotide</a> was built to repair.<Cite n={3} />
+    </li>
+    <li>
+      <strong><a href="/receptors/mc3r">MC3R</a> — energy balance.</strong> The quieter
+      appetite receptor, where α-MSH helps tune how the body partitions and defends its
+      energy stores rather than switching hunger on and off outright.<Cite n={3} />
+    </li>
+    <li>
+      <strong>Immune tissue — anti-inflammation.</strong> Beyond pigment and appetite,
+      α-MSH is a potent endogenous anti-inflammatory signal, tempering immune responses
+      — a role that has made the melanocortin pathway a drug target well outside
+      metabolism.<Cite n={4} />
+    </li>
+  </ul>
+  <p>
+    (The fifth receptor, <a href="/receptors/mc5r">MC5R</a>, governs exocrine glands and
+    is also activated by α-MSH, though its physiology is the least mapped of the set.)
+    To see the full activity grid at a glance — what binds which receptor and how — use
+    the <a href="/explorer">receptor–ligand explorer</a>.
+  </p>
+
+  <h2>The off switches</h2>
+  <p>
+    A signal is only useful if it can be turned off, and α-MSH has two kinds of brake.
+    The first is built into the molecule: natural α-MSH is short-lived, broken down by
+    enzymes within minutes of release, so its effect is inherently self-limiting.<Cite n={1} />
+    The second is active opposition. At MC3R and MC4R, the hunger peptide
+    <strong>AgRP</strong> works against α-MSH as an antagonist and inverse agonist,
+    creating a push–pull that sets appetite tone. In the skin, the
+    <strong>agouti protein (ASIP)</strong> blocks α-MSH at MC1R, flipping pigment
+    production back toward pheomelanin — the same mechanism that patterns animal coats.
+  </p>
+
+  <h2>Why every melanocortin drug is an α-MSH impersonator</h2>
+  <p>
+    Because α-MSH is so central and so quickly degraded, the obvious way to make a
+    melanocortin medicine is to build a sturdier copy of it. That is exactly what the
+    drug catalogue turns out to be:
+  </p>
+  <ul>
+    <li>
+      <strong>Afamelanotide</strong> is a superpotent, longer-lasting α-MSH analogue
+      used to drive MC1R pigmentation as protection in erythropoietic protoporphyria.
+    </li>
+    <li>
+      <strong><a href="/melanotan">Melanotan II</a></strong> is a non-selective α-MSH
+      mimic sold on the grey market for tanning — the same MC1R pigment effect, without
+      the safety guardrails.
+    </li>
+    <li>
+      <strong><a href="/setmelanotide">Setmelanotide</a></strong> is an α-MSH-like
+      agonist tuned toward MC4R, re-supplying the satiety signal in diseases where the
+      natural one is missing.
+    </li>
+    <li>
+      <strong><a href="/bremelanotide">Bremelanotide</a> (PT-141)</strong> is another
+      α-MSH-derived agonist whose central MC4R activity underlies its use for sexual
+      desire.
+    </li>
+  </ul>
+  <p>
+    Seen this way, the whole <a href="/therapeutics">therapeutics</a> pillar is a set of
+    variations on one theme: take the natural broad-spectrum signal, make it last, and —
+    where possible — point it at a single receptor. The trade-offs that follow, from
+    skin darkening to nausea, come straight from α-MSH’s own biology. For why those
+    effects are inseparable from the mechanism, see
+    <a href="/effects">why melanocortin agonists make you queasy and tan</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    α-MSH is the clearest single illustration of how the melanocortin system works: one
+    small peptide, cut from a shared precursor, read four different ways by four
+    different receptors. It is the reason a tanning peptide can affect appetite and a
+    weight drug can darken skin — the outputs look unrelated only until you notice they
+    all trace back to the same molecule. Understand α-MSH and the rest of this site,
+    from receptors to drugs, stops being a list of separate facts and becomes one
+    connected picture.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of a natural signalling peptide. It is not a
+      description of any product, protocol, or treatment, and injectable α-MSH analogues
+      sold outside a pharmacy are unapproved. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="alpha-msh" />
+</PageLayout>

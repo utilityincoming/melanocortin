@@ -1,0 +1,146 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is dersimelagon?',
+    a: 'Dersimelagon (MT-7117) is an investigational oral drug that activates the MC1R pigment receptor. Unlike afamelanotide, which is an injected implant, dersimelagon is a small-molecule tablet — a once-daily pill being developed for the same light-sensitivity disease, erythropoietic protoporphyria, and for the fibrotic disease systemic sclerosis.',
+  },
+  {
+    q: 'How is dersimelagon different from afamelanotide?',
+    a: 'They hit the same target (MC1R) with the same basic strategy — build protective pigment — but in different forms. Afamelanotide is an approved α-MSH-like peptide delivered as a two-monthly implant; dersimelagon is an investigational small molecule you swallow. If approved, it would offer an oral alternative to the implant.',
+  },
+  {
+    q: 'What is dersimelagon being tested for?',
+    a: 'Two things. First, erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP), where its global Phase 3 INSPIRE trial reported positive topline results in January 2026. Second, diffuse cutaneous systemic sclerosis, a fibrotic disease, where preclinical work suggests MC1R activation may have disease-modifying, anti-fibrotic effects.',
+  },
+  {
+    q: 'What are dersimelagon’s side effects?',
+    a: 'They are mechanism-based and predictable from the target: activating MC1R increases pigment, so the most common effects in trials were skin hyperpigmentation and freckle-like lentigines. These are the same family-resemblance pigment effects seen across melanocortin agonists.',
+  },
+];
+
+const references = [
+  {
+    authors: 'PubMed.',
+    title:
+      'Results from a first-in-human study of dersimelagon, an investigational oral selective MC1R agonist.',
+    source: 'First-in-human pharmacology and tolerability of MT-7117.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37060458/',
+  },
+  {
+    authors: 'Open-access study (PMC).',
+    title:
+      'Dersimelagon, a novel oral melanocortin 1 receptor agonist, demonstrates disease-modifying effects in preclinical models of systemic sclerosis.',
+    source: 'Preclinical evidence for MC1R activation in fibrosis.',
+    year: '2022',
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9434962/',
+  },
+  {
+    authors: 'Tanabe Pharma America.',
+    title:
+      'Positive topline results for dersimelagon in erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP).',
+    source: 'Phase 3 INSPIRE trial press release.',
+    year: '2026',
+    url: 'https://www.prnewswire.com/news-releases/tanabe-pharma-america-announces-positive-topline-results-for-dersimelagon-in-erythropoietic-protoporphyria-epp-and-x-linked-protoporphyria-xlp-302663740.html',
+  },
+];
+---
+
+<PageLayout
+  title="Dersimelagon (MT-7117): the oral MC1R agonist chasing the afamelanotide target"
+  kicker="Investigational"
+  description="Dersimelagon is an investigational once-daily pill that activates MC1R — the small-molecule, oral answer to afamelanotide's implant. Its Phase 3 trial in erythropoietic protoporphyria read out positive in 2026, and it has a second life in fibrosis."
+  updated="2026"
+  about={[
+    { name: 'Dersimelagon', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Dersimelagon'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Erythropoietic protoporphyria', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Erythropoietic_protoporphyria'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Dersimelagon (MT-7117) is an investigational oral, selective MC1R agonist — a small-molecule tablet, not a peptide.',
+      'It targets the same receptor and strategy as afamelanotide (build protective pigment), but as a once-daily pill rather than a two-monthly implant.',
+      'Its global Phase 3 INSPIRE trial in erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP) reported positive topline results in January 2026.',
+      'It has a distinct second use: preclinical work shows MC1R activation may be disease-modifying in systemic sclerosis, a fibrotic disease.',
+      'Its main side effects are mechanism-based pigment changes — skin hyperpigmentation and freckle-like lentigines.',
+    ]}
+  />
+
+  <p>
+    Dersimelagon — development code <strong>MT-7117</strong> — is what happens when you
+    take the <a href="/afamelanotide">afamelanotide</a> idea and try to put it in a pill.
+    It aims at the same target, <a href="/receptors/mc1r">MC1R</a>, with the same
+    strategy — build protective pigment to defend against light — but as an oral
+    small-molecule drug rather than an injected peptide implant.<Cite n={1} />
+  </p>
+
+  <h2>Same target, different form</h2>
+  <p>
+    Afamelanotide proved that switching on MC1R can treat the light-sensitivity disease
+    <a href="/afamelanotide">erythropoietic protoporphyria</a>, but it does so as a
+    two-monthly implant placed by a clinician. Dersimelagon is the attempt to deliver the
+    same benefit more conveniently: a <strong>once-daily tablet</strong> a patient can take
+    at home.<Cite n={1} /> Because it is a small molecule rather than an α-MSH-like peptide,
+    it can be absorbed orally — a meaningful practical difference for a chronic,
+    preventive therapy.
+  </p>
+
+  <h2>The Phase 3 result</h2>
+  <p>
+    Dersimelagon's lead program is in EPP and the related disorder
+    <strong>X-linked protoporphyria (XLP)</strong>. In <strong>January 2026</strong>,
+    Tanabe Pharma America reported positive topline efficacy and safety results from the
+    global Phase 3 <strong>INSPIRE</strong> trial in adult and adolescent patients — the
+    key clinical milestone on its path toward becoming an oral option alongside the
+    approved implant.<Cite n={3} /> As with every drug in this family, the trial's most
+    common side effects were mechanism-based pigment changes: skin hyperpigmentation and
+    freckle-like lentigines, the expected signature of MC1R activation.<Cite n={1} />
+  </p>
+
+  <h2>A second life in fibrosis</h2>
+  <p>
+    Dersimelagon's more surprising story is outside pigment biology altogether. Preclinical
+    research shows that MC1R activation can produce <strong>disease-modifying,
+    anti-fibrotic effects</strong> in models of <strong>systemic sclerosis</strong> — a
+    serious autoimmune disease in which skin and internal organs become scarred and
+    stiff.<Cite n={2} /> In those models, dersimelagon suppressed skin fibrosis and lung
+    inflammation, pointing to a role for the melanocortin system in tissue scarring that
+    has nothing to do with sunlight. It is an early but striking example of the same
+    receptor being repurposed for a completely different disease.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Dersimelagon is investigational — promising Phase 3 data is not the same as approval,
+    and the fibrosis work is still preclinical. But it captures two live themes on the
+    melanocortin frontier: making these drugs easier to take (a pill instead of an
+    implant), and pushing MC1R beyond pigment into inflammation and fibrosis. For the
+    approved drug it is chasing, see <a href="/afamelanotide">afamelanotide</a>; for where
+    it sits among everything else in development, see the
+    <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial status. It does not provide
+      dosing or usage instructions and is not medical advice. Dersimelagon is not FDA-approved;
+      its safety and efficacy are still being established. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="dersimelagon" />
+</PageLayout>

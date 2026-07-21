@@ -1,0 +1,125 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is agouti signaling protein (ASIP)?',
+    a: 'ASIP is the body’s natural "off switch" for dark skin pigment. It is an endogenous blocker of the MC1R receptor: by opposing α-MSH there, it shifts pigment production away from dark eumelanin toward red-yellow pheomelanin. It is the molecule behind the banded "agouti" coat pattern seen across many mammals.',
+  },
+  {
+    q: 'How does ASIP change coat and skin colour?',
+    a: 'Pigment cells make two kinds of melanin: dark eumelanin when MC1R is active, and light pheomelanin when it is not. ASIP competes with α-MSH at MC1R and lowers the receptor’s activity, tipping the balance toward pheomelanin. Alternating pulses of ASIP are what create the light-and-dark banded hairs of the classic agouti pattern.',
+  },
+  {
+    q: 'Is ASIP the same as AgRP?',
+    a: 'No — they are cousins. ASIP (agouti signaling protein) blocks MC1R in the skin to control pigment. AgRP (agouti-related peptide) blocks MC4R and MC3R in the brain to control appetite. They share a name and the same basic trick — blocking a melanocortin receptor — but act in different tissues on different jobs.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Open-access study (PMC).',
+    title:
+      'Defining MC1R regulation in human melanocytes by its agonist α-melanocortin and antagonists agouti signaling protein and β-defensin 3.',
+    source: 'On how ASIP opposes α-MSH at MC1R to control pigment type.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3627493/',
+  },
+  {
+    authors: 'Journal of Molecular Biology (ScienceDirect).',
+    title: 'Structures of the agouti signaling protein.',
+    source: 'On the structure and MC1R-blocking function of ASIP.',
+    year: '2005',
+    url: 'https://www.sciencedirect.com/science/article/abs/pii/S0022283604016006',
+  },
+];
+---
+
+<PageLayout
+  title="Agouti signaling protein (ASIP): the natural off-switch for skin pigment"
+  kicker="Endogenous ligand"
+  description="ASIP is the body's built-in blocker of MC1R — the counterweight to α-MSH in the skin. By opposing the pigment signal, it shifts melanin from dark eumelanin to light pheomelanin, and it's the molecule behind the banded 'agouti' coat pattern."
+  updated="2026"
+  about={[
+    { name: 'Agouti signaling peptide', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agouti-signaling_peptide'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'ASIP (agouti signaling protein) is the endogenous antagonist and inverse agonist of MC1R — the natural counterweight to α-MSH in the skin.',
+      'It competes with α-MSH at MC1R and lowers the receptor’s activity, switching pigment production from dark eumelanin toward light red-yellow pheomelanin.',
+      'This "pigment type-switching" is what produces the banded agouti coat pattern seen across a wide range of mammals.',
+      'It is a cousin of AgRP, the brain’s appetite blocker — same core trick (blocking a melanocortin receptor), different tissue and different job.',
+      'ASIP is the clearest illustration that every melanocortin signal has a built-in brake as well as an accelerator.',
+    ]}
+  />
+
+  <p>
+    Agouti signaling protein — ASIP — is the reason the melanocortin pigment system has
+    an off switch as well as an on switch. Where <a href="/alpha-msh">α-MSH</a> activates
+    <a href="/receptors/mc1r">MC1R</a> to make dark pigment, ASIP does the opposite: it
+    is the natural blocker that shifts colour the other way. It is the original "agouti"
+    molecule, and it gives its name to a whole family of melanocortin antagonists.<Cite n={1} />
+  </p>
+
+  <h2>Type-switching the pigment</h2>
+  <p>
+    Pigment cells can make two kinds of melanin: dark, UV-shielding <strong>eumelanin</strong>
+    when MC1R is active, and light red-yellow <strong>pheomelanin</strong> when it is
+    not.<Cite n={1} /> ASIP tips that balance. It acts as an antagonist and inverse agonist
+    at MC1R — competing with α-MSH for the receptor and lowering its baseline activity —
+    which pushes production toward pheomelanin.<Cite n={2} /> The result is "pigment
+    type-switching": the same cell, the same receptor, a different output depending on
+    whether the accelerator (α-MSH) or the brake (ASIP) has the upper hand.
+  </p>
+
+  <h2>The agouti pattern</h2>
+  <p>
+    ASIP is named for the coat pattern it creates. In many mammals, hairs are banded —
+    light and dark along their length — because pigment cells receive alternating pulses
+    of ASIP as each hair grows.<Cite n={1} /> That banded look is called the
+    <strong>agouti</strong> pattern, and variation in ASIP (and in MC1R itself) accounts
+    for a remarkable range of coat and skin colours across species. It is one of the
+    most visible demonstrations anywhere in biology of a single receptor's signalling
+    balance written directly onto an animal's appearance.
+  </p>
+
+  <h2>Cousin to the hunger peptide</h2>
+  <p>
+    ASIP's trick — block a melanocortin receptor — was borrowed once more by the body,
+    in the brain. <a href="/agrp">AgRP</a> (agouti-related peptide) is its cousin: it
+    blocks <a href="/receptors/mc4r">MC4R</a> and <a href="/receptors/mc3r">MC3R</a> to
+    drive appetite, exactly as ASIP blocks MC1R to lighten pigment. Same mechanism,
+    different tissue, different job — a neat example of evolution reusing a working idea.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    ASIP completes the pigment half of the melanocortin story. You cannot fully
+    understand MC1R, tanning, or the drugs that push pigment (like the tanning peptides)
+    without the molecule that pushes the other way. Every melanocortin signal, it turns
+    out, comes with a built-in counterweight — and in the skin, ASIP is it. For the
+    receptor it governs, see <a href="/receptors/mc1r">MC1R — the pigment switch</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not medical advice</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of a natural signalling protein. It is not a
+      description of any product or treatment, and it is not medical advice. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="asip" />
+</PageLayout>
