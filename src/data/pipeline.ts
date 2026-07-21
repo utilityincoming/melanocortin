@@ -37,7 +37,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 4,
     status: 'approved',
     since: '2019',
-    href: '/therapeutics#afamelanotide',
+    href: '/afamelanotide',
   },
   {
     name: 'Bremelanotide',
@@ -67,7 +67,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 3,
     status: 'active',
     note: 'Phase 3 INSPIRE met its primary endpoint (2026); would be the first oral EPP therapy if approved',
-    href: '/therapeutics',
+    href: '/dersimelagon',
   },
   {
     name: 'Bremelanotide + tirzepatide',
@@ -87,7 +87,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 3,
     status: 'active',
     note: 'MELODY-1 Phase 3 hit its co-primary symptom endpoint; remaining MELODY trials ongoing',
-    href: '/therapeutics',
+    href: '/pl-9643',
   },
   {
     name: 'PL-8177',
@@ -97,7 +97,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 2,
     status: 'active',
     note: 'Positive Phase 2 topline (2025); Palatin capped enrollment to out-license and refocus on its obesity program',
-    href: '/therapeutics',
+    href: '/pl-8177',
   },
   {
     name: 'PL-7737',
@@ -117,7 +117,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 2,
     status: 'active',
     note: 'Appetite-restoring — the mirror of MC4R agonism; Phase 2 in metastatic colorectal-cancer cachexia',
-    href: '/therapeutics',
+    href: '/tcmcb07',
   },
   {
     name: 'Dersimelagon (immunology)',

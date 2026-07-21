@@ -1,0 +1,130 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is PL-9643?',
+    a: 'PL-9643 is an investigational eye drop from Palatin Technologies — a melanocortin agonist being developed for dry eye disease. It applies the melanocortin system’s anti-inflammatory, tissue-calming biology directly to the surface of the eye.',
+  },
+  {
+    q: 'How does PL-9643 work for dry eye?',
+    a: 'Dry eye disease is driven in large part by inflammation of the ocular surface. PL-9643 activates melanocortin receptors on the eye to dampen that inflammation and promote its resolution — a different approach from simply lubricating the eye or broadly suppressing the immune system.',
+  },
+  {
+    q: 'What did the Phase 3 trial show?',
+    a: 'In the pivotal Phase 3 MELODY-1 trial (575 patients), PL-9643 met its co-primary symptom endpoint of ocular pain and several secondary symptom endpoints, with symptom improvement emerging by week 2 and a favourable safety profile — fewer treatment-related side effects than the vehicle. Two further trials, MELODY-2 and MELODY-3, are evaluating both signs and symptoms.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Breakthrough symptom resolution in updated analyses from Phase 3 PL9643 MELODY-1 clinical trial in dry eye disease.',
+    source: 'Press release — MELODY-1 symptom endpoints and safety.',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-breakthrough-symptom-resolution-in-updated-analyses-from-phase-3-pl9643-melody-1-clinical-trial-in-dry-eye-disease-302440906.html',
+  },
+  {
+    authors: 'Ophthalmology Times.',
+    title:
+      'Palatin reports positive interim analysis in Phase 3 pivotal study of a potential therapeutic for dry eye disease.',
+    source: 'Independent coverage of the PL9643 program.',
+    year: '2024',
+    url: 'https://www.ophthalmologytimes.com/view/palatin-reports-positive-interim-analysis-in-phase-3-pivotal-study-of-potential-therapeutic-for-patients-with-dry-eye-disease',
+  },
+  {
+    authors: 'Applied Clinical Trials.',
+    title:
+      'Results of Phase III trial show promise of potential first-in-class treatment for dry eye disease.',
+    source: 'Independent coverage of MELODY-1 results.',
+    year: '2025',
+    url: 'https://www.appliedclinicaltrialsonline.com/view/results-of-phase-iii-trial-show-promise-of-potential-first-in-class-treatment-for-dry-eye-disease',
+  },
+];
+---
+
+<PageLayout
+  title="PL-9643: a melanocortin eye drop for dry eye disease"
+  kicker="Investigational"
+  description="PL-9643 is Palatin's investigational melanocortin eye drop for dry eye disease — the anti-inflammatory arm of the melanocortin system applied straight to the ocular surface. Its Phase 3 MELODY-1 trial met its co-primary symptom endpoint in 2025."
+  updated="2026"
+  about={[
+    { name: 'PL-9643', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Dry eye syndrome', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Dry_eye_syndrome'] },
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'PL-9643 is Palatin’s investigational melanocortin-agonist eye drop for dry eye disease — potentially a first-in-class treatment.',
+      'It works on the melanocortin system’s anti-inflammatory, resolution-promoting biology, calming the ocular-surface inflammation that drives dry eye rather than just lubricating the eye.',
+      'In the pivotal Phase 3 MELODY-1 trial (575 patients), it met its co-primary symptom endpoint of ocular pain plus several secondary symptom endpoints.',
+      'Symptom improvement appeared by week 2 and kept building through 12 weeks, with fewer treatment-related adverse events than the vehicle control.',
+      'Two further Phase 3 trials, MELODY-2 and MELODY-3, are evaluating both the signs and the symptoms of dry eye.',
+    ]}
+  />
+
+  <p>
+    PL-9643 takes the melanocortin system somewhere unexpected: the eye. It is one of
+    Palatin Technologies' investigational melanocortin agonists — this one an eye drop for
+    <strong>dry eye disease</strong>, and like <a href="/pl-8177">PL-8177</a> in the gut,
+    it is built on the system's anti-inflammatory arm rather than its pigment or appetite
+    roles.<Cite n={1} />
+  </p>
+
+  <h2>Calming the surface, not just wetting it</h2>
+  <p>
+    Dry eye disease is not only a lubrication problem; a large part of it is
+    <strong>inflammation</strong> of the ocular surface that becomes self-sustaining.
+    PL-9643 activates melanocortin receptors on the eye to dampen that inflammation and
+    push it toward resolution — the same broad biology that makes
+    <a href="/alpha-msh">α-MSH</a> a natural anti-inflammatory signal, applied topically.<Cite n={1} />
+    That mechanism is different both from artificial tears, which lubricate, and from
+    broad immunosuppressants, which blunt immunity generally.
+  </p>
+
+  <h2>The Phase 3 result</h2>
+  <p>
+    PL-9643's pivotal trial, <strong>MELODY-1</strong>, enrolled 575 patients with
+    moderate-to-severe dry eye. It met its co-primary <em>symptom</em> endpoint of ocular
+    pain (P&lt;0.025) along with several secondary symptom endpoints, with symptom relief
+    emerging by week 2 and continuing to build through 12 weeks — and it did so with
+    <em>fewer</em> treatment-related adverse events than the vehicle control.<Cite n={1} /><Cite n={2} />
+    Independent coverage framed it as a promising, potentially first-in-class approach.<Cite n={3} />
+    The program is not finished: two further trials, <strong>MELODY-2</strong> and
+    <strong>MELODY-3</strong>, are designed to evaluate both the signs and the symptoms of
+    the disease — the fuller bar a dry-eye drug must clear.<Cite n={2} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    PL-9643 is investigational, and a single positive symptom trial is a milestone, not an
+    approval — the remaining MELODY studies still have to deliver. But it is a striking
+    demonstration of the melanocortin system's reach: the same anti-inflammatory signalling
+    behind pigment biology and gut disease, formulated as an eye drop. For the underlying
+    biology, see <a href="/alpha-msh">α-MSH</a>; for the wider landscape, see the
+    <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial status. It does not provide
+      dosing or usage instructions and is not medical advice. PL-9643 is not approved; its
+      safety and efficacy are still being established. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="pl-9643" />
+</PageLayout>

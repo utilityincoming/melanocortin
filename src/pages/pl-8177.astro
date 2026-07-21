@@ -1,0 +1,131 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is PL-8177?',
+    a: 'PL-8177 is an investigational oral melanocortin drug from Palatin Technologies — a selective MC1R agonist being developed for inflammatory bowel disease, starting with ulcerative colitis. It works by turning on the melanocortin system’s natural anti-inflammatory signalling in the gut.',
+  },
+  {
+    q: 'How can PL-8177 be oral if it is a peptide?',
+    a: 'By not needing to be absorbed. PL-8177 is a cyclic peptide formulated to act locally on the lining of the colon rather than enter the bloodstream — in early testing it reached the colon with essentially no systemic exposure. It sidesteps the usual oral-peptide problem because its target is the gut wall itself, not a distant organ.',
+  },
+  {
+    q: 'Does PL-8177 work in ulcerative colitis?',
+    a: 'A Phase 2 study in active ulcerative colitis reported positive topline signals for clinical remission and response with once-daily oral dosing. But the trial was cut short — enrolled at 12 patients rather than the planned larger cohort — as Palatin redirected resources toward its obesity programs, so it was not powered to prove statistical significance. The signal is encouraging but preliminary.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Positive topline results from Phase 2 ulcerative colitis study of oral MC1R agonist PL8177.',
+    source: 'Press release — clinical remission and response signals.',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-positive-topline-results-from-phase-2-ulcerative-colitis-uc-study-of-oral-melanocortin-1-receptor-agonist-pl8177-302413472.html',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Completion of patient enrollment in Phase 2 study of orally administered melanocortin agonist PL8177 in ulcerative colitis.',
+    source: 'Press release — oral, colon-targeted formulation and trial design.',
+    year: '2024',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-completion-of-patient-enrollment-in-phase-2-study-of-orally-administered-melanocortin-agonist-pl8177-in-ulcerative-colitis-302314718.html',
+  },
+  {
+    authors: 'Peptides (via PubMed).',
+    title: 'α-Melanocyte stimulating hormone, inflammation and human melanoma.',
+    source: 'On the anti-inflammatory activity of melanocortin signalling.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16274844/',
+  },
+];
+---
+
+<PageLayout
+  title="PL-8177: the oral melanocortin trying to calm inflammation from inside the gut"
+  kicker="Investigational"
+  description="PL-8177 is Palatin's investigational oral MC1R agonist for inflammatory bowel disease. Its clever trick: it's a peptide that works without being absorbed, acting on the colon lining directly — a drug built from the melanocortin system's own anti-inflammatory role."
+  updated="2026"
+  about={[
+    { name: 'PL-8177', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Ulcerative colitis', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Ulcerative_colitis'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'PL-8177 is Palatin’s investigational oral, selective MC1R agonist — a cyclic peptide being developed for inflammatory bowel disease.',
+      'It is built from the melanocortin system’s natural anti-inflammatory role: activating MC1R helps switch off inflammation, and PL-8177 aims that effect at the gut.',
+      'It is oral without being absorbed — formulated to act locally on the colon lining with essentially no systemic exposure, sidestepping the usual oral-peptide problem.',
+      'A Phase 2 ulcerative colitis study reported positive topline remission and response signals, but was cut short (12 patients) as Palatin refocused on obesity, so it was underpowered for significance.',
+      'It represents the third major melanocortin frontier beyond pigment and appetite: inflammation.',
+    ]}
+  />
+
+  <p>
+    PL-8177 is a good reminder that the melanocortin system does more than pigment and
+    appetite. Its third great role is <strong>calming inflammation</strong> — the natural
+    signal <a href="/alpha-msh">α-MSH</a> is a potent anti-inflammatory molecule — and
+    PL-8177 is an attempt to turn that biology into a drug for inflammatory bowel
+    disease.<Cite n={3} /> It is one of Palatin Technologies' investigational melanocortin
+    agents, a selective <a href="/receptors/mc1r">MC1R</a> agonist.<Cite n={1} />
+  </p>
+
+  <h2>An oral peptide that doesn't need to be absorbed</h2>
+  <p>
+    The clever part is the delivery. Peptides are usually poor oral drugs because the gut
+    digests them before they can reach the bloodstream — but PL-8177 turns that problem
+    into a non-issue by <em>not trying to reach the bloodstream at all</em>. It is
+    formulated to act locally, delivering the peptide to the lining of the colon, where in
+    early testing it produced sustained colonic exposure with essentially no systemic
+    absorption.<Cite n={2} /> Because its target — MC1R on the colon's epithelial cells — is
+    right there in the gut, staying in the gut is a feature, not a failure. It is the
+    exception that clarifies the rule: oral peptides struggle when they need to travel,
+    not when they act where they land.
+  </p>
+
+  <h2>The ulcerative colitis signal</h2>
+  <p>
+    PL-8177's lead program is in <strong>ulcerative colitis</strong>, an inflammatory
+    disease of the colon. A Phase 2 study of once-daily oral PL-8177 in active disease
+    reported positive topline signals for clinical remission and response.<Cite n={1} /> The
+    honest caveat matters, though: Palatin stopped enrollment early — at 12 patients rather
+    than the larger planned cohort — as it redirected resources toward its melanocortin
+    obesity programs and out-licensing discussions.<Cite n={2} /> With those numbers the study
+    was not powered to demonstrate statistical significance, so the result is an
+    encouraging signal rather than proof.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    PL-8177 is early, and its own developer has shifted focus, so its future is uncertain.
+    But it is a clean illustration of the melanocortin system's anti-inflammatory arm being
+    engineered into a drug — and of a smart way around the oral-peptide problem when the
+    target sits in the gut. For the biology it draws on, see
+    <a href="/alpha-msh">α-MSH</a>; for where it sits among everything in development, see
+    the <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial status. It does not provide
+      dosing or usage instructions and is not medical advice. PL-8177 is not approved; its
+      safety and efficacy are still being established. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="pl-8177" />
+</PageLayout>

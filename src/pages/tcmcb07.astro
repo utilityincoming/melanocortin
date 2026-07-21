@@ -1,0 +1,146 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is TCMCB07 (mifomelatide)?',
+    a: 'TCMCB07, now named mifomelatide, is an investigational peptide that blocks the MC4R melanocortin receptor. By turning that receptor down instead of up, it stimulates appetite and helps preserve body weight — so it is being developed for cachexia, the severe wasting seen in cancer and chronic kidney disease.',
+  },
+  {
+    q: 'How is TCMCB07 the opposite of setmelanotide?',
+    a: 'They act on the same receptor, MC4R, in opposite directions for opposite diseases. Setmelanotide is an agonist that switches MC4R on to suppress appetite and treat obesity. TCMCB07 is an antagonist that switches MC4R off to stimulate appetite and treat wasting. One receptor, two mirror-image drugs.',
+  },
+  {
+    q: 'What is cachexia, and why target MC4R?',
+    a: 'Cachexia is the relentless loss of weight, fat, and muscle that accompanies advanced cancer, kidney disease, and other serious illnesses, and it is a major cause of suffering and death. Overactive central melanocortin (MC4R) signalling helps drive it, so blocking MC4R — as TCMCB07 does — can restore appetite and preserve lean and fat mass.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Endevica Bio.',
+    title:
+      'Melanocortin-4 receptor antagonist TCMCB07 ameliorates cancer- and chronic kidney disease–associated cachexia.',
+    source: 'Summary of preclinical efficacy in cachexia models.',
+    year: '2022',
+    url: 'https://www.endevicabio.com/melanocortin-4-receptor-antagonist-tcmcb07-ameliorates-cancer-and-chronic-kidney-disease-associated-cachexia/',
+  },
+  {
+    authors: 'Endevica Bio (BusinessWire).',
+    title:
+      'FDA accepted the Investigational New Drug (IND) application for TCMCB07, a melanocortin-4 antagonist peptide.',
+    source: 'Press release — clinical-stage development for cachexia.',
+    year: '2022',
+    url: 'https://www.businesswire.com/news/home/20220627005647/en/Endevica-Reports-the-U.S.-FDA-Accepted-Its-Investigational-New-Drug-IND-Application-for-TCMCB07-a-Melanocortin4-Antagonist-Peptide',
+  },
+  {
+    authors: 'Endevica Bio (BusinessWire).',
+    title:
+      'New data on TCMCB07 published in ACS Pharmacology & Translational Science.',
+    source: 'On the drug-like, brain-penetrant peptide design of TCMCB07.',
+    year: '2022',
+    url: 'https://www.businesswire.com/news/home/20220419006190/en/New-Data-on-Endevica-Bios-Lead-Compound-TCMCB07-Published-in-ACS-Pharmacology-Translational-Science-Suggest-a-Platform-Approach-for-Producing-Drug-Like-Peptides',
+  },
+];
+---
+
+<PageLayout
+  title="TCMCB07 (mifomelatide): the MC4R antagonist that treats wasting — setmelanotide in reverse"
+  kicker="Investigational"
+  description="TCMCB07, now mifomelatide, blocks MC4R instead of activating it — stimulating appetite and preserving body weight to treat cachexia, the wasting of cancer and kidney disease. It is the mirror image of setmelanotide, and a drug that mimics the body's own hunger peptide AgRP."
+  updated="2026"
+  about={[
+    { name: 'TCMCB07', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Cachexia'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Cachexia', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Cachexia'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'TCMCB07 (now named mifomelatide) is an investigational peptide that blocks MC4R — an antagonist, not an agonist.',
+      'By turning MC4R down, it stimulates appetite and preserves fat and lean body mass, and it is being developed for cachexia — the severe wasting of cancer and chronic kidney disease.',
+      'It is the mirror image of setmelanotide: same receptor, opposite direction, opposite disease (wasting instead of obesity).',
+      'In effect it is a drug version of the body’s own hunger peptide, AgRP, which naturally blocks MC4R to promote eating.',
+      'It is a brain-penetrant, orally active cyclic peptide; development has moved through early clinical trials and into Phase 2 in cancer cachexia.',
+    ]}
+  />
+
+  <p>
+    Almost every melanocortin drug on this site switches a receptor <em>on</em>. TCMCB07 —
+    now named <strong>mifomelatide</strong> — is the important exception: it switches one
+    <em>off</em>. It is an <a href="/receptors/mc4r">MC4R</a> antagonist, and that single
+    reversal turns it into a treatment for the opposite of obesity — the devastating
+    wasting known as cachexia.<Cite n={1} />
+  </p>
+
+  <h2>Setmelanotide in reverse</h2>
+  <p>
+    The cleanest way to understand TCMCB07 is to hold it next to
+    <a href="/setmelanotide">setmelanotide</a>. Both act on MC4R, the brain's appetite
+    rheostat — but in opposite directions, for opposite problems. Setmelanotide is an
+    <em>agonist</em>: it turns MC4R on to signal fullness and treat obesity. TCMCB07 is an
+    <em>antagonist</em>: it turns MC4R off to release appetite and treat weight loss.<Cite n={1} />
+    One receptor, two mirror-image drugs — perhaps the clearest demonstration anywhere of
+    why MC4R is called the master switch for body weight.
+  </p>
+  <p>
+    There is an even neater way to see it. The body already has a molecule that blocks MC4R
+    to drive hunger: the peptide <a href="/agrp">AgRP</a>. In that sense TCMCB07 is a drug
+    built to do AgRP's job — a synthetic hunger signal for people whose illness has stolen
+    their appetite.
+  </p>
+
+  <h2>Why block MC4R to treat wasting</h2>
+  <p>
+    <strong>Cachexia</strong> is the relentless loss of weight, fat, and muscle that
+    accompanies advanced cancer, chronic kidney disease, and other serious illnesses. It is
+    not simple undernutrition — it is a driven, metabolic wasting, and it is a major cause
+    of suffering and death in these diseases, with few good treatments. Overactive central
+    melanocortin signalling through MC4R is one of its engines, suppressing appetite and
+    burning through the body's reserves.<Cite n={1} /> By blocking MC4R, TCMCB07 lifts that
+    brake: in models it increased food intake and body weight and preserved both fat and
+    lean mass during cachexia.<Cite n={1} />
+  </p>
+
+  <h2>Design and status</h2>
+  <p>
+    TCMCB07 is a cyclic peptide engineered to be orally active and brain-penetrant — able
+    to reach the central MC4R circuits where it needs to act, a non-trivial feat for a
+    peptide.<Cite n={3} /> After the FDA accepted its investigational new drug application, it
+    moved into human trials and on toward Phase 2 testing in cancer cachexia.<Cite n={2} /> Like
+    everything on the frontier, it is unproven in the clinic — promising mechanism and
+    early data, not an established therapy.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    TCMCB07 matters out of proportion to its stage because of what it represents: the
+    melanocortin appetite switch run backwards, to fight wasting instead of obesity. It
+    completes the picture the rest of the site builds — that MC4R is genuinely
+    bidirectional, and that a receptor can be a drug target from both ends. For the switch
+    itself, see <a href="/receptors/mc4r">MC4R</a>; for the natural peptide it imitates, see
+    <a href="/agrp">AgRP</a>; for the wider landscape, the
+    <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial status. It does not provide
+      dosing or usage instructions and is not medical advice. TCMCB07 / mifomelatide is not
+      approved; its safety and efficacy are still being established. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="tcmcb07" />
+</PageLayout>
