@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc1r')!;
@@ -46,8 +47,21 @@ const references = [
   kicker="Receptor · Melanocortin 1 receptor"
   description="The receptor on melanocytes that decides between protective brown-black eumelanin and reddish pheomelanin. Its weak variants explain red hair and fair skin — and carry an independent melanoma risk."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC1R is the switch on melanocytes between protective brown-black eumelanin and reddish, poorly protective pheomelanin.',
+      'α-MSH or ACTH activation (via Gs → cAMP → MITF) pushes toward eumelanin; weak signalling tips toward pheomelanin — red or blond hair, fair skin that burns, and freckling.',
+      'Loss-of-function variants (classically R151C, R160W, D294H) raise cutaneous melanoma risk even after accounting for visible skin and hair colour.',
+      'The MC1R agonist afamelanotide (Scenesse) is used to raise protective eumelanin in erythropoietic protoporphyria.',
+    ]}
+  />
 
   <p>
     MC1R is the melanocortin system's contribution to how you look — and to how

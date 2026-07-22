@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const approved = [
   {
@@ -151,7 +152,21 @@ const references = [
   kicker="Pharmacology"
   description="Four melanocortin agents are FDA-approved — across obesity, photoprotection, sexual desire, and inflammation — each exploiting a different receptor. A broad pipeline of oral agonists, antagonists, and biased ligands is in trials."
   updated="2026"
+  about={[
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+    { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'Four melanocortin agents are FDA-approved, each hitting a different receptor: setmelanotide (MC4R, obesity), afamelanotide (MC1R, photoprotection), bremelanotide (central MCRs, sexual desire), and repository corticotropin/Acthar (MC2R-led, inflammation).',
+      'One system can be used two opposite ways — agonists to switch a pathway on, antagonists to switch it off.',
+      'A broad pipeline of oral agonists, antagonists, and biased (signalling-selective) ligands is in trials.',
+      'The same receptor family is reached by every route — injection, implant, or oral — chosen to fit the target tissue.',
+    ]}
+  />
+
   <p>
     For decades the melanocortin system was a topic for physiology textbooks, not
     pharmacies. That has changed. Several agents are now approved, and what unites

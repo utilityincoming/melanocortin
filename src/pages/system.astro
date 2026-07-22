@@ -2,6 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const references = [
   {
@@ -40,7 +41,20 @@ const references = [
   kicker="Overview pillar"
   description="A single precursor protein, cleaved tissue by tissue into the peptides that govern pigmentation, the stress axis, appetite, and inflammation — read by five receptors and held in check by two natural antagonists."
   updated="2026"
+  about={[
+    { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Pro-opiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'The whole system runs from one gene: pro-opiomelanocortin (POMC) is cut, tissue by tissue, into a family of short peptides including α-MSH and ACTH.',
+      'Those peptides act on five receptors (MC1R–MC5R), each in different tissue, controlling pigmentation, the cortisol stress axis, appetite, and inflammation.',
+      'Two natural antagonists — agouti signalling protein and AgRP — act as brakes that oppose the receptors.',
+      'Specificity comes from where a peptide is made and which receptor reads it, not from the messenger — the same molecular toolkit is reused across organs.',
+    ]}
+  />
+
   <p>
     The melanocortin system is one of biology's most economical signalling
     arrangements. A single gene encodes a single precursor protein —
