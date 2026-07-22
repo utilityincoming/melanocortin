@@ -1,0 +1,114 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import VariantCard from '../components/VariantCard.astro';
+import PigmentSwitch from '../components/PigmentSwitch.astro';
+import { variantsByAxis, type Variant } from '../data/variants';
+
+const skin = variantsByAxis('skin');
+const metabolic = variantsByAxis('metabolic');
+
+// One deduped, alphabetised bibliography across every variant shown. Cards cite
+// inline; this is the formal reference list the rest of the site ends with.
+const references = [];
+const seen = new Set<string>();
+for (const v of [...skin, ...metabolic] as Variant[]) {
+  for (const s of v.sources) {
+    if (!seen.has(s.url)) {
+      seen.add(s.url);
+      references.push(s);
+    }
+  }
+}
+references.sort((a, b) => a.authors.localeCompare(b.authors));
+---
+
+<PageLayout
+  title="Genetics of the melanocortin system"
+  kicker="Genetics"
+  description="The pathway where skin and body-weight genetics turn out to be the same pathway — a research-grade reference to the variants in MC1R, MC4R, POMC and their partners, and what the literature associates with each."
+  updated="2026"
+  about={[
+    { name: 'MC1R', type: 'Gene', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'MC4R', type: 'Gene', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Proopiomelanocortin', type: 'Gene', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'The melanocortin pathway is where "skin genes" and "obesity genes" overlap: MC1R tunes pigment and UV risk, while MC4R, POMC and LEPR set appetite and body weight.',
+      'Some genes sit on both axes at once — biallelic POMC loss causes early obesity, adrenal insufficiency, and red hair simultaneously, because one precursor feeds all three receptor arms.',
+      'Variants are not all vulnerabilities: MC4R I251L is a resilience allele associated with lower obesity risk, alongside the loss-of-function alleles that raise it.',
+      'This is a population-level research reference, not a diagnostic tool. It reports what the literature associates with a variant — never a personal risk score.',
+    ]}
+  />
+
+  <aside
+    class="not-prose my-8 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-5 text-sm leading-relaxed text-[var(--text-muted)]"
+  >
+    <p class="!mt-0">
+      <strong class="font-medium text-[var(--text)]">Research-grade, not diagnostic.</strong>
+      Each entry summarises published, population-level associations with strength-of-evidence
+      noted. It cannot tell you what a variant means for you: penetrance varies, most traits are
+      polygenic, and genotype interpretation belongs with a qualified genetic counsellor.
+    </p>
+  </aside>
+
+  <p>
+    Ask which genes shape the skin and which shape body weight, and you expect two
+    different answers. In the melanocortin system you get one pathway. A single
+    precursor — <a href="/system">pro-opiomelanocortin (POMC)</a> — is cut into the
+    peptides that act on <a href="/receptors">five receptors</a>: the same α-MSH
+    signal that drives pigment through <a href="/receptors/mc1r">MC1R</a> in the skin
+    drives satiety through <a href="/receptors/mc4r">MC4R</a> in the hypothalamus. So
+    the genetics of sun sensitivity and the genetics of appetite run through
+    neighbouring parts of one circuit — and a few genes sit squarely on both.
+  </p>
+
+  <p>
+    The entries below are grouped by the axis each variant speaks to. Genuinely
+    pleiotropic variants (tagged <span class="font-mono text-[0.8em]">Both axes</span>)
+    appear under both headings on purpose.
+  </p>
+
+  <h2>Skin &amp; UV-risk axis</h2>
+  <PigmentSwitch />
+  <p>
+    Pigmentation and photoprotection. MC1R is one of the most variable genes in the
+    human genome; its loss-of-function "R" alleles bias melanocytes toward red/yellow
+    pheomelanin and away from the eumelanin that shields DNA from UV — so the variants
+    below are, in effect, different settings of the switch shown above.
+  </p>
+  <div class="not-prose mt-6 flex flex-col gap-4">
+    {skin.map((v) => <VariantCard variant={v} />)}
+  </div>
+
+  <h2>Appetite &amp; body-weight axis</h2>
+  <p>
+    The leptin–melanocortin circuit that sets energy balance. Loss-of-function
+    variants here are the most common monogenic causes of severe early-onset obesity
+    — and several respond to the MC4R-pathway agonist
+    <a href="/setmelanotide">setmelanotide</a>. Resilience alleles that strengthen the
+    satiety brake live on the same axis.
+  </p>
+  <div class="not-prose mt-6 flex flex-col gap-4">
+    {metabolic.map((v) => <VariantCard variant={v} />)}
+  </div>
+
+  <h2>How to read the evidence tags</h2>
+  <p>
+    Every card carries a strength-of-evidence badge so a textbook variant is never
+    mistaken for a single-cohort signal:
+    <strong class="font-medium">Established</strong> (reproduced, mechanism understood,
+    in clinical databases), <strong class="font-medium">Strong</strong> (multiple
+    independent cohorts agree), <strong class="font-medium">Emerging</strong> (real but
+    limited replication), and <strong class="font-medium">Contested</strong> (published
+    both ways). Allele frequencies and identifiers are being verified against gnomAD,
+    dbSNP, ClinVar and OMIM as entries are finalised.
+  </p>
+
+  <RelatedPages slug="genetics" />
+  <References items={references} />
+</PageLayout>
