@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc5r')!;
@@ -38,8 +39,20 @@ const references = [
   kicker="Receptor · Melanocortin 5 receptor"
   description="The least understood of the five, but with a clear signature role: regulating exocrine glands, most notably the sebaceous glands that oil skin and fur."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 5 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_5_receptor'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC5R is the least understood of the five melanocortin receptors, but with a clear signature role in exocrine glands.',
+      'Its best-defined job is regulating sebaceous secretion — the sebum and lipids that oil skin and fur; it also sits on lacrimal and immune cells.',
+      'It is activated by α-MSH and ACTH.',
+      'Knockout models show defective sebaceous secretion and altered thermoregulation; the human role is still being mapped.',
+    ]}
+  />
 
   <p>
     MC5R is the melanocortin family's generalist. Its messenger RNA shows up in a

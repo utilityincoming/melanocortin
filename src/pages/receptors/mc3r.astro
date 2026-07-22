@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc3r')!;
@@ -38,8 +39,20 @@ const references = [
   kicker="Receptor · Melanocortin 3 receptor"
   description="MC4R's quieter sibling in the hypothalamus. Rather than switching appetite on and off, MC3R governs how the body spends its energy — and, it turns out, the timing of growth and puberty."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC3R is MC4R’s hypothalamic sibling: rather than switching appetite on and off, it governs how the body partitions and spends energy.',
+      'It also helps set the timing of growth and puberty, and contributes to sodium handling (natriuresis).',
+      'It is activated by all the MSH peptides and ACTH, and antagonised by AgRP.',
+      'Disruption shifts fat mass and feeding rhythm — a brake that complements MC4R rather than duplicating it.',
+    ]}
+  />
 
   <p>
     MC3R shares the hypothalamus with MC4R and responds to the same melanocortin

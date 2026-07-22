@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc2r')!;
@@ -38,8 +39,21 @@ const references = [
   kicker="Receptor · Melanocortin 2 receptor"
   description="The adrenal receptor at the bottom of the stress axis. Uniquely, it answers only to ACTH — and it cannot even reach the cell surface without a dedicated chaperone, MRAP."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 2 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_2_receptor'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC2R is the adrenal ACTH receptor at the bottom of the HPA stress axis, driving steroidogenesis and cortisol output.',
+      'Uniquely among the five melanocortin receptors, it responds only to ACTH — not to any MSH peptide.',
+      'It cannot reach the cell surface without its dedicated accessory chaperone, MRAP.',
+      'Loss-of-function mutations cause familial glucocorticoid deficiency.',
+    ]}
+  />
 
   <p>
     MC2R is the odd one out of the melanocortin family. Where the other four

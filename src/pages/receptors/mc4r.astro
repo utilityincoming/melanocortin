@@ -4,6 +4,7 @@ import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
 import FAQ from '../../components/FAQ.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc4r')!;
@@ -62,8 +63,21 @@ const references = [
   kicker="Receptor · Melanocortin 4 receptor"
   description="The brain's central controller of appetite and body weight. Loss of MC4R signalling is the commonest single-gene cause of severe obesity, and restoring it is the basis of setmelanotide."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC4R is the brain’s central rheostat for appetite and body weight, acting in the hypothalamus and wider CNS.',
+      'α-MSH activates it to suppress appetite, while AgRP acts as an inverse agonist that drives hunger.',
+      'Loss of MC4R signalling is the commonest single-gene cause of severe, early-onset obesity in humans.',
+      'Restoring MC4R signalling is the basis of the anti-obesity drug setmelanotide (Imcivree).',
+    ]}
+  />
 
   <p>
     Of the five melanocortin receptors, MC4R is the one most directly tied to a
