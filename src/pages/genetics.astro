@@ -5,6 +5,7 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import VariantCard from '../components/VariantCard.astro';
 import PigmentSwitch from '../components/PigmentSwitch.astro';
+import AppetiteCircuit from '../components/AppetiteCircuit.astro';
 import { variantsByAxis, type Variant } from '../data/variants';
 
 const skin = variantsByAxis('skin');
@@ -86,12 +87,14 @@ references.sort((a, b) => a.authors.localeCompare(b.authors));
   </div>
 
   <h2>Appetite &amp; body-weight axis</h2>
+  <AppetiteCircuit />
   <p>
     The leptin–melanocortin circuit that sets energy balance. Loss-of-function
     variants here are the most common monogenic causes of severe early-onset obesity
     — and several respond to the MC4R-pathway agonist
     <a href="/setmelanotide">setmelanotide</a>. Resilience alleles that strengthen the
-    satiety brake live on the same axis.
+    satiety brake live on the same axis. Each variant below is a place the circuit
+    above can break — or, for the protective alleles, hold firmer.
   </p>
   <div class="not-prose mt-6 flex flex-col gap-4">
     {metabolic.map((v) => <VariantCard variant={v} />)}
