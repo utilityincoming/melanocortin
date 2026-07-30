@@ -6,7 +6,10 @@ interface Props {
 const { receptor } = Astro.props;
 const facts = [
   { label: 'Tissue', value: receptor.tissue },
-  { label: 'Ligands', value: receptor.ligands },
+  { label: 'Key ligands', value: receptor.ligands },
+  ...(receptor.signalling ? [{ label: 'Signalling', value: receptor.signalling }] : []),
+  ...(receptor.accessory ? [{ label: 'Accessory protein', value: receptor.accessory }] : []),
+  ...(receptor.gene ? [{ label: 'Gene', value: receptor.gene }] : []),
   { label: 'Function', value: receptor.function },
   { label: 'When it fails', value: receptor.whenItFails },
 ];

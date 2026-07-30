@@ -4,9 +4,30 @@ import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import FAQ from '../../components/FAQ.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc3r')!;
+
+const faqs = [
+  {
+    q: 'What does the MC3R receptor do?',
+    a: 'MC3R sits mainly in the hypothalamus alongside MC4R but does a different job. Rather than switching appetite on and off, it governs how the body partitions energy — the balance of fat and lean mass — and helps set the timing of growth and puberty.',
+  },
+  {
+    q: 'How is MC3R different from MC4R?',
+    a: 'Both are central melanocortin receptors activated by the same peptides, but MC4R is the master appetite switch whose loss causes obesity, while MC3R tunes energy partitioning, growth and puberty. MC3R also modulates the POMC and AgRP neurons that feed into MC4R, acting as a complementary brake rather than a duplicate.',
+  },
+  {
+    q: 'What did the 2021 MC3R discovery show?',
+    a: 'Human and mouse studies found that loss of MC3R function delays puberty and reduces linear growth and lean mass, linking the receptor to how nutritional state controls growing up. It gave MC3R — long the hardest melanocortin receptor to pin down — a much sharper identity.',
+  },
+  {
+    q: 'Is MC3R a drug target?',
+    a: 'Not yet with an approved drug, but it is of growing interest. Because MC3R fine-tunes the same appetite circuitry as MC4R, selective agonists are being explored as complements to MC4R-based therapies, and the receptor’s anti-inflammatory, pro-resolving role makes it a target in inflammatory disease.',
+  },
+];
 
 const references = [
   {
@@ -97,7 +118,25 @@ const references = [
     <a href="/receptors/mc4r">MC4R</a>.
   </p>
 
+  <h2>A receptor coming into focus</h2>
+  <p>
+    For most of its history MC3R was defined by what it was <em>not</em> — not the
+    pigment receptor, not the cortisol receptor, not quite the appetite switch that
+    MC4R is. The 2021 growth-and-puberty work changed that, giving it a role no
+    other receptor covers: translating nutritional state into the tempo of
+    development.<Cite n={2} /> That has also made MC3R a target of fresh
+    pharmacological interest. Because it sits within the same hypothalamic circuitry
+    as MC4R and modulates those neurons, selective MC3R agonists are being explored
+    as a way to fine-tune the appetite system alongside MC4R drugs — part of the
+    wider <a href="/therapeutics">therapeutics</a> and
+    <a href="/pipeline">pipeline</a>.<Cite n={1} />
+  </p>
+
   <p><a href="/receptors">← Back to all receptors</a></p>
 
+  <FAQ items={faqs} />
+
   <References items={references} />
+
+  <RelatedPages slug="receptors/mc3r" />
 </PageLayout>

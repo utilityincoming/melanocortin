@@ -168,6 +168,12 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
+  receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics'],
+  'receptors/mc1r': ['afamelanotide', 'alpha-msh', 'asip', 'genetics'],
+  'receptors/mc2r': ['acth', 'alpha-msh', 'system'],
+  'receptors/mc3r': ['gamma-msh', 'receptors/mc4r', 'agrp', 'genetics'],
+  'receptors/mc4r': ['setmelanotide', 'agrp', 'glp1-appetite', 'alpha-msh'],
+  'receptors/mc5r': ['alpha-msh', 'receptors/mc1r', 'system'],
   'alpha-msh': ['system', 'receptors/mc1r', 'receptors/mc4r', 'agrp'],
   acth: ['receptors/mc2r', 'alpha-msh', 'system'],
   agrp: ['alpha-msh', 'receptors/mc4r', 'asip', 'tcmcb07'],
