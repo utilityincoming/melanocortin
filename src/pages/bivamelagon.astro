@@ -1,0 +1,233 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is bivamelagon?',
+    a: 'Bivamelagon (development code LB54640) is an investigational oral, once-daily MC4R agonist — a small molecule that switches on the melanocortin-4 receptor to restore signalling in the brain’s appetite pathway. Rhythm Pharmaceuticals acquired global rights to it from LG Chem in early 2024.',
+  },
+  {
+    q: 'How is bivamelagon different from setmelanotide?',
+    a: 'Both are MC4R agonists that aim to repair the same broken "I am full" signal, but they differ in form. Setmelanotide (Imcivree) is a peptide given as a daily subcutaneous injection; bivamelagon is a non-peptide small molecule taken as a once-daily pill — potentially the oral version of the same idea.',
+  },
+  {
+    q: 'What did the Phase 2 trial show?',
+    a: 'In a placebo-controlled Phase 2 trial in acquired hypothalamic obesity, the top 600 mg dose of bivamelagon reduced BMI by 9.3% at 14 weeks while placebo rose 2.2%, with the two higher doses statistically significant. Rhythm described the reductions as consistent with those seen with setmelanotide in similar patients.',
+  },
+  {
+    q: 'Is bivamelagon approved?',
+    a: 'No. It is investigational and not approved for any use. After a positive end-of-Phase-2 meeting with the FDA, Rhythm has said it plans to begin a pivotal Phase 3 trial in acquired hypothalamic obesity; a separate Phase 2 in genetic (POMC, PCSK1, LEPR) obesity is also underway.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title:
+      'Oral MC4R agonist bivamelagon achieved statistically significant, clinically meaningful BMI reductions in a placebo-controlled Phase 2 trial in acquired hypothalamic obesity.',
+    source: 'Press release — SIGNAL Phase 2 topline.',
+    year: '2025',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals & LG Chem Life Sciences.',
+    title:
+      'Rhythm to acquire global rights to oral MC4R agonist LB54640 (bivamelagon).',
+    source: 'Press release — in-licensing agreement (~$100M upfront, up to ~$205M milestones).',
+    year: '2024',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-and-lg-chem-life-sciences-enter-agreement/',
+  },
+  {
+    authors: 'ClinicalTrials.gov.',
+    title: 'A study of LB54640 in patients with acquired hypothalamic obesity (SIGNAL).',
+    source: 'Trial registry — NCT06046443.',
+    year: '2025',
+    url: 'https://clinicaltrials.gov/study/NCT06046443',
+  },
+  {
+    authors: 'ClinicalTrials.gov.',
+    title:
+      'A study to assess efficacy and safety of LB54640 in patients with genetic obesity (ROUTE).',
+    source: 'Trial registry — NCT06041841 (POMC, PCSK1, LEPR).',
+    year: '2025',
+    url: 'https://clinicaltrials.gov/study/NCT06041841',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title: 'Fourth quarter and full year 2025 results.',
+    source: 'Press release — Phase 3 plan and end-of-Phase-2 FDA meeting.',
+    year: '2026',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-reports-fourth-quarter-and-full-year-2025',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title: 'First patient dosed in Phase 1 trial of RM-718, a weekly MC4R-specific agonist.',
+    source: 'Press release — MC1R-sparing next-generation agonist.',
+    year: '2024',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-first-patient-dosed-phase-1',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Oral MC4R agonist PL-7737 receives FDA orphan drug designation for obesity due to leptin receptor deficiency.',
+    source: 'Press release — competing oral MC4R programme.',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatins-oral-mc4r-agonist-pl7737-receives-fda-orphan-drug-designation-for-obesity-due-to-leptin-receptor-deficiency-302409657.html',
+  },
+];
+---
+
+<PageLayout
+  title="Bivamelagon: an oral MC4R agonist for hypothalamic obesity"
+  kicker="The oral one"
+  description="Bivamelagon is an investigational oral MC4R agonist — the pill chasing what setmelanotide does by daily injection. In a placebo-controlled Phase 2 trial in acquired hypothalamic obesity, its top dose cut BMI by 9.3% in 14 weeks, and a pivotal Phase 3 is planned."
+  updated="2026"
+  about={[
+    { name: 'Bivamelagon', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/LB54640'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Obesity', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Obesity'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Bivamelagon (LB54640) is an investigational oral, once-daily MC4R agonist — a small molecule aiming to do by pill what setmelanotide does by daily injection: restore signalling in the brain’s appetite pathway.',
+      'Rhythm Pharmaceuticals acquired global rights from LG Chem in early 2024, for about $100M upfront and up to roughly $205M in milestones.',
+      'In a placebo-controlled Phase 2 trial in acquired hypothalamic obesity (SIGNAL), the 600 mg dose cut BMI by 9.3% at 14 weeks versus a 2.2% rise on placebo, with the two higher doses statistically significant.',
+      'Side effects were mostly mild nausea and diarrhoea; some skin hyperpigmentation was reported — the trait Rhythm’s separate, MC1R-sparing candidate RM-718 is engineered to avoid.',
+      'After a positive end-of-Phase-2 FDA meeting, Rhythm plans a pivotal Phase 3 in acquired hypothalamic obesity; bivamelagon is also in Phase 2 for genetic (POMC/PCSK1/LEPR) obesity.',
+    ]}
+  />
+
+  <p>
+    Every approved melanocortin peptide so far is <a href="/oral-peptides">injected</a>, because
+    the gut dismantles peptides before they can work. Bivamelagon is one of the first serious
+    attempts to get around that for the appetite receptor. It is an investigational
+    <strong>oral, once-daily MC4R agonist</strong> — a non-peptide small molecule — and its
+    ambition is simple to state: do by pill what <a href="/setmelanotide">setmelanotide</a> does
+    by daily needle.<Cite n={1} /> Rhythm Pharmaceuticals acquired global rights to the compound
+    (then known only as LB54640) from LG Chem in early 2024, paying about $100 million upfront
+    with up to roughly $205 million in milestones on top.<Cite n={2} />
+  </p>
+
+  <h2>Same target, different route</h2>
+  <p>
+    Bivamelagon and setmelanotide aim at the identical break in the wiring: a
+    <a href="/receptors/mc4r">melanocortin-4 receptor</a> that has stopped receiving its
+    "you are full" signal, so hunger runs without a brake. Both are agonists that switch MC4R
+    back on. The difference is entirely in the delivery — setmelanotide is a peptide given as a
+    subcutaneous injection every day, while bivamelagon is a small molecule stable enough to
+    survive the gut and be taken as a tablet.<Cite n={1} /> For a condition that is lifelong,
+    swapping a daily injection for a daily pill is not a small thing; it is often the difference
+    between a therapy people start and one they stay on.
+  </p>
+
+  <h2>The Phase 2 result</h2>
+  <p>
+    Bivamelagon’s lead indication is <a href="/hypothalamic-obesity">acquired hypothalamic
+    obesity</a> — the severe, hunger-driven weight gain that follows injury to the hypothalamus,
+    for example after surgery for a brain tumour, where the appetite brake is physically severed.
+    Its placebo-controlled Phase 2 trial (SIGNAL) tested three doses over 14 weeks, and the top
+    two beat placebo decisively on the primary measure, change in BMI:<Cite n={1} /><Cite n={3} />
+  </p>
+
+  <div class="overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Arm</th>
+          <th>Change in BMI at 14 weeks</th>
+          <th>vs placebo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bivamelagon 600 mg</td>
+          <td>−9.3%</td>
+          <td>p = 0.0004</td>
+        </tr>
+        <tr>
+          <td>Bivamelagon 400 mg</td>
+          <td>−7.7%</td>
+          <td>p = 0.0002</td>
+        </tr>
+        <tr>
+          <td>Bivamelagon 200 mg</td>
+          <td>−2.7%</td>
+          <td>p = 0.018</td>
+        </tr>
+        <tr>
+          <td>Placebo</td>
+          <td>+2.2%</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The higher-dose groups also reported meaningfully less hunger, and Rhythm framed the BMI
+    reductions as consistent with what setmelanotide achieves in similar patients — an important
+    bar for an oral drug to clear against the injectable it hopes to replace.<Cite n={1} /> The
+    trial was small (roughly two dozen patients across four arms), so these are early,
+    company-reported results rather than a definitive read — the caveat that applies to every
+    Phase 2 topline.
+  </p>
+
+  <h2>Also aimed at genetic obesity</h2>
+  <p>
+    Acquired hypothalamic obesity is the lead, but not the whole plan. Bivamelagon is also in a
+    Phase 2 trial (ROUTE) for <strong>genetic</strong> obesity caused by defects in the
+    melanocortin pathway itself — variants in POMC, PCSK1, or the leptin receptor (LEPR).<Cite n={4} />
+    These are the same rare conditions where setmelanotide is already approved, so the two drugs
+    are being lined up across an overlapping franchise: the established injection and the oral
+    challenger, aimed at the same biology from different angles. For the genetics behind those
+    conditions, see the <a href="/genetics">genetics pillar</a>.
+  </p>
+
+  <h2>What about the tan?</h2>
+  <p>
+    Melanocortin agonists tend to come with a bundled side effect — skin
+    <a href="/effects">hyperpigmentation</a> — because hitting the appetite receptor often means
+    brushing the pigment receptor MC1R as well. Bivamelagon is not fully clean on this: some
+    hyperpigmentation was reported in its Phase 2, though the numbers were small and one case was
+    even in the placebo group.<Cite n={1} /> Tellingly, Rhythm is also developing a separate,
+    next-generation agonist, <strong>RM-718</strong>, engineered to be <em>MC1R-sparing</em> —
+    a once-weekly MC4R-specific molecule designed precisely to deliver the appetite effect
+    without the tan.<Cite n={6} /> That two-track approach is a good tell for where the field is
+    heading: not just oral, but selective enough to peel the wanted effect away from the
+    unwanted one.
+  </p>
+
+  <h2>Where it is headed</h2>
+  <p>
+    Bivamelagon is one of several drugs converging on the same prize — a pill for MC4R-pathway
+    obesity. Palatin is developing its own oral MC4R agonist, <strong>PL-7737</strong>, though it
+    sits earlier in development.<Cite n={7} /> Bivamelagon is currently in front: on the strength
+    of durable Phase 2 extension data and a positive end-of-Phase-2 meeting with the FDA, Rhythm
+    has said it plans to start a pivotal <strong>Phase 3</strong> trial in acquired hypothalamic
+    obesity.<Cite n={5} /> Nothing here is approved, and a Phase 3 can still fail — but the
+    trajectory, from an in-licensed molecule to a planned pivotal trial in about two years, is a
+    fair snapshot of how fast the melanocortin field is now moving. Track it on the
+    <a href="/pipeline">pipeline page</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial status. It does not provide dosing
+      or usage instructions and is not medical advice. Bivamelagon is not approved; its safety and
+      efficacy are still being established. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="bivamelagon" />
+</PageLayout>
