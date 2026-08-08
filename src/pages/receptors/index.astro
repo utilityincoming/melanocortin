@@ -1,18 +1,215 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Cite from '../../components/Cite.astro';
+import References from '../../components/References.astro';
+import FAQ from '../../components/FAQ.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
 import { receptors } from '../../data/receptors';
+
+// At-a-glance comparison rows. Kept explicit (not derived from the data file)
+// so each cell can be tuned for scanning and the receptor id can link out.
+const rows = [
+  {
+    id: 'MC1R',
+    slug: 'mc1r',
+    where: 'Skin & hair (melanocytes); immune cells',
+    job: 'Sets pigment — protective eumelanin vs. pale pheomelanin',
+    ligands: 'α-MSH, ACTH; ASIP blocks',
+    fails: 'Red hair, fair skin, ↑ melanoma risk',
+    drug: 'Afamelanotide',
+  },
+  {
+    id: 'MC2R',
+    slug: 'mc2r',
+    where: 'Adrenal cortex',
+    job: 'Cortisol output at the bottom of the stress axis',
+    ligands: 'ACTH only',
+    fails: 'Familial glucocorticoid deficiency',
+    drug: '— (needs MRAP to work)',
+  },
+  {
+    id: 'MC3R',
+    slug: 'mc3r',
+    where: 'Hypothalamus; gut, heart, immune cells',
+    job: 'Energy partitioning; timing of growth & puberty',
+    ligands: 'α-, β-, γ-MSH, ACTH; AgRP blocks',
+    fails: 'Later puberty, reduced lean mass',
+    drug: '—',
+  },
+  {
+    id: 'MC4R',
+    slug: 'mc4r',
+    where: 'Hypothalamus & wider CNS',
+    job: 'The appetite & body-weight rheostat',
+    ligands: 'α-MSH; AgRP is an inverse agonist',
+    fails: 'Commonest single-gene cause of severe obesity',
+    drug: 'Setmelanotide, bremelanotide',
+  },
+  {
+    id: 'MC5R',
+    slug: 'mc5r',
+    where: 'Exocrine glands (sebaceous, lacrimal); immune cells',
+    job: 'Exocrine secretion — sebum and lipids',
+    ligands: 'α-MSH, ACTH',
+    fails: 'Defective sebum (mouse); human role emerging',
+    drug: '—',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How many melanocortin receptors are there?',
+    a: 'Five: MC1R, MC2R, MC3R, MC4R and MC5R. All are G-protein-coupled receptors that respond to melanocortin peptides derived from POMC, but each is expressed in different tissues and controls a different job — pigment, cortisol, energy partitioning, appetite and exocrine secretion respectively.',
+  },
+  {
+    q: 'What do the melanocortin receptors have in common?',
+    a: 'They share a common activation mechanism: melanocortin peptides carry the same core His-Phe-Arg-Trp sequence that switches the receptors on, and all five couple mainly to the Gs protein and raise the second messenger cyclic AMP. What differs is where each receptor sits and what that cAMP signal is wired to do.',
+  },
+  {
+    q: 'Which melanocortin receptors are drug targets?',
+    a: 'Two are targeted by approved drugs today: MC1R (afamelanotide, for a rare light-sensitivity disorder) and MC4R (setmelanotide for rare obesity, and bremelanotide for low sexual desire). MC3R and MC5R are studied but have no approved drug, and MC2R is targeted only indirectly through the ACTH stress axis.',
+  },
+  {
+    q: 'Why does one hormone control such different things?',
+    a: 'Because the same messenger is read by five different receptors in five different places. Evolution reused one signalling chemistry — a POMC-derived peptide activating a Gs-coupled receptor — and wired it to pigment in the skin, cortisol in the adrenal gland, and appetite in the brain. That is why a drug aimed at one receptor can have effects that look unrelated, such as skin darkening from an appetite agent.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Cooray SN, Clark AJL.',
+    title: 'The melanocortin receptors and their accessory proteins.',
+    source: 'Front Endocrinol (Lausanne). 4:9.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
+  },
+  {
+    authors: 'Harno E, Gali Ramamoorthy T, Coll AP, White A.',
+    title: 'POMC: the physiological power of hormone processing.',
+    source: 'Physiol Rev. 98(4):2381–2430.',
+    year: '2018',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/30156493/',
+  },
+];
 ---
 
 <PageLayout
   title="The five receptors"
-  kicker="Receptors"
-  description="MC1R through MC5R — five G-protein-coupled receptors that read the melanocortin signal in different tissues."
+  kicker="Five switches"
+  description="MC1R through MC5R — five G-protein-coupled receptors that read one signal in five different tissues. Learn these five and the whole field falls into place: pigment, cortisol, appetite, inflammation, and secretion."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'The melanocortin system runs on five G-protein-coupled receptors, MC1R–MC5R, each reading the same peptide signal in a different tissue.',
+      'All five are switched on by the shared His-Phe-Arg-Trp core of melanocortin peptides and signal mainly through Gs → cyclic AMP.',
+      'Their jobs diverge by location: pigment (MC1R), cortisol (MC2R), energy partitioning (MC3R), appetite (MC4R), and exocrine secretion (MC5R).',
+      'Two are drug targets today — MC1R (afamelanotide) and MC4R (setmelanotide, bremelanotide) — and MC2R uniquely cannot work without the accessory protein MRAP.',
+    ]}
+  />
+
   <p>
-    The melanocortin peptides act through five receptors, each with its own
-    tissue distribution, ligand preferences, and physiology. Each now has a full
-    reference page — select one below, or trace which ligands hit which receptor
-    in the <a href="/explorer">interactive explorer</a>.
+    Everything in this field routes through five receptors. Same messenger, five
+    different rooms — and in each room a different job: the colour switch in
+    skin, the cortisol trigger in the adrenal gland, the appetite brake in the
+    brain. It is the shortest path into the whole system, because every drug and
+    every disease here comes back to one of these five.
+  </p>
+
+  <h2>What the five have in common</h2>
+  <p>
+    The melanocortin receptors are close cousins — a tight subfamily of class-A
+    (rhodopsin-like) G-protein-coupled receptors. Three features are shared across
+    all five, and they are worth holding in mind before the differences:<Cite n={1} />
+  </p>
+  <ul>
+    <li>
+      <strong>One activation key.</strong> The melanocortin peptides cut from POMC
+      all carry the same central <strong>His-Phe-Arg-Trp</strong> motif, and that
+      four-residue core is what physically switches the receptor on. It is why a
+      single hormone family can address five receptors — and why drugs copy that
+      exact sequence.<Cite n={1} />
+    </li>
+    <li>
+      <strong>One main wire.</strong> Activated, each receptor couples to the
+      stimulatory G-protein <strong>Gs</strong>, raising the second messenger
+      <strong>cyclic AMP</strong> inside the cell. The downstream effect differs
+      only because different cells are listening — a melanocyte makes pigment, an
+      adrenal cell makes cortisol.<Cite n={1} />
+    </li>
+    <li>
+      <strong>A recurring need for help.</strong> Several of these receptors depend
+      on small <strong>accessory proteins (MRAP and MRAP2)</strong> to fold, reach
+      the surface, or tune their output. MC2R cannot function at all without MRAP;
+      MRAP2 modulates the appetite receptors.<Cite n={2} />
+    </li>
+  </ul>
+  <p>
+    The system also builds in its own <em>off</em> switches. Where most receptor
+    families are pushed only by agonists, the melanocortins have dedicated
+    endogenous <strong>antagonists</strong>: agouti signalling protein (ASIP)
+    blocks MC1R to lighten skin and coat, and agouti-related peptide (AgRP) opposes
+    MC3R and MC4R to drive hunger — the latter acting as a true inverse agonist that
+    pushes the receptor below its resting activity.<Cite n={1} />
+  </p>
+
+  <h2>The five at a glance</h2>
+  <p>
+    Same chemistry, five destinations. This is the whole family on one screen —
+    each receptor links to its full reference page.
+  </p>
+  <div class="overflow-x-auto">
+    <table class="min-w-[46rem]">
+      <thead>
+        <tr>
+          <th>Receptor</th>
+          <th>Where it acts</th>
+          <th>Main job</th>
+          <th>Key ligands</th>
+          <th>When it fails</th>
+          <th>Approved drug</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((r) => (
+            <tr>
+              <td>
+                <a
+                  href={`/receptors/${r.slug}`}
+                  class="font-mono font-semibold text-[var(--accent)] underline decoration-dotted"
+                >
+                  {r.id}
+                </a>
+              </td>
+              <td>{r.where}</td>
+              <td>{r.job}</td>
+              <td>{r.ligands}</td>
+              <td>{r.fails}</td>
+              <td>{r.drug}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Explore each receptor</h2>
+  <p>
+    Each has a full reference page — the mechanism, the human genetics, and the
+    drugs that target it. Or trace which ligands hit which receptor in the
+    <a href="/explorer">interactive explorer</a>.
   </p>
 
   <div class="mt-8 not-prose flex flex-col gap-4">
@@ -46,4 +243,10 @@ import { receptors } from '../../data/receptors';
       ))
     }
   </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="receptors" />
 </PageLayout>

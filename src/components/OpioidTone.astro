@@ -1,0 +1,238 @@
+---
+// "Skin talks to the brain" — an original, self-contained animated explainer for
+// the MC1R–pain mechanism (Robinson et al. 2021). Big idea in one loop, toggling
+// between two states: a melanocyte's MC1R sets how much α-MSH it makes; that
+// α-MSH acts at MC4R in the midbrain, which restrains (⊣) the μ-opioid tone.
+// Strong MC1R (dark hair) → lots of α-MSH → opioid tone held LOW → lower pain
+// threshold. Weak MC1R (red-hair variant) → little α-MSH → tone DE-REPRESSED →
+// higher threshold. Themed via CSS vars; honours prefers-reduced-motion.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="opioid-tone not-prose my-8">
+  <svg
+    viewBox="0 0 820 460"
+    role="img"
+    aria-labelledby="ot-title ot-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="ot-title">How MC1R in the skin tunes opioid tone in the brain</title>
+    <desc id="ot-desc"
+      >A skin melanocyte's MC1R sets how much α-MSH it makes. That α-MSH acts at
+      MC4R in the midbrain, which restrains the brain's μ-opioid tone. With weak
+      red-hair MC1R variants, less α-MSH is made, so the opioid tone is
+      de-repressed and pain thresholds rise.</desc
+    >
+
+    <!-- SKIN panel -->
+    <rect x="24" y="96" width="250" height="250" rx="20" class="panel" />
+    <text x="44" y="122" class="panel-label">SKIN</text>
+
+    <g class="melanocyte" transform="translate(-320 162)">
+      <path
+        class="mel-cell"
+        d="M470 40 l14 -14 l-4 20 l22 -8 l-12 18 l20 6 l-20 8 l12 16 l-20 -8 l3 20 l-14 -14
+           l-14 14 l3 -20 l-20 8 l12 -16 l-20 -8 l20 -6 l-12 -18 l22 8 l-4 -20 z"
+      />
+      <circle cx="470" cy="69" r="9" class="mel-nucleus" />
+    </g>
+    <text x="150" y="300" text-anchor="middle" class="cap-strong">MC1R</text>
+    <text x="150" y="320" text-anchor="middle" class="mel-strong-label">strong · dark hair</text>
+    <text x="150" y="320" text-anchor="middle" class="mel-weak-label">weak · red-hair variant</text>
+
+    <!-- α-MSH travelling from skin to brain -->
+    <path d="M250 231 C330 210 430 195 500 178" class="vessel" />
+    <text x="330" y="186" text-anchor="middle" class="cap">α-MSH</text>
+    <circle cx="300" cy="221" r="5" class="amsh-dot" />
+    <g class="amsh-extra">
+      <circle cx="338" cy="210" r="5" class="amsh-dot" />
+      <circle cx="378" cy="199" r="5" class="amsh-dot" />
+      <circle cx="316" cy="236" r="5" class="amsh-dot" />
+    </g>
+
+    <!-- BRAIN panel -->
+    <rect x="470" y="70" width="326" height="300" rx="24" class="panel" />
+    <text x="490" y="98" class="panel-label">BRAIN · midbrain (PAG)</text>
+
+    <!-- MC4R node (fed by α-MSH) -->
+    <circle cx="546" cy="173" r="40" class="mc4r-glow" />
+    <rect x="498" y="150" width="96" height="46" rx="12" class="mc4r-node" />
+    <text x="546" y="170" text-anchor="middle" class="node-t">MC4R</text>
+    <text x="546" y="186" text-anchor="middle" class="node-sub">reads α-MSH</text>
+
+    <!-- MC4R restrains (⊣) the opioid tone -->
+    <path d="M556 196 C588 248 620 260 652 261" class="inhib" />
+    <line x1="659" y1="250" x2="659" y2="273" class="inhib inhib-bar" />
+
+    <!-- μ-opioid tone column -->
+    <line x1="676" y1="330" x2="726" y2="330" class="col-base" />
+    <rect x="684" y="214" width="34" height="116" rx="4" class="tone-col" />
+    <text x="701" y="205" text-anchor="middle" class="val-low">LOW</text>
+    <text x="701" y="205" text-anchor="middle" class="val-high">HIGH</text>
+    <text x="701" y="350" text-anchor="middle" class="cap-strong">μ-opioid tone</text>
+    <text x="701" y="364" text-anchor="middle" class="cap">(OPRM1)</text>
+
+    <!-- the payoff: pain threshold -->
+    <text x="536" y="320" text-anchor="middle" class="note-strong">→ pain threshold: lower</text>
+    <text x="536" y="320" text-anchor="middle" class="note-weak">→ pain threshold: higher</text>
+
+    <!-- legend -->
+    <g class="legend" transform="translate(0 420)">
+      <circle cx="150" cy="12" r="8" class="chip-signal" />
+      <text x="166" y="16" class="cap">α-MSH (melanocortin)</text>
+      <circle cx="420" cy="12" r="8" class="chip-opioid" />
+      <text x="436" y="16" class="cap">μ-opioid tone</text>
+      <circle cx="600" cy="12" r="8" class="chip-bar" />
+      <text x="616" y="16" class="cap">MC4R restrains it (⊣)</text>
+    </g>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        A skin receptor sets the brain's pain dial. Strong <strong>MC1R</strong>{' '}
+        makes plenty of <strong>α-MSH</strong>, which acts at <strong>MC4R</strong>{' '}
+        to hold the brain's <strong>μ-opioid tone</strong> down. Weak red-hair MC1R
+        variants make less α-MSH, so that restraint lifts, the opioid tone rises,
+        and pain thresholds go up — melanocytes, not melanin, doing the talking.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .opioid-tone {
+    --opioid: #6d5ed6;
+    --mel-strong: var(--color-pigment-900);
+    --mel-weak: #d1495b;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .opioid-tone {
+      --opioid: #9182ee;
+      --mel-strong: var(--color-pigment-700);
+      --mel-weak: #e8697c;
+    }
+  }
+
+  .opioid-tone svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  /* text */
+  .cap { font-size: 11.5px; fill: var(--text-muted); }
+  .cap-strong { font-size: 13px; font-weight: 600; fill: var(--text); }
+  .panel-label {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 11px; letter-spacing: 0.12em; fill: var(--text-muted);
+  }
+  .node-t { font-size: 13px; font-weight: 600; fill: var(--text); }
+  .node-sub { font-size: 10px; fill: var(--text-muted); }
+  .mel-strong-label { font-size: 11px; fill: var(--text-muted); }
+  .mel-weak-label { font-size: 11px; fill: var(--mel-weak); opacity: 0; }
+  .val-low { font-size: 16px; font-weight: 700; fill: var(--opioid); }
+  .val-high { font-size: 16px; font-weight: 700; fill: var(--opioid); opacity: 0; }
+  .note-strong { font-size: 11.5px; font-weight: 600; fill: var(--text-muted); }
+  .note-weak { font-size: 11.5px; font-weight: 600; fill: var(--mel-weak); opacity: 0; }
+
+  /* structure */
+  .panel { fill: var(--bg); stroke: var(--border); stroke-width: 1.5; }
+  .mel-nucleus { fill: var(--bg-elevated); opacity: 0.55; }
+  .mc4r-node { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .vessel { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 8 8; opacity: 0.85; }
+  .amsh-dot { fill: var(--accent); }
+  .inhib { fill: none; stroke: var(--opioid); stroke-width: 3; stroke-linecap: round; }
+  .inhib-bar { stroke-width: 4; }
+  .col-base { stroke: var(--border); stroke-width: 2; }
+  .tone-col { fill: var(--opioid); opacity: 0.85; }
+  .chip-signal { fill: var(--accent); }
+  .chip-opioid { fill: var(--opioid); }
+  .chip-bar { fill: var(--opioid); }
+
+  /* animation — one 11s loop toggling strong → weak MC1R */
+  .mel-cell { fill: var(--mel-strong); animation: otMel 11s ease-in-out infinite; }
+  .vessel { animation: otVessel 11s ease-in-out infinite, otFlow 1.6s linear infinite; }
+  .amsh-extra { animation: otStrong 11s ease-in-out infinite; }
+  .mc4r-glow { fill: var(--accent); opacity: 0.6; transform-box: fill-box; transform-origin: center; animation: otGlow 11s ease-in-out infinite; }
+  .inhib { animation: otInhib 11s ease-in-out infinite; }
+  .tone-col { transform-box: fill-box; transform-origin: bottom; transform: scaleY(0.28); animation: otCol 11s ease-in-out infinite; }
+  .val-low, .mel-strong-label, .note-strong { animation: otStrong 11s ease-in-out infinite; }
+  .val-high, .mel-weak-label, .note-weak { animation: otWeak 11s ease-in-out infinite; }
+
+  @keyframes otMel {
+    0%, 44% { fill: var(--mel-strong); }
+    56%, 90% { fill: var(--mel-weak); }
+    100% { fill: var(--mel-strong); }
+  }
+  @keyframes otVessel {
+    0%, 44% { stroke-width: 5; opacity: 0.85; }
+    56%, 90% { stroke-width: 2; opacity: 0.4; }
+    100% { stroke-width: 5; opacity: 0.85; }
+  }
+  @keyframes otFlow {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -32; }
+  }
+  @keyframes otGlow {
+    0%, 44% { opacity: 0.6; }
+    56%, 90% { opacity: 0.12; }
+    100% { opacity: 0.6; }
+  }
+  @keyframes otInhib {
+    0%, 44% { opacity: 0.9; }
+    56%, 90% { opacity: 0.28; }
+    100% { opacity: 0.9; }
+  }
+  @keyframes otCol {
+    0%, 44% { transform: scaleY(0.28); }
+    56%, 90% { transform: scaleY(1); }
+    100% { transform: scaleY(0.28); }
+  }
+  @keyframes otStrong {
+    0%, 44% { opacity: 1; }
+    54%, 90% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes otWeak {
+    0%, 44% { opacity: 0; }
+    56%, 90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mel-cell, .vessel, .amsh-extra, .mc4r-glow, .inhib, .tone-col,
+    .val-low, .val-high, .mel-strong-label, .mel-weak-label,
+    .note-strong, .note-weak { animation: none; }
+    /* still frame = the weak / red-hair state (the page's subject) */
+    .mel-cell { fill: var(--mel-weak); }
+    .vessel { stroke-width: 2; opacity: 0.4; }
+    .amsh-extra { opacity: 0; }
+    .mc4r-glow { opacity: 0.12; }
+    .inhib { opacity: 0.28; }
+    .tone-col { transform: scaleY(1); }
+    .val-low, .mel-strong-label, .note-strong { opacity: 0; }
+    .val-high, .mel-weak-label, .note-weak { opacity: 1; }
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  figcaption strong { color: var(--text); font-weight: 600; }
+</style>

@@ -2,6 +2,8 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const approved = [
   {
@@ -147,16 +149,31 @@ const references = [
 
 <PageLayout
   title="Therapeutics & the frontier"
-  kicker="Pharmacology"
-  description="Four melanocortin agents are FDA-approved — across obesity, photoprotection, sexual desire, and inflammation — each exploiting a different receptor. A broad pipeline of oral agonists, antagonists, and biased ligands is in trials."
+  kicker="The frontier"
+  description="From textbook curiosity to four FDA approvals in a few short years. Four melanocortin agents are now approved — across obesity, photoprotection, sexual desire, and inflammation, each exploiting a different receptor — with a broad pipeline of oral agonists, antagonists, and biased ligands close behind."
   updated="2026"
+  about={[
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+    { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'Four melanocortin agents are FDA-approved, each hitting a different receptor: setmelanotide (MC4R, obesity), afamelanotide (MC1R, photoprotection), bremelanotide (central MCRs, sexual desire), and repository corticotropin/Acthar (MC2R-led, inflammation).',
+      'One system can be used two opposite ways — agonists to switch a pathway on, antagonists to switch it off.',
+      'A broad pipeline of oral agonists, antagonists, and biased (signalling-selective) ligands is in trials.',
+      'The same receptor family is reached by every route — injection, implant, or oral — chosen to fit the target tissue.',
+    ]}
+  />
+
   <p>
     For decades the melanocortin system was a topic for physiology textbooks, not
-    pharmacies. That has changed. Several agents are now approved, and what unites
-    them is instructive: each targets a <em>different</em> receptor to treat a
-    <em>different</em> disease, a direct demonstration that the same peptide family
-    is reused across organs. The receptor pages explain the biology each one
+    pharmacies. That has changed, fast. Four agents are now approved, and what
+    unites them is the whole promise of the field in miniature: each targets a
+    <em>different</em> receptor to treat a <em>different</em> disease — a direct
+    demonstration that one peptide family, reused across organs, can be drugged
+    one organ at a time. The receptor pages explain the biology each one
     exploits — <a href="/receptors/mc4r">MC4R</a>,
     <a href="/receptors/mc1r">MC1R</a>, <a href="/receptors/mc2r">MC2R</a>, and the
     wider <a href="/system">system</a>.
@@ -208,6 +225,13 @@ const references = [
     activation of <a href="/receptors/mc1r">MC1R</a> increases eumelanin — the same
     pigment mechanism that whole receptor page describes.<Cite n={1} />
   </p>
+  <p>
+    For the full story — how it repairs the appetite circuit, why it is not "the next
+    Ozempic," and what the pivotal trial showed — see the dedicated
+    <a href="/setmelanotide">setmelanotide explainer</a> and the page on
+    <a href="/hypothalamic-obesity">hypothalamic obesity</a>, the condition behind its
+    2026 approval.
+  </p>
 
   <h2 id="afamelanotide" class="scroll-mt-24">Afamelanotide (Scenesse) — MC1R</h2>
   <p>
@@ -225,6 +249,11 @@ const references = [
     in form as well as mechanism: a 16 mg controlled-release implant placed under
     the skin by a trained clinician roughly every two months, rather than a pill or
     a self-injection.<Cite n={4} />
+  </p>
+  <p>
+    For the full story — the disease it treats, how pigment-on-demand works, and its
+    tangled relationship to the Melanotan peptides — see the dedicated
+    <a href="/afamelanotide">afamelanotide explainer</a>.
   </p>
 
   <h2 id="bremelanotide" class="scroll-mt-24">Bremelanotide (Vyleesi) — central MCRs</h2>
@@ -301,12 +330,12 @@ const references = [
   </p>
   <ul>
     <li>
-      <strong>Oral MC1R agonists.</strong> Dersimelagon (MT-7117), a small-molecule
-      oral MC1R agonist, raised symptom-free light exposure in a phase 2 trial in
-      EPP/XLP, and its phase 3 programme (INSPIRE) reported a positive primary
-      endpoint in 2026 — potentially an oral alternative to the afamelanotide
-      implant. It is also being studied in diffuse cutaneous systemic
-      sclerosis.<Cite n={7} /><Cite n={13} /><Cite n={8} />
+      <strong>Oral MC1R agonists.</strong> <a href="/dersimelagon">Dersimelagon
+      (MT-7117)</a>, a small-molecule oral MC1R agonist, raised symptom-free light
+      exposure in a phase 2 trial in EPP/XLP, and its phase 3 programme (INSPIRE)
+      reported a positive primary endpoint in 2026 — potentially an oral alternative
+      to the afamelanotide implant. It is also being studied in diffuse cutaneous
+      systemic sclerosis.<Cite n={7} /><Cite n={13} /><Cite n={8} />
     </li>
     <li>
       <strong>Melanocortin agonists for inflammation.</strong> Palatin's PL-8177, an
@@ -360,4 +389,6 @@ const references = [
   </p>
 
   <References items={references} />
+
+  <RelatedPages slug="therapeutics" />
 </PageLayout>

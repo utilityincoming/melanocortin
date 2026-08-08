@@ -1,0 +1,204 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import OpioidTone from '../components/OpioidTone.astro';
+
+const faqs = [
+  {
+    q: 'Do redheads really need more anaesthetic?',
+    a: 'There is controlled evidence for it. In a study of healthy women, redheads required about 19% more of the inhaled anaesthetic desflurane than dark-haired women to block a response to a painful stimulus. The likely reason is that MC1R — the receptor behind red hair — is also active in the nervous system, so its variants change how the brain handles pain and sedation.',
+  },
+  {
+    q: 'Why doesn’t local anaesthetic work as well on redheads?',
+    a: 'In the same line of research, subcutaneous lidocaine was significantly less effective in redheads, who were also more sensitive to thermal pain. That fits the common report of dental "freezing" not taking as well — and red-hair MC1R variants have separately been linked to more dental anxiety and avoidance of dental care.',
+  },
+  {
+    q: 'Do redheads feel more pain or less?',
+    a: 'Both answers show up in the data, which is the genuinely interesting part. Redheads appear more sensitive to some kinds of pain (heat, cold, and injected local anaesthetic failing) yet, in genetic studies, show higher baseline pain thresholds and greater relief from certain opioids. The evidence is suggestive rather than settled, and a 2024 review concluded more MC1R-typed studies are needed.',
+  },
+  {
+    q: 'Should I tell my anaesthetist or dentist that I have red hair?',
+    a: 'It is reasonable to mention, since clinicians increasingly know the association — but dosing is individualised and monitored regardless, and hair colour is only a rough proxy for the underlying MC1R genotype. This page explains the science; it is not medical advice.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Liem EB, Lin CM, Suleman MI, et al.',
+    title: 'Anesthetic requirement is increased in redheads.',
+    source: 'Anesthesiology. 101(2):279–283.',
+    year: '2004',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15277908/',
+  },
+  {
+    authors: 'Liem EB, Joiner TV, Tsueda K, Sessler DI.',
+    title: 'Increased sensitivity to thermal pain and reduced subcutaneous lidocaine efficacy in redheads.',
+    source: 'Anesthesiology. 102(3):509–514.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15731586/',
+  },
+  {
+    authors: 'Mogil JS, Wilson SG, Chesler EJ, et al.',
+    title:
+      'The melanocortin-1 receptor gene mediates female-specific mechanisms of analgesia in mice and humans.',
+    source: 'Proc Natl Acad Sci USA. 100(8):4867–4872.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12663858/',
+  },
+  {
+    authors: 'Mogil JS, Ritchie J, Smith SB, et al.',
+    title: 'Melanocortin-1 receptor gene variants affect pain and mu-opioid analgesia in mice and humans.',
+    source: 'J Med Genet. 42(7):583–587.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15994880/',
+  },
+  {
+    authors: 'Binkley CJ, Beacham A, Neace W, Gregg RG, Liem EB, Sessler DI.',
+    title:
+      'Genetic variations associated with red hair color and fear of dental pain, anxiety regarding dental care and avoidance of dental care.',
+    source: 'J Am Dent Assoc. 140(7):896–905.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19571053/',
+  },
+  {
+    authors: 'Robinson KC, Kemény LV, Fell GL, et al.',
+    title: 'Reduced MC4R signaling alters nociceptive thresholds associated with red hair.',
+    source: 'Sci Adv. 7(14):eabd1310.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33811065/',
+  },
+  {
+    authors: 'Augustinsson A, Franze E, Almqvist M, et al.',
+    title:
+      'Red-haired people’s altered responsiveness to pain, analgesics, and hypnotics: myth or fact? — a narrative review.',
+    source: 'J Pers Med. 14(6):583.',
+    year: '2024',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/38929804/',
+  },
+];
+---
+
+<PageLayout
+  title="Red hair, MC1R, and the biology of pain"
+  kicker="The redhead paradox"
+  description="MC1R sets red hair and fair skin — but the same receptor is active in the nervous system, and its common variants track with real differences in how people feel pain and respond to anaesthetics and opioids. It is one of the clearest cases of a 'pigment' gene reaching well beyond the skin."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Pain', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Pain'] },
+    { name: 'Red hair', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Red_hair'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'MC1R, the receptor that sets red hair and fair skin, is also active in the nervous system — so its common loss-of-function "red-hair" variants track with measurable differences in pain and anaesthesia.',
+      'In a controlled study, redheaded women needed about 19% more of the inhaled anaesthetic desflurane than dark-haired women.',
+      'Redheads have also been shown to be more sensitive to thermal pain and more resistant to injected lidocaine — a plausible basis for the widely reported trouble with dental freezing.',
+      'Yet the same variants can mean more relief from certain opioids: a female-specific boost from kappa-opioids and an enhanced response to the morphine metabolite M6G.',
+      'The mechanism: weaker MC1R signalling means melanocytes make less α-MSH, which lifts a melanocortin brake off the brain’s own opioid tone — a skin receptor quietly tuning central pain circuits.',
+    ]}
+  />
+
+  <p>
+    <a href="/receptors/mc1r">MC1R</a> is famous as the "redhead gene" — the switch on
+    pigment cells that, when its signal runs weak, produces red or blond hair, fair skin that
+    burns, and freckles. What is far less famous is that the very same receptor turns up in
+    nerve and immune tissue, and that the common red-hair variants come with a genuine,
+    repeatedly measured signature in <strong>pain and anaesthesia</strong>. A pigment gene, it
+    turns out, helps set how much it takes to put you under and how well the numbing shot
+    works.<Cite n={6} />
+  </p>
+
+  <h2>More anaesthetic, reliably</h2>
+  <p>
+    The clearest result is also the most practical. In a controlled study, healthy red-haired
+    women needed about <strong>19% more</strong> of the inhaled anaesthetic desflurane than
+    dark-haired women to block movement in response to a painful stimulus — and nearly all of
+    the redheads carried loss-of-function MC1R variants.<Cite n={1} /> This is not a subtle,
+    statistics-only effect: it is a large, clinically meaningful difference in how much drug the
+    brain demands, and it was one of the first hard signs that MC1R was doing something in the
+    central nervous system, not just in the skin.
+  </p>
+
+  <h2>And the local doesn’t take as well</h2>
+  <p>
+    The picture at the skin surface points the same way. In a follow-up study, redheads were
+    <strong>more sensitive to thermal pain</strong> — both heat and cold — and, strikingly,
+    <strong>subcutaneous lidocaine was significantly less effective</strong> at numbing them.<Cite n={2} />
+    That is the laboratory version of a complaint dentists hear constantly: that "freezing"
+    doesn’t seem to work as well on redheads. It is more than anecdote — red-hair MC1R variants
+    have separately been linked to greater fear of dental pain, more anxiety about dental care,
+    and more than double the odds of avoiding the dentist altogether.<Cite n={5} /> A pigment
+    variant, feeding all the way through to whether someone keeps their check-ups.
+  </p>
+
+  <h2>The opioid twist</h2>
+  <p>
+    Here the story turns, and turns interesting. The same weak-MC1R genotype that seems to make
+    some pain <em>worse</em> can make certain painkillers work <em>better</em>. Women carrying
+    two variant MC1R alleles got significantly more analgesia from the kappa-opioid pentazocine
+    than everyone else — an effect that was specific to females and translated cleanly from mice
+    to people.<Cite n={3} /> Separately, both redheaded people and MC1R-deficient mice showed
+    enhanced pain relief from M6G, an active metabolite of morphine, without any change in how
+    much drug reached the bloodstream — a true pharmacodynamic difference, not a dosing
+    artefact.<Cite n={4} /> So the "redhead" receptor doesn’t simply dial pain up or down; it
+    reshapes the whole response, including to the drugs used to treat it.
+  </p>
+
+  <h2>The paradox, and why it is real</h2>
+  <p>
+    Read those sections back to back and they seem to contradict: redheads look
+    <em>more</em> sensitive to heat, cold, and a failing local anaesthetic, yet in genetic
+    studies they show <em>higher</em> baseline pain thresholds and <em>more</em> opioid relief.
+    This tension is real and known, not a mistake — different pain types, sexes, and drugs pull
+    in different directions, and a cautious 2024 review of the whole literature concluded the
+    results remain suggestive rather than settled, and called for studies that actually genotype
+    MC1R rather than relying on hair colour as a proxy.<Cite n={7} /> On a citation-first site
+    the honest summary is: the effect is real enough to have changed how some anaesthetists
+    think, and unsettled enough that hair colour alone should not drive a dose.
+  </p>
+
+  <h2>The mechanism, finally</h2>
+  <p>
+    For years this was a robust association in search of a cause. A 2021 study filled much of
+    the gap, and the answer is a small "big-idea" in itself: a receptor on skin cells helps set
+    the brain’s opioid tone. When MC1R signalling is weak, pigment cells make less of the
+    peptide <a href="/alpha-msh">α-MSH</a> — and with less circulating α-MSH, there is less
+    melanocortin activity at <a href="/receptors/mc4r">MC4R</a> in the brain to oppose the body’s
+    own opioid signalling. The opioid tone is effectively <em>de-repressed</em>, raising pain
+    thresholds through the μ-opioid receptor in central pain-control regions.<Cite n={6} /> The
+    effect depended on the pigment cells but not on the pigment itself — melanocytes, not
+    melanin, were doing the talking to the nervous system. It is a clean illustration of the
+    theme this whole site is built on: one economical system, reused far from where you would
+    expect to find it.
+  </p>
+
+  <OpioidTone />
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">A note for the chair, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      The associations here are real and increasingly recognised, but hair colour is only a
+      rough stand-in for MC1R genotype, and anaesthetic and analgesic dosing is individualised
+      and monitored. Mentioning red hair to an anaesthetist or dentist is sensible; changing a
+      dose on the basis of it is a clinician’s call. This page is educational and not medical
+      advice. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <p>
+    For the receptor itself, see <a href="/receptors/mc1r">MC1R — the pigment switch</a>; for
+    why the same agonists that engage these pathways also cause nausea and tanning, see
+    <a href="/effects">the trade-off</a>.
+  </p>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="mc1r-pain" />
+</PageLayout>

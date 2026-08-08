@@ -1,9 +1,12 @@
 ---
+// The interactive tools (explorer, dose-curve, pipeline) are intentionally kept
+// out of the nav — they are treated as beta and reachable via in-content links
+// and the sitemap, not featured as top-level navigation.
 const links = [
   { href: '/system', label: 'The system' },
   { href: '/receptors', label: 'Receptors' },
+  { href: '/genetics', label: 'Genetics' },
   { href: '/therapeutics', label: 'Therapeutics' },
-  { href: '/explorer', label: 'Explorer' },
   { href: '/glossary', label: 'Glossary' },
 ];
 const path = Astro.url.pathname;

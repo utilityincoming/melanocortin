@@ -1,0 +1,44 @@
+---
+// Renders the "Related reading" card grid for a page, from the central graph
+// in src/data/related.ts. Pass the current page's slug (path without slashes).
+import { PAGES, RELATED } from '../data/related';
+
+interface Props {
+  slug: string;
+  heading?: string;
+}
+const { slug, heading = 'Related reading' } = Astro.props;
+
+const items = (RELATED[slug] ?? []).map((s) => PAGES[s]).filter(Boolean);
+---
+
+{
+  items.length > 0 && (
+    <nav class="not-prose mt-14 border-t border-[var(--border)] pt-8" aria-label="Related pages">
+      <h2 class="font-serif text-2xl font-semibold tracking-tight">{heading}</h2>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2">
+        {items.map((it) => (
+          <a
+            href={it.href}
+            class="group block rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4 no-underline transition-colors hover:border-[var(--accent)]"
+          >
+            <span class="flex items-center justify-between gap-3">
+              <span class="font-medium text-[var(--text)] group-hover:text-[var(--accent)]">
+                {it.title}
+              </span>
+              <span
+                aria-hidden="true"
+                class="shrink-0 text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                →
+              </span>
+            </span>
+            <span class="mt-1 block text-sm leading-relaxed text-[var(--text-muted)]">
+              {it.blurb}
+            </span>
+          </a>
+        ))}
+      </div>
+    </nav>
+  )
+}

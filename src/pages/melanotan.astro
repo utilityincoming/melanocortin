@@ -2,7 +2,9 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const faqs = [
   {
@@ -61,10 +63,24 @@ const references = [
 
 <PageLayout
   title="Melanotan and Melanotan II: what they are, why they tan you, and the real risks"
-  kicker="Explainer"
+  kicker="The grey market"
   description="The 'tanning peptides' sold online are synthetic versions of a melanocortin hormone. Here's the actual pharmacology, how the two melanotans relate to the approved drugs they spawned, and the documented risks — explained plainly, not sold."
   updated="2026"
+  about={[
+    { name: 'Melanotan II', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanotan_II'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      '“Melanotan” refers to two different peptides: Melanotan I, the MC1R-selective one that became the approved drug afamelanotide, and Melanotan II, the non-selective grey-market tanning peptide.',
+      'Melanotan II tans by activating MC1R to boost eumelanin independently of sunlight — but it is not an approved medicine and is illegal to sell.',
+      'Because it is non-selective it also hits MC4R, causing nausea, flushing, appetite loss and spontaneous erections; that arousal effect spawned the separate drug bremelanotide.',
+      'Its most serious risk is to pigment cells: it darkens existing moles, is linked to new ones, and can mask the mole changes that signal melanoma.',
+    ]}
+  />
+
   <p>
     Search for a way to tan without the sun and you will quickly meet
     "melanotan" — peptides sold online as injections or nasal sprays that
@@ -128,7 +144,8 @@ const references = [
     became the entire basis of the spin-off drug bremelanotide.<Cite n={1} /> If
     you want the full mechanism of why melanocortin agonists make you queasy and
     darken, see <a href="/effects">why melanocortin agonists make you queasy and
-    tan</a>.
+    tan</a>. And because Melanotan II and PT-141 are so often confused, there's a
+    side-by-side breakdown of <a href="/pt-141-vs-melanotan">PT-141 vs Melanotan</a>.
   </p>
 
   <h2>The risks that matter</h2>
@@ -195,4 +212,6 @@ const references = [
   <FAQ items={faqs} />
 
   <References items={references} />
+
+  <RelatedPages slug="melanotan" />
 </PageLayout>

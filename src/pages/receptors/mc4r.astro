@@ -4,6 +4,9 @@ import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
 import FAQ from '../../components/FAQ.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import AppetiteCircuit from '../../components/AppetiteCircuit.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc4r')!;
@@ -54,6 +57,37 @@ const references = [
     year: '2024',
     url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
   },
+  {
+    authors: 'Yu J, Gimenez LE, Hernandez CC, et al.',
+    title:
+      'Determination of the melanocortin-4 receptor structure identifies Ca²⁺ as a cofactor for ligand binding.',
+    source: 'Science. 368(6489):428–33.',
+    year: '2020',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7567314/',
+  },
+  {
+    authors: 'Israeli H, Degtjarik O, Fierro F, et al.',
+    title:
+      'Structure reveals the activation mechanism of the MC4 receptor to initiate satiation signaling.',
+    source: 'Science. 372(6544):808–14.',
+    year: '2021',
+    url: 'https://www.science.org/doi/10.1126/science.abf7958',
+  },
+  {
+    authors: 'Ghamari-Langroudi M, Digby GJ, Sebag JA, et al.',
+    title: 'G-protein-independent coupling of MC4R to Kir7.1 in hypothalamic neurons.',
+    source: 'Nature. 520(7545):94–8.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25600267/',
+  },
+  {
+    authors: 'Baron M, Maillet J, Huyvaert M, et al.',
+    title:
+      'Loss-of-function mutations in MRAP2 are pathogenic in hyperphagic obesity with hyperglycemia and hypertension.',
+    source: 'Nat Med. 25(11):1733–8.',
+    year: '2019',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/31700171/',
+  },
 ];
 ---
 
@@ -62,8 +96,21 @@ const references = [
   kicker="Receptor · Melanocortin 4 receptor"
   description="The brain's central controller of appetite and body weight. Loss of MC4R signalling is the commonest single-gene cause of severe obesity, and restoring it is the basis of setmelanotide."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC4R is the brain’s central rheostat for appetite and body weight, acting in the hypothalamus and wider CNS.',
+      'α-MSH activates it to suppress appetite, while AgRP acts as an inverse agonist that drives hunger.',
+      'Loss of MC4R signalling is the commonest single-gene cause of severe, early-onset obesity in humans.',
+      'Restoring MC4R signalling is the basis of the anti-obesity drug setmelanotide (Imcivree).',
+    ]}
+  />
 
   <p>
     Of the five melanocortin receptors, MC4R is the one most directly tied to a
@@ -99,6 +146,8 @@ const references = [
     the whole chain — leptin → leptin receptor → POMC → α-MSH → MC4R — is a
     relay, a break at any link produces a similar phenotype of relentless hunger.
   </p>
+
+  <AppetiteCircuit />
 
   <h2>When it fails: monogenic obesity</h2>
   <p>
@@ -139,9 +188,55 @@ const references = [
     <a href="/system">overview pillar</a>.
   </p>
 
+  <h2>Under the hood: structure, calcium, and a second wire</h2>
+  <p>
+    For decades MC4R was understood only from the outside — by what happened when
+    it worked or failed. Then it was finally imaged at high resolution, and the
+    structures held two surprises that reshaped how the field thinks about it.
+  </p>
+
+  <h3>A calcium ion sits in the binding pocket</h3>
+  <p>
+    The first high-resolution MC4R structures revealed a calcium ion (Ca²⁺) bound
+    in the ligand pocket itself, held jointly by the receptor and the peptide. Far
+    from incidental, this cofactor dramatically strengthens agonist binding:
+    extracellular calcium raises the affinity of α-MSH roughly 37-fold and its
+    signalling potency several-hundred-fold.<Cite n={5} /> It also makes MC4R
+    structurally unusual — closer to lipid-sensing receptors than to the other
+    peptide receptors it is grouped with.<Cite n={5} /> Later active-state
+    structures, captured with setmelanotide and with the natural agonist bound to
+    its G-protein, showed exactly how the pocket closes around the ligand to switch
+    the receptor on.<Cite n={6} />
+  </p>
+
+  <h3>A second, G-protein-independent wire</h3>
+  <p>
+    The textbook MC4R signal is Gs → cyclic AMP. But in the appetite-controlling
+    neurons of the paraventricular nucleus, MC4R also gates a potassium channel,
+    Kir7.1, directly — a mechanism that needs no G-protein at all. α-MSH closes
+    Kir7.1 to excite the neuron; strikingly, AgRP <em>opens</em> it, quieting the
+    neuron independently of its ability to block α-MSH.<Cite n={7} /> That makes
+    AgRP a <em>biased</em> agonist — the same molecule read out differently on
+    different wires — and hints at why the receptor's pharmacology is richer than a
+    single cAMP number can capture. The finding is important and still being worked
+    out, so we treat it as an active area rather than settled dogma.<Cite n={7} />
+  </p>
+
+  <h3>The MRAP2 dial</h3>
+  <p>
+    MC4R does not act entirely alone. The accessory protein MRAP2 tunes its
+    signalling, and in humans rare loss-of-function mutations in MRAP2 cause their
+    own form of hyperphagic obesity — often with high blood sugar and blood
+    pressure — establishing the receptor's helper as an obesity gene in its own
+    right.<Cite n={8} /> It is a reminder that the appetite circuit is a system of
+    parts, and more than one of them can break.
+  </p>
+
   <p><a href="/receptors">← Back to all receptors</a></p>
 
   <FAQ items={faqs} />
 
   <References items={references} />
+
+  <RelatedPages slug="receptors/mc4r" />
 </PageLayout>

@@ -9,24 +9,42 @@ const receptors = [
   { id: 'MC5R', note: 'Exocrine gland function' },
 ];
 
+const proof = [
+  {
+    stat: 'One gene',
+    label: 'runs the whole system',
+    body: 'POMC is cut, tissue by tissue, into the peptides that set pigment, the stress axis, appetite, and inflammation — read by five receptors, held in check by two natural brakes.',
+  },
+  {
+    stat: '3 in 24 months',
+    label: 'first-in-class approvals',
+    body: 'For decades, no drug was designed to hit a melanocortin receptor. Between 2019 and 2020, three did — for a pigment disorder, sexual dysfunction, and genetic obesity.',
+  },
+  {
+    stat: '~12 agents',
+    label: 'now in the clinic',
+    body: 'The pipeline is going oral and broad: obesity, dry eye, ulcerative colitis, cancer cachexia — and the first oral MC4R and MC1R drugs are moving through trials.',
+  },
+];
+
 const pillars = [
   {
     href: '/system',
-    kicker: 'Overview',
+    kicker: 'Start here',
     title: 'The melanocortin system',
-    body: 'How a single precursor — POMC — is cleaved into the peptides that signal across pigmentation, the stress axis, appetite, and inflammation.',
+    body: 'How one precursor — POMC — becomes the peptides that signal across pigmentation, the stress axis, appetite, and inflammation. The whole map in one page.',
   },
   {
     href: '/receptors',
-    kicker: 'Five receptors',
+    kicker: 'Five switches',
     title: 'MC1R through MC5R',
-    body: 'A page for each receptor: where it lives, what binds it, what it does, and what goes wrong when it fails.',
+    body: 'A page for each receptor: where it lives, what binds it, what it controls, and what breaks when it fails. The five levers the whole field is built on.',
   },
   {
     href: '/therapeutics',
-    kicker: 'Pharmacology',
-    title: 'Therapeutics & the frontier',
-    body: 'Approved and investigational melanocortin agents — from setmelanotide and afamelanotide to the emerging pipeline.',
+    kicker: 'The frontier',
+    title: 'Therapeutics & the pipeline',
+    body: 'Approved and investigational melanocortin drugs — from setmelanotide and afamelanotide to the oral and anti-inflammatory agents opening the field wide.',
   },
 ];
 ---
@@ -42,29 +60,32 @@ const pillars = [
     </div>
     <div class="relative mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
       <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-        POMC · MC1R–MC5R · the melanocortin axis
+        POMC → MC1R–MC5R · the melanocortin axis
       </p>
       <h1 class="mt-5 max-w-3xl font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
-        One precursor protein. <span class="text-[var(--accent)]">A dozen jobs</span> across the body.
+        One gene runs the body's oldest control system.
+        <span class="text-[var(--accent)]">Medicine is finally learning to steer it.</span>
       </h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-        Melanocortins govern skin pigmentation, the stress-hormone axis, appetite,
-        energy balance, and inflammation — yet the science is scattered across
-        journals and thin on the open web. This is an attempt to fix that:
-        clearly explained, carefully cited, and built to load fast.
+        The colour of your skin, the cortisol of a hard day, the hunger you can't
+        reason with, the way a wound settles down — one family of peptides is in
+        the room for all of it. For a century it was biology's most elegant
+        curiosity. In the space of a few years it became one of the most
+        productive frontiers in medicine. This is the field guide to that system,
+        and to the drugs now built on it — every claim cited, nothing oversold.
       </p>
       <div class="mt-9 flex flex-wrap items-center gap-3">
         <a
           href="/system"
           class="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
         >
-          Start with the overview
+          Start with the system
         </a>
         <a
-          href="/receptors"
+          href="/therapeutics"
           class="rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
-          Browse the receptors
+          See what's in the clinic
         </a>
       </div>
     </div>
@@ -89,12 +110,46 @@ const pillars = [
     </div>
   </section>
 
-  <!-- Pillars -->
+  <!-- Why now: the frontier story -->
   <section class="mx-auto max-w-5xl px-6 py-20">
-    <h2 class="font-serif text-2xl font-semibold tracking-tight">How the reference is organised</h2>
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Why now</p>
+    <h2 class="mt-3 max-w-3xl font-serif text-3xl font-semibold tracking-tight">
+      A biological curiosity just became a drug class.
+    </h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-[var(--text-muted)]">
+      The melanocortin system was mapped long before anyone could drug it well.
+      That changed fast. The same economy that makes it elegant — one gene,
+      reused across organs — makes it a rare thing in pharmacology: a single
+      family of targets that reaches obesity, pigment disease, inflammation,
+      pain, and sexual function at once.
+    </p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      {
+        proof.map((p) => (
+          <div class="flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6">
+            <span class="font-serif text-3xl font-semibold tracking-tight text-[var(--accent)]">
+              {p.stat}
+            </span>
+            <span class="mt-1 text-sm font-medium">{p.label}</span>
+            <span class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{p.body}</span>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-8 max-w-2xl leading-relaxed text-[var(--text)]">
+      That is the wager this site is built on: melanocortin pharmacology is early,
+      and early is exactly when a clear, honest map is worth the most. The
+      <a href="/pipeline" class="text-[var(--accent)] underline decoration-dotted">live pipeline</a>
+      tracks every agent through the clinic, dated and sourced.
+    </p>
+  </section>
+
+  <!-- Pillars -->
+  <section class="mx-auto max-w-5xl border-t border-[var(--border)] px-6 py-20">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight">Three ways in</h2>
     <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
-      A pillar-and-cluster knowledge base — broad overviews that link down into
-      specific, citeable detail.
+      Broad overviews that link down into specific, citeable detail — the
+      system, the five receptors, and the drugs built on them.
     </p>
     <div class="mt-10 grid gap-6 sm:grid-cols-3">
       {
@@ -118,12 +173,14 @@ const pillars = [
   <!-- Editorial promise -->
   <section class="mx-auto max-w-5xl px-6 pb-4">
     <div class="rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-8">
-      <h2 class="font-serif text-xl font-semibold tracking-tight">Built on honesty</h2>
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Bullish on the science. Sceptical on the page.</h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text)]">
-        Every page carries a visible author and a last-reviewed date. Therapeutic
-        and clinical-pipeline information is verified against current sources
-        before publication. Where the science is uncertain or contested, the page
-        says so — rather than papering over it.
+        Optimism only counts if it survives the citations. Every page carries a
+        visible author and a last-updated date. Therapeutic and pipeline claims
+        are checked against current sources before publication, and where the
+        science is uncertain or contested, the page says so — rather than
+        papering over it. When the frontier is genuinely unsettled, we call it
+        the frontier, not a sure thing.
       </p>
       <p class="mt-4 text-sm text-[var(--text-muted)]">
         This is an educational resource, not medical advice.

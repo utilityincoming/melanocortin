@@ -3,9 +3,31 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import FAQ from '../../components/FAQ.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc2r')!;
+
+const faqs = [
+  {
+    q: 'What is the MC2R receptor?',
+    a: 'MC2R is the receptor for ACTH on the adrenal cortex. When ACTH from the pituitary binds it, the adrenal gland makes cortisol. It is the final receiving step of the body’s stress-hormone (HPA) axis and, unusually, responds to ACTH alone.',
+  },
+  {
+    q: 'Why does MC2R respond only to ACTH?',
+    a: 'All melanocortin peptides share a core sequence that activates the other four receptors, but MC2R additionally requires a stretch found only in the full ACTH molecule — not in the shorter MSH peptides. That built-in selectivity keeps the pigment-and-appetite side of the system from accidentally triggering cortisol.',
+  },
+  {
+    q: 'What is MRAP and why does MC2R need it?',
+    a: 'MRAP (melanocortin-2-receptor accessory protein) is a small partner protein that escorts MC2R to the cell surface and helps it respond to ACTH. Without MRAP the receptor is stranded inside the cell. Mutations in MRAP cause a form of adrenal failure closely related to MC2R’s own.',
+  },
+  {
+    q: 'What happens when MC2R fails?',
+    a: 'Loss-of-function mutations cause familial glucocorticoid deficiency, in which the adrenal cortex cannot make enough cortisol despite very high ACTH — presenting with low blood sugar, poor tolerance of stress and infection, and, often, increased skin pigmentation from the excess ACTH.',
+  },
+];
 
 const references = [
   {
@@ -38,8 +60,21 @@ const references = [
   kicker="Receptor · Melanocortin 2 receptor"
   description="The adrenal receptor at the bottom of the stress axis. Uniquely, it answers only to ACTH — and it cannot even reach the cell surface without a dedicated chaperone, MRAP."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 2 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_2_receptor'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC2R is the adrenal ACTH receptor at the bottom of the HPA stress axis, driving steroidogenesis and cortisol output.',
+      'Uniquely among the five melanocortin receptors, it responds only to ACTH — not to any MSH peptide.',
+      'It cannot reach the cell surface without its dedicated accessory chaperone, MRAP.',
+      'Loss-of-function mutations cause familial glucocorticoid deficiency.',
+    ]}
+  />
 
   <p>
     MC2R is the odd one out of the melanocortin family. Where the other four
@@ -93,7 +128,24 @@ const references = [
     receptor.<Cite n={2} />
   </p>
 
+  <h2>Why it matters clinically</h2>
+  <p>
+    MC2R is the molecular target of the standard test of adrenal reserve. The
+    short Synacthen (ACTH stimulation) test gives a dose of synthetic ACTH and
+    measures whether the adrenal cortex — through MC2R — answers with a rise in
+    cortisol; a blunted response points to adrenal insufficiency.<Cite n={1} /> The
+    same axis explains a classic clinical sign: disorders that drive ACTH very high
+    can darken the skin, because the excess ACTH spills over onto the pigment
+    receptor <a href="/receptors/mc1r">MC1R</a>. It is the melanocortin system
+    quietly showing its unity — one family, read in two very different tissues. For
+    the wider circuit, see the <a href="/system">overview pillar</a>.
+  </p>
+
   <p><a href="/receptors">← Back to all receptors</a></p>
 
+  <FAQ items={faqs} />
+
   <References items={references} />
+
+  <RelatedPages slug="receptors/mc2r" />
 </PageLayout>

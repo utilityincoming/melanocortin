@@ -2,6 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
 
 const references = [
   {
@@ -37,20 +38,36 @@ const references = [
 
 <PageLayout
   title="The melanocortin system"
-  kicker="Overview pillar"
-  description="A single precursor protein, cleaved tissue by tissue into the peptides that govern pigmentation, the stress axis, appetite, and inflammation — read by five receptors and held in check by two natural antagonists."
+  kicker="The whole map"
+  description="One gene, cut tissue by tissue into the peptides that set pigmentation, the stress axis, appetite, and inflammation — read by five receptors, opposed by two natural brakes. It is the most economical control system in the body, and lately one of the most productive targets in medicine."
   updated="2026"
+  about={[
+    { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Pro-opiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+  ]}
 >
+  <KeyTakeaways
+    items={[
+      'The whole system runs from one gene: pro-opiomelanocortin (POMC) is cut, tissue by tissue, into a family of short peptides including α-MSH and ACTH.',
+      'Those peptides act on five receptors (MC1R–MC5R), each in different tissue, controlling pigmentation, the cortisol stress axis, appetite, and inflammation.',
+      'Two natural antagonists — agouti signalling protein and AgRP — act as brakes that oppose the receptors.',
+      'Specificity comes from where a peptide is made and which receptor reads it, not from the messenger — the same molecular toolkit is reused across organs.',
+    ]}
+  />
+
   <p>
     The melanocortin system is one of biology's most economical signalling
-    arrangements. A single gene encodes a single precursor protein —
+    arrangements — and that economy is exactly why it has become such fertile
+    ground for medicine. A single gene encodes a single precursor protein —
     pro-opiomelanocortin, or POMC — which is then cut into a family of short
     peptides. Those peptides act on five related receptors, are opposed by two
     natural antagonists, and between them regulate processes as different as the
     colour of your hair, the cortisol released under stress, how much you eat,
     and how inflammation resolves.<Cite n={1} /> The economy is the point: the same
     molecular toolkit is reused across organs, with specificity coming not from
-    the messenger but from where it is made and which receptor receives it.
+    the messenger but from where it is made and which receptor receives it. Get
+    this one system, and a surprising slice of human physiology — and a
+    fast-growing shelf of drugs — comes with it.
   </p>
 
   <h2>One gene, many messages</h2>

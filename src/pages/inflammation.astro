@@ -1,0 +1,267 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import ResolutionSwitch from '../components/ResolutionSwitch.astro';
+
+const faqs = [
+  {
+    q: 'Is the melanocortin system anti-inflammatory?',
+    a: 'Yes. Alongside its roles in pigment, cortisol, and appetite, the melanocortin system is one of the body’s built-in brakes on inflammation. The peptide α-MSH suppresses inflammatory signalling — most notably the master switch NF-κB — and calms the immune cells that drive and sustain it.',
+  },
+  {
+    q: 'Which melanocortin receptors control inflammation?',
+    a: 'Mainly MC1R and MC3R, acting on immune cells such as macrophages, monocytes, and neutrophils. MC1R broadly dampens inflammatory signalling; MC3R is especially tied to resolving inflammation once it has started. This is a separate arm from MC2R, the receptor that drives cortisol.',
+  },
+  {
+    q: 'How is this different from taking a steroid?',
+    a: 'A steroid works downstream of cortisol. The melanocortin anti-inflammatory arm acts directly on immune cells through MC1R and MC3R, so it can quiet inflammation without producing a glucocorticoid. That steroid-independent action is why ACTH-based therapy has helped inflammatory disease for decades and why newer melanocortin drugs are being designed to separate the two effects.',
+  },
+  {
+    q: 'What drugs target the melanocortin anti-inflammatory pathway?',
+    a: 'Several are in trials: PL-8177, an oral MC1R agonist for ulcerative colitis; PL-9643, a melanocortin eye drop for dry eye disease; resomelagon (AP1189), an oral biased MC1R/MC3R agonist tested in rheumatoid arthritis and kidney disease; and dersimelagon, an MC1R agonist studied in the fibrosis of systemic sclerosis.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Catania A, Gatti S, Colombo G, Lipton JM.',
+    title: 'Targeting melanocortin receptors as a novel strategy to control inflammation.',
+    source: 'Pharmacol Rev. 56(1):1–29.',
+    year: '2004',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15001661/',
+  },
+  {
+    authors: 'Wang W, Guo DY, Lin YJ, Tao YX.',
+    title: 'Melanocortin regulation of inflammation.',
+    source: 'Front Endocrinol (Lausanne). 10:683.',
+    year: '2019',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6794349/',
+  },
+  {
+    authors: 'Getting SJ, Allcock GH, Flower R, Perretti M.',
+    title:
+      'Natural and synthetic agonists of the melanocortin receptor type 3 possess anti-inflammatory properties.',
+    source: 'J Leukoc Biol. 69(1):98–104.',
+    year: '2001',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11200074/',
+  },
+  {
+    authors: 'Montero-Melendez T, Patel HB, Seed M, Nielsen S, Jonassen TEN, Perretti M.',
+    title: 'The melanocortin agonist AP214 exerts anti-inflammatory and proresolving properties.',
+    source: 'Am J Pathol. 179(1):259–269.',
+    year: '2011',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3123798/',
+  },
+  {
+    authors: 'Patel HB, Montero-Melendez T, Greco KV, Perretti M.',
+    title: 'Melanocortin receptors as novel effectors of macrophage responses in inflammation.',
+    source: 'Front Immunol. 2:41.',
+    year: '2011',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3342072/',
+  },
+  {
+    authors: 'Arnason BG, Berkovich R, Catania A, Lisak RP, Zaidi M.',
+    title:
+      'Mechanisms of action of adrenocorticotropic hormone and other melanocortins relevant to the clinical management of patients with multiple sclerosis.',
+    source: 'Mult Scler. 19(2):130–136.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3573675/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Positive topline results from Phase 2 ulcerative colitis study of oral MC1R agonist PL-8177.',
+    source: 'Press release — Phase 2 UC topline (NCT05466890).',
+    year: '2025',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-positive-topline-results-from-phase-2-ulcerative-colitis-uc-study-of-oral-melanocortin-1-receptor-agonist-pl8177-302413472.html',
+  },
+  {
+    authors: 'Kondo M, Suzuki T, Kawano Y, et al.',
+    title:
+      'Dersimelagon, a novel oral melanocortin 1 receptor agonist, demonstrates disease-modifying effects in preclinical models of systemic sclerosis.',
+    source: 'Arthritis Res Ther. 24(1):210.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36050717/',
+  },
+  {
+    authors: 'SynAct Pharma (ACR Convergence).',
+    title:
+      'Efficacy and safety of the biased melanocortin receptor agonist AP1189/resomelagon with methotrexate in DMARD-naïve rheumatoid arthritis: the EXPAND trial.',
+    source: 'Conference abstract — Phase 2b RA (missed primary endpoint; subgroup signal).',
+    year: '2023',
+    url: 'https://acrabstracts.org/abstract/efficacy-and-safety-of-the-biased-melanocortin-receptor-agonist-ap1189-resomelagon-in-combination-with-methotrexate-in-dmard-naive-rheumatoid-arthritis-patients-the-expand-trial/',
+  },
+];
+---
+
+<PageLayout
+  title="Melanocortin control of inflammation"
+  kicker="The fourth axis"
+  description="Beyond pigment, cortisol, and appetite, the melanocortin system has a fourth job — calming inflammation. It runs mainly through MC1R and MC3R on immune cells, works without acting as a steroid, and is now the target of a growing pipeline from ulcerative colitis to dry eye."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Inflammation', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Inflammation'] },
+    { name: 'Alpha-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Alpha-melanocyte-stimulating_hormone'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Beyond pigment, cortisol, and appetite, the melanocortin system has a fourth job: dialling down inflammation. α-MSH is one of the body’s own anti-inflammatory signals.',
+      'The effect runs mainly through MC1R and MC3R on immune cells such as macrophages and neutrophils — not the MC2R cortisol route — so it can calm inflammation without acting as a steroid.',
+      'Melanocortins don’t only switch inflammation off; MC3R signalling actively drives its resolution, helping macrophages clear dead cells and return tissue to baseline.',
+      'This is old and new at once: ACTH-based therapy has treated inflammatory disease since the 1950s, partly through steroid-independent melanocortin signalling.',
+      'A modern pipeline targets the axis directly — oral MC1R agonists for ulcerative colitis (PL-8177), a melanocortin eye drop for dry eye (PL-9643), biased MC1R/MC3R agonists for arthritis (resomelagon), and MC1R agonism for the fibrosis of systemic sclerosis (dersimelagon).',
+    ]}
+  />
+
+  <p>
+    The melanocortin system is best known for the three jobs it advertises on the surface:
+    it sets <a href="/receptors/mc1r">pigment</a>, drives the <a href="/acth">cortisol stress
+    axis</a>, and tunes <a href="/receptors/mc4r">appetite</a>. But it has a quieter fourth
+    career that the newest drugs are built on — it is one of the body’s own brakes on
+    <strong>inflammation</strong>.<Cite n={1} /> The same peptide that darkens skin and
+    signals fullness, <a href="/alpha-msh">α-MSH</a>, is also a potent anti-inflammatory
+    hormone, and it works through both glucocorticoid-dependent and glucocorticoid-independent
+    routes.<Cite n={2} />
+  </p>
+
+  <h2>A signal that calms</h2>
+  <p>
+    Inflammation is the immune system’s fire alarm — useful in a crisis, damaging when it
+    won’t switch off. α-MSH sits on the "off" side of that balance. It suppresses the master
+    inflammatory switch <strong>NF-κB</strong>, dampening the production of the cytokines,
+    nitric oxide, and adhesion molecules that recruit and activate immune cells.<Cite n={1} />
+    The effect is broad: across models of gut, skin, joint, brain, and eye inflammation,
+    melanocortin agonists reduce the inflammatory load — which is exactly why a "pigment and
+    appetite" system keeps turning up in immunology.<Cite n={2} />
+  </p>
+
+  <h2>Which receptors do the work</h2>
+  <p>
+    Crucially, this is a <em>different</em> arm of the system from the one that makes cortisol.
+    The stress axis runs through MC2R on the adrenal gland; the anti-inflammatory arm runs
+    mainly through <strong>MC1R</strong> and <strong>MC3R</strong> expressed directly on immune
+    cells — macrophages, monocytes, and neutrophils.<Cite n={1} /><Cite n={5} /> MC1R broadly
+    lowers inflammatory signalling, while MC3R was singled out early as a distinct
+    anti-inflammatory receptor: synthetic MC3R agonists blunt inflammation in a way that a
+    selective MC4R blocker doesn’t touch.<Cite n={3} />
+  </p>
+
+  <div class="overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Receptor</th>
+          <th>Where it acts</th>
+          <th>Anti-inflammatory role</th>
+          <th>In the clinic</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="/receptors/mc1r">MC1R</a></td>
+          <td>Immune cells, skin, gut and ocular surface</td>
+          <td>Broadly suppresses NF-κB–driven inflammation</td>
+          <td>PL-8177 (colitis), dersimelagon (systemic sclerosis)</td>
+        </tr>
+        <tr>
+          <td><a href="/receptors/mc3r">MC3R</a></td>
+          <td>Macrophages and monocytes</td>
+          <td>Drives resolution — clearing dead cells, switching the response off</td>
+          <td>resomelagon (biased MC1R/MC3R agonist)</td>
+        </tr>
+        <tr>
+          <td><a href="/receptors/mc5r">MC5R</a></td>
+          <td>Lymphocytes, exocrine tissue</td>
+          <td>Least defined; implicated in immune modulation</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Not just off — toward resolution</h2>
+  <p>
+    The most interesting part is not that melanocortins switch inflammation <em>off</em>, but
+    that they help switch it <em>over</em>. Ending an inflammatory response is an active
+    process — the immune system has to clear the debris and the spent cells, a step called
+    <strong>resolution</strong>. Melanocortin signalling promotes it: in one study a melanocortin
+    agonist increased macrophage uptake of dying neutrophils (efferocytosis) and calmed tissue,
+    and that pro-resolving effect was lost in mice without MC3R but preserved without a working
+    MC1R — pinning the resolution job on MC3R specifically.<Cite n={4} /> That places the
+    system inside the modern field of "resolution pharmacology," which aims not to blockade the
+    immune system but to help it finish the job cleanly.<Cite n={5} />
+  </p>
+
+  <ResolutionSwitch />
+
+  <h2>The old drug that did this all along</h2>
+  <p>
+    None of this is entirely new to medicine — it has just been hiding in plain sight. ACTH,
+    given as <a href="/therapeutics">repository corticotropin</a>, has been used against
+    inflammatory disease since the 1950s, and for most of that time the assumption was that it
+    worked purely by telling the adrenal gland to make cortisol. It turns out that a meaningful
+    part of its benefit is <strong>steroid-independent</strong>: ACTH is itself a melanocortin,
+    and it acts directly on melanocortin receptors on immune cells to calm them.<Cite n={6} />
+    The old workhorse was quietly using the fourth axis the whole time — which is precisely the
+    door the newer, more selective drugs are trying to walk through.
+  </p>
+
+  <h2>The pipeline betting on it</h2>
+  <p>
+    For decades this was interesting biology with no clean drug behind it. That is changing, and
+    the anti-inflammatory axis now carries much of the melanocortin pipeline:
+  </p>
+  <ul>
+    <li>
+      <strong><a href="/pl-8177">PL-8177</a></strong> — Palatin’s oral MC1R agonist, engineered
+      to act on the colon lining without being absorbed. Its Phase 2 in ulcerative colitis
+      reported clinical remission in a third of treated patients versus none on placebo, in a
+      small study.<Cite n={7} />
+    </li>
+    <li>
+      <strong><a href="/pl-9643">PL-9643</a></strong> — a melanocortin eye drop for dry eye
+      disease, applying the same tissue-calming biology straight to the ocular surface; it met
+      its co-primary <em>symptom</em> endpoint in a Phase 3 trial.
+    </li>
+    <li>
+      <strong>Resomelagon (AP1189)</strong> — an oral <a href="/effects">biased</a> MC1R/MC3R
+      agonist designed to trigger anti-inflammatory signalling while sparing the pigment
+      pathway. It is worth being honest here: its Phase 2b in rheumatoid arthritis
+      <em>missed</em> its primary endpoint, with activity seen only in a subgroup with active
+      systemic inflammation — a reminder that the frontier is real but unforgiving.<Cite n={9} />
+    </li>
+    <li>
+      <strong><a href="/dersimelagon">Dersimelagon</a></strong> — better known as an oral MC1R
+      agonist for a pigment disorder, but also studied for the inflammation, vascular damage,
+      and fibrosis of systemic sclerosis, where preclinical work showed it hitting all three at
+      once.<Cite n={8} />
+    </li>
+  </ul>
+  <p>
+    Track all of them, dated and sourced, on the <a href="/pipeline">pipeline page</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    The melanocortin anti-inflammatory axis is one of the best examples of what makes this
+    system worth watching: a single family of receptors, reused across organs, that can quiet
+    inflammation without the blunt cost of general immunosuppression — and that can, at least in
+    principle, be separated from the tanning and appetite effects that come bundled with it. The
+    caution is equally real: most of these programmes are early, one flagship arthritis trial has
+    already missed, and "promising in a small study" is not "proven." That is the frontier, stated
+    plainly. For the underlying biology, start with <a href="/alpha-msh">α-MSH</a> and the
+    <a href="/system">system overview</a>.
+  </p>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="inflammation" />
+</PageLayout>

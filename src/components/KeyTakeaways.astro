@@ -1,0 +1,29 @@
+---
+// Answer-first summary block for AEO: self-contained, extractable facts placed
+// near the top of an explainer. The `.key-takeaways` class is referenced by the
+// page's `speakable` schema in BaseLayout, so keep it in sync if renamed.
+interface Props {
+  items: string[];
+  heading?: string;
+}
+const { items, heading = 'Key takeaways' } = Astro.props;
+---
+
+<aside class="key-takeaways not-prose my-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6">
+  <p class="!mt-0 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+    {heading}
+  </p>
+  <ul class="!mt-3 !list-none !pl-0 space-y-2.5">
+    {
+      items.map((it) => (
+        <li class="!mt-0 flex gap-3 text-[15px] leading-relaxed text-[var(--text)]">
+          <span
+            aria-hidden="true"
+            class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"
+          />
+          <span>{it}</span>
+        </li>
+      ))
+    }
+  </ul>
+</aside>

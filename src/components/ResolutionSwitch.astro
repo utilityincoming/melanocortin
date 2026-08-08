@@ -1,0 +1,296 @@
+---
+// "The resolution switch" — an original, self-contained animated explainer for
+// the anti-inflammatory axis. Big idea in one loop: α-MSH activates MC1R/MC3R on
+// a macrophage, which does TWO things — quiets NF-κB (less inflammatory output)
+// AND actively clears the apoptotic cell (efferocytosis) — so the tissue doesn't
+// just switch inflammation off, it RESOLVES back to baseline. No external assets;
+// themed via CSS vars; honours prefers-reduced-motion with a resolved still frame.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="resolution-switch not-prose my-8">
+  <svg
+    viewBox="0 0 820 440"
+    role="img"
+    aria-labelledby="rs-title rs-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="rs-title">The melanocortin resolution switch</title>
+    <desc id="rs-desc"
+      >α-MSH activates MC1R and MC3R on a macrophage, which quiets NF-κB-driven
+      inflammation and clears the apoptotic cell by efferocytosis — moving the
+      tissue from inflamed to resolved rather than merely suppressed.</desc
+    >
+
+    <!-- α-MSH signal token -->
+    <rect x="24" y="40" width="98" height="40" rx="11" class="token" />
+    <text x="73" y="66" text-anchor="middle" class="token-t">α-MSH</text>
+
+    <!-- state pill -->
+    <rect x="648" y="40" width="132" height="30" rx="15" class="status-box" />
+    <text x="714" y="60" text-anchor="middle" class="status-inflamed">INFLAMED</text>
+    <text x="714" y="60" text-anchor="middle" class="status-resolved">RESOLVED</text>
+
+    <!-- the tissue site -->
+    <rect x="150" y="96" width="645" height="250" rx="22" class="tissue" />
+    <rect x="150" y="96" width="645" height="250" rx="22" class="wash wash-flare" />
+    <rect x="150" y="96" width="645" height="250" rx="22" class="wash wash-calm" />
+
+    <!-- α-MSH wire into the tissue, to the receptor -->
+    <path d="M122 60 C176 66 206 128 236 164" class="wire signal-wire" />
+    <circle cx="122" cy="60" r="6" class="signal-pulse" />
+
+    <!-- macrophage -->
+    <circle cx="286" cy="224" r="70" class="macro-glow" />
+    <path
+      class="macrophage"
+      d="M286 150
+         q34 -6 52 16 q26 -10 40 14 q22 6 12 34 q16 24 -8 42
+         q4 30 -30 34 q-18 22 -44 10 q-30 12 -50 -12
+         q-30 -2 -30 -34 q-22 -18 -6 -44 q-8 -30 24 -38 q16 -22 46 -14 z"
+    />
+    <circle cx="286" cy="230" r="15" class="macro-nucleus" />
+    <!-- receptor on the membrane -->
+    <rect x="224" y="150" width="24" height="30" rx="8" class="receptor" />
+    <circle cx="236" cy="165" r="18" class="receptor-glow" />
+    <text x="236" y="140" text-anchor="middle" class="cap">MC1R · MC3R</text>
+    <text x="286" y="320" text-anchor="middle" class="cap-strong">macrophage</text>
+
+    <!-- NF-κB badge (flips off) -->
+    <g class="nfkb-on">
+      <rect x="636" y="112" width="112" height="26" rx="13" />
+      <text x="692" y="129" text-anchor="middle">NF-κB ON</text>
+    </g>
+    <g class="nfkb-off">
+      <rect x="636" y="112" width="112" height="26" rx="13" />
+      <text x="692" y="129" text-anchor="middle">NF-κB off</text>
+    </g>
+
+    <!-- live immune cells (neutrophils) -->
+    <g class="neutrophil">
+      <circle cx="486" cy="152" r="15" />
+      <circle cx="480" cy="147" r="5" class="lobe" />
+      <circle cx="492" cy="149" r="5" class="lobe" />
+      <circle cx="486" cy="158" r="5" class="lobe" />
+    </g>
+    <g class="neutrophil">
+      <circle cx="700" cy="188" r="15" />
+      <circle cx="694" cy="183" r="5" class="lobe" />
+      <circle cx="706" cy="185" r="5" class="lobe" />
+      <circle cx="700" cy="194" r="5" class="lobe" />
+    </g>
+
+    <!-- cytokine sparks (fade as inflammation resolves) -->
+    <g class="cytokine" style="--d:0s">
+      <path d="M470 236 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4 z" />
+    </g>
+    <g class="cytokine" style="--d:.3s">
+      <path d="M566 292 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4 z" />
+    </g>
+    <g class="cytokine" style="--d:.6s">
+      <path d="M628 250 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4 z" />
+    </g>
+
+    <!-- apoptotic cell #2 (cleared quietly) -->
+    <circle cx="702" cy="300" r="13" class="apoptotic apoptotic2" />
+
+    <!-- apoptotic cell #1 — the hero: engulfed by the macrophage -->
+    <g class="effero">
+      <circle cx="540" cy="204" r="15" class="apoptotic" />
+    </g>
+    <text x="540" y="238" text-anchor="middle" class="cap effero-label">apoptotic cell</text>
+
+    <!-- legend -->
+    <g class="legend" transform="translate(0 402)">
+      <circle cx="160" cy="12" r="8" class="chip-flare" />
+      <text x="176" y="16" class="cap">inflammation · cytokines</text>
+      <circle cx="420" cy="12" r="8" class="chip-signal" />
+      <text x="436" y="16" class="cap">α-MSH signal</text>
+      <circle cx="600" cy="12" r="8" class="chip-calm" />
+      <text x="616" y="16" class="cap">resolved tissue</text>
+    </g>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        Not just off — <strong>resolved</strong>. α-MSH activates{' '}
+        <strong>MC1R and MC3R</strong> on a macrophage, which quiets{' '}
+        <strong>NF-κB</strong> and actively clears the dead cell
+        (<strong>efferocytosis</strong>), returning the tissue to baseline rather
+        than merely blunting the immune system.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .resolution-switch {
+    --flare: #d1495b;
+    --calm: #2f9e8f;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .resolution-switch {
+      --flare: #e8697c;
+      --calm: #46c2b0;
+    }
+  }
+
+  .resolution-switch svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  /* text */
+  .cap { font-size: 11.5px; fill: var(--text-muted); }
+  .cap-strong { font-size: 13px; font-weight: 600; fill: var(--text); }
+  .token-t { font-size: 15px; font-weight: 600; fill: var(--accent-strong); }
+
+  /* structure */
+  .token { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .status-box { fill: var(--bg); stroke: var(--border); stroke-width: 1; }
+  .status-inflamed { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; fill: var(--flare); }
+  .status-resolved { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; fill: var(--calm); opacity: 0; }
+  .tissue { fill: var(--bg); stroke: var(--border); stroke-width: 1.5; }
+  .wire { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0.5; }
+  .receptor { fill: var(--accent); }
+  .macrophage { fill: var(--color-pigment-200); stroke: var(--border); stroke-width: 1.5; }
+  .macro-nucleus { fill: var(--bg-elevated); opacity: 0.6; }
+  .neutrophil circle { fill: var(--flare); opacity: 0.85; }
+  .neutrophil .lobe { fill: var(--bg-elevated); opacity: 0.5; }
+  .apoptotic { fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-dasharray: 3 3; }
+  .chip-flare { fill: var(--flare); }
+  .chip-signal { fill: var(--accent); }
+  .chip-calm { fill: var(--calm); }
+
+  .nfkb-on rect { fill: color-mix(in srgb, var(--flare) 18%, var(--bg)); stroke: var(--flare); stroke-width: 1; }
+  .nfkb-on text { font-size: 11px; font-weight: 600; fill: var(--flare); }
+  .nfkb-off rect { fill: color-mix(in srgb, var(--calm) 16%, var(--bg)); stroke: var(--calm); stroke-width: 1; }
+  .nfkb-off text { font-size: 11px; font-weight: 600; fill: var(--calm); }
+  .nfkb-off { opacity: 0; }
+
+  .wash { pointer-events: none; }
+  .wash-flare { fill: var(--flare); opacity: 0.07; }
+  .wash-calm { fill: var(--calm); opacity: 0; }
+
+  /* animation */
+  .signal-pulse {
+    fill: var(--accent); opacity: 0;
+    transform-box: view-box;
+    animation: rsPulse 10s linear infinite;
+  }
+  .macro-glow {
+    fill: var(--accent); opacity: 0;
+    transform-box: fill-box; transform-origin: center;
+    animation: rsMacroGlow 10s linear infinite;
+  }
+  .receptor-glow {
+    fill: var(--accent); opacity: 0;
+    transform-box: fill-box; transform-origin: center;
+    animation: rsMacroGlow 10s linear infinite;
+  }
+  .effero {
+    transform-box: fill-box; transform-origin: center;
+    animation: rsEffero 10s ease-in-out infinite;
+  }
+  .effero-label { animation: rsFadeOut 10s linear infinite; }
+  .apoptotic2 { animation: rsFadeOut 10s linear infinite; }
+  .cytokine {
+    transform-box: fill-box; transform-origin: center;
+    fill: var(--flare);
+    animation: rsTwinkle 1.5s ease-in-out infinite var(--d, 0s), rsCytoClear 10s linear infinite;
+  }
+  .neutrophil { animation: rsDim 10s linear infinite; }
+  .status-inflamed { animation: rsFadeOut 10s linear infinite; }
+  .status-resolved { animation: rsFadeIn 10s linear infinite; }
+  .nfkb-on { animation: rsFadeOut 10s linear infinite; }
+  .nfkb-off { animation: rsFadeIn 10s linear infinite; }
+  .wash-flare { animation: rsWashOut 10s linear infinite; }
+  .wash-calm { animation: rsWashIn 10s linear infinite; }
+
+  @keyframes rsPulse {
+    0%, 8% { opacity: 0; transform: translate(0, 0); }
+    12% { opacity: 1; }
+    22% { opacity: 1; transform: translate(114px, 104px); }
+    26%, 100% { opacity: 0; transform: translate(114px, 104px); }
+  }
+  @keyframes rsMacroGlow {
+    0%, 20% { opacity: 0; }
+    28%, 66% { opacity: 0.55; }
+    82%, 100% { opacity: 0; }
+  }
+  @keyframes rsEffero {
+    0%, 30% { opacity: 1; transform: translate(0, 0) scale(1); }
+    52% { opacity: 1; transform: translate(-188px, 24px) scale(0.12); }
+    56%, 90% { opacity: 0; transform: translate(-188px, 24px) scale(0.12); }
+    93% { opacity: 0; transform: translate(0, 0) scale(1); }
+    98%, 100% { opacity: 1; transform: translate(0, 0) scale(1); }
+  }
+  @keyframes rsCytoClear {
+    0%, 34% { opacity: 1; }
+    58%, 90% { opacity: 0; }
+    98%, 100% { opacity: 1; }
+  }
+  @keyframes rsTwinkle {
+    0%, 100% { transform: scale(0.82); }
+    50% { transform: scale(1.12); }
+  }
+  @keyframes rsDim {
+    0%, 34% { opacity: 1; }
+    62%, 90% { opacity: 0.4; }
+    98%, 100% { opacity: 1; }
+  }
+  @keyframes rsFadeOut {
+    0%, 40% { opacity: 1; }
+    54%, 90% { opacity: 0; }
+    98%, 100% { opacity: 1; }
+  }
+  @keyframes rsFadeIn {
+    0%, 42% { opacity: 0; }
+    56%, 90% { opacity: 1; }
+    97%, 100% { opacity: 0; }
+  }
+  @keyframes rsWashOut {
+    0%, 36% { opacity: 0.07; }
+    60%, 90% { opacity: 0; }
+    98%, 100% { opacity: 0.07; }
+  }
+  @keyframes rsWashIn {
+    0%, 36% { opacity: 0; }
+    62%, 90% { opacity: 0.12; }
+    98%, 100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal-pulse, .macro-glow, .receptor-glow, .effero, .effero-label,
+    .apoptotic2, .cytokine, .neutrophil, .status-inflamed, .status-resolved,
+    .nfkb-on, .nfkb-off, .wash-flare, .wash-calm { animation: none; }
+    .macro-glow, .receptor-glow { opacity: 0.55; }
+    .effero, .effero-label, .apoptotic2, .cytokine, .status-inflamed, .nfkb-on, .wash-flare { opacity: 0; }
+    .status-resolved, .nfkb-off { opacity: 1; }
+    .wash-calm { opacity: 0.12; }
+    .neutrophil { opacity: 0.4; }
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  figcaption strong { color: var(--text); font-weight: 600; }
+</style>

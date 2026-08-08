@@ -3,9 +3,32 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import FAQ from '../../components/FAQ.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import PigmentSwitch from '../../components/PigmentSwitch.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc1r')!;
+
+const faqs = [
+  {
+    q: 'What does the MC1R gene do?',
+    a: 'MC1R is the receptor on pigment cells that decides which type of melanin they make. Strong signalling produces brown-black eumelanin that absorbs UV and protects DNA; weak signalling — as with the red-hair variants — produces reddish pheomelanin, giving red or blond hair, fair skin that burns, and freckling.',
+  },
+  {
+    q: 'Why do people have red hair?',
+    a: 'Red hair comes from loss-of-function variants of MC1R, classically R151C, R160W and D294H. With MC1R signalling weakened, melanocytes default to reddish pheomelanin instead of protective eumelanin — the pigment behind red hair and fair, freckled skin.',
+  },
+  {
+    q: 'Does MC1R affect skin-cancer risk?',
+    a: 'Yes. Red-hair MC1R variants raise the risk of melanoma and other skin cancers, and the effect persists even after accounting for fair skin and red hair. Pheomelanin offers little UV protection and can add oxidative DNA damage, while strong MC1R signalling supports DNA repair and antioxidant defences in melanocytes.',
+  },
+  {
+    q: 'Is it true that redheads need more anaesthetic?',
+    a: 'There is real evidence for it. People with red-hair MC1R variants have been shown to require more general anaesthetic and to respond differently to some painkillers, because MC1R is also active in the nervous system. It is a striking example of a "pigment" gene reaching well beyond the skin.',
+  },
+];
 
 const references = [
   {
@@ -38,6 +61,21 @@ const references = [
     year: '2013',
     url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
   },
+  {
+    authors: 'Liem EB, Lin CM, Suleman MI, et al.',
+    title: 'Anesthetic requirement is increased in redheads.',
+    source: 'Anesthesiology. 101(2):279–83.',
+    year: '2004',
+    url: 'https://journals.lww.com/anesthesiology/fulltext/2004/08000/anesthetic_requirement_is_increased_in_redheads.5.aspx',
+  },
+  {
+    authors: 'Mogil JS, Wilson SG, Chesler EJ, et al.',
+    title:
+      'The melanocortin-1 receptor gene mediates female-specific mechanisms of analgesia in mice and humans.',
+    source: 'Proc Natl Acad Sci USA. 100(8):4867–72.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12663858/',
+  },
 ];
 ---
 
@@ -46,8 +84,21 @@ const references = [
   kicker="Receptor · Melanocortin 1 receptor"
   description="The receptor on melanocytes that decides between protective brown-black eumelanin and reddish pheomelanin. Its weak variants explain red hair and fair skin — and carry an independent melanoma risk."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC1R is the switch on melanocytes between protective brown-black eumelanin and reddish, poorly protective pheomelanin.',
+      'α-MSH or ACTH activation (via Gs → cAMP → MITF) pushes toward eumelanin; weak signalling tips toward pheomelanin — red or blond hair, fair skin that burns, and freckling.',
+      'Loss-of-function variants (classically R151C, R160W, D294H) raise cutaneous melanoma risk even after accounting for visible skin and hair colour.',
+      'The MC1R agonist afamelanotide (Scenesse) is used to raise protective eumelanin in erythropoietic protoporphyria.',
+    ]}
+  />
 
   <p>
     MC1R is the melanocortin system's contribution to how you look — and to how
@@ -74,6 +125,8 @@ const references = [
     colour in other mammals.<Cite n={1} />
   </p>
 
+  <PigmentSwitch />
+
   <h2>The "red hair" variants</h2>
   <p>
     MC1R is one of the most variable genes in the human genome. A handful of
@@ -96,7 +149,21 @@ const references = [
     repair and antioxidant defences in melanocytes.<Cite n={2} />
   </p>
 
-  <h2>Beyond pigment</h2>
+  <h2>Beyond pigment: pain and anaesthesia</h2>
+  <p>
+    One of the strangest facts about MC1R is that a pigment gene reaches into the
+    nervous system. Because the receptor is also active in neural tissue, red-hair
+    variants track with measurable differences in how people experience pain and
+    respond to anaesthesia. In a controlled study, red-haired women needed about
+    19% more of the anaesthetic desflurane than dark-haired women to block a
+    response to a painful stimulus.<Cite n={5} /> And people carrying two variant
+    MC1R alleles show altered responses to certain opioid painkillers — an effect
+    first mapped in mice, then confirmed in humans, and partly sex-specific.<Cite n={6} />
+    The mechanisms are still being untangled, but the headline is clear: the
+    "redhead" receptor is not only about colour.
+  </p>
+
+  <h2>Beyond pigment: immunity and therapy</h2>
   <p>
     MC1R is not confined to the skin. It is also expressed on immune cells, where
     melanocortin signalling is broadly anti-inflammatory — one reason the receptor
@@ -109,5 +176,9 @@ const references = [
 
   <p><a href="/receptors">← Back to all receptors</a></p>
 
+  <FAQ items={faqs} />
+
   <References items={references} />
+
+  <RelatedPages slug="receptors/mc1r" />
 </PageLayout>

@@ -3,9 +3,31 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ReceptorFacts from '../../components/ReceptorFacts.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+import FAQ from '../../components/FAQ.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc5r')!;
+
+const faqs = [
+  {
+    q: 'What does the MC5R receptor do?',
+    a: 'MC5R’s best-defined job is controlling exocrine glands — most clearly the sebaceous glands that produce the sebum and lipids that oil skin and fur. It also appears on lacrimal and other exocrine tissues and on immune cells, where its role is still being mapped.',
+  },
+  {
+    q: 'How do we know MC5R controls sebum?',
+    a: 'When the Mc5r gene is deleted in mice, the animals develop defective water repulsion and thermoregulation traced to reduced sebaceous lipid production, along with impairment of other exocrine glands — showing that one receptor coordinates secretion across several gland types.',
+  },
+  {
+    q: 'Is MC5R involved in acne?',
+    a: 'Possibly. Because MC5R helps regulate sebaceous output, it is of interest in sebum-driven skin conditions such as acne, and modulating it is one theoretical route to reducing sebum. This is an area of active research rather than established treatment.',
+  },
+  {
+    q: 'Why is MC5R the least understood melanocortin receptor?',
+    a: 'Its messenger RNA appears in a very wide range of tissues, which long obscured a single core function, and its human physiology is still being mapped. The clearest role — exocrine secretion — comes largely from mouse knockouts; the immune and metabolic roles are less settled.',
+  },
+];
 
 const references = [
   {
@@ -38,8 +60,20 @@ const references = [
   kicker="Receptor · Melanocortin 5 receptor"
   description="The least understood of the five, but with a clear signature role: regulating exocrine glands, most notably the sebaceous glands that oil skin and fur."
   updated="2026"
+  about={[
+    { name: 'Melanocortin 5 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_5_receptor'] },
+  ]}
 >
   <ReceptorFacts receptor={receptor} />
+
+  <KeyTakeaways
+    items={[
+      'MC5R is the least understood of the five melanocortin receptors, but with a clear signature role in exocrine glands.',
+      'Its best-defined job is regulating sebaceous secretion — the sebum and lipids that oil skin and fur; it also sits on lacrimal and immune cells.',
+      'It is activated by α-MSH and ACTH.',
+      'Knockout models show defective sebaceous secretion and altered thermoregulation; the human role is still being mapped.',
+    ]}
+  />
 
   <p>
     MC5R is the melanocortin family's generalist. Its messenger RNA shows up in a
@@ -71,6 +105,24 @@ const references = [
     unresolved, this page says so rather than overstating it.
   </p>
 
+  <h2>The immune side, and why MC5R is watched</h2>
+  <p>
+    Beyond the sebaceous gland, MC5R turns up on immune cells — B and T
+    lymphocytes among them — where melanocortin signalling helps regulate the
+    inflammatory response. That places MC5R, like its receptor cousins, inside the
+    melanocortin system's broad anti-inflammatory reach, and it is one reason the
+    receptor is studied as a potential target in autoimmune and inflammatory
+    conditions.<Cite n={3} />
+  </p>
+  <p>
+    The therapeutic interest cuts two ways. In the skin, an MC5R modulator that
+    turns sebaceous output down is an appealing idea for acne and other
+    sebum-driven conditions; in the immune system, MC5R agonism is explored for a
+    calming, resolving effect on inflammation.<Cite n={3} /> None of this has
+    produced an approved drug, and MC5R remains the least pinned-down of the five —
+    but it reads as a genuine frontier rather than a closed chapter.
+  </p>
+
   <p>
     For how MC5R fits the broader system, see the
     <a href="/system">overview pillar</a>; the related skin receptor is
@@ -79,5 +131,9 @@ const references = [
 
   <p><a href="/receptors">← Back to all receptors</a></p>
 
+  <FAQ items={faqs} />
+
   <References items={references} />
+
+  <RelatedPages slug="receptors/mc5r" />
 </PageLayout>
