@@ -1,0 +1,170 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import PigmentSwitch from '../components/PigmentSwitch.astro';
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Nasti TH, Timares L.',
+    title:
+      'MC1R, eumelanin and pheomelanin: their role in determining the susceptibility to skin cancer.',
+    source: 'Photochem Photobiol. 91(1):188–200.',
+    year: '2015',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4299862/',
+  },
+  {
+    authors: 'Beaumont KA, et al.',
+    title:
+      'Altered cell surface expression of human MC1R variant receptor alleles associated with red hair and skin cancer risk.',
+    source: 'Hum Mol Genet. 14(15):2145–54.',
+    year: '2005',
+    url: 'https://academic.oup.com/hmg/article/14/15/2145/551635',
+  },
+  {
+    authors: 'US FDA.',
+    title:
+      'SCENESSE (afamelanotide) implant, for subcutaneous use — prescribing information.',
+    source: 'FDA label (NDA 210797) — mechanism, indication, and dosing.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+  {
+    authors: 'Drugs.com.',
+    title: 'Scenesse (afamelanotide) FDA approval history.',
+    source: 'Summary of the 8 October 2019 approval for erythropoietic protoporphyria.',
+    year: '2019',
+    url: 'https://www.drugs.com/history/scenesse.html',
+  },
+];
+---
+
+<PageLayout
+  title="Why melanocortins"
+  kicker="Why this exists"
+  description="One ancient gene keeps the whole body in balance — its colour, its hunger, its answer to stress, the way it heals. This page is the reason melanocortin.com exists: to map that system with equal parts wonder and rigour."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Pro-opiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
+>
+  <p>
+    Long before there were drugs, there was the signal. A single ancient gene —
+    pro-opiomelanocortin, or POMC — is cut, tissue by tissue, into a family of
+    short peptides the body uses to keep itself in balance: to set the colour
+    that shields skin from light, to answer a hard day with cortisol, to say
+    <em>enough</em> at the end of a meal, to let an inflamed tissue stand down and
+    heal. Five receptors read that signal; two natural brakes oppose it; and from
+    that small, economical toolkit comes a startling share of human
+    physiology.<Cite n={1} />
+  </p>
+  <p>
+    For most of a century this was biology's most elegant footnote — admired,
+    mapped, and undruggable. Then, in the span of a few years, it became one of
+    medicine's most productive frontiers. melanocortin.com exists to hold both of
+    those truths at once: the wonder of a system the body already uses to protect
+    and repair itself, and the discipline of saying only what the evidence will
+    bear.
+  </p>
+
+  <h2>The visible tip</h2>
+  <p>
+    Pigmentation is the part of this system you can see, and it is the smallest
+    part of what the system does. On the surface of every pigment cell sits MC1R,
+    a switch with two settings. Turned up — by α-MSH, the system's own messenger
+    — it lays down <strong>eumelanin</strong>, the brown-black pigment that
+    absorbs ultraviolet light and shields the DNA beneath it. Left quiet, the same
+    cell defaults to <strong>pheomelanin</strong>, a red-gold pigment that is a
+    poor sunscreen and, under UV, can generate the very damage melanin is meant to
+    prevent.<Cite n={2} /> The tan you build in the sun is not decoration; it is
+    this switch doing its job — the melanocortin system reading the light and
+    answering with protection.<Cite n={1} />
+  </p>
+
+  <PigmentSwitch />
+
+  <p>
+    For some people, the switch is quiet from birth. The common "red-hair" variants
+    of <a href="/receptors/mc1r">MC1R</a> never traffic properly to the cell
+    surface, so even when the messenger arrives, less of the signal gets
+    through.<Cite n={3} /> The visible result is fair skin, freckles, hair that
+    runs to red or gold — and skin that burns where others tan. The invisible
+    result is a lifetime of greater exposure to what sunlight does to unshielded
+    DNA.<Cite n={2} /> It is, in the most literal sense, a difference written into
+    one receptor.
+  </p>
+
+  <h2>What it asks of you</h2>
+  <p>
+    To live with that switch turned low is to learn a discipline early — the
+    routine most people never think about and those who burn can never quite
+    forget: sun protection made a habit, shade found on instinct, the quiet
+    arithmetic of what a bright day will cost. Carried grudgingly, it curdles into
+    self-consciousness. Carried with understanding — knowing exactly which cell,
+    which receptor, which pigment is at stake — it becomes something closer to
+    stewardship of your own skin. Knowing the mechanism doesn't lift the burden,
+    but it changes the mindset you carry it with; and a burden you understand is
+    one you can keep carrying, consistently, for a lifetime. Helping with that
+    understanding is part of why this site exists.
+  </p>
+
+  <h2>Medicine learned to answer</h2>
+  <p>
+    Here is what turns wonder into more than a feeling: the switch can be spoken
+    to. Afamelanotide is a sturdier copy of the body's own α-MSH — an MC1R agonist
+    that drives protective eumelanin directly, without waiting for the sunlight
+    that, for some people, only causes harm.<Cite n={4} /> In 2019 it became the
+    first treatment ever approved for erythropoietic protoporphyria, a disorder in
+    which light is not an inconvenience but agony; people who had organised their
+    whole lives around avoiding the sun gained real, measured hours of
+    tolerance.<Cite n={5} /> It is a small, exact proof of something larger — that
+    a signal the body has always used to protect itself can be restored on
+    purpose, and that the melanocortin pigment switch is genuinely druggable, even
+    genuinely kind. See the full entries on
+    <a href="/afamelanotide">afamelanotide</a> and
+    <a href="/receptors/mc1r">MC1R, the pigment switch</a>.
+  </p>
+  <p>
+    That is also where we are careful. The line between a medicine that restores
+    protection for a painful disease and a peptide sold online to tan on demand is
+    a real one, and we draw it in the open — risks and all — on the
+    <a href="/afamelanotide">afamelanotide</a> and <a href="/melanotan">melanotan</a>
+    pages. Reverence for the biology is not the same as a recommendation, and we
+    never let the first quietly become the second.
+  </p>
+
+  <h2>The two truths</h2>
+  <p>
+    So we hold two truths on every page. We revere the biology — a system this
+    old, this economical, this quietly central to being alive earns awe. And we
+    cite the claims — because awe without rigour is just marketing, and the reader
+    deserves better than to be sold to. Where the science is settled, we say so
+    plainly. Where it is unsettled, we call it the frontier, not a sure thing. The
+    wonder is real, and it is earned page by page. New here? Start with
+    <a href="/system">the melanocortin system</a> — the whole map in one page — or
+    read how we work in the <a href="/about">editorial standards</a>.
+  </p>
+
+  <div class="not-prose mt-10 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains why the melanocortin system matters and how it works. It
+      is not medical advice, and it is never a protocol — it gives no dosing,
+      sourcing, or usage instructions for any drug, approved or otherwise. For the
+      science and the documented risks in full, see
+      <a href="/afamelanotide">afamelanotide</a>, <a href="/melanotan">melanotan</a>,
+      and the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <References items={references} />
+</PageLayout>
