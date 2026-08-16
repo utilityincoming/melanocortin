@@ -15,6 +15,11 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'The melanocortin system',
     blurb: 'How one precursor, POMC, becomes the peptides that signal across pigment, stress, appetite, and inflammation.',
   },
+  'fearfully-and-wonderfully-made': {
+    href: '/fearfully-and-wonderfully-made',
+    title: 'Fearfully and Wonderfully Made',
+    blurb: 'An essay on skin, sun, and vitamin D — and teaching a new generation without shame.',
+  },
   'alpha-msh': {
     href: '/alpha-msh',
     title: 'α-MSH — the prototype signal',
@@ -183,8 +188,9 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
+  'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
   receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics'],
-  'receptors/mc1r': ['afamelanotide', 'mc1r-pain', 'alpha-msh', 'asip', 'genetics'],
+  'receptors/mc1r': ['afamelanotide', 'mc1r-pain', 'alpha-msh', 'asip', 'genetics', 'fearfully-and-wonderfully-made'],
   'receptors/mc2r': ['acth', 'alpha-msh', 'system'],
   'receptors/mc3r': ['gamma-msh', 'receptors/mc4r', 'inflammation', 'agrp', 'genetics'],
   'receptors/mc4r': ['setmelanotide', 'bivamelagon', 'agrp', 'glp1-appetite', 'alpha-msh'],
@@ -205,7 +211,7 @@ export const RELATED: Record<string, string[]> = {
   setmelanotide: ['hypothalamic-obesity', 'bivamelagon', 'glp1-appetite', 'receptors/mc4r', 'genetics'],
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'bivamelagon', 'glp1-appetite', 'receptors/mc4r', 'genetics'],
-  genetics: ['receptors/mc1r', 'receptors/mc4r', 'asip', 'setmelanotide', 'hypothalamic-obesity'],
+  genetics: ['receptors/mc1r', 'receptors/mc4r', 'asip', 'setmelanotide', 'hypothalamic-obesity', 'fearfully-and-wonderfully-made'],
   inflammation: ['alpha-msh', 'receptors/mc3r', 'pl-8177', 'pl-9643', 'dersimelagon'],
   'mc1r-pain': ['receptors/mc1r', 'receptors/mc4r', 'alpha-msh', 'effects'],
   bivamelagon: ['setmelanotide', 'receptors/mc4r', 'hypothalamic-obesity', 'oral-peptides'],

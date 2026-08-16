@@ -1,0 +1,163 @@
+---
+// "Every skin is a strategy" — an original, self-contained diagram.
+// The core idea in one image: human skin colour tracks ultraviolet light.
+// Under strong equatorial sun, more melanin wins (it shields DNA and folate);
+// under weak high-latitude sun, less melanin wins (it lets sunlight make
+// vitamin D). Aligning the UV band above the skin spectrum shows the
+// correlation; the end-notes give the mechanism. No external assets; themes via
+// CSS vars. Deliberately calm/static to suit the essay's register.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="skin-strategy not-prose my-8">
+  <svg
+    viewBox="0 0 820 400"
+    role="img"
+    aria-labelledby="sk-title sk-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="sk-title">Every skin is a strategy</title>
+    <desc id="sk-desc"
+      >Human skin colour tracks ultraviolet light. Under the strong sun near the
+      equator, more melanin is protective because it shields DNA and folate;
+      under the weak sun near the poles, less melanin is favoured because it lets
+      sunlight make vitamin D. Each complexion is the balance struck for a
+      particular sky.</desc
+    >
+
+    <!-- ===== UV band: the driver ===== -->
+    <text x="60" y="34" class="head">Ultraviolet light reaching the skin</text>
+    <rect x="60" y="46" width="700" height="24" rx="12" fill="url(#uvGrad)" />
+    <text x="62" y="92" class="cap">strong — near the equator</text>
+    <text x="758" y="92" text-anchor="end" class="cap">weak — near the poles</text>
+
+    <!-- ===== Skin spectrum: the outcome ===== -->
+    <text x="62" y="138" class="cap-strong">richly pigmented skin</text>
+    <text x="758" y="138" text-anchor="end" class="cap-strong">fair skin</text>
+    <rect
+      x="60"
+      y="150"
+      width="700"
+      height="84"
+      rx="18"
+      fill="url(#skinGrad)"
+      stroke="var(--border)"
+      stroke-width="1"
+    />
+
+    <!-- ===== Mechanism: the two pressures ===== -->
+    <text x="62" y="272" class="reason">shields DNA &amp; folate from UV</text>
+    <text x="758" y="272" text-anchor="end" class="reason">lets sunlight make vitamin D</text>
+
+    <!-- ===== Meaning ===== -->
+    <text x="410" y="330" text-anchor="middle" class="meaning">
+      Each complexion is the balance struck for its ancestral sky.
+    </text>
+    <text x="410" y="356" text-anchor="middle" class="cap">
+      A spectrum of solutions to one problem — not a ladder.
+    </text>
+
+    <defs>
+      <linearGradient id="uvGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" class="uv-a" />
+        <stop offset="100%" class="uv-b" />
+      </linearGradient>
+      <linearGradient id="skinGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" class="s-dark" />
+        <stop offset="100%" class="s-light" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        Skin colour is not scattered at random — it tracks the sun. Where UV is
+        strong, more melanin protects; where UV is weak, less melanin lets the
+        body make vitamin D. Dark and fair are both fitted answers to a
+        different sky.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .skin-strategy {
+    --pheo: var(--color-pigment-200);
+    --eumel: var(--color-pigment-900);
+    --uv: #7b6cd6;
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .skin-strategy {
+      --pheo: var(--color-pigment-300);
+      --eumel: var(--color-pigment-800);
+      --uv: #9b8cf0;
+    }
+  }
+
+  .skin-strategy svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  .head {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .cap {
+    font-size: 12px;
+    fill: var(--text-muted);
+  }
+  .cap-strong {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .reason {
+    font-size: 12.5px;
+    fill: var(--accent-strong);
+  }
+  .meaning {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    font-style: italic;
+    fill: var(--text);
+  }
+
+  .uv-a {
+    stop-color: var(--uv);
+  }
+  .uv-b {
+    stop-color: var(--uv);
+    stop-opacity: 0.12;
+  }
+  .s-dark {
+    stop-color: var(--eumel);
+  }
+  .s-light {
+    stop-color: var(--pheo);
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+</style>
