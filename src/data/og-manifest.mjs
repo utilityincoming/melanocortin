@@ -49,4 +49,7 @@ export const ogPages = [
   { slug: 'inflammation', eyebrow: 'THE FOURTH AXIS', title: 'Melanocortin control of inflammation' },
   { slug: 'mc1r-pain', eyebrow: 'MC1R · PAIN', title: 'Red hair, MC1R & pain' },
   { slug: 'bivamelagon', eyebrow: 'EXPLAINER', title: 'Bivamelagon — oral MC4R agonist' },
+
+  // Essay.
+  { slug: 'fearfully-and-wonderfully-made', eyebrow: 'ESSAY', title: 'Fearfully and Wonderfully Made' },
 ];
