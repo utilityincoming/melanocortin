@@ -1,0 +1,117 @@
+---
+// dersimelagon-oral-turn — afamelanotide vs dersimelagon: same target (MC1R),
+// same goal (protective pigment for EPP), different molecule and route. The
+// approved peptide implant vs the investigational small-molecule pill, both
+// converging on the one switch. SVG-only; wrap in <Figure>.
+---
+
+<svg class="oral-fig" viewBox="0 0 860 344" role="img" aria-labelledby="oral-t oral-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="oral-t">Afamelanotide versus dersimelagon</title>
+  <desc id="oral-d"
+    >Afamelanotide is an α-MSH-like peptide given as a two-monthly implant;
+    dersimelagon is a small-molecule tablet taken once daily. Both activate the
+    same MC1R receptor to build protective eumelanin for photoprotection in
+    erythropoietic protoporphyria — same target and goal, different molecule and
+    route.</desc
+  >
+
+  <!-- ===== Card A: afamelanotide ===== -->
+  <rect class="card" x="24" y="52" width="330" height="122" rx="10" />
+  <text x="44" y="80" class="card-t">afamelanotide</text>
+  <rect class="badge" x="246" y="60" width="96" height="22" rx="11" />
+  <text x="294" y="75" text-anchor="middle" class="badge-t">approved 2019</text>
+  <!-- peptide chain glyph -->
+  <line class="chain" x1="52" y1="112" x2="124" y2="112" />
+  <circle class="pep" cx="52" cy="112" r="6" /><circle class="pep" cx="70" cy="112" r="6" />
+  <circle class="pep" cx="88" cy="112" r="6" /><circle class="pep" cx="106" cy="112" r="6" />
+  <circle class="pep" cx="124" cy="112" r="6" />
+  <text x="88" y="136" text-anchor="middle" class="glyph-l">peptide</text>
+  <text x="162" y="107" class="attr">α-MSH analogue · 16 mg</text>
+  <text x="162" y="127" class="attr">implant · every ~2 months</text>
+  <text x="162" y="147" class="attr">placed by a clinician</text>
+
+  <!-- ===== Card B: dersimelagon ===== -->
+  <rect class="card" x="24" y="196" width="330" height="122" rx="10" />
+  <text x="44" y="224" class="card-t">dersimelagon</text>
+  <rect class="badge badge-open" x="238" y="204" width="104" height="22" rx="11" />
+  <text x="290" y="219" text-anchor="middle" class="badge-t">Phase 3 · 2026</text>
+  <!-- small-molecule glyph -->
+  <polygon class="mol" points="74,247 62.7,253.5 62.7,266.5 74,273 85.3,266.5 85.3,253.5" />
+  <rect class="pill" x="100" y="253" width="34" height="14" rx="7" />
+  <line class="pill-score" x1="117" y1="254" x2="117" y2="266" />
+  <text x="98" y="290" text-anchor="middle" class="glyph-l">small-molecule pill</text>
+  <text x="162" y="251" class="attr">MT-7117 · non-peptide</text>
+  <text x="162" y="271" class="attr">tablet · once daily</text>
+  <text x="162" y="291" class="attr">taken at home</text>
+
+  <!-- ===== converge on MC1R ===== -->
+  <path class="feed" d="M356 116 Q452 150 516 178" />
+  <path class="feed" d="M356 262 Q452 222 516 194" />
+  <circle class="mc1r-glow" cx="540" cy="185" r="22" />
+  <rect class="receptor" x="526" y="165" width="28" height="40" rx="9" />
+  <text x="540" y="151" text-anchor="middle" class="cap-a">MC1R</text>
+  <text x="540" y="224" text-anchor="middle" class="cap">one shared switch</text>
+
+  <!-- ===== outcome: protective pigment ===== -->
+  <path class="wire" d="M558 185 H642" marker-end="url(#oral-ah)" />
+  <path class="shield" d="M648 160 Q736 138 824 160" />
+  <rect class="skin" x="648" y="163" width="176" height="44" rx="14" />
+  <text x="736" y="190" text-anchor="middle" class="skin-t">eumelanin</text>
+  <text x="736" y="230" text-anchor="middle" class="cap-a">protective pigment → tolerate light (EPP)</text>
+
+  <defs>
+    <marker id="oral-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .oral-fig {
+    --eumel: var(--color-pigment-900);
+    --on-dark: #fdf5ea;
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .oral-fig { --eumel: var(--color-pigment-700); }
+  }
+
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card-t { font-size: 14px; font-weight: 600; fill: var(--accent-strong); }
+  .badge { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .badge-open { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 3; }
+  .badge-t { font-size: 9.5px; font-weight: 600; fill: var(--accent-strong); }
+  .chain { stroke: var(--accent); stroke-width: 2; }
+  .pep { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+  .mol { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+  .pill { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
+  .pill-score { stroke: var(--on-dark); stroke-width: 1; opacity: 0.7; }
+  .glyph-l { font-size: 10px; fill: var(--text-muted); }
+  .attr { font-size: 11.5px; fill: var(--text); }
+
+  .feed { fill: none; stroke: var(--accent); stroke-width: 1.6; opacity: 0.3; stroke-dasharray: 3 4; }
+  .mc1r-glow { fill: var(--accent); opacity: 0; animation: oral-glow 4.5s ease-in-out infinite; }
+  .receptor { fill: var(--accent); }
+  .cap-a { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }
+  .cap { font-size: 11px; fill: var(--text-muted); }
+  .wire { stroke: var(--border); stroke-width: 2; fill: none; }
+  .arrowhead { fill: var(--text-muted); }
+  .shield { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; opacity: 0.9; }
+  .skin { fill: var(--eumel); stroke: var(--border); stroke-width: 1; }
+  .skin-t { font-size: 11px; font-weight: 600; fill: var(--on-dark); }
+
+  @keyframes oral-glow {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.8; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mc1r-glow { animation: none; opacity: 0.5; }
+  }
+</style>
