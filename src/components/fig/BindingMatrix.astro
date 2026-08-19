@@ -1,0 +1,127 @@
+---
+// The melanocortin binding matrix — every catalogued ligand against all five
+// receptors, sized by binding strength (p = −log10 affinity; bigger = tighter).
+// Filled disc = agonist (activates); ring with a bar = antagonist (blocks);
+// blank = no curated value. Data + citations live in src/data/binding.ts.
+import { bindingRows } from '../../data/binding';
+import { receptorIds, receptorTag } from '../../data/ligands';
+
+const colX = 162;
+const colW = 108;
+const cx = (j: number) => colX + j * colW + colW / 2;
+const row0 = 62;
+const rowH = 52;
+const cy = (i: number) => row0 + i * rowH + rowH / 2;
+const clamp = (p: number) => Math.max(5, Math.min(10, p));
+const rad = (p: number) => 6 + ((clamp(p) - 5) / 5) * 12;
+const op = (p: number) => 0.32 + ((clamp(p) - 5) / 5) * 0.5;
+const gridRight = colX + receptorIds.length * colW; // 702
+const bottom = row0 + bindingRows.length * rowH; // 62 + 468 = 530
+---
+
+<svg class="bind-fig" viewBox="0 0 720 600" role="img" aria-labelledby="bind-t bind-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="bind-t">The melanocortin receptor binding matrix</title>
+  <desc id="bind-d"
+    >Binding strength of each melanocortin ligand at receptors MC1R through MC5R.
+    Each disc is sized by affinity (bigger = tighter binding); filled discs are
+    agonists that activate the receptor, rings are antagonists that block it, and
+    blank cells have no curated value. MC2R responds almost only to ACTH.</desc
+  >
+
+  <!-- zebra rows -->
+  {bindingRows.map((r, i) => i % 2 === 1 && (
+    <rect class="zebra" x={colX} y={cy(i) - rowH / 2} width={gridRight - colX} height={rowH} />
+  ))}
+
+  <!-- column separators -->
+  {receptorIds.map((_, j) => (
+    <line class="sep" x1={colX + j * colW} y1={row0 - 30} x2={colX + j * colW} y2={bottom} />
+  ))}
+  <line class="sep" x1={gridRight} y1={row0 - 30} x2={gridRight} y2={bottom} />
+
+  <!-- column headers -->
+  {receptorIds.map((rid, j) => (
+    <g>
+      <text x={cx(j)} y={row0 - 32} text-anchor="middle" class="col-h">{rid}</text>
+      <text x={cx(j)} y={row0 - 18} text-anchor="middle" class="col-tag">{receptorTag[rid]}</text>
+    </g>
+  ))}
+
+  <!-- rows -->
+  {bindingRows.map((r, i) => (
+    <g>
+      <text x={150} y={cy(i) - 3} text-anchor="end" class="row-name">{r.name}</text>
+      <text x={150} y={cy(i) + 12} text-anchor="end" class="row-role">{r.role}</text>
+      {receptorIds.map((rid, j) => {
+        const c = r.cells[rid];
+        if (!c) return <text x={cx(j)} y={cy(i) + 4} text-anchor="middle" class="blank">·</text>;
+        const cxj = cx(j);
+        const cyi = cy(i) - 6;
+        const rr = rad(c.p);
+        return (
+          <g>
+            {c.action === 'agonist' ? (
+              <circle cx={cxj} cy={cyi} r={rr} class="ago" style={`opacity:${op(c.p).toFixed(2)}`} />
+            ) : (
+              <g class="anta">
+                <circle cx={cxj} cy={cyi} r={rr} class="anta-ring" />
+                <line x1={cxj - rr * 0.66} y1={cyi} x2={cxj + rr * 0.66} y2={cyi} class="anta-bar" />
+              </g>
+            )}
+            <text x={cxj} y={cy(i) + 19} text-anchor="middle" class={c.action === 'agonist' ? 'val' : 'val val-x'}>
+              {c.display}{c.species === 'mouse' ? 'ᵐ' : ''}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  ))}
+
+  <!-- legend -->
+  <g transform={`translate(0 ${bottom + 22})`}>
+    <circle class="ago" cx="24" cy="8" r="6" style="opacity:0.4" />
+    <circle class="ago" cx="52" cy="8" r="10" style="opacity:0.6" />
+    <circle class="ago" cx="86" cy="8" r="15" style="opacity:0.8" />
+    <text x="108" y="12" class="leg">= binding strength (bigger = tighter)</text>
+    <circle class="ago" cx="356" cy="8" r="8" style="opacity:0.7" />
+    <text x="370" y="12" class="leg">agonist</text>
+    <g>
+      <circle class="anta-ring" cx="446" cy="8" r="8" />
+      <line class="anta-bar" x1="440" y1="8" x2="452" y2="8" />
+    </g>
+    <text x="460" y="12" class="leg">antagonist</text>
+    <text x="16" y="40" class="leg-s">Values are pKi / pKd / pIC50 (−log₁₀ M) curated by IUPHAR/BPS GtoPdb; human unless ᵐ (mouse); blank = no curated value.</text>
+  </g>
+</svg>
+
+<style>
+  .bind-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .zebra { fill: var(--accent-soft); opacity: 0.28; }
+  .sep { stroke: var(--border); stroke-width: 1; opacity: 0.6; }
+  .col-h { font-size: 13px; font-weight: 700; fill: var(--accent-strong); }
+  .col-tag { font-size: 9.5px; fill: var(--text-muted); }
+  .row-name { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .row-role { font-size: 9.5px; fill: var(--text-muted); }
+  .ago { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 0.75; }
+  .anta-ring { fill: none; stroke: var(--block); stroke-width: 2.4; }
+  .anta-bar { stroke: var(--block); stroke-width: 2.4; stroke-linecap: round; }
+  .val { font-size: 11px; font-weight: 600; fill: var(--text); }
+  .val-x { fill: var(--block); }
+  .blank { font-size: 13px; fill: var(--text-muted); opacity: 0.4; }
+  .leg { font-size: 11px; fill: var(--text-muted); }
+  .leg-s { font-size: 10px; fill: var(--text-muted); }
+
+  .bind-fig { --block: #4f6d8c; }
+  @media (prefers-color-scheme: dark) {
+    .bind-fig { --block: #8fabc7; }
+  }
+</style>
