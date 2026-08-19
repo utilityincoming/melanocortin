@@ -5,6 +5,8 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import AppetiteSentence from '../components/fig/AppetiteSentence.astro';
+import KeyForOneLock from '../components/fig/KeyForOneLock.astro';
 
 const faqs = [
   {
@@ -69,6 +71,23 @@ const references = [
     year: '2026',
     url: 'https://www.biospace.com/press-releases/rhythm-pharmaceuticals-announces-the-new-england-journal-of-medicine-publication-of-phase-3-transcend-trial-results-in-acquired-hypothalamic-obesity',
   },
+  {
+    authors: 'Clément K, van den Akker E, Argente J, et al.',
+    title:
+      'Efficacy and safety of setmelanotide, an MC4R agonist, in individuals with severe obesity due to LEPR or POMC deficiency: single-arm, open-label, multicentre, phase 3 trials.',
+    source:
+      'Lancet Diabetes Endocrinol — pivotal genetic-obesity trials; 80% (POMC) and 45% (LEPR) achieved ≥10% weight loss at ~1 year. PMID 33137293.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33137293/',
+  },
+  {
+    authors: 'TRANSCEND investigators.',
+    title: 'Setmelanotide for the treatment of acquired hypothalamic obesity.',
+    source:
+      'N Engl J Med — the Phase 3 TRANSCEND trial: −16.5% BMI on setmelanotide vs +3.3% on placebo at 52 weeks (N=120). PMID 42418774.',
+    year: '2026',
+    url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2512275',
+  },
 ];
 ---
 
@@ -117,6 +136,8 @@ const references = [
     directly, restoring the downstream signal that the missing upstream input can no
     longer generate.<Cite n={2} />
   </p>
+  <AppetiteSentence />
+
   <p>
     That mechanism explains the drug's unusual precision. It works best exactly where
     the defect sits above the receptor — in POMC itself, in the processing enzyme
@@ -124,12 +145,18 @@ const references = [
     caused by damage to MC4R itself, because a broken receptor cannot be switched on.
   </p>
 
+  <KeyForOneLock />
+
   <h2>Three approvals, tracking the science outward</h2>
   <p>
     Setmelanotide's approval history reads as a widening circle around that one
     circuit. The FDA first cleared it in November 2020 for obesity due to POMC,
     PCSK1, or LEPR deficiency confirmed by genetic testing — the first therapy ever
-    approved for those rare diseases.<Cite n={1} /> In 2022 it was extended to
+    approved for those rare diseases.<Cite n={1} /> In the pivotal open-label trials,
+    <strong>about 80% of patients with POMC deficiency and 45% with LEPR deficiency lost
+    10% or more of their body weight</strong> within roughly a year — effect sizes almost
+    unheard of in obesity medicine, alongside large drops in reported hunger.<Cite n={6} />
+    In 2022 it was extended to
     <strong>Bardet–Biedl syndrome</strong>, a genetic disorder that also disrupts
     melanocortin signalling, and the eligible age was later lowered to 2 years.<Cite n={2} />
   </p>
@@ -148,12 +175,12 @@ const references = [
     The hypothalamic-obesity approval rests on <strong>TRANSCEND</strong>, the
     largest and longest placebo-controlled trial ever run in the condition: 120
     patients aged 4 and up, randomised 2:1 to once-daily subcutaneous setmelanotide
-    or placebo for 52 weeks.<Cite n={4} /> The result was a roughly 20% placebo-adjusted
-    reduction in BMI (a −19.8% difference across the trial), with about 80% of
-    treated patients achieving a BMI reduction of 5% or more, plus clinically
-    meaningful improvements in hunger and no new safety signals.<Cite n={4} /> The full
-    results were published in the <em>New England Journal of Medicine</em> in
-    2026.<Cite n={5} />
+    or placebo for 52 weeks.<Cite n={4} /> Over that year <strong>BMI fell 16.5% on
+    setmelanotide while it rose 3.3% on placebo</strong> — a roughly 20-point,
+    placebo-adjusted separation (−19.8%) — with about 80% of treated patients achieving a
+    BMI reduction of 5% or more, alongside clinically meaningful improvements in hunger and
+    no new safety signals.<Cite n={7} /> The full results were published in the
+    <em>New England Journal of Medicine</em> in 2026.<Cite n={7} />
   </p>
 
   <h2>Why it is not "the next Ozempic"</h2>
@@ -175,9 +202,10 @@ const references = [
   <p>
     Setmelanotide is a clean illustration of why melanocortin agonists share a family
     resemblance. Its most characteristic effect is <strong>skin darkening</strong>:
-    the drug is not perfectly selective, and partial activation of
-    <a href="/receptors/mc1r">MC1R</a> increases eumelanin — the very pigment pathway
-    that receptor governs.<Cite n={2} /> Injection-site reactions, nausea, diarrhoea, and
+    despite being used as an MC4R drug, by binding affinity it grips
+    <a href="/receptors/mc1r">MC1R</a> almost as tightly as MC4R itself (see the
+    <a href="/binding-matrix">binding matrix</a>), and that MC1R activation increases
+    eumelanin — the very pigment pathway that receptor governs.<Cite n={2} /> Injection-site reactions, nausea, diarrhoea, and
     headache are common; spontaneous penile erections can occur in males; and the
     label carries a warning about depression and suicidal ideation, reflecting how
     deeply melanocortin circuits sit inside the brain.<Cite n={2} /> For why these effects

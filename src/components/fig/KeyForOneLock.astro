@@ -1,0 +1,175 @@
+---
+// Why setmelanotide is a key for one lock — it supplies the α-MSH signal at
+// MC4R, so it works only when the fault is upstream of an intact receptor.
+// Three fates: an upstream break (works), a broken receptor (no target), and
+// common obesity with no single break (little to repair). Self-contained SVG.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+
+const cols = [
+  {
+    cx: 143,
+    t1: 'Break upstream of MC4R',
+    t2: 'POMC · PCSK1 · LEPR · BBS',
+    breakSupply: true,
+    breakReceptor: false,
+    outcome: 'ok',
+    verdict: '✓ Works',
+    vclass: 'ok',
+    e1: 'setmelanotide supplies',
+    e2: 'the missing α-MSH signal',
+  },
+  {
+    cx: 430,
+    t1: 'MC4R itself broken',
+    t2: 'receptor mutation',
+    breakSupply: false,
+    breakReceptor: true,
+    outcome: 'bad',
+    verdict: '✕ No target',
+    vclass: 'bad',
+    e1: "an agonist can't switch on",
+    e2: 'a receptor that is broken',
+  },
+  {
+    cx: 717,
+    t1: 'Common obesity',
+    t2: 'no single break',
+    breakSupply: false,
+    breakReceptor: false,
+    outcome: 'meh',
+    verdict: '~ Little effect',
+    vclass: 'meh',
+    e1: "the circuit isn't the fault,",
+    e2: 'so there is little to repair',
+  },
+];
+---
+
+<figure class="key-lock not-prose my-8">
+  <svg viewBox="0 0 860 262" role="img" aria-labelledby="kl-t kl-d" xmlns="http://www.w3.org/2000/svg">
+    <title id="kl-t">Where setmelanotide works, and where it cannot</title>
+    <desc id="kl-d"
+      >Setmelanotide supplies the α-MSH signal at MC4R. It works when the fault is
+      upstream of an intact receptor (the genetic and hypothalamic obesities it is
+      approved for), does nothing when MC4R itself is broken, and has little to offer
+      in common obesity, which has no single break to repair.</desc
+    >
+
+    <line class="divider" x1="287" y1="20" x2="287" y2="244" />
+    <line class="divider" x1="574" y1="20" x2="574" y2="244" />
+
+    {cols.map((c) => (
+      <g>
+        <text x={c.cx} y="32" text-anchor="middle" class="col-t">{c.t1}</text>
+        <text x={c.cx} y="48" text-anchor="middle" class="col-s">{c.t2}</text>
+
+        {/* supply */}
+        <rect class="box" x={c.cx - 100} y="96" width="60" height="30" rx="7" />
+        <text x={c.cx - 70} y="115" text-anchor="middle" class="box-t">supply</text>
+        {c.breakSupply && (
+          <g class="xbad"><line x1={c.cx - 78} y1="102" x2={c.cx - 62} y2="120" /><line x1={c.cx - 62} y1="102" x2={c.cx - 78} y2="120" /></g>
+        )}
+
+        <line class="wire" x1={c.cx - 38} y1="111" x2={c.cx - 12} y2="111" marker-end="url(#kl-a)" />
+
+        {/* MC4R */}
+        <rect class="box mc" x={c.cx - 8} y="96" width="44" height="30" rx="7" />
+        <text x={c.cx + 14} y="115" text-anchor="middle" class="mc-t">MC4R</text>
+        {c.breakReceptor && (
+          <g class="xbad"><line x1={c.cx + 6} y1="102" x2={c.cx + 22} y2="120" /><line x1={c.cx + 22} y1="102" x2={c.cx + 6} y2="120" /></g>
+        )}
+
+        <line class="wire" x1={c.cx + 38} y1="111" x2={c.cx + 58} y2="111" marker-end="url(#kl-a)" />
+        <circle class={`dot ${c.outcome}`} cx={c.cx + 72} cy="111" r="9" />
+
+        {/* setmelanotide from below */}
+        <line class="sm-wire" x1={c.cx + 14} y1="150" x2={c.cx + 14} y2="130" marker-end="url(#kl-a)" />
+        <text x={c.cx + 14} y="164" text-anchor="middle" class="sm-lbl">setmelanotide</text>
+
+        {/* verdict */}
+        <rect class={`vpill ${c.vclass}`} x={c.cx - 62} y="180" width="124" height="24" rx="12" />
+        <text x={c.cx} y="196" text-anchor="middle" class={`vtext ${c.vclass}`}>{c.verdict}</text>
+
+        <text x={c.cx} y="226" text-anchor="middle" class="expl">{c.e1}</text>
+        <text x={c.cx} y="240" text-anchor="middle" class="expl">{c.e2}</text>
+      </g>
+    ))}
+
+    <defs>
+      <marker id="kl-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+      </marker>
+    </defs>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        The same drug, three fates. Setmelanotide supplies the α-MSH signal <strong>at
+        MC4R</strong>, so it helps only when the fault sits <strong>upstream</strong> of an
+        intact receptor — the genetic and hypothalamic obesities it is approved for. A broken
+        receptor has nothing to switch on; ordinary obesity has no single break to repair.
+        <span class="fig-src">Indication logic: FDA labels; StatPearls NBK589641.</span>
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .key-lock {
+    --hunger: #c0392b;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .key-lock { --hunger: #e05a4a; }
+  }
+  .key-lock svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .divider { stroke: var(--border); stroke-width: 1; opacity: 0.6; }
+  .col-t { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .col-s { font-size: 10px; fill: var(--text-muted); }
+  .box { fill: var(--accent-soft); stroke: var(--border); stroke-width: 1; }
+  .box.mc { fill: var(--accent); stroke: var(--accent-strong); }
+  .box-t { font-size: 10.5px; fill: var(--text); }
+  .mc-t { font-size: 10.5px; font-weight: 600; fill: #fff; }
+  .xbad line { stroke: var(--hunger); stroke-width: 2.6; stroke-linecap: round; }
+  .wire { stroke: var(--text-muted); stroke-width: 1.6; fill: none; }
+  .arrowhead { fill: var(--text-muted); }
+  .sm-wire { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+  .sm-lbl { font-size: 9.5px; fill: var(--text-muted); }
+  .dot.ok { fill: var(--accent); }
+  .dot.bad { fill: var(--hunger); }
+  .dot.meh { fill: var(--text-muted); opacity: 0.6; }
+  .vpill.ok { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .vpill.bad { fill: none; stroke: var(--hunger); stroke-width: 1; }
+  .vpill.meh { fill: none; stroke: var(--border); stroke-width: 1; }
+  .vtext { font-size: 11.5px; font-weight: 600; }
+  .vtext.ok { fill: var(--accent-strong); }
+  .vtext.bad { fill: var(--hunger); }
+  .vtext.meh { fill: var(--text-muted); }
+  .expl { font-size: 10.5px; fill: var(--text-muted); }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  figcaption strong { color: var(--text); font-weight: 600; }
+  .fig-src { display: block; margin-top: 0.4rem; font-size: 0.72rem; opacity: 0.8; }
+</style>
