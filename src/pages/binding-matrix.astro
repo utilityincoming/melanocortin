@@ -1,0 +1,266 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import BindingMatrix from '../components/fig/BindingMatrix.astro';
+import { bindingRows, bindingRefs, toNanomolar } from '../data/binding';
+import { receptorIds } from '../data/ligands';
+
+// Number the primary sources by first appearance, so the table superscripts and
+// the Sources list agree.
+const pmidOrder: number[] = [];
+for (const row of bindingRows)
+  for (const rid of receptorIds) {
+    const c = row.cells[rid];
+    if (c && !pmidOrder.includes(c.pmid)) pmidOrder.push(c.pmid);
+  }
+const refNum = (pmid: number) => pmidOrder.indexOf(pmid) + 1;
+
+const faqs = [
+  {
+    q: 'What does the binding matrix show?',
+    a: 'How tightly each melanocortin ligand binds each of the five receptors (MC1R–MC5R). Each value is an affinity or potency from the IUPHAR/BPS Guide to Pharmacology, expressed as a p-value (the negative log of the molar concentration): higher means tighter binding, so a p of 9 is about 1 nanomolar and a p of 6 about 1 micromolar.',
+  },
+  {
+    q: 'Why does MC2R look almost empty?',
+    a: 'Because it is. MC2R is the odd receptor out: it responds essentially only to ACTH and ignores the MSH peptides that activate the other four. That single-ligand column is one of the clearest facts the matrix makes visible.',
+  },
+  {
+    q: 'Which ligand binds most tightly?',
+    a: 'Afamelanotide (the research peptide NDP-α-MSH) is the standout — roughly 0.1 nanomolar at MC1R and sub-nanomolar across the MSH receptors. That superpotency, engineered from just two amino-acid swaps to α-MSH, is exactly why it works as a drug.',
+  },
+  {
+    q: 'Are agonists and antagonists shown the same way?',
+    a: 'No. Filled discs are agonists that switch the receptor on; rings with a bar are antagonists (or inverse agonists) that block it — AgRP and agouti (ASIP), the system’s natural brakes. Binding strength is shown for both, because a blocker still has to bind to work.',
+  },
+];
+---
+
+<PageLayout
+  title="The binding matrix: how tightly each ligand holds each receptor"
+  kicker="The numbers"
+  description="A cited quantitative map of melanocortin pharmacology — the binding affinity and potency of every catalogued ligand at MC1R through MC5R, drawn from the IUPHAR/BPS Guide to Pharmacology. The selectivity story, in one figure."
+  thread="The whole system rendered as numbers — every signal and every brake, measured against the five switches it speaks to."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Ligand', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Ligand_(biochemistry)'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'The binding matrix maps how tightly each melanocortin ligand grips each of the five receptors (MC1R–MC5R), using curated affinity values (pKi / pKd / pIC50) from the IUPHAR/BPS Guide to Pharmacology.',
+      'MC2R is the outlier: it responds almost only to ACTH, ignoring the MSH peptides that activate the other four receptors.',
+      'Afamelanotide (NDP-α-MSH) is the tightest binder in the set — roughly 0.1 nM at MC1R — which is why so small a change to α-MSH makes so potent a drug.',
+      'Bremelanotide binds MC4R most tightly (~0.25 nM), the basis of its central action; setmelanotide binds broadly but is used as an MC4R drug.',
+      'AgRP and agouti (ASIP) are the brakes — they bind MC3R/MC4R and MC1R to block rather than activate.',
+    ]}
+  />
+
+  <p>
+    Most of this site describes melanocortin pharmacology in words — <em>selective</em>,
+    <em>superpotent</em>, <em>broad</em>. This page puts the numbers behind those words in
+    one place. It is a quantitative map of how tightly each ligand binds each of the five
+    receptors, assembled from the <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener noreferrer">IUPHAR/BPS
+    Guide to Pharmacology</a> — the field's curated pharmacology database, where every value
+    traces to a primary paper.
+  </p>
+  <p>
+    Binding strength here is a <strong>p-value</strong>: the negative logarithm of the molar
+    affinity. It is a compact way to write very small concentrations — a p of 9 means about
+    1 nanomolar, a p of 6 about 1 micromolar — and, usefully, <strong>higher means
+    tighter</strong>. In the figure each disc is sized by that number, so the eye reads
+    potency directly. For the qualitative version — who is an agonist, partial agonist or
+    antagonist where — see the interactive <a href="/explorer">receptor–ligand explorer</a>.
+  </p>
+
+  <BindingMatrix />
+
+  <h2>Reading the matrix</h2>
+  <p>
+    A few things jump out that prose alone tends to bury. <strong>MC2R is almost a blank
+    column.</strong> Alone among the five, it answers essentially only to
+    <a href="/acth">ACTH</a> and turns away the MSH peptides that light up the others — the
+    single clearest fact in the whole grid, and the reason <a href="/receptors/mc2r">MC2R</a>
+    sits apart in the family.
+  </p>
+  <p>
+    <strong>The engineered peptides are the tightest binders.</strong>
+    <a href="/afamelanotide">Afamelanotide</a> — the α-MSH analogue NDP-α-MSH — is the
+    biggest disc on the board, roughly 0.1 nM at <a href="/receptors/mc1r">MC1R</a> and
+    sub-nanomolar across the MSH receptors. Two amino-acid substitutions to
+    <a href="/alpha-msh">α-MSH</a> buy an order-of-magnitude jump in grip; the
+    <a href="/melanotan">grey-market peptide Melanotan II</a> sits just below it, similarly
+    broad. That breadth is the point: none of these is subtle about selectivity.
+  </p>
+  <p>
+    <strong>Where a drug is tight is where it works.</strong>
+    <a href="/bremelanotide">Bremelanotide</a> binds <a href="/receptors/mc4r">MC4R</a> most
+    tightly of all (~0.25 nM), which is exactly the receptor behind its central,
+    desire-related effect. <a href="/setmelanotide">Setmelanotide</a> is more surprising: by
+    raw binding it grips MC1R, MC3R and MC4R at broadly similar strength, yet it is used as
+    an MC4R medicine — a reminder that <em>binding</em> and <em>what the receptor then does</em>
+    are not the same measurement (the difference is functional and, for setmelanotide,
+    signalling-biased).
+  </p>
+  <p>
+    <strong>The brakes bind too.</strong> <a href="/agrp">AgRP</a> and
+    <a href="/asip">agouti (ASIP)</a> appear as rings, not discs: they hold MC3R/MC4R and
+    MC1R tightly but to <em>block</em>, not to activate. AgRP's grip on MC4R (~0.5 nM) rivals
+    the best agonists — the hunger signal and the satiety signal fight for the same switch at
+    comparable strength, which is much of why the <a href="/receptors/mc4r">appetite
+    rheostat</a> is so finely balanced.
+  </p>
+
+  <h2>The values, with sources</h2>
+  <p>
+    Every number below is a curated affinity (pKi/pKd) or functional potency (pIC50) with its
+    approximate molar value and a link to the primary paper. Values are for the human receptor
+    unless marked <strong>ᵐ</strong> (mouse).
+  </p>
+
+  <div class="not-prose my-6 overflow-x-auto">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th class="lig">Ligand</th>
+          {receptorIds.map((rid) => <th>{rid}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {bindingRows.map((row) => (
+          <tr>
+            <td class="lig">
+              {row.href ? <a href={row.href}>{row.name}</a> : row.name}
+            </td>
+            {receptorIds.map((rid) => {
+              const c = row.cells[rid];
+              if (!c) return <td><span class="na">—</span></td>;
+              return (
+                <td>
+                  <span class={c.action === 'agonist' ? 'pv' : 'pv antax'}>
+                    {c.display}{c.species === 'mouse' ? 'ᵐ' : ''}
+                  </span>
+                  <a class="rf" href={`#src-${refNum(c.pmid)}`}><sup>{refNum(c.pmid)}</sup></a>
+                  <span class="nm">{c.action === 'agonist' ? '' : 'blocks · '}≈{toNanomolar(c.p)}</span>
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="text-sm text-[var(--text-muted)]">
+    Coloured values are antagonists/inverse agonists (blockers); plain values are agonists.
+    ≈ value is the molar affinity implied by the p-value (10<sup>9−p</sup> nM). Ranges are
+    shown where the source gives one.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">How to read these numbers — and how not to</p>
+    <p class="mt-2 text-[var(--text)]">
+      These are <strong>representative literature values</strong>, not a meta-analysis. They
+      mix binding affinities (pKi, pKd) with functional potencies (pIC50), and they come from
+      different labs, assay systems and radioligands across three decades — so treat them as
+      order-of-magnitude comparisons, not decimal-precise constants. Most are human; a few
+      (marked ᵐ) are mouse, where human data were not curated. Two catalogued ligands are
+      absent because no clean quantitative values are tabulated for them: <strong>β-MSH</strong>
+      (a broad agonist) and <strong>dersimelagon</strong> (a small molecule whose affinities are
+      not publicly reported). Not medical advice. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <section class="mt-14 border-t border-[var(--border)] pt-8">
+    <h2 class="font-serif text-2xl font-semibold tracking-tight">Sources</h2>
+    <p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
+      All values were compiled from the <strong class="text-[var(--text)]">IUPHAR/BPS Guide to
+      PHARMACOLOGY</strong> (Harding SD, et al. <span class="italic">Nucleic Acids Res.</span>
+      2024;52:D1438–D1449; <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-[var(--accent)]">guidetopharmacology.org</a>,
+      accessed 18 Aug 2026), which curates each value from the primary literature below.
+    </p>
+    <ol class="mt-5 flex flex-col gap-3 text-sm">
+      {pmidOrder.map((pmid, i) => (
+        <li id={`src-${i + 1}`} class="scroll-mt-24 leading-relaxed text-[var(--text-muted)]">
+          <span class="mr-1.5 font-mono text-[var(--accent)]">{i + 1}.</span>
+          <span class="text-[var(--text)]">{bindingRefs[pmid]}</span>{' '}
+          <a
+            href={`https://pubmed.ncbi.nlm.nih.gov/${pmid}/`}
+            class="break-words underline decoration-dotted hover:text-[var(--accent)]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            PMID {pmid} ↗
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <RelatedPages slug="binding-matrix" />
+</PageLayout>
+
+<style>
+  .matrix-table {
+    --block: #4f6d8c;
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 40rem;
+    font-size: 0.8rem;
+  }
+  .matrix-table th,
+  .matrix-table td {
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.55rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .matrix-table thead th {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+  .matrix-table td.lig,
+  .matrix-table th.lig {
+    text-align: left;
+    white-space: nowrap;
+  }
+  .matrix-table td.lig a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .matrix-table td.lig a:hover {
+    color: var(--accent);
+  }
+  .matrix-table .pv {
+    font-weight: 700;
+    color: var(--text);
+  }
+  .matrix-table .antax {
+    color: var(--block);
+  }
+  .matrix-table .nm {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+  .matrix-table .rf {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  .matrix-table .na {
+    color: var(--text-muted);
+    opacity: 0.45;
+  }
+  @media (prefers-color-scheme: dark) {
+    .matrix-table {
+      --block: #8fabc7;
+    }
+  }
+</style>

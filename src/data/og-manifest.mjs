@@ -23,6 +23,7 @@ export const ogPages = [
   { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
   { slug: 'dose-curve', eyebrow: 'INTERACTIVE', title: 'Dose, delivery & the side-effect peak' },
   { slug: 'pipeline', eyebrow: 'PIPELINE · 2026', title: 'The melanocortin pipeline' },
+  { slug: 'binding-matrix', eyebrow: 'REFERENCE · DATA', title: 'The melanocortin binding matrix' },
   { slug: 'glossary', eyebrow: 'REFERENCE', title: 'Glossary' },
   { slug: 'about', eyebrow: 'ABOUT', title: 'Editorial standards' },
 
