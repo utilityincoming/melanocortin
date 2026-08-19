@@ -1,0 +1,203 @@
+---
+// afamelanotide-delivery-and-fate — a skin cross-section showing the implant
+// in the subcutis, the peptide migrating up to the melanocyte at the base of
+// the epidermis, binding MC1R on the surface without entering (a second
+// messenger carries the signal in), then two separate clearance routes.
+// Schematic, not to anatomical scale. SVG-only; wrap in <Figure>.
+---
+
+<svg class="fate-fig" viewBox="0 0 860 452" role="img" aria-labelledby="fate-t fate-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="fate-t">Delivery and fate of the afamelanotide implant</title>
+  <desc id="fate-d"
+    >The implant sits in the subcutaneous fat, below the dermis and epidermis.
+    The peptide migrates up to the melanocyte at the base of the epidermis and
+    binds MC1R on its outer surface without entering; cyclic AMP carries the
+    signal inside. The polymer matrix is hydrolysed to lactate and glycolate,
+    and the peptide is broken down separately into amino acids.</desc
+  >
+
+  <!-- ================= LEFT: skin cross-section ================= -->
+  <rect class="panel" x="24" y="44" width="448" height="258" rx="10" />
+  <!-- layer bands -->
+  <rect class="epidermis" x="25" y="45" width="446" height="60" />
+  <rect class="dermis" x="25" y="105" width="446" height="105" />
+  <rect class="subcutis" x="25" y="210" width="446" height="91" />
+  <line class="layer-div" x1="25" y1="105" x2="471" y2="105" />
+  <line class="layer-div" x1="25" y1="210" x2="471" y2="210" />
+  <text x="462" y="72" text-anchor="end" class="layer-l">epidermis</text>
+  <text x="462" y="160" text-anchor="end" class="layer-l">dermis</text>
+  <text x="462" y="262" text-anchor="end" class="layer-l">subcutis · fat</text>
+
+  <!-- migration route (always visible) -->
+  <line class="route" x1="150" y1="247" x2="150" y2="126" marker-end="url(#fate-ah)" />
+  <g class="peptide-dots">
+    <circle cx="150" cy="247" r="4" /><circle cx="150" cy="247" r="4" />
+    <circle cx="150" cy="247" r="4" /><circle cx="150" cy="247" r="4" />
+  </g>
+  <text x="196" y="182" class="route-l">peptide</text>
+  <text x="196" y="197" class="route-l">migrates up</text>
+
+  <!-- melanocyte at the epidermal base -->
+  <g class="melano" transform="translate(150 98) scale(0.66) translate(-470 -62)">
+    <path class="cell" d="M470 33 l14 -14 l-4 20 l22 -8 l-12 18 l20 6 l-20 8 l12 16 l-20 -8 l3 20 l-14 -14
+      l-14 14 l3 -20 l-20 8 l12 -16 l-20 -8 l20 -6 l-12 -18 l22 8 l-4 -20 z" />
+    <circle class="nucleus" cx="470" cy="55" r="10" />
+  </g>
+  <text x="150" y="62" text-anchor="middle" class="node-l">melanocyte</text>
+
+  <!-- implant in the subcutis -->
+  <g transform="rotate(-8 150 256)">
+    <rect class="implant" x="104" y="248" width="92" height="16" rx="8" />
+  </g>
+  <text x="150" y="286" text-anchor="middle" class="node-l">16 mg PLGA implant</text>
+
+  <!-- zoom leader to the detail panel -->
+  <line class="zoomline" x1="196" y1="96" x2="500" y2="120" />
+
+  <!-- ================= RIGHT: membrane detail ================= -->
+  <rect class="panel" x="500" y="44" width="336" height="258" rx="10" />
+  <text x="668" y="66" text-anchor="middle" class="detail-t">detail · the melanocyte surface</text>
+
+  <text x="560" y="150" text-anchor="middle" class="side-l">outside the cell</text>
+  <text x="560" y="242" text-anchor="middle" class="side-l">inside the cell</text>
+
+  <!-- membrane -->
+  <rect class="membrane" x="520" y="168" width="300" height="24" rx="4" />
+  <line class="membrane-mid" x1="520" y1="180" x2="820" y2="180" />
+  <text x="540" y="164" class="tiny">cell membrane</text>
+
+  <!-- receptor crossing the membrane -->
+  <circle class="rec-glow" cx="652" cy="180" r="30" />
+  <rect class="receptor" x="636" y="150" width="32" height="64" rx="14" />
+  <text x="652" y="184" text-anchor="middle" class="rec-t">MC1R</text>
+
+  <!-- afamelanotide docked outside -->
+  <g class="pep">
+    <circle cx="645" cy="140" r="4" /><circle cx="652" cy="137" r="4" /><circle cx="659" cy="140" r="4" />
+  </g>
+  <line class="leader" x1="666" y1="139" x2="706" y2="132" />
+  <text x="710" y="129" class="lead-t">afamelanotide</text>
+  <text x="710" y="146" class="lead-s">binds outside —</text>
+  <text x="710" y="162" class="lead-s">never enters</text>
+
+  <!-- second messenger inside -->
+  <path class="msg-arrow" d="M652 214 V226" marker-end="url(#fate-ah2)" />
+  <rect class="camp" x="636" y="226" width="32" height="18" rx="6" />
+  <text x="652" y="239" text-anchor="middle" class="camp-t">cAMP</text>
+  <path class="msg-arrow" d="M652 244 V262" marker-end="url(#fate-ah2)" />
+  <line class="leader" x1="668" y1="235" x2="700" y2="229" />
+  <text x="704" y="226" class="lead-s">second messenger</text>
+  <text x="704" y="244" class="lead-s">carries the signal in</text>
+  <text x="668" y="278" text-anchor="middle" class="detail-note">the drug gives the instruction; the cell already owns the machinery</text>
+
+  <!-- ================= BOTTOM: two clearance routes ================= -->
+  <text x="430" y="328" text-anchor="middle" class="strip-h">Then both disappear — by two separate routes</text>
+
+  <rect class="card" x="24" y="342" width="406" height="98" rx="10" />
+  <text x="44" y="366" class="ctitle">the polymer</text>
+  <rect class="tok" x="44" y="378" width="112" height="30" rx="7" />
+  <text x="100" y="397" text-anchor="middle" class="tok-t">PLGA + water</text>
+  <path class="flow" d="M160 393 H246" marker-end="url(#fate-ah)" />
+  <rect class="tok tok-out" x="250" y="378" width="160" height="30" rx="7" />
+  <text x="330" y="397" text-anchor="middle" class="tok-t">lactate + glycolate</text>
+  <text x="44" y="428" class="csub">small acids the body already runs on — nothing left behind</text>
+
+  <rect class="card" x="442" y="342" width="394" height="98" rx="10" />
+  <text x="462" y="366" class="ctitle">the peptide</text>
+  <rect class="tok" x="462" y="378" width="134" height="30" rx="7" />
+  <text x="529" y="397" text-anchor="middle" class="tok-t">peptide + proteases</text>
+  <path class="flow" d="M600 393 H642" marker-end="url(#fate-ah)" />
+  <rect class="tok tok-out" x="646" y="378" width="118" height="30" rx="7" />
+  <text x="705" y="397" text-anchor="middle" class="tok-t">amino acids</text>
+  <text x="462" y="428" class="csub">reabsorbed; the engineered residues slow this — they don't stop it</text>
+
+  <defs>
+    <marker id="fate-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+    </marker>
+    <marker id="fate-ah2" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead2" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .fate-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .panel {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+  .epidermis { fill: var(--accent-soft); opacity: 0.65; }
+  .dermis { fill: var(--accent-soft); opacity: 0.38; }
+  .subcutis { fill: var(--accent-soft); opacity: 0.18; }
+  .layer-div { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 3; }
+  .layer-l { font-size: 11px; fill: var(--text-muted); }
+
+  .route { stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 3 4; fill: none; }
+  .route-l { font-size: 11px; fill: var(--text-muted); }
+  .peptide-dots circle { fill: var(--accent); opacity: 0; animation: fate-rise 6s linear infinite; }
+  .peptide-dots circle:nth-child(1) { animation-delay: 0s; }
+  .peptide-dots circle:nth-child(2) { animation-delay: 1.5s; }
+  .peptide-dots circle:nth-child(3) { animation-delay: 3s; }
+  .peptide-dots circle:nth-child(4) { animation-delay: 4.5s; }
+
+  .melano .cell { fill: var(--accent); opacity: 0.9; }
+  .nucleus { fill: var(--bg-elevated); opacity: 0.6; }
+  .node-l { font-size: 11px; font-weight: 600; fill: var(--text); }
+  .implant { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
+  .zoomline { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 4; opacity: 0.7; }
+
+  .detail-t { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }
+  .side-l { font-size: 10.5px; fill: var(--text-muted); }
+  .membrane { fill: var(--accent-soft); stroke: var(--border); stroke-width: 1; }
+  .membrane-mid { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 3; }
+  .tiny { font-size: 10px; fill: var(--text-muted); }
+  .rec-glow { fill: var(--accent); opacity: 0; animation: fate-glow 6s ease-in-out infinite; }
+  .receptor { fill: var(--accent); }
+  .rec-t { font-size: 9.5px; font-weight: 700; fill: var(--bg-elevated); }
+  .pep circle { fill: var(--accent-strong); }
+  .leader { stroke: var(--text-muted); stroke-width: 1; }
+  .lead-t { font-size: 11px; font-weight: 600; fill: var(--text); }
+  .lead-s { font-size: 10.5px; fill: var(--text-muted); }
+  .msg-arrow { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+  .arrowhead2 { fill: var(--accent); }
+  .camp { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .camp-t { font-size: 9.5px; font-weight: 600; fill: var(--accent-strong); }
+  .detail-note { font-size: 10.5px; fill: var(--text-muted); }
+
+  .strip-h { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .ctitle { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }
+  .tok { fill: var(--accent-soft); stroke: var(--border); stroke-width: 1; }
+  .tok-out { fill: none; stroke: var(--accent); stroke-width: 1.2; }
+  .tok-t { font-size: 10.5px; fill: var(--text); }
+  .flow { stroke: var(--text-muted); stroke-width: 1.6; fill: none; }
+  .arrowhead { fill: var(--text-muted); }
+  .csub { font-size: 10.5px; fill: var(--text-muted); }
+
+  @keyframes fate-rise {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    75% { transform: translateY(-121px); opacity: 1; }
+    88%, 100% { transform: translateY(-121px); opacity: 0; }
+  }
+  @keyframes fate-glow {
+    0%, 60% { opacity: 0; }
+    75% { opacity: 0.7; }
+    100% { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .peptide-dots circle { animation: none; opacity: 0; }
+    .rec-glow { animation: none; opacity: 0.4; }
+  }
+</style>

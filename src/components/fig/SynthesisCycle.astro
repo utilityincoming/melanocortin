@@ -1,0 +1,191 @@
+---
+// afamelanotide-synthesis — solid-phase peptide synthesis as one identical
+// cycle repeated thirteen times, assembled C→N (backwards from how the
+// sequence reads). The two engineered residues enter at cycles 7 (D-Phe) and
+// 10 (Nle). Structural schematic only — no reagents, conditions or procedure.
+const bx0 = 338;
+const bpitch = 39;
+const beads = Array.from({ length: 13 }, (_, i) => {
+  const cycle = i + 1;
+  const residue = 14 - cycle; // built backwards
+  const diff = cycle === 7 ? 'D-Phe' : cycle === 10 ? 'Nle' : null;
+  return { cycle, residue, diff, x: bx0 + i * bpitch };
+});
+const cyc = (c: number) => beads[c - 1].x;
+---
+
+<svg class="syn-fig" viewBox="0 0 860 300" role="img" aria-labelledby="syn-t syn-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="syn-t">Solid-phase synthesis of afamelanotide</title>
+  <desc id="syn-d"
+    >One identical cycle — remove the protecting group, couple the next residue —
+    is repeated thirteen times. The chain is built from the C-terminus, so
+    residue 13 is added first and residue 1 last. The engineered residues enter
+    at cycle 7 (D-phenylalanine) and cycle 10 (norleucine).</desc
+  >
+
+  <text x="150" y="34" text-anchor="middle" class="kicker">ONE REPEATING CYCLE</text>
+  <text x="572" y="34" text-anchor="middle" class="kicker">THIRTEEN TIMES · BUILT BACKWARDS</text>
+
+  <!-- ===== the cycle loop ===== -->
+  <circle class="loop-ring" cx="150" cy="150" r="66" />
+  <path class="loop-arrow" d="M196 108 Q238 150 196 192" marker-end="url(#syn-ah)" />
+  <path class="loop-arrow" d="M104 192 Q62 150 104 108" marker-end="url(#syn-ah)" />
+  <rect class="node" x="104" y="90" width="92" height="26" rx="8" />
+  <text x="150" y="107" text-anchor="middle" class="node-t">deprotect</text>
+  <rect class="node" x="88" y="184" width="124" height="26" rx="8" />
+  <text x="150" y="201" text-anchor="middle" class="node-t">couple next residue</text>
+  <text x="150" y="143" text-anchor="middle" class="loop-c1">repeat</text>
+  <text x="150" y="167" text-anchor="middle" class="loop-c2">× 13</text>
+
+  <!-- ===== the growing chain ===== -->
+  <line class="chain" x1="312" y1="205" x2="806" y2="205" />
+  <circle class="resin" cx="305" cy="205" r="7" />
+  <text x="292" y="209" text-anchor="end" class="tiny">resin</text>
+
+  {beads.map((b) => (
+    <g>
+      <circle class={b.diff ? 'bead bead-d' : 'bead'} cx={b.x} cy="205" r="8" />
+      <text x={b.x} y="228" text-anchor="middle" class="num">{b.cycle}</text>
+    </g>
+  ))}
+  <text x="572" y="246" text-anchor="middle" class="axis">cycle number →</text>
+
+  <!-- callout: cycle 7 -->
+  <line class="lead" x1={cyc(7)} y1="197" x2={cyc(7)} y2="170" />
+  <rect class="card" x="402" y="112" width="196" height="58" rx="10" />
+  <circle class="dot" cx="420" cy="134" r="5" />
+  <text x="434" y="138" class="ctitle">cycle 7 — add D-Phe</text>
+  <text x="416" y="158" class="cline">a different bottle, same cycle</text>
+
+  <!-- callout: cycle 10 -->
+  <line class="lead" x1={cyc(10)} y1="197" x2={cyc(10)} y2="170" />
+  <rect class="card" x="612" y="112" width="196" height="58" rx="10" />
+  <circle class="dot" cx="630" cy="134" r="5" />
+  <text x="644" y="138" class="ctitle">cycle 10 — add Nle</text>
+  <text x="626" y="158" class="cline">a different bottle, same cycle</text>
+
+  <!-- notes -->
+  <text x="440" y="276" text-anchor="middle" class="note">Written N→C (Ser 1 … Val 13); built the reverse — residue 13 on first, residue 1 last.</text>
+
+  <defs>
+    <marker id="syn-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .syn-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .kicker {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    fill: var(--text-muted);
+  }
+  .loop-ring {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+  }
+  .loop-arrow {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  .arrowhead {
+    fill: var(--accent);
+  }
+  .node {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+    stroke-width: 1.2;
+  }
+  .node-t {
+    font-size: 11.5px;
+    font-weight: 600;
+    fill: var(--accent-strong);
+  }
+  .loop-c1 {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+  .loop-c2 {
+    font-size: 15px;
+    font-weight: 700;
+    fill: var(--text);
+  }
+  .chain {
+    stroke: var(--border);
+    stroke-width: 2;
+  }
+  .resin {
+    fill: var(--text-muted);
+  }
+  .tiny {
+    font-size: 10px;
+    fill: var(--text-muted);
+  }
+  .bead {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+    stroke-width: 1.2;
+  }
+  .bead-d {
+    fill: var(--accent);
+    stroke: var(--accent-strong);
+    stroke-width: 1.2;
+    animation: syn-glow 4s ease-in-out infinite;
+  }
+  .num {
+    font-size: 10px;
+    fill: var(--text-muted);
+  }
+  .axis {
+    font-size: 10.5px;
+    fill: var(--text-muted);
+  }
+  .lead {
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-dasharray: 2 3;
+  }
+  .card {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+  .dot {
+    fill: var(--accent);
+  }
+  .ctitle {
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .cline {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+  .note {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+
+  @keyframes syn-glow {
+    0%, 100% { opacity: 0.75; }
+    50% { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bead-d { animation: none; opacity: 1; }
+  }
+</style>

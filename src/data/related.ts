@@ -208,7 +208,7 @@ export const RELATED: Record<string, string[]> = {
   'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'system'],
   asip: ['receptors/mc1r', 'agrp', 'alpha-msh', 'melanotan'],
   afamelanotide: ['receptors/mc1r', 'dersimelagon', 'melanotan', 'alpha-msh', 'binding-matrix'],
-  dersimelagon: ['afamelanotide', 'receptors/mc1r', 'inflammation', 'pipeline', 'therapeutics'],
+  dersimelagon: ['afamelanotide', 'receptors/mc1r', 'inflammation', 'oral-peptides', 'pipeline', 'therapeutics'],
   'pl-8177': ['alpha-msh', 'receptors/mc1r', 'inflammation', 'pl-9643', 'therapeutics'],
   'pl-9643': ['alpha-msh', 'pl-8177', 'inflammation', 'therapeutics', 'pipeline'],
   tcmcb07: ['setmelanotide', 'agrp', 'receptors/mc4r', 'pipeline'],

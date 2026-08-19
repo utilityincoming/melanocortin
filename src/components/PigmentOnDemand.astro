@@ -1,0 +1,418 @@
+---
+// "Pigment on demand" — an original, self-contained animated explainer for
+// afamelanotide (Scenesse). Big idea in one loop: MC1R is the same pigment
+// switch whether the trigger is sunlight (the accidental route — and, in EPP,
+// the injury) or the afamelanotide implant (the deliberate route — same signal,
+// no sun, ahead of time). Either way the melanocyte fills with protective
+// eumelanin; afamelanotide simply gets the shield UP before the light arrives.
+// No external assets; themes via CSS vars; honours prefers-reduced-motion with
+// an informative still frame of the finished, protected state.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="pigment-on-demand not-prose my-8">
+  <svg
+    viewBox="0 0 860 470"
+    role="img"
+    aria-labelledby="pod-title pod-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="pod-title">Afamelanotide: protective pigment on demand</title>
+    <desc id="pod-desc"
+      >MC1R is one pigment switch with two possible triggers. Sunlight flips it by
+      accident — but in erythropoietic protoporphyria that same light is the
+      injury. The afamelanotide implant supplies the identical signal deliberately,
+      with no sunlight and ahead of time, so the melanocyte builds protective
+      eumelanin and the shield is already up when light finally arrives.</desc
+    >
+
+    <!-- kickers -->
+    <text x="100" y="30" text-anchor="middle" class="kicker">TWO TRIGGERS</text>
+    <text x="404" y="30" text-anchor="middle" class="kicker">ONE SWITCH</text>
+    <text x="700" y="30" text-anchor="middle" class="kicker">SHIELD, ALREADY UP</text>
+
+    <!-- ============ SUN INPUT — the accidental trigger ============ -->
+    <g class="sun-rays">
+      <line class="sun-ray" x1="100" y1="86" x2="100" y2="96" />
+      <line class="sun-ray" x1="100" y1="140" x2="100" y2="150" />
+      <line class="sun-ray" x1="72" y1="118" x2="82" y2="118" />
+      <line class="sun-ray" x1="118" y1="118" x2="128" y2="118" />
+      <line class="sun-ray" x1="80" y1="98" x2="87" y2="105" />
+      <line class="sun-ray" x1="120" y1="98" x2="113" y2="105" />
+      <line class="sun-ray" x1="80" y1="138" x2="87" y2="131" />
+      <line class="sun-ray" x1="120" y1="138" x2="113" y2="131" />
+      <circle class="sun-core" cx="100" cy="118" r="14" />
+    </g>
+    <!-- pain badge: for EPP, the light itself is the injury -->
+    <g class="pain-flare">
+      <circle class="pain-badge" cx="132" cy="92" r="11" />
+      <text x="132" y="97" text-anchor="middle" class="pain-t">!</text>
+    </g>
+    <text x="100" y="166" text-anchor="middle" class="cap-s">sunlight</text>
+    <text x="100" y="181" text-anchor="middle" class="cap">natural α-MSH — but in EPP,</text>
+    <text x="100" y="195" text-anchor="middle" class="cap">the light itself is the injury</text>
+
+    <!-- ============ IMPLANT INPUT — the deliberate trigger ============ -->
+    <line class="skin-line" x1="52" y1="300" x2="150" y2="300" />
+    <g transform="rotate(-20 100 314)">
+      <rect class="implant" x="76" y="307" width="48" height="14" rx="7" />
+    </g>
+    <text x="100" y="346" text-anchor="middle" class="cap-s">afamelanotide implant</text>
+    <text x="100" y="361" text-anchor="middle" class="cap">same signal, no sun needed</text>
+    <text x="100" y="375" text-anchor="middle" class="cap">steady release · ~2 months</text>
+
+    <!-- ============ CONVERGING PATHS ============ -->
+    <!-- sun route: dashed + crossed — the route EPP patients must avoid -->
+    <path class="sun-path" d="M112 124 Q214 150 322 206" />
+    <g class="cross">
+      <line x1="210" y1="150" x2="222" y2="162" />
+      <line x1="222" y1="150" x2="210" y2="162" />
+    </g>
+    <!-- implant route: guide + travelling molecules -->
+    <path class="feed-path" d="M126 306 Q210 300 322 232" />
+    <g class="feed-dots">
+      <circle cx="126" cy="306" r="4" />
+      <circle cx="126" cy="306" r="4" />
+      <circle cx="126" cy="306" r="4" />
+      <circle cx="126" cy="306" r="4" />
+    </g>
+
+    <!-- ============ MC1R — the shared switch ============ -->
+    <circle class="mc1r-glow" cx="338" cy="219" r="23" />
+    <rect class="receptor" x="324" y="199" width="28" height="40" rx="9" />
+    <text x="338" y="185" text-anchor="middle" class="cap-a">MC1R</text>
+    <text x="338" y="276" text-anchor="middle" class="cap">the pigment switch</text>
+
+    <!-- arrow to melanocyte -->
+    <path class="wire" d="M357 219 H444" marker-end="url(#pod-ah)" />
+
+    <!-- melanocyte fills with pigment -->
+    <g class="melano" transform="translate(0 150)">
+      <path
+        class="cell"
+        d="M470 40 l14 -14 l-4 20 l22 -8 l-12 18 l20 6 l-20 8 l12 16 l-20 -8 l3 20 l-14 -14
+           l-14 14 l3 -20 l-20 8 l12 -16 l-20 -8 l20 -6 l-12 -18 l22 8 l-4 -20 z"
+      />
+      <circle class="nucleus" cx="470" cy="69" r="9" />
+    </g>
+    <text x="470" y="276" text-anchor="middle" class="cap">melanocyte</text>
+
+    <!-- arrow to skin -->
+    <path class="wire" d="M512 219 H560" marker-end="url(#pod-ah)" />
+
+    <!-- ============ PAYOFF — the shield is already up ============ -->
+    <!-- incoming UV, absorbed at the shield -->
+    <g class="uv-group">
+      <line class="uv-in" x1="700" y1="96" x2="628" y2="150" />
+      <line class="uv-in" x1="740" y1="100" x2="700" y2="150" />
+      <line class="uv-in" x1="782" y1="104" x2="772" y2="150" />
+      <circle class="absorb" cx="628" cy="152" r="4" />
+      <circle class="absorb" cx="700" cy="152" r="4" />
+      <circle class="absorb" cx="772" cy="152" r="4" />
+    </g>
+    <path class="shield" d="M568 160 Q700 128 832 160" />
+    <rect class="skin" x="568" y="168" width="264" height="98" rx="16" />
+    <g class="pores">
+      <circle cx="612" cy="196" r="1.9" /><circle cx="664" cy="224" r="1.9" />
+      <circle cx="720" cy="192" r="1.9" /><circle cx="772" cy="230" r="1.9" />
+      <circle cx="700" cy="240" r="1.9" /><circle cx="628" cy="240" r="1.9" />
+    </g>
+    <text x="700" y="292" text-anchor="middle" class="cap-s">protective pigment — built in advance</text>
+    <text x="700" y="308" text-anchor="middle" class="cap-a">→ more pain-free time in the light</text>
+
+    <!-- divider + legend -->
+    <line class="divider" x1="24" y1="410" x2="836" y2="410" />
+    <circle class="chip-pheo" cx="250" cy="440" r="9" />
+    <text x="266" y="444" class="cap">pheomelanin · fair, unprotected</text>
+    <circle class="chip-eumel" cx="520" cy="440" r="9" />
+    <text x="536" y="444" class="cap">eumelanin · the protective pigment</text>
+
+    <defs>
+      <marker id="pod-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+      </marker>
+    </defs>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        One switch, two triggers. Sunlight flips <strong>MC1R</strong> by accident —
+        but for someone with EPP that light is the injury. The afamelanotide implant
+        supplies the same signal on purpose, with no sun and ahead of time, so
+        protective <strong>eumelanin</strong> is built in advance and the shield is
+        already up when light finally arrives.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .pigment-on-demand {
+    --pheo: var(--color-pigment-200);
+    --eumel: var(--color-pigment-900);
+    --sun: var(--color-pigment-300);
+    --uv: #7b6cd6;
+    --pain: #c0392b;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .pigment-on-demand {
+      --pheo: var(--color-pigment-300);
+      --eumel: var(--color-pigment-700);
+      --sun: var(--color-pigment-200);
+      --uv: #9b8cf0;
+      --pain: #e05a4a;
+    }
+  }
+
+  .pigment-on-demand svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  /* text */
+  .cap {
+    font-size: 11.5px;
+    fill: var(--text-muted);
+  }
+  .cap-s {
+    font-size: 12.5px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .cap-a {
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--accent-strong);
+  }
+  .kicker {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    fill: var(--text-muted);
+  }
+
+  /* structure */
+  .wire {
+    stroke: var(--border);
+    stroke-width: 2;
+    fill: none;
+  }
+  .arrowhead {
+    fill: var(--text-muted);
+  }
+  .divider {
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+  .receptor {
+    fill: var(--accent);
+  }
+  .nucleus {
+    fill: var(--bg-elevated);
+    opacity: 0.55;
+  }
+
+  /* sun */
+  .sun-core {
+    fill: var(--sun);
+  }
+  .sun-ray {
+    stroke: var(--uv);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .pain-badge {
+    fill: var(--pain);
+  }
+  .pain-t {
+    fill: #fff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  /* implant */
+  .skin-line {
+    stroke: var(--border);
+    stroke-width: 2;
+  }
+  .implant {
+    fill: var(--accent);
+    stroke: var(--accent-strong);
+    stroke-width: 1;
+  }
+
+  /* converging paths */
+  .sun-path {
+    stroke: var(--uv);
+    stroke-width: 2;
+    stroke-dasharray: 3 5;
+    fill: none;
+    opacity: 0.4;
+  }
+  .feed-path {
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
+    opacity: 0.25;
+  }
+  .cross line {
+    stroke: var(--pain);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+
+  /* payoff */
+  .skin {
+    fill: var(--pheo);
+    stroke: var(--border);
+    stroke-width: 1.5;
+  }
+  .pores circle {
+    fill: var(--eumel);
+    opacity: 0.28;
+  }
+  .shield {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    opacity: 0;
+  }
+  .uv-in {
+    stroke: var(--uv);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 3 4;
+  }
+  .absorb {
+    fill: var(--accent);
+    opacity: 0;
+  }
+  .mc1r-glow {
+    fill: var(--accent);
+    opacity: 0;
+  }
+
+  /* legend */
+  .chip-pheo {
+    fill: var(--pheo);
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+  .chip-eumel {
+    fill: var(--eumel);
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+
+  /* ---------------- animation (one 9s story) ---------------- */
+  .feed-dots circle {
+    fill: var(--accent);
+    opacity: 0;
+    animation: pod-drift 9s linear infinite;
+  }
+  .feed-dots circle:nth-child(1) { animation-delay: 0s; }
+  .feed-dots circle:nth-child(2) { animation-delay: 0.5s; }
+  .feed-dots circle:nth-child(3) { animation-delay: 1s; }
+  .feed-dots circle:nth-child(4) { animation-delay: 1.5s; }
+
+  .mc1r-glow { animation: pod-glow 9s linear infinite; }
+  .melano .cell { fill: var(--pheo); animation: pod-darken 9s linear infinite; }
+  .skin { animation: pod-darken 9s linear infinite; }
+  .shield { animation: pod-shield 9s linear infinite; }
+  .uv-group { opacity: 0; animation: pod-uv 9s linear infinite; }
+  .absorb { animation: pod-absorb 9s linear infinite; }
+  .pain-flare {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pod-pain 9s ease-in-out infinite;
+  }
+
+  @keyframes pod-drift {
+    0% { transform: translate(0, 0); opacity: 0; }
+    5% { opacity: 1; }
+    40% { transform: translate(212px, -87px); opacity: 1; }
+    46%, 100% { transform: translate(212px, -87px); opacity: 0; }
+  }
+  @keyframes pod-glow {
+    0%, 10% { opacity: 0; }
+    22%, 44% { opacity: 0.85; }
+    60%, 100% { opacity: 0; }
+  }
+  @keyframes pod-darken {
+    0%, 18% { fill: var(--pheo); }
+    46%, 82% { fill: var(--eumel); }
+    97%, 100% { fill: var(--pheo); }
+  }
+  @keyframes pod-shield {
+    0%, 48% { opacity: 0; }
+    62%, 88% { opacity: 0.95; }
+    97%, 100% { opacity: 0; }
+  }
+  @keyframes pod-uv {
+    0%, 52% { opacity: 0; }
+    66%, 88% { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes pod-absorb {
+    0%, 60% { opacity: 0; }
+    70% { opacity: 0.9; }
+    80% { opacity: 0.5; }
+    88% { opacity: 0.9; }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes pod-pain {
+    0%, 6% { opacity: 0.3; transform: scale(0.85); }
+    12% { opacity: 1; transform: scale(1.12); }
+    22% { opacity: 0.55; transform: scale(0.98); }
+    32%, 100% { opacity: 0.4; transform: scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feed-dots circle,
+    .mc1r-glow,
+    .melano .cell,
+    .skin,
+    .shield,
+    .uv-group,
+    .absorb,
+    .pain-flare {
+      animation: none;
+    }
+    /* informative still frame: the finished, protected state */
+    .melano .cell,
+    .skin { fill: var(--eumel); }
+    .mc1r-glow { opacity: 0.85; }
+    .shield { opacity: 0.95; }
+    .uv-group { opacity: 1; }
+    .absorb { opacity: 0.9; }
+    .feed-dots circle { opacity: 0; }
+    .pain-flare { opacity: 0.4; }
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+  figcaption strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>

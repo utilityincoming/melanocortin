@@ -1,0 +1,192 @@
+---
+// afamelanotide-sequence-comparison — α-MSH vs afamelanotide, thirteen
+// residues aligned. Everything is identical except positions 4 and 7, plus
+// the blocked termini. SVG-only; wrap in <Figure> for caption + source.
+const x0 = 185;
+const pitch = 48;
+const w = 42;
+const topY = 90;
+const botY = 150;
+const h = 34;
+
+const residues = [
+  { n: 1, a: 'Ser', b: 'Ser' },
+  { n: 2, a: 'Tyr', b: 'Tyr' },
+  { n: 3, a: 'Ser', b: 'Ser' },
+  { n: 4, a: 'Met', b: 'Nle', diff: true },
+  { n: 5, a: 'Glu', b: 'Glu' },
+  { n: 6, a: 'His', b: 'His' },
+  { n: 7, a: 'Phe', b: 'D-Phe', diff: true },
+  { n: 8, a: 'Arg', b: 'Arg' },
+  { n: 9, a: 'Trp', b: 'Trp' },
+  { n: 10, a: 'Gly', b: 'Gly' },
+  { n: 11, a: 'Lys', b: 'Lys' },
+  { n: 12, a: 'Pro', b: 'Pro' },
+  { n: 13, a: 'Val', b: 'Val' },
+];
+const cx = (n: number) => x0 + (n - 1) * pitch + w / 2;
+const lastRight = x0 + 12 * pitch + w;
+---
+
+<svg class="seq-fig" viewBox="0 0 860 340" role="img" aria-labelledby="seq-t seq-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="seq-t">Sequence comparison of α-MSH and afamelanotide</title>
+  <desc id="seq-d"
+    >Both are thirteen-residue peptides, acetylated at the N-terminus and
+    amidated at the C-terminus. The sequences are identical except at position 4,
+    where methionine becomes norleucine, and position 7, where L-phenylalanine
+    becomes D-phenylalanine.</desc
+  >
+
+  <!-- highlight bands behind the two differing columns -->
+  {residues.filter((r) => r.diff).map((r) => (
+    <rect class="hl-band" x={x0 + (r.n - 1) * pitch - 3} y="84" width={w + 6} height="106" rx="6" />
+  ))}
+
+  <!-- row labels -->
+  <text x="150" y={topY + h / 2 + 4} text-anchor="end" class="rlabel">α-MSH</text>
+  <text x="150" y={botY + h / 2 + 4} text-anchor="end" class="rlabel">afamelanotide</text>
+  <text x="150" y={topY - 12} text-anchor="end" class="rsub">the hormone</text>
+  <text x="150" y={botY + h + 18} text-anchor="end" class="rsub">the drug</text>
+
+  <!-- terminal caps: Ac– … –NH₂ on both rows -->
+  <text x="164" y={topY + h / 2 + 4} text-anchor="middle" class="cap-end">Ac</text>
+  <text x="164" y={botY + h / 2 + 4} text-anchor="middle" class="cap-end">Ac</text>
+  <text x="822" y={topY + h / 2 + 4} text-anchor="middle" class="cap-end">NH₂</text>
+  <text x="822" y={botY + h / 2 + 4} text-anchor="middle" class="cap-end">NH₂</text>
+  <line class="bond" x1="174" y1={topY + h / 2} x2={x0} y2={topY + h / 2} />
+  <line class="bond" x1="174" y1={botY + h / 2} x2={x0} y2={botY + h / 2} />
+  <line class="bond" x1={lastRight} y1={topY + h / 2} x2="808" y2={topY + h / 2} />
+  <line class="bond" x1={lastRight} y1={botY + h / 2} x2="808" y2={botY + h / 2} />
+
+  <!-- residues -->
+  {residues.map((r) => (
+    <g>
+      <text x={cx(r.n)} y="76" text-anchor="middle" class="num">{r.n}</text>
+      <rect class={r.diff ? 'box box-d' : 'box'} x={x0 + (r.n - 1) * pitch} y={topY} width={w} height={h} rx="7" />
+      <text x={cx(r.n)} y={topY + h / 2 + 4} text-anchor="middle" class={r.diff ? 'res res-d' : 'res'}>{r.a}</text>
+      <rect class={r.diff ? 'box box-d' : 'box'} x={x0 + (r.n - 1) * pitch} y={botY} width={w} height={h} rx="7" />
+      <text x={cx(r.n)} y={botY + h / 2 + 4} text-anchor="middle" class={r.diff ? 'res res-d' : 'res'}>{r.b}</text>
+    </g>
+  ))}
+
+  <!-- connectors down to callouts -->
+  <line class="lead" x1={cx(4)} y1="190" x2={cx(4)} y2="214" />
+  <line class="lead" x1={cx(7)} y1="190" x2={cx(7)} y2="214" />
+
+  <!-- callout: position 4 -->
+  <rect class="card" x="44" y="214" width="376" height="86" rx="10" />
+  <circle class="dot" cx="62" cy="240" r="5" />
+  <text x="78" y="244" class="ctitle">Position 4 · methionine → norleucine</text>
+  <text x="60" y="268" class="cline">The sulfur side-chain is simply gone —</text>
+  <text x="60" y="285" class="cline">a plain hydrocarbon with nothing left to oxidise.</text>
+
+  <!-- callout: position 7 -->
+  <rect class="card" x="440" y="214" width="376" height="86" rx="10" />
+  <circle class="dot" cx="458" cy="240" r="5" />
+  <text x="474" y="244" class="ctitle">Position 7 · L-Phe → D-Phe</text>
+  <text x="456" y="268" class="cline">The mirror image of the residue —</text>
+  <text x="456" y="285" class="cline">a bond human proteases are not shaped to cut.</text>
+
+  <!-- footnote -->
+  <text x="430" y="326" text-anchor="middle" class="note">Both termini are blocked too (Ac–, –NH₂): no free ends for the enzymes that trim peptides.</text>
+</svg>
+
+<style>
+  .seq-fig {
+    --on-accent: #fff;
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .seq-fig {
+      --on-accent: #2b261d;
+    }
+  }
+
+  .num {
+    font-size: 10px;
+    fill: var(--text-muted);
+  }
+  .box {
+    fill: var(--accent-soft);
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+  .box-d {
+    fill: var(--accent);
+    stroke: var(--accent-strong);
+    stroke-width: 1;
+  }
+  .res {
+    font-size: 12px;
+    fill: var(--text);
+  }
+  .res-d {
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--on-accent);
+  }
+  .rlabel {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--accent-strong);
+  }
+  .rsub {
+    font-size: 10.5px;
+    fill: var(--text-muted);
+  }
+  .cap-end {
+    font-size: 11px;
+    font-weight: 600;
+    fill: var(--text-muted);
+  }
+  .bond {
+    stroke: var(--text-muted);
+    stroke-width: 1.5;
+  }
+  .lead {
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-dasharray: 2 3;
+  }
+  .card {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+  .dot {
+    fill: var(--accent);
+  }
+  .ctitle {
+    font-size: 12.5px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .cline {
+    font-size: 11.5px;
+    fill: var(--text-muted);
+  }
+  .note {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+
+  .hl-band {
+    fill: var(--accent);
+    opacity: 0.13;
+    animation: seq-pulse 4.5s ease-in-out infinite;
+  }
+  @keyframes seq-pulse {
+    0%, 100% { opacity: 0.09; }
+    50% { opacity: 0.2; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hl-band { animation: none; opacity: 0.15; }
+  }
+</style>
