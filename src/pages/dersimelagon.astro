@@ -5,6 +5,9 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import OralTurn from '../components/fig/OralTurn.astro';
+import OneReceptorTwoDiseases from '../components/fig/OneReceptorTwoDiseases.astro';
 
 const faqs = [
   {
@@ -17,7 +20,7 @@ const faqs = [
   },
   {
     q: 'What is dersimelagon being tested for?',
-    a: 'Two things. First, erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP), where its global Phase 3 INSPIRE trial reported positive topline results in January 2026. Second, diffuse cutaneous systemic sclerosis, a fibrotic disease, where preclinical work suggests MC1R activation may have disease-modifying, anti-fibrotic effects.',
+    a: 'Two things. First, erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP), where its global Phase 3 INSPIRE trial (165 patients, once-daily 200 mg) met its primary endpoint in January 2026. Second, diffuse cutaneous systemic sclerosis, a fibrotic disease, where a Phase 2 proof-of-concept study (73 patients) is testing whether MC1R activation has disease-modifying, anti-fibrotic effects.',
   },
   {
     q: 'What are dersimelagon’s side effects?',
@@ -50,6 +53,23 @@ const references = [
     year: '2026',
     url: 'https://www.prnewswire.com/news-releases/tanabe-pharma-america-announces-positive-topline-results-for-dersimelagon-in-erythropoietic-protoporphyria-epp-and-x-linked-protoporphyria-xlp-302663740.html',
   },
+  {
+    authors: 'ClinicalTrials.gov.',
+    title:
+      'Efficacy, safety, and tolerability of MT-7117 in subjects with erythropoietic protoporphyria or X-linked protoporphyria (INSPIRE).',
+    source:
+      'Phase 3 INSPIRE trial record (NCT04402489) — 165 patients, 200 mg once daily vs placebo, 16-week primary period + 36-week open-label extension; primary endpoint = daily sunlight exposure to first prodromal symptom.',
+    year: '2026',
+    url: 'https://clinicaltrials.gov/study/NCT04402489',
+  },
+  {
+    authors: 'ClinicalTrials.gov.',
+    title:
+      'Efficacy, safety, and tolerability of MT-7117 in subjects with diffuse cutaneous systemic sclerosis.',
+    source: 'Phase 2 proof-of-concept trial record (NCT04440592) in dcSSc.',
+    year: '2024',
+    url: 'https://clinicaltrials.gov/study/NCT04440592',
+  },
 ];
 ---
 
@@ -69,8 +89,8 @@ const references = [
     items={[
       'Dersimelagon (MT-7117) is an investigational oral, selective MC1R agonist — a small-molecule tablet, not a peptide.',
       'It targets the same receptor and strategy as afamelanotide (build protective pigment), but as a once-daily pill rather than a two-monthly implant.',
-      'Its global Phase 3 INSPIRE trial in erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP) reported positive topline results in January 2026.',
-      'It has a distinct second use: preclinical work shows MC1R activation may be disease-modifying in systemic sclerosis, a fibrotic disease.',
+      'Its global Phase 3 INSPIRE trial (165 patients, once-daily 200 mg) in erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP) met its primary endpoint in January 2026.',
+      'It has a distinct second use: a Phase 2 study is testing whether the same MC1R activation is disease-modifying in diffuse cutaneous systemic sclerosis, a fibrotic disease.',
       'Its main side effects are mechanism-based pigment changes — skin hyperpigmentation and freckle-like lentigines.',
     ]}
   />
@@ -97,16 +117,35 @@ const references = [
     preventive therapy.
   </p>
 
+  <Figure
+    caption="Same receptor, same goal — different molecule and route. Afamelanotide is an α-MSH-like peptide implant placed every two months; dersimelagon is a small-molecule tablet taken once a day. Both switch on MC1R to build protective eumelanin."
+    source="Forms and schedules per FDA SCENESSE label (NDA 210797) and the INSPIRE Phase 3 record (ClinicalTrials.gov NCT04402489)."
+  >
+    <OralTurn />
+  </Figure>
+
   <h2>The Phase 3 result</h2>
   <p>
     Dersimelagon's lead program is in EPP and the related disorder
-    <strong>X-linked protoporphyria (XLP)</strong>. In <strong>January 2026</strong>,
-    Tanabe Pharma America reported positive topline efficacy and safety results from the
-    global Phase 3 <strong>INSPIRE</strong> trial in adult and adolescent patients — the
-    key clinical milestone on its path toward becoming an oral option alongside the
-    approved implant.<Cite n={3} /> As with every drug in this family, the trial's most
-    common side effects were mechanism-based pigment changes: skin hyperpigmentation and
-    freckle-like lentigines, the expected signature of MC1R activation.<Cite n={1} />
+    <strong>X-linked protoporphyria (XLP)</strong>. Its pivotal trial,
+    <strong>INSPIRE</strong>, was a global, randomised, double-blind, placebo-controlled
+    Phase 3 study in <strong>165</strong> adults and adolescents (ages 12–75), comparing
+    dersimelagon <strong>200 mg once daily</strong> against placebo over 16 weeks, with a
+    36-week open-label extension.<Cite n={4} /> Its primary endpoint was the one that
+    actually matters in this disease: the change in average daily <em>time in sunlight
+    before the first prodromal symptom</em> — how long a patient can stay in the light
+    before the warning signs of a phototoxic reaction begin.<Cite n={4} />
+  </p>
+  <p>
+    In <strong>January 2026</strong>, Tanabe Pharma America reported that INSPIRE
+    <strong>met its primary endpoint</strong> with a favourable safety profile — the key
+    clinical milestone on dersimelagon's path toward becoming an oral option alongside the
+    approved implant.<Cite n={3} /> Full trial data had not yet been published at the time
+    of writing and regulatory filings were still awaited, but the program already carries
+    FDA <strong>Fast Track</strong> (2018) and <strong>Orphan Drug</strong> (2020)
+    designations.<Cite n={3} /> As with every drug in this family, the most common side
+    effects were mechanism-based pigment changes — skin hyperpigmentation and freckle-like
+    lentigines, the expected signature of MC1R activation.<Cite n={1} />
   </p>
 
   <h2>A second life in fibrosis</h2>
@@ -115,21 +154,39 @@ const references = [
     research shows that MC1R activation can produce <strong>disease-modifying,
     anti-fibrotic effects</strong> in models of <strong>systemic sclerosis</strong> — a
     serious autoimmune disease in which skin and internal organs become scarred and
-    stiff.<Cite n={2} /> In those models, dersimelagon suppressed skin fibrosis and lung
-    inflammation, pointing to a role for the melanocortin system in tissue scarring that
-    has nothing to do with sunlight. It is an early but striking example of the same
-    receptor being repurposed for a completely different disease.
+    stiff.<Cite n={2} /> The reason it can reach beyond the skin is that MC1R sits not only
+    on pigment cells but on the <strong>immune cells, blood-vessel lining, and
+    fibroblasts</strong> that drive the disease; in these models dersimelagon acted on all
+    three at once — damping inflammation, easing vascular dysfunction, and suppressing the
+    fibrosis itself.<Cite n={2} />
   </p>
+  <p>
+    That rationale has moved into people: a <strong>Phase 2</strong> proof-of-concept study
+    enrolled <strong>73</strong> patients with diffuse cutaneous systemic sclerosis
+    (dcSSc).<Cite n={5} /> It is an early but striking example of the same receptor being
+    pointed at a completely different disease — the pigment switch repurposed as an
+    anti-fibrotic.
+  </p>
+
+  <Figure
+    caption="One oral MC1R agonist, two unrelated diseases. In erythropoietic protoporphyria it builds protective pigment; on the immune, vascular and fibroblast cells that drive systemic sclerosis, the same receptor calms inflammation and fibrosis."
+    source="EPP: INSPIRE Phase 3 (ClinicalTrials.gov NCT04402489). dcSSc: preclinical PMID 36050717 + Phase 2 (NCT04440592)."
+  >
+    <OneReceptorTwoDiseases />
+  </Figure>
 
   <h2>The honest bottom line</h2>
   <p>
-    Dersimelagon is investigational — promising Phase 3 data is not the same as approval,
-    and the fibrosis work is still preclinical. But it captures two live themes on the
-    melanocortin frontier: making these drugs easier to take (a pill instead of an
-    implant), and pushing MC1R beyond pigment into inflammation and fibrosis. For the
-    approved drug it is chasing, see <a href="/afamelanotide">afamelanotide</a>; for where
-    it sits among everything else in development, see the
-    <a href="/pipeline">melanocortin pipeline</a>.
+    Dersimelagon is investigational — a positive Phase 3 topline is not the same as
+    approval, full INSPIRE data are still to come, and the fibrosis programme is only at
+    Phase 2. But it captures two live themes on the melanocortin frontier: making these
+    drugs easier to take (a pill instead of an implant), and pushing MC1R beyond pigment
+    into inflammation and fibrosis. For the approved drug it is chasing, see
+    <a href="/afamelanotide">afamelanotide</a>; for the broader anti-inflammatory arm its
+    fibrosis work belongs to, see <a href="/inflammation">the inflammation axis</a>; for
+    why swallowing a peptide is so hard in the first place, see
+    <a href="/oral-peptides">the route problem</a>; and for where it sits among everything
+    else in development, see the <a href="/pipeline">melanocortin pipeline</a>.
   </p>
 
   <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
