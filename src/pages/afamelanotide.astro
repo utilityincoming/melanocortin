@@ -6,6 +6,11 @@ import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
 import PigmentOnDemand from '../components/PigmentOnDemand.astro';
+import Figure from '../components/Figure.astro';
+import SequenceComparison from '../components/fig/SequenceComparison.astro';
+import SynthesisCycle from '../components/fig/SynthesisCycle.astro';
+import DeliveryAndFate from '../components/fig/DeliveryAndFate.astro';
+import ScaleAndRoute from '../components/fig/ScaleAndRoute.astro';
 
 const faqs = [
   {
@@ -91,6 +96,74 @@ const references = [
     was no approved treatment; the only option was avoidance.
   </p>
 
+  <h2>What "sturdier" actually means</h2>
+  <p>
+    Sturdier is not a figure of speech here. It is two amino acids out of thirteen.
+  </p>
+  <p>
+    α-MSH and afamelanotide are both <strong>tridecapeptides</strong> — thirteen-residue
+    chains, acetylated at one end and amidated at the other. Read them side by side and they
+    are the same molecule everywhere except positions 4 and 7. Those two changes are the
+    entire difference between a signal the body clears in minutes and a drug that can hold a
+    receptor open for weeks.
+  </p>
+
+  <Figure
+    caption="Two of thirteen positions differ. Norleucine at position 4 removes the sulfur that oxidises; D-phenylalanine at position 7 presents a bond human proteases are not shaped to cut."
+    source="Sequences: FDA label NDA 210797; Hruby et al., PMID 2535874. CAS 75921-69-6."
+  >
+    <SequenceComparison />
+  </Figure>
+
+  <p>
+    At position 4, methionine is swapped for <strong>norleucine</strong>. Methionine carries a
+    sulfur atom in its side chain, and sulfur is the peptide's soft spot — it oxidises readily,
+    and an oxidised α-MSH is a weakened one. Norleucine is the same length and very nearly the
+    same shape, with the sulfur simply gone: a plain hydrocarbon side chain that has nothing
+    left to attack.
+  </p>
+  <p>
+    At position 7, L-phenylalanine is replaced by its mirror image,
+    <strong>D-phenylalanine</strong>. Every amino acid in human proteins is the L form, and the
+    enzymes that chew up peptides evolved to fit L-shaped bonds. Flipping one residue leaves the
+    part of the molecule that touches the receptor essentially intact while presenting proteases
+    with a joint they cannot grip. The peptide survives long enough to matter.
+  </p>
+  <p>
+    Both ends are blocked too — an acetyl group at the front, an amide at the back — so there is
+    no free amine and no free acid for the enzymes that trim peptides from their ends. Taken
+    together, these are not dramatic modifications. They are the minimum required to keep a
+    naturally short-lived signal in circulation, and they produce a molecule far more potent and
+    far longer-lived than the hormone it copies.
+  </p>
+  <p>
+    That minimalism is easy to miss, and it matters for a reason that has nothing to do with
+    chemistry.
+  </p>
+
+  <Figure
+    caption="The chain is assembled backwards from how it reads, one identical cycle per residue. The two engineered substitutions enter at cycles 10 and 7."
+    source="Schematic of synthesis structure only — no reagents, conditions or procedure. Sequence per FDA label NDA 210797."
+  >
+    <SynthesisCycle />
+  </Figure>
+
+  <p>
+    Peptides of this length are built one residue at a time on a solid support, in a repeating
+    cycle that does not change from step to step. The chain grows backwards relative to how the
+    sequence is written, so the residue numbered 13 goes on first and the two substituted
+    positions arrive at cycles 10 and 7. Neither is difficult chemistry. Making a superpotent,
+    protease-resistant α-MSH analogue takes reaching for a different bottle twice in a run of
+    thirteen.
+  </p>
+  <p>
+    This is worth stating plainly, because it explains the shape of the whole field. What
+    separated afamelanotide from the peptides sold alongside it was never synthesis. It was
+    years of clinical trials, a manufacturing standard, and a regulator willing to look at the
+    results — none of which the <a href="/melanotan">grey-market branch of the same lineage</a>
+    ever attempted.
+  </p>
+
   <h2>How it works — pigment on demand</h2>
   <p>
     Afamelanotide binds predominantly to MC1R and drives eumelanin production
@@ -112,11 +185,80 @@ const references = [
   <h2>An unusual delivery system</h2>
   <p>
     Afamelanotide is as distinctive in form as in mechanism. Rather than a pill or a
-    self-injection, it is a <strong>16 mg controlled-release implant</strong> — roughly the
-    size of a grain of rice — inserted under the skin by a trained clinician about every
-    two months.<Cite n={1} /> The implant releases the drug slowly, keeping the protective
-    pigment topped up between visits. That design suits a preventive, always-on job:
-    maintaining a baseline of photoprotection rather than reacting dose by dose.
+    self-injection, it is a <strong>16 mg controlled-release implant</strong> — a bioresorbable
+    rod roughly 1.7 cm long and 1.45 mm across, about the size of a grain of rice — inserted
+    under the skin by a trained clinician about every two months.<Cite n={1} /> The peptide is
+    dispersed through a poly(DL-lactide-co-glycolide) matrix that softens as it takes on water,
+    releasing its contents steadily rather than all at once. That design suits a preventive,
+    always-on job: maintaining a baseline of photoprotection rather than reacting dose by dose.
+  </p>
+  <p>
+    It is worth being precise about what travels where, because the usual mental picture is
+    wrong. The implant sits in the subcutaneous tissue, below both the dermis and the epidermis.
+    The peptide has to migrate upward to reach the melanocytes sitting at the base of the
+    epidermis — and when it arrives, it stops at their surface.
+  </p>
+
+  <Figure
+    caption="The peptide binds MC1R on the outside of the melanocyte and never enters it — what travels inward is a second messenger. Polymer and peptide are then cleared by two separate routes."
+    source="Implant composition and dimensions: FDA label NDA 210797. Schematic, not to anatomical scale."
+  >
+    <DeliveryAndFate />
+  </Figure>
+
+  <p>
+    <a href="/receptors/mc1r">MC1R</a> is a G-protein-coupled receptor: seven helices threaded
+    through the cell membrane, with its binding pocket facing outward. Afamelanotide docks into
+    that outward-facing pocket and stays there. Nothing about the drug crosses into the cell.
+    What crosses is a message — cyclic AMP, the cell's own second messenger — and everything
+    downstream of it, the kinases, the transcription factors, the pigment enzymes, is machinery
+    the melanocyte already owns. The drug does not do the work. It gives the instruction.
+  </p>
+  <p>
+    Two things then disappear, by separate routes. The polymer matrix is not removed; water
+    gradually cleaves it into lactate and glycolate, two small acids the body already runs on,
+    so nothing is left behind to take out. The peptide is broken down independently, cut by
+    proteases into ordinary amino acids and reabsorbed. The engineered residues slow that
+    process considerably. They do not stop it.
+  </p>
+
+  <h2>Why not just a pill?</h2>
+  <p>
+    The implant is the most-questioned thing about afamelanotide, and the answer is physical
+    rather than commercial. A peptide this size cannot be swallowed to any useful effect. The
+    digestive tract is built to dismantle proteins, and a thirteen-residue chain arriving in the
+    gut is not a drug — it is lunch. Even setting digestion aside, moving from the intestine into
+    the bloodstream means crossing cell membranes, and afamelanotide is poorly equipped for it.
+  </p>
+
+  <Figure
+    caption="Size is the barrier you can picture. Polarity is the one that actually decides — a molecule of identical size but no charge would cross without trouble."
+    source="Masses: ChemSpider CAS 75921-69-6; Sato et al., J Med Chem 2024;67:21729. Diameters are equivalent-sphere estimates derived from molar mass, not measurements."
+  >
+    <ScaleAndRoute />
+  </Figure>
+
+  <p>
+    It is tempting to explain this by size alone — a bowling ball will not fit through a keyhole
+    — and size is genuinely part of it. Afamelanotide is roughly two and a half times the mass of
+    a typical oral drug, and stretched into an extended chain it is about as long as a cell
+    membrane is thick. But the size picture is only half right, and the missing half is the more
+    interesting one. A greasy molecule of exactly the same size would slip across without
+    difficulty. What actually stops afamelanotide is <strong>polarity</strong>: a dozen or so
+    backbone N–H groups and a net positive charge, each of them clinging to water. Dragging that
+    shell of water into the oily interior of a membrane costs far more energy than the crossing is
+    worth, so the molecule stays put.
+  </p>
+  <p>
+    Which is exactly why <a href="/dersimelagon">dersimelagon</a> exists. It targets the same
+    receptor and drives the same pigment response, but it is not a peptide at all — it is a small,
+    non-peptidic molecule designed from the outset to survive the gut and cross membranes, and it
+    is taken by mouth. The two drugs are a clean illustration of a trade every peptide therapeutic
+    faces: peptides copy the body's own signals with great precision and pay for it at the border,
+    while small molecules cross freely and have to earn their selectivity the hard way.
+  </p>
+  <p>
+    Afamelanotide got there first, and the implant is the price of arriving as a peptide.
   </p>
 
   <h2>The Melanotan connection</h2>

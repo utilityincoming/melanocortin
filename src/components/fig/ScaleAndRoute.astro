@@ -1,0 +1,133 @@
+---
+// afamelanotide-scale-and-route — why afamelanotide can't be a pill. Size is
+// the visible barrier (but modest: ~3x the mass is only ~1.5x across as an
+// equivalent sphere); polarity is the real decider — two molecules of the same
+// size, only the polar/charged one is stopped at the membrane. Dersimelagon,
+// small and non-peptidic, takes the other route. SVG-only; wrap in <Figure>.
+---
+
+<svg class="sr-fig" viewBox="0 0 860 400" role="img" aria-labelledby="sr-t sr-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="sr-t">Why afamelanotide is delivered by implant, not by mouth</title>
+  <desc id="sr-d"
+    >Afamelanotide is about three times the mass of a typical oral drug but only
+    about one and a half times across as an equivalent sphere. The deciding
+    barrier is polarity: of two molecules of identical size, only the polar,
+    charged one is stopped at the membrane. Dersimelagon, a small non-peptidic
+    molecule, crosses and is taken by mouth.</desc
+  >
+
+  <!-- ================= LEFT: the size picture ================= -->
+  <rect class="panel" x="24" y="44" width="406" height="258" rx="10" />
+  <text x="227" y="68" text-anchor="middle" class="panel-t">the size picture — real, but modest</text>
+
+  <circle class="bead-small" cx="150" cy="150" r="16" />
+  <circle class="bead-big" cx="320" cy="150" r="24" />
+
+  <text x="150" y="198" text-anchor="middle" class="lab">typical oral drug</text>
+  <text x="150" y="213" text-anchor="middle" class="sub">≤ 500 Da</text>
+  <text x="320" y="200" text-anchor="middle" class="lab-a">afamelanotide</text>
+  <text x="320" y="215" text-anchor="middle" class="sub">≈ 1647 Da</text>
+
+  <text x="227" y="252" text-anchor="middle" class="note">far heavier — but only ≈ 1.5× across</text>
+  <text x="227" y="268" text-anchor="middle" class="note-s">(equivalent sphere estimated from mass)</text>
+
+  <!-- ================= RIGHT: polarity decides ================= -->
+  <rect class="panel" x="442" y="44" width="394" height="258" rx="10" />
+  <text x="639" y="68" text-anchor="middle" class="panel-t">the real decider — polarity</text>
+
+  <text x="470" y="150" class="side-l">outside</text>
+  <text x="470" y="240" class="side-l">inside</text>
+
+  <rect class="membrane" x="462" y="176" width="364" height="22" rx="4" />
+  <line class="membrane-mid" x1="462" y1="187" x2="826" y2="187" />
+
+  <!-- molecule 1: afamelanotide — polar, charged, blocked -->
+  <g class="water">
+    <circle cx="534" cy="114" r="3" /><circle cx="538" cy="132" r="3" />
+    <circle cx="556" cy="140" r="3" /><circle cx="574" cy="132" r="3" /><circle cx="578" cy="114" r="3" />
+  </g>
+  <circle class="bead-big" cx="556" cy="118" r="22" />
+  <text x="545" y="106" class="plus">+</text>
+  <text x="556" y="100" class="plus">+</text>
+  <text x="567" y="106" class="plus">+</text>
+  <text x="556" y="86" text-anchor="middle" class="lab-a">afamelanotide</text>
+  <line class="arr-stop" x1="556" y1="145" x2="556" y2="173" />
+  <text x="556" y="192" text-anchor="middle" class="mark-stop">✕</text>
+  <line class="leader" x1="588" y1="126" x2="612" y2="120" />
+  <text x="616" y="114" class="lead-s">drags a</text>
+  <text x="616" y="130" class="lead-s">water shell</text>
+
+  <!-- molecule 2: same size, no charge — crosses -->
+  <circle class="bead-ghost" cx="724" cy="118" r="22" />
+  <text x="724" y="86" text-anchor="middle" class="lab">same size, no charge</text>
+  <line class="arr-go" x1="724" y1="145" x2="724" y2="232" marker-end="url(#sr-ah)" />
+  <text x="744" y="216" class="mark-go">✓</text>
+  <text x="724" y="252" text-anchor="middle" class="sub">slips across</text>
+
+  <text x="639" y="286" text-anchor="middle" class="note">identical size — only the polar one is stopped</text>
+
+  <!-- ================= BOTTOM: two routes ================= -->
+  <text x="430" y="326" text-anchor="middle" class="strip-h">Two molecules, one receptor, two routes</text>
+
+  <rect class="card" x="24" y="338" width="406" height="54" rx="10" />
+  <text x="44" y="360" class="ctitle">afamelanotide</text>
+  <text x="44" y="380" class="csub">a peptide — pays at the border, takes the implant</text>
+
+  <rect class="card" x="442" y="338" width="394" height="54" rx="10" />
+  <text x="462" y="360" class="ctitle">dersimelagon</text>
+  <text x="462" y="380" class="csub">a non-peptidic small molecule — taken by mouth</text>
+
+  <defs>
+    <marker id="sr-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead-go" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .sr-fig {
+    --stop: #c0392b;
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .sr-fig { --stop: #e05a4a; }
+  }
+
+  .panel { fill: none; stroke: var(--border); stroke-width: 1; }
+  .panel-t { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }
+
+  .bead-small { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+  .bead-big { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1.2; }
+  .bead-ghost { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 3 3; }
+
+  .lab { font-size: 11px; fill: var(--text); }
+  .lab-a { font-size: 11px; font-weight: 600; fill: var(--accent-strong); }
+  .sub { font-size: 10.5px; fill: var(--text-muted); }
+  .note { font-size: 11px; fill: var(--text-muted); }
+  .note-s { font-size: 10px; fill: var(--text-muted); opacity: 0.85; }
+
+  .side-l { font-size: 10.5px; fill: var(--text-muted); }
+  .membrane { fill: var(--accent-soft); stroke: var(--border); stroke-width: 1; }
+  .membrane-mid { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 3; }
+  .water circle { fill: none; stroke: var(--accent); stroke-width: 1.1; opacity: 0.7; }
+  .plus { font-size: 11px; font-weight: 700; fill: var(--bg-elevated); text-anchor: middle; }
+  .arr-stop { stroke: var(--stop); stroke-width: 2; }
+  .mark-stop { font-size: 14px; font-weight: 700; fill: var(--stop); }
+  .arr-go { stroke: var(--accent); stroke-width: 2; fill: none; }
+  .arrowhead-go { fill: var(--accent); }
+  .mark-go { font-size: 13px; font-weight: 700; fill: var(--accent); }
+  .leader { stroke: var(--text-muted); stroke-width: 1; }
+  .lead-s { font-size: 10.5px; fill: var(--text-muted); }
+
+  .strip-h { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .ctitle { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }
+  .csub { font-size: 10.5px; fill: var(--text-muted); }
+</style>
