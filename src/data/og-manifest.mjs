@@ -39,6 +39,7 @@ export const ogPages = [
   { slug: 'afamelanotide', eyebrow: 'EXPLAINER', title: 'Afamelanotide (Scenesse)' },
   { slug: 'dersimelagon', eyebrow: 'EXPLAINER', title: 'Dersimelagon (MT-7117)' },
   { slug: 'tcmcb07', eyebrow: 'EXPLAINER', title: 'TCMCB07 (mifomelatide)' },
+  { slug: 'shu9119', eyebrow: 'RESEARCH ANTAGONIST', title: 'SHU9119 — the MC4R antagonist' },
   { slug: 'pl-8177', eyebrow: 'EXPLAINER', title: 'PL-8177 — oral gut agonist' },
   { slug: 'pl-9643', eyebrow: 'EXPLAINER', title: 'PL-9643 — the dry-eye drop' },
 

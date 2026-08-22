@@ -1,0 +1,167 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is SHU9119?',
+    a: 'SHU9119 is a synthetic cyclic peptide and the classic melanocortin antagonist. It blocks the MC3 and MC4 receptors (and is a partial agonist at MC5R), while acting as an agonist at MC1R. It is a laboratory research tool, not a medicine, and it is best known for the experiment that proved melanocortin signalling is the brain’s brake on hunger.',
+  },
+  {
+    q: 'Is SHU9119 an agonist or an antagonist?',
+    a: 'Both, depending on the receptor. At MC3R and MC4R it is an antagonist that blocks the receptor; at MC5R it is a partial agonist; and at MC1R it is a full agonist. That split is why it is such a useful tool: it can silence the appetite receptor while leaving the pigment receptor switched on.',
+  },
+  {
+    q: 'How is SHU9119 different from TCMCB07?',
+    a: 'Both block MC4R, but they were built for opposite purposes. SHU9119 is a research reagent, and chronically blocking MC4R with it makes animals overeat and gain weight, phenocopying the agouti obesity syndrome. TCMCB07 (mifomelatide) is a drug candidate that uses the same MC4R blockade deliberately, to lift appetite and preserve body weight in cachexia. One is a lab tool that induces obesity; the other is a therapy for wasting.',
+  },
+  {
+    q: 'Why does SHU9119 matter?',
+    a: 'Two reasons. First, the 1997 experiment: injected into the brain it made animals eat and blocked the appetite-suppressing effect of a melanocortin agonist, proving that melanocortin neurons tonically restrain feeding and explaining the agouti obesity syndrome. Second, it is the ligand in the 2020 crystal structure of MC4R that revealed calcium as a cofactor for melanocortin binding.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Hruby VJ, Lu D, Sharma SD, Castrucci AL, Kesterson RA, al-Obeidi FA, Hadley ME, Cone RD.',
+    title:
+      'Cyclic lactam α-melanotropin analogues with bulky aromatic amino acids at position 7 show high antagonist potency and selectivity at specific melanocortin receptors.',
+    source: 'J Med Chem. 38(18):3454–61.',
+    year: '1995',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/7658432/',
+  },
+  {
+    authors: 'Fan W, Boston BA, Kesterson RA, Hruby VJ, Cone RD.',
+    title: 'Role of melanocortinergic neurons in feeding and the agouti obesity syndrome.',
+    source: 'Nature. 385(6612):165–8.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8990120/',
+  },
+  {
+    authors: 'Yu J, Gimenez LE, Hernandez CC, et al.',
+    title:
+      'Determination of the melanocortin-4 receptor structure identifies Ca²⁺ as a cofactor for ligand binding.',
+    source: 'Science. 368(6489):428–33.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/32327598/',
+  },
+];
+---
+
+<PageLayout
+  title="SHU9119: the MC4R antagonist that revealed the melanocortin appetite brake"
+  kicker="The research tool"
+  description="SHU9119 is the classic melanocortin antagonist: a cyclic peptide that blocks MC3R and MC4R yet activates MC1R. Injected into the brain it makes animals eat - the experiment that proved melanocortin signalling is the body's brake on hunger - and it later became the ligand in the landmark MC4R structure."
+  thread="The brake made visible - block the melanocortin signal and a body reaches for food, proof that the system's quiet work is restraint."
+  updated="2026"
+  about={[
+    { name: 'SHU9119', type: 'MedicalEntity' },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'SHU9119 is the classic melanocortin antagonist: a synthetic cyclic peptide that blocks MC3R and MC4R, is a partial agonist at MC5R, and is an agonist at MC1R.',
+      'It came from the same Arizona laboratory as Melanotan II - a single change to that scaffold, a bulky D-Nal residue at position 7, flips the agonist into an antagonist.',
+      'Its landmark use: injected into the brain it makes animals eat and blocks the appetite-suppressing effect of melanocortin agonists - the 1997 experiment that proved melanocortin neurons tonically restrain feeding and explained the agouti obesity syndrome.',
+      'It is a research reagent, not a therapy. It is also the ligand in the 2020 MC4R crystal structure that revealed calcium as a cofactor for melanocortin binding.',
+    ]}
+  />
+
+  <p>
+    Most of the molecules on this site were built to switch a melanocortin receptor
+    <em>on</em>. SHU9119 is the reference tool for doing the opposite. It is the
+    best-characterised melanocortin <a href="/receptors/mc4r">MC4R</a> antagonist, a
+    laboratory peptide that, more than any drug, taught the field what the melanocortin
+    system is actually for - and it did so by blocking it and watching what broke.<Cite n={2} />
+  </p>
+
+  <h2>An agonist turned inside out</h2>
+  <p>
+    SHU9119 has a striking pedigree: it comes from the same University of Arizona
+    melanotropin programme, and largely the same chemists, as the tanning peptide
+    <a href="/melanotan">Melanotan II</a>. The two molecules are close cousins. Take the
+    cyclic MT-II scaffold and swap the residue at position 7 - the D-phenylalanine that sits
+    at the heart of the melanocortin message - for a bulkier aromatic amino acid, a
+    D-2-naphthylalanine, and the molecule stops activating the appetite and pigment-appetite
+    receptors and starts <em>blocking</em> them instead.<Cite n={1} /> One deliberate
+    substitution converts a broad agonist into a potent, selective antagonist. It is the
+    clearest illustration on the site that agonist and antagonist are not different worlds
+    but neighbours on one chemical street.
+  </p>
+  <p>
+    The receptor profile is unusual and useful. SHU9119 is a potent antagonist at
+    <a href="/receptors/mc4r">MC4R</a> and <a href="/receptors/mc3r">MC3R</a>, a partial
+    agonist at MC5R, and - the twist - a full <em>agonist</em> at
+    <a href="/receptors/mc1r">MC1R</a>, the pigment receptor.<Cite n={1} /> That it can gag the
+    appetite receptor while still speaking to the pigment receptor is exactly what makes it a
+    scalpel for separating the melanocortin system's jobs.
+  </p>
+
+  <h2>The experiment that proved the brake</h2>
+  <p>
+    SHU9119's fame rests on a single, elegant 1997 study. Researchers already suspected the
+    melanocortin system restrained appetite, but suspicion is not proof. So they blocked it.
+    Injected directly into the brain, SHU9119 did two things: it abolished the
+    appetite-suppressing effect of the melanocortin agonist MT-II across several models of
+    overeating, and, given on its own, it <em>increased</em> feeding, deepening the hunger of
+    fasted or night-feeding animals.<Cite n={2} />
+  </p>
+  <p>
+    The conclusion reframed the whole system. Melanocortin neurons are not an occasional
+    "stop eating" signal; they exert a constant, tonic brake on feeding, and lifting that
+    brake drives overeating. The same paper closed a long-standing puzzle: the
+    <a href="/genetics">agouti obesity syndrome</a>, in which mice grow fat because they
+    ectopically express a natural melanocortin blocker, is what chronic MC4R antagonism looks
+    like. SHU9119 was, in effect, a synthetic stand-in for that natural blocker - which is why
+    the body's own version, the hunger peptide <a href="/agrp">AgRP</a>, does the same job on
+    the same receptor.<Cite n={2} />
+  </p>
+
+  <h2>A tool, not a therapy</h2>
+  <p>
+    It is worth being blunt about what SHU9119 is: a research reagent. Blocking MC4R
+    chronically does not treat anything - it <em>causes</em> the problem, driving overeating,
+    weight gain, and metabolic disturbance in animals, a deliberate model of obesity rather
+    than a cure for it.<Cite n={2} /> That is the opposite of a weight-loss drug, and SHU9119
+    has never been a candidate medicine. The therapeutic version of the same idea, engineered
+    to be safe, brain-penetrant, and pointed at wasting rather than obesity, is
+    <a href="/tcmcb07">TCMCB07 (mifomelatide)</a> - an MC4R antagonist built as a therapy for
+    cachexia. SHU9119 is the tool that proved the target; TCMCB07 is one attempt to drug it.
+  </p>
+
+  <h2>The ligand in the landmark structure</h2>
+  <p>
+    SHU9119 has a second, quieter claim to importance. When the structure of the human MC4R
+    was finally solved in 2020, SHU9119 was the ligand bound inside it. That structure did
+    more than show the receptor's shape: it revealed a <strong>calcium ion</strong> sitting in
+    the binding pocket, complexed with both the receptor and the peptide - a cofactor that
+    sharply increases the affinity and potency of the natural agonist
+    <a href="/alpha-msh">α-MSH</a>.<Cite n={3} /> Much of what the
+    <a href="/receptors/mc4r">MC4R page</a> describes about how the appetite receptor really
+    works was read off a crystal with SHU9119 locked in place. For where its blocking strength
+    sits against the agonists and the other natural brake, see the
+    <a href="/binding-matrix">binding matrix</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">A research reagent, not a drug</p>
+    <p class="mt-2 text-[var(--text)]">
+      SHU9119 is a laboratory tool compound used to study melanocortin biology in cells and
+      animals. It is not an approved medicine, has no human therapeutic use, and this page is
+      educational, not medical advice or a usage guide. See the
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="shu9119" />
+</PageLayout>
