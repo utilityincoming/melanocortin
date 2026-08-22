@@ -35,6 +35,40 @@ const faqs = [
     a: 'No. Filled discs are agonists that switch the receptor on; rings with a bar are antagonists (or inverse agonists) that block it — AgRP and agouti (ASIP), the system’s natural brakes. Binding strength is shown for both, because a blocker still has to bind to work.',
   },
 ];
+
+// Machine-readable dataset descriptor so the cited affinity grid reads as a
+// citable data asset, not just a table. Counts derive from the data so they
+// never drift.
+const nLigands = bindingRows.length;
+const nValues = bindingRows.reduce((sum, r) => sum + Object.keys(r.cells).length, 0);
+const datasetLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  '@id': 'https://melanocortin.com/binding-matrix#dataset',
+  name: 'Melanocortin receptor binding-affinity matrix (MC1R–MC5R)',
+  description: `Curated binding affinities (pKi, pKd) and functional potencies (pIC50) for ${nLigands} melanocortin ligands at the five receptors MC1R through MC5R (${nValues} values), compiled from the IUPHAR/BPS Guide to PHARMACOLOGY and each traced to a primary paper. Values are p-values (negative log10 of the molar affinity); higher means tighter binding.`,
+  url: 'https://melanocortin.com/binding-matrix',
+  license: 'https://creativecommons.org/licenses/by/4.0/',
+  isAccessibleForFree: true,
+  creator: { '@type': 'Organization', name: 'melanocortin.com', url: 'https://melanocortin.com' },
+  isBasedOn: 'https://www.guidetopharmacology.org/',
+  citation:
+    'Harding SD, et al. The IUPHAR/BPS Guide to PHARMACOLOGY in 2024. Nucleic Acids Res. 2024;52:D1438–D1449.',
+  measurementTechnique: ['Radioligand binding assay', 'Functional (cAMP) potency assay'],
+  variableMeasured: [
+    {
+      '@type': 'PropertyValue',
+      name: 'Binding affinity / functional potency',
+      description:
+        'pKi, pKd, or pIC50: the negative base-10 logarithm of the molar affinity. Higher values indicate tighter binding or greater potency.',
+    },
+  ],
+  keywords: [
+    'melanocortin', 'MC1R', 'MC2R', 'MC3R', 'MC4R', 'MC5R',
+    'binding affinity', 'pKi', 'pIC50', 'receptor pharmacology',
+    'α-MSH', 'ACTH', 'setmelanotide', 'bremelanotide', 'afamelanotide', 'AgRP',
+  ],
+};
 ---
 
 <PageLayout
@@ -200,6 +234,8 @@ const faqs = [
       ))}
     </ol>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
 
   <RelatedPages slug="binding-matrix" />
 </PageLayout>

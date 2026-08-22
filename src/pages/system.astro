@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
+import FAQ from '../components/FAQ.astro';
 import References from '../components/References.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
 
@@ -32,6 +33,25 @@ const references = [
     source: 'Review (PMC4899099).',
     year: '2016',
     url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4899099/',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is the melanocortin system?',
+    a: 'A compact signalling system built from one gene. Pro-opiomelanocortin (POMC) is cut, tissue by tissue, into a family of short peptides (α-, β- and γ-MSH and ACTH) that act on five G-protein-coupled receptors, MC1R through MC5R, and are opposed by two natural antagonists, agouti and AgRP. Between them they regulate pigmentation, the cortisol stress axis, appetite and body weight, and inflammation.',
+  },
+  {
+    q: 'Why does one POMC gene produce so many different hormones?',
+    a: 'Because POMC is a prohormone cut by enzymes called prohormone convertases (chiefly PC1/3 and PC2), and different tissues carry different convertases. The same POMC molecule therefore yields different products depending on where it is processed: mostly ACTH in the anterior pituitary, but α-MSH and β-endorphin in the hypothalamus, skin and intermediate pituitary.',
+  },
+  {
+    q: 'What are agouti and AgRP, the system’s natural brakes?',
+    a: 'They are endogenous antagonists, which is rare: most signalling systems are only switched on by agonists. Agouti signalling protein (ASIP) blocks MC1R in the skin, shifting pigment toward pale pheomelanin. Agouti-related peptide (AgRP) blocks MC3R and MC4R in the brain and acts as an inverse agonist at MC4R, driving hunger against α-MSH’s satiety signal.',
+  },
+  {
+    q: 'What does the melanocortin system control in the body?',
+    a: 'Four main axes: pigmentation and UV tanning (α-MSH at MC1R), the cortisol stress axis (ACTH at MC2R), appetite and body weight (α-MSH versus AgRP at MC4R), and inflammation (MC1R and MC3R are broadly anti-inflammatory). Secretion, sodium and blood-pressure balance, sexual function and thermoregulation each carry a melanocortin contribution too.',
   },
 ];
 ---
@@ -172,6 +192,8 @@ const references = [
     <a href="/therapeutics">therapeutics section</a> covers approved and
     investigational agents, each verified against current sources.
   </p>
+
+  <FAQ items={faqs} />
 
   <References items={references} />
 </PageLayout>
