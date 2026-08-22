@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { ogPages } from '../data/og-manifest.mjs';
+import { lastmod } from '../lib/pagedates.mjs';
 import Analytics from '@vercel/analytics/astro';
 
 interface Props {
@@ -26,6 +27,9 @@ const {
 
 const site = Astro.site ?? new URL('https://melanocortin.com');
 const canonical = new URL(Astro.url.pathname, site);
+
+// Precise last-modified from git history (machine-only; byline stays year-only).
+const preciseModified = lastmod(Astro.url.pathname);
 
 // Per-page social card, falling back to the default for anything not in the manifest.
 const ogSlug =
@@ -93,7 +97,7 @@ const graph: Record<string, unknown>[] = [
     ...(pageType === 'article'
       ? {
           datePublished: dateModified,
-          dateModified,
+          dateModified: preciseModified,
           author: { '@id': orgId },
           publisher: { '@id': orgId },
           about: about.length
