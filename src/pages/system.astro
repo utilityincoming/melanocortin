@@ -3,6 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 
 const references = [
   {
@@ -174,4 +175,6 @@ const references = [
   </p>
 
   <References items={references} />
+
+  <RelatedPages slug="system" />
 </PageLayout>
