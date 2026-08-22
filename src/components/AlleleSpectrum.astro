@@ -1,0 +1,182 @@
+---
+// "Not all variants are vulnerabilities" — the appetite-axis companion figure.
+// A direction-of-effect spectrum: loss-of-function alleles weaken the satiety
+// brake and raise obesity risk (left); protective alleles strengthen it and
+// lower risk (right). MC4R appears on BOTH sides — the "Janus gene" point.
+// Static; filled = risk, hollow = protective (never colour-only).
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="allele-spectrum not-prose my-8">
+  <svg
+    viewBox="0 0 840 290"
+    role="img"
+    aria-labelledby="as-title as-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="as-title">Risk and resilience alleles on the body-weight axis</title>
+    <desc id="as-desc"
+      >A spectrum of melanocortin-pathway variants by direction of effect.
+      Loss-of-function alleles (MC4R R165W; biallelic POMC, LEPR or PCSK1
+      deficiency) weaken the satiety brake and raise obesity risk on the left;
+      protective alleles (MC4R V103I and I251L) strengthen it and lower risk on
+      the right — so MC4R carries variants of both kinds.</desc
+    >
+
+    <defs>
+      <marker id="as-end" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
+        <path d="M0 0 L6 3 L0 6 Z" class="track-head" />
+      </marker>
+    </defs>
+
+    <!-- direction headers -->
+    <text x="180" y="52" text-anchor="middle" class="dir">WEAKENS THE BRAKE</text>
+    <text x="180" y="70" text-anchor="middle" class="dir-sub">obesity risk ↑</text>
+    <text x="420" y="60" text-anchor="middle" class="janus">the same gene, both ways</text>
+    <text x="662" y="52" text-anchor="middle" class="dir">STRENGTHENS THE BRAKE</text>
+    <text x="662" y="70" text-anchor="middle" class="dir-sub">risk ↓</text>
+
+    <!-- the spectrum track, arrowed at both ends -->
+    <line
+      x1="112"
+      y1="160"
+      x2="732"
+      y2="160"
+      class="track"
+      marker-start="url(#as-end)"
+      marker-end="url(#as-end)"
+    />
+
+    <!-- ===== loss-of-function / risk side (filled) ===== -->
+    <circle cx="176" cy="160" r="7.5" class="risk" />
+    <text x="176" y="184" text-anchor="middle" class="name">POMC · LEPR · PCSK1</text>
+    <text x="176" y="201" text-anchor="middle" class="effect">biallelic loss → severe obesity</text>
+
+    <circle cx="300" cy="160" r="7.5" class="risk" />
+    <text x="300" y="140" text-anchor="middle" class="name">MC4R R165W</text>
+    <text x="300" y="123" text-anchor="middle" class="effect">early-onset obesity</text>
+
+    <!-- ===== baseline ===== -->
+    <path d="M425 151 l8 9 l-8 9 l-8 -9 z" class="baseline" />
+    <text x="425" y="188" text-anchor="middle" class="name-mute">population baseline</text>
+
+    <!-- ===== protective / resilience side (hollow) ===== -->
+    <circle cx="556" cy="160" r="7.5" class="protective" />
+    <text x="556" y="140" text-anchor="middle" class="name">MC4R V103I</text>
+    <text x="556" y="123" text-anchor="middle" class="effect">lower risk · common</text>
+
+    <circle cx="680" cy="160" r="7.5" class="protective" />
+    <text x="680" y="184" text-anchor="middle" class="name">MC4R I251L</text>
+    <text x="680" y="201" text-anchor="middle" class="effect">lower BMI · resilience</text>
+
+    <!-- legend -->
+    <g transform="translate(0 250)">
+      <circle cx="300" cy="0" r="6" class="risk" />
+      <text x="313" y="4" class="legend">loss of function (raises risk)</text>
+      <circle cx="540" cy="0" r="6" class="protective" />
+      <text x="553" y="4" class="legend">protective (lowers risk)</text>
+    </g>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        Variants are not all vulnerabilities. On the body-weight axis the same
+        pathway carries alleles that <strong>weaken</strong> the satiety brake
+        and raise obesity risk and alleles that <strong>strengthen</strong> it
+        and lower risk — <strong>MC4R</strong> sits on both sides at once, the
+        two facets of a &ldquo;Janus&rdquo; gene.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .allele-spectrum {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .allele-spectrum svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  .dir {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    fill: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .dir-sub {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+  .janus {
+    font-size: 11px;
+    font-style: italic;
+    fill: var(--accent);
+  }
+  .name {
+    font-size: 12.5px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .name-mute {
+    font-size: 11.5px;
+    fill: var(--text-muted);
+  }
+  .effect {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+  .legend {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+
+  .track {
+    stroke: var(--border);
+    stroke-width: 3;
+  }
+  .track-head {
+    fill: var(--text-muted);
+  }
+  .risk {
+    fill: var(--accent);
+    stroke: var(--accent-strong);
+    stroke-width: 1.25;
+  }
+  .protective {
+    fill: var(--bg-elevated);
+    stroke: var(--accent);
+    stroke-width: 2.25;
+  }
+  .baseline {
+    fill: var(--text-muted);
+    opacity: 0.55;
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+  figcaption strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,255 @@
+---
+// "One pathway, two phenotypes" — the genetics page's signature figure.
+// Big idea: a single precursor gene (POMC) is cut into α-MSH and ACTH, and the
+// SAME α-MSH signal drives pigment through MC1R in the skin and satiety through
+// MC4R in the brain — so "skin genes" and "obesity genes" turn out to be one
+// pathway. ACTH → MC2R is the third (adrenal) arm, which is why losing POMC
+// itself breaks all three at once. Self-contained; themed via CSS vars; the only
+// motion is a gentle flow down the two shared arcs, stilled by reduced-motion.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="pleiotropy not-prose my-8">
+  <svg
+    viewBox="0 0 840 470"
+    role="img"
+    aria-labelledby="pm-title pm-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="pm-title">One pathway, two phenotype axes</title>
+    <desc id="pm-desc"
+      >The POMC gene is cut into α-MSH and ACTH. The same α-MSH signal reaches
+      MC1R in the skin (pigment and UV risk) and MC4R in the brain (appetite and
+      body weight), while ACTH reaches MC2R in the adrenal gland — so one gene
+      sits on the skin axis, the body-weight axis, and the adrenal axis at
+      once.</desc
+    >
+
+    <defs>
+      <marker id="pm-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+        <path d="M0 0 L6.5 3 L0 6 Z" class="arrowhead" />
+      </marker>
+      <marker id="pm-ah-mute" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0 0 L6 3 L0 6 Z" class="arrowhead-mute" />
+      </marker>
+    </defs>
+
+    <!-- ===== POMC hub ===== -->
+    <rect x="338" y="28" width="124" height="48" rx="12" class="hub" />
+    <text x="400" y="49" text-anchor="middle" class="hub-t">POMC</text>
+    <text x="400" y="66" text-anchor="middle" class="cap-soft">one gene · all three arms</text>
+
+    <!-- POMC -> α-MSH (main product) -->
+    <line x1="400" y1="76" x2="400" y2="101" class="wire" marker-end="url(#pm-ah-mute)" />
+    <rect x="348" y="103" width="104" height="38" rx="10" class="token" />
+    <text x="400" y="127" text-anchor="middle" class="token-t">α-MSH</text>
+
+    <!-- POMC -> ACTH -> MC2R (the muted adrenal arm) -->
+    <line x1="462" y1="52" x2="562" y2="52" class="wire-mute" marker-end="url(#pm-ah-mute)" />
+    <rect x="568" y="34" width="104" height="36" rx="9" class="token-mute" />
+    <text x="620" y="57" text-anchor="middle" class="token-t-mute">ACTH</text>
+    <line x1="620" y1="70" x2="620" y2="104" class="wire-mute" marker-end="url(#pm-ah-mute)" />
+    <circle cx="620" cy="122" r="15" class="mc2r" />
+    <text x="620" y="126" text-anchor="middle" class="node-t-mute">MC2R</text>
+    <text x="620" y="154" text-anchor="middle" class="cap-soft">adrenal · cortisol</text>
+
+    <!-- ===== the two shared arcs: one α-MSH signal → both axes ===== -->
+    <path d="M388 138 C 330 175, 255 210, 214 242" class="arc" marker-end="url(#pm-ah)" />
+    <path d="M416 138 C 480 178, 572 210, 626 242" class="arc" marker-end="url(#pm-ah)" />
+
+    <!-- ===== SKIN panel ===== -->
+    <rect x="32" y="210" width="356" height="240" rx="12" class="panel" />
+    <text x="210" y="236" text-anchor="middle" class="panel-head">SKIN &amp; UV RISK</text>
+    <circle cx="210" cy="266" r="21" class="receptor" />
+    <text x="210" y="270" text-anchor="middle" class="node-t">MC1R</text>
+    <text x="210" y="332" text-anchor="middle" class="line-strong">Genes: MC1R · ASIP</text>
+    <text x="210" y="358" text-anchor="middle" class="line">pigment · tanning · melanoma risk</text>
+    <text x="210" y="388" text-anchor="middle" class="cap-soft">9 MC1R alleles + the ASIP locus</text>
+
+    <!-- ===== WEIGHT panel ===== -->
+    <rect x="452" y="210" width="356" height="240" rx="12" class="panel" />
+    <text x="630" y="236" text-anchor="middle" class="panel-head">APPETITE &amp; BODY WEIGHT</text>
+    <circle cx="630" cy="266" r="21" class="receptor" />
+    <text x="630" y="270" text-anchor="middle" class="node-t">MC4R</text>
+    <text x="630" y="332" text-anchor="middle" class="line-strong">Genes: MC4R · POMC · LEPR · PCSK1</text>
+    <text x="630" y="358" text-anchor="middle" class="line">appetite · satiety · body weight</text>
+    <text x="630" y="388" text-anchor="middle" class="cap-soft">risk alleles AND resilience alleles</text>
+
+    <!-- shared-origin note between the panels -->
+    <text x="420" y="428" text-anchor="middle" class="spine-note">one α-MSH signal, two axes</text>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        One precursor, two phenotype axes. <strong>POMC</strong> is cut into
+        α-MSH and ACTH; the same <strong>α-MSH</strong> signal drives pigment
+        through <strong>MC1R</strong> in the skin and satiety through{' '}
+        <strong>MC4R</strong> in the brain — which is why the genetics of sun
+        sensitivity and the genetics of body weight run through one pathway. Lose
+        POMC itself and all three arms — skin, weight, and adrenal — fail at once.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .pleiotropy {
+    --flow: var(--accent);
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .pleiotropy svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  /* text */
+  .hub-t {
+    font-size: 17px;
+    font-weight: 700;
+    fill: var(--accent-strong);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .token-t {
+    font-size: 15px;
+    font-weight: 600;
+    fill: var(--accent-strong);
+  }
+  .token-t-mute {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--text-muted);
+  }
+  .node-t {
+    font-size: 12.5px;
+    font-weight: 700;
+    fill: var(--bg-elevated);
+  }
+  .node-t-mute {
+    font-size: 10.5px;
+    font-weight: 700;
+    fill: var(--text-muted);
+  }
+  .panel-head {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    fill: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .line-strong {
+    font-size: 12.5px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+  .line {
+    font-size: 12px;
+    fill: var(--text-muted);
+  }
+  .cap-soft {
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+  .spine-note {
+    font-size: 11px;
+    font-style: italic;
+    fill: var(--accent);
+  }
+
+  /* structure */
+  .hub {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+    stroke-width: 1.75;
+  }
+  .token {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+  }
+  .token-mute {
+    fill: var(--bg);
+    stroke: var(--border);
+    stroke-width: 1.25;
+  }
+  .mc2r {
+    fill: var(--bg);
+    stroke: var(--border);
+    stroke-width: 1.5;
+  }
+  .receptor {
+    fill: var(--accent);
+    stroke: var(--accent-strong);
+    stroke-width: 1.25;
+  }
+  .panel {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1.25;
+  }
+  .wire {
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
+  }
+  .wire-mute {
+    stroke: var(--border);
+    stroke-width: 1.75;
+    fill: none;
+  }
+  .arrowhead {
+    fill: var(--accent);
+  }
+  .arrowhead-mute {
+    fill: var(--text-muted);
+  }
+  .arc {
+    stroke: var(--flow);
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 7 6;
+    animation: pm-flow 1.4s linear infinite;
+  }
+  @keyframes pm-flow {
+    to {
+      stroke-dashoffset: -13;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .pleiotropy {
+      --flow: var(--accent);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .arc {
+      animation: none;
+      stroke-dasharray: none;
+    }
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+  figcaption strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>
