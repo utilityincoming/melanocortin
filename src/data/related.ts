@@ -193,6 +193,7 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
+  system: ['receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation', 'binding-matrix'],
   'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
   receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix'],
   'binding-matrix': ['explorer', 'receptors', 'alpha-msh', 'afamelanotide', 'receptors/mc4r', 'agrp'],
