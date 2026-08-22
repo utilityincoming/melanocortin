@@ -1,0 +1,154 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is PF-07258669?',
+    a: 'PF-07258669 is Pfizer’s oral, small-molecule MC4R antagonist, developed to treat the appetite and weight loss of anorexia and cachexia. By blocking the melanocortin-4 receptor it lifts the brain’s brake on hunger. It is potent and selective, was efficacious in an aged-rat model of cachexia, and reached a Phase 1 clinical trial.',
+  },
+  {
+    q: 'How is PF-07258669 different from TCMCB07?',
+    a: 'They aim at the same target for the same purpose but are different kinds of molecule. PF-07258669 is an orally available small molecule from Pfizer, designed by medicinal chemistry; TCMCB07 (mifomelatide) is a cyclic peptide from Endevica Bio. Both block MC4R to stimulate appetite in wasting. Their fortunes have diverged: Pfizer discontinued the PF-07258669 trial for business reasons, while TCMCB07 has continued into Phase 2.',
+  },
+  {
+    q: 'Why did Pfizer stop developing PF-07258669?',
+    a: 'Pfizer terminated the Phase 1 trial after only a handful of participants, stating that it was "prematurely discontinued due to a business decision" and that the decision was "not related to a safety concern." In other words the halt reflected portfolio priorities, not a failure of the molecule or the target - a reminder that drug programs stop for reasons that have nothing to do with the science.',
+  },
+  {
+    q: 'Is PF-07258669 an inverse agonist?',
+    a: 'No - it was deliberately designed as a neutral antagonist. It blocks MC4R without disturbing the receptor’s baseline (constitutive) activity, which distinguishes it from some earlier melanocortin blockers that suppress that basal signalling. Leaving the resting tone untouched was one of the design goals.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Garnsey MR, Smith AC, et al.',
+    title:
+      'Discovery of the potent and selective MC4R antagonist PF-07258669 for the potential treatment of appetite loss.',
+    source: 'J Med Chem. 66(5):3195–3211.',
+    year: '2023',
+    url: 'https://pubs.acs.org/doi/10.1021/acs.jmedchem.2c02012',
+  },
+  {
+    authors: 'ClinicalTrials.gov (sponsor: Pfizer).',
+    title:
+      'A study to learn about PF-07258669 in older adults including those at risk of malnutrition (NCT07086664) — terminated; "prematurely discontinued due to a business decision," not a safety concern.',
+    source: 'Phase 1 trial record.',
+    year: '2025',
+    url: 'https://clinicaltrials.gov/study/NCT07086664',
+  },
+  {
+    authors: 'AllSci.',
+    title:
+      'Pfizer halts Phase 1 trial of Nxera-licensed MC4R antagonist PF-07258669 in malnutrition research.',
+    source: 'News (origin in the Sosei Heptares / Nxera GPCR partnership).',
+    year: '2025',
+    url: 'https://allsci.com/news/pfizer-halts-phase-i-trial-of-mc4r-antagonist-pf-07258669-in-malnutrition-research/',
+  },
+];
+---
+
+<PageLayout
+  title="PF-07258669: Pfizer's oral MC4R antagonist for appetite loss"
+  kicker="Designed, then shelved"
+  description="PF-07258669 is Pfizer's oral, small-molecule MC4R antagonist for appetite loss - a structure-designed spirocyclic compound meant to stimulate appetite in anorexia and cachexia. It validated the same target as the peptide TCMCB07, reached Phase 1, then was discontinued for a business decision, not a safety one."
+  thread="The same brake, met by design - where TCMCB07 is a peptide, this is a small molecule shaped to loosen the melanocortin grip that a wasting illness turns against the body."
+  updated="2026"
+  about={[
+    { name: 'PF-07258669', type: 'MedicalEntity' },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Cachexia', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Cachexia'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'PF-07258669 is Pfizer’s oral, small-molecule MC4R antagonist, developed to treat the appetite and weight loss of anorexia and cachexia - the same therapeutic idea as the peptide TCMCB07.',
+      'It is potent and selective (Ki ≈ 0.5 nM) and, by design, a neutral antagonist: it blocks MC4R without disturbing the receptor’s baseline activity.',
+      'It is a spirocyclic small molecule optimised by structure-based design for oral absorption and clean drug-like properties, and it was efficacious in an aged-rat model of cachexia.',
+      'It reached Phase 1, then Pfizer discontinued the trial for a business decision, with no safety concern - a frontier caution: a validated target and a well-made molecule can still be shelved by portfolio priorities.',
+    ]}
+  />
+
+  <p>
+    PF-07258669 is the big-pharma entry in a small field: an oral, small-molecule
+    <a href="/receptors/mc4r">MC4R</a> antagonist, developed by Pfizer to treat the appetite
+    and weight loss that hollow out patients with anorexia and cachexia.<Cite n={1} /> Its story
+    is worth telling for two opposite reasons - it is a small triumph of modern drug design,
+    and it is a clean example of how a promising drug can stop for reasons that have nothing to
+    do with whether it works.
+  </p>
+
+  <h2>The same target as TCMCB07, a different kind of molecule</h2>
+  <p>
+    The logic is identical to <a href="/tcmcb07">TCMCB07</a>: MC4R signalling suppresses
+    appetite, so blocking MC4R releases it, restoring the drive to eat and helping a wasting
+    body hold onto weight.<Cite n={1} /> It is the same reversal the research tool
+    <a href="/shu9119">SHU9119</a> first demonstrated and the same job the body’s own hunger
+    peptide <a href="/agrp">AgRP</a> does naturally. What sets PF-07258669 apart is its
+    <em>form</em>. Where TCMCB07 is a cyclic peptide, PF-07258669 is a conventional oral small
+    molecule - the kind of pill a large pharmaceutical company is built to make and sell at
+    scale. Two very different molecules converging on one receptor is itself a strong signal
+    that the target is real.
+  </p>
+
+  <h2>Designed for the clinic</h2>
+  <p>
+    PF-07258669 is a piece of deliberate molecular engineering. Starting from a focused
+    screening effort, Pfizer’s chemists introduced a <strong>spirocyclic</strong> rigid core
+    that let them raise potency at MC4R while fixing the absorption and metabolism problems -
+    including troublesome heart-channel (hERG) activity in metabolites - that had dogged earlier
+    compounds.<Cite n={1} /> The result is potent and selective (an affinity of roughly half a
+    nanomolar) and, notably, a <strong>neutral antagonist</strong>: it silences the receptor
+    without pushing its baseline activity down, a cleaner mode of action than the inverse
+    agonism of some earlier blockers.<Cite n={1} /> In an aged-rat model of cachexia it produced
+    robust weight gain, and it advanced as Pfizer’s clinical candidate for appetite loss. It
+    also carries a notable pedigree: it came out of Pfizer’s long-running collaboration with the
+    G-protein-coupled-receptor structure specialists Sosei Heptares, now
+    <strong>Nxera</strong>.<Cite n={3} />
+  </p>
+
+  <h2>Into the clinic, then paused</h2>
+  <p>
+    PF-07258669 reached a <strong>Phase 1</strong> trial designed to test its safety and effect
+    in older adults, including those at risk of malnutrition - a sensible first population for an
+    appetite drug.<Cite n={2} /> Then it stopped. Pfizer terminated the study after only a
+    handful of participants, recording that it was <em>"prematurely discontinued due to a
+    business decision"</em> and that the decision was <em>"not related to a safety
+    concern."</em><Cite n={2} /> No efficacy readout, no safety flag - a portfolio call. For a
+    field with as few shots on goal as melanocortin-antagonist therapy, losing a well-designed
+    candidate to a boardroom decision rather than a trial result is its own kind of frontier
+    lesson.
+  </p>
+
+  <h2>What it means</h2>
+  <p>
+    The MC4R-antagonist idea keeps attracting serious sponsors and then testing their nerve.
+    The biology is validated from several directions - <a href="/genetics">genetics</a>,
+    <a href="/shu9119">SHU9119</a>, and now two independent clinical-stage molecules - yet the
+    commercial path stays unsettled: <a href="/tcmcb07">TCMCB07</a> pressed on into Phase 2
+    while PF-07258669 was set aside. Whether the eventual cachexia drug is a peptide or a pill,
+    the target it aims at is the one this whole site keeps returning to. For the switch itself,
+    see <a href="/receptors/mc4r">MC4R</a>; for the wider landscape, the
+    <a href="/pipeline">melanocortin pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page describes an investigational compound and its trial history. PF-07258669 is not
+      an approved medicine, its clinical development is currently halted, and nothing here is
+      dosing guidance or medical advice. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="pf-07258669" />
+</PageLayout>

@@ -160,6 +160,11 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'SHU9119 — the classic MC4R antagonist',
     blurb: 'The research peptide that blocks MC4R to prove melanocortins restrain hunger - the tool behind the appetite discovery.',
   },
+  'pf-07258669': {
+    href: '/pf-07258669',
+    title: 'PF-07258669 — Pfizer’s oral MC4R antagonist',
+    blurb: 'The structure-designed small-molecule antagonist for appetite loss - reached Phase 1, then Pfizer shelved it for business reasons.',
+  },
   'pt-141-vs-melanotan': {
     href: '/pt-141-vs-melanotan',
     title: 'PT-141 vs Melanotan',
@@ -217,8 +222,9 @@ export const RELATED: Record<string, string[]> = {
   dersimelagon: ['afamelanotide', 'receptors/mc1r', 'inflammation', 'oral-peptides', 'pipeline', 'therapeutics'],
   'pl-8177': ['alpha-msh', 'receptors/mc1r', 'inflammation', 'pl-9643', 'therapeutics'],
   'pl-9643': ['alpha-msh', 'pl-8177', 'inflammation', 'therapeutics', 'pipeline'],
-  tcmcb07: ['setmelanotide', 'agrp', 'receptors/mc4r', 'shu9119', 'pipeline'],
-  shu9119: ['receptors/mc4r', 'agrp', 'tcmcb07', 'melanotan', 'binding-matrix'],
+  tcmcb07: ['setmelanotide', 'agrp', 'receptors/mc4r', 'shu9119', 'pf-07258669', 'pipeline'],
+  shu9119: ['receptors/mc4r', 'agrp', 'tcmcb07', 'pf-07258669', 'melanotan', 'binding-matrix'],
+  'pf-07258669': ['tcmcb07', 'shu9119', 'receptors/mc4r', 'agrp', 'pipeline'],
   melanotan: ['pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'shu9119', 'receptors/mc1r'],
   bremelanotide: ['pt-141-vs-melanotan', 'melanotan', 'oral-peptides', 'receptors/mc4r'],
   setmelanotide: ['hypothalamic-obesity', 'bivamelagon', 'glp1-appetite', 'receptors/mc4r', 'genetics'],
