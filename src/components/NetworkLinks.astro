@@ -1,0 +1,59 @@
+---
+// Renders an "Across the network" card of links to our sister sites, from the
+// map in src/data/network.ts. Slug defaults to the current path, so dropping
+// <NetworkLinks /> into a shared layout is enough - it renders only on pages
+// that actually have network links, and nothing anywhere else.
+import { networkFor } from '../data/network';
+
+interface Props {
+  slug?: string;
+  heading?: string;
+}
+const {
+  slug = Astro.url.pathname.replace(/^\/+|\/+$/g, ''),
+  heading = 'Across the network',
+} = Astro.props;
+
+const items = networkFor(slug);
+---
+
+{
+  items.length > 0 && (
+    <nav
+      class="not-prose mt-14 border-t border-[var(--border)] pt-8"
+      aria-label="Across the network"
+    >
+      <h2 class="font-serif text-2xl font-semibold tracking-tight">{heading}</h2>
+      <p class="mt-1 text-sm text-[var(--text-muted)]">
+        Further reading on our sister sites.
+      </p>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2">
+        {items.map((it) => (
+          <a
+            href={it.href}
+            rel="noopener"
+            class="group block rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4 no-underline transition-colors hover:border-[var(--accent)]"
+          >
+            <span class="flex items-center justify-between gap-3">
+              <span class="font-medium text-[var(--text)] group-hover:text-[var(--accent)]">
+                {it.title}
+              </span>
+              <span
+                aria-hidden="true"
+                class="shrink-0 text-[var(--accent)] opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                ↗
+              </span>
+            </span>
+            <span class="mt-1 block font-mono text-xs tracking-wide text-[var(--accent)] uppercase">
+              {it.site}
+            </span>
+            <span class="mt-1 block text-sm leading-relaxed text-[var(--text-muted)]">
+              {it.blurb}
+            </span>
+          </a>
+        ))}
+      </div>
+    </nav>
+  )
+}
