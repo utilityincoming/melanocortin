@@ -4,6 +4,7 @@ import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import FAQ from '../components/FAQ.astro';
 
 const approved = [
   {
@@ -143,6 +144,25 @@ const references = [
     source: 'J Clin Invest. 130(9):4921–34.',
     year: '2020',
     url: 'https://www.jci.org/articles/view/138392',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What melanocortin drugs are FDA-approved?',
+    a: 'Four, and each targets a different receptor: setmelanotide (Imcivree), an MC4R agonist for rare genetic and hypothalamic obesity; afamelanotide (Scenesse), an MC1R agonist implant for erythropoietic protoporphyria; bremelanotide (Vyleesi), a centrally acting agonist for hypoactive sexual desire disorder; and repository corticotropin (Acthar Gel), an ACTH-based pan-melanocortin agent used in several inflammatory conditions.',
+  },
+  {
+    q: 'Can the melanocortin system be treated by blocking it, not just activating it?',
+    a: 'Yes. Because the pathway has a natural brake (AgRP opposing α-MSH), it can be treated in reverse. In cachexia, the wasting of cancer and chronic kidney disease, an overactive central melanocortin tone collapses appetite, so an MC4R antagonist such as TCMCB07 lifts appetite and preserves lean mass. The same receptor is agonised for obesity and antagonised for wasting.',
+  },
+  {
+    q: 'Is there an oral melanocortin drug?',
+    a: 'Not yet approved, but close. The approved agents are given by injection, implant or gel. Oral candidates in trials include dersimelagon, a small-molecule MC1R agonist that reported a positive phase 3 (INSPIRE) result in 2026 for erythropoietic protoporphyria, and Palatin’s PL-8177, an oral MC1R agonist studied in ulcerative colitis.',
+  },
+  {
+    q: 'Are Melanotan and Melanotan II approved treatments?',
+    a: 'No. They are α-MSH-like peptides sold online as tanning or libido aids, and they are not approved medicines in the US, UK or EU. Their purity and dosing are unverified and regulators have warned about adverse effects. This site documents the biology without endorsing unapproved products.',
   },
 ];
 ---
@@ -388,6 +408,8 @@ const references = [
     describes mechanism and regulatory status for education only — it is not
     medical advice. See the <a href="/about">editorial standards</a>.
   </p>
+
+  <FAQ items={faqs} />
 
   <References items={references} />
 
