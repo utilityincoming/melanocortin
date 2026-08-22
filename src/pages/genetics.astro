@@ -6,6 +6,9 @@ import RelatedPages from '../components/RelatedPages.astro';
 import VariantCard from '../components/VariantCard.astro';
 import PigmentSwitch from '../components/PigmentSwitch.astro';
 import AppetiteCircuit from '../components/AppetiteCircuit.astro';
+import PleiotropyMap from '../components/PleiotropyMap.astro';
+import AlleleSpectrum from '../components/AlleleSpectrum.astro';
+import FAQ from '../components/FAQ.astro';
 import { variantsByAxis, type Variant } from '../data/variants';
 
 const skin = variantsByAxis('skin');
@@ -24,6 +27,25 @@ for (const v of [...skin, ...metabolic] as Variant[]) {
   }
 }
 references.sort((a, b) => a.authors.localeCompare(b.authors));
+
+const faqs = [
+  {
+    q: 'Are "skin genes" and "obesity genes" really the same genes?',
+    a: 'Not identical genes, but one pathway. The melanocortin system runs from a single precursor, POMC, cut into signals that act on five receptors: the same α-MSH drives pigment through MC1R in the skin and satiety through MC4R in the brain. So MC1R and ASIP variants shape sun sensitivity and melanoma risk, while MC4R, POMC, LEPR and PCSK1 variants shape appetite and body weight — neighbouring parts of one circuit. A few genes, POMC above all, sit on both axes at once.',
+  },
+  {
+    q: 'Can a melanocortin variant lower obesity risk instead of raising it?',
+    a: 'Yes. MC4R is a "Janus" gene: loss-of-function alleles such as R165W weaken the satiety brake and raise obesity risk, while protective alleles such as V103I and I251L strengthen it and are associated with lower BMI. Most attention goes to the risk alleles, but resilience alleles sit on the very same gene.',
+  },
+  {
+    q: 'Why does losing the POMC gene cause obesity, adrenal failure and red hair together?',
+    a: 'Because POMC is the shared precursor for both α-MSH (appetite via MC4R and pigment via MC1R) and ACTH (adrenal cortisol via MC2R). Biallelic POMC deficiency removes all of them at once, so severe early-onset obesity, adrenal insufficiency and — in fair-skinned backgrounds — red hair appear together. It is the clearest example of one gene acting on all three arms of the pathway, and it responds to the MC4R-pathway drug setmelanotide.',
+  },
+  {
+    q: 'Does this page tell me what my own genotype means?',
+    a: 'No. Every entry describes population-level associations from the published literature, each carrying a strength-of-evidence tag. It is a research reference, not a diagnostic tool: penetrance varies, most traits are polygenic, and interpreting an individual genotype belongs with a qualified genetic counsellor.',
+  },
+];
 ---
 
 <PageLayout
@@ -75,6 +97,8 @@ references.sort((a, b) => a.authors.localeCompare(b.authors));
     appear under both headings on purpose.
   </p>
 
+  <PleiotropyMap />
+
   <h2>Skin &amp; UV-risk axis</h2>
   <PigmentSwitch />
   <p>
@@ -101,6 +125,8 @@ references.sort((a, b) => a.authors.localeCompare(b.authors));
     {metabolic.map((v) => <VariantCard variant={v} />)}
   </div>
 
+  <AlleleSpectrum />
+
   <h2>How to read the evidence tags</h2>
   <p>
     Every card carries a strength-of-evidence badge so a textbook variant is never
@@ -109,9 +135,12 @@ references.sort((a, b) => a.authors.localeCompare(b.authors));
     in clinical databases), <strong class="font-medium">Strong</strong> (multiple
     independent cohorts agree), <strong class="font-medium">Emerging</strong> (real but
     limited replication), and <strong class="font-medium">Contested</strong> (published
-    both ways). Allele frequencies and identifiers are being verified against gnomAD,
-    dbSNP, ClinVar and OMIM as entries are finalised.
+    both ways). Each variant links out to its primary literature, and its dbSNP and
+    OMIM identifiers resolve to the source databases; allele-frequency notes are
+    deliberately qualitative and ancestry-aware rather than a single global figure.
   </p>
+
+  <FAQ items={faqs} />
 
   <RelatedPages slug="genetics" />
   <References items={references} />

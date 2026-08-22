@@ -69,7 +69,33 @@ const tags = [
       v.rsid && (
         <div>
           <dt class="inline font-medium text-[var(--text)]">dbSNP:</dt>{' '}
-          <dd class="inline font-mono">{v.rsid}</dd>
+          <dd class="inline font-mono">
+            <a
+              href={`https://www.ncbi.nlm.nih.gov/snp/${v.rsid}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-dotted hover:text-[var(--accent)]"
+            >
+              {v.rsid} ↗
+            </a>
+          </dd>
+        </div>
+      )
+    }
+    {
+      v.clinvar && (
+        <div>
+          <dt class="inline font-medium text-[var(--text)]">ClinVar:</dt>{' '}
+          <dd class="inline font-mono">
+            <a
+              href={`https://www.ncbi.nlm.nih.gov/clinvar/variation/${v.clinvar}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-dotted hover:text-[var(--accent)]"
+            >
+              {v.clinvar} ↗
+            </a>
+          </dd>
         </div>
       )
     }
@@ -77,7 +103,16 @@ const tags = [
       v.omim && (
         <div>
           <dt class="inline font-medium text-[var(--text)]">OMIM:</dt>{' '}
-          <dd class="inline font-mono">{v.omim}</dd>
+          <dd class="inline font-mono">
+            <a
+              href={`https://www.omim.org/entry/${v.omim}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-dotted hover:text-[var(--accent)]"
+            >
+              {v.omim} ↗
+            </a>
+          </dd>
         </div>
       )
     }
