@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/check-link-whitespace.mjs",
+    "check:ws": "node scripts/check-link-whitespace.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
