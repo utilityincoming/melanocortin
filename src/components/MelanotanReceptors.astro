@@ -1,0 +1,161 @@
+---
+// "One peptide, every receptor" — an original, self-contained explainer for why
+// Melanotan II does far more than tan. It is a broad (non-selective) melanocortin
+// agonist, so a single injection reaches all four peripheral/central receptors at
+// once: MC1R gives the wanted tan, while MC3R, MC4R and MC5R deliver the effects
+// nobody asked for — the MC4R hits (nausea, flushing, appetite loss, erections)
+// being the loudest. Signal strengths are consistent with the site's binding
+// matrix. Themed via CSS vars; gentle flow honours prefers-reduced-motion.
+interface Props {
+  caption?: boolean;
+}
+const { caption = true } = Astro.props;
+---
+
+<figure class="mt-recep not-prose my-8">
+  <svg
+    viewBox="0 0 800 430"
+    role="img"
+    aria-labelledby="mtr-title mtr-desc"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="mtr-title">Why Melanotan II does more than tan</title>
+    <desc id="mtr-desc"
+      >Melanotan II is a broad melanocortin agonist, so one dose reaches all four
+      receptors. MC1R produces the wanted tan; MC3R, MC4R and MC5R produce the
+      collateral effects. MC4R drives the loudest ones: nausea, flushing,
+      appetite loss and spontaneous erections.</desc
+    >
+
+    <!-- source peptide -->
+    <rect x="40" y="188" width="152" height="66" rx="16" class="src" />
+    <text x="116" y="214" text-anchor="middle" class="src-name">Melanotan II</text>
+    <text x="116" y="233" text-anchor="middle" class="src-sub">one broad agonist</text>
+
+    <!-- fan-out arrows -->
+    <path d="M192 214 C300 150 330 76 422 76" class="wire wire-want" />
+    <path d="M192 218 C300 192 342 164 422 164" class="wire" />
+    <path d="M192 226 C300 250 342 252 422 252" class="wire wire-cost" />
+    <path d="M192 232 C300 300 330 340 422 340" class="wire" />
+
+    <text x="430" y="26" class="col-label">every receptor it reaches</text>
+
+    <!-- MC1R — the wanted effect -->
+    <rect x="424" y="40" width="352" height="72" rx="12" class="rc rc-want" />
+    <rect x="432" y="58" width="5" height="36" rx="2.5" class="stripe stripe-want" />
+    <text x="456" y="82" class="recep">MC1R</text>
+    <text x="524" y="82" class="effect">skin pigment → the sunless tan</text>
+
+    <!-- MC3R -->
+    <rect x="424" y="128" width="352" height="72" rx="12" class="rc" />
+    <rect x="432" y="146" width="5" height="36" rx="2.5" class="stripe" />
+    <text x="456" y="170" class="recep">MC3R</text>
+    <text x="524" y="170" class="effect">energy balance · minor cardiovascular</text>
+
+    <!-- MC4R — the loud collateral -->
+    <rect x="424" y="216" width="352" height="72" rx="12" class="rc rc-cost" />
+    <rect x="432" y="234" width="5" height="36" rx="2.5" class="stripe stripe-cost" />
+    <text x="456" y="246" class="recep">MC4R</text>
+    <text x="524" y="245" class="effect">nausea · flushing · appetite loss</text>
+    <text x="524" y="263" class="effect">drowsiness · spontaneous erections</text>
+
+    <!-- MC5R -->
+    <rect x="424" y="304" width="352" height="72" rx="12" class="rc" />
+    <rect x="432" y="322" width="5" height="36" rx="2.5" class="stripe" />
+    <text x="456" y="346" class="recep">MC5R</text>
+    <text x="524" y="346" class="effect">sebaceous &amp; other exocrine glands</text>
+
+    <!-- legend -->
+    <g class="legend" transform="translate(40 406)">
+      <circle cx="8" cy="10" r="6" class="chip-want" />
+      <text x="22" y="14" class="cap">what it's taken for</text>
+      <circle cx="196" cy="10" r="6" class="chip-cost" />
+      <text x="210" y="14" class="cap">the collateral effects</text>
+    </g>
+  </svg>
+
+  {
+    caption && (
+      <figcaption>
+        Melanotan II is a <strong>broad agonist</strong>: it does not single out
+        the pigment receptor. One dose reaches all four, so the wanted{' '}
+        <strong>MC1R</strong> tan arrives bundled with everything else — and the{' '}
+        <strong>MC4R</strong> effects (nausea, flushing, appetite loss, erections)
+        are the price built into the same molecule.
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .mt-recep {
+    --want: var(--accent);
+    --cost: #b4532a;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .mt-recep {
+      --cost: #e07a52;
+    }
+  }
+
+  .mt-recep svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.5rem;
+  }
+
+  .src { fill: var(--accent-soft); stroke: var(--accent-strong); stroke-width: 2; }
+  .src-name { font-size: 15px; font-weight: 700; fill: var(--text); }
+  .src-sub { font-size: 11px; fill: var(--text-muted); }
+
+  .col-label {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 11px; letter-spacing: 0.1em; fill: var(--text-muted);
+  }
+
+  .rc { fill: var(--bg); stroke: var(--border); stroke-width: 1.5; }
+  .rc-want { fill: var(--accent-soft); stroke: var(--accent); }
+  .rc-cost { stroke: var(--cost); }
+
+  .stripe { fill: var(--text-muted); opacity: 0.5; }
+  .stripe-want { fill: var(--want); opacity: 1; }
+  .stripe-cost { fill: var(--cost); opacity: 1; }
+
+  .recep { font-size: 15px; font-weight: 700; fill: var(--text); }
+  .effect { font-size: 12px; fill: var(--text-muted); }
+
+  .wire {
+    fill: none; stroke: var(--text-muted); stroke-width: 2;
+    stroke-dasharray: 7 7; opacity: 0.55;
+    animation: mtrFlow 2s linear infinite;
+  }
+  .wire-want { stroke: var(--want); opacity: 0.9; stroke-width: 2.5; }
+  .wire-cost { stroke: var(--cost); opacity: 0.9; stroke-width: 2.5; }
+  @keyframes mtrFlow { to { stroke-dashoffset: -28; } }
+
+  .cap { font-size: 11.5px; fill: var(--text-muted); }
+  .chip-want { fill: var(--want); }
+  .chip-cost { fill: var(--cost); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wire { animation: none; }
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  figcaption strong { color: var(--text); font-weight: 600; }
+</style>
