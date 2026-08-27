@@ -5,58 +5,229 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import MelanotanFamily from '../components/MelanotanFamily.astro';
+import MelanotanReceptors from '../components/MelanotanReceptors.astro';
 
 const faqs = [
   {
     q: 'Is melanotan legal?',
-    a: 'Melanotan II is not an approved medicine in the US, UK, EU, or Australia, and selling it is illegal. It is marketed as a "research chemical, not for human use" to sidestep approval, and regulators including the FDA, the UK’s MHRA, and Australia’s TGA have warned against it.',
+    a: 'Melanotan II is not an approved medicine in the US, UK, EU, or Australia, and selling or advertising it is illegal in those markets. It is labelled a "research chemical, not for human use" to sidestep approval, and regulators including the US FDA, the UK’s MHRA, and Australia’s TGA have all warned against it and acted against sellers.',
   },
   {
     q: 'Does melanotan cause melanoma or skin cancer?',
-    a: 'Melanotan II darkens existing moles and is associated with the rapid appearance of new ones, and there are case reports of melanoma emerging during or shortly after use. Causation is not proven, but the mechanism is plausible — and a chemical tan can mask the very mole changes that signal skin cancer.',
+    a: 'It has not been proven to, but there is real reason for concern. Melanotan II drives pigment cells hard; it darkens existing moles and is linked in case reports to crops of new ones and to melanoma appearing during or shortly after use. Those are individual reports, not proof of cause — and users tend also to use sunbeds, a confounder — but the mechanism is plausible, and a chemical tan can mask the very mole changes that signal skin cancer.',
   },
   {
     q: 'What is the difference between Melanotan I and Melanotan II?',
-    a: 'Melanotan-I is the more MC1R-selective analogue, which became the approved drug afamelanotide (Scenesse). Melanotan II is a more potent, non-selective version that was pushed as a tanning agent and never approved — it is the one sold on the grey market.',
+    a: 'Both are lab-made, superpotent relatives of the natural hormone α-MSH, and both are broad melanocortin agonists — neither is truly receptor-selective. Melanotan-I is the linear version developed for pigment; it became the approved, controlled-release drug afamelanotide (Scenesse). Melanotan II is a more potent cyclic redesign that was pushed as a tanning agent, never approved, and is the one sold on the grey market.',
   },
   {
     q: 'Is melanotan the same as afamelanotide?',
-    a: 'They are related but not the same. Afamelanotide is the approved, controlled-release Melanotan-I medicine used for a rare light-sensitivity disorder; melanotan II is the unapproved grey-market tanning peptide.',
+    a: 'They are related but not the same. Afamelanotide is the approved, controlled-release Melanotan-I medicine used for a rare light-sensitivity disorder, given as an implant under medical supervision. Melanotan II is the unapproved grey-market tanning peptide, self-injected at unknown doses.',
   },
   {
     q: 'Why does melanotan make you feel sick?',
-    a: 'Because it is non-selective, melanotan II also activates MC4R in the brain, which causes nausea, flushing, and loss of appetite alongside the tanning — the same melanocortin pharmacology behind the approved drugs’ side effects.',
+    a: 'Because it is non-selective, Melanotan II also activates MC4R in the brain, which causes nausea, flushing, drowsiness and loss of appetite alongside the tanning — the same melanocortin pharmacology behind the approved drugs’ side effects. Nausea was reported by the very first human volunteers who received it.',
+  },
+  {
+    q: 'Does a melanotan tan protect me from the sun, so I can skip sunscreen?',
+    a: 'No — do not treat it as protection. The tan is real eumelanin, and in trials the medical analogue did modestly reduce UV damage markers, but a melanotan tan has never been shown to prevent sunburn reliably or lower skin-cancer risk, and the grey-market product is unapproved and impure. Worse, a false sense of protection plus a tan that hides mole changes is the exact combination dermatologists worry about. Normal sun protection still applies. This is education, not medical advice.',
+  },
+  {
+    q: 'Is the melanotan nasal spray safer than injecting it?',
+    a: 'It is not a safe alternative. The spray delivers the same unapproved peptide, is still absorbed into the bloodstream, and produces the same MC4R effects — and the dose is even harder to control. In 2026 Australia’s TGA tested a "triple strength" nasal spray labelled 30 mg and found the actual content ranged from 22 to 54 mg. Different route, same drug and the same unknowns.',
   },
 ];
 
 const references = [
   {
-    authors: 'DermNet NZ.',
-    title: 'Melanotan II.',
-    source: 'Clinical dermatology reference.',
-    year: '2023',
-    url: 'https://dermnetnz.org/topics/melanotan-ii',
+    authors: 'Al-Obeidi F, Castrucci AM, Hadley ME, Hruby VJ.',
+    title: 'Potent and prolonged acting cyclic lactam analogues of alpha-melanotropin: design based on molecular dynamics.',
+    source: 'J Med Chem. 32(12):2555–61.',
+    year: '1989',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/2555512/',
+  },
+  {
+    authors: 'Hadley ME, Dorr RT.',
+    title: 'Melanocortin peptide therapeutics: historical milestones, clinical studies and commercialization.',
+    source: 'Peptides. 27(4):921–30.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16412534/',
+  },
+  {
+    authors: 'Dorr RT, Lines R, Levine N, et al.',
+    title: 'Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide in a pilot phase-I clinical study.',
+    source: 'Life Sci. 58(20):1777–84.',
+    year: '1996',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8637402/',
+  },
+  {
+    authors: 'King SH, Mayorov AV, Balse-Srinivasan P, Hruby VJ, Vanderah TW, Wessells H.',
+    title: 'Melanocortin receptors, melanotropic peptides and penile erection.',
+    source: 'Curr Top Med Chem. 7(11):1098–1106.',
+    year: '2007',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2694735/',
+  },
+  {
+    authors: 'Wessells H, Fuciarelli K, Hansen J, et al.',
+    title: 'Synthetic melanotropic peptide initiates erections in men with psychogenic erectile dysfunction: double-blind, placebo controlled crossover study.',
+    source: 'J Urol. 160(2):389–93.',
+    year: '1998',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/9679884/',
+  },
+  {
+    authors: 'Schiöth HB, Muceniece R, Mutulis F, et al.',
+    title: 'Selectivity of cyclic [D-Nal7] and [D-Phe7] substituted MSH analogues for the melanocortin receptor subtypes.',
+    source: 'Peptides. 18(7):1009–13.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/9357059/',
+  },
+  {
+    authors: 'Heyder NA, Kleinau G, Speck D, et al.',
+    title: 'Structures of active melanocortin-4 receptor–Gs-protein complexes with NDP-α-MSH and setmelanotide.',
+    source: 'Cell Res. 31(11):1176–1189.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34561620/',
+  },
+  {
+    authors: 'Swope VB, Abdel-Malek ZA.',
+    title: 'MC1R: front and center in the bright side of dark eumelanin and DNA repair.',
+    source: 'Int J Mol Sci. 19(9):2667.',
+    year: '2018',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/30205559/',
+  },
+  {
+    authors: 'Nasti TH, Timares L.',
+    title: 'MC1R, eumelanin and pheomelanin: their role in determining the susceptibility to skin cancer.',
+    source: 'Photochem Photobiol. 91(1):188–200.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25155575/',
+  },
+  {
+    authors: 'Levine N, Sheftel SN, Eytan T, et al.',
+    title: 'Induction of skin tanning by subcutaneous administration of a potent synthetic melanotropin.',
+    source: 'JAMA. 266(19):2730–6.',
+    year: '1991',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/1658407/',
+  },
+  {
+    authors: 'Barnetson RS, Ooi TK, Zhuang L, et al.',
+    title: '[Nle4-D-Phe7]-α-melanocyte-stimulating hormone significantly increased pigmentation and decreased UV damage in fair-skinned Caucasian volunteers.',
+    source: 'J Invest Dermatol. 126(8):1869–78.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16763547/',
+  },
+  {
+    authors: 'Cardones AR, Grichnik JM.',
+    title: 'α-Melanocyte-stimulating hormone-induced eruptive nevi.',
+    source: 'Arch Dermatol. 145(4):441–4.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19380666/',
+  },
+  {
+    authors: 'Langan EA, Ramlogan D, Jamieson LA, Rhodes LE.',
+    title: 'Change in moles linked to use of unlicensed "sun tan jab".',
+    source: 'BMJ. 338:b277.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19174439/',
+  },
+  {
+    authors: 'Paurobally D, Jason F, Dezfoulian B, Nikkels AF.',
+    title: 'Melanotan-associated melanoma.',
+    source: 'Br J Dermatol. 164(6):1403–5.',
+    year: '2011',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/21564053/',
+  },
+  {
+    authors: 'Hjuler KF, Lorentzen HF.',
+    title: 'Melanoma associated with the use of melanotan-II.',
+    source: 'Dermatology. 228(1):34–6.',
+    year: '2014',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/24355990/',
+  },
+  {
+    authors: 'Nelson ME, Bryant SM, Aks SE.',
+    title: 'Melanotan II injection resulting in systemic toxicity and rhabdomyolysis.',
+    source: 'Clin Toxicol (Phila). 50(10):1169–73.',
+    year: '2012',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/23121206/',
+  },
+  {
+    authors: 'Kaski D, Stafford N, Mehta A, Jenkins IH, Malhotra P.',
+    title: 'Melanotan and the posterior reversible encephalopathy syndrome.',
+    source: 'Ann Intern Med. 158(9):707–8.',
+    year: '2013',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/23648958/',
+  },
+  {
+    authors: 'Peters B, Hadimeri H, Wahlberg R, Afghahi H.',
+    title: 'Melanotan II: a possible cause of renal infarction — review of the literature and case report.',
+    source: 'CEN Case Rep. 9(2):159–61.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/31953620/',
+  },
+  {
+    authors: 'Mallory CW, Lopategui DM, Cordon BH.',
+    title: 'Melanotan tanning injection: a rare cause of priapism.',
+    source: 'Sex Med. 9(1):100298.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33460908/',
+  },
+  {
+    authors: 'Breindahl T, Evans-Brown M, Hindersson P, et al.',
+    title: 'Identification and characterization by LC-UV-MS/MS of melanotan II skin-tanning products sold illegally on the Internet.',
+    source: 'Drug Test Anal. 7(2):164–72.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/24771717/',
+  },
+  {
+    authors: 'Langan EA, Nie Z, Rhodes LE.',
+    title: "Melanotropic peptides: more than just 'Barbie drugs' and 'sun-tan jabs'?",
+    source: 'Br J Dermatol. 163(3):451–5.',
+    year: '2010',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/20545686/',
+  },
+  {
+    authors: 'Habbema L, Halk AB, Neumann M, Bergman W.',
+    title: 'Risks of unregulated use of alpha-melanocyte-stimulating hormone analogues: a review.',
+    source: 'Int J Dermatol. 56(10):975–80.',
+    year: '2017',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/28266027/',
+  },
+  {
+    authors: 'Evans-Brown M, Dawson RT, Chandler M, McVeigh J.',
+    title: 'Use of melanotan I and II in the general population.',
+    source: 'BMJ. 338:b566.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19224885/',
+  },
+  {
+    authors: 'Gilhooley E, Daly N, McKenna D.',
+    title: 'Melanotan II user experience: a qualitative study of online discussion forums.',
+    source: 'Dermatology. 237(6):995–9.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34464955/',
+  },
+  {
+    authors: 'US Food & Drug Administration.',
+    title: 'Warning letter: melanopharmacy.com (ref. 610314) — Melanotan II marketed as an unapproved new drug.',
+    source: 'Regulatory action.',
+    year: '2020',
+    url: 'https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/melanopharmacycom-610314-09022020',
   },
   {
     authors: 'Therapeutic Goods Administration (Australia).',
-    title: 'Don’t risk using tanning products containing melanotan.',
-    source: 'Regulator advisory.',
-    year: '2023',
-    url: 'https://www.tga.gov.au/news/blog/dont-risk-using-tanning-products-containing-melanotan',
+    title: 'Melanotan II tanning peptide products found to be inconsistently dosed.',
+    source: 'Safety alert.',
+    year: '2026',
+    url: 'https://www.tga.gov.au/safety/safety-monitoring-and-information/safety-alerts/melanotan-ii-tanning-peptide-products-found-be-inconsistently-dosed',
   },
   {
-    authors: 'UNSW Sydney (Newsroom).',
-    title: 'What is Melanotan-II — the drug the TGA urges consumers to avoid?',
-    source: 'News explainer.',
-    year: '2023',
-    url: 'https://www.unsw.edu.au/newsroom/news/2023/01/what-is-melanotan-ii---the-drug-that-the-tga-urges-consumers-to-',
-  },
-  {
-    authors: 'Cancer Research UK.',
-    title: 'Melanotan injections are sold illegally and possibly unsafe.',
-    source: 'Science blog.',
-    year: '2009',
-    url: 'https://news.cancerresearchuk.org/2009/01/28/melanotan-injections-are-illegal-and-possibly-unsafe/',
+    authors: 'Medicines and Healthcare products Regulatory Agency (UK).',
+    title: "'Tan jab' is an unlicensed medicine and may not be safe.",
+    source: 'Media statement (archived, The National Archives).',
+    year: '2008',
+    url: 'https://webarchive.nationalarchives.gov.uk/20141206164951/http://www.mhra.gov.uk/home/groups/comms-po/documents/news/con031010.pdf',
   },
 ];
 ---
@@ -64,7 +235,7 @@ const references = [
 <PageLayout
   title="Melanotan and Melanotan II: what they are, why they tan you, and the real risks"
   kicker="The grey market"
-  description="The 'tanning peptides' sold online are synthetic versions of a melanocortin hormone. Here's the actual pharmacology, how the two melanotans relate to the approved drugs they spawned, and the documented risks — explained plainly, not sold."
+  description="The 'tanning peptides' sold online are synthetic versions of a melanocortin hormone. Here's the actual pharmacology, where the two melanotans came from and how they relate to the approved drugs they spawned, and the documented risks — explained plainly and cited, not sold."
   thread="The system's oldest trick, taken without its safeguards — the MC1R pigment switch, flipped by a peptide the law never cleared."
   updated="2026"
   about={[
@@ -75,10 +246,11 @@ const references = [
 >
   <KeyTakeaways
     items={[
-      '“Melanotan” refers to two different peptides: Melanotan I, the MC1R-selective one that became the approved drug afamelanotide, and Melanotan II, the non-selective grey-market tanning peptide.',
-      'Melanotan II tans by activating MC1R to boost eumelanin independently of sunlight — but it is not an approved medicine and is illegal to sell.',
-      'Because it is non-selective it also hits MC4R, causing nausea, flushing, appetite loss and spontaneous erections; that arousal effect spawned the separate drug bremelanotide.',
-      'Its most serious risk is to pigment cells: it darkens existing moles, is linked to new ones, and can mask the mole changes that signal melanoma.',
+      '“Melanotan” names two lab-made relatives of the hormone α-MSH: Melanotan-I, the version developed for pigment that became the approved drug afamelanotide, and Melanotan II, the more potent cyclic redesign sold on the grey market as a tanning peptide.',
+      'Melanotan II tans by activating MC1R to build brown-black eumelanin without sunlight — genuine pharmacology, but it is an unapproved drug and illegal to sell.',
+      'It is a broad, non-selective agonist, so the same dose also hits MC4R — causing nausea, flushing, appetite loss and spontaneous erections; that arousal effect was chased into the separate approved drug bremelanotide.',
+      'Its gravest concern is to pigment cells: case reports link it to darkening and erupting moles and to melanoma, and a chemical tan can mask the mole changes that warn of skin cancer.',
+      'When analysed, grey-market vials have been found underdosed and impure, and documented harms extend to rhabdomyolysis, kidney infarction and priapism — all from case reports of uncontrolled use.',
     ]}
   />
 
@@ -86,126 +258,284 @@ const references = [
     Search for a way to tan without the sun and you will quickly meet
     "melanotan" — peptides sold online as injections or nasal sprays that
     genuinely darken skin. They are real pharmacology, not a gimmick: synthetic
-    relatives of the body's own pigment hormone, α-MSH. But the most popular one
-    is also unapproved everywhere, sold illegally, and tied to documented harms.
-    This page explains what these compounds are and why they do what they do — it
-    is education, not endorsement, and not medical advice.
+    relatives of the body's own pigment hormone, α-MSH, built in a university lab
+    to be far stronger and longer-lasting than the natural signal.<Cite n={1} /> But the
+    most popular one is also unapproved everywhere, sold illegally, and tied to
+    documented harms. This page explains what these compounds are, where they came
+    from, and why they do what they do — it is education, not endorsement, and not
+    medical advice.
   </p>
 
   <h2>Two melanotans — and the medicines they became</h2>
   <p>
     The confusing part is that "melanotan" names a small family, and most of it
-    grew up to be legitimate. All of it traces to work at the University of
-    Arizona to make stable analogues of α-MSH.<Cite n={1} />
+    grew up to be legitimate. All of it traces to work at the University of Arizona
+    in the 1980s to make stable, potent analogues of α-MSH — first as a possible
+    tanning drug, then well beyond it.<Cite n={1} /><Cite n={2} />
   </p>
   <ul>
     <li>
-      <strong>Melanotan-I</strong> — the more selective{' '}
-      <a href="/receptors/mc1r">MC1R</a> analogue. It became an
-      <em>approved drug</em>: afamelanotide (Scenesse), a controlled-release
-      implant for a rare light-sensitivity disorder. See the{' '}
-      <a href="/therapeutics#afamelanotide">therapeutics entry</a>.
+      <strong>Melanotan-I</strong> — the linear analogue (chemists know it as
+      NDP-α-MSH) developed for pigment. It became an <em>approved drug</em>:
+      afamelanotide (Scenesse), a controlled-release implant for a rare
+      light-sensitivity disorder. See the{' '}
+      <a href="/afamelanotide">afamelanotide explainer</a>.
     </li>
     <li>
-      <strong>Melanotan II (MT-II)</strong> — a more potent, <em>non-selective</em>
-      melanocortin agonist that hits MC1R, MC3R, MC4R and MC5R. It was the one
-      pushed as a tanning agent, and it is the one that <em>never</em> became a
-      medicine. This is the "melanotan" sold on the grey market.<Cite n={1} />
+      <strong>Melanotan II (MT-II)</strong> — a more potent <em>cyclic</em>
+      redesign that hits MC1R, MC3R, MC4R and MC5R. It was the one pushed as a
+      tanning agent, and it is the one that <em>never</em> became a medicine. This
+      is the "melanotan" sold on the grey market.<Cite n={1} /><Cite n={3} />
     </li>
     <li>
-      <strong>Its offspring</strong> — bremelanotide (Vyleesi), derived from the
+      <strong>Its offspring</strong> — bremelanotide (Vyleesi), carved out of the
       MT-II scaffold, became an approved treatment for low sexual desire. See the
       full <a href="/bremelanotide">bremelanotide / PT-141 explainer</a>.
     </li>
   </ul>
+
+  <MelanotanFamily />
+
   <p>
     So two of the three melanotan-lineage molecules cleared trials and reached
     pharmacies under controlled doses and forms. The middle one — MT-II — stayed
     in vials marked "research chemical, not for human use," which is how it dodges
-    the rules it can't pass.<Cite n={2} />
+    the rules it can't pass.<Cite n={22} />
+  </p>
+
+  <h2>Born in a lab in Arizona</h2>
+  <p>
+    Native α-MSH is a poor drug: the body degrades it within minutes. The Arizona
+    chemists fixed that by rebuilding it. Swapping in unnatural amino acids and, for
+    MT-II, closing the peptide into a ring (a lactam bridge) locked the molecule
+    into its active shape and shielded it from the enzymes that chew up the natural
+    hormone. The result was a compound roughly a hundred times more potent than
+    α-MSH and far longer-acting — small changes, an outsized effect.<Cite n={1} /> That
+    is the quiet elegance of it: the tan is not a foreign trick imposed on the
+    skin, but the body's own pigment signal, copied and made to last.
+  </p>
+  <p>
+    When MT-II first reached human volunteers, in a small phase-I study of three
+    healthy men, it did tan them — and it also produced nausea, drowsiness, and
+    spontaneous erections lasting one to five hours.<Cite n={3} /> That second finding is
+    the hinge of the whole melanotan story. In the telling that later appeared in a
+    review co-written by the peptide's own inventors, one of the researchers — named
+    only as a self-described "human pincushion" — is said to have accidentally
+    injected a double dose and developed an eight-hour erection along with
+    nausea.<Cite n={4} /> The anecdote is retold rather than documented, and the source
+    never names the person, so treat the dramatic version with care; what is beyond
+    doubt is the effect itself, which the formal volunteers and a later
+    placebo-controlled trial both recorded.<Cite n={3} /><Cite n={5} /> Chemists chased
+    that side effect, reworked the scaffold to keep the arousal and drop most of the
+    pigment, and turned it into <a href="/bremelanotide">bremelanotide</a>. The
+    tanning peptide, in other words, spun off an approved sex-drive drug — the
+    clearest sign of how little the body separates these signals.
   </p>
 
   <h2>Why it tans you</h2>
   <p>
     The tanning is straightforward melanocortin biology. MT-II activates{' '}
-    <a href="/receptors/mc1r">MC1R</a> on your melanocytes, which raises cyclic
-    AMP and pushes pigment production toward brown-black eumelanin — the same
-    switch the sun's UV would normally flip, but triggered chemically and
-    <em>without</em> sunlight.<Cite n={1} /> That is genuinely why it appeals to people
-    who burn rather than tan: it can build pigment in skin that otherwise won't.
+    <a href="/receptors/mc1r">MC1R</a> on your melanocytes, which raises cyclic AMP
+    and pushes pigment production toward brown-black <em>eumelanin</em> — the same
+    switch the sun's UV would normally flip, but triggered chemically and{' '}
+    <em>without</em> sunlight.<Cite n={8} /> Eumelanin is the photoprotective pigment,
+    the kind that shields DNA rather than the reddish pheomelanin that doesn't, which
+    is why the effect is real enough to appeal to people who burn rather than
+    tan.<Cite n={9} /> It builds pigment in skin that otherwise won't make much. On the
+    site's <a href="/binding-matrix">binding matrix</a>, MT-II grips MC1R about as
+    tightly as any melanocortin measured — a superpotent key for the pigment lock.
   </p>
 
   <h2>Why it also does much more than tan</h2>
   <p>
     Here is the catch the marketing skips: MT-II is <em>non-selective</em>, so it
-    doesn't only hit the pigment receptor. Activating{' '}
-    <a href="/receptors/mc4r">MC4R</a> in the brain is why users report nausea
-    (commonly 50% or more), facial flushing, loss of appetite, drowsiness,
-    yawning, and spontaneous erections — the last effect so reliable that it
-    became the entire basis of the spin-off drug bremelanotide.<Cite n={1} /> If
-    you want the full mechanism of why melanocortin agonists make you queasy and
-    darken, see <a href="/effects">why melanocortin agonists make you queasy and
-    tan</a>. And because Melanotan II and PT-141 are so often confused, there's a
-    side-by-side breakdown of <a href="/pt-141-vs-melanotan">PT-141 vs Melanotan</a>.
+    doesn't only hit the pigment receptor. One dose reaches all four receptors at
+    once. Activating <a href="/receptors/mc4r">MC4R</a> in the brain is why users
+    report nausea (commonly half of them or more), facial flushing, loss of
+    appetite, drowsiness, yawning, and spontaneous erections — the last so reliable
+    it became the entire basis of bremelanotide.<Cite n={3} /> The tan people want and
+    the effects they don't are not separable options; they are the same molecule
+    reaching receptors that sit all over the body and brain.
+  </p>
+
+  <MelanotanReceptors />
+
+  <p>
+    It is worth correcting a common shorthand here, because it bears on the risks.
+    Melanotan-I is often called the "MC1R-selective" one and MT-II the
+    "non-selective" one. That is not quite true: <em>both</em> are broad,
+    superpotent agonists, and recent structural work describes Melanotan-I's parent
+    NDP-α-MSH plainly as "a non-selective" melanocortin agonist.<Cite n={7} /> Genuine
+    receptor selectivity had to be <em>engineered</em> later — a single swap at
+    position 7 turns MT-II into <a href="/shu9119">SHU9119</a>, an MC4R-blocking
+    research tool.<Cite n={6} /> The real difference between the two melanotans is
+    practical, not a clean selectivity switch: afamelanotide is delivered as a
+    slow-release implant at controlled exposure for a medical reason, while MT-II is
+    self-injected in boluses — and its breadth is exactly why the effects below come
+    bundled with the tan. For the full mechanism of why these agonists make you
+    queasy and darken, see <a href="/effects">the trade-off</a>; because MT-II and
+    PT-141 are so often confused, there is also a side-by-side{' '}
+    <a href="/pt-141-vs-melanotan">PT-141 vs Melanotan</a> breakdown.
+  </p>
+
+  <h2>What the human studies actually showed</h2>
+  <p>
+    The biology is genuinely established, and it is worth being precise about how.
+    In a controlled trial published in <em>JAMA</em>, subcutaneous Melanotan-I
+    reliably tanned volunteers — the landmark demonstration that a melanocortin
+    peptide induces pigment in people.<Cite n={10} /> A later study in 65 fair-skinned
+    volunteers went further: Melanotan-I not only raised melanin density but cut
+    UV-induced sunburn cells by more than half and DNA thymine-dimer formation by
+    around 59% — evidence the pigment it builds is meaningfully
+    photoprotective.<Cite n={11} /> Melanotan II itself was shown to tan humans in its
+    small phase-I study.<Cite n={3} /> Two honest caveats follow from this. First, these
+    were small, short pilot studies of the <em>medical</em> analogues, not safety
+    data for years of grey-market MT-II. Second, "some photoprotection in a trial"
+    is not "you can skip sunscreen" — no melanotan has been shown to prevent skin
+    cancer, and the only melanocortin that builds protective pigment as an approved
+    medicine, afamelanotide, exists for a rare disease, not cosmetic tanning.
   </p>
 
   <h2>The risks that matter</h2>
   <p>
-    Beyond the everyday side effects, three categories of risk are why
-    dermatologists and regulators single this compound out.
+    Beyond the everyday side effects, a handful of specific concerns are why
+    dermatologists and regulators single this compound out. The honest framing is
+    important: most of the serious harms below come from individual case reports,
+    which show a temporal association, not proof of cause — and melanotan users
+    often also use sunbeds, a confounder that has to be named. The two things that
+    <em>are</em> well established are that the product is chemically impure and that
+    it drives pigment cells hard.
   </p>
-  <ul>
-    <li>
-      <strong>Moles and melanoma.</strong> MT-II darkens existing moles and is
-      associated with the rapid appearance of new ones. Dermatologists' deeper
-      concern is that driving pigment cells this hard could accelerate already-
-      abnormal moles toward melanoma, and there are case reports of melanoma
-      emerging during or shortly after use.<Cite n={1} /><Cite n={4} /> Causation
-      isn't proven, but the mechanism is plausible and the reports are real — and
-      a chemical tan can mask exactly the mole changes you're meant to watch for.
-    </li>
-    <li>
-      <strong>Serious, if uncommon, events.</strong> Published case reports include
-      rhabdomyolysis (muscle breakdown), kidney dysfunction, and neurological
-      effects after MT-II injection.<Cite n={1} /> These come from uncontrolled use,
-      where dose and product quality are unknown variables.
-    </li>
-    <li>
-      <strong>An unregulated product.</strong> Because it is sold illegally, no
-      one verifies what is in the vial — purity, dose, sterility, or
-      contaminants — and self-injection or nasal use adds its own risks.<Cite n={2} /><Cite n={3} />
-    </li>
-  </ul>
+
+  <h3>Moles and melanoma</h3>
+  <p>
+    This is the concern with the strongest mechanistic logic. MT-II darkens existing
+    moles and is associated with the rapid appearance of new ones — "eruptive
+    nevi" — which is exactly what you would predict from a drug that pushes
+    melanocytes.<Cite n={12} /><Cite n={13} /> Dermatologists' deeper worry is that driving
+    already-abnormal moles this hard could nudge them toward melanoma, and there are
+    published case reports of melanoma, including melanoma in situ, emerging during
+    or shortly after use.<Cite n={14} /><Cite n={15} /> Causation isn't proven and the
+    heavy-UV confounder is real — but the reports exist, the mechanism is plausible,
+    and a chemical tan can mask exactly the mole changes you are meant to watch for.
+    That masking, on its own, is a reason for caution.
+  </p>
+
+  <h3>Serious, if uncommon, systemic events</h3>
+  <p>
+    A scatter of single case reports documents rarer but severe events after MT-II
+    injection: sympathomimetic toxicity with rhabdomyolysis (muscle breakdown) and
+    kidney impairment;<Cite n={16} /> posterior reversible encephalopathy syndrome, a
+    brain disturbance seen on imaging;<Cite n={17} /> renal (kidney)
+    infarction;<Cite n={18} /> and priapism, a painful, prolonged erection needing
+    emergency treatment — the arousal effect turned dangerous.<Cite n={19} /> Each is a
+    single report from uncontrolled use, where dose and product quality are unknown
+    variables, so none should be read as a common outcome. Taken together, though,
+    they map the ways a superpotent, broadly-acting peptide can go wrong when it is
+    dosed by guesswork.
+  </p>
+
+  <h3>An unregulated product</h3>
+  <p>
+    Because it is sold illegally, no one verifies what is in the vial. That is not a
+    hypothetical: when researchers bought MT-II "skin-tanning products" from online
+    shops and analysed them, the actual peptide content ran well under the labelled
+    dose — around 4.3 to 8.8 mg where 10 mg was claimed — with measurable impurities
+    in every sample.<Cite n={20} /> Australia's medicines regulator found the same in
+    2026, testing a "triple strength" nasal spray labelled 30 mg and measuring 22 to
+    54 mg.<Cite n={26} /> On top of impurity and mis-dosing, self-injection and
+    needle-sharing carry their own infection risks, documented as melanotan spread
+    through injecting and bodybuilding communities.<Cite n={21} /><Cite n={23} /> Users
+    themselves describe reaching for it to tan before holidays or fitness
+    competitions, and report the mole changes, nausea and libido effects
+    first-hand.<Cite n={24} />
+  </p>
+
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Reported harm</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">What the evidence is</th>
+          <th class="py-2 font-semibold text-[var(--text)]">Source</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Darkening &amp; erupting moles</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Case reports; mechanistically expected from melanocortin agonism</td>
+          <td class="py-2 text-[var(--text-muted)]">Cardones 2009; Langan 2009</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Melanoma / melanoma in situ</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Individual case reports, temporally associated (heavy UV/sunbed use is a confounder)</td>
+          <td class="py-2 text-[var(--text-muted)]">Paurobally 2011; Hjuler 2014</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Rhabdomyolysis + kidney injury</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Single case report after injection</td>
+          <td class="py-2 text-[var(--text-muted)]">Nelson 2012</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">PRES (brain)</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Single case report</td>
+          <td class="py-2 text-[var(--text-muted)]">Kaski 2013</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Renal (kidney) infarction</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Case report + mini-review</td>
+          <td class="py-2 text-[var(--text-muted)]">Peters 2020</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Priapism</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Case reports (the arousal effect turned dangerous)</td>
+          <td class="py-2 text-[var(--text-muted)]">Mallory 2021</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 text-[var(--text)]">Underdosed / impure product</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Lab analysis of vials bought online — <em>established</em></td>
+          <td class="py-2 text-[var(--text-muted)]">Breindahl 2015; TGA 2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <h2>It is not approved, and not legal to sell</h2>
   <p>
     Melanotan II has never completed the safety trials a medicine requires, and it
-    is unlicensed in the US, UK, EU, and Australia. The FDA, the UK's MHRA,
-    Australia's TGA, and European regulators have all warned against it, and
-    regulators have moved against sellers.<Cite n={2} /><Cite n={3} /><Cite n={4} />
-    The "research chemical" label on what's clearly being marketed for human use is
-    a way around approval, not evidence of safety.
+    is unlicensed in the US, UK, EU, and Australia. The US FDA has treated it as an
+    unapproved new drug and warned sellers;<Cite n={25} /> Australia's TGA warns against
+    tanning products containing melanotan and has flagged their inconsistent
+    dosing;<Cite n={26} /> and the UK's MHRA stated years ago that the "tan jab" is an
+    unlicensed medicine that may not be safe.<Cite n={27} /> Dermatology reviews reach the
+    same conclusion from the clinical side: the risks of unregulated α-MSH analogues
+    outweigh a cosmetic tan, and they should not be confused with the tested,
+    approved analogue.<Cite n={21} /><Cite n={22} /> The "research chemical" label on what
+    is plainly marketed for human use is a way around approval, not evidence of
+    safety.
   </p>
 
   <h2>The honest bottom line</h2>
   <p>
-    The biology is real: melanotan does build a sunless tan, through exactly the
-    MC1R pathway this site describes. But the popular version, MT-II, is
-    unapproved, illegal to sell, of unknown quality, and carries genuine
-    documented risks — including to the very moles a tan can hide. The only
-    approved melanocortin that builds protective pigment, afamelanotide, exists
-    for a rare medical condition, not cosmetic tanning. There is, at present, no
-    approved melanocortin tanning product. We document the science so the decision
-    is an informed one.
+    The biology is real, and genuinely elegant: melanotan does build a sunless tan,
+    through exactly the MC1R pathway this site is built around — the system's oldest
+    trick, pigment on demand.<Cite n={8} /> But the popular version, MT-II, is unapproved,
+    illegal to sell, of unknown quality, and carries real documented risks —
+    including to the very moles a tan can hide. The only approved melanocortin that
+    builds protective pigment, afamelanotide, exists for a rare medical condition
+    under close supervision, not for cosmetic tanning. There is, at present, no
+    approved melanocortin tanning product. We document the science so the decision is
+    an informed one — and so that the wonder of the mechanism is never mistaken for a
+    clean bill of health for the vial.
   </p>
 
   <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
     <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
     <p class="mt-2 text-[var(--text)]">
       This page explains what melanotan is and why it acts as it does. It does not
-      provide dosing, sourcing, or usage instructions, and it is not medical
-      advice or an endorsement of an unapproved product. If you are worried about a
-      mole or a reaction, see a clinician. See the{' '}
+      provide dosing, sourcing, or usage instructions, and it is not medical advice
+      or an endorsement of an unapproved product. If you are worried about a mole or
+      a reaction, see a clinician. See the{' '}
       <a href="/about">editorial standards</a>.
     </p>
   </div>
