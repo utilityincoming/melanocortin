@@ -26,3 +26,8 @@ pnpm-debug.log*
 
 # claude code local tooling
 .claude/
+
+# GSC reports + service-account keys (never commit query data or credentials)
+/reports/
+*gsc-sa*.json
+*.sa.json
