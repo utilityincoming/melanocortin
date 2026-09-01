@@ -12,6 +12,7 @@
     "postbuild": "node scripts/check-link-whitespace.mjs",
     "check:ws": "node scripts/check-link-whitespace.mjs",
     "preview": "astro preview",
+    "gsc": "node scripts/gsc-report.mjs",
     "astro": "astro"
   },
   "dependencies": {
