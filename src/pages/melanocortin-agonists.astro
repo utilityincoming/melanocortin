@@ -1,0 +1,286 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is a melanocortin agonist?',
+    a: 'A melanocortin agonist is a molecule that switches on one or more of the five melanocortin receptors (MC1R–MC5R), copying what the body’s own α-MSH and ACTH do. Depending on which receptor it activates, that can mean building skin pigment, curbing appetite, triggering sexual arousal, or calming inflammation. It is the opposite of a melanocortin antagonist, which blocks the receptor instead.',
+  },
+  {
+    q: 'What is an MC4R agonist?',
+    a: 'An MC4R agonist activates the melanocortin-4 receptor, the brain’s master switch for appetite and body weight. Switching MC4R on signals fullness and reduces food intake, which is why MC4R agonists are being developed as obesity drugs. Setmelanotide is the approved example; bremelanotide is an MC4R agonist used instead for sexual desire; and oral candidates such as bivamelagon are in trials.',
+  },
+  {
+    q: 'What melanocortin agonists are FDA-approved?',
+    a: 'Three: afamelanotide (Scenesse), an MC1R agonist for the light-sensitivity disease EPP; setmelanotide (Imcivree), an MC4R agonist for certain rare genetic and hypothalamic obesities; and bremelanotide (Vyleesi), an MC4R agonist for low sexual desire in premenopausal women. All three are injected or implanted, because they are peptides.',
+  },
+  {
+    q: 'Are melanocortin agonists selective for one receptor?',
+    a: 'Usually not. The natural signal α-MSH activates four of the five receptors, and most synthetic agonists are similarly broad — which is why a drug aimed at weight or desire can still darken the skin. Genuine receptor selectivity has to be engineered, and even setmelanotide grips the pigment receptor MC1R almost as tightly as its MC4R target.',
+  },
+  {
+    q: 'What is the difference between an agonist and an antagonist?',
+    a: 'An agonist turns a receptor on; an antagonist blocks it so the natural activator cannot. At MC4R, setmelanotide (agonist) signals fullness, while AgRP and the research compound SHU9119 (antagonists) do the reverse and drive hunger. Some blockers go further still: AgRP is an inverse agonist, pushing the receptor below its resting activity.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Harno E, Gali Ramamoorthy T, Coll AP, White A.',
+    title: 'POMC: The Physiological Power of Hormone Processing.',
+    source: 'Physiol Rev. 98(4):2381–2430.',
+    year: '2018',
+    url: 'https://journals.physiology.org/doi/full/10.1152/physrev.00024.2017',
+  },
+  {
+    authors: 'US FDA.',
+    title: 'SCENESSE (afamelanotide) implant, for subcutaneous use — prescribing information.',
+    source: 'FDA label (NDA 210797) — mechanism, indication, and dosing.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+  {
+    authors: 'US FDA.',
+    title:
+      'FDA approves first treatment for weight management for people with certain rare genetic conditions.',
+    source: 'News release (setmelanotide / IMCIVREE).',
+    year: '2020',
+    url: 'https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-first-treatment-weight-management-people-certain-rare-genetic-conditions',
+  },
+  {
+    authors: 'US FDA / DailyMed.',
+    title: 'VYLEESI (bremelanotide injection) prescribing information.',
+    source: 'Label, NDA 210557.',
+    year: '2019',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8c9607a2-5b57-4a59-b159-cf196deebdd9',
+  },
+  {
+    authors: 'Clément K, van den Akker E, Argente J, et al.',
+    title:
+      'Efficacy and safety of setmelanotide, an MC4R agonist, in individuals with severe obesity due to LEPR or POMC deficiency: single-arm, open-label, multicentre, phase 3 trials.',
+    source: 'Lancet Diabetes Endocrinol. PMID 33137293.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33137293/',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title:
+      'Oral MC4R agonist bivamelagon achieved statistically significant, clinically meaningful BMI reductions in a placebo-controlled Phase 2 trial in acquired hypothalamic obesity.',
+    source: 'Press release — SIGNAL Phase 2 topline.',
+    year: '2025',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon',
+  },
+];
+---
+
+<PageLayout
+  title="Melanocortin agonists: the drugs and peptides that switch the system on"
+  kicker="The on-switch"
+  description="A melanocortin agonist activates one of the five melanocortin receptors, copying the body's own α-MSH or ACTH. This is the whole landscape — the endogenous signals, the three approved drugs, and the MC4R-agonist pipeline chasing obesity."
+  thread="Every one of these molecules is a way of speaking the system's oldest word back to it — the signal to colour, to feed, to calm — only louder, or longer, or on purpose."
+  updated="2026"
+  about={[
+    { name: 'Agonist', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agonist'] },
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Alpha-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Alpha-melanocyte-stimulating_hormone'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'A melanocortin agonist switches on one or more of the five melanocortin receptors (MC1R–MC5R), copying the body’s own α-MSH or ACTH — the opposite of an antagonist such as AgRP or SHU9119.',
+      'The body’s own agonists are the POMC peptides: α-MSH activates four receptors (MC1R, MC3R, MC4R, MC5R), while ACTH is the only natural agonist of MC2R.',
+      'Three synthetic agonists are FDA-approved: afamelanotide (MC1R, for the light-sensitivity disease EPP), setmelanotide (MC4R, for rare obesity), and bremelanotide (MC4R, for low sexual desire).',
+      'The busiest frontier is MC4R agonist drugs for obesity — setmelanotide by injection, plus oral candidates such as bivamelagon now heading toward Phase 3.',
+      'Most agonists are broad, not selective: hitting several receptors at once is why a weight or desire drug can still tan the skin. Selectivity has to be engineered.',
+    ]}
+  />
+
+  <p>
+    Nearly every drug built on this system does one of two things: it switches a{' '}
+    <a href="/receptors">melanocortin receptor</a> on, or it blocks it. The ones that
+    switch it on are the <strong>agonists</strong> — and they are the larger, busier
+    half of the field, because turning this system on is how you build protective
+    pigment, quiet an over-eager appetite, or answer a specific broken signal. This is
+    the map of them: the ones the body makes, the three that are approved, and the
+    pipeline pushing behind them.<Cite n={1} />
+  </p>
+
+  <h2>What "agonist" means here</h2>
+  <p>
+    An <strong>agonist</strong> binds a receptor and activates it; an{' '}
+    <a href="/shu9119">antagonist</a> binds and blocks it, so the natural signal cannot
+    get through; and an <em>inverse</em> agonist — like the hunger peptide{' '}
+    <a href="/agrp">AgRP</a> — pushes the receptor below even its resting activity. The
+    melanocortin receptors are G-protein-coupled receptors that raise the second
+    messenger cAMP when switched on, so a melanocortin agonist is, mechanically, anything
+    that reliably drives that cAMP signal.<Cite n={1} /> A <em>full</em> agonist can push
+    the receptor to its maximum; a <em>partial</em> agonist activates it only part-way
+    even when fully bound — a distinction that matters when the goal is a measured effect
+    rather than a maximal one.
+  </p>
+
+  <h2>The body makes its own</h2>
+  <p>
+    Before any drug, there were the natural agonists — the peptides cut from the
+    precursor <a href="/system">POMC</a>.<Cite n={2} /> The prototype is{' '}
+    <a href="/alpha-msh">α-MSH</a>, a broad signal that activates four of the five
+    receptors (MC1R, MC3R, MC4R and MC5R) and sets the template every synthetic agonist
+    is built to copy. <a href="/acth">ACTH</a> is the specialist: the one POMC peptide
+    that activates <a href="/receptors/mc2r">MC2R</a>, the adrenal receptor no other
+    melanocortin will touch. <a href="/beta-msh">β-MSH</a> and{' '}
+    <a href="/gamma-msh">γ-MSH</a> round out the set, γ-MSH being the unusually
+    MC3R-preferring one. Every one of these is an agonist; the drugs are simply more
+    durable, sometimes more targeted, impersonations of them.
+  </p>
+
+  <h2>The three approved agonists</h2>
+  <p>
+    Three melanocortin agonists have cleared the FDA, and they map cleanly onto the
+    receptor each one is aimed at:
+  </p>
+  <ul>
+    <li>
+      <strong><a href="/afamelanotide">Afamelanotide</a> (Scenesse)</strong> — an
+      α-MSH-like peptide that activates <a href="/receptors/mc1r">MC1R</a> to build
+      protective pigment, approved in 2019 for the rare light-sensitivity disease
+      erythropoietic protoporphyria.<Cite n={3} />
+    </li>
+    <li>
+      <strong><a href="/setmelanotide">Setmelanotide</a> (Imcivree)</strong> — an{' '}
+      <a href="/receptors/mc4r">MC4R</a> agonist approved in 2020 for obesity caused by
+      specific genetic breaks in the appetite circuit, and since extended to acquired
+      hypothalamic obesity.<Cite n={4} />
+    </li>
+    <li>
+      <strong><a href="/bremelanotide">Bremelanotide</a> (Vyleesi)</strong> — also an
+      MC4R agonist, but developed for a different arm of MC4R biology: low sexual desire
+      in premenopausal women, approved in 2019.<Cite n={5} />
+    </li>
+  </ul>
+
+  <h2>MC4R agonist drugs</h2>
+  <p>
+    The most active area by far is <strong>MC4R agonist drugs</strong>. Switching on MC4R
+    signals fullness and reduces food intake, so the receptor has become a target for
+    obesity — especially the forms of obesity driven by a broken melanocortin signal,
+    where restoring MC4R activity treats the actual cause rather than the symptom.<Cite n={6} />
+    Setmelanotide proved the principle by injection; the race now is to do it orally and
+    more selectively.
+  </p>
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">MC4R agonist</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Route</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Status</th>
+          <th class="py-2 font-semibold text-[var(--text)]">Developed for</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Setmelanotide (Imcivree)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Subcutaneous injection</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Approved (2020; hypothalamic obesity 2026)</td>
+          <td class="py-2 text-[var(--text)]">Rare genetic &amp; hypothalamic obesity</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Bremelanotide (Vyleesi)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Subcutaneous injection</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Approved (2019)</td>
+          <td class="py-2 text-[var(--text)]">Low sexual desire (HSDD)</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Bivamelagon (LB54640)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Oral</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Phase 3 planned (positive Phase 2, 2025)</td>
+          <td class="py-2 text-[var(--text)]">Acquired hypothalamic obesity</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">RM-718</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Subcutaneous (weekly)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Phase 1</td>
+          <td class="py-2 text-[var(--text)]">Next-gen, MC1R-sparing</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">PL-7737</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Oral</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Early (orphan designation)</td>
+          <td class="py-2 text-[var(--text)]">Leptin-receptor-deficiency obesity</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <a href="/bivamelagon">Bivamelagon</a> is the one to watch: an oral small molecule
+    that posted clinically meaningful weight loss in a placebo-controlled Phase 2 in
+    acquired hypothalamic obesity, and is now heading for Phase 3.<Cite n={7} /> The
+    broader shift the table shows — from injected peptides toward{' '}
+    <a href="/oral-peptides">oral small molecules</a> — is the direction the whole
+    frontier is moving. For where the GLP-1 drugs plug into this same circuit, see{' '}
+    <a href="/glp1-appetite">GLP-1 &amp; appetite</a>.
+  </p>
+
+  <h2>MC1R agonists — the pigment side</h2>
+  <p>
+    The other well-populated column targets <a href="/receptors/mc1r">MC1R</a>, the
+    pigment receptor. <a href="/afamelanotide">Afamelanotide</a> is the approved peptide;{' '}
+    <a href="/dersimelagon">dersimelagon</a> is an investigational oral small molecule
+    chasing the same target as a once-daily pill; and the grey-market{' '}
+    <a href="/melanotan">Melanotan II</a> is a broad agonist used for cosmetic tanning
+    with none of the oversight. All three raise eumelanin by switching MC1R on — the same
+    mechanism, put to very different uses.
+  </p>
+
+  <h2>Why most agonists aren't selective</h2>
+  <p>
+    It is tempting to picture each of these drugs hitting one receptor cleanly. Most do
+    not. The natural template α-MSH activates four of the five receptors, and most
+    synthetic agonists inherit that breadth — which is exactly why the side effects come
+    bundled with the intended effect. Setmelanotide is developed for MC4R, yet it grips
+    the pigment receptor MC1R almost as tightly, so skin darkening is one of its most
+    common effects.<Cite n={4} /> Genuine selectivity is an engineering achievement, not a
+    default: the next-generation agonist RM-718 is being designed specifically to spare
+    MC1R and avoid the tan. For the receptor-by-receptor numbers behind these claims —
+    how tightly each agonist actually holds each receptor — see the{' '}
+    <a href="/binding-matrix">binding matrix</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Melanocortin agonists are the on-switches of this system, and the story of the last
+    few years is that we have gone from copying α-MSH crudely to steering it: three
+    approved drugs, a deep <a href="/pipeline">pipeline</a>, and a clear engineering goal
+    of making these agonists oral and receptor-selective at once. The counterpart
+    story — the drugs and research tools that turn the system <em>off</em> — runs through
+    the <a href="/shu9119">MC4R antagonists</a>. Both together are the field of{' '}
+    <a href="/therapeutics">melanocortin therapeutics</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page maps the melanocortin agonist landscape. It does not provide dosing,
+      sourcing, or usage instructions, and it is not medical advice or an endorsement of
+      unapproved use. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="melanocortin-agonists" />
+</PageLayout>
