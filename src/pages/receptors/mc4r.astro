@@ -24,6 +24,10 @@ const faqs = [
     q: 'Can MC4R be targeted for weight loss?',
     a: 'Yes. The MC4R agonist setmelanotide is approved for certain rare genetic and acquired hypothalamic obesity. Conversely, blocking MC4R is being studied to treat wasting (cachexia) — the same receptor, used in opposite directions.',
   },
+  {
+    q: 'What MC4R agonist drugs exist?',
+    a: 'Setmelanotide (Imcivree) is the approved MC4R agonist drug, used for POMC/PCSK1/LEPR-deficiency obesity, Bardet–Biedl syndrome, and acquired hypothalamic obesity. Bremelanotide (Vyleesi) also acts through MC4R, for sexual dysfunction. In trials: the oral small molecule bivamelagon (positive Phase 2, Phase 3 planned), the MC1R-sparing peptide RM-718 (Phase 1), and PL-7737 (early, leptin-receptor-deficiency obesity).',
+  },
 ];
 
 const references = [
@@ -94,7 +98,7 @@ const references = [
 <PageLayout
   title="MC4R — the appetite rheostat"
   kicker="Receptor · Melanocortin 4 receptor"
-  description="The brain's central controller of appetite and body weight. Loss of MC4R signalling is the commonest single-gene cause of severe obesity, and restoring it is the basis of setmelanotide."
+  description="The brain's central controller of appetite and body weight. Loss of MC4R signalling is the commonest single-gene cause of severe obesity, and restoring it is the basis of the MC4R agonist drug setmelanotide."
   thread="Here the system turns inward — the same protective logic used not to shield the body from the world, but to keep it in balance with its own hunger."
   updated="2026"
   about={[
@@ -177,6 +181,68 @@ const references = [
     2026 to acquired hypothalamic obesity.<Cite n={4} /> Dosing and eligibility are
     clinical decisions; this page describes mechanism, not treatment. See the{' '}
     <a href="/therapeutics">therapeutics section</a> for the full profile.
+  </p>
+
+  <h2>MC4R agonist drugs</h2>
+  <p>
+    Which drugs actually switch MC4R on? One is approved for obesity, one for sexual
+    dysfunction, and a small field of next-generation agonists is in trials. Setmelanotide
+    (Imcivree) is the reference MC4R agonist drug — approved in 2020 for POMC, PCSK1, and
+    LEPR-deficiency obesity, extended to Bardet–Biedl syndrome in 2022 and to acquired
+    hypothalamic obesity in 2026.<Cite n={4} /> The rest of the list is where the frontier
+    is heading: oral small molecules and MC1R-sparing peptides.<Cite n={2} />
+  </p>
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">MC4R agonist drug</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Route</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Status</th>
+          <th class="py-2 font-semibold text-[var(--text)]">Developed for</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]"><a href="/setmelanotide">Setmelanotide</a> (Imcivree)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Subcutaneous injection</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Approved (2020; hypothalamic obesity 2026)</td>
+          <td class="py-2 text-[var(--text)]">Rare genetic &amp; hypothalamic obesity</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]"><a href="/bremelanotide">Bremelanotide</a> (Vyleesi)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Subcutaneous injection</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Approved (2019)</td>
+          <td class="py-2 text-[var(--text)]">Low sexual desire (HSDD)</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]"><a href="/bivamelagon">Bivamelagon</a> (LB54640)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Oral</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Phase 3 planned (positive Phase 2, 2025)</td>
+          <td class="py-2 text-[var(--text)]">Acquired hypothalamic obesity</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">RM-718</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Subcutaneous (weekly)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Phase 1</td>
+          <td class="py-2 text-[var(--text)]">Next-gen, MC1R-sparing</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">PL-7737</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Oral</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Early (orphan designation)</td>
+          <td class="py-2 text-[var(--text)]">Leptin-receptor-deficiency obesity</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    The same receptor is also drugged in the opposite direction: the MC4R{' '}
+    <em>antagonists</em> <a href="/tcmcb07">TCMCB07 (mifomelatide)</a> and{' '}
+    <a href="/pf-07258669">PF-07258669</a> aim to lift appetite in cachexia. For the full
+    agonist landscape with profiles and citations, see{' '}
+    <a href="/melanocortin-agonists">melanocortin agonists</a> and the{' '}
+    <a href="/pipeline">pipeline</a>.
   </p>
 
   <h2>Beyond appetite</h2>
