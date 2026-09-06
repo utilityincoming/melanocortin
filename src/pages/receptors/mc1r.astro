@@ -17,6 +17,10 @@ const faqs = [
     a: 'MC1R is the receptor on pigment cells that decides which type of melanin they make. Strong signalling produces brown-black eumelanin that absorbs UV and protects DNA; weak signalling — as with the red-hair variants — produces reddish pheomelanin, giving red or blond hair, fair skin that burns, and freckling.',
   },
   {
+    q: 'Where is the MC1R gene located?',
+    a: 'The melanocortin 1 receptor gene (MC1R) sits on chromosome 16 at locus 16q24.3. It is encoded by a single exon with no introns, and it is one of the most polymorphic genes in the human genome — dozens of common variants tune the pigment switch up or down.',
+  },
+  {
     q: 'Why do people have red hair?',
     a: 'Red hair comes from loss-of-function variants of MC1R, classically R151C, R160W and D294H. With MC1R signalling weakened, melanocytes default to reddish pheomelanin instead of protective eumelanin — the pigment behind red hair and fair, freckled skin.',
   },
@@ -82,7 +86,7 @@ const references = [
 <PageLayout
   title="MC1R — the pigment switch"
   kicker="Receptor · Melanocortin 1 receptor"
-  description="The receptor on melanocytes that decides between protective brown-black eumelanin and reddish pheomelanin. Its weak variants explain red hair and fair skin — and carry an independent melanoma risk."
+  description="The melanocortin 1 receptor gene (MC1R, chromosome 16q24.3) and the receptor on melanocytes that decides between protective brown-black eumelanin and reddish pheomelanin. Its weak variants explain red hair and fair skin — and carry an independent melanoma risk."
   thread="Pigment is the system made visible — the one receptor that turns a hormone into a shield, and the colour of a person into an act of protection."
   updated="2026"
   about={[
@@ -136,6 +140,75 @@ const references = [
     largely fail because the mutant receptor is mis-trafficked and under-expressed
     at the cell surface, so less signal gets through even when α-MSH is
     present.<Cite n={3} />
+  </p>
+
+  <h2>The MC1R gene</h2>
+  <p>
+    The <strong>melanocortin 1 receptor gene</strong> — <em>MC1R</em> — sits on chromosome
+    16 (locus 16q24.3) and is unusual among receptor genes in two ways: it is encoded by a
+    single exon with no introns, and it is one of the most polymorphic genes in the human
+    genome.<Cite n={4} /> Because the receptor's job is a binary pigment choice, each variant
+    effectively re-tunes that switch. The classic "R" (red hair colour) alleles — strongly
+    penetrant loss-of-function variants — are catalogued below; the{' '}
+    <a href="/genetics">genetics reference</a> carries the full per-variant entries with
+    evidence tags and dbSNP links.
+  </p>
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">MC1R gene variant</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">dbSNP</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Class</th>
+          <th class="py-2 font-semibold text-[var(--text)]">Associated phenotype</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">R151C</td>
+          <td class="py-2 pr-4 text-[var(--text)]"><a href="https://www.ncbi.nlm.nih.gov/snp/rs1805007" rel="noopener">rs1805007 ↗</a></td>
+          <td class="py-2 pr-4 text-[var(--text)]">R allele (strong loss-of-function)</td>
+          <td class="py-2 text-[var(--text)]">Red hair, fair skin, freckling; raised melanoma risk</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">R160W</td>
+          <td class="py-2 pr-4 text-[var(--text)]"><a href="https://www.ncbi.nlm.nih.gov/snp/rs1805008" rel="noopener">rs1805008 ↗</a></td>
+          <td class="py-2 pr-4 text-[var(--text)]">R allele (strong loss-of-function)</td>
+          <td class="py-2 text-[var(--text)]">Red hair, fair skin, freckling; raised melanoma risk</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">D294H</td>
+          <td class="py-2 pr-4 text-[var(--text)]"><a href="https://www.ncbi.nlm.nih.gov/snp/rs1805009" rel="noopener">rs1805009 ↗</a></td>
+          <td class="py-2 pr-4 text-[var(--text)]">R allele (strong loss-of-function)</td>
+          <td class="py-2 text-[var(--text)]">Red hair, fair skin, freckling; raised melanoma risk</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">D84E</td>
+          <td class="py-2 pr-4 text-[var(--text)]"><a href="https://www.ncbi.nlm.nih.gov/snp/rs1805006" rel="noopener">rs1805006 ↗</a></td>
+          <td class="py-2 pr-4 text-[var(--text)]">r allele (weaker effect)</td>
+          <td class="py-2 text-[var(--text)]">Fair skin, reduced tanning; modest risk contribution</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">R142H</td>
+          <td class="py-2 pr-4 text-[var(--text)]"><a href="https://www.ncbi.nlm.nih.gov/snp/rs11547464" rel="noopener">rs11547464 ↗</a></td>
+          <td class="py-2 pr-4 text-[var(--text)]">r allele (weaker effect)</td>
+          <td class="py-2 text-[var(--text)]">Fair skin, reduced tanning; modest risk contribution</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">R163Q</td>
+          <td class="py-2 pr-4 text-[var(--text)]"><a href="https://www.ncbi.nlm.nih.gov/snp/rs885479" rel="noopener">rs885479 ↗</a></td>
+          <td class="py-2 pr-4 text-[var(--text)]">r allele (weaker effect)</td>
+          <td class="py-2 text-[var(--text)]">Common in European populations; small phenotypic effect</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    The gene's antagonist has its own genetics, too: common regulatory variants near{' '}
+    <a href="/asip">ASIP</a> (tagged by rs1015362 / rs4911414) raise expression of the
+    natural MC1R brake and phenocopy MC1R loss — fair skin and red/blond hair — even when
+    the MC1R gene itself is intact. Both are on the{' '}
+    <a href="/genetics">skin &amp; UV-risk axis</a>.
   </p>
 
   <h2>Why it matters: skin cancer risk</h2>
