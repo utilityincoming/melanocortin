@@ -1,0 +1,384 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import ReceptorFold from '../components/fig/ReceptorFold.astro';
+import CalciumPocket from '../components/fig/CalciumPocket.astro';
+import ActivationSwitch from '../components/fig/ActivationSwitch.astro';
+
+const faqs = [
+  {
+    q: 'What do melanocortin receptors look like?',
+    a: 'Each of the five (MC1R–MC5R) is a class-A G-protein-coupled receptor: a bundle of seven helices threaded through the cell membrane, with a shallow binding pocket facing the outside of the cell and a coupling site for the Gs protein on the inside. They are among the smaller GPCRs, with a short outer tail and a compact pocket.',
+  },
+  {
+    q: 'When were the melanocortin receptor structures solved?',
+    a: 'In a fast wave between 2020 and 2023. The first — MC4R — was published in 2020; MC1R and several more MC4R structures followed in 2021; MC2R (with its chaperone MRAP1), MC3R and MC5R were resolved in 2023. By 2023 all five human receptors had experimental structures, with MC4R by far the most studied.',
+  },
+  {
+    q: 'Why is calcium important for melanocortin receptors?',
+    a: "The first MC4R structure revealed a calcium ion sitting inside the binding pocket, coordinated by acidic receptor residues and bridging them to the ligand. Calcium sharply raises the affinity of agonists — remove it and agonist binding falls by roughly ten- to a hundred-fold — so it acts as a genuine cofactor of the signal. Antagonists bind the same pocket without needing it.",
+  },
+  {
+    q: 'What is biased agonism at the melanocortin receptors?',
+    a: 'A biased agonist preferentially drives some of a receptor’s downstream routes over others — Gs and cyclic AMP, Gq/11, or direct coupling to an ion channel — rather than switching them all on together. Setmelanotide, for instance, leans toward the Gq/11 route at MC4R, and MC4R can also gate the Kir7.1 potassium channel without a G protein at all.',
+  },
+  {
+    q: 'Why is it hard to make a selective MC4R drug?',
+    a: 'Because all five receptors share almost the same pocket and the same calcium-assisted way of gripping the His-Phe-Arg-Trp core of their ligands. A molecule shaped to switch on MC4R (appetite) easily touches MC1R (skin pigment) or MC2R (the adrenal axis). The structures make that family resemblance visible, and structure-guided redesign is now beginning to prise the subtypes apart.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Yu J, Gimenez LE, Hernandez CC, et al.',
+    title: 'Determination of the melanocortin-4 receptor structure identifies Ca²⁺ as a cofactor for ligand binding.',
+    source: 'Science. 368(6489):428–433.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/32327598/',
+  },
+  {
+    authors: 'Israeli H, Degtjarik O, Fierro F, et al.',
+    title: 'Structure reveals the activation mechanism of the MC4 receptor to initiate satiation signaling.',
+    source: 'Science. 372(6544):808–814.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33858992/',
+  },
+  {
+    authors: 'Ma S, Chen Y, Dai A, et al.',
+    title: 'Structural mechanism of calcium-mediated hormone recognition and Gβ interaction by the human melanocortin-1 receptor.',
+    source: 'Cell Res. 31(10):1061–1071.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34453129/',
+  },
+  {
+    authors: 'Zhang H, Chen LN, Yang D, et al.',
+    title: 'Structural insights into ligand recognition and activation of the melanocortin-4 receptor.',
+    source: 'Cell Res. 31(11):1163–1175.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34433901/',
+  },
+  {
+    authors: 'Heyder NA, Kleinau G, Speck D, et al.',
+    title: 'Structures of active melanocortin-4 receptor–Gs-protein complexes with NDP-α-MSH and setmelanotide.',
+    source: 'Cell Res. 31(11):1176–1189.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34561620/',
+  },
+  {
+    authors: 'Feng W, Zhou Q, Chen X, et al.',
+    title: 'Structural insights into ligand recognition and subtype selectivity of the human melanocortin-3 and melanocortin-5 receptors.',
+    source: 'Cell Discov. 9(1):81.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37524700/',
+  },
+  {
+    authors: 'Luo P, Feng W, Ma S, et al.',
+    title: 'Structural basis of signaling regulation of the human melanocortin-2 receptor by MRAP1.',
+    source: 'Cell Res. 33(1):46–54.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36588120/',
+  },
+  {
+    authors: 'Feng W, Zhou Q, Zheng C, et al.',
+    title: 'Structural basis for the constitutive activity of the melanocortin receptor family.',
+    source: 'Structure. 33(6):1074–1087.',
+    year: '2025',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/40157361/',
+  },
+  {
+    authors: 'Fontaine T, Busch A, Laeremans T, et al.',
+    title: 'Structure elucidation of a human melanocortin-4 receptor specific orthosteric nanobody agonist.',
+    source: 'Nat Commun. 15(1):7029.',
+    year: '2024',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/39353917/',
+  },
+  {
+    authors: 'Chai BX, Neubig RR, Millhauser GL, et al.',
+    title: 'Inverse agonist activity of agouti and agouti-related protein.',
+    source: 'Peptides. 24(4):603–609.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12860205/',
+  },
+  {
+    authors: 'Ghamari-Langroudi M, Digby GJ, Sebag JA, et al.',
+    title: 'G-protein-independent coupling of MC4R to Kir7.1 in hypothalamic neurons.',
+    source: 'Nature. 520(7545):94–98.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25600267/',
+  },
+  {
+    authors: 'Peisley A, Hernandez CC, Dahir NS, et al.',
+    title: 'Structural and functional studies of inward rectifier Kir7.1 and its regulation by the melanocortin-4 receptor.',
+    source: 'Nat Commun. 17(1).',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42649184/',
+  },
+  {
+    authors: 'Sohail I, Laurin SA, Kleinau G, et al.',
+    title: 'MRAP2 modifies the signaling and oligomerization state of the melanocortin-4 receptor.',
+    source: 'Nat Commun. 16(1):8324.',
+    year: '2025',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/40998819/',
+  },
+  {
+    authors: 'Guo C, Luo T, Dong Y, et al.',
+    title: 'SAR investigation and synergistic optimization of setmelanotide yields a potent, selective, and soluble MC4R agonist.',
+    source: 'Bioorg Chem. 168:109370.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/41401696/',
+  },
+];
+---
+
+<PageLayout
+  title="What a melanocortin receptor actually looks like — and how it flips on"
+  kicker="First light"
+  description="For decades the melanocortin receptors were known only by what they did. Between 2020 and 2023, cryo-EM and crystallography resolved all five at atomic detail — the seven-helix fold, the calcium hidden in the pocket, and the outward swing of TM6 that switches the system on."
+  thread="A system this old wrote its instructions in shape long before we could read them; the structures are us learning, at last, to see the letters."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'G protein-coupled receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/G_protein-coupled_receptor'] },
+    { name: 'Cryogenic electron microscopy', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Cryogenic_electron_microscopy'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'For most of their history the melanocortin receptors were known only by what they did. Between 2020 and 2023, cryo-EM and crystallography resolved all five — MC1R through MC5R — at atomic detail.',
+      'All five share one fold: seven helices around a shallow pocket. That family resemblance is exactly why a drug aimed at one receptor so easily touches another.',
+      'The first MC4R structure held a surprise — a calcium ion sitting inside the binding pocket, needed for high-affinity agonist binding. Calcium is a genuine cofactor of the melanocortin signal.',
+      'Switching on is a mechanical move: the ligand’s His-Phe-Arg-Trp core settles in the pocket, and transmembrane helix 6 swings outward to open the receptor’s inner face for the Gs protein.',
+      'The structures now explain the drugs — why setmelanotide activates MC4R while the near-identical SHU9119 blocks it, and why building an MC4R drug that spares MC1R (the tan) is so hard.',
+    ]}
+  />
+
+  <p>
+    For almost forty years we knew the melanocortin receptors the way you know
+    someone by their reputation and never their face. We knew MC1R decided how
+    dark skin ran; that MC4R sat at the centre of appetite; that MC2R answered
+    the stress axis. We could measure what bound them and what they did. We had
+    never actually seen one. Then, in a rush that ran from 2020 to 2023, the
+    whole family sat for its portrait.<Cite n={1} /> This is what the pictures show.
+  </p>
+
+  <h2>The shape: seven helices and a shallow pocket</h2>
+  <p>
+    Every melanocortin receptor belongs to the largest and best-studied class of
+    signalling proteins, the <a href="/glossary">G-protein-coupled receptors</a>.
+    The shared design is old and economical: seven helices threaded back and
+    forth through the cell membrane, packed into a bundle. The outward-facing end
+    forms a shallow pocket where the signal binds; the inward-facing end, on the
+    cytoplasmic side, is where the receptor hands its message to a G protein. What
+    crosses the membrane is never the drug and never the hormone – only a change
+    in shape, and then a second messenger.
+  </p>
+
+  <Figure
+    caption="A melanocortin receptor is a seven-helix bundle in the membrane, its pocket facing outward and its G-protein coupling site facing in. TM6 is picked out because it is the helix that moves when the receptor switches on."
+    source="Schematic topology, not an atomic structure. Fold as resolved for MC4R (Yu 2020; Israeli 2021) and MC1R (Ma 2021)."
+  >
+    <ReceptorFold />
+  </Figure>
+
+  <p>
+    Melanocortin receptors are among the <em>smallest</em> of these proteins –
+    short outer tails, a compact pocket – which is part of why they proved hard
+    to crystallise for so long, and part of why the whole family looks so alike.
+    All five, MC1R through MC5R, are built on the one fold and grip their ligands
+    the same way.<Cite n={3} /> That resemblance is not a detail. It is the origin
+    of nearly every side effect in the field: a molecule shaped to fit one of
+    these pockets will very nearly fit the other four.
+  </p>
+
+  <h2>First light: the cryo-EM wave</h2>
+  <p>
+    The breakthrough came from <a href="/glossary">cryo-electron microscopy</a>{' '}
+    and a last round of crystallography arriving together. MC4R went first, in
+    2020 – a crystal structure caught with the blocker SHU9119 in its
+    pocket.<Cite n={1} /> Within a year the field had the receptor switched
+    <em>on</em>: an active MC4R captured mid-signal, bound to setmelanotide and
+    coupled to its G protein.<Cite n={2} /> MC1R, the pigment receptor, was
+    resolved the same year with α-MSH and with afamelanotide in place;<Cite n={3} />
+    a second group solved four MC4R structures at once, including one holding a
+    non-peptide drug;<Cite n={4} /> a third mapped the active receptor at high
+    resolution.<Cite n={5} />
+  </p>
+  <p>
+    The stragglers followed in 2023. MC2R – the odd receptor that answers only to{' '}
+    <a href="/acth">ACTH</a> – was solved together with the small partner protein
+    it cannot work without;<Cite n={7} /> MC3R and MC5R, the two least-studied of
+    the family, were resolved in the same paper.<Cite n={6} /> By the end of that
+    year every one of the five had been seen. Since then the work has kept
+    going: an engineered <a href="/glossary">nanobody</a> built to switch MC4R on
+    by itself,<Cite n={9} /> and a 2025 set of the receptors with nothing bound at
+    all, explaining why they hum with a little activity even when empty.<Cite n={8} />
+  </p>
+
+  <h2>The calcium in the pocket</h2>
+  <p>
+    The first structure held a genuine surprise. Sitting inside the MC4R binding
+    pocket, alongside the ligand, was a <strong>calcium ion</strong> – held in
+    place by a small set of acidic receptor residues and reaching out to touch
+    the ligand itself.<Cite n={1} /> This was not incidental. Calcium sharply
+    raises how tightly agonists bind: take it away and agonist affinity falls by
+    something like ten- to a hundred-fold. The ion is not packing material. It is
+    part of the recognition.
+  </p>
+
+  <Figure
+    caption="The ligand’s His-Phe-Arg-Trp core descends into the pocket; a calcium ion sits between it and acidic residues on the wall, coordinating both. Agonists need the calcium to bind tightly; antagonists that occupy the same pocket do not."
+    source="After Yu 2020 (MC4R, PDB-resolved Ca²⁺ site) and Israeli 2021; the shared calcium site is also seen in MC1R (Ma 2021) and other MC4R structures (Heyder 2021; Zhang 2021)."
+  >
+    <CalciumPocket />
+  </Figure>
+
+  <p>
+    The same calcium site turned up in structure after structure – MC1R, the
+    other MC4R complexes – which told the field it was a family trait, not a
+    quirk of one receptor.<Cite n={3} /><Cite n={5} /> And it drew a sharp line
+    between the two kinds of ligand. Agonists, the molecules that switch the
+    receptor on, lean on the calcium. Antagonists occupy the very same pocket but
+    do not need it.<Cite n={2} /> The distinction the whole system runs on –
+    on versus off – is written partly in whether a single ion is invited to help.
+  </p>
+
+  <h2>How the switch flips</h2>
+  <p>
+    Every melanocortin peptide shares a four-residue core – His-Phe-Arg-Trp, the{' '}
+    <a href="/alpha-msh">α-MSH</a> signature – and the structures show it doing
+    exactly what decades of pharmacology predicted: settling into the pocket, with
+    the calcium bridging it to the receptor wall. What happens next is
+    mechanical. On the far side of the membrane, transmembrane helix 6 swings
+    outward at its cytoplasmic end, opening a cavity on the receptor’s inner face.
+    Into that opening the <strong>Gs protein</strong> docks, and the familiar
+    signal – cyclic AMP – begins.<Cite n={2} />
+  </p>
+
+  <Figure
+    caption="Left: with no agonist, TM6 is packed in and the inner cavity is shut. Right: the agonist binds, TM6 swings out, the cavity opens, and Gs couples to make cAMP. An antagonist fills the same pocket but jams the hinge, so the helix cannot move."
+    source="After Israeli 2021 (active MC4R–Gs; the TM6 outward movement and the SHU9119 comparison) and Zhang 2021."
+  >
+    <ActivationSwitch />
+  </Figure>
+
+  <p>
+    It is worth being honest about the limits of the cartoon. The melanocortin
+    receptors are unusual class-A GPCRs and break several of the tidy rules other
+    receptors follow, so the exact set of internal “microswitches” is better read
+    from the papers than recited as a fixed list.<Cite n={4} /> But the headline is
+    solid and repeated across every structure: agonist in the pocket, TM6 out,
+    G protein in.
+  </p>
+
+  <h2>Running it backwards</h2>
+  <p>
+    If activation is TM6 swinging out, blocking it is keeping TM6 in. The classic
+    research antagonist <a href="/shu9119">SHU9119</a> binds the same pocket as an
+    agonist, but a single bulky, unnatural side chain wedges against the hinge and
+    stops the helix moving – the molecule occupies the switch without throwing
+    it.<Cite n={2} /> There is a beautiful complication here: the very same
+    SHU9119 that <em>blocks</em> MC4R actually <em>activates</em> MC1R, and it was
+    caught doing so in the MC1R structure.<Cite n={3} /> A ligand is not simply an
+    agonist or an antagonist. It is one or the other depending on which of the
+    five pockets it finds itself in.
+  </p>
+  <p>
+    The body has its own blockers. <a href="/agrp">AgRP</a> and the pigment brake{' '}
+    <a href="/asip">agouti (ASIP)</a> are not merely competitors; they are
+    <strong>inverse agonists</strong>, pushing the receptors below their resting
+    idle rather than just keeping the natural signal out.<Cite n={10} /> That
+    resting idle is real – the 2025 empty-receptor structures were solved
+    precisely to explain the family’s built-in background activity, the thing an
+    inverse agonist turns down.<Cite n={8} /> One honest gap remains: no one has yet
+    captured an AgRP- or agouti-bound receptor directly, so how these brakes sit
+    in the pocket is still read from function and modelling, not from a picture.
+  </p>
+
+  <h2>Beyond cAMP: what “biased” means</h2>
+  <p>
+    A receptor is not a simple on/off lamp with one wire. MC4R can talk through Gs
+    and cyclic AMP, through a different G protein called Gq/11, and – strangest of
+    all – straight to an ion channel. A <strong>biased</strong> agonist is one
+    that leans on some of these routes more than others, because the particular
+    shape it locks the receptor into favours one exit over another. The approved
+    drug setmelanotide, for one, is described as biased toward the Gq/11
+    route.<Cite n={5} />
+  </p>
+  <p>
+    The strangest route skips G proteins entirely. In hypothalamic neurons, MC4R
+    can open and close the potassium channel <strong>Kir7.1</strong> directly:
+    α-MSH closes it and AgRP opens it, changing whether the neuron fires –
+    without a G protein in between.<Cite n={11} /> The finding was unusual enough
+    to be argued over for years; it now has support from several groups and, as of
+    2026, a structure of Kir7.1 with MC4R to give the mechanism a shape.<Cite n={12} />
+    It is a good reminder that these receptors are still handing us surprises.
+  </p>
+
+  <h2>Why MC2R needs a chaperone</h2>
+  <p>
+    One receptor refused to behave like the others. <a href="/receptors/mc2r">MC2R</a>,
+    the adrenal receptor for ACTH, cannot even reach the cell surface on its own,
+    let alone bind its hormone. It needs a small partner protein, MRAP1, and the
+    2023 structure showed why: MRAP1 wraps across the receptor like a seat-belt,
+    reshaping the entrance so that ACTH – much larger than the little
+    His-Phe-Arg-Trp core – can be read.<Cite n={7} /> It is the clearest case in
+    the family of a receptor that is only half a machine by itself.
+  </p>
+  <p>
+    A close cousin of that helper, MRAP2, tunes MC4R and MC3R instead of MC2R,
+    shifting how strongly they signal and how they pair up.<Cite n={13} /> That
+    complex has not yet been solved atomically; for now it is known from function.
+    The distinction is worth keeping straight, because the two are easy to
+    confuse: MRAP1 is MC2R’s indispensable partner, MRAP2 is the modulator of the
+    appetite receptors.
+  </p>
+
+  <h2>Why the pictures matter</h2>
+  <p>
+    Structures are not decoration; they change what can be built. They already
+    explain the drugs we have – why setmelanotide switches MC4R on while the
+    almost-identical SHU9119 does not comes straight out of comparing the two in
+    the same pocket,<Cite n={2} /><Cite n={5} /> and why a small non-peptide
+    molecule can be made to fit at all was answered by catching one in the
+    act.<Cite n={4} /> They also explain the field’s central frustration. The
+    shared pocket and the shared calcium trick, so elegant across MC1R–MC5R, are
+    exactly why an MC4R appetite drug spills onto MC1R and darkens the skin, or
+    brushes the adrenal MC2R.<Cite n={6} />
+  </p>
+  <p>
+    The encouraging part is that the pictures are starting to solve the problem
+    they revealed. Structure-guided redesign of setmelanotide’s core has already
+    produced a compound with more than a hundred-fold preference for MC4R over
+    MC1R – an early, deliberate attempt to keep the appetite effect and leave the
+    pigment alone.<Cite n={14} /> And wholly new kinds of key are being cut: an
+    engineered nanobody that switches MC4R on by itself, a tool that did not exist
+    before the structures made it thinkable.<Cite n={9} /> A system we could only
+    describe five years ago is one we are beginning to design against.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">How we know this</p>
+    <p class="mt-2 text-[var(--text)]">
+      The structures on this page come from cryo-electron microscopy and X-ray
+      crystallography, published in the peer-reviewed literature and deposited in
+      public structure databases. This is young science – most of it has arrived
+      since 2020 – and a few things named here, such as an AgRP-bound receptor or
+      an MRAP2–MC4R complex, have not yet been directly visualised; where a claim
+      rests on function or modelling rather than a solved structure, the text says
+      so. The figures are schematic teaching diagrams, not renderings of specific
+      atomic coordinates. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="structures" />
+</PageLayout>

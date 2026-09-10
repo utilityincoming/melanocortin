@@ -205,17 +205,23 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'The binding matrix',
     blurb: 'How tightly every ligand holds each of the five receptors — the cited numbers behind the words.',
   },
+  structures: {
+    href: '/structures',
+    title: 'The receptor structures',
+    blurb: 'What MC1R–MC5R actually look like — the seven-helix fold, the calcium in the pocket, and how the switch flips on.',
+  },
 };
 
 export const RELATED: Record<string, string[]> = {
   system: ['receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation', 'binding-matrix'],
   'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
-  receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix'],
-  'binding-matrix': ['explorer', 'receptors', 'alpha-msh', 'afamelanotide', 'melanocortin-agonists', 'agrp'],
+  receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix', 'structures'],
+  'binding-matrix': ['explorer', 'receptors', 'alpha-msh', 'afamelanotide', 'melanocortin-agonists', 'structures'],
+  structures: ['receptors', 'receptors/mc4r', 'binding-matrix', 'alpha-msh', 'receptors/mc1r', 'agrp'],
   'receptors/mc1r': ['afamelanotide', 'mc1r-pain', 'alpha-msh', 'asip', 'genetics', 'fearfully-and-wonderfully-made'],
   'receptors/mc2r': ['acth', 'alpha-msh', 'system'],
   'receptors/mc3r': ['gamma-msh', 'receptors/mc4r', 'inflammation', 'agrp', 'genetics'],
-  'receptors/mc4r': ['setmelanotide', 'bivamelagon', 'agrp', 'shu9119', 'glp1-appetite', 'melanocortin-agonists'],
+  'receptors/mc4r': ['setmelanotide', 'bivamelagon', 'agrp', 'shu9119', 'structures', 'melanocortin-agonists'],
   'receptors/mc5r': ['alpha-msh', 'receptors/mc1r', 'system'],
   'alpha-msh': ['system', 'receptors/mc1r', 'receptors/mc4r', 'inflammation', 'agrp', 'binding-matrix'],
   acth: ['receptors/mc2r', 'alpha-msh', 'system'],

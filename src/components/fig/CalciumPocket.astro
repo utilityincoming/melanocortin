@@ -1,0 +1,120 @@
+---
+// calcium-pocket — a zoom into the orthosteric pocket. The conserved
+// His-Phe-Arg-Trp (HFRW) core of the melanocortin ligand descends into the
+// pocket; a calcium ion sits between the ligand and acidic residues on the
+// receptor wall, bridging the two. Removing the Ca²⁺ collapses agonist binding
+// but not antagonist binding (Yu 2020; Israeli 2021). Schematic, not to scale.
+// SVG-only; wrap in <Figure>.
+---
+
+<svg class="ca-fig" viewBox="0 0 720 452" role="img" aria-labelledby="ca-t ca-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="ca-t">Calcium bridges the ligand to the receptor pocket</title>
+  <desc id="ca-d"
+    >The conserved His-Phe-Arg-Trp core of the melanocortin ligand descends into
+    the orthosteric pocket. A calcium ion sits between the ligand and acidic
+    residues on the pocket wall, coordinating both — a cofactor for high-affinity
+    agonist binding. Antagonists do not require it.</desc
+  >
+
+  <text x="300" y="34" text-anchor="middle" class="head">Inside the pocket</text>
+
+  <!-- pocket walls -->
+  <rect class="wall" x="120" y="86" width="36" height="252" rx="16" />
+  <rect class="wall" x="452" y="86" width="36" height="252" rx="16" />
+  <text x="138" y="360" text-anchor="middle" class="wall-l">TM2 / TM3</text>
+  <text x="470" y="360" text-anchor="middle" class="wall-l">TM6 / TM7</text>
+  <!-- pocket floor -->
+  <path class="floor" d="M156 330 Q304 372 452 330" />
+
+  <!-- HFRW ligand core descending into the pocket -->
+  <g class="bonds">
+    <line x1="248" y1="120" x2="278" y2="166" />
+    <line x1="278" y1="166" x2="316" y2="208" />
+    <line x1="316" y1="208" x2="300" y2="258" />
+  </g>
+  <g class="core">
+    <circle cx="248" cy="120" r="18" /><text x="248" y="125" class="res">H</text>
+    <circle cx="278" cy="166" r="18" /><text x="278" y="171" class="res">F</text>
+    <circle cx="316" cy="208" r="18" /><text x="316" y="213" class="res">R</text>
+    <circle cx="300" cy="258" r="18" /><text x="300" y="263" class="res">W</text>
+  </g>
+  <text x="212" y="96" text-anchor="end" class="core-l">α-MSH core</text>
+  <text x="212" y="112" text-anchor="end" class="core-s">His · Phe · Arg · Trp</text>
+
+  <!-- acidic residues on the wall + floor -->
+  <g class="acid">
+    <path d="M452 250 l-16 -7 l0 14 z" /><text x="440" y="240" text-anchor="end" class="acid-l">Glu</text>
+    <path d="M452 292 l-16 -7 l0 14 z" /><text x="440" y="308" text-anchor="end" class="acid-l">Asp</text>
+    <path d="M300 330 l-7 -16 l14 0 z" /><text x="300" y="352" text-anchor="middle" class="acid-l">Asp</text>
+  </g>
+
+  <!-- calcium ion + coordination -->
+  <g class="coord">
+    <line x1="366" y1="272" x2="432" y2="250" />
+    <line x1="366" y1="278" x2="432" y2="292" />
+    <line x1="352" y1="286" x2="304" y2="322" />
+    <line class="bridge" x1="352" y1="262" x2="316" y2="216" />
+  </g>
+  <circle class="ca-glow" cx="358" cy="272" r="26" />
+  <circle class="ca" cx="358" cy="272" r="15" />
+  <text x="358" y="277" text-anchor="middle" class="ca-t">Ca²⁺</text>
+
+  <!-- the calcium test (right) -->
+  <line class="divider" x1="524" y1="96" x2="524" y2="352" />
+  <text x="546" y="140" class="note-h">The calcium test</text>
+  <text x="546" y="168" class="note">Take the Ca²⁺ away and</text>
+  <text x="546" y="185" class="note-em">agonist binding collapses</text>
+  <text x="546" y="202" class="note">(affinity falls roughly</text>
+  <text x="546" y="219" class="note">ten- to a hundred-fold).</text>
+  <text x="546" y="252" class="note">Antagonists like SHU9119</text>
+  <text x="546" y="269" class="note">bind the same pocket but</text>
+  <text x="546" y="286" class="note-em">don't need the calcium.</text>
+  <text x="546" y="318" class="note-s">So the ion isn't structural</text>
+  <text x="546" y="335" class="note-s">trim — it's part of the switch.</text>
+</svg>
+
+<style>
+  .ca-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .head { font-size: 12px; font-weight: 600; fill: var(--accent-strong); letter-spacing: 0.02em; }
+  .wall { fill: var(--accent); opacity: 0.8; stroke: var(--accent-strong); stroke-width: 1; }
+  .wall-l { font-size: 10.5px; fill: var(--text-muted); }
+  .floor { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 4; opacity: 0.7; }
+
+  .bonds line { stroke: var(--text-muted); stroke-width: 2.4; }
+  .core circle { fill: var(--accent-soft); stroke: var(--accent-strong); stroke-width: 1.4; }
+  .res { font-size: 13px; font-weight: 700; fill: var(--accent-strong); text-anchor: middle; }
+  .core-l { font-size: 12px; font-weight: 600; fill: var(--text); }
+  .core-s { font-size: 10.5px; fill: var(--text-muted); }
+
+  .acid path { fill: var(--text-muted); }
+  .acid-l { font-size: 10px; fill: var(--text-muted); }
+
+  .coord line { stroke: var(--accent-strong); stroke-width: 1.3; stroke-dasharray: 3 3; opacity: 0.85; }
+  .coord .bridge { stroke: var(--accent-strong); stroke-width: 1.8; stroke-dasharray: none; opacity: 1; }
+  .ca-glow { fill: var(--accent-strong); opacity: 0.14; animation: ca-pulse 4s ease-in-out infinite; }
+  .ca { fill: var(--accent-strong); stroke: var(--bg-elevated); stroke-width: 1.5; }
+  .ca-t { font-size: 11px; font-weight: 700; fill: var(--bg-elevated); }
+
+  .divider { stroke: var(--border); stroke-width: 1; }
+  .note-h { font-size: 12.5px; font-weight: 700; fill: var(--accent-strong); }
+  .note { font-size: 11.5px; fill: var(--text); }
+  .note-em { font-size: 11.5px; font-weight: 700; fill: var(--text); }
+  .note-s { font-size: 10.5px; font-style: italic; fill: var(--text-muted); }
+
+  @keyframes ca-pulse {
+    0%, 100% { opacity: 0.08; transform: scale(1); transform-origin: 358px 272px; }
+    50% { opacity: 0.22; transform: scale(1.12); transform-origin: 358px 272px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ca-glow { animation: none; opacity: 0.16; }
+  }
+</style>
