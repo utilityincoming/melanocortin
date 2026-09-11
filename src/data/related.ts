@@ -10,6 +10,21 @@ export interface PageMeta {
 }
 
 export const PAGES: Record<string, PageMeta> = {
+  'why-melanocortins': {
+    href: '/why-melanocortins',
+    title: 'Why melanocortins',
+    blurb: 'The reason this site exists: one ancient gene keeps colour, hunger, stress, and healing in balance.',
+  },
+  about: {
+    href: '/about',
+    title: 'Editorial standards',
+    blurb: 'How pages are written, sourced, reviewed, and corrected.',
+  },
+  glossary: {
+    href: '/glossary',
+    title: 'Glossary',
+    blurb: 'Plain-language definitions of every melanocortin term used across the site.',
+  },
   system: {
     href: '/system',
     title: 'The melanocortin system',

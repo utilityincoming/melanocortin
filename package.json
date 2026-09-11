@@ -13,7 +13,8 @@
     "check:ws": "node scripts/check-link-whitespace.mjs",
     "preview": "astro preview",
     "gsc": "node scripts/gsc-report.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "pagedates": "node scripts/pagedates.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
