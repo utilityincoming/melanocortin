@@ -1,4 +1,6 @@
 ---
+import SiteIndex from './SiteIndex.astro';
+
 const year = new Date().getFullYear();
 ---
 
@@ -19,6 +21,9 @@ const year = new Date().getFullYear();
         <a href="/about" class="no-underline hover:text-[var(--accent)]">Editorial standards</a>
       </nav>
     </div>
+    <nav class="mt-10 border-t border-[var(--border)] pt-8 text-sm" aria-label="All pages">
+      <SiteIndex variant="compact" />
+    </nav>
     <div class="mt-8 border-t border-[var(--border)] pt-6 text-xs leading-relaxed">
       <p>
         Educational resource only — not medical advice, diagnosis, or treatment.
