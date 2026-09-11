@@ -100,9 +100,14 @@ const graph: Record<string, unknown>[] = [
           dateModified: preciseModified,
           author: { '@id': orgId },
           publisher: { '@id': orgId },
+          // schema.org `Drug` inherits from `Product`, so Google's Product
+          // rich-result validator flags every Drug entity as a critical error
+          // ("offers, review, or aggregateRating should be specified"). This is a
+          // reference site with nothing for sale, so emit the medical parent
+          // type `Substance` instead. Pages keep writing `type: 'Drug'`.
           about: about.length
             ? about.map((e) => ({
-                '@type': e.type ?? 'MedicalEntity',
+                '@type': (e.type ?? 'MedicalEntity') === 'Drug' ? 'Substance' : e.type ?? 'MedicalEntity',
                 name: e.name,
                 ...(e.sameAs?.length ? { sameAs: e.sameAs } : {}),
               }))
