@@ -64,7 +64,7 @@ export const SITE_INDEX: IndexSection[] = [
   },
   {
     title: 'Conditions & questions',
-    pages: pick('hypothalamic-obesity', 'glp1-appetite', 'mc1r-pain', 'oral-peptides', 'dose-curve'),
+    pages: pick('hypothalamic-obesity', 'glp1-appetite', 'mc1r-pain', 'oral-peptides', 'mc1r-selectivity', 'dose-curve'),
   },
   {
     title: 'Data & tools',
