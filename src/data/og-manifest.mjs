@@ -48,6 +48,7 @@ export const ogPages = [
   // Pillars & route explainers.
   { slug: 'genetics', eyebrow: 'GENETICS PILLAR', title: 'Genetics of the system' },
   { slug: 'oral-peptides', eyebrow: 'EXPLAINER · ROUTE', title: "Why oral peptides don't work" },
+  { slug: 'mc1r-selectivity', eyebrow: 'THE SELECTIVITY PROBLEM', title: 'One key, five locks' },
 
   // Newer axis, mechanism & drug pages.
   { slug: 'inflammation', eyebrow: 'THE FOURTH AXIS', title: 'Melanocortin control of inflammation' },

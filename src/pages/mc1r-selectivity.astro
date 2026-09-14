@@ -1,0 +1,336 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import OneKeyManyLocks from '../components/fig/OneKeyManyLocks.astro';
+
+const faqs = [
+  {
+    q: 'Is there a selective MC1R agonist?',
+    a: 'As a laboratory tool, yes — BMS-470539 is a small molecule that activates MC1R and largely leaves the other four receptors alone. But it was built to study inflammation, not to make pigment, and no selective MC1R agonist has been developed as an approved drug. The MC1R agonists people actually use or buy — afamelanotide, dersimelagon, the grey-market Melanotan II — are all broad, hitting several melanocortin receptors at once.',
+  },
+  {
+    q: 'Why is there no clean, selective tanning drug?',
+    a: 'Two reasons stack up. First, the five melanocortin receptors are so alike that a molecule shaped to switch on the pigment receptor MC1R easily touches the others, so selectivity has to be painstakingly engineered. Second, there is no approved medical reason to build one: the single approved MC1R agonist, afamelanotide, treats a rare light-sensitivity disease, and cosmetic tanning is not a pathway regulators license drugs down — so the work has never been funded.',
+  },
+  {
+    q: 'Can you get the tan without the side effects?',
+    a: 'Not reliably with today’s broad agonists. Because the same His-Phe-Arg-Trp core that opens MC1R also opens MC4R, a systemic melanocortin that darkens skin tends to bring nausea, flushing and other MC4R effects with it — they are the same molecule acting at different receptors, not separable dial settings.',
+  },
+  {
+    q: 'What does “selective” mean for a receptor drug?',
+    a: 'A selective agonist switches on one receptor subtype far more strongly than the others. The natural signal α-MSH is the opposite — non-selective, activating four of the five melanocortin receptors. Selectivity has to be engineered in, and it is hard here: even setmelanotide, developed for MC4R, grips the pigment receptor MC1R almost as tightly as its intended target.',
+  },
+  {
+    q: 'Is Melanotan II selective for MC1R?',
+    a: 'No. Both Melanotan I (afamelanotide) and Melanotan II are broad melanocortin agonists that activate several receptors, not MC1R alone. That breadth is exactly why Melanotan II’s documented effects include nausea, facial flushing and spontaneous erections alongside the tan — the erections and nausea are MC4R, the tan is MC1R, one molecule doing both.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Schiöth HB, Muceniece R, Mutulis F, et al.',
+    title: 'Selectivity of cyclic [D-Nal7] and [D-Phe7] substituted MSH analogues for the melanocortin receptor subtypes.',
+    source: 'Peptides. 18(7):1009–13.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/9357059/',
+  },
+  {
+    authors: 'Al-Obeidi F, Castrucci AM, Hadley ME, Hruby VJ.',
+    title: 'Potent and prolonged acting cyclic lactam analogues of alpha-melanotropin: design based on molecular dynamics.',
+    source: 'J Med Chem. 32(12):2555–61.',
+    year: '1989',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/2555512/',
+  },
+  {
+    authors: 'Heyder NA, Kleinau G, Speck D, et al.',
+    title: 'Structures of active melanocortin-4 receptor–Gs-protein complexes with NDP-α-MSH and setmelanotide.',
+    source: 'Cell Res. 31(11):1176–1189.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34561620/',
+  },
+  {
+    authors: 'Barnetson RS, Ooi TK, Zhuang L, et al.',
+    title: '[Nle4-D-Phe7]-α-melanocyte-stimulating hormone significantly increased pigmentation and decreased UV damage in fair-skinned Caucasian volunteers.',
+    source: 'J Invest Dermatol. 126(8):1869–78.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16763547/',
+  },
+  {
+    authors: 'US FDA.',
+    title: 'SCENESSE (afamelanotide) implant, for subcutaneous use — prescribing information.',
+    source: 'FDA label (NDA 210797) — mechanism, indication, and dosing.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+  {
+    authors: 'Clément K, van den Akker E, Argente J, et al.',
+    title: 'Efficacy and safety of setmelanotide, an MC4R agonist, in individuals with severe obesity due to LEPR or POMC deficiency: single-arm, open-label, multicentre, phase 3 trials.',
+    source: 'Lancet Diabetes Endocrinol. PMID 33137293.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33137293/',
+  },
+  {
+    authors: 'Hruby VJ, Lu D, Sharma SD, et al.',
+    title: 'Cyclic lactam α-melanotropin analogues with bulky aromatic amino acids at position 7 show high antagonist potency and selectivity at specific melanocortin receptors.',
+    source: 'J Med Chem. 38(18):3454–61.',
+    year: '1995',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/7658432/',
+  },
+  {
+    authors: 'Kang L, McIntyre KW, Gillooly KM, et al.',
+    title: 'A selective small molecule agonist of the melanocortin-1 receptor inhibits lipopolysaccharide-induced cytokine accumulation and leukocyte infiltration in mice.',
+    source: 'J Leukoc Biol. 80(4):897–904.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16888084/',
+  },
+  {
+    authors: 'Ma S, Chen Y, Dai A, et al.',
+    title: 'Structural mechanism of calcium-mediated hormone recognition and Gβ interaction by the human melanocortin-1 receptor.',
+    source: 'Cell Res. 31(10):1061–1071.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34453129/',
+  },
+  {
+    authors: 'Luo P, Feng W, Ma S, et al.',
+    title: 'Structural basis of signaling regulation of the human melanocortin-2 receptor by MRAP1.',
+    source: 'Cell Res. 33(1):46–54.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36588120/',
+  },
+  {
+    authors: 'Beaumont KA, Newton RA, Smit DJ, et al.',
+    title: 'Altered cell surface expression of human MC1R variant receptor alleles associated with red hair and skin cancer risk.',
+    source: 'Hum Mol Genet. 14(15):2145–54.',
+    year: '2005',
+    url: 'https://academic.oup.com/hmg/article/14/15/2145/551635',
+  },
+  {
+    authors: 'Guo C, Luo T, Dong Y, et al.',
+    title: 'SAR investigation and synergistic optimization of setmelanotide yields a potent, selective, and soluble MC4R agonist.',
+    source: 'Bioorg Chem. 168:109370.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/41401696/',
+  },
+];
+---
+
+<PageLayout
+  title="Potent, but not precise"
+  kicker="The selectivity problem"
+  description="There are potent melanocortin drugs that build pigment — afamelanotide, dersimelagon, the grey-market Melanotan II — but not one that switches on MC1R alone. Why a selective MC1R agonist, a truly clean tanning drug, is so hard to make: five receptors that all read the same four-letter key."
+  thread="The body never cut a key for one door. It wrote a single word — protect, feed, calm — and trusted each tissue to listen for its own. Our drugs are still learning that economy."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Alpha-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Alpha-melanocyte-stimulating_hormone'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+    { name: 'Agonist', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agonist'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Potent melanocortin drugs that build pigment already exist — afamelanotide is an approved, far more potent and longer-lasting copy of α-MSH; Melanotan II and the oral candidate dersimelagon are others. What none of them is, is selective.',
+      'All five receptors (MC1R–MC5R) read the same four-residue core of the ligand, His-Phe-Arg-Trp. So one molecule tends to open several locks at once — the tan and the nausea are the same key in different receptors.',
+      'Potency and selectivity are separate problems. The chemical changes that make an α-MSH copy stronger make it stronger at every receptor, not only at MC1R — even setmelanotide, aimed at MC4R, grips the pigment receptor almost as tightly.',
+      'A genuinely MC1R-selective molecule has been made — BMS-470539 — but it was built as an anti-inflammatory research tool. There is no approved medical market for selective tanning, and the cosmetic one is not a drug pathway.',
+      'The 2020–21 receptor structures have, for the first time, made selective design realistic; recent work reached more than hundred-fold selectivity between two of the receptors. The chemistry is arriving — a reason to aim it at pigment is what is missing.',
+    ]}
+  />
+
+  <p>
+    Ask why there is no clean tanning drug — a peptide that safely, precisely turns
+    the skin’s pigment switch and nothing else — and the honest answer begins by
+    correcting the question. The potent part is solved. What is missing is
+    precision, and precision turns out to be the harder thing to buy.
+  </p>
+
+  <h2>Potent is solved. Selective is not.</h2>
+  <p>
+    There is already an approved drug that switches on the pigment receptor{' '}
+    <a href="/receptors/mc1r">MC1R</a> and reliably darkens skin:{' '}
+    <a href="/afamelanotide">afamelanotide</a>, a copy of the body’s own{' '}
+    <a href="/alpha-msh">α-MSH</a> re-engineered to be far more potent and far
+    longer-lasting than the natural hormone. In fair-skinned volunteers it
+    measurably increased pigmentation and cut UV damage.<Cite n={5} /> The
+    grey-market tanning peptide <a href="/melanotan">Melanotan II</a> is another
+    potent one, a cyclic analogue designed in the 1980s to be more stable and more
+    active than α-MSH;<Cite n={3} /> the investigational pill{' '}
+    <a href="/dersimelagon">dersimelagon</a> is a third. Potency — making the
+    receptor fire hard — was never the obstacle.
+  </p>
+  <p>
+    The obstacle is that not one of these hits MC1R <em>alone</em>. Every one of
+    them also switches on the other melanocortin receptors, and that is why the
+    tan never comes by itself. To see why, you have to look at what these molecules
+    are actually recognising.
+  </p>
+
+  <h2>One key, five locks</h2>
+  <p>
+    Every melanocortin — α-MSH, ACTH, the drugs built to imitate them — carries the
+    same tiny recognition core: four residues, <strong>His-Phe-Arg-Trp</strong>.
+    That short sequence is the working end of the signal, and all five receptors
+    evolved to read it.<Cite n={1} /> A small peptide built around that core is,
+    in effect, a key cut to a shape that four of the five locks accept. α-MSH
+    itself is completely non-selective — it activates MC1R, MC3R, MC4R and MC5R at
+    broadly similar strengths.<Cite n={1} /><Cite n={2} />
+  </p>
+
+  <Figure
+    caption="Every melanocortin ligand carries the same four-residue core, His-Phe-Arg-Trp. Four of the five receptors read it, so one 'key' opens the pigment lock (MC1R) you may be aiming for together with MC4R, MC3R and MC5R. Only MC2R escapes — it answers to the larger ACTH and needs a chaperone protein. Make the key more potent and every lock it fits turns harder: that is potency, not selectivity."
+    source="Shared His-Phe-Arg-Trp core and the non-selectivity of α-MSH: Cone 2006; Schiöth 1997. MC2R’s dependence on ACTH and MRAP1: Luo 2023."
+  >
+    <OneKeyManyLocks />
+  </Figure>
+
+  <p>
+    The lone exception proves the rule. <a href="/receptors/mc2r">MC2R</a>, the
+    adrenal receptor, does <em>not</em> answer to that four-residue key at all — it
+    reads only the longer <a href="/acth">ACTH</a>, and it cannot even reach the
+    cell surface without a chaperone protein, MRAP1.<Cite n={10} /> The one
+    receptor that escaped the family resemblance did so by needing an entirely
+    different key and a helper to use it. The other four are close enough that a
+    single molecule reads them all.
+  </p>
+
+  <h2>The body never needed a selective one</h2>
+  <p>
+    This looks like an oversight until you notice how the system actually achieves
+    precision. Evolution never made a MC1R-only ligand because it never had to:
+    specificity comes from <em>where</em> a peptide is released and{' '}
+    <em>which</em> receptor is switched on in that tissue, not from the molecule
+    telling the receptors apart.<Cite n={1} /> MC1R sits on pigment cells and
+    immune cells; MC4R sits in the appetite circuits of the brain; MC2R sits on the
+    adrenal gland. The same broad signal means very different things in each place,
+    and the body keeps them straight by geography. There was no selection pressure
+    for a molecularly selective key — so there is no natural template for one to
+    copy.
+  </p>
+
+  <h2>Potency and selectivity are different knobs</h2>
+  <p>
+    Here is the part that defeats the intuition that a “better” drug would be a
+    cleaner one. The classic tricks that make an α-MSH copy powerful — the
+    substitutions behind NDP-α-MSH and the cyclic Melanotan analogues — raise
+    activity at <em>all</em> the receptors at once, because they strengthen the
+    grip on the shared core, not on any one pocket.<Cite n={4} /><Cite n={2} /> So
+    afamelanotide is potent <em>and</em> broad; Melanotan II is potent{' '}
+    <em>and</em> broad. Turning the dial up does not turn precision on. You can
+    watch this spill the other way too: <a href="/setmelanotide">setmelanotide</a>,
+    engineered for the appetite receptor MC4R, still grips the pigment receptor
+    MC1R almost as tightly, so skin darkening is one of its most common
+    effects.<Cite n={7} /> The <a href="/binding-matrix">binding matrix</a> lays out
+    those receptor-by-receptor numbers.
+  </p>
+  <p>
+    Selectivity <em>can</em> be coaxed out of these molecules — but the margins are
+    exquisite. Take the potent tanning peptide, change a single residue at position
+    seven to a bulky unnatural one, and it stops activating MC3R and MC4R and starts
+    <em>blocking</em> them — while still switching MC1R on. That is exactly what the
+    research compound <a href="/shu9119">SHU9119</a> does.<Cite n={8} /> One atom’s
+    worth of change flips the molecule from agonist to antagonist at some receptors
+    and not others. It proves subtype discrimination is chemically possible; it also
+    shows how narrow the ledge is, and how easily a change aimed at one receptor lands
+    on another.
+  </p>
+
+  <h2>A selective one exists — for the other reason</h2>
+  <p>
+    In fact the clean molecule already exists. <strong>BMS-470539</strong> is a
+    small-molecule agonist that switches on MC1R and largely spares the rest of the
+    family.<Cite n={9} /> But read what it was built for: it was developed to test
+    whether firing MC1R could calm inflammation — it was dosed to block cytokine
+    release and stop white cells flooding inflamed tissue in mice, and it lives in
+    the literature as an <a href="/inflammation">anti-inflammatory</a> tool. Nobody
+    took it toward pigmentation. The selectivity that a “clean tanning drug” would
+    need is not a chemistry that can’t be done. It is a chemistry that was pointed
+    somewhere else, because that is where the medicine was.
+  </p>
+
+  <h2>There is no medical reason to build it</h2>
+  <p>
+    Follow the incentive and the gap explains itself. MC1R agonism for pigment has
+    exactly one approved use — <a href="/afamelanotide">erythropoietic
+    protoporphyria</a>, a rare disease in which sunlight causes agonising pain — and
+    afamelanotide already serves it, delivered as an implant where broad activity is
+    tolerated because the photoprotection is worth it.<Cite n={6} /> The enormous
+    market is cosmetic tanning, and that is not a road drugs are approved down; the
+    grey-market history of <a href="/melanotan">Melanotan II</a> — contaminated
+    vials, case reports of changing moles — is a large part of why no serious
+    developer wants to plant a flag there.
+  </p>
+  <p>
+    Where the hard medicinal chemistry of melanocortin selectivity <em>is</em> being
+    done, MC1R is usually the receptor to <em>avoid</em>. The money is in{' '}
+    <a href="/receptors/mc4r">MC4R</a> for obesity, and for those drugs the tan is an
+    unwanted side effect — so the newest agents are engineered to <em>spare</em> MC1R,
+    not to hit it. The field is spending its selectivity budget teaching drugs to miss
+    the pigment receptor. The full landscape of who is building what sits on the{' '}
+    <a href="/melanocortin-agonists">melanocortin agonists</a> page.
+  </p>
+
+  <h2>Even a perfect one would meet a ceiling</h2>
+  <p>
+    Suppose someone did build the flawless MC1R-selective peptide. Two ceilings would
+    still be waiting. The first is delivery: peptides are digested if swallowed and
+    clear quickly if injected, which is why every approved melanocortin peptide is an
+    injection or an implant, and why the frontier has moved toward{' '}
+    <a href="/oral-peptides">oral small molecules</a> in the first place. The second
+    is biology. MC1R agonism only produces pigment if the receptor can answer: the
+    common <a href="/genetics">red-hair variants</a> of MC1R are loss-of-function, sitting
+    at reduced levels on the cell surface and signalling weakly,<Cite n={11} /> and
+    the people who most want a tan are disproportionately the people carrying them.
+    You cannot out-dose a receptor that cannot fire, and past a point the melanocyte’s
+    own machinery caps how much eumelanin it will make.<Cite n={1} /> A more potent key
+    does not linearly make more colour.
+  </p>
+
+  <h2>Why this is finally changing</h2>
+  <p>
+    For most of this story the tools did not exist to design a selective melanocortin
+    on purpose. That changed in 2020–21, when cryo-electron microscopy resolved the
+    receptors at atomic detail — including MC1R with α-MSH and afamelanotide in its
+    pocket — and made the near-identical pockets, and the small differences between
+    them, finally visible.<Cite n={10} /> Structure-guided redesign has already turned
+    that into selectivity: reworking setmelanotide’s core produced a compound with more
+    than a hundred-fold preference for MC4R over MC1R — a deliberate, successful attempt
+    to separate two receptors that used to come as a pair.<Cite n={12} /> The full
+    structural story is on the <a href="/structures">receptor structures</a> page.
+  </p>
+  <p>
+    That is the honest state of it. A selective MC1R agonist is no longer a chemistry
+    problem the way it was a decade ago — the pictures are in hand and the design methods
+    work. What is missing is not the key. It is a reason to cut it: an indication, a
+    market, a medicine worth making. Until one appears, “potent” will keep arriving
+    without “precise,” and the tan will keep coming with everything else attached.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains why a selective MC1R drug does not exist. It is not medical
+      advice, not a how-to, and not an endorsement of unapproved use of any melanocortin
+      peptide. The known risks of the grey-market ones are covered on the{' '}
+      <a href="/melanotan">Melanotan</a> page; see also the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="mc1r-selectivity" />
+</PageLayout>

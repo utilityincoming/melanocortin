@@ -1,0 +1,178 @@
+---
+// one-key-many-locks — the selectivity problem in one image. Every melanocortin
+// ligand carries the same four-residue recognition core (His-Phe-Arg-Trp), and
+// all five receptors read it. So a single "key" opens four of the five locks:
+// the pigment receptor MC1R you may be aiming for, plus MC3R, MC4R and MC5R that
+// come along with it. MC2R is the odd exception — it answers only to the larger
+// ACTH and needs the chaperone MRAP1. The deliberate inverse of KeyForOneLock.
+// Schematic; static; theme-aware via CSS vars. SVG-only — wrap in <Figure>.
+
+const locks = [
+  {
+    y: 62,
+    name: 'MC1R',
+    tissue: 'skin',
+    desc: 'builds the pigment — the effect you want',
+    kind: 'target',
+    open: true,
+  },
+  {
+    y: 152,
+    name: 'MC4R',
+    tissue: 'brain',
+    desc: 'appetite & arousal — nausea, fullness',
+    kind: 'collateral',
+    open: true,
+  },
+  {
+    y: 242,
+    name: 'MC3R',
+    tissue: '',
+    desc: 'energy balance',
+    kind: 'collateral',
+    open: true,
+  },
+  {
+    y: 332,
+    name: 'MC5R',
+    tissue: '',
+    desc: 'sebaceous glands, immune cells',
+    kind: 'collateral',
+    open: true,
+  },
+  {
+    y: 420,
+    name: 'MC2R',
+    tissue: 'adrenal',
+    desc: 'opens only to ACTH, and only with a chaperone',
+    kind: 'exception',
+    open: false,
+  },
+];
+
+const KEY = { ox: 252, oy: 242 }; // fan origin at the key tip
+const teeth = [
+  { x: 150, h: 16, r: 'H' },
+  { x: 172, h: 23, r: 'F' },
+  { x: 194, h: 14, r: 'R' },
+  { x: 216, h: 20, r: 'W' },
+];
+---
+
+<svg class="okml" viewBox="0 0 880 470" role="img" aria-labelledby="okml-t okml-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="okml-t">One key, five locks — why a melanocortin drug can't hit MC1R alone</title>
+  <desc id="okml-d"
+    >Every melanocortin ligand carries the same four-residue recognition core,
+    His-Phe-Arg-Trp. All five receptors read it, so one "key" opens four of the
+    five locks: MC1R (skin pigment, the effect you want) together with MC4R
+    (appetite and arousal), MC3R (energy balance) and MC5R (glands). Only MC2R
+    escapes, because it answers to the larger ACTH and needs the chaperone
+    protein MRAP1. Making the key more potent turns every lock it fits harder —
+    which is potency, not selectivity.</desc
+  >
+
+  <!-- the shared key -->
+  <g class="key">
+    <text x="150" y="204" text-anchor="middle" class="key-eyebrow">THE SHARED KEY</text>
+    <!-- bow -->
+    <circle cx="58" cy="242" r="30" class="key-metal" />
+    <circle cx="58" cy="242" r="12" class="key-hole" />
+    <!-- blade -->
+    <rect x="86" y="235" width="166" height="14" rx="3" class="key-metal" />
+    <!-- teeth -->
+    {teeth.map((t) => (
+      <>
+        <rect x={t.x} y="249" width="9" height={t.h} class="key-metal" />
+        <text x={t.x + 4.5} y="287" text-anchor="middle" class="residue">{t.r}</text>
+      </>
+    ))}
+    <text x="185" y="306" text-anchor="middle" class="key-core">His · Phe · Arg · Trp</text>
+    <text x="185" y="320" text-anchor="middle" class="key-sub">α-MSH's message core</text>
+  </g>
+
+  <!-- fan lines from the key to each lock -->
+  {locks.map((l) => (
+    l.open ? (
+      <line class="ray" x1={KEY.ox} y1={KEY.oy} x2="494" y2={l.y} marker-end="url(#okml-fit)" />
+    ) : (
+      <line class="ray miss" x1={KEY.ox} y1={KEY.oy} x2="452" y2={l.y} />
+    )
+  ))}
+
+  <!-- the five locks -->
+  {locks.map((l) => (
+    <g class={`lock ${l.kind}`}>
+      {/* keyhole plate = the receptor pocket */}
+      <rect x="500" y={l.y - 24} width="50" height="48" rx="10" class="plate" />
+      <circle cx="525" cy={l.y - 6} r="5.5" class="kh" />
+      <path d={`M521 ${l.y - 3} L529 ${l.y - 3} L531 ${l.y + 11} L519 ${l.y + 11} Z`} class="kh" />
+      {l.kind === 'exception' && (
+        <g class="mrap">
+          <rect x="497" y={l.y - 9} width="9" height="18" rx="2" />
+          <text x="483" y={l.y + 4} text-anchor="middle" class="mrap-l">MRAP</text>
+        </g>
+      )}
+
+      {/* labels */}
+      <text x="574" y={l.y - 4} class="rname">
+        {l.name}{l.tissue && <tspan class="rtissue"> · {l.tissue}</tspan>}
+      </text>
+      <text x="574" y={l.y + 14} class="rdesc">{l.desc}</text>
+      {l.kind === 'target' && (
+        <text x="574" y={l.y - 27} class="rtag">◆ your target</text>
+      )}
+    </g>
+  ))}
+
+  <defs>
+    <marker id="okml-fit" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="rayhead" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .okml {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+
+  /* the key */
+  .key-metal { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
+  .key-hole { fill: var(--bg-elevated); stroke: none; }
+  .key-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; fill: var(--text-muted); }
+  .residue { font-size: 12px; font-weight: 700; fill: var(--accent-strong); }
+  .key-core { font-size: 12px; font-weight: 600; fill: var(--text); }
+  .key-sub { font-size: 10px; font-style: italic; fill: var(--text-muted); }
+
+  /* rays */
+  .ray { stroke: var(--accent); stroke-width: 1.8; opacity: 0.8; }
+  .rayhead { fill: var(--accent); }
+  .ray.miss { stroke: var(--text-muted); stroke-width: 1.6; stroke-dasharray: 4 4; opacity: 0.6; }
+
+  /* locks */
+  .plate { fill: var(--bg-elevated); stroke: var(--border); stroke-width: 1.4; }
+  .kh { fill: var(--text-muted); }
+  .lock.target .plate { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.8; }
+  .lock.target .kh { fill: var(--accent-strong); }
+  .lock.exception .plate { stroke-dasharray: 5 4; opacity: 0.85; }
+  .lock.exception .kh { fill: var(--border); }
+
+  .mrap rect { fill: var(--text-muted); opacity: 0.55; }
+  .mrap-l { font-size: 8.5px; font-weight: 600; fill: var(--text-muted); }
+
+  .rname { font-size: 14px; font-weight: 700; fill: var(--text); }
+  .rtissue { font-size: 11px; font-weight: 400; fill: var(--text-muted); }
+  .rdesc { font-size: 11px; fill: var(--text-muted); }
+  .lock.target .rname { fill: var(--accent-strong); }
+  .lock.target .rdesc { fill: var(--accent-strong); }
+  .rtag { font-size: 10px; font-weight: 700; fill: var(--accent); letter-spacing: 0.02em; }
+  .lock.exception .rname,
+  .lock.exception .rdesc { opacity: 0.8; }
+</style>
