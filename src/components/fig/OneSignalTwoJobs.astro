@@ -1,0 +1,83 @@
+---
+// one-signal-two-jobs — the central idea of the MC3R page. A single melanocortin
+// signal (α-MSH from POMC, opposed by AgRP) reaching the hypothalamus splits into
+// two complementary jobs: MC4R sets how much energy the body acquires (appetite),
+// while MC3R governs how that energy is spent — partitioning, the tempo of growth
+// and puberty, and the timing of meals. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="osj-fig"
+  viewBox="0 0 640 300"
+  role="img"
+  aria-labelledby="osj-t osj-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="osj-t">One melanocortin signal, two receptors, two jobs</title>
+  <desc id="osj-d"
+    >A single melanocortin signal — alpha-MSH released from POMC neurons and
+    opposed by AgRP — reaches the hypothalamus and divides between two receptors.
+    MC4R sets how much energy the body acquires, controlling appetite and intake.
+    MC3R governs how that energy is spent: energy partitioning, the tempo of
+    growth and puberty, and the timing of meals.</desc
+  >
+
+  <!-- source: the shared signal -->
+  <rect class="card src" x="20" y="112" width="188" height="76" rx="12" />
+  <text x="114" y="142" text-anchor="middle" class="card-t">The melanocortin signal</text>
+  <text x="114" y="160" text-anchor="middle" class="sub">α-MSH from POMC</text>
+  <text x="114" y="174" text-anchor="middle" class="sub">AgRP opposes it</text>
+
+  <!-- branches -->
+  <path class="branch" d="M208 150 C 300 150, 300 90, 402 90" />
+  <path class="branch hot" d="M208 150 C 300 150, 300 214, 402 214" />
+
+  <!-- travelling emphasis dot toward MC3R -->
+  <circle class="pulse" r="4">
+    <animateMotion dur="3.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1"
+      path="M208 150 C 300 150, 300 214, 402 214" />
+  </circle>
+
+  <!-- MC4R: how much to acquire -->
+  <rect class="card" x="404" y="50" width="212" height="80" rx="12" />
+  <text x="420" y="78" class="rec">MC4R</text>
+  <text x="420" y="97" class="head">How much to acquire</text>
+  <text x="420" y="114" class="line">appetite · food intake</text>
+
+  <!-- MC3R: how to spend it -->
+  <rect class="card hot" x="404" y="170" width="212" height="102" rx="12" />
+  <text x="420" y="198" class="rec hot-t">MC3R</text>
+  <text x="420" y="217" class="head hot-t">How to spend it</text>
+  <text x="420" y="234" class="line">energy partitioning</text>
+  <text x="420" y="250" class="line">growth &amp; puberty tempo</text>
+  <text x="420" y="266" class="line">meal timing</text>
+</svg>
+
+<style>
+  .osj-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.src { fill: var(--accent-soft); stroke: var(--accent); }
+  .card.hot { stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 12.5px; font-weight: 600; fill: var(--accent-strong); }
+  .rec { font-size: 15px; font-weight: 700; fill: var(--text); }
+  .rec.hot-t { fill: var(--accent-strong); }
+  .head { font-size: 11.5px; font-weight: 600; fill: var(--text); }
+  .head.hot-t { fill: var(--accent-strong); }
+  .line { font-size: 11px; fill: var(--text-muted); }
+  .sub { font-size: 10.5px; fill: var(--text-muted); }
+  .branch { fill: none; stroke: var(--border); stroke-width: 2; }
+  .branch.hot { stroke: var(--accent); stroke-width: 2; opacity: 0.6; }
+  .pulse { fill: var(--accent); }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse { display: none; }
+  }
+</style>

@@ -6,6 +6,8 @@ import References from '../../components/References.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import FAQ from '../../components/FAQ.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
+import Figure from '../../components/Figure.astro';
+import OneSignalTwoJobs from '../../components/fig/OneSignalTwoJobs.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc3r')!;
@@ -22,6 +24,10 @@ const faqs = [
   {
     q: 'What did the 2021 MC3R discovery show?',
     a: 'Human and mouse studies found that loss of MC3R function delays puberty and reduces linear growth and lean mass, linking the receptor to how nutritional state controls growing up. It gave MC3R — long the hardest melanocortin receptor to pin down — a much sharper identity.',
+  },
+  {
+    q: 'Is MC3R linked to obesity?',
+    a: 'Yes, though more subtly than MC4R. Two common coding variants — Thr6Lys and Val81Ile — are inherited together and partially blunt the receptor; children carrying both copies tend to be heavier, with more body fat and higher insulin resistance. Rare severe loss-of-function is what delays growth and puberty rather than driving obesity outright.',
   },
   {
     q: 'Is MC3R a drug target?',
@@ -52,6 +58,21 @@ const references = [
     year: '2013',
     url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
   },
+  {
+    authors: 'Feng N, Young SF, Aguilera G, et al.',
+    title:
+      'Co-occurrence of two partially inactivating polymorphisms of MC3R is associated with pediatric-onset obesity.',
+    source: 'Diabetes. 54(9):2663–7.',
+    year: '2005',
+    url: 'https://diabetesjournals.org/diabetes/article/54/9/2663/12505/',
+  },
+  {
+    authors: 'Sutton GM, Perez-Tilve D, Nogueiras R, et al.',
+    title: 'The melanocortin-3 receptor is required for entrainment to meal intake.',
+    source: 'J Neurosci. 28(48):12946–55.',
+    year: '2008',
+    url: 'https://www.jneurosci.org/content/28/48/12946',
+  },
 ];
 ---
 
@@ -71,8 +92,9 @@ const references = [
     items={[
       'MC3R is MC4R’s hypothalamic sibling: rather than switching appetite on and off, it governs how the body partitions and spends energy.',
       'It also helps set the timing of growth and puberty, and contributes to sodium handling (natriuresis).',
+      'MC3R is required to keep time with meals — to anticipate feeding and synchronise metabolism to when food arrives.',
+      'Two common variants (Thr6Lys + Val81Ile), inherited together, partially blunt the receptor and track with pediatric-onset obesity.',
       'It is activated by all the MSH peptides and ACTH, and antagonised by AgRP.',
-      'Disruption shifts fat mass and feeding rhythm — a brake that complements MC4R rather than duplicating it.',
     ]}
   />
 
@@ -83,6 +105,13 @@ const references = [
     the simple "eat / don't eat" way of MC4R.<Cite n={1} /> Recent human genetics has
     given it a much sharper identity.
   </p>
+
+  <Figure
+    caption="The same melanocortin signal splits between two receptors. MC4R sets how much energy the body acquires; MC3R governs how that energy is spent — partitioning, the tempo of growth and puberty, and the timing of meals."
+    source="Schematic, after Cone 2006 and Lam et al. 2021."
+  >
+    <OneSignalTwoJobs />
+  </Figure>
 
   <h2>Energy partitioning, not just intake</h2>
   <p>
@@ -106,6 +135,37 @@ const references = [
     nutrient-sensing melanocortin system bifurcates — signalling through MC4R to
     control how much energy is acquired, and through MC3R to decide how that energy
     is <em>spent</em> on growing up.<Cite n={2} />
+  </p>
+
+  <h2>The MC3R gene and its common double variant</h2>
+  <p>
+    MC3R is a compact, single-coding-exon gene on chromosome 20 (20q13.2), and
+    like the other receptors its function can be read straight from its variants.
+    Two common coding changes — <strong>Thr6Lys</strong> and <strong>Val81Ile</strong> —
+    sit in near-complete linkage disequilibrium, so they are almost always
+    inherited together as a single haplotype. In the lab that double variant is
+    <em>partially</em> inactivating: fewer receptors reach the cell surface and
+    each signals less strongly than wild-type.<Cite n={4} /> In children, carrying
+    both copies tracks with higher body weight, more fat mass, greater leptin and
+    insulin, and reduced fat oxidation — a subtler contribution to common obesity
+    than the outright switch-failure seen with MC4R.<Cite n={4} /> The rarer,
+    severe loss-of-function alleles are the ones that surface as delayed growth and
+    puberty rather than obesity alone.<Cite n={2} /> Surface delivery is itself
+    tunable: the accessory protein <strong>MRAP2</strong> modulates how much MC3R
+    reaches the membrane and how it responds.<Cite n={3} />
+  </p>
+
+  <h2>Keeping time with meals</h2>
+  <p>
+    MC3R has one job that is entirely its own: it helps the body <em>anticipate</em>
+    food. When animals are fed only at a fixed time, they normally ramp up activity
+    and wakefulness in the hours beforehand and shift their metabolism to meet the
+    meal — food-anticipatory behaviour. Mice lacking MC3R lose that anticipation
+    and no longer synchronise their peripheral clocks and fuel use to feeding
+    time.<Cite n={5} /> It reframes the receptor as part of the link between
+    <em>when</em> the body is fed and how its internal clocks are set — nutritional
+    timing, not just nutritional quantity, and a role no other melanocortin
+    receptor covers.<Cite n={5} />
   </p>
 
   <h2>Inflammation and the periphery</h2>
