@@ -1,0 +1,101 @@
+---
+// one-receptor-many-outlets — the central idea of the MC5R page. The same
+// melanocortin signal (α-MSH / ACTH) reaching MC5R fans out to three kinds of
+// peripheral work: the body's surface glands (sebum, tears, Harderian
+// porphyrins), fuel handling in muscle and fat, and a regulatory arm of the
+// immune system. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="orm-fig"
+  viewBox="0 0 640 320"
+  role="img"
+  aria-labelledby="orm-t orm-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="orm-t">One receptor, many outlets: what MC5R does in the periphery</title>
+  <desc id="orm-d"
+    >Alpha-MSH and ACTH act on MC5R, which fans out to three kinds of work at
+    the body's periphery. Surface glands: sebum that waterproofs skin and fur,
+    tear-gland protein, and Harderian-gland porphyrins. Fuel: fatty-acid
+    oxidation and glucose uptake in skeletal muscle, and lipolysis in fat
+    cells. Immunity: the melanocortin-driven regulatory cells that calm
+    autoimmune inflammation.</desc
+  >
+
+  <!-- source: the signal -->
+  <rect class="card src" x="20" y="40" width="150" height="62" rx="12" />
+  <text x="95" y="66" text-anchor="middle" class="card-t">α-MSH · ACTH</text>
+  <text x="95" y="84" text-anchor="middle" class="sub">the melanocortin signal</text>
+
+  <!-- hub: MC5R -->
+  <rect class="card hot" x="20" y="150" width="150" height="70" rx="12" />
+  <text x="95" y="180" text-anchor="middle" class="rec hot-t">MC5R</text>
+  <text x="95" y="198" text-anchor="middle" class="sub">Gs → cAMP</text>
+
+  <!-- signal → hub -->
+  <path class="branch hot" d="M95 102 L95 150" />
+  <polygon class="arrow" points="90,142 100,142 95,150" />
+
+  <!-- branches hub → outlets -->
+  <path class="branch hot" d="M170 185 C 260 185, 260 64, 350 64" />
+  <path class="branch" d="M170 185 C 260 185, 260 174, 350 174" />
+  <path class="branch" d="M170 185 C 260 185, 260 272, 350 272" />
+
+  <!-- travelling emphasis dot toward the glands -->
+  <circle class="pulse" r="4">
+    <animateMotion dur="3.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1"
+      path="M170 185 C 260 185, 260 64, 350 64" />
+  </circle>
+
+  <!-- outlet 1: surface glands -->
+  <rect class="card hot" x="352" y="22" width="268" height="84" rx="12" />
+  <text x="368" y="46" class="head hot-t">Surface glands</text>
+  <text x="368" y="64" class="line">sebum — waterproofing skin &amp; fur</text>
+  <text x="368" y="80" class="line">lacrimal protein · Harderian porphyrins</text>
+  <text x="368" y="96" class="tag">the signature role</text>
+
+  <!-- outlet 2: fuel -->
+  <rect class="card" x="352" y="132" width="268" height="84" rx="12" />
+  <text x="368" y="156" class="head">Fuel handling</text>
+  <text x="368" y="174" class="line">muscle — fat oxidation, glucose uptake</text>
+  <text x="368" y="190" class="line">fat cells — lipolysis</text>
+  <text x="368" y="206" class="tag">emerging</text>
+
+  <!-- outlet 3: immunity -->
+  <rect class="card" x="352" y="242" width="268" height="66" rx="12" />
+  <text x="368" y="266" class="head">Regulatory immunity</text>
+  <text x="368" y="284" class="line">Treg-inducing cells in the spleen</text>
+  <text x="368" y="300" class="tag">post-autoimmune recovery</text>
+</svg>
+
+<style>
+  .orm-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.src { fill: var(--accent-soft); stroke: var(--accent); }
+  .card.hot { stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 12.5px; font-weight: 600; fill: var(--accent-strong); }
+  .rec { font-size: 15px; font-weight: 700; fill: var(--text); }
+  .rec.hot-t { fill: var(--accent-strong); }
+  .head { font-size: 11.5px; font-weight: 600; fill: var(--text); }
+  .head.hot-t { fill: var(--accent-strong); }
+  .line { font-size: 11px; fill: var(--text-muted); }
+  .sub { font-size: 10.5px; fill: var(--text-muted); }
+  .tag { font-size: 9.5px; font-style: italic; fill: var(--accent-strong); opacity: 0.85; }
+  .branch { fill: none; stroke: var(--border); stroke-width: 2; }
+  .branch.hot { stroke: var(--accent); stroke-width: 2; opacity: 0.6; }
+  .arrow { fill: var(--accent); opacity: 0.6; }
+  .pulse { fill: var(--accent); }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse { display: none; }
+  }
+</style>

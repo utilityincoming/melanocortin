@@ -6,6 +6,8 @@ import References from '../../components/References.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import FAQ from '../../components/FAQ.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
+import Figure from '../../components/Figure.astro';
+import OneReceptorManyOutlets from '../../components/fig/OneReceptorManyOutlets.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc5r')!;
@@ -13,19 +15,23 @@ const receptor = receptors.find((r) => r.slug === 'mc5r')!;
 const faqs = [
   {
     q: 'What does the MC5R receptor do?',
-    a: 'MC5R’s best-defined job is controlling exocrine glands — most clearly the sebaceous glands that produce the sebum and lipids that oil skin and fur. It also appears on lacrimal and other exocrine tissues and on immune cells, where its role is still being mapped.',
+    a: 'MC5R’s best-defined job is controlling exocrine glands — most clearly the sebaceous glands that produce the sebum and lipids that oil skin and fur. It also appears on lacrimal and other exocrine tissues, on skeletal muscle and fat cells where it nudges fuel use, and on immune cells, where it helps drive a regulatory, calming response.',
   },
   {
     q: 'How do we know MC5R controls sebum?',
-    a: 'When the Mc5r gene is deleted in mice, the animals develop defective water repulsion and thermoregulation traced to reduced sebaceous lipid production, along with impairment of other exocrine glands — showing that one receptor coordinates secretion across several gland types.',
+    a: 'When the Mc5r gene is deleted in mice, the animals develop defective water repulsion and thermoregulation traced to reduced sebaceous lipid production, along with impairment of other exocrine glands — showing that one receptor coordinates secretion across several gland types. In human skin, MC5R appears only on maturing, lipid-laden sebocytes, not on the basal cells that give rise to them.',
   },
   {
     q: 'Is MC5R involved in acne?',
-    a: 'Possibly. Because MC5R helps regulate sebaceous output, it is of interest in sebum-driven skin conditions such as acne, and modulating it is one theoretical route to reducing sebum. This is an area of active research rather than established treatment.',
+    a: 'It regulates sebum, which makes it a plausible lever, and an MC1R/MC5R antagonist shrank sebaceous glands and cut sebum-specific lipids in human skin grafted onto mice. But a human genetics screen found no MC5R mutations in acne or other sebaceous disorders, so the receptor is a drug target rather than a cause. No MC5R-based acne treatment has been approved.',
+  },
+  {
+    q: 'Does MC5R affect metabolism?',
+    a: 'In animal and cell studies, yes. α-MSH acting on MC5R increases fatty-acid oxidation and glucose uptake in skeletal muscle and drives lipolysis in fat cells, which suggests the melanocortin system reaches into peripheral fuel use as well as central appetite. How much this matters in human physiology is still being worked out.',
   },
   {
     q: 'Why is MC5R the least understood melanocortin receptor?',
-    a: 'Its messenger RNA appears in a very wide range of tissues, which long obscured a single core function, and its human physiology is still being mapped. The clearest role — exocrine secretion — comes largely from mouse knockouts; the immune and metabolic roles are less settled.',
+    a: 'Its messenger RNA appears in a very wide range of tissues, which long obscured a single core function, and its human physiology is still being mapped. The clearest role — exocrine secretion — comes largely from mouse knockouts; the metabolic and immune roles are more recent and less settled. Its structure was not solved until 2023.',
   },
 ];
 
@@ -48,9 +54,75 @@ const references = [
   {
     authors: 'Xu Y, Guan X, Zhou R, Gong R.',
     title: 'Melanocortin 5 receptor signaling pathway in health and disease.',
-    source: 'Review (PMC7511443).',
+    source: 'Cell Mol Life Sci. 77(19):3831–40.',
     year: '2020',
     url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7511443/',
+  },
+  {
+    authors: 'Chhajlani V, Muceniece R, Wikberg JE.',
+    title: 'Molecular cloning of a novel human melanocortin receptor.',
+    source: 'Biochem Biophys Res Commun. 195(2):866–73.',
+    year: '1993',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8396929/',
+  },
+  {
+    authors: 'Hatta N, Dixon C, Ray AJ, et al.',
+    title: 'Expression, candidate gene, and population studies of the melanocortin 5 receptor.',
+    source: 'J Invest Dermatol. 116(4):564–70.',
+    year: '2001',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11286624/',
+  },
+  {
+    authors: 'Zhang L, Li WH, Anthonavage M, Eisinger M.',
+    title: 'Melanocortin-5 receptor: a marker of human sebocyte differentiation.',
+    source: 'Peptides. 27(2):413–20.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16309786/',
+  },
+  {
+    authors: 'Eisinger M, Li WH, Anthonavage M, et al.',
+    title:
+      'A melanocortin receptor 1 and 5 antagonist inhibits sebaceous gland differentiation and the production of sebum-specific lipids.',
+    source: 'J Dermatol Sci. 63(1):23–32.',
+    year: '2011',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/21602033/',
+  },
+  {
+    authors: 'An JJ, Rhee Y, Kim SH, et al.',
+    title: 'Peripheral effect of α-melanocyte-stimulating hormone on fatty acid oxidation in skeletal muscle.',
+    source: 'J Biol Chem. 282(5):2862–70.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17127674/',
+  },
+  {
+    authors: 'Enriori PJ, Chen W, Garcia-Rudaz MC, et al.',
+    title: 'α-Melanocyte stimulating hormone promotes muscle glucose uptake via melanocortin 5 receptors.',
+    source: 'Mol Metab. 5(10):807–22.',
+    year: '2016',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5034615/',
+  },
+  {
+    authors: 'Rodrigues AR, Almeida H, Gouveia AM.',
+    title: 'Alpha-MSH signalling via melanocortin 5 receptor promotes lipolysis and impairs re-esterification in adipocytes.',
+    source: 'Biochim Biophys Acta. 1831(7):1267–75.',
+    year: '2013',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/24046867/',
+  },
+  {
+    authors: 'Lee DJ, Taylor AW.',
+    title:
+      'Both MC5r and A2Ar are required for protective regulatory immunity in the spleen of post-experimental autoimmune uveitis in mice.',
+    source: 'J Immunol. 191(8):4103–11.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3796047/',
+  },
+  {
+    authors: 'Feng W, Zhou Q, Chen X, et al.',
+    title:
+      'Structural insights into ligand recognition and subtype selectivity of the human melanocortin-3 and melanocortin-5 receptors.',
+    source: 'Cell Discov. 9:81.',
+    year: '2023',
+    url: 'https://www.nature.com/articles/s41421-023-00586-4',
   },
 ];
 ---
@@ -58,7 +130,7 @@ const references = [
 <PageLayout
   title="MC5R — the exocrine receptor"
   kicker="Receptor · Melanocortin 5 receptor"
-  description="The least understood of the five, but with a clear signature role: regulating exocrine glands, most notably the sebaceous glands that oil skin and fur."
+  description="The least understood of the five, but with a clear signature role: regulating exocrine glands, most notably the sebaceous glands that oil skin and fur — and, it turns out, a hand in muscle fuel, fat cells and regulatory immunity."
   thread="The system's least-told chapter — the same signal at the body's surface glands, a quiet corner of the map still being read for the first time."
   updated="2026"
   about={[
@@ -70,9 +142,10 @@ const references = [
   <KeyTakeaways
     items={[
       'MC5R is the least understood of the five melanocortin receptors, but with a clear signature role in exocrine glands.',
-      'Its best-defined job is regulating sebaceous secretion — the sebum and lipids that oil skin and fur; it also sits on lacrimal and immune cells.',
-      'It is activated by α-MSH and ACTH.',
-      'Knockout models show defective sebaceous secretion and altered thermoregulation; the human role is still being mapped.',
+      'Its best-defined job is regulating sebaceous secretion — the sebum and lipids that oil skin and fur; in human skin it marks the maturing, lipid-laden sebocyte.',
+      'It is activated by α-MSH and ACTH, couples to Gs and cyclic AMP, and its gene is a compact single exon on chromosome 18.',
+      'Beyond the glands it nudges peripheral fuel use — fat oxidation and glucose uptake in muscle, lipolysis in fat — and helps the immune system stand down after autoimmune attack.',
+      'Blocking it shrinks sebaceous glands in human skin, which is why MC5R is watched for acne; no such drug has yet reached the clinic.',
     ]}
   />
 
@@ -80,8 +153,17 @@ const references = [
     MC5R is the melanocortin family's generalist. Its messenger RNA shows up in a
     strikingly wide range of tissues, which long made its core function hard to
     name. The answer came from removing it: the defining role of MC5R is the
-    control of exocrine glands.<Cite n={1} />
+    control of exocrine glands.<Cite n={1} /> What has emerged since is a receptor
+    that reads the same melanocortin signal at several of the body's peripheral
+    outlets at once — glands, fuel stores, and immune cells.
   </p>
+
+  <Figure
+    caption="The same melanocortin signal, read by MC5R, fans out to three kinds of peripheral work: the surface glands that are its signature role, fuel handling in muscle and fat, and a regulatory arm of the immune system."
+    source="Schematic, after Chen et al. 1997, An et al. 2007, Enriori et al. 2016 and Lee & Taylor 2013."
+  >
+    <OneReceptorManyOutlets />
+  </Figure>
 
   <h2>The sebum signal</h2>
   <p>
@@ -89,39 +171,120 @@ const references = [
     in water repulsion and thermoregulation, traced to reduced production of
     sebaceous lipids — the oily secretion that waterproofs fur and skin. The
     knockout also impairs other exocrine tissues, including the Harderian,
-    lacrimal, and preputial glands, implying that one receptor coordinates
-    secretion across several gland types.<Cite n={2} /> Mechanistically MC5R behaves
-    like its relatives — coupling to Gs and raising cyclic AMP — with α-MSH and ACTH
-    as agonists.<Cite n={3} />
+    lacrimal, and preputial glands: the Harderian gland no longer makes its
+    stress-regulated porphyrins, and the lacrimal gland loses its
+    melanocortin-driven protein secretion. One receptor, in other words,
+    coordinates secretion across several gland types.<Cite n={2} /> Mechanistically
+    MC5R behaves like its relatives — coupling to Gs and raising cyclic AMP — with
+    α-MSH and ACTH as agonists.<Cite n={3} />
   </p>
 
-  <h2>From mouse to human</h2>
+  <h2>The MC5R gene</h2>
   <p>
-    Because the sebaceous role is so clean in mice, MC5R is of interest in human
-    skin biology — for example in the regulation of sebum and the differentiation
-    of sebaceous glands, with relevance to conditions such as acne. Beyond skin,
-    MC5R has been linked to immune modulation and to lipid handling in other
-    tissues, though its full human physiology is still being mapped and is less
-    settled than that of MC1R or MC4R.<Cite n={3} /> Where the science is genuinely
-    unresolved, this page says so rather than overstating it.
+    The receptor was cloned in 1993 as the fifth and last member of the family, a
+    325-amino-acid protein encoded by a single intronless exon on chromosome 18
+    (18p11.21).<Cite n={4} /> Unlike <a href="/receptors/mc1r">MC1R</a>, whose
+    variants rewrite hair and skin colour, or <a href="/receptors/mc4r">MC4R</a>,
+    whose loss-of-function alleles are the commonest single-gene cause of obesity,
+    MC5R has yielded no clean human phenotype. A systematic screen across diverse
+    populations found one non-synonymous variant, Phe209Leu, that signals normally
+    in the lab, and no MC5R mutations in people with acne, hidradenitis
+    suppurativa, or sebaceous-gland tumours.<Cite n={5} /> The same study placed
+    the receptor's expression in human skin: present in keratinocytes and in the
+    epithelium of glands and hair follicles, absent from fibroblasts and
+    melanocytes.<Cite n={5} /> MC5R is a receptor whose importance is written in
+    what it does, not in what breaks when it varies.
   </p>
 
-  <h2>The immune side, and why MC5R is watched</h2>
+  <h2>A marker of the maturing sebocyte</h2>
+  <p>
+    The mouse story translates cleanly to human sebaceous glands, with a telling
+    refinement. In human skin, MC5R is found only on differentiating, lipid-laden
+    sebocytes — not on the basal, undifferentiated cells that give rise to them.
+    Cultured human sebocytes show the same switch: no receptor until
+    differentiation begins, then strong expression in cells packed with lipid
+    granules.<Cite n={6} /> MC5R is, in effect, a marker of a sebocyte's maturity —
+    the point at which it commits to making sebum — and the melanocortin signal
+    that reaches it drives that lipid programme forward.
+  </p>
+
+  <h2>Turning sebum down</h2>
+  <p>
+    If MC5R pushes sebum up, blocking it should push sebum down, and the clearest
+    test used human tissue. A small-molecule antagonist of MC1R and MC5R,
+    JNJ-10229570, dose-dependently cut sebaceous-lipid production in cultured
+    human sebocytes; applied topically to human skin grafted onto immunodeficient
+    mice, it shrank the sebaceous glands, reduced sebum-specific lipids, and lowered
+    a marker of sebaceous differentiation.<Cite n={7} /> That is the strongest
+    evidence that MC5R is a workable lever on human sebum, and it is why the
+    receptor is watched for acne and other sebum-driven conditions. It has not yet
+    produced an approved drug, and the antagonist's MC1R activity is a reminder
+    that dialling one receptor without touching its pigment-controlling cousin is
+    part of the challenge — the same selectivity problem this site maps for{' '}
+    <a href="/mc1r-selectivity">MC1R</a>.
+  </p>
+
+  <h2>Fuel at the periphery</h2>
+  <p>
+    The central melanocortin receptors decide how much energy the body acquires
+    and how it is spent (see <a href="/receptors/mc4r">MC4R</a> and{' '}
+    <a href="/receptors/mc3r">MC3R</a>). MC5R appears to act at the far end of
+    that chain, in the tissues that burn and store fuel. In skeletal muscle, α-MSH
+    raises fatty-acid oxidation in a dose-dependent way through a cyclic
+    AMP–protein kinase A–AMPK cascade, and silencing MC5R abolishes the
+    effect.<Cite n={8} /> The same peptide also promotes glucose uptake into
+    muscle through MC5R, which is part of why circulating α-MSH lowers blood
+    glucose.<Cite n={9} /> In fat cells, α-MSH signalling through MC5R drives
+    lipolysis — the release of stored triglyceride as glycerol and free fatty
+    acids — via the lipases and perilipin that protein kinase A
+    activates.<Cite n={10} /> Taken together these findings sketch a peripheral
+    arm of the melanocortin system that mobilises and burns fuel, mirroring the
+    central arm that curbs intake. The evidence is largely from mice and cell
+    culture; how much it contributes to human metabolism is an open and
+    interesting question.
+  </p>
+
+  <h2>Standing the immune system down</h2>
   <p>
     Beyond the sebaceous gland, MC5R turns up on immune cells — B and T
     lymphocytes among them — where melanocortin signalling helps regulate the
-    inflammatory response. That places MC5R, like its receptor cousins, inside the
-    melanocortin system's broad anti-inflammatory reach, and it is one reason the
-    receptor is studied as a potential target in autoimmune and inflammatory
-    conditions.<Cite n={3} />
+    inflammatory response.<Cite n={3} /> Its best-characterised immune job comes
+    from the eye. After experimental autoimmune uveitis resolves in mice, the
+    spleen holds a population of regulatory antigen-presenting cells that induce
+    the FoxP3<sup>+</sup> regulatory T cells which protect against a second
+    attack. That protection depends on MC5R: mice lacking it fail to expand those
+    cells and lose the post-disease tolerance, with the adenosine A2A receptor on
+    T cells completing the circuit.<Cite n={11} /> It places MC5R inside the
+    melanocortin system's broad <a href="/inflammation">pro-resolving reach</a>,
+    and it is one reason the receptor is studied as a target in autoimmune and
+    inflammatory disease.
   </p>
+
+  <h2>The receptor in three dimensions</h2>
   <p>
-    The therapeutic interest cuts two ways. In the skin, an MC5R modulator that
-    turns sebaceous output down is an appealing idea for acne and other
-    sebum-driven conditions; in the immune system, MC5R agonism is explored for a
-    calming, resolving effect on inflammation.<Cite n={3} /> None of this has
-    produced an approved drug, and MC5R remains the least pinned-down of the five —
-    but it reads as a genuine frontier rather than a closed chapter.
+    MC5R was the last of the five to be seen. In 2023, cryo-EM structures of the
+    human receptor bound to α-MSH and to the potent selective agonist PG-901,
+    each coupled to Gs, showed the familiar family fold: the peptide's
+    His-Phe-Arg-Trp motif in a U-shaped conformation, buried in a wide-open
+    pocket.<Cite n={12} /> The comparison with MC3R in the same study is the
+    useful part. γ-MSH's C-terminus reaches into an MC3R-specific groove that helps
+    explain its preference for that subtype, whereas α-MSH's C-terminus barely
+    touches MC5R at all — a hint that the receptor's selectivity is decided by
+    subtler features of the pocket than the peptide tail. See the{' '}
+    <a href="/structures">structural biology</a> page for the whole family and the{' '}
+    <a href="/binding-matrix">binding matrix</a> for the affinities.
+  </p>
+
+  <h2>Why MC5R is watched</h2>
+  <p>
+    The therapeutic interest cuts several ways. In the skin, an MC5R antagonist
+    that turns sebaceous output down is an appealing idea for acne; in the immune
+    system, MC5R agonism is explored for a calming, resolving effect on
+    inflammation; and in metabolism, its peripheral fuel-burning effects are being
+    read for what they might add to the central appetite story.<Cite n={3} />
+    None of this has produced an approved drug, and MC5R remains the least
+    pinned-down of the five — but it reads as a genuine frontier rather than a
+    closed chapter.
   </p>
 
   <p>
