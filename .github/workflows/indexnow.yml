@@ -1,0 +1,64 @@
+name: IndexNow
+
+# Ping Bing / Yandex / Naver / Seznam with the URLs that changed in this deploy.
+# Vercel builds main on push; we give it a few minutes, confirm the live
+# sitemap reflects this commit, then submit. Google is not an IndexNow
+# participant — this is for the non-Google engines only.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Submit the entire sitemap instead of recent changes'
+        type: boolean
+        default: false
+      days:
+        description: 'Lastmod window in days (ignored when all=true)'
+        type: string
+        default: '7'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for the Vercel deploy to go live
+        if: github.event_name == 'push'
+        run: |
+          # The sitemap carries per-page git lastmod, so once the URL that
+          # changed in this push shows today's date the deploy is up. Poll for
+          # up to ~8 minutes, then proceed anyway (the script only submits what
+          # the live sitemap says changed, so a late deploy just means the next
+          # push picks it up).
+          for i in $(seq 1 16); do
+            if curl -fsS https://melanocortin.com/sitemap-0.xml | grep -q "$(date -u +%Y-%m-%d)"; then
+              echo "live sitemap reflects today's changes"; exit 0
+            fi
+            echo "deploy not live yet ($i/16)"; sleep 30
+          done
+          echo "proceeding without confirmation"
+
+      - name: Submit
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.all }}" = "true" ]; then
+            node scripts/indexnow.mjs --all
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            node scripts/indexnow.mjs --days "${{ inputs.days }}"
+          else
+            node scripts/indexnow.mjs --days 7
+          fi
