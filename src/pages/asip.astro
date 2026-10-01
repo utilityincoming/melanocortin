@@ -5,37 +5,122 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import BrakeInItsPlace from '../components/fig/BrakeInItsPlace.astro';
 
 const faqs = [
   {
     q: 'What is agouti signaling protein (ASIP)?',
-    a: 'ASIP is the body’s natural "off switch" for dark skin pigment. It is an endogenous blocker of the MC1R receptor: by opposing α-MSH there, it shifts pigment production away from dark eumelanin toward red-yellow pheomelanin. It is the molecule behind the banded "agouti" coat pattern seen across many mammals.',
+    a: 'ASIP is the body’s natural "off switch" for dark skin pigment. It is a small secreted protein made in the hair follicle and skin that blocks the MC1R receptor: by opposing α-MSH there, it shifts pigment production away from dark eumelanin toward red-yellow pheomelanin. It is the molecule behind the banded "agouti" coat pattern seen across many mammals.',
   },
   {
     q: 'How does ASIP change coat and skin colour?',
-    a: 'Pigment cells make two kinds of melanin: dark eumelanin when MC1R is active, and light pheomelanin when it is not. ASIP competes with α-MSH at MC1R and lowers the receptor’s activity, tipping the balance toward pheomelanin. Alternating pulses of ASIP are what create the light-and-dark banded hairs of the classic agouti pattern.',
+    a: 'Pigment cells make two kinds of melanin: dark eumelanin when MC1R is active, and light pheomelanin when it is not. ASIP binds MC1R with high affinity, competes with α-MSH and lowers the receptor’s activity, tipping the balance toward pheomelanin. A pulse of ASIP while a hair grows produces the light sub-terminal band of the classic agouti hair.',
   },
   {
     q: 'Is ASIP the same as AgRP?',
-    a: 'No — they are cousins. ASIP (agouti signaling protein) blocks MC1R in the skin to control pigment. AgRP (agouti-related peptide) blocks MC4R and MC3R in the brain to control appetite. They share a name and the same basic trick — blocking a melanocortin receptor — but act in different tissues on different jobs.',
+    a: 'No — they are cousins. ASIP (agouti signaling protein) blocks MC1R in the skin to control pigment. AgRP (agouti-related peptide) blocks MC4R and MC3R in the brain to control appetite. They share the same unusual protein fold, the inhibitor cystine knot, and the same basic trick of blocking a melanocortin receptor, but act in different tissues on different jobs.',
+  },
+  {
+    q: 'Can ASIP cause obesity?',
+    a: 'Yes, when it is made in the wrong place. In the lethal-yellow mouse a rearrangement expresses agouti in every tissue, and the animals are yellow, obese, overgrown and diabetic because the protein also blocks MC4R in the brain. In 2022 the same thing was found in people: a duplication that puts ASIP under a ubiquitous promoter causes severe childhood obesity with red hair, tall stature and high insulin.',
+  },
+  {
+    q: 'Does ASIP affect human pigmentation and skin cancer risk?',
+    a: 'Yes. Common variants near ASIP are associated with red hair, freckling, skin that burns rather than tans, and dark hair and eyes in the case of one 3′-untranslated-region variant. The haplotype linked to fair, sun-sensitive skin also raises the risk of melanoma and basal cell carcinoma, independently of its effect on visible pigmentation.',
+  },
+  {
+    q: 'Is ASIP the only natural blocker of MC1R?',
+    a: 'No. In dogs the dominant black coat is caused by a β-defensin, a protein previously known only from innate immunity, which binds MC1R with high affinity and overrides the agouti system. Human β-defensin 3 does the same in cultured human melanocytes. ASIP is the classic brake, but not the only one.',
   },
 ];
 
 const references = [
   {
-    authors: 'Open-access study (PMC).',
-    title:
-      'Defining MC1R regulation in human melanocytes by its agonist α-melanocortin and antagonists agouti signaling protein and β-defensin 3.',
-    source: 'On how ASIP opposes α-MSH at MC1R to control pigment type.',
-    year: '2012',
-    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3627493/',
+    authors: 'Bultman SJ, Michaud EJ, Woychik RP.',
+    title: 'Molecular characterization of the mouse agouti locus.',
+    source: 'Cell. 71(7):1195–204.',
+    year: '1992',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/1473152/',
   },
   {
-    authors: 'Journal of Molecular Biology (ScienceDirect).',
+    authors: 'Miller MW, Duhl DM, Vrieling H, et al.',
+    title:
+      'Cloning of the mouse agouti gene predicts a secreted protein ubiquitously expressed in mice carrying the lethal yellow mutation.',
+    source: 'Genes Dev. 7(3):454–67.',
+    year: '1993',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8449404/',
+  },
+  {
+    authors: 'Lu D, Willard D, Patel IR, et al.',
+    title: 'Agouti protein is an antagonist of the melanocyte-stimulating-hormone receptor.',
+    source: 'Nature. 371(6500):799–802.',
+    year: '1994',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/7935841/',
+  },
+  {
+    authors: 'Fan W, Boston BA, Kesterson RA, Hruby VJ, Cone RD.',
+    title: 'Role of melanocortinergic neurons in feeding and the agouti obesity syndrome.',
+    source: 'Nature. 385(6612):165–8.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8990120/',
+  },
+  {
+    authors: 'He L, Gunn TM, Bouley DM, et al.',
+    title: 'A biochemical function for attractin in agouti-induced pigmentation and obesity.',
+    source: 'Nat Genet. 27(1):40–7.',
+    year: '2001',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11137996/',
+  },
+  {
+    authors: 'McNulty JC, Jackson PJ, Thompson DA, et al.',
     title: 'Structures of the agouti signaling protein.',
-    source: 'On the structure and MC1R-blocking function of ASIP.',
+    source: 'J Mol Biol. 346(4):1059–70.',
     year: '2005',
-    url: 'https://www.sciencedirect.com/science/article/abs/pii/S0022283604016006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15701517/',
+  },
+  {
+    authors: 'Swope VB, Jameson JA, McFarland KL, et al.',
+    title:
+      'Defining MC1R regulation in human melanocytes by its agonist α-melanocortin and antagonists agouti signaling protein and β-defensin 3.',
+    source: 'J Invest Dermatol. 132(9):2255–62.',
+    year: '2012',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/22572817/',
+  },
+  {
+    authors: 'Candille SI, Kaelin CB, Cattanach BM, et al.',
+    title: 'A β-defensin mutation causes black coat color in domestic dogs.',
+    source: 'Science. 318(5855):1418–23.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17947548/',
+  },
+  {
+    authors: 'Kanetsky PA, Swoyer J, Panossian S, et al.',
+    title: 'A polymorphism in the agouti signaling protein gene is associated with human pigmentation.',
+    source: 'Am J Hum Genet. 70(3):770–5.',
+    year: '2002',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11833005/',
+  },
+  {
+    authors: 'Sulem P, Gudbjartsson DF, Stacey SN, et al.',
+    title: 'Two newly identified genetic determinants of pigmentation in Europeans.',
+    source: 'Nat Genet. 40(7):835–7.',
+    year: '2008',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/18488028/',
+  },
+  {
+    authors: 'Gudbjartsson DF, Sulem P, Stacey SN, et al.',
+    title: 'ASIP and TYR pigmentation variants associate with cutaneous melanoma and basal cell carcinoma.',
+    source: 'Nat Genet. 40(7):886–91.',
+    year: '2008',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/18488027/',
+  },
+  {
+    authors: 'Kempf E, Landgraf K, Stein R, et al.',
+    title: 'Aberrant expression of agouti signaling protein (ASIP) as a cause of monogenic severe childhood obesity.',
+    source: 'Nat Metab. 4(12):1697–712.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36536132/',
   },
 ];
 ---
@@ -43,21 +128,23 @@ const references = [
 <PageLayout
   title="Agouti signaling protein (ASIP): the natural off-switch for skin pigment"
   kicker="The pigment brake"
-  description="ASIP is the body's built-in blocker of MC1R — the counterweight to α-MSH in the skin. By opposing the pigment signal, it shifts melanin from dark eumelanin to light pheomelanin, and it's the molecule behind the banded 'agouti' coat pattern."
+  description="ASIP is the body's built-in blocker of MC1R — the counterweight to α-MSH in the skin. By opposing the pigment signal it shifts melanin from dark eumelanin to light pheomelanin, writes the banded 'agouti' coat, shapes human hair colour and skin-cancer risk — and, made in the wrong place, causes obesity in mice and in people."
   thread="Even the system's brakes leave their mark — where ASIP holds the pigment signal back, colour turns pale and a coat turns banded."
   updated="2026"
   about={[
     { name: 'Agouti signaling peptide', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agouti-signaling_peptide'] },
     { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Agouti-related peptide', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agouti-related_peptide'] },
   ]}
 >
   <KeyTakeaways
     items={[
-      'ASIP (agouti signaling protein) is the endogenous antagonist and inverse agonist of MC1R — the natural counterweight to α-MSH in the skin.',
-      'It competes with α-MSH at MC1R and lowers the receptor’s activity, switching pigment production from dark eumelanin toward light red-yellow pheomelanin.',
-      'This "pigment type-switching" is what produces the banded agouti coat pattern seen across a wide range of mammals.',
-      'It is a cousin of AgRP, the brain’s appetite blocker — same core trick (blocking a melanocortin receptor), different tissue and different job.',
-      'ASIP is the clearest illustration that every melanocortin signal has a built-in brake as well as an accelerator.',
+      'ASIP (agouti signaling protein) is the endogenous antagonist and inverse agonist of MC1R — a 131-amino-acid secreted protein and the natural counterweight to α-MSH in the skin.',
+      'It binds MC1R with high affinity and lowers the receptor’s activity, switching pigment production from dark eumelanin toward light red-yellow pheomelanin; a pulse of it during hair growth writes the banded agouti hair.',
+      'Its active C-terminal domain folds as an inhibitor cystine knot, a structure it shares with only one other mammalian protein — its appetite-controlling cousin AgRP.',
+      'Common variants near ASIP shape human hair and eye colour, freckling and sun sensitivity, and raise melanoma and basal-cell-carcinoma risk.',
+      'Expressed everywhere instead of only in skin, ASIP also blocks MC4R: the lethal-yellow mouse is yellow, obese and diabetic, and a human ASIP duplication causes severe childhood obesity with red hair.',
+      'ASIP is the clearest illustration that every melanocortin signal has a built-in brake as well as an accelerator — and that the brake is only safe in its place.',
     ]}
   />
 
@@ -66,29 +153,66 @@ const references = [
     an off switch as well as an on switch. Where <a href="/alpha-msh">α-MSH</a> activates{' '}
     <a href="/receptors/mc1r">MC1R</a> to make dark pigment, ASIP does the opposite: it
     is the natural blocker that shifts colour the other way. It is the original "agouti"
-    molecule, and it gives its name to a whole family of melanocortin antagonists.<Cite n={1} />
+    molecule, it gives its name to a whole family of melanocortin antagonists, and it
+    carries one of the most instructive lessons in the system — that a brake is only
+    harmless where it belongs.<Cite n={3} />
+  </p>
+
+  <Figure
+    caption="A brake in its place, and a brake everywhere. Released locally in the hair follicle, ASIP blocks MC1R and writes a pale band into a dark hair. Expressed in every tissue — the lethal-yellow mouse, the human ASIP duplication — the same protein also reaches MC4R in the hypothalamus, and the result is a yellow or red coat plus obesity, overgrowth and high insulin."
+    source="Schematic, after Bultman et al. 1992, Lu et al. 1994, Fan et al. 1997 and Kempf et al. 2022."
+  >
+    <BrakeInItsPlace />
+  </Figure>
+
+  <h2>The gene behind a hundred years of mouse genetics</h2>
+  <p>
+    The agouti locus was one of the first genes in mammalian genetics, mapped by its
+    effect on mouse coat colour decades before anyone knew what it encoded. In 1992 and
+    1993 two groups cloned it and found a gene for a small secreted protein of 131 amino
+    acids, expressed in the hair follicle and epidermis exactly when yellow pigment is
+    being laid down.<Cite n={1} /><Cite n={2} /> The same work explained a mystery that
+    had puzzled geneticists since the 1920s. The dominant <em>lethal yellow</em> allele
+    makes mice uniformly yellow, obese, diabetic and tumour-prone; the cloning showed
+    that it is a chromosomal rearrangement that splices a ubiquitous promoter onto the
+    intact agouti coding sequence, so that a protein meant for the hair follicle is made
+    in nearly every tissue of the body.<Cite n={2} /> The pigment and the obesity, it
+    turned out, were the same molecule in two places.
   </p>
 
   <h2>Type-switching the pigment</h2>
   <p>
     Pigment cells can make two kinds of melanin: dark, UV-shielding <strong>eumelanin</strong>
     when MC1R is active, and light red-yellow <strong>pheomelanin</strong> when it is
-    not.<Cite n={1} /> ASIP tips that balance. It acts as an antagonist and inverse agonist
-    at MC1R — competing with α-MSH for the receptor and lowering its baseline activity —
-    which pushes production toward pheomelanin.<Cite n={2} /> The result is "pigment
+    not. In 1994 agouti protein was shown to be what its genetics predicted: a
+    high-affinity antagonist of the MSH receptor that blocks α-MSH from raising cyclic
+    AMP, the signal through which the receptor drives eumelanin
+    synthesis.<Cite n={3} /> In human melanocytes it does more than compete: pretreating
+    the cells with ASIP leaves them unable to respond to α-MSH at all, which looks like
+    receptor desensitisation rather than simple blockade, and it lowers the receptor's
+    basal activity as an inverse agonist.<Cite n={7} /> The result is "pigment
     type-switching": the same cell, the same receptor, a different output depending on
-    whether the accelerator (α-MSH) or the brake (ASIP) has the upper hand.
+    whether the accelerator (α-MSH) or the brake (ASIP) has the upper hand. A pulse of
+    ASIP while a hair is growing produces the pale sub-terminal band of the classic
+    agouti hair — a brief lift of the accelerator written into the fibre as it
+    forms.<Cite n={3} />
   </p>
 
-  <h2>The agouti pattern</h2>
+  <h2>What the protein looks like</h2>
   <p>
-    ASIP is named for the coat pattern it creates. In many mammals, hairs are banded —
-    light and dark along their length — because pigment cells receive alternating pulses
-    of ASIP as each hair grows.<Cite n={1} /> That banded look is called the
-    <strong>agouti</strong> pattern, and variation in ASIP (and in MC1R itself) accounts
-    for a remarkable range of coat and skin colours across species. It is one of the
-    most visible demonstrations anywhere in biology of a single receptor's signalling
-    balance written directly onto an animal's appearance.
+    ASIP's business end is its cysteine-rich C-terminal domain, whose NMR structure was
+    solved in 2005. It folds as an <strong>inhibitor cystine knot</strong>, a tight,
+    disulfide-braced scaffold otherwise known from spider and cone-snail toxins; ASIP
+    and its cousin AgRP are the only mammalian proteins in the class.<Cite n={6} /> The
+    structure also held a surprise: the domain flips between two conformations around a
+    pair of prolines, and only the minor one, with two unusual <em>cis</em> peptide
+    bonds, is active at the melanocortin receptors.<Cite n={6} /> The N-terminal half of
+    the protein has a different job. It is needed for ASIP to interact with
+    <strong>attractin</strong>, a large membrane protein that acts as a low-affinity
+    co-receptor: mice lacking attractin are immune to the yellow coat and the obesity of
+    the lethal-yellow allele, because the agouti protein can no longer act on the cells
+    it reaches.<Cite n={5} /> AgRP, by contrast, does not need attractin — one of the
+    ways the two cousins have gone their separate ways.
   </p>
 
   <h2>Cousin to the hunger peptide</h2>
@@ -96,8 +220,61 @@ const references = [
     ASIP's trick — block a melanocortin receptor — was borrowed once more by the body,
     in the brain. <a href="/agrp">AgRP</a> (agouti-related peptide) is its cousin: it
     blocks <a href="/receptors/mc4r">MC4R</a> and <a href="/receptors/mc3r">MC3R</a> to
-    drive appetite, exactly as ASIP blocks MC1R to lighten pigment. Same mechanism,
-    different tissue, different job — a neat example of evolution reusing a working idea.
+    drive appetite, exactly as ASIP blocks MC1R to lighten pigment. Same fold, same
+    mechanism, different tissue, different job — a neat example of evolution reusing a
+    working idea. It also explains the lethal-yellow mouse. Agouti protein antagonises
+    MC4R as well as MC1R,<Cite n={3} /> and when it is made throughout the body it
+    reaches the hypothalamus and does AgRP's job without AgRP's restraint. The 1997
+    experiment that nailed this down gave mice a synthetic melanocortin agonist and
+    antagonist into the brain: the agonist suppressed feeding even in lethal-yellow
+    mice, the antagonist blocked that and increased feeding on its own, showing that
+    melanocortin neurons tonically hold appetite down and that the agouti obesity
+    syndrome is what happens when that tone is chronically blocked.<Cite n={4} /> It was
+    the experiment that put MC4R at the centre of body-weight biology, and ASIP was the
+    molecule that pointed to it.
+  </p>
+
+  <h2>The same disease in people</h2>
+  <p>
+    For thirty years the lethal-yellow mouse looked like a laboratory curiosity. In 2022
+    it became a human diagnosis. A girl with extreme early-onset obesity was found to
+    carry a tandem duplication at the ASIP locus that places the gene under the control
+    of a ubiquitously active promoter — the human equivalent of the mouse
+    rearrangement — so that ASIP was made in every cell type examined, including
+    hypothalamus-like neurons derived from her own stem cells. Her phenotype matched the
+    mouse's point for point: early obesity, overgrowth, red hair and high insulin. Because
+    this kind of mutation escapes standard genetic screens, the authors went back through
+    a cohort of 1,745 children with obesity and found four more with the identical
+    duplication and the same picture.<Cite n={12} /> It is a monogenic cause of human
+    obesity that no gene panel was looking for, and it rests on the oldest finding in
+    melanocortin genetics: a brake expressed where it does not belong.
+  </p>
+
+  <h2>ASIP in human hair, skin and cancer risk</h2>
+  <p>
+    Humans do not have banded hairs, but ASIP still shapes how we look. A common variant
+    in the gene's 3′-untranslated region is associated with dark hair and brown
+    eyes,<Cite n={9} /> and a haplotype near ASIP, tagged by two single-nucleotide
+    changes, is associated with red hair, freckling and skin that burns rather than tans
+    — a spectrum of effects strikingly similar to the red-hair variants of MC1R
+    itself.<Cite n={10} /> The same haplotype matters beyond appearance. In more than
+    40,000 Europeans it raised the risk of cutaneous melanoma by about 45% and of basal
+    cell carcinoma by about a third, and the association held after adjusting for
+    pigmentation, which suggests the brake on MC1R affects more than the colour of the
+    skin it protects.<Cite n={11} /> The <a href="/genetics">genetics</a> page puts these
+    variants alongside MC1R's own.
+  </p>
+
+  <h2>Not the only brake</h2>
+  <p>
+    ASIP is the classic MC1R antagonist but not the only natural one. Dog breeders had
+    long known a third coat-colour locus that overrides agouti to give a dominant black
+    coat; in 2007 it was identified as a <strong>β-defensin</strong>, a protein family
+    previously known only from innate immunity, whose product binds MC1R with high
+    affinity and produces black fur in dogs and in transgenic mice.<Cite n={8} /> Human
+    β-defensin 3 antagonises MC1R in cultured human melanocytes in the same way ASIP
+    does.<Cite n={7} /> The melanocortin receptors, it turns out, have more than one
+    family of ligands — and more than one way of being told to stop.
   </p>
 
   <h2>The honest bottom line</h2>
@@ -105,8 +282,11 @@ const references = [
     ASIP completes the pigment half of the melanocortin story. You cannot fully
     understand MC1R, tanning, or the drugs that push pigment (like the tanning peptides)
     without the molecule that pushes the other way. Every melanocortin signal, it turns
-    out, comes with a built-in counterweight — and in the skin, ASIP is it. For the
-    receptor it governs, see <a href="/receptors/mc1r">MC1R — the pigment switch</a>.
+    out, comes with a built-in counterweight — and in the skin, ASIP is it. Its deeper
+    lesson is about place: the same protein that paints a band on a hair will, released
+    everywhere, make a mouse or a child obese. For the receptor it governs, see{' '}
+    <a href="/receptors/mc1r">MC1R — the pigment switch</a>; for the cousin that does
+    the same job in the brain, see <a href="/agrp">AgRP</a>.
   </p>
 
   <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
