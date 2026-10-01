@@ -8,34 +8,71 @@ const slugify = (s: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
-// Sort case-insensitively and group by uppercase first letter.
-const sorted = [...terms].sort((a, b) =>
-  a.term.toLowerCase().localeCompare(b.term.toLowerCase())
-);
+// Sort case-insensitively and group by first letter. Greek-letter terms
+// (α-MSH, β-MSH, γ-MSH, β-endorphin…) are grouped under a leading "Greek"
+// heading rather than scattered by their Latin transliteration.
+const GREEK = /^[α-ω]/i;
+const sortKey = (t: string) =>
+  t
+    .replace(/^α/, 'alpha-')
+    .replace(/^β/, 'beta-')
+    .replace(/^γ/, 'gamma-')
+    .toLowerCase();
+const sorted = [...terms].sort((a, b) => sortKey(a.term).localeCompare(sortKey(b.term)));
 const groups = new Map<string, typeof terms>();
 for (const t of sorted) {
-  const letter = t.term[0].toUpperCase();
+  const letter = GREEK.test(t.term) ? 'α–ω' : t.term[0].toUpperCase();
   if (!groups.has(letter)) groups.set(letter, []);
   groups.get(letter)!.push(t);
 }
-const letters = [...groups.keys()];
+// Put the Greek group first, then A–Z.
+const letters = [...groups.keys()].sort((a, b) =>
+  a === 'α–ω' ? -1 : b === 'α–ω' ? 1 : a.localeCompare(b)
+);
+const count = terms.length;
 ---
 
 <PageLayout
   title="Glossary"
   kicker="Reference"
-  description="Plain-language definitions of the melanocortin terms used across the site, cross-linked to the pages that cover them in depth."
+  description={`Plain-language definitions of ${count} melanocortin terms used across the site — peptides, receptors, pharmacology, pigment, appetite, the adrenal axis, inflammation and the drugs — each cross-linked to the page that covers it in depth.`}
   updated="2026"
   about={[
     { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
   ]}
 >
-  <nav class="not-prose mt-2 flex flex-wrap gap-1.5" aria-label="Jump to letter">
+  <p class="page-lede">
+    The melanocortin system borrows vocabulary from endocrinology, pharmacology,
+    pigment genetics and neuroscience at once, and the same word can mean subtly
+    different things in each. This glossary defines the {count} terms this site
+    leans on, in plain language, with each entry linked to the page that carries
+    the mechanism and the citations. Definitions are written to stand alone: you
+    should be able to read one and go back to whatever page sent you here.
+  </p>
+
+  <h2>How to read the definitions</h2>
+  <p>
+    A few conventions run through the whole site and are worth fixing before the
+    list. <strong>Agonist</strong>, <strong>antagonist</strong> and{' '}
+    <strong>inverse agonist</strong> describe what a molecule does to a receptor,
+    not what it is: ASIP and AgRP are proteins the body makes, yet they are
+    antagonists in the same sense a synthetic drug is. <strong>MC1R</strong>{' '}
+    through <strong>MC5R</strong> are the receptors; <strong>α-, β- and γ-MSH</strong>{' '}
+    and <strong>ACTH</strong> are the peptides that act on them; and{' '}
+    <strong>melanocortin</strong> on its own means the peptide family, though it is
+    often stretched to cover the drugs that mimic them. Where a term has a
+    development code and a generic name — PT-141 and bremelanotide, TCMCB07 and
+    mifomelatide, MT-7117 and dersimelagon — both are listed. Greek-letter terms
+    are grouped first.
+  </p>
+
+  <nav class="not-prose mt-8 flex flex-wrap gap-1.5" aria-label="Jump to letter">
     {
       letters.map((l) => (
         <a
-          href={`#letter-${l}`}
-          class="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--border)] font-mono text-sm no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          href={`#letter-${l === 'α–ω' ? 'greek' : l}`}
+          class="flex h-8 min-w-8 items-center justify-center rounded-md border border-[var(--border)] px-2 font-mono text-sm no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
           {l}
         </a>
@@ -48,7 +85,7 @@ const letters = [...groups.keys()];
       letters.map((l) => (
         <section>
           <h2
-            id={`letter-${l}`}
+            id={`letter-${l === 'α–ω' ? 'greek' : l}`}
             class="scroll-mt-24 border-b border-[var(--border)] pb-2 font-serif text-2xl font-semibold tracking-tight text-[var(--accent)]"
           >
             {l}
@@ -56,7 +93,7 @@ const letters = [...groups.keys()];
           <dl class="mt-4 divide-y divide-[var(--border)]">
             {groups.get(l)!.map((t) => (
               <div
-                id={slugify(t.term)}
+                id={slugify(sortKey(t.term))}
                 class="grid scroll-mt-24 grid-cols-1 gap-1 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6"
               >
                 <dt class="font-mono text-sm font-semibold">
@@ -77,8 +114,28 @@ const letters = [...groups.keys()];
     }
   </div>
 
+  <h2>Where the terms lead</h2>
+  <p>
+    If you are new to the system, the entries fall into a handful of stories, and
+    each has a page that tells it whole. The peptides and how they are cut from
+    POMC are on the <a href="/system">overview</a>. The five receptors each have a
+    page, starting from the <a href="/receptors">receptor index</a>, and their
+    shared architecture is on <a href="/structures">structural biology</a>. The
+    pharmacology terms — affinity, potency, selectivity, bias — are illustrated on
+    the <a href="/binding-matrix">binding matrix</a>, the{' '}
+    <a href="/dose-curve">dose–response</a> page and the{' '}
+    <a href="/mc1r-selectivity">selectivity problem</a>. The appetite vocabulary
+    runs through <a href="/receptors/mc4r">MC4R</a> and{' '}
+    <a href="/glp1-appetite">GLP-1 and appetite</a>; the adrenal vocabulary through{' '}
+    <a href="/receptors/mc2r">MC2R</a> and <a href="/acth">ACTH</a>; the
+    inflammation vocabulary through <a href="/inflammation">the anti-inflammatory
+    arm</a>. Every drug named here is on the <a href="/pipeline">pipeline</a> and,
+    if approved, in <a href="/therapeutics">therapeutics</a>.
+  </p>
+
   <p class="mt-12 text-sm text-[var(--text-muted)]">
-    Terms link to the page that covers them in depth. Missing one?{' '}
-    <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">Corrections are welcome.</a>
+    Terms link to the page that covers them in depth. Missing one, or see a
+    definition that could be sharper?{' '}
+    <a href="/about#corrections" class="underline decoration-dotted hover:text-[var(--accent)]">Corrections are welcome.</a>
   </p>
 </PageLayout>
