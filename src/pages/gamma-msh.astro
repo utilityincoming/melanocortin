@@ -5,19 +5,29 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import SaltLoop from '../components/fig/SaltLoop.astro';
 
 const faqs = [
   {
     q: 'What is γ-MSH?',
-    a: 'Gamma-melanocyte-stimulating hormone (γ-MSH) is a melanocortin peptide cut from POMC. Unlike the broad-spectrum α-MSH, it is relatively selective for the MC3R receptor and is best known not for pigment or appetite but for its role in sodium balance and blood pressure.',
+    a: 'Gamma-melanocyte-stimulating hormone (γ-MSH) is a melanocortin peptide cut from the N-terminal end of POMC. Unlike the broad-spectrum α-MSH, it is relatively selective for the MC3R receptor and is best known not for pigment or appetite but for its role in sodium balance and blood pressure.',
+  },
+  {
+    q: 'How many forms of γ-MSH are there?',
+    a: 'Three, all cut from the same N-terminal fragment of POMC: γ1-MSH (11 amino acids, amidated), γ2-MSH (12 amino acids) and the longer, glycosylated γ3-MSH. They share the melanocortin core sequence and differ at their C-terminal ends. Most of the salt-and-blood-pressure work has used γ2-MSH.',
   },
   {
     q: 'What receptor does γ-MSH act on?',
-    a: 'γ-MSH is the most MC3R-preferring of the natural melanocortins — it is the melanocortin best able to engage MC3R at physiological concentrations, with only weaker activity at the other receptors. That selectivity is why MC3R and γ-MSH are so often discussed together.',
+    a: 'γ-MSH is the most MC3R-preferring of the natural melanocortins — MC3R was in fact discovered as “a receptor for γ-melanotropin” in 1993. Structures show its C-terminal tail reaching into a groove specific to MC3R. It has only weaker activity at MC1R, MC4R and MC5R, and none at MC2R.',
   },
   {
     q: 'How does γ-MSH affect blood pressure?',
-    a: 'γ-MSH influences how the body handles sodium. It has natriuretic effects (promoting sodium excretion) and, through central nervous system pathways, can raise blood pressure by stimulating sympathetic outflow. This links the melanocortin system to cardiovascular and salt-balance physiology, largely via MC3R.',
+    a: 'In two opposite ways. Circulating γ-MSH, acting through MC3R, promotes sodium excretion and helps keep blood pressure normal on a high-salt diet; mice lacking MC3R or lacking γ-MSH develop salt-sensitive hypertension. Injected directly into the brain, however, γ-MSH raises blood pressure by stimulating sympathetic outflow — through an amiloride-sensitive sodium channel rather than through MC3R.',
+  },
+  {
+    q: 'Is γ-MSH a blood pressure drug?',
+    a: 'No. A stabilised γ-MSH analogue prevented salt-induced hypertension in rats, and the loop it acts on is a plausible target for salt-sensitive hypertension, but no γ-MSH-based medicine has entered clinical development. MC3R is now a drug target for a different reason — dual MC3R/MC4R agonists for obesity.',
   },
 ];
 
@@ -30,18 +40,83 @@ const references = [
     url: 'https://pubmed.ncbi.nlm.nih.gov/14761863/',
   },
   {
-    authors: 'Open-access review (PMC).',
-    title: 'Role of the melanocortin system in the central regulation of cardiovascular functions.',
-    source: 'Review of melanocortin (including γ-MSH) effects on blood pressure and sympathetic tone.',
-    year: '2021',
-    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8424695/',
+    authors: 'Roselli-Rehfuss L, Mountjoy KG, Robbins LS, et al.',
+    title:
+      'Identification of a receptor for γ melanotropin and other proopiomelanocortin peptides in the hypothalamus and limbic system.',
+    source: 'Proc Natl Acad Sci USA. 90(19):8856–60.',
+    year: '1993',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8415620/',
   },
   {
-    authors: 'ScienceDirect Topics.',
-    title: 'Melanocortin — an overview.',
-    source: 'Aggregated reference on the MSH peptides and receptor selectivity.',
-    year: '2024',
-    url: 'https://www.sciencedirect.com/topics/neuroscience/melanocortin',
+    authors: 'Pritchard LE, Turnbull AV, White A.',
+    title: 'Pro-opiomelanocortin processing in the hypothalamus: impact on melanocortin signalling and obesity.',
+    source: 'J Endocrinol. 172(3):411–21.',
+    year: '2002',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11874690/',
+  },
+  {
+    authors: 'Chen XW, Ying WZ, Valentin JP, et al.',
+    title: 'Mechanism of the natriuretic action of γ-melanocyte-stimulating hormone.',
+    source: 'Am J Physiol. 272(6 Pt 2):R1946–53.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/9227612/',
+  },
+  {
+    authors: 'Ni XP, Pearce D, Butler AA, Cone RD, Humphreys MH.',
+    title: 'Genetic disruption of γ-melanocyte-stimulating hormone signaling leads to salt-sensitive hypertension in the mouse.',
+    source: 'J Clin Invest. 111(8):1251–8.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12697744/',
+  },
+  {
+    authors: 'Ni XP, Bhargava A, Pearce D, Humphreys MH.',
+    title: 'Modulation by dietary sodium intake of melanocortin 3 receptor mRNA and protein abundance in the rat kidney.',
+    source: 'Am J Physiol Regul Integr Comp Physiol. 290(3):R560–7.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16195498/',
+  },
+  {
+    authors: 'Kathpalia PP, Charlton C, Rajagopal M, et al.',
+    title: 'The natriuretic mechanism of gamma-melanocyte-stimulating hormone.',
+    source: 'Peptides. 32(5):1068–72.',
+    year: '2011',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/21335042/',
+  },
+  {
+    authors: 'Ni XP, Butler AA, Cone RD, Humphreys MH.',
+    title: 'Central receptors mediating the cardiovascular actions of melanocyte stimulating hormones.',
+    source: 'J Hypertens. 24(11):2239–46.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17053546/',
+  },
+  {
+    authors: 'Ni XP, Humphreys MH.',
+    title: 'Prevention of salt-induced hypertension by an analog of γ-melanocyte-stimulating hormone in the rat.',
+    source: 'Am J Hypertens. 20(8):862–5.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17679034/',
+  },
+  {
+    authors: 'Estivariz FE, Iturriza F, McLean C, Hope J, Lowry PJ.',
+    title: 'Stimulation of adrenal mitogenesis by N-terminal proopiocortin peptides.',
+    source: 'Nature. 297(5865):419–22.',
+    year: '1982',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/7078651/',
+  },
+  {
+    authors: 'Feng W, Zhou Q, Chen X, et al.',
+    title:
+      'Structural insights into ligand recognition and subtype selectivity of the human melanocortin-3 and melanocortin-5 receptors.',
+    source: 'Cell Discov. 9:81.',
+    year: '2023',
+    url: 'https://www.nature.com/articles/s41421-023-00586-4',
+  },
+  {
+    authors: 'Humphreys MH.',
+    title: 'Cardiovascular and renal actions of melanocyte-stimulating hormone peptides.',
+    source: 'Curr Opin Nephrol Hypertens. 16(1):32–8.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17143069/',
   },
 ];
 ---
@@ -49,21 +124,23 @@ const references = [
 <PageLayout
   title="γ-MSH (gamma-melanocyte-stimulating hormone): the MC3R-selective melanocortin"
   kicker="The odd one out"
-  description="γ-MSH is the melanocortin that breaks the broad-spectrum mould. Relatively selective for MC3R, it is best known not for pigment or appetite but for a different job entirely — sodium balance and blood pressure."
+  description="γ-MSH is the melanocortin that breaks the broad-spectrum mould. Cut from the N-terminal end of POMC and relatively selective for MC3R, it is best known not for pigment or appetite but for a different job entirely — sodium balance and blood pressure — with a cautionary twist in the brain."
   thread="Even the system's edges do useful work — γ-MSH leaves colour and appetite to its siblings and keeps watch on the body's inner balance."
   updated="2026"
   about={[
     { name: 'Gamma-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocyte-stimulating_hormone'] },
     { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+    { name: 'Proopiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
   ]}
 >
   <KeyTakeaways
     items={[
-      'γ-MSH is a POMC-derived melanocortin that stands apart for being relatively selective — it is the melanocortin best able to engage MC3R at physiological concentrations.',
-      'Unlike α-MSH, it is only a weak agonist at MC1R, MC4R, and MC5R, so it drives little pigment or satiety signalling on its own.',
-      'Its signature role is in sodium balance and blood pressure, largely through MC3R — a very different job from the rest of the family.',
-      'It has natriuretic effects (promoting sodium excretion) and can raise blood pressure centrally by stimulating sympathetic outflow.',
-      'γ-MSH is the clearest example that "melanocortin" describes a family of related signals with genuinely different physiological jobs.',
+      'γ-MSH is cut from the N-terminal end of POMC — the opposite end from β-MSH — and comes in three forms (γ1, γ2, γ3) that share the melanocortin core.',
+      'It is the most MC3R-selective natural melanocortin: MC3R was discovered in 1993 as “a receptor for γ-melanotropin”, and its structure shows why γ-MSH fits it and not its siblings.',
+      'Its signature job is sodium balance: a high-salt diet raises pituitary γ-MSH, which acts through MC3R to promote sodium excretion and hold blood pressure steady.',
+      'Break that loop — no MC3R, no γ-MSH, or MC3R blocked — and rodents develop salt-sensitive hypertension; a γ-MSH analogue prevents it.',
+      'Injected into the brain, γ-MSH does the opposite and raises blood pressure, through an amiloride-sensitive sodium channel rather than through MC3R.',
+      'No γ-MSH drug exists, but its receptor is now a target for obesity via dual MC3R/MC4R agonists.',
     ]}
   />
 
@@ -72,42 +149,124 @@ const references = [
     fit the pattern. Most peptides in this family, led by <a href="/alpha-msh">α-MSH</a>,
     are broad-spectrum signals that touch several receptors and headline in pigment and
     appetite. γ-MSH is comparatively picky about its receptor, and its main claim to
-    fame is somewhere else entirely: the control of sodium and blood pressure.<Cite n={2} />
+    fame is somewhere else entirely: the control of sodium and blood pressure.<Cite n={1} />
   </p>
 
-  <h2>The selective one</h2>
+  <Figure
+    caption="The salt loop. A high-sodium diet raises pituitary γ-MSH; γ-MSH acts through MC3R to increase sodium excretion, and blood pressure holds. Remove MC3R, remove the enzyme that makes γ-MSH, or block the receptor, and the same diet produces salt-sensitive hypertension."
+    source="Schematic, after Ni et al. 2003, Ni et al. 2006 (J Hypertens), Kathpalia et al. 2011 and Humphreys 2004."
+  >
+    <SaltLoop />
+  </Figure>
+
+  <h2>Three peptides from the quiet end of POMC</h2>
+  <p>
+    <a href="/system">POMC</a> is cut into its hormones at pairs of basic amino acids,
+    and the melanocortins come from three different stretches of it. α-MSH is carved
+    from within ACTH in the middle; <a href="/beta-msh">β-MSH</a> from β-lipotropin at
+    the C-terminal end; and γ-MSH from the N-terminal fragment, the part of the
+    precursor that was for years regarded as biologically silent.<Cite n={3} /> Three
+    versions exist, cut at different points of that fragment: γ1-MSH, an 11-residue
+    amidated peptide; γ2-MSH, one residue longer; and γ3-MSH, a longer glycosylated
+    form. All three carry the His-Phe-Arg-Trp core that defines the family, and the
+    processing that releases them depends on prohormone convertase 2, the same enzyme
+    that finishes α-MSH in the brain.<Cite n={3} /> The N-terminal fragment and its
+    products are not quite silent at the adrenal, either: in 1982 Lowry's group showed
+    that N-terminal POMC peptides stimulate adrenal cell division, and the longer
+    γ3-MSH forms potentiate ACTH's steroidogenic effect — a supporting role to the
+    receptor <a href="/receptors/mc2r">MC2R</a> that γ-MSH itself cannot
+    activate.<Cite n={10} />
+  </p>
+
+  <h2>The receptor built for it</h2>
   <p>
     Where α-MSH activates four of the five receptors strongly, γ-MSH is relatively{' '}
-    <a href="/receptors/mc3r">MC3R</a>-preferring — it is the natural melanocortin best
-    able to engage MC3R at physiological concentrations, with only weaker activity at
-    MC1R, MC4R, and MC5R.<Cite n={3} /> That selectivity is exactly why MC3R and γ-MSH tend
-    to be discussed as a pair: the receptor's quieter, harder-to-pin-down physiology and
-    its most selective ligand belong to the same story.
+    <a href="/receptors/mc3r">MC3R</a>-preferring. The pairing is written into the
+    receptor's history: when MC3R was cloned in 1993 the paper described it as a
+    receptor for γ-melanotropin, because it was the first melanocortin receptor that
+    responded well to γ-MSH, and it was found in the hypothalamus and limbic
+    system rather than in skin or adrenal.<Cite n={2} /> Thirty years later the cryo-EM
+    structure of MC3R bound to γ-MSH showed why: beyond the shared core, the
+    peptide's C-terminal tail reaches into a groove specific to MC3R that α-MSH
+    cannot use, while at the neighbouring MC5R the same tail barely makes
+    contact.<Cite n={11} /> γ-MSH has only weak activity at MC1R, MC4R and MC5R and
+    none at MC2R, so it drives little pigment or satiety signalling on its own — the
+    activity grid is laid out in the <a href="/binding-matrix">binding matrix</a>.
+    That selectivity is exactly why MC3R and γ-MSH are discussed as a pair: the
+    receptor's quieter, harder-to-pin-down physiology and its most selective ligand
+    belong to the same story.
   </p>
 
-  <h2>A job in salt and blood pressure</h2>
+  <h2>A job in salt</h2>
   <p>
-    γ-MSH's distinctive role is in <strong>sodium balance</strong>. It is a natriuretic
-    signal — it promotes the excretion of sodium — and appears to participate in the
-    physiological regulation of the body's salt handling, an effect linked to MC3R
-    expressed in the kidney.<Cite n={1} /> At the same time, acting through central nervous
-    system pathways, γ-MSH can <strong>raise blood pressure</strong> by stimulating
-    sympathetic outflow.<Cite n={2} /> The result is a melanocortin whose physiology reads
-    like cardiovascular and renal biology rather than skin or appetite.
+    γ-MSH's distinctive role is in <strong>sodium balance</strong>. Infused into rats
+    at doses that leave blood pressure and kidney blood flow unchanged, it increases
+    sodium excretion — a natriuretic effect that does not run through the usual
+    haemodynamic routes.<Cite n={4} />
+    The physiology behind it is a feedback loop. Eating more salt raises the
+    pituitary's processing of POMC to γ-MSH and the level of γ-MSH in the blood;
+    γ-MSH, through MC3R, drives sodium out; blood pressure stays
+    normal.<Cite n={1} /> The decisive test was to break the loop. Mice lacking MC3R,
+    and mice lacking prohormone convertase 2 and therefore unable to make γ-MSH,
+    have normal blood pressure on an ordinary diet but become markedly hypertensive
+    on a high-salt one. In the PC2-deficient animals, infusing γ-MSH brought the
+    pressure back down; in the MC3R-deficient animals it could not, because the
+    receptor was gone.<Cite n={5} /> A high-salt diet also raises MC3R abundance in
+    the rat kidney, as if the system turns up both the signal and the
+    receiver.<Cite n={6} />
   </p>
   <p>
-    This is why the melanocortin system turns up in discussions of hypertension and
-    salt-sensitivity that seem, at first glance, to have nothing to do with pigment or
-    weight. γ-MSH is the thread connecting them.<Cite n={2} />
+    Where the receptor actually sits is less settled than the loop itself. The
+    natural assumption was MC3R on kidney tubules, inhibiting sodium reabsorption
+    directly. But a careful look found neither MC3R protein nor its messenger RNA
+    in mouse kidney, and γ-MSH had no effect on sodium transport in collecting-duct
+    cells, which points instead to MC3R in the nervous system acting on the nerves
+    that control the kidney.<Cite n={7} /> The loop is real; the wiring diagram is
+    still being drawn.
+  </p>
+
+  <h2>The pressor paradox</h2>
+  <p>
+    At the same time, γ-MSH can <strong>raise</strong> blood pressure. Injected
+    directly into the brain of mice it increases blood pressure and heart rate by
+    stimulating sympathetic outflow — but this is not an MC3R effect. It happens
+    just as strongly in mice lacking MC3R, and it is abolished by benzamil, an
+    amiloride analogue, which points to γ-MSH acting on an amiloride-sensitive
+    sodium channel in the brain rather than on a melanocortin receptor. Central
+    α-MSH raises pressure too, but through MC4R, the route the obesity drugs have
+    had to contend with.<Cite n={8} /> So the same peptide lowers pressure through
+    its receptor in the periphery and raises it through a non-receptor route in
+    the brain. The two findings come from two different experiments — peptide
+    infused into the circulation versus peptide injected into the ventricles — and
+    the reviews that weigh them treat the salt loop as the physiological role and the
+    central pressor effect as a pharmacological one whose relevance at natural
+    concentrations is unproven.<Cite n={12} />
+  </p>
+
+  <h2>Why there is no γ-MSH drug</h2>
+  <p>
+    The loop is a plausible drug target: salt-sensitive hypertension is common,
+    and a stabilised γ-MSH analogue given to rats on a high-salt diet prevented the
+    rise in blood pressure.<Cite n={9} /> Yet no γ-MSH-based medicine has entered
+    the clinic. The reasons are the usual ones for a peptide hormone — short
+    half-life, the difficulty of dosing a loop rather than a switch — plus the
+    unresolved question of where MC3R acts and the knowledge that the peptide
+    does the opposite thing centrally. MC3R has found its way into the{' '}
+    <a href="/pipeline">pipeline</a> by another door: dual MC3R/MC4R agonists for
+    obesity, which exploit the receptor's role in energy partitioning rather than
+    salt. γ-MSH's own pharmacology, meanwhile, remains an unusually clean piece of
+    physiology waiting for a use.
   </p>
 
   <h2>The honest bottom line</h2>
   <p>
     γ-MSH is the family's specialist in the way ACTH is: it took the melanocortin
-    chassis and pointed it at a different problem. It is a useful correction to the idea
-    that these peptides are interchangeable — the receptor a melanocortin prefers, and
-    the tissue it acts in, can change its job entirely. For the receptor at the centre of
-    γ-MSH's biology, see <a href="/receptors/mc3r">MC3R — energy partitioning</a>.
+    chassis and pointed it at a different problem. It is a useful correction to the
+    idea that these peptides are interchangeable — the receptor a melanocortin
+    prefers, and the tissue it acts in, can change its job entirely — and a reminder
+    that "melanocortin" names a family of related signals with genuinely different
+    physiological work. For the receptor at the centre of γ-MSH's biology, see{' '}
+    <a href="/receptors/mc3r">MC3R — energy partitioning</a>.
   </p>
 
   <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">

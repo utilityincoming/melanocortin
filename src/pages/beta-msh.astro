@@ -5,36 +5,89 @@ import References from '../components/References.astro';
 import RelatedPages from '../components/RelatedPages.astro';
 import FAQ from '../components/FAQ.astro';
 import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import CutTheMouseCannotMake from '../components/fig/CutTheMouseCannotMake.astro';
 
 const faqs = [
   {
     q: 'What is β-MSH?',
-    a: 'Beta-melanocyte-stimulating hormone (β-MSH) is one of the melanocortin peptides cut from the POMC precursor. Like α-MSH, it is a broad-spectrum agonist across the pigment and appetite receptors, and in humans it is a meaningful part of the brain’s melanocortin appetite signalling.',
+    a: 'Beta-melanocyte-stimulating hormone (β-MSH) is one of the melanocortin peptides cut from the POMC precursor. In humans it is a 22-amino-acid peptide released from the lipotropin end of POMC. Like α-MSH, it is a broad-spectrum agonist across the pigment and appetite receptors, and in humans it is a meaningful part of the brain’s melanocortin appetite signalling.',
   },
   {
     q: 'How is β-MSH different from α-MSH?',
-    a: 'They are close relatives with overlapping activity — both activate MC1R, MC3R, MC4R, and MC5R. The most interesting difference is species-specific: humans produce β-MSH in the brain, whereas common lab rodents do not, which makes β-MSH particularly relevant when translating melanocortin appetite biology to people.',
+    a: 'They come from different ends of POMC — α-MSH from within ACTH, β-MSH from within β-lipotropin — and they overlap heavily in activity: both activate MC1R, MC3R, MC4R and MC5R, and β-MSH binds MC4R at least as well as α-MSH does. The most important difference is species-specific: humans produce β-MSH in the brain, whereas mice and rats cannot, which makes β-MSH particularly relevant when translating melanocortin appetite biology to people.',
+  },
+  {
+    q: 'Why don’t mice make β-MSH?',
+    a: 'Releasing β-MSH from its parent fragment, γ-lipotropin, requires a cut at a pair of basic amino acids. Rodent POMC lacks that pair, so the cut cannot happen and processing stops at γ-lipotropin. Humans and dogs have the site and make β-MSH; mice and rats do not, and get by with α-MSH alone.',
   },
   {
     q: 'Is β-MSH linked to obesity?',
-    a: 'There is evidence pointing that way. Because β-MSH contributes to the human melanocortin satiety signal at MC4R, rare variants that impair its production or function have been associated with obesity in people — consistent with the broader theme that weakening MC4R signalling promotes weight gain.',
+    a: 'Yes, in two species. In people, a rare POMC variant (Tyr221Cys) that sits in the β-MSH sequence and weakens its action at MC4R was found more often in obese children, who were hyperphagic and tall for their age. In Labrador retrievers, a deletion in POMC that removes β-MSH and β-endorphin is associated with heavier weight, greater food motivation, lower resting energy expenditure and increased hunger.',
+  },
+  {
+    q: 'Is β-MSH used as a drug?',
+    a: 'No. No β-MSH-based medicine exists. Its relevance to drugs is indirect: it is a natural ligand of MC4R in humans, so it is part of the signal that MC4R agonists such as setmelanotide replace, and part of the reason rodent models of melanocortin appetite drugs need a translation step.',
   },
 ];
 
 const references = [
   {
-    authors: 'MedlinePlus Genetics.',
-    title: 'POMC gene.',
-    source: 'Reference on the POMC precursor and the peptides it produces, including β-MSH.',
-    year: '2024',
-    url: 'https://medlineplus.gov/download/genetics/gene/pomc.pdf',
+    authors: 'Harrold JA, Widdowson PS, Williams G.',
+    title: 'β-MSH: a functional ligand that regulated energy homeostasis via hypothalamic MC4-R?',
+    source: 'Peptides. 24(3):397–405.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12732337/',
   },
   {
-    authors: 'ScienceDirect Topics.',
-    title: 'Melanocortin — an overview.',
-    source: 'Aggregated reference on the MSH peptides and their receptor activity.',
+    authors: 'Pritchard LE, Turnbull AV, White A.',
+    title: 'Pro-opiomelanocortin processing in the hypothalamus: impact on melanocortin signalling and obesity.',
+    source: 'J Endocrinol. 172(3):411–21.',
+    year: '2002',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11874690/',
+  },
+  {
+    authors: 'Lindberg I, Fricker LD.',
+    title: 'Obesity, POMC, and POMC-processing enzymes: surprising results from animal models.',
+    source: 'Endocrinology. 162(12):bqab155.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34333593/',
+  },
+  {
+    authors: 'Lee YS, Challis BG, Thompson DA, et al.',
+    title: 'A POMC variant implicates β-melanocyte-stimulating hormone in the control of human energy balance.',
+    source: 'Cell Metab. 3(2):135–40.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16459314/',
+  },
+  {
+    authors: 'Biebermann H, Castañeda TR, van Landeghem F, et al.',
+    title: 'A role for β-melanocyte-stimulating hormone in human body-weight regulation.',
+    source: 'Cell Metab. 3(2):141–6.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16459315/',
+  },
+  {
+    authors: 'Raffan E, Dennis RJ, O’Donovan CJ, et al.',
+    title:
+      'A deletion in the canine POMC gene is associated with weight and appetite in obesity-prone Labrador retriever dogs.',
+    source: 'Cell Metab. 23(5):893–900.',
+    year: '2016',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/27157046/',
+  },
+  {
+    authors: 'Dittmann MT, Lakatos G, Wainwright JF, et al.',
+    title: 'Low resting metabolic rate and increased hunger due to β-MSH and β-endorphin deletion in a canine model.',
+    source: 'Sci Adv. 10(10):eadj3823.',
     year: '2024',
-    url: 'https://www.sciencedirect.com/topics/neuroscience/melanocortin',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/38446876/',
+  },
+  {
+    authors: 'Pritchard LE, White A.',
+    title: 'Neuropeptide processing and its impact on melanocortin pathways.',
+    source: 'Endocrinology. 148(9):4201–7.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17584964/',
   },
 ];
 ---
@@ -42,21 +95,22 @@ const references = [
 <PageLayout
   title="β-MSH (beta-melanocyte-stimulating hormone): the POMC peptide tied to human appetite"
   kicker="The human one"
-  description="β-MSH is a broad-spectrum melanocortin cut from POMC. Its standout feature is species-specific: humans make it in the brain and rodents largely don't, which puts β-MSH at the centre of translating melanocortin appetite biology to people."
+  description="β-MSH is a broad-spectrum melanocortin cut from the lipotropin end of POMC. Its standout feature is species-specific: humans and dogs make it in the brain and rodents cannot, which puts β-MSH at the centre of translating melanocortin appetite biology to people — and in the genetics of obesity in both species."
   thread="The verse of the system that speaks loudest in humans — a melanocortin the mouse mostly skips, and a reminder the map is redrawn in people."
   updated="2026"
   about={[
     { name: 'Beta-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocyte-stimulating_hormone'] },
     { name: 'Proopiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
   ]}
 >
   <KeyTakeaways
     items={[
-      'β-MSH is a melanocortin peptide cut from POMC, with broad agonist activity across MC1R, MC3R, MC4R, and MC5R — much like α-MSH.',
-      'Its defining feature is species-specific: humans produce β-MSH in the brain, whereas common laboratory rodents largely do not.',
-      'That makes β-MSH especially relevant to human appetite biology, where it contributes to the MC4R satiety signal alongside α-MSH.',
-      'Rare variants affecting β-MSH have been linked to obesity in people, fitting the wider pattern that weaker MC4R signalling promotes weight gain.',
-      'It is one of the reasons melanocortin findings in mice do not always map cleanly onto humans.',
+      'β-MSH is a 22-amino-acid melanocortin cut from β-lipotropin, the C-terminal end of POMC, with broad agonist activity across MC1R, MC3R, MC4R and MC5R — much like α-MSH.',
+      'Its defining feature is species-specific: releasing it needs a cut at a pair of basic residues that rodent POMC lacks, so humans and dogs make β-MSH and mice and rats do not.',
+      'In the human brain it is a second natural ligand for MC4R, binding the appetite receptor at least as well as α-MSH.',
+      'A rare human POMC variant in the β-MSH sequence that weakens MC4R activation is associated with early-onset obesity; a POMC deletion that removes β-MSH in Labrador retrievers is associated with weight gain, food motivation and a low resting metabolic rate.',
+      'It is one of the reasons melanocortin appetite findings in mice do not always map cleanly onto humans.',
     ]}
   />
 
@@ -65,43 +119,117 @@ const references = [
     melanocortin family, but it carries an outsized lesson about why this system matters
     in people specifically. Like <a href="/alpha-msh">α-MSH</a>, it is a broad-spectrum
     agonist cut from <a href="/system">POMC</a>. Unlike α-MSH, its story is largely a
-    human one.<Cite n={2} />
+    human one, because the animals most of melanocortin science has been done in cannot
+    make it at all.<Cite n={3} />
   </p>
 
-  <h2>A broad-spectrum POMC peptide</h2>
+  <Figure
+    caption="The cut the mouse cannot make. Humans and rodents both carve ACTH and β-lipotropin out of POMC and both cut ACTH down to α-MSH. Only POMC with a pair of basic residues inside γ-lipotropin — human, not rodent — can be cut again to release β-MSH."
+    source="Schematic, after Pritchard et al. 2002, Harrold et al. 2003 and Lindberg & Fricker 2021."
+  >
+    <CutTheMouseCannotMake />
+  </Figure>
+
+  <h2>Where it comes from: the lipotropin branch</h2>
   <p>
-    β-MSH is produced by the same POMC processing that yields the other melanocortins,
-    and its receptor activity looks familiar: agonism across{' '}
-    <a href="/receptors/mc1r">MC1R</a>, <a href="/receptors/mc3r">MC3R</a>,{' '}
-    <a href="/receptors/mc4r">MC4R</a>, and <a href="/receptors/mc5r">MC5R</a>.<Cite n={1} />
-    In that sense it is another copy of the broad melanocortin signal, overlapping
-    heavily with α-MSH rather than carving out a distinct receptor niche.
+    POMC is a prohormone cut into pieces at pairs of basic amino acids by the
+    prohormone convertases PC1/3 and PC2, and the pieces it yields depend on which
+    enzymes a tissue carries.<Cite n={2} /> The first cuts release an N-terminal
+    fragment, ACTH, and β-lipotropin. α-MSH is then carved from within ACTH. β-MSH
+    comes from the other end of the molecule: in tissues that express PC2 — the
+    hypothalamus, the skin and the pituitary's intermediate lobe — β-lipotropin is
+    cut into γ-lipotropin and β-endorphin, and γ-lipotropin is cut again to release
+    β-MSH, a 22-amino-acid peptide in humans that carries the family's shared
+    His-Phe-Arg-Trp core.<Cite n={2} /><Cite n={8} /> It is, in other words, made by
+    the same enzyme and in the same neurons as α-MSH, as a parallel product of the
+    same precursor.
   </p>
 
-  <h2>The human-specific twist</h2>
+  <h2>The cut the mouse cannot make</h2>
   <p>
-    What makes β-MSH worth its own page is a quirk of species. Humans generate β-MSH in
-    the brain as part of their melanocortin appetite machinery; the mice and rats that
-    most melanocortin research is done in largely do not.<Cite n={1} /> That gap is easy to
-    overlook and important to remember: a satiety signal that is real in people can be
-    effectively absent in the standard animal model, which is one reason melanocortin
-    appetite findings do not always translate cleanly across species.
+    What makes β-MSH worth its own page is a quirk of sequence. The final cut that
+    frees β-MSH from γ-lipotropin requires a pair of basic residues at the right
+    spot, and rodent POMC does not have it. In mice and rats, processing stops at
+    γ-lipotropin, and no β-MSH is ever produced.<Cite n={1} /><Cite n={3} /> Humans,
+    other primates and dogs carry the site and make the peptide. The consequence is
+    easy to overlook and important to remember: a satiety signal that is real in
+    people is absent from the standard animal model. Mice get by perfectly well with
+    α-MSH alone, which tells us α-MSH is sufficient for the circuit — but not that
+    it is the whole of the circuit in us.<Cite n={3} />
   </p>
+
+  <h2>A second key for the appetite receptor</h2>
   <p>
-    Because β-MSH contributes to the human MC4R "fullness" signal, it also shows up in
-    the genetics of body weight. Rare variants that impair β-MSH production or function
-    have been associated with obesity in people — the same direction of effect seen when
-    any part of the <a href="/receptors/mc4r">MC4R</a> pathway is weakened.<Cite n={1} />
+    At the receptor that matters most for body weight, β-MSH is not a weaker copy of
+    α-MSH. It binds <a href="/receptors/mc4r">MC4R</a> with affinity at least equal
+    to α-MSH's, and when given into the brain of rats it suppresses feeding — the
+    rat, lacking its own β-MSH, has no trouble reading it.<Cite n={1} /> Harrold and
+    colleagues argued in 2003 that β-MSH might be the more important natural MC4R
+    ligand in the human hypothalamus, where both peptides are made side by
+    side.<Cite n={1} /> That remains a hypothesis rather than a settled fact, because
+    the two peptides cannot be separated in a living human brain; what is settled is
+    that β-MSH is a genuine part of the human melanocortin "fullness" signal, and
+    the genetics that followed made that concrete.
+  </p>
+
+  <h2>A variant in the β-MSH sequence</h2>
+  <p>
+    In 2006 two groups, publishing back to back, reported the same rare POMC
+    variant: a tyrosine-to-cysteine change, Tyr221Cys, that falls inside the β-MSH
+    sequence and leaves every other POMC product untouched. Among obese children in
+    the United Kingdom the variant was found far more often than in the general
+    population; the children carrying it were hyperphagic and unusually tall for
+    their age, the same pattern seen when MC4R itself is impaired. In the
+    laboratory, the variant peptide bound MC4R less well and activated it less
+    strongly than normal β-MSH.<Cite n={4} /> The second study, in German
+    children, reached the same conclusion and showed that the variant peptide
+    could not match the natural one in switching the receptor on.<Cite n={5} /> A
+    single amino acid, in a peptide mice do not make, was enough to tilt human
+    energy balance — and it did so by weakening one ligand's grip on MC4R while
+    α-MSH was left intact.
+  </p>
+
+  <h2>The dog that proved the point</h2>
+  <p>
+    The most vivid evidence for what β-MSH does comes from an animal that, like us,
+    makes it. In 2016 a 14-base-pair deletion was found in the POMC gene of Labrador
+    and flat-coated retrievers, breeds notorious for their appetite. The deletion
+    disrupts the end of the gene so that β-MSH and β-endorphin cannot be produced,
+    and dogs carrying it were heavier, had more body fat and scored higher on food
+    motivation; it was also more common in Labradors working as assistance dogs,
+    where a strong food drive helps training.<Cite n={6} /> A follow-up in 2024
+    showed what the missing peptides had been doing. Dogs with the deletion had a
+    resting metabolic rate about a quarter lower than unaffected dogs and were
+    hungrier between meals, although they did not eat faster or more at a sitting:
+    the deletion lowered how much energy the body spends and raised the drive to
+    seek food, the two levers the melanocortin system is known to hold.<Cite n={7} />
+    It is as close to a natural knockout of β-MSH as exists, and it was found in a
+    species that has the peptide to lose.
+  </p>
+
+  <h2>Why the mouse data need a translation step</h2>
+  <p>
+    All of this feeds one practical lesson. POMC-neuron biology, MC4R pharmacology
+    and most of the appetite story on this site were worked out in mice, and in mice
+    the entire melanocortin satiety signal is α-MSH. In humans it is α-MSH and β-MSH
+    together, read by the same receptor. Where that matters is at the edges: in
+    interpreting human POMC variants, where a change in the β-MSH region can have
+    effects no mouse would show; in understanding why POMC-processing enzyme
+    deficiencies look the way they do in people;<Cite n={3} /> and in reading any
+    claim about a melanocortin ligand's human relevance that rests on rodent data
+    alone. The receptors are shared. The set of natural keys is not.
   </p>
 
   <h2>The honest bottom line</h2>
   <p>
     β-MSH is a reminder that the melanocortin system is not identical from one species
     to the next. Its broad receptor activity makes it look like a second α-MSH, but its
-    human-specific role in appetite gives it a distinct place in the story — and a
-    cautionary note for anyone reading mouse data as if it were human data. For the
-    receptor at the centre of that appetite signalling, see{' '}
-    <a href="/receptors/mc4r">MC4R — the appetite rheostat</a>.
+    human-specific role in appetite gives it a distinct place in the story, confirmed by
+    genetics in two species — and a cautionary note for anyone reading mouse data as if
+    it were human data. For the receptor at the centre of that appetite signalling, see{' '}
+    <a href="/receptors/mc4r">MC4R — the appetite rheostat</a>; for the drug that
+    re-supplies the signal β-MSH and α-MSH share, see{' '}
+    <a href="/setmelanotide">setmelanotide</a>.
   </p>
 
   <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">

@@ -1,0 +1,108 @@
+---
+// stays-where-it-lands — the central idea of the PL-8177 page. A polymer-coated
+// oral capsule carries the cyclic peptide intact through the stomach and small
+// intestine, releases it in the colon, where it activates MC1R on the inflamed
+// lining and its immune cells, and the drug and its metabolite then leave in
+// the faeces. In the human microdose study nothing reached plasma or urine —
+// the peptide never entered the body. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="swl-fig"
+  viewBox="0 0 640 290"
+  role="img"
+  aria-labelledby="swl-t swl-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="swl-t">Stays where it lands: how oral PL-8177 reaches the colon without entering the bloodstream</title>
+  <desc id="swl-d"
+    >A left-to-right path through the gut. A polymer-coated capsule passes the
+    stomach and small intestine with the peptide still enclosed. In the colon
+    the coat releases PL-8177, which activates MC1R on the inflamed lining and
+    its immune cells, pushing inflammation toward resolution. The drug and its
+    metabolite exit in the faeces. A crossed-out branch to the bloodstream
+    notes that in a human radiolabelled microdose study nothing was detected in
+    plasma or urine.</desc
+  >
+
+  <!-- gut track -->
+  <rect class="track" x="20" y="70" width="600" height="60" rx="30" />
+  <text x="86" y="60" text-anchor="middle" class="sub">stomach</text>
+  <text x="246" y="60" text-anchor="middle" class="sub">small intestine</text>
+  <text x="470" y="60" text-anchor="middle" class="sub hot-t">colon</text>
+  <line class="seg-line" x1="152" y1="76" x2="152" y2="124" />
+  <line class="seg-line" x1="340" y1="76" x2="340" y2="124" />
+
+  <!-- capsule, intact -->
+  <rect class="capsule" x="52" y="88" width="56" height="24" rx="12" />
+  <text x="80" y="104" text-anchor="middle" class="cap-t">PL-8177</text>
+  <text x="80" y="150" text-anchor="middle" class="line">polymer coat intact</text>
+
+  <rect class="capsule" x="218" y="88" width="56" height="24" rx="12" />
+  <text x="246" y="104" text-anchor="middle" class="cap-t">PL-8177</text>
+  <text x="246" y="150" text-anchor="middle" class="line">still enclosed</text>
+
+  <!-- release in colon -->
+  <circle class="pep" cx="430" cy="100" r="7" />
+  <circle class="pep" cx="452" cy="92" r="5" />
+  <circle class="pep" cx="470" cy="106" r="6" />
+  <circle class="pep" cx="494" cy="96" r="5" />
+  <circle class="pep" cx="516" cy="104" r="6" />
+  <text x="400" y="150" text-anchor="middle" class="line hot-t">released · acts on MC1R</text>
+  <text x="400" y="166" text-anchor="middle" class="sub">lining &amp; macrophages</text>
+
+  <!-- travelling capsule -->
+  <circle class="pulse" r="4">
+    <animateMotion dur="4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1"
+      path="M40 100 L400 100" />
+  </circle>
+
+  <!-- exits -->
+  <path class="branch hot" d="M560 100 L600 100" />
+  <polygon class="arrow" points="592,95 600,100 592,105" />
+  <text x="620" y="150" text-anchor="end" class="line">out in the faeces</text>
+  <text x="620" y="166" text-anchor="end" class="sub">drug + metabolite</text>
+
+  <!-- blocked route to blood -->
+  <rect class="blood" x="20" y="204" width="600" height="26" rx="13" />
+  <text x="320" y="221" text-anchor="middle" class="blood-t">bloodstream</text>
+  <path class="branch dim" d="M505 130 L505 204" />
+  <line class="nocut" x1="496" y1="160" x2="514" y2="178" />
+  <line class="nocut" x1="514" y1="160" x2="496" y2="178" />
+  <text x="320" y="258" text-anchor="middle" class="line">Human microdose study: labelled PL-8177 found in faeces, none in plasma or urine.</text>
+  <text x="320" y="276" text-anchor="middle" class="tag">the oral-peptide problem solved by not trying to be absorbed</text>
+</svg>
+
+<style>
+  .swl-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .track { fill: none; stroke: var(--border); stroke-width: 1.2; }
+  .seg-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 3 3; }
+  .capsule { fill: var(--bg-elevated); stroke: var(--text-muted); stroke-width: 1.4; }
+  .cap-t { font-size: 9.5px; font-weight: 600; fill: var(--text); }
+  .pep { fill: var(--accent); opacity: 0.85; }
+  .line { font-size: 11px; fill: var(--text); }
+  .line.hot-t { fill: var(--accent-strong); font-weight: 600; }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .sub.hot-t { fill: var(--accent-strong); font-weight: 600; }
+  .tag { font-size: 9.5px; font-style: italic; fill: var(--accent-strong); opacity: 0.85; }
+  .blood { fill: none; stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 3; }
+  .blood-t { font-size: 10.5px; fill: var(--text-muted); letter-spacing: 0.06em; }
+  .branch { fill: none; stroke: var(--border); stroke-width: 2; }
+  .branch.hot { stroke: var(--accent); stroke-width: 2; opacity: 0.6; }
+  .branch.dim { stroke-dasharray: 4 3; }
+  .arrow { fill: var(--accent); opacity: 0.6; }
+  .nocut { stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; opacity: 0.8; }
+  .pulse { fill: var(--accent); }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse { display: none; }
+  }
+</style>

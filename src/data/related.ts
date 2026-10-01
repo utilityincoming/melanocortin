@@ -269,6 +269,7 @@ export const RELATED: Record<string, string[]> = {
   'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],
   effects: ['dose-curve', 'oral-peptides', 'mc1r-pain', 'alpha-msh', 'receptors/mc1r'],
   'oral-peptides': ['dose-curve', 'effects', 'bivamelagon', 'bremelanotide', 'dersimelagon'],
+  pipeline: ['therapeutics', 'setmelanotide', 'dersimelagon', 'receptors/mc2r', 'glp1-appetite', 'melanocortin-agonists'],
   therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'inflammation', 'pipeline', 'melanocortin-agonists'],
   'melanocortin-agonists': ['therapeutics', 'receptors/mc4r', 'setmelanotide', 'bivamelagon', 'binding-matrix', 'alpha-msh', 'mc1r-selectivity'],
 };

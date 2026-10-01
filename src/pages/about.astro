@@ -1,13 +1,46 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  {
+    q: 'Is melanocortin.com medical advice?',
+    a: 'No. It is an educational reference. Nothing here is a diagnosis, a treatment recommendation or a protocol, and the site deliberately publishes no dosing, sourcing or usage instructions for any drug, approved or otherwise. Take what you learn here to a qualified clinician.',
+  },
+  {
+    q: 'Who is behind the site?',
+    a: 'An independent editorial project, developed in the open on GitHub under the utilityincoming account. Pages are written from primary literature and regulatory documents, not paraphrased from other websites. The site does not claim named medical reviewers it does not have; see “Who writes and edits this” for exactly what is and is not claimed.',
+  },
+  {
+    q: 'How do I know a claim is accurate?',
+    a: 'Follow the numbered citation. Every substantive claim links to a reference at the foot of the page — a PubMed-indexed paper, a regulatory record or, for trial status, a dated company disclosure labelled as such. Reference identifiers are checked against PubMed before a page ships. If a citation does not support the sentence it is attached to, that is a correctable error; please report it.',
+  },
+  {
+    q: 'Why are dates shown only to the year?',
+    a: 'Because a year is a claim the site can stand behind. “Last updated 2026” means the page was checked against current sources this year. A day-precise “reviewed on” stamp implies a formal review event that, for most pages, has not yet happened, and the site will not imply it.',
+  },
+  {
+    q: 'Does the site take money from drug companies or peptide vendors?',
+    a: 'No. There is no sponsorship, no paid placement, no affiliate link and no vendor relationship. If any commercial relationship is ever introduced it will be disclosed on the pages where it appears.',
+  },
+  {
+    q: 'Can I reuse the text and figures?',
+    a: 'Yes. Text and figures are published under Creative Commons Attribution 4.0 and the code under the MIT licence. Credit melanocortin.com and link back; for figures, the SVG source is in the public repository.',
+  },
+  {
+    q: 'How do I report an error?',
+    a: 'Open an issue on the GitHub repository with the page, the sentence and, ideally, the source that contradicts it. Corrections are tracked in the open and credited in the commit history.',
+  },
+];
 ---
 
 <PageLayout
   title="Editorial standards"
   kicker="About"
-  description="Accuracy, honesty, and traceable sources are the whole point of the project. Here is exactly how pages are written, sourced, reviewed, and corrected."
+  description="Accuracy, honesty, and traceable sources are the whole point of the project. Here is exactly what the site covers, how pages are written, sourced, illustrated, reviewed and corrected, what it deliberately will not do, and how to reuse or cite it."
+  updated="2026"
 >
-  <p>
+  <p class="page-lede">
     melanocortin.com is an open, educational reference on the melanocortin
     system — the POMC-derived peptides, the MC1R–MC5R receptors, and the
     therapeutics that target them. It is written to serve three audiences on the
@@ -21,7 +54,47 @@ import PageLayout from '../layouts/PageLayout.astro';
     ourselves to is higher than "sounds right." Every substantive claim should be
     traceable to a primary source, uncertainty should be stated rather than
     hidden, and the writing should never sell you anything. This page explains how
-    we try to live up to that.
+    we try to live up to that — and where we have not yet got there.
+  </p>
+
+  <h2>Why this site exists</h2>
+  <p>
+    The melanocortin system is one of the best-understood signalling families in
+    human biology and one of the worst-served on the open web. The science lives
+    in dense journals on one side; on the other, a grey market in injectable
+    peptides has produced a large volume of hype, half-truths and forum lore, much
+    of it written to sell. Between the two there is very little: a reader who
+    wants to know what MC4R actually does, why a tanning peptide causes nausea, or
+    what a Phase 3 result did and did not show has nowhere credible to go that is
+    also readable. The GLP-1 era has pulled a large audience into caring about the
+    biology of appetite as participants rather than spectators, and for that
+    audience the melanocortin receptors are the next node worth understanding.
+    This site is the in-between: rigorous enough to cite, plain enough to read.
+  </p>
+
+  <h2>What the site covers, and what it does not</h2>
+  <p>
+    The scope is the system and the medicines built on it. That means the{' '}
+    <a href="/system">POMC peptides</a> and how they are cut; the{' '}
+    <a href="/receptors">five receptors</a>, each on its own page; the
+    endogenous brakes <a href="/asip">ASIP</a> and <a href="/agrp">AgRP</a>; the
+    receptors' <a href="/structures">structural biology</a> and{' '}
+    <a href="/binding-matrix">pharmacology</a>; the physiology they run —
+    pigment, appetite, the adrenal axis, inflammation, sodium balance; the{' '}
+    <a href="/genetics">genetics</a> of what happens when they vary; every
+    approved drug in <a href="/therapeutics">therapeutics</a> and every
+    investigational one in the <a href="/pipeline">pipeline</a>; and the
+    grey-market compounds, <a href="/melanotan">melanotan II</a> and PT-141,
+    treated as pharmacology to be understood rather than products to be sourced.
+  </p>
+  <p>
+    What it does not cover is deliberate. There are no dosing charts, no cycle
+    guides, no vendor comparisons, no reconstitution instructions and no
+    "protocols," for approved drugs or unapproved ones. Those pages exist
+    elsewhere and are precisely the content this site was built as an alternative
+    to. Where a page discusses a grey-market compound, it explains what the
+    molecule does and why its effects are inseparable from its mechanism, and it
+    stops there.
   </p>
 
   <h2>Who writes and edits this</h2>
@@ -39,32 +112,96 @@ import PageLayout from '../layouts/PageLayout.astro';
     claims, and we will not blur them. When named, credentialed review is in
     place, it will appear on the page and be described here.
   </p>
+  <p>
+    Drafting is assisted by AI writing tools, and the repository's commit history
+    records that openly. What the tools do not do is decide what is true. Every
+    reference is resolved against PubMed by its identifier and checked against the
+    title, journal and year it is cited as; every claim about a trial is checked
+    against the trial's own publication or disclosure; and a human editor reviews
+    and merges every change before it is published. A citation that does not
+    support its sentence is a defect we want to hear about, whatever produced it.
+  </p>
+
+  <h2>What a page must have before it ships</h2>
+  <p>
+    Each content page is built to the same shape, so that a reader who has learned
+    to use one can use any of them.
+  </p>
+  <ul>
+    <li>
+      <strong>A byline and a dated last-update</strong>, shown at the top. The
+      date is the year the page was last checked against current sources.
+    </li>
+    <li>
+      <strong>Key takeaways</strong> — the four to six sentences a reader in a
+      hurry needs, written to be correct on their own.
+    </li>
+    <li>
+      <strong>Numbered citations in the text</strong>, each resolving to a
+      reference at the foot of the page with a link to the original.
+    </li>
+    <li>
+      <strong>Plain statements of uncertainty.</strong> Where the science is
+      early, contested or extrapolated from animals, the page says so in the
+      sentence, not in a footnote.
+    </li>
+    <li>
+      <strong>A "what this is not" note</strong> on every drug and peptide page,
+      restating that the page is education, not a protocol.
+    </li>
+    <li>
+      <strong>Common questions</strong>, answered in a paragraph each, for the
+      reader who arrived with one specific question.
+    </li>
+  </ul>
 
   <h2>How we source claims</h2>
   <p>
-    Claims of fact link to a shared, citeable source registry so you can check the
-    original rather than take our word for it. In rough order of preference, we
-    rely on:
+    Claims of fact link to a citeable source so you can check the original rather
+    than take our word for it. In rough order of preference, we rely on:
   </p>
   <ul>
     <li>
       <strong>Peer-reviewed primary literature and authoritative reviews</strong>
-      — accessed through PubMed / PMC, and cited with PMIDs or DOIs.
+      — accessed through PubMed / PMC, and cited with PMIDs or DOIs. Primary
+      papers are preferred to reviews, and the original discovery is cited
+      alongside the modern synthesis where both matter.
     </li>
     <li>
       <strong>Regulatory documents</strong> — FDA approvals and prescribing
-      information (via DailyMed), and equivalent agency records, for anything
-      about what a drug is approved to do.
+      information, and equivalent agency records, for anything about what a drug
+      is approved to do.
     </li>
     <li>
-      <strong>Primary company disclosures</strong> — trial results and filings,
-      used carefully and labelled as the interested-party sources they are.
+      <strong>Primary company disclosures</strong> — trial results, press
+      releases and filings, used for pipeline status when nothing peer-reviewed
+      yet exists, and always labelled as the interested-party sources they are.
+    </li>
+    <li>
+      <strong>Reputable trade and medical press</strong> — for regulatory events
+      such as an application being accepted, where the news report is the most
+      accessible dated record.
     </li>
   </ul>
   <p>
     We prefer the strongest available evidence, name the source in the text where
     it matters, and treat press releases and marketing as claims to verify, not
-    facts to repeat.
+    facts to repeat. Two kinds of source are not used: aggregated topic pages
+    that summarise other summaries, and anything that is itself trying to sell
+    the compound it describes.
+  </p>
+
+  <h2>How figures are made</h2>
+  <p>
+    Every diagram on the site is original: drawn as code, in the open, for the
+    page it sits on. None are stock images or redrawn from a paper's figure.
+    Each is a schematic of a mechanism — how MRAP escorts MC2R to the surface, why
+    the mouse cannot make β-MSH, where the γ-MSH salt loop breaks — with a
+    caption that states what it shows and a source line naming the papers the
+    schematic is drawn after. Figures are checked in both light and dark mode so
+    that no label is lost in either, and they carry text descriptions for readers
+    using screen readers. Where a figure simplifies, the caption says so;
+    "schematic, not to scale" means exactly that.
   </p>
 
   <h2>How pages are reviewed and kept current</h2>
@@ -73,16 +210,24 @@ import PageLayout from '../layouts/PageLayout.astro';
     <li>
       Therapeutic and clinical-pipeline information dates quickly, so it is
       verified against current primary sources before publication and revisited
-      as the field moves.
+      as the field moves. The <a href="/pipeline">pipeline</a> page is a dated
+      snapshot and says so; it lists discontinued programmes as well as live
+      ones, because in this field the failures explain the successes.
     </li>
     <li>
       Dates are shown to the year. We would rather commit to an honest
-      "reviewed this year" than imply a false-precision timestamp we can't stand
+      "updated this year" than imply a false-precision timestamp we can't stand
       behind.
     </li>
     <li>
       Where the science is uncertain, contested, or genuinely unknown, the page
-      says so — plainly — rather than papering over it.
+      says so — plainly — rather than papering over it. Animal findings are
+      labelled as animal findings; a single small trial is called a signal, not a
+      result.
+    </li>
+    <li>
+      The full history of every page is public in the repository's commit log,
+      so a reader can see what changed, when, and on what evidence.
     </li>
   </ul>
 
@@ -108,24 +253,33 @@ import PageLayout from '../layouts/PageLayout.astro';
     advice, diagnosis, or treatment, and it is no substitute for a qualified
     clinician. We do not provide dosing, sourcing, or usage instructions for any
     drug, approved or otherwise. Never disregard professional medical advice, or
-    delay seeking it, because of something you read here.
+    delay seeking it, because of something you read here. If you are considering
+    any of the compounds discussed here, including the unapproved ones, the
+    right next step is a conversation with a clinician who knows your history,
+    not a forum.
   </p>
 
-  <h2>Corrections</h2>
+  <h2 id="corrections" class="scroll-mt-24">Corrections</h2>
   <p>
     Found an error or an out-of-date claim? Corrections are welcome and credited.
     The fastest way to reach us is to{' '}
     <a href="https://github.com/utilityincoming/melanocortin/issues">open an issue
-    on GitHub</a>, where changes are tracked in the open. We treat a well-sourced
-    correction as a gift, not a nuisance — flagging a mistake makes the reference
-    better for everyone who reads it next.
+    on GitHub</a>, where changes are tracked in the open. The most useful report
+    names the page, quotes the sentence, and points to the source that contradicts
+    it. We treat a well-sourced correction as a gift, not a nuisance — flagging a
+    mistake makes the reference better for everyone who reads it next.
   </p>
 
-  <h2>Licensing</h2>
+  <h2>Licensing and how to cite</h2>
   <p>
     Site content — text and diagrams — is published under{' '}
     <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons
     Attribution 4.0 (CC BY 4.0)</a>. The source code is released under the MIT
-    license. Reuse it; just credit the source.
+    license. Reuse it; just credit the source. A sufficient citation names the
+    page, the site and the year shown on the page — for example, "MC2R — the
+    ACTH receptor. melanocortin.com, 2026." — with a link. The figures' SVG source
+    is in the public repository and may be adapted under the same licence.
   </p>
+
+  <FAQ items={faqs} />
 </PageLayout>

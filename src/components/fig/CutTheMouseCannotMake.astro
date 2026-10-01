@@ -1,0 +1,115 @@
+---
+// cut-the-mouse-cannot-make — the central idea of the β-MSH page. Both humans
+// and rodents cut POMC into ACTH and β-lipotropin, and both cut ACTH down to
+// α-MSH. In humans, prohormone convertase 2 then cuts β-lipotropin to
+// γ-lipotropin and β-endorphin, and γ-lipotropin at a pair of basic residues
+// to release β-MSH. Rodent POMC lacks that dibasic site, so processing stops
+// at γ-lipotropin and no β-MSH is made. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="ctm-fig"
+  viewBox="0 0 640 318"
+  role="img"
+  aria-labelledby="ctm-t ctm-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="ctm-t">The cut the mouse cannot make: how β-MSH is released from POMC in humans but not rodents</title>
+  <desc id="ctm-d"
+    >Two rows compare POMC processing. In both humans and rodents, POMC is cut
+    into an N-terminal fragment, ACTH and β-lipotropin, and ACTH is cut further
+    to α-MSH. In the human row, β-lipotropin is cut to γ-lipotropin and
+    β-endorphin, and γ-lipotropin is cut at a pair of basic residues to release
+    β-MSH, a 22-amino-acid peptide. In the rodent row the same steps occur, but
+    γ-lipotropin has no dibasic cut site, so processing stops there and no
+    β-MSH is produced.</desc
+  >
+
+  <!-- ===== HUMAN ROW ===== -->
+  <text x="20" y="30" class="row">Human</text>
+  <!-- POMC bar -->
+  <rect class="seg" x="20" y="42" width="110" height="24" rx="6" />
+  <text x="75" y="58" text-anchor="middle" class="seg-t">N-terminal</text>
+  <rect class="seg" x="136" y="42" width="130" height="24" rx="6" />
+  <text x="201" y="58" text-anchor="middle" class="seg-t">ACTH</text>
+  <rect class="seg lph" x="272" y="42" width="348" height="24" rx="6" />
+  <text x="446" y="58" text-anchor="middle" class="seg-t">β-lipotropin</text>
+  <text x="20" y="84" class="sub">POMC, cut at pairs of basic residues by prohormone convertases</text>
+
+  <!-- ACTH → α-MSH (shared) -->
+  <path class="cut" d="M201 66 L201 100" />
+  <polygon class="cut-arrow" points="196,92 206,92 201,100" />
+  <rect class="seg out" x="156" y="100" width="90" height="22" rx="6" />
+  <text x="201" y="115" text-anchor="middle" class="seg-t">α-MSH</text>
+
+  <!-- β-LPH → γ-LPH + β-endorphin -->
+  <path class="cut" d="M446 66 L446 100" />
+  <polygon class="cut-arrow" points="441,92 451,92 446,100" />
+  <rect class="seg lph" x="272" y="100" width="190" height="22" rx="6" />
+  <text x="367" y="115" text-anchor="middle" class="seg-t">γ-lipotropin</text>
+  <rect class="seg" x="468" y="100" width="152" height="22" rx="6" />
+  <text x="544" y="115" text-anchor="middle" class="seg-t">β-endorphin</text>
+
+  <!-- γ-LPH → β-MSH (human only) -->
+  <path class="cut hot" d="M367 122 L367 156" />
+  <polygon class="cut-arrow hot" points="362,148 372,148 367,156" />
+  <text x="378" y="142" class="mini hot-t">a pair of basic residues · the cut site</text>
+  <rect class="seg hot" x="312" y="156" width="110" height="24" rx="6" />
+  <text x="367" y="172" text-anchor="middle" class="seg-t hot-t">β-MSH</text>
+  <text x="430" y="172" class="tag">22 amino acids · a second ligand for MC4R</text>
+
+  <!-- divider -->
+  <line class="divider" x1="20" y1="200" x2="620" y2="200" />
+
+  <!-- ===== RODENT ROW ===== -->
+  <text x="20" y="226" class="row">Mouse &amp; rat <tspan class="sub">— after the same first cuts</tspan></text>
+  <rect class="seg" x="20" y="238" width="110" height="24" rx="6" />
+  <text x="75" y="254" text-anchor="middle" class="seg-t">N-terminal</text>
+  <rect class="seg" x="136" y="238" width="130" height="24" rx="6" />
+  <text x="201" y="254" text-anchor="middle" class="seg-t">ACTH</text>
+  <rect class="seg lph" x="272" y="238" width="190" height="24" rx="6" />
+  <text x="367" y="254" text-anchor="middle" class="seg-t">γ-lipotropin</text>
+  <rect class="seg" x="468" y="238" width="152" height="24" rx="6" />
+  <text x="544" y="254" text-anchor="middle" class="seg-t">β-endorphin</text>
+
+  <!-- α-MSH still made -->
+  <path class="cut" d="M201 262 L201 284" />
+  <polygon class="cut-arrow" points="196,276 206,276 201,284" />
+  <text x="201" y="302" text-anchor="middle" class="seg-t">α-MSH — made as usual</text>
+
+  <!-- no cut at γ-LPH -->
+  <line class="nocut" x1="357" y1="262" x2="377" y2="284" />
+  <line class="nocut" x1="377" y1="262" x2="357" y2="284" />
+  <text x="367" y="302" text-anchor="middle" class="seg-t dim-t">no dibasic site · no β-MSH</text>
+</svg>
+
+<style>
+  .ctm-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .row { font-size: 12px; font-weight: 700; fill: var(--text); letter-spacing: 0.02em; }
+  .seg { fill: none; stroke: var(--border); stroke-width: 1.2; }
+  .seg.lph { fill: var(--accent-soft); stroke: var(--border); }
+  .seg.out { stroke: var(--text-muted); }
+  .seg.hot { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+  .seg-t { font-size: 11px; fill: var(--text); }
+  .seg-t.hot-t { font-weight: 700; fill: var(--accent-strong); }
+  .dim-t { fill: var(--text-muted); }
+  .sub { font-size: 10.5px; fill: var(--text-muted); }
+  .mini { font-size: 9.5px; font-weight: 600; }
+  .mini.hot-t { fill: var(--accent-strong); }
+  .tag { font-size: 9.5px; font-style: italic; fill: var(--accent-strong); opacity: 0.85; }
+  .cut { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .cut.hot { stroke: var(--accent); stroke-width: 2; }
+  .cut-arrow { fill: var(--text-muted); }
+  .cut-arrow.hot { fill: var(--accent); }
+  .nocut { stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; opacity: 0.7; }
+  .divider { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; }
+</style>

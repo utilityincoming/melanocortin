@@ -1,0 +1,89 @@
+---
+// signs-and-symptoms — the central idea of the PL-9643 page. Dry-eye trials
+// are judged on two kinds of endpoint at once: what the patient feels
+// (symptoms) and what the clinician measures (signs). MELODY-1 met its
+// co-primary symptom endpoint and several secondary symptom endpoints, but
+// not its co-primary sign endpoint, so the remaining MELODY trials must show
+// both. Schematic scoreboard; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="sas-fig"
+  viewBox="0 0 640 300"
+  role="img"
+  aria-labelledby="sas-t sas-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="sas-t">Signs and symptoms: what the Phase 3 MELODY-1 trial of PL-9643 did and did not show</title>
+  <desc id="sas-d"
+    >A two-column scoreboard. Left, symptoms — what the patient feels: the
+    co-primary ocular-pain endpoint was met, several secondary symptom
+    endpoints were met, improvement appeared by week two and kept building to
+    week twelve. Right, signs — what the clinician measures: the co-primary
+    conjunctival-staining endpoint was not met and secondary sign endpoints
+    trended but were not significant. Below, the safety line: fewer ocular
+    adverse events on drug than on vehicle. The remaining trials, MELODY-2 and
+    MELODY-3, must show both columns.</desc
+  >
+
+  <text x="20" y="30" class="row">MELODY-1 · 575 patients · 12 weeks</text>
+
+  <!-- symptoms column -->
+  <rect class="card hot" x="20" y="46" width="296" height="168" rx="12" />
+  <text x="168" y="70" text-anchor="middle" class="head hot-t">SYMPTOMS</text>
+  <text x="168" y="86" text-anchor="middle" class="sub">what the patient feels</text>
+
+  <circle class="dot ok" cx="44" cy="110" r="6" />
+  <text x="58" y="114" class="line">ocular pain · co-primary · <tspan class="ok-t">met</tspan></text>
+  <circle class="dot ok" cx="44" cy="136" r="6" />
+  <text x="58" y="140" class="line">several secondary symptoms · <tspan class="ok-t">met</tspan></text>
+  <circle class="dot ok" cx="44" cy="162" r="6" />
+  <text x="58" y="166" class="line">relief from week 2, still building at week 12</text>
+  <text x="168" y="198" text-anchor="middle" class="tag">the first column cleared</text>
+
+  <!-- signs column -->
+  <rect class="card" x="324" y="46" width="296" height="168" rx="12" />
+  <text x="472" y="70" text-anchor="middle" class="head">SIGNS</text>
+  <text x="472" y="86" text-anchor="middle" class="sub">what the clinician measures</text>
+
+  <circle class="dot no" cx="348" cy="110" r="6" />
+  <text x="362" y="114" class="line">conjunctival staining · co-primary · <tspan class="no-t">not met</tspan></text>
+  <circle class="dot no" cx="348" cy="136" r="6" />
+  <text x="362" y="140" class="line">secondary signs · trended, not significant</text>
+  <circle class="dot open" cx="348" cy="162" r="6" />
+  <text x="362" y="166" class="line">the measure dry-eye drugs find hardest to move</text>
+  <text x="472" y="198" text-anchor="middle" class="tag">the second column still open</text>
+
+  <!-- safety line -->
+  <line class="divider" x1="20" y1="232" x2="620" y2="232" />
+  <text x="20" y="254" class="line">Safety: fewer ocular adverse events on PL-9643 than on vehicle (5.6% vs 6.3%), fewer discontinuations.</text>
+  <text x="20" y="278" class="line hot-t">MELODY-2 and MELODY-3 must show both columns at once — the bar a dry-eye drug has to clear.</text>
+</svg>
+
+<style>
+  .sas-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .row { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; fill: var(--text-muted); }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.hot { stroke: var(--accent); stroke-width: 1.5; }
+  .head { font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; fill: var(--text); }
+  .head.hot-t { fill: var(--accent-strong); }
+  .line { font-size: 11px; fill: var(--text); }
+  .line.hot-t { fill: var(--accent-strong); font-weight: 600; }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .tag { font-size: 9.5px; font-style: italic; fill: var(--accent-strong); opacity: 0.85; }
+  .ok-t { font-weight: 700; fill: var(--accent-strong); }
+  .no-t { font-weight: 700; fill: var(--text-muted); }
+  .dot.ok { fill: var(--accent); }
+  .dot.no { fill: none; stroke: var(--text-muted); stroke-width: 1.5; }
+  .dot.open { fill: none; stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 2 2; }
+  .divider { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; }
+</style>

@@ -1,0 +1,128 @@
+---
+// brake-in-its-place — the central idea of the ASIP page. Left: ASIP where it
+// belongs, made in the hair follicle and skin as a paracrine signal, blocking
+// MC1R on the melanocyte so the hair switches from eumelanin to pheomelanin —
+// the agouti band. Right: ASIP everywhere, as in the lethal-yellow mouse and
+// the human ASIP duplication, where the same protein also reaches MC4R in the
+// hypothalamus and the result is a yellow or red coat plus obesity, overgrowth
+// and high insulin. One brake, two outcomes decided by where it is released.
+// Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="bip-fig"
+  viewBox="0 0 640 330"
+  role="img"
+  aria-labelledby="bip-t bip-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="bip-t">A brake in its place, and a brake everywhere: ASIP at MC1R versus ASIP reaching MC4R</title>
+  <desc id="bip-d"
+    >Two panels. Left, ASIP in its place: released locally in the hair follicle,
+    it blocks MC1R on the melanocyte, switching pigment from dark eumelanin to
+    red-yellow pheomelanin and producing the banded agouti hair. Right, ASIP
+    everywhere: when the gene is expressed in every tissue, as in the
+    lethal-yellow mouse or the human ASIP duplication, the protein also reaches
+    MC4R in the hypothalamus, where it mimics AgRP. The result is a uniformly
+    yellow or red coat together with obesity, overgrowth and high insulin.</desc
+  >
+
+  <!-- panel frames -->
+  <rect class="frame" x="16" y="16" width="296" height="298" rx="14" />
+  <rect class="frame hot" x="328" y="16" width="296" height="298" rx="14" />
+
+  <!-- ===== LEFT: in its place ===== -->
+  <text x="164" y="42" text-anchor="middle" class="state">IN ITS PLACE</text>
+  <text x="164" y="60" text-anchor="middle" class="state-s">ASIP made only in the hair follicle</text>
+
+  <rect class="card src" x="94" y="76" width="140" height="40" rx="10" />
+  <text x="164" y="100" text-anchor="middle" class="card-t">ASIP · paracrine</text>
+
+  <path class="branch" d="M164 116 L164 146" />
+  <polygon class="arrow dimfill" points="159,138 169,138 164,146" />
+
+  <rect class="card" x="94" y="146" width="140" height="48" rx="10" />
+  <text x="164" y="166" text-anchor="middle" class="head">MC1R blocked</text>
+  <text x="164" y="183" text-anchor="middle" class="sub">on the melanocyte</text>
+
+  <path class="branch" d="M164 194 L164 224" />
+  <polygon class="arrow dimfill" points="159,216 169,216 164,224" />
+
+  <!-- banded hair -->
+  <rect class="hair dark" x="60" y="228" width="208" height="14" rx="7" />
+  <rect class="hair light" x="124" y="228" width="60" height="14" />
+  <text x="164" y="262" text-anchor="middle" class="head">the agouti band</text>
+  <text x="164" y="280" text-anchor="middle" class="sub">a pulse of pheomelanin in a dark hair</text>
+  <text x="164" y="300" text-anchor="middle" class="tag">pigment only — nothing else changes</text>
+
+  <!-- ===== RIGHT: everywhere ===== -->
+  <text x="476" y="42" text-anchor="middle" class="state hot-t">EVERYWHERE</text>
+  <text x="476" y="60" text-anchor="middle" class="state-s">lethal-yellow mouse · human ASIP duplication</text>
+
+  <rect class="card src hot" x="406" y="76" width="140" height="40" rx="10" />
+  <text x="476" y="100" text-anchor="middle" class="card-t">ASIP · in every tissue</text>
+
+  <!-- two branches -->
+  <path class="branch" d="M476 116 C 476 130, 404 130, 404 146" />
+  <polygon class="arrow dimfill" points="399,138 409,138 404,146" />
+  <path class="branch hot" d="M476 116 C 476 130, 542 130, 542 146" />
+  <polygon class="arrow" points="537,138 547,138 542,146" />
+
+  <rect class="card" x="340" y="146" width="128" height="48" rx="10" />
+  <text x="404" y="166" text-anchor="middle" class="head">MC1R blocked</text>
+  <text x="404" y="183" text-anchor="middle" class="sub">skin, all over</text>
+
+  <rect class="card hot" x="472" y="146" width="140" height="48" rx="10" />
+  <text x="542" y="166" text-anchor="middle" class="head hot-t">MC4R blocked</text>
+  <text x="542" y="183" text-anchor="middle" class="sub">in the brain · mimics AgRP</text>
+
+  <path class="branch" d="M404 194 L404 224" />
+  <polygon class="arrow dimfill" points="399,216 409,216 404,224" />
+  <path class="branch hot" d="M542 194 L542 224" />
+  <polygon class="arrow" points="537,216 547,216 542,224" />
+
+  <!-- uniform hair -->
+  <rect class="hair light" x="350" y="228" width="108" height="14" rx="7" />
+  <text x="404" y="262" text-anchor="middle" class="head">yellow / red coat</text>
+  <text x="404" y="280" text-anchor="middle" class="sub">no band — the brake stays on</text>
+
+  <rect class="card warn" x="482" y="226" width="120" height="66" rx="10" />
+  <text x="542" y="246" text-anchor="middle" class="head hot-t">obesity</text>
+  <text x="542" y="262" text-anchor="middle" class="line">overgrowth</text>
+  <text x="542" y="278" text-anchor="middle" class="line">high insulin</text>
+
+  <text x="476" y="306" text-anchor="middle" class="tag">the same protein, in the wrong tissue</text>
+</svg>
+
+<style>
+  .bip-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .frame { fill: none; stroke: var(--border); stroke-width: 1; }
+  .frame.hot { stroke: var(--accent); stroke-width: 1.2; }
+  .state { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; fill: var(--text); }
+  .state.hot-t { fill: var(--accent-strong); }
+  .state-s { font-size: 10px; fill: var(--text-muted); }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.src { fill: var(--accent-soft); stroke: var(--border); }
+  .card.src.hot, .card.hot, .card.warn { stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 11.5px; font-weight: 600; fill: var(--text); }
+  .head { font-size: 11.5px; font-weight: 600; fill: var(--text); }
+  .head.hot-t { fill: var(--accent-strong); }
+  .line { font-size: 11px; fill: var(--text-muted); }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .tag { font-size: 9.5px; font-style: italic; fill: var(--accent-strong); opacity: 0.85; }
+  .hair.dark { fill: var(--text); opacity: 0.8; }
+  .hair.light { fill: var(--accent); opacity: 0.85; }
+  .branch { fill: none; stroke: var(--border); stroke-width: 2; }
+  .branch.hot { stroke: var(--accent); stroke-width: 2; opacity: 0.6; }
+  .arrow { fill: var(--accent); opacity: 0.6; }
+  .arrow.dimfill { fill: var(--border); opacity: 1; }
+</style>
