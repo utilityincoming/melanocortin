@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Byline from '../components/Byline.astro';
 import FAQ from '../components/FAQ.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import { pipeline, stages } from '../data/pipeline';
 
 // Warm pigment ramp: light → deep as an agent advances toward approval.
@@ -24,15 +27,15 @@ const counts = {
   Approved: pipeline.filter((e) => e.status === 'approved').length,
   'Phase 3': pipeline.filter((e) => e.status === 'active' && e.stage === 3).length,
   'Phase 2': pipeline.filter((e) => e.status === 'active' && e.stage === 2).length,
-  Discovery: pipeline.filter((e) => e.status === 'active' && e.stage <= 1).length,
-  Paused: pipeline.filter((e) => e.status === 'discontinued').length,
+  'Early stage': pipeline.filter((e) => e.status === 'active' && e.stage <= 1).length,
+  Discontinued: pipeline.filter((e) => e.status === 'discontinued').length,
 };
 const barColor: Record<string, string> = {
   Approved: 'var(--color-pigment-700)',
   'Phase 3': 'var(--color-pigment-500)',
   'Phase 2': 'var(--color-pigment-400)',
-  Discovery: 'var(--color-pigment-300)',
-  Paused: 'var(--color-ink-400)',
+  'Early stage': 'var(--color-pigment-300)',
+  Discontinued: 'var(--color-ink-400)',
 };
 const total = Object.values(counts).reduce((a, b) => a + b, 0);
 const segments = Object.entries(counts).filter(([, n]) => n > 0);
@@ -40,18 +43,125 @@ const segments = Object.entries(counts).filter(([, n]) => n > 0);
 const faqs = [
   {
     q: 'How many melanocortin drugs are approved?',
-    a: 'Four are FDA-approved: setmelanotide (MC4R, rare genetic and hypothalamic obesity), afamelanotide (MC1R, erythropoietic protoporphyria), bremelanotide (sexual desire), and the long-standing repository corticotropin / ACTH (inflammatory and seizure indications).',
+    a: 'Four are FDA-approved: setmelanotide (MC4R, for rare genetic obesity and, since 2026, acquired hypothalamic obesity), afamelanotide (MC1R, erythropoietic protoporphyria), bremelanotide (sexual desire), and the long-standing repository corticotropin / ACTH (inflammatory and seizure indications). No melanocortin medicine was approved before 2019 apart from ACTH itself.',
   },
   {
     q: 'What melanocortin drugs are in clinical trials?',
-    a: 'Late-stage candidates include the oral MC1R agonist dersimelagon (positive Phase 3 in protoporphyria) and Palatin’s ophthalmic PL-9643 (Phase 3, dry eye). In Phase 2 are PL-8177 (oral, ulcerative colitis) and the MC4R antagonist TCMCB07 (cachexia), with dual MC3R/MC4R and biased MC4R agonists for obesity in discovery.',
+    a: 'In Phase 3: the oral MC1R agonist dersimelagon (under FDA priority review for protoporphyria), the oral MC2R antagonist atumelnant (congenital adrenal hyperplasia), afamelanotide in vitiligo, and the ophthalmic PL-9643 (dry eye). In Phase 2: the oral MC4R agonist bivamelagon and the weekly RM-718 (hypothalamic obesity), bremelanotide combined with tirzepatide (obesity), PL-8177 (ulcerative colitis), mifomelatide (cancer cachexia), and dersimelagon in systemic sclerosis.',
+  },
+  {
+    q: 'Why are melanocortin drugs being combined with GLP-1 drugs?',
+    a: 'Because they act on different parts of the appetite circuit. GLP-1 drugs signal from the gut and brainstem; MC4R agonists act on the hypothalamic receptor that integrates those signals. Early trials suggest the combination adds weight loss and may blunt the regain that follows stopping a GLP-1 drug. Every current MC4R programme for general obesity is positioned as a GLP-1 add-on as well as a monotherapy.',
+  },
+  {
+    q: 'Why did earlier MC4R obesity drugs fail?',
+    a: 'Mostly blood pressure. In 2009 a Lilly MC4R agonist raised blood pressure and heart rate in obese volunteers, and the field concluded that switching MC4R on sympathetically activates the cardiovascular system. Later agonists, including setmelanotide, were engineered to avoid that, and the rare-disease route let them show benefit in people whose MC4R pathway was genuinely broken. The current obesity candidates are built on what those failures taught.',
+  },
+  {
+    q: 'Which melanocortin receptors have no drug in development?',
+    a: 'MC5R is the only one. MC1R, MC2R, MC3R and MC4R each have at least one agent in the clinic. MC5R is studied for acne and inflammation but has not produced a clinical candidate.',
+  },
+  {
+    q: 'What is an MC2R antagonist for?',
+    a: 'Blocking ACTH at the adrenal. In congenital adrenal hyperplasia and ACTH-dependent Cushing’s syndrome, too much ACTH drives the adrenal to overproduce androgens or cortisol; an MC2R antagonist cuts that response at its receptor whatever the source of the ACTH. Atumelnant, the first such drug, reduced adrenal androgens by up to roughly 80% in a Phase 2 study and is now in Phase 3.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Prindle CR, Bennett TL, Rajewski BH, et al.',
+    title:
+      'The melanocortin receptors as targets for general obesity: contextualizing clinical failures and analyzing future perspectives.',
+    source: 'Front Endocrinol (Lausanne). 17:1797586.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/41907544/',
+  },
+  {
+    authors: 'Greenfield JR, Miller JW, Keogh JM, et al.',
+    title: 'Modulation of blood pressure by central melanocortinergic pathways.',
+    source: 'N Engl J Med. 360(1):44–52.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19092146/',
+  },
+  {
+    authors: 'Healio Endocrinology.',
+    title: 'FDA approves setmelanotide for acquired hypothalamic obesity.',
+    source: 'News report on the March 2026 label expansion and the Phase 3 TRANSCEND results.',
+    year: '2026',
+    url: 'https://www.healio.com/news/endocrinology/20260320/fda-expands-approval-for-setmelanotide-to-patients-with-hypothalamic-obesity',
+  },
+  {
+    authors: 'Dermatology Times.',
+    title: 'Dersimelagon NDA accepted by FDA with priority review for EPP, XLP.',
+    source: 'News report on the 2026 NDA acceptance and review timeline.',
+    year: '2026',
+    url: 'https://www.dermatologytimes.com/view/dersimelagon-nda-accepted-fda-priority-review-epp-xlp',
+  },
+  {
+    authors: 'Srirangalingam U, Bruera D, Ayala A, et al.',
+    title:
+      'Once-daily oral atumelnant (CRN04894) induces rapid, substantial, and sustained reductions of androstenedione and 17-hydroxyprogesterone in adults with classical congenital adrenal hyperplasia: interim results from a 12-week, phase 2, open-label study.',
+    source: 'J Endocr Soc. 9(Suppl 1):bvaf149.272 (OR07-06).',
+    year: '2025',
+    url: 'https://academic.oup.com/jes/article/9/Supplement_1/bvaf149.272/8298490',
+  },
+  {
+    authors: 'Crinetics Pharmaceuticals.',
+    title: 'Crinetics announces first patient dosed in pivotal adult trial of atumelnant in congenital adrenal hyperplasia (CAH).',
+    source: 'Company announcement of the CALM-CAH Phase 3 trial.',
+    year: '2025',
+    url: 'https://crinetics.com/press-releases/crinetics-announces-first-patient-dosed-in-pivotal-adult-trial-of-atumelnant-in-congenital-adrenal-hyperplasia-cah/',
+  },
+  {
+    authors: 'Seiler JL, Impastato AC, Zhang EX, et al.',
+    title: 'Dual activation of MC3R and MC4R drives weight loss and reduces food intake in male primates with obesity.',
+    source: 'Nat Commun. 17:4808.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42215442/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Palatin announces MC4R agonist bremelanotide co-administered with GLP-1/GIP tirzepatide meets primary endpoint in Phase 2 obesity study.',
+    source: 'Company announcement of the BMT-801 topline results.',
+    year: '2025',
+    url: 'https://palatin.com/press_releases/palatin-announces-mc4r-agonist-bremelanotide-co-administered-with-glp-1-gip-tirzepatide-meets-primary-endpoint-in-phase-2-obesity-study/',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title: 'Rhythm Pharmaceuticals reports first quarter 2026 financial results and business update.',
+    source: 'Company update on the bivamelagon Phase 3 plan and the RM-718 programme.',
+    year: '2026',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-reports-first-quarter-2026-financial',
+  },
+  {
+    authors: 'Dermatology Times.',
+    title: 'Clinuvel completes enrollment in Phase III afamelanotide vitiligo trial.',
+    source: 'News report on the CUV105 trial.',
+    year: '2025',
+    url: 'https://www.dermatologytimes.com/view/clinuvel-completes-enrollment-in-phase-iii-afamelanotide-vitiligo-trial',
+  },
+  {
+    authors: 'Shi J, Xiong J, Hao C, et al.',
+    title: 'MC4R antagonists: a promising new hope for the treatment of cachexia and wasting diseases.',
+    source: 'Pharmazie. 81(1–4):51802.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42057680/',
+  },
+  {
+    authors: 'Tao YX, Ji RL.',
+    title:
+      'Small molecule ligands for the melanocortin-4 receptor: pharmacology, biased signaling, and pharmacoperone potential.',
+    source: 'Mol Cell Endocrinol. 621:112876.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42508632/',
   },
 ];
 ---
 
 <BaseLayout
   title="Melanocortin therapeutics pipeline — a 2026 snapshot — melanocortin.com"
-  description="A dated snapshot of melanocortin drugs across development: four approved and a deepening pipeline of agonists and antagonists in Phase 2–3 across obesity, dermatology, ophthalmology, and inflammation."
+  description="A dated snapshot of melanocortin drugs across development: four approved and a deepening pipeline of agonists and antagonists in Phase 2–3 across obesity, dermatology, ophthalmology, the adrenal axis, and inflammation — with what moved this year, what failed, and what to watch."
   pageType="article"
   dateModified="2026"
 >
@@ -63,7 +173,8 @@ const faqs = [
     <p class="mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
       From <strong class="text-[var(--text)]">zero approved melanocortin medicines before 2019 to four today</strong>
       — with a deepening pipeline of agonists and antagonists behind them. A dated
-      snapshot of where the field stands.
+      snapshot of where the field stands, what moved this year, and what it has
+      learned from its failures.
     </p>
     <Byline updated="2026" />
 
@@ -161,6 +272,192 @@ const faqs = [
       <a href="/therapeutics" class="underline decoration-dotted hover:text-[var(--accent)]">therapeutics section</a>.
     </p>
 
+    <div class="mt-14 leading-relaxed [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_li]:mt-1.5 [&_li_a]:text-[var(--accent)] [&_li_a]:underline [&_li_a]:decoration-dotted [&_p]:mt-4 [&_p_a]:text-[var(--accent)] [&_p_a]:underline [&_p_a]:decoration-dotted [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5">
+      <h2>How to read the ladder</h2>
+      <p>
+        Each bar shows the furthest stage an agent has reached, not where it is
+        enrolling today, so a drug that has filed for approval still sits at
+        Phase 3 until a regulator says yes. The same molecule can appear twice
+        when it is being developed for two unrelated diseases, because the
+        evidence for one does not transfer to the other. Discontinued programmes
+        are kept rather than deleted: in this field the failures are as
+        instructive as the approvals, and several of them explain why the current
+        candidates are shaped the way they are.<Cite n={1} />
+      </p>
+
+      <h2>What moved in 2026</h2>
+      <p>
+        This was the year the pipeline broadened beyond the three receptors it had
+        lived on. Four things changed the map.
+      </p>
+      <ul>
+        <li>
+          <strong>Setmelanotide left rare genetics.</strong> In March the FDA
+          extended <a href="/setmelanotide">setmelanotide</a> to acquired
+          hypothalamic obesity — weight gain after damage to the hypothalamus,
+          typically from a craniopharyngioma or its surgery — on the strength of
+          the Phase 3 TRANSCEND trial, in which treated patients lost 15.8% of
+          BMI over a year against a 2.6% gain on placebo.<Cite n={3} /> It is the
+          first approved therapy for the condition and the first time an MC4R
+          agonist has been approved for an obesity that is not caused by a gene
+          variant. The whole story is on the{' '}
+          <a href="/hypothalamic-obesity">hypothalamic obesity</a> page.
+        </li>
+        <li>
+          <strong>An oral MC1R agonist reached the regulator.</strong>{' '}
+          <a href="/dersimelagon">Dersimelagon</a>, the first small-molecule MC1R
+          agonist, met its primary endpoint in the Phase 3 INSPIRE trial in
+          erythropoietic protoporphyria; its new drug application was accepted
+          with priority review in 2026, with a decision expected in early 2027,
+          and the programme changed hands from Tanabe to LEO Pharma.<Cite n={4} />
+          If approved it would be the first oral alternative to the afamelanotide
+          implant.
+        </li>
+        <li>
+          <strong>MC2R joined the pipeline.</strong> For thirty years the adrenal
+          ACTH receptor was a diagnostic target and nothing more. Atumelnant, an
+          oral MC2R antagonist, cut the androgen precursor androstenedione by up to
+          roughly 80% in adults with congenital adrenal hyperplasia in a 12-week
+          Phase 2 study,<Cite n={5} /> and in 2025–26 moved into a pivotal adult
+          Phase 3 and a paediatric Phase 2/3.<Cite n={6} /> It is the first drug
+          designed to turn a melanocortin receptor <em>off</em> at the adrenal, and
+          the biology that makes it feasible is explained on the{' '}
+          <a href="/receptors/mc2r">MC2R</a> page.
+        </li>
+        <li>
+          <strong>MC3R became a drug target in its own right.</strong> A 2026
+          primate study showed that an oral agonist activating both MC3R and MC4R
+          cut body weight by 11.7% at 13 weeks in obese macaques, almost entirely
+          as fat mass, and did more than a selective MC4R agonist
+          alone.<Cite n={7} /> Dual MC3R/MC4R agonism is now the stated strategy
+          of at least one company, and it moved the quieter appetite receptor
+          from a footnote to a design goal — see{' '}
+          <a href="/receptors/mc3r">MC3R</a>.
+        </li>
+      </ul>
+
+      <h2>Where each receptor stands</h2>
+      <p>
+        <strong><a href="/receptors/mc4r">MC4R</a> — agonists for obesity,
+        antagonists for wasting.</strong> This is the busiest lane. On the
+        agonist side, the question has shifted from <em>whether</em> MC4R
+        activation causes weight loss, which setmelanotide settled, to whether it
+        can be done in general obesity without raising blood pressure, and how it
+        pairs with GLP-1 drugs. Every current obesity programme is positioned as
+        a GLP-1 add-on: in Palatin's Phase 2 study, low-dose{' '}
+        <a href="/bremelanotide">bremelanotide</a> added to tirzepatide produced
+        more weight loss than tirzepatide alone and stopped the rapid regain that
+        followed withdrawing it.<Cite n={8} /> Rhythm's oral{' '}
+        <a href="/bivamelagon">bivamelagon</a> and weekly, MC1R-sparing RM-718
+        are both aimed first at hypothalamic obesity, with a Phase 3 of
+        bivamelagon planned for late 2026,<Cite n={9} /> and Palatin's oral PL-7737
+        has entered Phase 1. The mechanics of why MC4R activation helps where
+        GLP-1 leaves off are on the <a href="/glp1-appetite">GLP-1 and
+        appetite</a> page. On the antagonist side, blocking MC4R lifts the brake
+        on appetite, and mifomelatide (<a href="/tcmcb07">TCMCB07</a>) is in
+        Phase 2 for cancer cachexia; Pfizer's small-molecule{' '}
+        <a href="/pf-07258669">PF-07258669</a> validated the same target before
+        being shelved for business reasons.<Cite n={11} />
+      </p>
+      <p>
+        <strong><a href="/receptors/mc1r">MC1R</a> — from protoporphyria
+        outward.</strong> <a href="/afamelanotide">Afamelanotide</a> opened the
+        lane in 2019, and it is now in a fully enrolled Phase 3 in vitiligo,
+        combined with narrow-band UVB phototherapy, with results expected at the
+        end of 2026.<Cite n={10} /> Dersimelagon brings the first oral MC1R
+        agonist, and is also in Phase 2 for diffuse cutaneous systemic sclerosis,
+        where the receptor's anti-inflammatory rather than pigmentary action is
+        the point. Palatin's gut-restricted <a href="/pl-8177">PL-8177</a>{' '}
+        showed clinical remission in a third of ulcerative colitis patients in a
+        small Phase 2 before the company paused it to seek a partner. The
+        unsolved problem across the lane is the one this site maps on the{' '}
+        <a href="/mc1r-selectivity">MC1R selectivity</a> page: no agonist yet
+        separates pigmentation from the receptor's other effects.
+      </p>
+      <p>
+        <strong><a href="/receptors/mc2r">MC2R</a> — the new antagonist
+        lane.</strong> Atumelnant is the only clinical agent, but it is in
+        Phase 3 for congenital adrenal hyperplasia and in a Phase 1/2b for
+        ACTH-dependent Cushing's syndrome. Because MC2R reads a stretch of ACTH
+        that no other melanocortin carries, an antagonist can be selective in a
+        way the rest of the family cannot — the one lane where the selectivity
+        problem is solved by the biology.
+      </p>
+      <p>
+        <strong><a href="/receptors/mc3r">MC3R</a> — newly in play.</strong> No
+        selective MC3R agent is in the clinic, but dual MC3R/MC4R agonism is
+        preclinical with primate data, and MC3R antagonism is half of what
+        mifomelatide does.<Cite n={7} />
+      </p>
+      <p>
+        <strong><a href="/receptors/mc5r">MC5R</a> — nothing yet.</strong> The
+        exocrine receptor is studied for acne and inflammation and has no clinical
+        candidate. It is the only one of the five without a drug in development.
+      </p>
+
+      <h2>What has failed, and what it taught</h2>
+      <p>
+        The pipeline's history is longer than its ladder suggests, because MC4R
+        agonists for general obesity were tried, and abandoned, well before
+        setmelanotide. The defining event came in 2009, when Lilly's peptide
+        agonist LY2112688 raised blood pressure and heart rate in overweight
+        volunteers after a week of infusion — and did not do so in people with
+        MC4R loss-of-function variants, which showed the effect ran through the
+        receptor itself.<Cite n={2} /> The field drew the conclusion that
+        activating MC4R stimulates sympathetic outflow, and the general-obesity
+        programmes of that era were wound down.<Cite n={1} /> The route back
+        ran through rare disease: setmelanotide was developed in people whose
+        MC4R pathway was demonstrably broken, where the benefit was large and
+        the blood-pressure signal did not appear. Each current obesity candidate
+        is, in some way, an answer to 2009 — a different dose, a different
+        receptor-sparing profile, or a different pharmacology altogether, such as
+        the biased and small-molecule agonists now being characterised in the
+        lab.<Cite n={12} />
+      </p>
+      <p>
+        The other discontinuations are smaller lessons. Intranasal bremelanotide
+        was halted over blood pressure before the subcutaneous reformulation
+        became Vyleesi, and PF-07258669 was stopped at Phase 1 for portfolio
+        reasons rather than safety — a reminder that a validated target and a
+        well-made molecule can still be shelved. For why the side effects of
+        melanocortin agonists are inseparable from the mechanism, see{' '}
+        <a href="/effects">why melanocortin agonists make you queasy and tan</a>.
+      </p>
+
+      <h2>What to watch next</h2>
+      <ul>
+        <li>
+          <strong>Dersimelagon's FDA decision</strong>, expected in early 2027 —
+          the first oral MC1R agonist, and the first test of whether a
+          small-molecule melanocortin drug can clear the regulator.<Cite n={4} />
+        </li>
+        <li>
+          <strong>Afamelanotide's vitiligo readout</strong>, expected at the end
+          of 2026 — a second indication that would move an MC1R agonist from a
+          rare disease into a common one.<Cite n={10} />
+        </li>
+        <li>
+          <strong>Atumelnant's Phase 3 in congenital adrenal hyperplasia</strong>{' '}
+          — if it holds up, the first approved antagonist of any melanocortin
+          receptor.<Cite n={6} />
+        </li>
+        <li>
+          <strong>Bivamelagon's Phase 3 start</strong> and RM-718's maturing
+          Phase 2 data — whether an oral or weekly MC4R agonist can match
+          setmelanotide without the skin-darkening.<Cite n={9} />
+        </li>
+        <li>
+          <strong>Whether any MC4R agonist advances into general obesity</strong>{' '}
+          as a GLP-1 partner rather than a rare-disease drug — the question the
+          2009 blood-pressure result left open.<Cite n={1} />
+        </li>
+      </ul>
+    </div>
+
     <FAQ items={faqs} />
+
+    <References items={references} />
+
+    <RelatedPages slug="pipeline" />
   </section>
 </BaseLayout>
