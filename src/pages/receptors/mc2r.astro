@@ -6,6 +6,8 @@ import References from '../../components/References.astro';
 import KeyTakeaways from '../../components/KeyTakeaways.astro';
 import FAQ from '../../components/FAQ.astro';
 import RelatedPages from '../../components/RelatedPages.astro';
+import Figure from '../../components/Figure.astro';
+import TwoComponentReceptor from '../../components/fig/TwoComponentReceptor.astro';
 import { receptors } from '../../data/receptors';
 
 const receptor = receptors.find((r) => r.slug === 'mc2r')!;
@@ -17,15 +19,23 @@ const faqs = [
   },
   {
     q: 'Why does MC2R respond only to ACTH?',
-    a: 'All melanocortin peptides share a core sequence that activates the other four receptors, but MC2R additionally requires a stretch found only in the full ACTH molecule — not in the shorter MSH peptides. That built-in selectivity keeps the pigment-and-appetite side of the system from accidentally triggering cortisol.',
+    a: 'All melanocortin peptides share a core sequence — the “message” — that activates the other four receptors. MC2R additionally requires a stretch of basic amino acids, the “address”, found only in the full ACTH molecule and not in the shorter MSH peptides. That built-in selectivity keeps the pigment-and-appetite side of the system from accidentally triggering cortisol.',
   },
   {
     q: 'What is MRAP and why does MC2R need it?',
-    a: 'MRAP (melanocortin-2-receptor accessory protein) is a small partner protein that escorts MC2R to the cell surface and helps it respond to ACTH. Without MRAP the receptor is stranded inside the cell. Mutations in MRAP cause a form of adrenal failure closely related to MC2R’s own.',
+    a: 'MRAP (melanocortin-2-receptor accessory protein, also called MRAP1) is a small partner protein that escorts MC2R to the cell surface and helps it respond to ACTH. Without MRAP the receptor is stranded inside the cell. Mutations in MRAP cause a form of adrenal failure closely related to MC2R’s own.',
+  },
+  {
+    q: 'What is the difference between MRAP and MRAP2?',
+    a: 'They are close relatives with opposite jobs. MRAP (MRAP1) is MC2R’s indispensable partner — the receptor cannot work without it. MRAP2 is a modulator: it tunes the signalling of the appetite receptors MC4R and MC3R, and in the lab it can actually dampen MC2R. Mutations in MRAP2 are linked to obesity, not to adrenal failure.',
   },
   {
     q: 'What happens when MC2R fails?',
-    a: 'Loss-of-function mutations cause familial glucocorticoid deficiency, in which the adrenal cortex cannot make enough cortisol despite very high ACTH — presenting with low blood sugar, poor tolerance of stress and infection, and, often, increased skin pigmentation from the excess ACTH.',
+    a: 'Loss-of-function mutations cause familial glucocorticoid deficiency, in which the adrenal cortex cannot make enough cortisol despite very high ACTH — presenting with low blood sugar, poor tolerance of stress and infection, and, often, increased skin pigmentation from the excess ACTH. Most disease-causing mutations trap the receptor inside the cell rather than breaking its signalling.',
+  },
+  {
+    q: 'Are there any drugs that target MC2R?',
+    a: 'The classic one is diagnostic: synthetic ACTH(1–24), given in the Synacthen or cosyntropin stimulation test, is an MC2R agonist used to measure adrenal reserve. Therapeutically, MC2R antagonists that would block ACTH-driven cortisol and androgen output are in clinical trials for congenital adrenal hyperplasia and ACTH-dependent Cushing’s syndrome, but none has yet been approved.',
   },
 ];
 
@@ -52,18 +62,101 @@ const references = [
     year: '2008',
     url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2635546/',
   },
+  {
+    authors: 'Mountjoy KG, Robbins LS, Mortrud MT, Cone RD.',
+    title: 'The cloning of a family of genes that encode the melanocortin receptors.',
+    source: 'Science. 257(5074):1248–51.',
+    year: '1992',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/1325670/',
+  },
+  {
+    authors: 'Clark AJ, McLoughlin L, Grossman A.',
+    title: 'Familial glucocorticoid deficiency associated with point mutation in the adrenocorticotropin receptor.',
+    source: 'Lancet. 341(8843):461–2.',
+    year: '1993',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8094489/',
+  },
+  {
+    authors: 'Metherell LA, Chapple JP, Cooray S, et al.',
+    title:
+      'Mutations in MRAP, encoding a new interacting partner of the ACTH receptor, cause familial glucocorticoid deficiency type 2.',
+    source: 'Nat Genet. 37(2):166–70.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15654338/',
+  },
+  {
+    authors: 'Sebag JA, Hinkle PM.',
+    title: 'Melanocortin-2 receptor accessory protein MRAP forms antiparallel homodimers.',
+    source: 'Proc Natl Acad Sci USA. 104(51):20244–9.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/18077336/',
+  },
+  {
+    authors: 'Chan LF, Webb TR, Chung TT, et al.',
+    title: 'MRAP and MRAP2 are bidirectional regulators of the melanocortin receptor family.',
+    source: 'Proc Natl Acad Sci USA. 106(15):6146–51.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19329486/',
+  },
+  {
+    authors: 'Dores RM.',
+    title:
+      'Adrenocorticotropic hormone, melanocyte-stimulating hormone, and the melanocortin receptors: revisiting the work of Robert Schwyzer.',
+    source: 'Ann N Y Acad Sci. 1163:93–100.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19456331/',
+  },
+  {
+    authors: 'Fridmanis D, Roga A, Klovins J.',
+    title: 'ACTH receptor (MC2R) specificity: what do we know about underlying mechanisms?',
+    source: 'Front Endocrinol (Lausanne). 8:13.',
+    year: '2017',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5292628/',
+  },
+  {
+    authors: 'Luo P, Feng W, Ma S, et al.',
+    title: 'Structural basis of signaling regulation of the human melanocortin-2 receptor by MRAP1.',
+    source: 'Cell Res. 33(1):46–54.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36588120/',
+  },
+  {
+    authors: 'Bornstein SR, Allolio B, Arlt W, et al.',
+    title:
+      'Diagnosis and treatment of primary adrenal insufficiency: an Endocrine Society clinical practice guideline.',
+    source: 'J Clin Endocrinol Metab. 101(2):364–89.',
+    year: '2016',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/26760044/',
+  },
+  {
+    authors: 'Boston BA, Cone RD.',
+    title:
+      'Characterization of melanocortin receptor subtype expression in murine adipose tissues and in the 3T3-L1 cell line.',
+    source: 'Endocrinology. 137(5):2043–50.',
+    year: '1996',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8612546/',
+  },
+  {
+    authors: 'Srirangalingam U, Bruera D, Ayala A, et al.',
+    title:
+      'Once-daily oral atumelnant (CRN04894) induces rapid, substantial, and sustained reductions of androstenedione and 17-hydroxyprogesterone in adults with classical congenital adrenal hyperplasia: interim results from a 12-week, phase 2, open-label study.',
+    source: 'J Endocr Soc. 9(Suppl 1):bvaf149.272 (OR07-06).',
+    year: '2025',
+    url: 'https://academic.oup.com/jes/article/9/Supplement_1/bvaf149.272/8298490',
+  },
 ];
 ---
 
 <PageLayout
   title="MC2R — the ACTH receptor"
   kicker="Receptor · Melanocortin 2 receptor"
-  description="The adrenal receptor at the bottom of the stress axis. Uniquely, it answers only to ACTH — and it cannot even reach the cell surface without a dedicated chaperone, MRAP."
+  description="The adrenal receptor at the bottom of the stress axis. Uniquely, it answers only to ACTH — and it cannot even reach the cell surface without a dedicated chaperone, MRAP. Its gene, its chaperone, its disease, its structure, and the drugs now being built to block it."
   thread="Here the same family that colours skin reaches all the way to the adrenal — one signal, stretched from the body's surface to the chemistry of stress."
   updated="2026"
   about={[
     { name: 'Melanocortin 2 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_2_receptor'] },
     { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'Melanocortin 2 receptor accessory protein', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/MRAP_(gene)'] },
   ]}
 >
   <ReceptorFacts receptor={receptor} />
@@ -71,9 +164,11 @@ const references = [
   <KeyTakeaways
     items={[
       'MC2R is the adrenal ACTH receptor at the bottom of the HPA stress axis, driving steroidogenesis and cortisol output.',
-      'Uniquely among the five melanocortin receptors, it responds only to ACTH — not to any MSH peptide.',
-      'It cannot reach the cell surface without its dedicated accessory chaperone, MRAP.',
-      'Loss-of-function mutations cause familial glucocorticoid deficiency.',
+      'Uniquely among the five melanocortin receptors, it responds only to ACTH — because it reads a basic “address” sequence that the MSH peptides lack.',
+      'It is the smallest receptor of the family, encoded on chromosome 18 next door to MC5R, and was the first to be tied to a human disease.',
+      'It cannot reach the cell surface without its dedicated accessory chaperone, MRAP (MRAP1); the 2023 cryo-EM structure shows the chaperone wrapped across the receptor.',
+      'Loss-of-function mutations in MC2R cause familial glucocorticoid deficiency type 1; mutations in MRAP cause type 2.',
+      'Synthetic ACTH(1–24) is the standard probe of adrenal reserve; MC2R antagonists are now in trials for congenital adrenal hyperplasia and Cushing’s syndrome.',
     ]}
   />
 
@@ -82,7 +177,17 @@ const references = [
     receptors respond to several melanocortin peptides, MC2R answers to just one —
     ACTH — and it sits in just one main place: the cortex of the adrenal gland,
     where it forms the final step of the body's stress-hormone axis.<Cite n={1} />
+    It is also the only one of the five that is not a complete machine on its
+    own. What follows is the story of a receptor that needs a partner, reads a
+    password, and was the first in the family to explain a human disease.
   </p>
+
+  <Figure
+    caption="A two-component receptor. Alone, MC2R is stranded inside the cell; MRAP1 escorts it to the surface and reshapes it to read ACTH. The ligand must carry both the shared His-Phe-Arg-Trp message and a basic address the MSH peptides lack — which is why only ACTH makes cortisol."
+    source="Schematic, after Metherell et al. 2005, Sebag & Hinkle 2007, Dores 2009 and Luo et al. 2023."
+  >
+    <TwoComponentReceptor />
+  </Figure>
 
   <h2>The end of the stress axis</h2>
   <p>
@@ -92,54 +197,185 @@ const references = [
     through protein kinase A this switches on the steroidogenic machinery that
     produces cortisol (and contributes to adrenal androgens).<Cite n={2} /> This
     hypothalamic–pituitary–adrenal (HPA) loop is the circuit that the{' '}
-    <a href="/system">overview pillar</a> describes ACTH serving — and MC2R is its
-    receiving end.
+    <a href="/system">overview pillar</a> describes <a href="/acth">ACTH</a>{' '}
+    serving — and MC2R is its receiving end. The receptor is expressed in all three
+    zones of the adrenal cortex, most densely in the cortisol-producing zona
+    fasciculata, and ACTH acting through it is trophic as well as acute: chronic
+    ACTH excess makes the cortex grow, and ACTH deficiency makes it
+    shrink.<Cite n={1} />
+  </p>
+
+  <h2>The MC2R gene</h2>
+  <p>
+    MC2R was cloned in 1992 alongside MC1R, in the paper that founded the
+    melanocortin receptor family. The screen was designed to find the receptor for
+    MSH in melanoma cells; the second gene it pulled out was expressed instead in
+    the adrenal cortex and encoded the long-sought ACTH receptor.<Cite n={4} /> It
+    is the smallest G-protein-coupled receptor in the family — 297 amino acids,
+    against 332 for <a href="/receptors/mc4r">MC4R</a> — and, like all five, it is
+    encoded by a single intronless exon. The gene sits on the short arm of
+    chromosome 18, at 18p11.21, immediately adjacent to{' '}
+    <a href="/receptors/mc5r">MC5R</a>; the two are thought to have arisen by a
+    local duplication.<Cite n={2} /> It was also the first melanocortin receptor
+    to be tied to a human disease. Within a year of its cloning, a point mutation
+    in MC2R was found in a family with inherited adrenal failure, which made the
+    ACTH receptor one of the earliest GPCRs linked to a Mendelian
+    disorder.<Cite n={5} />
   </p>
 
   <h2>Why only ACTH?</h2>
   <p>
     The melanocortins share a common His-Phe-Arg-Trp core, which is enough to
     activate MC1R and MC3R–MC5R. MC2R is different: it additionally requires a
-    stretch of ACTH present only in the full ACTH molecule and not in the shorter
-    MSH peptides, so α-, β-, and γ-MSH cannot meaningfully switch it on.<Cite n={1} />
-    That selectivity is what keeps the pigment-and-appetite arm of the system from
-    accidentally triggering cortisol release.
+    stretch of ACTH present only in the full hormone and not in the shorter MSH
+    peptides.<Cite n={1} /> The idea goes back to Robert Schwyzer, who proposed
+    in the 1970s that ACTH carries two kinds of information: a “message” — the
+    His-Phe-Arg-Trp motif at positions 6–9 that is common to the whole family —
+    and an “address”, the run of basic residues Lys-Lys-Arg-Arg-Pro at positions
+    15–19 that the adrenal receptor demands.<Cite n={9} /> α-MSH is ACTH(1–13):
+    it has the message but stops before the address, and so cannot meaningfully
+    switch MC2R on. Mutagenesis and chimera studies have since located the
+    receptor residues that read the address and shown how MRAP1 helps present
+    them, though the picture is still being refined.<Cite n={10} /> The practical
+    consequence is a built-in guard: a system that uses the same core peptide to
+    colour skin, curb appetite and resolve inflammation can do all of that
+    without accidentally triggering cortisol. It also sets the minimum size of any
+    MC2R agonist. The shortest ACTH fragment with full adrenal activity is
+    ACTH(1–24), which is exactly what the clinical test compound is.
   </p>
 
   <h2>It needs a chaperone: MRAP</h2>
   <p>
-    On its own, MC2R cannot reach the cell surface. It depends on a small
-    single-pass accessory protein, the melanocortin-2-receptor accessory protein
-    (MRAP), which forms an unusual antiparallel dimer that escorts the receptor out
-    of the endoplasmic reticulum and helps it respond to ACTH.<Cite n={2} /> The
-    discovery of MRAP reframed MC2R as a two-component system — receptor plus
-    chaperone — and explained a class of disease that maps not to the receptor
-    itself but to its escort.
+    On its own, MC2R cannot reach the cell surface. For years this made it almost
+    impossible to study, because the receptor refused to work in any cell line
+    that was not adrenal. The explanation came in 2005 from human genetics. In
+    families with inherited adrenal failure but no MC2R mutation, the culprit
+    turned out to be a previously unnamed gene encoding a small single-pass
+    membrane protein — the melanocortin-2-receptor accessory protein, MRAP —
+    that interacts with MC2R and is required for it to leave the endoplasmic
+    reticulum and respond to ACTH.<Cite n={6} /> Expressing MRAP alongside MC2R
+    finally let the receptor function in ordinary cells, and reframed MC2R as a
+    two-component system: receptor plus escort.
+  </p>
+  <p>
+    MRAP is odd in its own right. It inserts into the membrane in both
+    orientations and pairs up as an antiparallel homodimer — one copy with its
+    amino-terminus outside the cell, the other with it inside — a topology that
+    had no precedent among membrane proteins.<Cite n={7} /> The amino-terminal
+    region, which carries a short motif essential for ACTH binding, therefore
+    appears on both sides of the membrane at once. Its paralogue MRAP2 can also
+    carry MC2R to the surface but, unlike MRAP1, does not support a normal ACTH
+    response; in the lab it competes with MRAP1 and dampens MC2R signalling.
+    Both proteins also interact with the other four melanocortin receptors,
+    where MRAP1 and MRAP2 tend to reduce surface expression and
+    signalling.<Cite n={8} /> That is the origin of a distinction this site keeps
+    stressing: MRAP1 is MC2R's indispensable partner; MRAP2 is a modulator, best
+    known for tuning <a href="/receptors/mc4r">MC4R</a> and{' '}
+    <a href="/receptors/mc3r">MC3R</a>, and its variants are linked to obesity
+    rather than to adrenal disease.
+  </p>
+
+  <h2>The receptor in three dimensions</h2>
+  <p>
+    MC2R was among the last of the five to be seen, and it could not be seen
+    alone. The 2023 cryo-EM structure captured the human receptor in complex with
+    MRAP1, bound to ACTH and coupled to Gs.<Cite n={11} /> The chaperone wraps
+    across the receptor's transmembrane bundle and extracellular face, and the
+    structure explains both of MC2R's peculiarities at once. MRAP1 stabilises the
+    receptor fold, which is why MC2R cannot traffic without it, and it reshapes
+    the entrance to the binding pocket so that a hormone far larger than the
+    His-Phe-Arg-Trp core can be read — including the basic address that no MSH
+    peptide carries.<Cite n={11} /> The core itself sits in the family's shared
+    calcium-assisted pocket, which is why drugs aimed at MC4R or MC1R can brush
+    MC2R, and why selectivity is the melanocortin field's recurring problem. The{' '}
+    <a href="/structures">structural biology</a> page tells that story for the
+    whole family.
   </p>
 
   <h2>When it fails: familial glucocorticoid deficiency</h2>
   <p>
     Loss-of-function mutations in MC2R cause familial glucocorticoid deficiency
-    (FGD) type 1, in which the adrenal cortex cannot mount a normal cortisol
-    response to ACTH — presenting with low cortisol, very high ACTH, and risks such
-    as hypoglycaemia and recurrent infection. Most disease-causing MC2R mutations
-    work by stranding the receptor inside the cell rather than abolishing its
-    function outright.<Cite n={3} /> Mutations in MRAP cause a closely related form,
-    FGD type 2 — a reminder that, here, the chaperone is as load-bearing as the
-    receptor.<Cite n={2} />
+    (FGD) type 1, an autosomal recessive condition in which the adrenal cortex
+    cannot mount a normal cortisol response to ACTH. Children present in infancy
+    or early childhood with hypoglycaemia, seizures, recurrent infection, failure
+    to thrive, and often deep skin pigmentation — because the pituitary, sensing
+    no cortisol, pours out ACTH, and the excess spills over onto the pigment
+    receptor <a href="/receptors/mc1r">MC1R</a>. Mineralocorticoid production is
+    characteristically preserved, since aldosterone answers mainly to the
+    renin–angiotensin system rather than to ACTH.<Cite n={2} /> When the
+    disease-causing mutations were examined one by one, most turned out to work
+    not by abolishing signalling but by stranding the receptor inside the cell —
+    even when MRAP was present — a trafficking failure rather than a signalling
+    one.<Cite n={3} /> MRAP mutations cause the clinically similar FGD type 2,
+    which tends to present even earlier; together the two genes account for
+    roughly half of FGD, and the remainder has since been traced to genes for
+    oxidative-stress defence and DNA repair in the adrenal.<Cite n={2} /> It is a
+    reminder that, here, the chaperone is as load-bearing as the receptor.
+  </p>
+
+  <h2>Beyond the adrenal</h2>
+  <p>
+    MC2R is close to adrenal-specific in humans, but not perfectly so. In rodents
+    it is clearly expressed in fat, where ACTH is a potent lipolytic hormone, and
+    MC2R messenger RNA is found in both white and brown adipose depots and rises
+    sharply as fat cells differentiate.<Cite n={13} /> That makes ACTH a direct
+    mobiliser of stored energy during stress in mice — a peripheral melanocortin
+    effect to set beside the fuel-handling role of <a href="/receptors/mc5r">MC5R</a>.
+    In humans the adipose expression is low and the lipolytic effect of ACTH
+    modest, and the receptor has also been reported at low levels in
+    skin.<Cite n={2} /> The
+    clinically important lesson runs the other way: because MC2R is so nearly
+    confined to the adrenal, a drug that hits it will have, in effect, one
+    organ-level consequence, and that consequence is cortisol.
   </p>
 
   <h2>Why it matters clinically</h2>
   <p>
     MC2R is the molecular target of the standard test of adrenal reserve. The
-    short Synacthen (ACTH stimulation) test gives a dose of synthetic ACTH and
-    measures whether the adrenal cortex — through MC2R — answers with a rise in
-    cortisol; a blunted response points to adrenal insufficiency.<Cite n={1} /> The
-    same axis explains a classic clinical sign: disorders that drive ACTH very high
-    can darken the skin, because the excess ACTH spills over onto the pigment
-    receptor <a href="/receptors/mc1r">MC1R</a>. It is the melanocortin system
-    quietly showing its unity — one family, read in two very different tissues. For
-    the wider circuit, see the <a href="/system">overview pillar</a>.
+    short Synacthen or cosyntropin test gives a dose of synthetic ACTH(1–24) —
+    tetracosactide — and measures whether the adrenal cortex, through MC2R,
+    answers with a rise in cortisol; a blunted response is the recommended
+    confirmatory test for primary adrenal insufficiency.<Cite n={12} /> The same
+    peptide, as a depot preparation, is used therapeutically in a handful of
+    conditions, which the <a href="/therapeutics">therapeutics</a> page covers.
+    The axis also explains a classic clinical sign: disorders that drive ACTH very
+    high, from Addison's disease to FGD, darken the skin because the excess ACTH
+    reaches <a href="/receptors/mc1r">MC1R</a>. It is the melanocortin system
+    quietly showing its unity — one family, read in two very different tissues.
+  </p>
+
+  <h2>Blocking the ACTH receptor</h2>
+  <p>
+    The newest chapter is the attempt to turn MC2R off. Several conditions are
+    driven by too much ACTH signalling at the adrenal: congenital adrenal
+    hyperplasia, where a cortisol-synthesis block sends ACTH soaring and the
+    excess drives adrenal androgen overproduction; and ACTH-dependent Cushing's
+    syndrome, from pituitary or ectopic tumours that secrete the hormone. A
+    selective MC2R antagonist would cut the adrenal response at its receptor
+    whatever the source of the ACTH, and oral non-peptide antagonists have now
+    reached mid-stage clinical trials in both conditions. In a 12-week phase 2
+    study in adults with classic congenital adrenal hyperplasia, the first of
+    them, atumelnant, cut the androgen precursor androstenedione by well over half
+    within days and held it there, on top of unchanged glucocorticoid
+    replacement.<Cite n={14} /> None has yet been approved,
+    and the obvious design constraint is that the brake must be adjustable: a
+    patient still needs cortisol, so an antagonist has to be dosed, or paired with
+    replacement, rather than simply switched on. For the state of play across
+    the family, see the <a href="/pipeline">pipeline</a>.
+  </p>
+  <p>
+    Pharmacologically MC2R is the cleanest target in the family, because its
+    strict ligand requirement means an antagonist built around the ACTH address
+    need not touch the four receptors that read only the message. The problem the
+    other receptors face — the shared pocket that makes a{' '}
+    <a href="/mc1r-selectivity">clean MC1R drug</a> so hard — is, at MC2R,
+    solved by the biology itself.
+  </p>
+
+  <p>
+    For how MC2R fits the broader system, see the{' '}
+    <a href="/system">overview pillar</a>; its only ligand has its own page at{' '}
+    <a href="/acth">ACTH</a>.
   </p>
 
   <p><a href="/receptors">← Back to all receptors</a></p>
