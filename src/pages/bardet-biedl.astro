@@ -1,0 +1,172 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import CiliaAntenna from '../components/fig/CiliaAntenna.astro';
+
+const faqs = [
+  {
+    q: 'What is Bardet–Biedl syndrome?',
+    a: 'Bardet–Biedl syndrome (BBS) is a rare inherited disorder affecting many organs at once: progressive sight loss from retinal degeneration, obesity, extra fingers or toes, kidney problems, and learning and reproductive differences. It is a "ciliopathy" — a disease of the primary cilium, the tiny antenna nearly every cell uses to sense its surroundings.',
+  },
+  {
+    q: 'Why does a disease of cell antennae cause obesity?',
+    a: 'Because the appetite neurons of the hypothalamus read leptin and melanocortin signals through receptors that have to sit on the primary cilium. The protein complex broken in BBS, the BBSome, is what delivers those receptors to the antenna. When it fails, the leptin–melanocortin signal is never properly heard, and hunger goes unchecked — which is why BBS obesity connects to the melanocortin system.',
+  },
+  {
+    q: 'Is there a treatment for the obesity in BBS?',
+    a: 'Yes. Setmelanotide (Imcivree), an MC4R agonist, was approved by the FDA in 2022 for obesity and hunger control in Bardet–Biedl syndrome, after a Phase 3 trial showed meaningful weight loss. It works by re-supplying the melanocortin appetite signal downstream of the ciliary defect. It treats the weight and hunger, not the sight loss or the other features.',
+  },
+  {
+    q: 'How is BBS related to the other melanocortin obesity conditions?',
+    a: 'They converge. POMC and leptin-receptor deficiency break the appetite circuit by removing the signal or its receptor; BBS breaks it by stopping the receptors from reaching the place they need to work. All of them end at an under-driven MC4R, which is why setmelanotide — acting at MC4R — helps across the group.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Haqq AM, Chung WK, Dollfus H, et al.',
+    title:
+      'Efficacy and safety of setmelanotide, a melanocortin-4 receptor agonist, in patients with Bardet-Biedl syndrome and Alström syndrome: a multicentre, randomised, double-blind, placebo-controlled, phase 3 trial.',
+    source: 'Lancet Diabetes Endocrinol. 10(12):859–868 — the pivotal BBS trial. PMID 36370713.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36370713/',
+  },
+  {
+    authors: 'Forsythe E, Beales PL.',
+    title: 'Bardet-Biedl syndrome.',
+    source: 'Eur J Hum Genet. 21(1):8–13 — clinical features, the ciliopathy mechanism, and genetics. PMID 22713813.',
+    year: '2013',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/22713813/',
+  },
+  {
+    authors: 'Markham A. / StatPearls.',
+    title: 'Setmelanotide.',
+    source: 'NCBI Bookshelf (NBK589641) — mechanism and the Bardet–Biedl syndrome indication.',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
+  },
+];
+---
+
+<PageLayout
+  title="Bardet–Biedl syndrome: when the appetite receptor can't reach its antenna"
+  kicker="The condition"
+  description="Bardet–Biedl syndrome is a ciliopathy — a disease of the cell's antenna — and its obesity is a melanocortin disease by a back door: the receptors that read the appetite signal can't reach the cilium where they must work. It's the second genetic condition setmelanotide was approved to treat."
+  thread="Not a missing signal this time, but a signal with nowhere to land — the appetite receptor stranded short of the antenna it was built to stand on."
+  updated="2026"
+  about={[
+    { name: 'Bardet–Biedl syndrome', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Bardet%E2%80%93Biedl_syndrome'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Bardet–Biedl syndrome (BBS) is a rare, multi-organ inherited disorder: retinal degeneration, obesity, extra digits, kidney anomalies, and learning and reproductive differences.',
+      'It is a ciliopathy — a disease of the primary cilium, the antenna almost every cell uses to sense its environment — caused by mutations in the genes that build the BBSome.',
+      'Its obesity is a melanocortin problem by a back door: the appetite neurons’ leptin and melanocortin receptors must sit on the cilium, and the broken BBSome never delivers them there.',
+      'The signal is not missing, as in POMC deficiency — it is unreceived, because the receptor is stranded in the cell body. The endpoint is the same: an under-driven MC4R and relentless hunger.',
+      'Setmelanotide (Imcivree) was FDA-approved for BBS in 2022 after a Phase 3 trial; it re-drives MC4R downstream of the ciliary defect, treating the weight and hunger but not the other features.',
+    ]}
+  />
+
+  <p>
+    Most of the melanocortin obesity conditions break the <a href="/receptors/mc4r">appetite
+    circuit</a> by removing a part of it — the <a href="/pomc-deficiency">precursor or its
+    receptor</a>. <strong>Bardet–Biedl syndrome</strong> breaks it in a stranger, more
+    revealing way: everything is present, but the receptors that read the appetite signal
+    cannot get to the place they are supposed to work. It is a melanocortin disease by a
+    back door, and following that back door turns out to explain a great deal.<Cite n={2} />
+  </p>
+
+  <h2>A disease of the cell's antenna</h2>
+  <p>
+    BBS is what doctors call a <strong>ciliopathy</strong>. Nearly every cell in the body
+    carries a single <strong>primary cilium</strong> — a slender, antenna-like projection it
+    uses to sense its surroundings and receive signals. BBS is caused by mutations in a set
+    of genes (more than twenty are now known) that build a protein machine called the
+    <strong>BBSome</strong>, whose job is to traffic specific receptors out to that antenna
+    and manage what sits on it.<Cite n={2} /> Because cilia are everywhere, the damage is
+    everywhere: the light-sensing cells of the retina degenerate, causing progressive sight
+    loss; the kidneys, limbs, and reproductive system develop abnormally; and the appetite
+    system misfires. The classic features include rod–cone retinal dystrophy, obesity,
+    postaxial polydactyly (extra fingers or toes), kidney anomalies, hypogonadism, and
+    learning difficulties.<Cite n={2} />
+  </p>
+
+  <h2>Why the antenna matters for appetite</h2>
+  <p>
+    Here is the connection to this site. The appetite neurons of the hypothalamus do not read{" "}
+    <a href="/system">leptin</a> and melanocortin signals from just anywhere on their surface
+    — the relevant receptors, including the machinery of the <a href="/receptors/mc4r">MC4R</a>{' '}
+    appetite pathway, need to be positioned on the primary cilium to work properly. The BBSome
+    is what ferries them there. When the BBSome is faulty, those receptors never reach the
+    antenna; they are left stranded in the cell body, and the leptin–melanocortin signal that
+    should restrain hunger is simply not received.<Cite n={2} />
+  </p>
+  <p>
+    So the break in BBS is subtly different from the one in POMC deficiency, and the difference
+    is worth holding onto. In POMC deficiency the <em>signal</em> is missing. In BBS the signal
+    is made and released, but there is no properly placed <em>receiver</em>. Both roads arrive
+    at the same destination: an MC4R pathway that is not being driven, and an appetite with no
+    brake.
+  </p>
+
+  <Figure
+    caption="BBS as a melanocortin disease: the hypothalamic appetite neuron's leptin and MC4R-pathway receptors must sit on the primary cilium to work. The BBSome delivers them there. Break it, and the receptors are stranded in the cell body, the antenna is bare, and the appetite signal goes unheard — even though nothing is wrong with the signal itself."
+    source="Ciliopathy mechanism and clinical features per Forsythe & Beales, Eur J Hum Genet 2013 (PMID 22713813). Schematic, not to cellular scale."
+  >
+    <CiliaAntenna />
+  </Figure>
+
+  <h2>The treatment, and what it reaches</h2>
+  <p>
+    Because the problem ends at an under-driven MC4R, a drug that drives MC4R directly can help
+    — regardless of why the receptor is quiet. <a href="/setmelanotide">Setmelanotide</a>, the
+    MC4R agonist, re-supplies the appetite signal downstream of the ciliary defect. In a Phase 3
+    randomised, placebo-controlled trial in people with BBS, it produced meaningful weight loss
+    and reductions in hunger, and on that basis the FDA approved it for Bardet–Biedl syndrome in
+    <strong>2022</strong> — its second major indication after the{" "}
+    <a href="/pomc-deficiency">POMC and leptin-receptor deficiencies</a>.<Cite n={1} /><Cite n={3} />
+  </p>
+  <p>
+    The limit is as important as the result. Setmelanotide treats the obesity and the hunger of
+    BBS; it does nothing for the retinal degeneration, the kidney disease, or the other
+    consequences of broken cilia, which are managed separately. It is a targeted fix for the one
+    arm of a many-armed syndrome that happens to run through the melanocortin system.<Cite n={1} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Bardet–Biedl syndrome earns its place here because it widens the definition of a
+    "melanocortin disease." You do not have to delete the signal or its receptor to break the
+    appetite circuit — you only have to stop the receptor from reaching the antenna where it
+    listens. That the same drug helps across POMC deficiency, leptin-receptor deficiency, and a
+    ciliopathy is the strongest evidence that MC4R is the true common chokepoint of human
+    appetite. For the drug, see <a href="/setmelanotide">setmelanotide</a>; for the receptor,
+    see <a href="/receptors/mc4r">MC4R</a>; for the conditions it shares a mechanism with, see{" "}
+    <a href="/pomc-deficiency">POMC &amp; leptin-receptor deficiency</a> and{" "}
+    <a href="/hypothalamic-obesity">hypothalamic obesity</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what Bardet–Biedl syndrome is and why its obesity responds to
+      melanocortin treatment. It is not medical advice, does not diagnose, and gives no dosing
+      instructions. BBS is a complex multi-system condition whose care belongs with a
+      specialist team. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="bardet-biedl" />
+</PageLayout>

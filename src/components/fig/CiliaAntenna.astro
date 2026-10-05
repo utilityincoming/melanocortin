@@ -1,0 +1,106 @@
+---
+// cilia-antenna — why a disease of the cell's antenna becomes a melanocortin
+// disease. Hypothalamic neurons read leptin and melanocortin signals through
+// receptors that must sit on the primary cilium, a single antenna-like
+// projection. The BBSome, the protein complex broken in Bardet-Biedl syndrome,
+// ferries those receptors out to the cilium. Left: healthy — receptors reach
+// the antenna, the signal is heard. Right: BBS — the BBSome fails, receptors
+// never reach the cilium, the leptin-melanocortin signal is lost, and appetite
+// runs unchecked. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="ca-fig"
+  viewBox="0 0 640 300"
+  role="img"
+  aria-labelledby="ca-t ca-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="ca-t">Why Bardet–Biedl syndrome is a melanocortin disease</title>
+  <desc id="ca-d"
+    >Hypothalamic appetite neurons sense leptin and melanocortin signals through
+    receptors that must be positioned on the primary cilium, an antenna-like
+    projection. The BBSome complex delivers those receptors to the cilium. In a
+    healthy neuron the receptors reach the antenna and the signal is heard. In
+    Bardet-Biedl syndrome the BBSome is faulty, the receptors never reach the
+    cilium, and the leptin-melanocortin appetite signal is lost, so hunger runs
+    unchecked.</desc
+  >
+
+  <!-- ===== healthy neuron ===== -->
+  <text x="150" y="30" text-anchor="middle" class="col-h accent-t">Healthy</text>
+  <!-- cell body -->
+  <circle class="cell" cx="150" cy="190" r="66" />
+  <!-- cilium / antenna -->
+  <rect class="cilium accent-s" x="142" y="70" width="16" height="70" rx="8" />
+  <text x="186" y="92" class="anno">primary cilium</text>
+  <text x="186" y="106" class="anno-s">(the antenna)</text>
+  <!-- receptors on the antenna -->
+  <circle class="rec accent-f" cx="150" cy="78" r="8" />
+  <circle class="rec accent-f" cx="150" cy="98" r="8" />
+  <text x="150" y="196" text-anchor="middle" class="cell-t">neuron</text>
+  <text x="150" y="214" text-anchor="middle" class="cell-s">signal heard</text>
+  <!-- BBSome ferrying up -->
+  <path class="ferry accent-st" d="M150 150 V120" marker-end="url(#ca-arr-a)" />
+  <text x="150" y="268" text-anchor="middle" class="foot accent-t">BBSome ferries MC4R + leptin</text>
+  <text x="150" y="282" text-anchor="middle" class="foot accent-t">receptors to the antenna</text>
+
+  <!-- divider -->
+  <line class="div" x1="320" y1="40" x2="320" y2="284" />
+
+  <!-- ===== BBS neuron ===== -->
+  <text x="490" y="30" text-anchor="middle" class="col-h">Bardet–Biedl</text>
+  <circle class="cell" cx="490" cy="190" r="66" />
+  <!-- bare cilium -->
+  <rect class="cilium" x="482" y="70" width="16" height="70" rx="8" />
+  <text x="526" y="92" class="anno">antenna is bare</text>
+  <!-- receptors stuck in the body -->
+  <circle class="rec stuck" cx="470" cy="196" r="8" />
+  <circle class="rec stuck" cx="500" cy="204" r="8" />
+  <circle class="rec stuck" cx="486" cy="176" r="8" />
+  <text x="490" y="232" text-anchor="middle" class="cell-s">receptors stranded</text>
+  <!-- broken ferry -->
+  <path class="ferry broken" d="M490 150 V124" />
+  <line class="xmark" x1="482" y1="134" x2="498" y2="150" />
+  <line class="xmark" x1="498" y1="134" x2="482" y2="150" />
+  <text x="490" y="268" text-anchor="middle" class="foot">BBSome faulty → signal lost →</text>
+  <text x="490" y="282" text-anchor="middle" class="foot">hunger runs unchecked</text>
+
+  <defs>
+    <marker id="ca-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .ca-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .col-h { font-size: 13px; font-weight: 700; fill: var(--text); }
+  .col-h.accent-t { fill: var(--accent-strong); }
+  .cell { fill: var(--bg); stroke: var(--border); stroke-width: 1.5; }
+  .cilium { fill: var(--bg-elevated); stroke: var(--border); stroke-width: 1.5; }
+  .cilium.accent-s { stroke: var(--accent); }
+  .rec { stroke: var(--border); stroke-width: 1; }
+  .rec.accent-f { fill: var(--accent); stroke: var(--accent); }
+  .rec.stuck { fill: var(--text-muted); opacity: 0.6; }
+  .cell-t { font-size: 12px; font-weight: 600; fill: var(--text); }
+  .cell-s { font-size: 10.5px; fill: var(--text-muted); }
+  .anno { font-size: 10.5px; fill: var(--text); }
+  .anno-s { font-size: 9.5px; fill: var(--text-muted); }
+  .foot { font-size: 10px; fill: var(--text-muted); }
+  .foot.accent-t { fill: var(--accent-strong); }
+  .ferry { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .ferry.accent-st { stroke: var(--accent); }
+  .ferry.broken { stroke: var(--text-muted); stroke-dasharray: 3 3; opacity: 0.6; }
+  .xmark { stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }
+  .div { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; }
+</style>

@@ -1,0 +1,102 @@
+---
+// bronzing-loop — why a disease of too-little cortisol darkens the skin. In
+// primary adrenal failure (Addison's) the adrenal cannot make cortisol, so the
+// pituitary never gets the negative-feedback signal to stop. It pumps out more
+// POMC, and therefore more ACTH. ACTH's first thirteen residues ARE α-MSH, so a
+// flood of ACTH is also a flood of melanocortin at MC1R in the skin — which
+// answers by making eumelanin. The low-cortisol signal and the dark skin are
+// the same loop, read at two ends. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="bl-fig"
+  viewBox="0 0 640 318"
+  role="img"
+  aria-labelledby="bl-t bl-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="bl-t">Why Addison's disease bronzes the skin</title>
+  <desc id="bl-d"
+    >In primary adrenal failure the adrenal gland cannot make cortisol. Without
+    cortisol the pituitary loses its negative-feedback brake and releases far
+    more POMC and therefore ACTH. Because the first thirteen amino acids of ACTH
+    are identical to alpha-MSH, this flood of ACTH is also a flood of
+    melanocortin signal at MC1R in the skin, which responds by making eumelanin —
+    so the skin darkens. The missing cortisol and the darkened skin are two ends
+    of the same loop.</desc
+  >
+
+  <!-- adrenal: the failure -->
+  <rect class="card miss" x="20" y="36" width="178" height="62" rx="11" />
+  <text x="109" y="62" text-anchor="middle" class="card-t miss-t">Adrenal fails</text>
+  <text x="109" y="80" text-anchor="middle" class="sub">little or no cortisol</text>
+
+  <!-- arrow down: lost feedback -->
+  <path class="flow" d="M109 98 V150" marker-end="url(#bl-arr)" />
+  <text x="118" y="128" class="side">no cortisol →</text>
+  <text x="118" y="142" class="side">no "stop" signal</text>
+
+  <!-- pituitary: ramps up -->
+  <rect class="card" x="20" y="152" width="178" height="62" rx="11" />
+  <text x="109" y="178" text-anchor="middle" class="card-t">Pituitary ramps up</text>
+  <text x="109" y="196" text-anchor="middle" class="sub">POMC → ACTH surges</text>
+
+  <!-- arrow right: ACTH carries a-MSH -->
+  <path class="flow accent-flow" d="M198 183 H300" marker-end="url(#bl-arr-a)" />
+  <text x="249" y="172" text-anchor="middle" class="keytxt accent-t">ACTH 1–13 = α-MSH</text>
+  <text x="249" y="205" text-anchor="middle" class="sub">melanocortin signal</text>
+
+  <!-- MC1R in skin -->
+  <rect class="card accent" x="302" y="152" width="170" height="62" rx="11" />
+  <text x="387" y="178" text-anchor="middle" class="card-t accent-t">MC1R in skin</text>
+  <text x="387" y="196" text-anchor="middle" class="sub">reads it as "make pigment"</text>
+
+  <!-- arrow right: eumelanin -->
+  <path class="flow accent-flow" d="M472 183 H520" marker-end="url(#bl-arr-a)" />
+
+  <!-- bronzing -->
+  <rect class="card accent" x="522" y="152" width="98" height="62" rx="11" />
+  <text x="571" y="178" text-anchor="middle" class="card-t accent-t">Eumelanin</text>
+  <text x="571" y="196" text-anchor="middle" class="sub">skin bronzes</text>
+
+  <!-- the punchline band -->
+  <rect class="band" x="20" y="250" width="600" height="48" rx="12" />
+  <text x="40" y="272" class="band-t">The missing cortisol and the darkened skin are the same loop —</text>
+  <text x="40" y="289" class="band-t">read at two ends. The bronzing is the diagnosis, written on the body.</text>
+
+  <defs>
+    <marker id="bl-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+    </marker>
+    <marker id="bl-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .bl-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.miss { fill: var(--bg); stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 5 3; }
+  .card.accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 13px; font-weight: 700; fill: var(--text); }
+  .card-t.miss-t { fill: var(--text-muted); }
+  .card-t.accent-t { fill: var(--accent-strong); }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .side { font-size: 10px; fill: var(--text-muted); }
+  .keytxt { font-size: 12px; font-weight: 700; fill: var(--text); }
+  .keytxt.accent-t { fill: var(--accent-strong); }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow.accent-flow { stroke: var(--accent); }
+  .band { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .band-t { font-size: 11px; fill: var(--text); }
+</style>

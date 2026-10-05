@@ -1,0 +1,157 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import RepigmentDuo from '../components/fig/RepigmentDuo.astro';
+
+const faqs = [
+  {
+    q: 'What is vitiligo?',
+    a: 'Vitiligo is a common autoimmune skin condition in which the body’s own immune system destroys melanocytes — the pigment-making cells — leaving smooth, well-defined white patches. It is not infectious and not painful, but it can be visually prominent and psychologically hard, especially on darker skin.',
+  },
+  {
+    q: 'How does a melanocortin drug fit in?',
+    a: 'Afamelanotide, an MC1R agonist that drives pigment, has been studied as an add-on to standard narrowband-UVB phototherapy. The idea is complementary: phototherapy helps bring melanocyte precursors back into the bare skin, and the MC1R agonist then drives those cells to multiply and make pigment. A randomized trial found the combination produced faster, more complete repigmentation than phototherapy alone in some patients, particularly those with darker skin.',
+  },
+  {
+    q: 'Is afamelanotide approved for vitiligo?',
+    a: 'No. Afamelanotide (Scenesse) is FDA-approved for erythropoietic protoporphyria, not vitiligo. Its use in vitiligo is investigational — supported by trial evidence but not an approved indication. This page describes the science, not an available prescription.',
+  },
+  {
+    q: 'Why pair the drug with light instead of using it alone?',
+    a: 'Because the two do different jobs. Repigmentation needs melanocytes to be present in the patch and then driven to make pigment. Narrowband UVB helps mobilize and recruit the pigment cells; the MC1R agonist amplifies their pigment output. Used alone, an MC1R agonist has little to act on in skin that has lost its melanocytes.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Lim HW, Grimes PE, Agbai O, et al.',
+    title:
+      'Afamelanotide and narrowband UV-B phototherapy for the treatment of vitiligo: a randomized multicenter trial.',
+    source: 'JAMA Dermatol. 151(1):42–50 — combination vs phototherapy alone. PMID 25230094.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25230094/',
+  },
+  {
+    authors: 'Bergqvist C, Ezzedine K.',
+    title: 'Vitiligo: A Review.',
+    source: 'Dermatology. 236(6):571–592 — pathogenesis, autoimmunity, and treatment. PMID 32155629.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/32155629/',
+  },
+  {
+    authors: 'US FDA.',
+    title: 'SCENESSE (afamelanotide) implant — prescribing information.',
+    source: 'FDA label (NDA 210797) — MC1R agonism and eumelanin synthesis.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+];
+---
+
+<PageLayout
+  title="Vitiligo: when the pigment cells are gone, not just switched off"
+  kicker="The condition"
+  description="Vitiligo destroys melanocytes outright, which is why a pigment drug alone can't fix it. The melanocortin angle is a combination: narrowband UVB helps bring pigment cells back into the white patches, and the MC1R agonist afamelanotide then drives them to repigment — a two-step that works better than either alone."
+  thread="A switch is no use without a bulb — so first the skin must be given back its pigment cells, and only then told to shine."
+  updated="2026"
+  about={[
+    { name: 'Vitiligo', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Vitiligo'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Vitiligo is an autoimmune disease in which melanocytes — the pigment cells themselves — are destroyed, leaving sharply defined white patches.',
+      'That is the crucial difference from a tanning problem: the pigment switch is not merely off, the cells that carry it are gone — so an MC1R agonist alone has little to act on.',
+      'The melanocortin angle is a combination therapy: narrowband UVB phototherapy helps recruit melanocyte precursors back into the bare skin, and afamelanotide (an MC1R agonist) then drives them to multiply and make pigment.',
+      'A randomized trial found the afamelanotide-plus-phototherapy combination produced faster, more complete repigmentation than phototherapy alone in some patients — most notably those with darker skin.',
+      'Afamelanotide is not approved for vitiligo (its approval is for erythropoietic protoporphyria); this use is investigational.',
+    ]}
+  />
+
+  <p>
+    <strong>Vitiligo</strong> is the melanocortin pigment story told in the negative. Most of
+    this site is about tuning the pigment signal — turning <a href="/receptors/mc1r">MC1R</a> up
+    or down to make more or less melanin. Vitiligo is what happens when there is nothing left to
+    tune: the immune system has destroyed the <strong>melanocytes</strong> themselves, the pigment
+    cells, leaving smooth white patches where no pigment can be made at all.<Cite n={2} /> That
+    single fact shapes everything about how — and whether — the melanocortin system can help.
+  </p>
+
+  <h2>A missing bulb, not a flipped switch</h2>
+  <p>
+    It is worth being precise about the difference, because it explains why vitiligo is hard. In
+    a tanning context, MC1R is a dimmer switch on a working light: push the receptor and the
+    melanocyte makes more dark eumelanin. In vitiligo the light itself has been removed.
+    Vitiligo is an autoimmune condition — the body’s own T cells target and kill melanocytes,
+    and the patches that result are not under-stimulated, they are <em>unpopulated</em>.<Cite n={2} />
+    Hand such a patch a pigment-driving signal and there is nothing there to receive it. An MC1R
+    agonist, on its own, has no cells to act on.
+  </p>
+
+  <h2>The two-step the melanocortin angle depends on</h2>
+  <p>
+    This is why the melanocortin approach to vitiligo is not a drug but a <strong>pairing</strong>.
+    Repigmenting a patch takes two distinct things, in order. First the skin has to be given back
+    its pigment cells: melanocyte precursors, which survive in a reservoir in the hair follicles,
+    must be mobilized and coaxed to migrate out into the bare skin. Standard
+    <strong>narrowband-UVB phototherapy</strong> — the mainstay of vitiligo treatment — is what
+    does this. Only once the cells are present does the second step make sense: driving them to
+    proliferate and actually manufacture pigment, which is exactly what an{" "}
+    <a href="/afamelanotide">afamelanotide</a>-style MC1R agonist does.<Cite n={1} /><Cite n={3} />
+  </p>
+
+  <Figure
+    caption="Why the drug is given with light, not instead of it. Narrowband UVB brings melanocyte precursors back into the depigmented patch (supplies the cells); afamelanotide, an MC1R agonist, then drives those cells to multiply and make pigment (switches them on). Neither step repigments on its own."
+    source="Combination rationale per Lim et al., JAMA Dermatol 2015 (PMID 25230094); MC1R/eumelanin mechanism per the SCENESSE FDA label (NDA 210797). Schematic."
+  >
+    <RepigmentDuo />
+  </Figure>
+
+  <h2>What the trial actually showed</h2>
+  <p>
+    The idea has been tested. A randomized, multicenter trial compared afamelanotide plus
+    narrowband UVB against narrowband UVB alone, and the combination produced faster and more
+    complete repigmentation in a subset of patients — the benefit was clearest in people with
+    darker skin types, whose melanocytes respond strongly to the MC1R signal.<Cite n={1} /> It was
+    not a uniform cure: response varied, the drug added the melanocortin class’s own effects
+    (notably generalized skin darkening, which in vitiligo can increase the contrast with the
+    patches during treatment), and the evidence base remains far smaller than for afamelanotide’s
+    approved use. But it was a genuine demonstration that the pigment switch, correctly timed, can
+    help refill what autoimmunity has emptied.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Vitiligo is a useful corrective to the rest of this site’s pigment pages: the melanocortin
+    system can command pigment, but only where there are living melanocytes to obey. That is why
+    the approach here is combination therapy and why it is still investigational rather than
+    approved — afamelanotide’s license is for <a href="/epp">erythropoietic protoporphyria</a>,
+    not vitiligo.<Cite n={3} /> For the receptor at the centre of it, see{" "}
+    <a href="/receptors/mc1r">MC1R</a>; for the approved drug being repurposed, see{" "}
+    <a href="/afamelanotide">afamelanotide</a>; and for why skin darkening rides along with any
+    MC1R agonist, see <a href="/effects">the trade-off</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the science of how melanocortin agonism is being studied in vitiligo. It
+      is not medical advice, describes an investigational use that is not FDA-approved, and gives
+      no dosing instructions. Vitiligo treatment decisions belong with a dermatologist. See the{" "}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="vitiligo" />
+</PageLayout>

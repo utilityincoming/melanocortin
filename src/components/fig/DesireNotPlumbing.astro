@@ -1,0 +1,97 @@
+---
+// desire-not-plumbing — the one idea that makes melanocortin sexual pharmacology
+// make sense. Two drugs act on two different points of the same act. A
+// melanocortin agonist (bremelanotide) works in the BRAIN, on MC4R circuits
+// that generate desire and arousal — upstream, the "wanting". A PDE5 inhibitor
+// (sildenafil) works in the PERIPHERY, on blood flow in the genitals —
+// downstream, the "plumbing", and only once arousal is already present. One
+// starts the signal; the other carries out an order it did not give.
+// Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="dnp-fig"
+  viewBox="0 0 640 316"
+  role="img"
+  aria-labelledby="dnp-t dnp-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="dnp-t">Two drugs, two points in the same act: desire versus plumbing</title>
+  <desc id="dnp-d"
+    >Melanocortin agonists such as bremelanotide act centrally, in the brain, on
+    MC4R circuits that generate sexual desire and arousal — the upstream signal,
+    the wanting. PDE5 inhibitors such as sildenafil act peripherally, on blood
+    flow in the genitals — the downstream mechanics, and only once arousal is
+    already present. One starts the signal; the other carries out the order.</desc
+  >
+
+  <!-- brain / central column -->
+  <rect class="col accent" x="20" y="44" width="286" height="236" rx="14" />
+  <text x="40" y="76" class="col-h accent-t">In the brain — the signal</text>
+  <text x="40" y="96" class="col-sub">central · MC4R</text>
+
+  <rect class="node accent" x="40" y="116" width="246" height="56" rx="10" />
+  <text x="56" y="140" class="node-t accent-t">MC4R circuits fire</text>
+  <text x="56" y="158" class="node-s">desire &amp; arousal are generated</text>
+
+  <path class="flow accent-flow" d="M163 172 V200" marker-end="url(#dnp-arr-a)" />
+
+  <rect class="node" x="40" y="202" width="246" height="56" rx="10" />
+  <text x="56" y="226" class="node-t">the “wanting” begins</text>
+  <text x="56" y="244" class="node-s">bremelanotide · melanotan act here</text>
+
+  <!-- divider arrow: desire leads to arousal leads to response -->
+  <path class="bridge" d="M306 160 H334" marker-end="url(#dnp-arr)" />
+  <text x="320" y="150" text-anchor="middle" class="bridge-t">then</text>
+
+  <!-- body / peripheral column -->
+  <rect class="col" x="334" y="44" width="286" height="236" rx="14" />
+  <text x="354" y="76" class="col-h">In the bloodstream — the plumbing</text>
+  <text x="354" y="96" class="col-sub">peripheral · PDE5</text>
+
+  <rect class="node" x="354" y="116" width="246" height="56" rx="10" />
+  <text x="370" y="140" class="node-t">blood flow responds</text>
+  <text x="370" y="158" class="node-s">only if arousal is already present</text>
+
+  <path class="flow" d="M477 172 V200" marker-end="url(#dnp-arr)" />
+
+  <rect class="node" x="354" y="202" width="246" height="56" rx="10" />
+  <text x="370" y="226" class="node-t">the mechanics follow</text>
+  <text x="370" y="244" class="node-s">sildenafil (Viagra) acts here</text>
+
+  <defs>
+    <marker id="dnp-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+    </marker>
+    <marker id="dnp-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .dnp-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .col { fill: none; stroke: var(--border); stroke-width: 1; }
+  .col.accent { fill: var(--accent-soft); stroke: var(--accent); }
+  .col-h { font-size: 13px; font-weight: 700; fill: var(--text); }
+  .col-h.accent-t { fill: var(--accent-strong); }
+  .col-sub { font-size: 10.5px; font-family: ui-monospace, monospace; fill: var(--text-muted); }
+  .node { fill: var(--bg); stroke: var(--border); stroke-width: 1; }
+  .node.accent { stroke: var(--accent); stroke-width: 1.5; }
+  .node-t { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .node-t.accent-t { fill: var(--accent-strong); }
+  .node-s { font-size: 10.5px; fill: var(--text-muted); }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow.accent-flow { stroke: var(--accent); }
+  .bridge { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .bridge-t { font-size: 10px; font-style: italic; fill: var(--text-muted); }
+</style>

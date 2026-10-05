@@ -1,0 +1,92 @@
+---
+// repigment-duo — why afamelanotide for vitiligo is given WITH narrowband UVB,
+// not instead of it. Repigmenting a white patch needs two things in sequence.
+// First, melanocyte precursors have to be mobilised out of their reservoir in
+// the hair follicle and coaxed to migrate into the bare skin — this is what
+// NB-UVB phototherapy does. Then those melanocytes have to be driven to
+// multiply and actually make pigment — this is what afamelanotide, an MC1R
+// agonist, does. One supplies the cells; the other switches them on. Schematic;
+// SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="rd-fig"
+  viewBox="0 0 640 262"
+  role="img"
+  aria-labelledby="rd-t rd-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="rd-t">Why vitiligo repigmentation needs two steps together</title>
+  <desc id="rd-d"
+    >Repigmenting a vitiligo patch takes two steps in sequence. First, narrowband
+    UVB phototherapy mobilises melanocyte precursor cells out of their reservoir
+    in the hair follicle and prompts them to migrate into the depigmented skin.
+    Second, afamelanotide, an MC1R agonist, drives those melanocytes to multiply
+    and make pigment. One step supplies the cells; the other switches them on, so
+    the two are used together rather than one instead of the other.</desc
+  >
+
+  <!-- step 0: the patch -->
+  <rect class="card miss" x="20" y="92" width="150" height="70" rx="11" />
+  <text x="95" y="120" text-anchor="middle" class="card-t miss-t">White patch</text>
+  <text x="95" y="138" text-anchor="middle" class="sub">melanocytes lost —</text>
+  <text x="95" y="152" text-anchor="middle" class="sub">no pigment cells</text>
+
+  <!-- step 1: NB-UVB mobilises -->
+  <path class="flow" d="M170 127 H228" marker-end="url(#rd-arr)" />
+  <rect class="card" x="230" y="78" width="170" height="98" rx="11" />
+  <text x="315" y="104" text-anchor="middle" class="card-t">Step 1 · NB-UVB</text>
+  <text x="315" y="126" text-anchor="middle" class="sub">mobilises melanocyte</text>
+  <text x="315" y="140" text-anchor="middle" class="sub">precursors from the</text>
+  <text x="315" y="154" text-anchor="middle" class="sub">hair-follicle reservoir</text>
+  <text x="315" y="170" text-anchor="middle" class="tag">supplies the cells</text>
+
+  <!-- step 2: afamelanotide drives pigment -->
+  <path class="flow accent-flow" d="M400 127 H458" marker-end="url(#rd-arr-a)" />
+  <rect class="card accent" x="460" y="78" width="160" height="98" rx="11" />
+  <text x="540" y="104" text-anchor="middle" class="card-t accent-t">Step 2 · afamelanotide</text>
+  <text x="540" y="126" text-anchor="middle" class="sub">MC1R agonist drives</text>
+  <text x="540" y="140" text-anchor="middle" class="sub">them to multiply</text>
+  <text x="540" y="154" text-anchor="middle" class="sub">and make pigment</text>
+  <text x="540" y="170" text-anchor="middle" class="tag accent-t">switches them on</text>
+
+  <!-- punchline -->
+  <rect class="band" x="20" y="200" width="600" height="44" rx="12" />
+  <text x="40" y="221" class="band-t">Neither step repigments alone: NB-UVB brings the cells, the MC1R agonist lights them up.</text>
+  <text x="40" y="237" class="band-t">That is why the two are given together.</text>
+
+  <defs>
+    <marker id="rd-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+    </marker>
+    <marker id="rd-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .rd-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.miss { fill: var(--bg); stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 5 3; }
+  .card.accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 12.5px; font-weight: 700; fill: var(--text); }
+  .card-t.miss-t { fill: var(--text-muted); }
+  .card-t.accent-t { fill: var(--accent-strong); }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .tag { font-size: 10px; font-style: italic; fill: var(--text-muted); }
+  .tag.accent-t { fill: var(--accent-strong); }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow.accent-flow { stroke: var(--accent); }
+  .band { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .band-t { font-size: 11px; fill: var(--text); }
+</style>

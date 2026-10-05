@@ -1,0 +1,91 @@
+---
+// pomc-triad — why one missing gene causes three unrelated-looking problems at
+// once. POMC is the precursor; cut it away and the peptides it should have
+// become never appear. ACTH is missing (adrenal insufficiency), and α-MSH is
+// missing at two receptors: MC1R (red hair, pale skin) and MC4R (severe
+// early-onset obesity). Setmelanotide re-supplies the MC4R signal only — it
+// restores the appetite arm, not the adrenal one, which is the page's honest
+// limit. Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="pt-fig"
+  viewBox="0 0 640 332"
+  role="img"
+  aria-labelledby="pt-t pt-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="pt-t">One missing precursor, three simultaneous failures</title>
+  <desc id="pt-d"
+    >In POMC deficiency the POMC precursor is absent, so the peptides cut from it
+    never appear. ACTH is missing, causing adrenal insufficiency. Alpha-MSH is
+    missing at two receptors: at MC1R, giving red hair and pale skin, and at
+    MC4R, giving severe early-onset obesity. Setmelanotide re-supplies the MC4R
+    signal only, so it restores the appetite arm but not the adrenal one.</desc
+  >
+
+  <!-- the missing precursor -->
+  <rect class="card miss" x="20" y="130" width="150" height="72" rx="12" />
+  <text x="95" y="160" text-anchor="middle" class="card-t miss-t">POMC</text>
+  <text x="95" y="178" text-anchor="middle" class="sub">precursor absent —</text>
+  <text x="95" y="192" text-anchor="middle" class="sub">nothing to cut</text>
+
+  <!-- three branches -->
+  <path class="flow" d="M170 150 C 220 150, 230 70, 286 70" marker-end="url(#pt-arr)" />
+  <path class="flow" d="M170 166 C 230 166, 240 166, 286 166" marker-end="url(#pt-arr)" />
+  <path class="flow accent-flow" d="M170 182 C 220 182, 230 262, 286 262" marker-end="url(#pt-arr-a)" />
+
+  <!-- arm 1: ACTH -> adrenal -->
+  <rect class="card" x="288" y="42" width="332" height="58" rx="10" />
+  <text x="306" y="66" class="arm">No ACTH → MC2R</text>
+  <text x="306" y="86" class="arm-s">adrenal insufficiency — needs steroid replacement</text>
+
+  <!-- arm 2: a-MSH at MC1R -->
+  <rect class="card" x="288" y="138" width="332" height="58" rx="10" />
+  <text x="306" y="162" class="arm">No α-MSH → MC1R</text>
+  <text x="306" y="182" class="arm-s">red hair, pale skin that burns</text>
+
+  <!-- arm 3: a-MSH at MC4R (the treatable arm) -->
+  <rect class="card accent" x="288" y="234" width="332" height="58" rx="10" />
+  <text x="306" y="258" class="arm accent-t">No α-MSH → MC4R</text>
+  <text x="306" y="278" class="arm-s">severe early-onset obesity, relentless hunger</text>
+
+  <!-- setmelanotide re-supplies the MC4R arm only -->
+  <rect class="drug" x="288" y="304" width="332" height="22" rx="11" />
+  <text x="454" y="319" text-anchor="middle" class="drug-t">setmelanotide re-supplies this arm only</text>
+
+  <defs>
+    <marker id="pt-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+    </marker>
+    <marker id="pt-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .pt-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.miss { fill: var(--bg); stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 5 3; }
+  .card.accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 15px; font-weight: 700; fill: var(--text); }
+  .card-t.miss-t { fill: var(--text-muted); }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .arm { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .arm.accent-t { fill: var(--accent-strong); }
+  .arm-s { font-size: 10.5px; fill: var(--text-muted); }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow.accent-flow { stroke: var(--accent); }
+  .drug { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 2; }
+  .drug-t { font-size: 10.5px; font-style: italic; fill: var(--accent-strong); }
+</style>

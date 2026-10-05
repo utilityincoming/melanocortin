@@ -1,0 +1,190 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import DesireNotPlumbing from '../components/fig/DesireNotPlumbing.astro';
+
+const faqs = [
+  {
+    q: 'Why does a melanocortin receptor affect sexual desire at all?',
+    a: 'Because MC4R, the same receptor that governs appetite, sits in brain circuits that also shape sexual motivation. Melanocortin agonists activate those central circuits directly, which is why a drug built on this system can raise desire itself rather than just enabling the physical response. It was discovered by accident — tanning-peptide trials kept producing spontaneous arousal.',
+  },
+  {
+    q: 'How is this different from Viagra?',
+    a: 'Viagra and other PDE5 inhibitors act peripherally, improving genital blood flow once arousal is already present — the plumbing. Melanocortin agonists act centrally, in the brain, on the circuits that generate desire and arousal in the first place — the signal. They work at opposite ends of the same act.',
+  },
+  {
+    q: 'Is there an approved melanocortin drug for sexual function?',
+    a: 'Yes. Bremelanotide (Vyleesi), a melanocortin agonist acting largely through MC4R, is FDA-approved for acquired, generalised hypoactive sexual desire disorder in premenopausal women — the first on-demand treatment for the condition. It is given as a subcutaneous autoinjector before anticipated activity.',
+  },
+  {
+    q: 'Does it work in men?',
+    a: 'Early trials in men with erectile dysfunction, including some who had not responded to PDE5 inhibitors, did show an effect. But the development programme in men was halted over transient blood-pressure increases, and approval in men was never pursued. Any use in men is off-label.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Molinoff PB, Shadiack AM, Earle D, Diamond LE, Quon CY.',
+    title: 'PT-141: a melanocortin agonist for the treatment of sexual dysfunction.',
+    source: 'Ann N Y Acad Sci. 994:96–102 — the central, MC4R-mediated mechanism.',
+    year: '2003',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/12851303/',
+  },
+  {
+    authors: 'Diamond LE, Earle DC, Rosen RC, Willett MS, Molinoff PB.',
+    title:
+      'Double-blind, placebo-controlled evaluation of intranasal PT-141, a melanocortin receptor agonist, in healthy males and patients with mild-to-moderate erectile dysfunction.',
+    source: 'Int J Impot Res. 16(1):51–59 — central-acting effect in men.',
+    year: '2004',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/14963471/',
+  },
+  {
+    authors: 'US FDA / DailyMed.',
+    title: 'VYLEESI (bremelanotide injection) prescribing information.',
+    source: 'Label (NDA 210557) — melanocortin mechanism, indication, and dosing.',
+    year: '2019',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8c9607a2-5b57-4a59-b159-cf196deebdd9',
+  },
+  {
+    authors: 'Kingsberg SA, Clayton AH, Portman D, et al.',
+    title:
+      'Bremelanotide for the treatment of hypoactive sexual desire disorder: two randomized phase 3 trials (RECONNECT).',
+    source: 'Obstet Gynecol. 134(5):899–908 — the pivotal efficacy and safety data.',
+    year: '2019',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6819021/',
+  },
+];
+---
+
+<PageLayout
+  title="Melanocortins and sexual function: desire in the brain, not the bloodstream"
+  kicker="The fifth surprise"
+  description="The melanocortin system reaches sexual function the same way it reaches everything else — through the brain. MC4R, the appetite receptor, also sits in the circuits that generate desire, which is why a melanocortin agonist can raise wanting itself rather than just enabling the physical response. It is the system's most unexpected branch, and it was found by accident."
+  thread="One signal followed past hunger into desire — the same receptor, read in a different room of the brain, doing a job no one went looking for."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Hypoactive sexual desire disorder', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Hypoactive_sexual_desire_disorder'] },
+    { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Melanocortins reach sexual function through the brain: MC4R — the same receptor that sets appetite — also sits in central circuits that generate sexual desire and arousal.',
+      'That makes melanocortin agonists act on wanting itself, upstream — unlike PDE5 inhibitors (Viagra), which act peripherally on blood flow once arousal is already present.',
+      'The whole branch was discovered by accident: trials of the tanning peptide melanotan kept producing spontaneous arousal, and chemists chased that side effect into a drug.',
+      'Bremelanotide (Vyleesi), a largely MC4R-mediated agonist, is FDA-approved for hypoactive sexual desire disorder in premenopausal women — the first on-demand treatment for it.',
+      'Early male erectile-dysfunction trials showed an effect too, but the programme in men was halted over transient blood-pressure rises; use in men remains off-label.',
+    ]}
+  />
+
+  <p>
+    The melanocortin system is best known for pigment, the stress axis, appetite, and
+    inflammation. Sexual function is its quietest and most surprising reach — and it
+    arrives by the same route as everything else the system does in the head: through{' '}
+    <a href="/receptors/mc4r">MC4R</a>, the appetite receptor, acting centrally in the
+    brain.<Cite n={1} /> The remarkable part is not that a melanocortin drug can improve
+    the mechanics of sex. It is that one can lift <em>desire</em> itself.
+  </p>
+
+  <h2>Desire is upstream of plumbing</h2>
+  <p>
+    The cleanest way to understand melanocortin sexual pharmacology is to separate two
+    things that everyday language runs together: the <strong>wanting</strong> and the
+    <strong>mechanics</strong>. PDE5 inhibitors — Viagra and its relatives — work on the
+    mechanics. They act in the periphery, improving blood flow in the genitals, and they
+    do so only once arousal is already present; they carry out an order the brain has
+    already given. A melanocortin agonist works at the other end. It acts centrally, on
+    the circuits that generate desire and arousal in the first place, so it can start the
+    signal rather than merely execute it.<Cite n={1} /><Cite n={3} />
+  </p>
+
+  <Figure
+    caption="Two drugs, two points in the same act. A melanocortin agonist acts centrally, on MC4R circuits that generate desire — the signal. A PDE5 inhibitor acts peripherally on blood flow — the plumbing, and only once arousal is already present. One starts the order; the other carries it out."
+    source="Central vs. peripheral mechanism per Molinoff et al., Ann N Y Acad Sci 2003 (PMID 12851303) and the VYLEESI prescribing information. Schematic."
+  >
+    <DesireNotPlumbing />
+  </Figure>
+
+  <h2>Found, not designed</h2>
+  <p>
+    No one set out to build a desire drug from the melanocortin system. The branch opened
+    by accident. In trials of <a href="/melanotan">Melanotan II</a>, the peptide being
+    pushed as a sunless tan, researchers kept noting a striking and consistent side
+    effect: spontaneous sexual arousal. Rather than discard it, chemists re-worked the
+    molecule to strip out most of the pigment activity while keeping the pro-sexual
+    effect — and the result became <a href="/bremelanotide">PT-141 / bremelanotide</a>.<Cite n={1} />
+    It is the same lineage that produced the approved tanning drug{' '}
+    <a href="/afamelanotide">afamelanotide</a>; where afamelanotide is the pigment side of
+    the melanotan story made into medicine, bremelanotide is the other side effect made
+    into one. For how tangled that family tree gets, see{' '}
+    <a href="/pt-141-vs-melanotan">PT-141 vs Melanotan</a>.
+  </p>
+
+  <h2>What the evidence actually shows</h2>
+  <p>
+    The central effect is not just a mechanistic story; it has been tested in both sexes.
+    In men, an intranasal melanocortin agonist produced erections in healthy volunteers
+    and in patients with mild-to-moderate erectile dysfunction, acting through the brain
+    rather than the bloodstream — a different route from the PDE5 inhibitors, and one that
+    worked in some men they did not.<Cite n={2} /> In women, the pivotal RECONNECT trials
+    tested bremelanotide for acquired, generalised <strong>hypoactive sexual desire
+    disorder (HSDD)</strong> — a persistent, distressing lack of sexual desire — and showed
+    improvements in desire and in the distress it causes.<Cite n={4} /> On that basis the
+    FDA approved it in 2019, the first on-demand treatment for HSDD in premenopausal
+    women.<Cite n={3} />
+  </p>
+  <p>
+    The two stories end differently, and that difference is itself informative. The
+    programme in men was not carried to approval: an earlier intranasal route raised blood
+    pressure enough to halt it, and development refocused on women with a subcutaneous
+    dose.<Cite n={1} /> So the one approved melanocortin sexual-function drug treats desire
+    in women, while the effect in men — real in early trials — remains off-label and
+    unapproved.
+  </p>
+
+  <h2>The honest limits</h2>
+  <p>
+    This is a genuine effect, but a bounded one. Bremelanotide is approved for a specific
+    diagnosis in a specific population, not as a general libido enhancer, and its
+    tolerability is real: nausea is common, and because it transiently raises blood
+    pressure it is contraindicated in uncontrolled hypertension and known cardiovascular
+    disease.<Cite n={3} /> The grey-market “PT-141” sold as vials and nasal sprays is the
+    unapproved version of the same molecule, of unknown purity and dose — the sexual-function
+    counterpart to the <a href="/melanotan">melanotan</a> tanning peptides, and carrying the
+    same caution. The science here is sound and specific; the marketing around it usually
+    is not.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Sexual function is the melanocortin system doing, one more time, the thing this whole
+    site keeps finding: reaching into a place no one expected, through a receptor it was
+    already using for something else. The appetite switch turned out to sit in the circuitry
+    of desire, and a tanning peptide's side effect turned out to be a drug. For the molecule,
+    see <a href="/bremelanotide">bremelanotide (PT-141)</a>; for the receptor it works
+    through, see <a href="/receptors/mc4r">MC4R — the appetite rheostat</a>; for the lineage
+    it came from, see <a href="/melanotan">Melanotan</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains how the melanocortin system reaches sexual function. It is not
+      medical advice and gives no dosing or usage instructions. The one approved drug here
+      is prescription-only for a specific diagnosed condition; treatment decisions belong
+      with a clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="sexual-function" />
+</PageLayout>

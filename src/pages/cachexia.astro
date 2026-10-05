@@ -1,0 +1,166 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import CachexiaDial from '../components/fig/CachexiaDial.astro';
+
+const faqs = [
+  {
+    q: 'What is cachexia?',
+    a: 'Cachexia is the severe wasting syndrome that accompanies many serious illnesses — advanced cancer, chronic kidney disease, heart failure, COPD. It is not simple undernutrition: it is ongoing loss of muscle (with or without fat), driven by the illness itself, and it cannot be fully reversed by feeding alone. It worsens quality of life and survival.',
+  },
+  {
+    q: 'What does cachexia have to do with the melanocortin system?',
+    a: 'The melanocortin appetite circuit is the mechanism cachexia hijacks. Inflammatory signals from the illness push the hypothalamic melanocortin tone up, over-activating MC4R — the same receptor that restrains appetite. The dial that should keep hunger balanced gets jammed toward "stop eating and burn fuel", which is precisely the wrong setting for a wasting body.',
+  },
+  {
+    q: 'Is blocking MC4R a treatment for cachexia?',
+    a: 'It is the leading melanocortin strategy, still investigational. If over-active MC4R drives the wasting, an MC4R antagonist should ease it — restoring appetite, lowering the raised energy expenditure, and preserving muscle. TCMCB07 and Pfizer’s PF-07258669 are MC4R antagonists developed on exactly this logic. None is yet approved for cachexia.',
+  },
+  {
+    q: 'How is this the opposite of obesity treatment?',
+    a: 'Precisely opposite, through the same receptor. In genetic obesity the MC4R pathway is under-driven and setmelanotide, an agonist, turns it back up to restrain appetite. In cachexia the pathway is over-driven and the goal is an antagonist to turn it down and restore appetite. One receptor, two diseases, opposite drugs.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Marks DL, Ling N, Cone RD.',
+    title: 'Role of the central melanocortin system in cachexia.',
+    source: 'Cancer Res. 61(4):1432–1438 — the foundational demonstration that MC4R signalling drives wasting. PMID 11245447.',
+    year: '2001',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/11245447/',
+  },
+  {
+    authors: 'Fearon K, Strasser F, Anker SD, et al.',
+    title: 'Definition and classification of cancer cachexia: an international consensus.',
+    source: 'Lancet Oncol. 12(5):489–495 — the consensus clinical definition. PMID 21296615.',
+    year: '2011',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/21296615/',
+  },
+  {
+    authors: 'Baracos VE, Martin L, Korc M, Guttridge DC, Fearon KCH.',
+    title: 'Cancer-associated cachexia.',
+    source: 'Nat Rev Dis Primers. 4:17105 — mechanisms, inflammation, and the wasting phenotype. PMID 29345251.',
+    year: '2018',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/29345251/',
+  },
+];
+---
+
+<PageLayout
+  title="Cachexia: the appetite switch turned against the body"
+  kicker="The condition"
+  description="Cachexia is the wasting of serious illness — and it runs through the melanocortin system backwards. Inflammation forces the MC4R appetite circuit into overdrive, jamming the dial on 'stop eating and burn' exactly when the body needs the opposite. It is the mirror image of melanocortin obesity, and the reason MC4R antagonists exist."
+  thread="The same rheostat that fails open in obesity, failing shut here — the appetite brake held down by illness until the body consumes itself."
+  updated="2026"
+  about={[
+    { name: 'Cachexia', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Cachexia'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Cachexia is the illness-driven wasting syndrome of advanced cancer, chronic kidney disease, heart failure and more — loss of muscle that feeding alone cannot reverse, and a major drag on survival.',
+      'It runs through the melanocortin appetite circuit in reverse: inflammatory signals from the illness push hypothalamic melanocortin tone up and over-activate MC4R.',
+      'That jams the appetite rheostat toward "stop eating and burn fuel" — driving anorexia, raised energy expenditure, and the breakdown of muscle and fat all at once.',
+      'It is the exact mirror of melanocortin obesity: there MC4R is under-driven and the fix is an agonist (setmelanotide); here MC4R is over-driven and the aim is an antagonist.',
+      'MC4R antagonists — TCMCB07 and Pfizer’s PF-07258669 — were built on this logic. Blocking the over-active receptor should restore appetite and spare muscle; the approach is still investigational.',
+    ]}
+  />
+
+  <p>
+    Almost everything else on this site treats the melanocortin system as something to switch
+    <em>on</em>. <strong>Cachexia</strong> is the case where the system is already on too hard,
+    and the goal is to turn it down. It is the severe wasting that shadows serious illness —
+    advanced cancer above all, but also chronic kidney disease, heart failure, and COPD — and it
+    is one of the clearest places where the <a href="/receptors/mc4r">MC4R appetite circuit</a>{' '}
+    does real harm by doing its ordinary job at the wrong moment.<Cite n={1} />
+  </p>
+
+  <h2>Not starvation — something worse</h2>
+  <p>
+    It is important to separate cachexia from simple undernutrition, because the difference is
+    the whole point. A starving but otherwise healthy body defends itself: it lowers its
+    metabolic rate and burns fat while sparing muscle for as long as it can. Cachexia does the
+    opposite. It is a state of ongoing muscle loss, driven by the illness itself, in which the
+    body keeps burning and breaking down tissue even as intake falls — and crucially, it
+    <em>cannot</em> be reversed by feeding alone.<Cite n={2} /> That resistance to nutrition is
+    what marks it as an active, signalled process rather than a shortage, and it is why it
+    carries such weight in prognosis.<Cite n={3} />
+  </p>
+
+  <h2>Where the melanocortin system comes in</h2>
+  <p>
+    The signalling that drives cachexia converges on the hypothalamus, and the melanocortin
+    circuit is a central part of the mechanism. Inflammatory cytokines released by the illness
+    push the system toward its appetite-suppressing output: the melanocortin tone rises, and{" "}
+    <a href="/receptors/mc4r">MC4R</a> is over-activated.<Cite n={1} /> Think of the appetite{" "}
+    <a href="/receptors/mc4r">rheostat</a> again — the dial that normally balances hunger against
+    fullness. In cachexia, inflammation leans on that dial and jams it toward "stop eating and
+    burn", so three things happen together: appetite falls, resting energy expenditure rises, and
+    muscle and fat are broken down. The circuit built to prevent obesity is, here, helping to
+    consume the body.<Cite n={1} />
+  </p>
+
+  <Figure
+    caption="Cachexia through the melanocortin circuit: illness-driven inflammation pushes hypothalamic melanocortin tone up and over-activates MC4R, jamming the appetite rheostat toward 'stop eating and burn' — anorexia, raised energy expenditure, and muscle/fat breakdown together. An MC4R antagonist blocks the over-active receptor, the opposite of what setmelanotide does in obesity."
+    source="Melanocortin mechanism per Marks, Ling & Cone, Cancer Res 2001 (PMID 11245447); cachexia definition and mechanisms per Fearon 2011 (PMID 21296615) and Baracos 2018 (PMID 29345251). Schematic."
+  >
+    <CachexiaDial />
+  </Figure>
+
+  <h2>One receptor, two diseases, opposite drugs</h2>
+  <p>
+    This is the cleanest demonstration on the whole site that a receptor is not "good" or "bad" —
+    only set too high or too low. In <a href="/pomc-deficiency">genetic obesity</a> the MC4R
+    pathway is under-driven and the treatment is an agonist, <a href="/setmelanotide">
+    setmelanotide</a>, to turn it back up and restrain a runaway appetite. In cachexia the pathway
+    is over-driven and the treatment logic is the reverse: an <strong>antagonist</strong> to turn
+    it down and give appetite back. The same molecule that proves the circuit exists by blocking
+    it in the lab — <a href="/shu9119">SHU9119</a> — is the template for that idea, and two drugs
+    have carried it toward the clinic: <a href="/tcmcb07">TCMCB07</a>, a brain-penetrant MC4R
+    antagonist peptide, and Pfizer’s small-molecule <a href="/pf-07258669">PF-07258669</a>.<Cite n={1} />
+  </p>
+
+  <h2>The honest limits</h2>
+  <p>
+    The melanocortin approach to cachexia is promising and unproven. The mechanism is well
+    supported, and MC4R antagonists reverse wasting convincingly in animal models — but turning
+    that into an approved human therapy has not yet happened, and the development path has been
+    uneven (Pfizer shelved PF-07258669 for business reasons despite reaching Phase 1). Cachexia is
+    also multifactorial: the melanocortin circuit is a major lever, not the only one, and real
+    cachexia care is multidisciplinary. What this page describes is a strong and specific
+    rationale, not a finished treatment.<Cite n={3} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Cachexia belongs on this site as the dark twin of the appetite pages. It shows the
+    melanocortin rheostat failing in the opposite direction from obesity, through the very same
+    receptor, and it is the entire reason a class of MC4R <em>antagonists</em> exists at all. For
+    the receptor at its centre, see <a href="/receptors/mc4r">MC4R</a>; for the drugs built to
+    block it, see <a href="/tcmcb07">TCMCB07</a> and <a href="/pf-07258669">PF-07258669</a>; and
+    for the research antagonist that first proved the circuit, see <a href="/shu9119">SHU9119</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains how cachexia engages the melanocortin system and why MC4R antagonists are
+      being developed for it. It is not medical advice, describes investigational approaches that
+      are not approved, and gives no dosing instructions. Cachexia is a serious condition whose
+      management belongs with a specialist team. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="cachexia" />
+</PageLayout>
