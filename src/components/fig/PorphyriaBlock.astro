@@ -1,0 +1,134 @@
+---
+// porphyria-block — the mechanism of erythropoietic protoporphyria in one view.
+// Top row (the jam): the heme pathway runs to protoporphyrin IX, but the final
+// enzyme ferrochelatase is deficient, so PPIX backs up instead of becoming heme.
+// Bottom row (the injury): PPIX in the skin's small vessels absorbs violet
+// light, hands the energy to oxygen, and the resulting reactive oxygen causes
+// burning pain within minutes. The shield band shows where the melanocortin
+// drugs act — MC1R-driven eumelanin absorbs the light before it reaches PPIX.
+// Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="pb-fig"
+  viewBox="0 0 640 372"
+  role="img"
+  aria-labelledby="pb-t pb-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="pb-t">Where the heme pathway jams in EPP, and where the drug acts</title>
+  <desc id="pb-d"
+    >In erythropoietic protoporphyria the heme-synthesis pathway runs normally
+    until its last step. The final enzyme, ferrochelatase, is deficient, so it
+    cannot insert iron into protoporphyrin IX to finish heme. Protoporphyrin IX
+    backs up and reaches the skin's small blood vessels, where it absorbs violet
+    light around 400 to 410 nanometres, transfers the energy to oxygen, and
+    generates reactive oxygen that causes intense burning pain within minutes.
+    Melanocortin drugs act upstream of the injury: by switching on MC1R they
+    build eumelanin, a pigment shield that absorbs the light before it can reach
+    the protoporphyrin.</desc
+  >
+
+  <!-- ============ Act 1: the jam ============ -->
+  <text x="20" y="30" class="act">The jam — a deficient final enzyme</text>
+
+  <!-- abbreviated chain -->
+  <rect class="card" x="20" y="44" width="150" height="56" rx="10" />
+  <text x="95" y="68" text-anchor="middle" class="card-t">8-step chain</text>
+  <text x="95" y="86" text-anchor="middle" class="sub">glycine → · · · →</text>
+
+  <path class="flow" d="M170 72 H210" marker-end="url(#pb-arr)" />
+
+  <!-- PPIX accumulates -->
+  <rect class="card hot" x="212" y="40" width="172" height="64" rx="10" />
+  <text x="298" y="64" text-anchor="middle" class="rec hot-t">Protoporphyrin IX</text>
+  <text x="298" y="82" text-anchor="middle" class="sub">backs up — the culprit</text>
+  <text x="298" y="96" text-anchor="middle" class="sub">molecule</text>
+
+  <!-- weak ferrochelatase step -->
+  <path class="flow weak" d="M384 72 H454" marker-end="url(#pb-arr-weak)" />
+  <text x="419" y="58" text-anchor="middle" class="enz">ferrochelatase</text>
+  <text x="419" y="92" text-anchor="middle" class="enz-sub">+ Fe²⁺ · ~⅓ capacity</text>
+
+  <!-- heme (dimmed) -->
+  <rect class="card dim" x="456" y="48" width="104" height="48" rx="10" />
+  <text x="508" y="77" text-anchor="middle" class="rec dim-t">Heme</text>
+
+  <!-- ============ Act 2: the injury ============ -->
+  <text x="20" y="166" class="act">The injury — light, not heat</text>
+
+  <!-- PPIX in skin -->
+  <rect class="card hot" x="20" y="182" width="150" height="58" rx="10" />
+  <text x="95" y="205" text-anchor="middle" class="card-t hot-t">PPIX in skin</text>
+  <text x="95" y="223" text-anchor="middle" class="sub">dermal capillaries</text>
+
+  <path class="flow" d="M170 211 H214" marker-end="url(#pb-arr)" />
+
+  <!-- light -->
+  <rect class="card" x="216" y="182" width="150" height="58" rx="10" />
+  <text x="291" y="205" text-anchor="middle" class="card-t">Violet light</text>
+  <text x="291" y="223" text-anchor="middle" class="sub">~400–410 nm · + O₂</text>
+
+  <path class="flow" d="M366 211 H410" marker-end="url(#pb-arr)" />
+
+  <!-- ROS / pain -->
+  <rect class="card hot" x="412" y="182" width="148" height="58" rx="10" />
+  <text x="486" y="205" text-anchor="middle" class="rec hot-t">Reactive oxygen</text>
+  <text x="486" y="223" text-anchor="middle" class="sub">burning pain, minutes</text>
+
+  <!-- ============ The shield ============ -->
+  <rect class="shield" x="20" y="276" width="540" height="76" rx="12" />
+  <text x="40" y="304" class="act accent">The shield — where melanocortins act</text>
+  <text x="40" y="326" class="shield-line">
+    MC1R → eumelanin absorbs the light <tspan class="shield-em">before</tspan> it reaches PPIX
+  </text>
+  <text x="40" y="344" class="shield-sub">afamelanotide (implant) · dersimelagon (oral) — photoprotection, not a cure</text>
+
+  <!-- arrow from shield up to the light step it intercepts -->
+  <path class="intercept" d="M291 276 V248" marker-end="url(#pb-arr-accent)" />
+
+  <defs>
+    <marker id="pb-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong, var(--text-muted))" />
+    </marker>
+    <marker id="pb-arr-weak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" opacity="0.5" />
+    </marker>
+    <marker id="pb-arr-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .pb-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .act { font-size: 12px; font-weight: 700; fill: var(--text); letter-spacing: 0.02em; }
+  .act.accent { fill: var(--accent-strong); }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.hot { stroke: var(--accent); stroke-width: 1.5; }
+  .card.dim { stroke: var(--border); opacity: 0.6; }
+  .rec { font-size: 14px; font-weight: 700; fill: var(--text); }
+  .rec.hot-t { fill: var(--accent-strong); }
+  .rec.dim-t { fill: var(--text-muted); }
+  .card-t { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .card-t.hot-t { fill: var(--accent-strong); }
+  .sub { font-size: 10.5px; fill: var(--text-muted); }
+  .enz { font-size: 10.5px; font-style: italic; fill: var(--text-muted); }
+  .enz-sub { font-size: 10px; fill: var(--text-muted); opacity: 0.85; }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow.weak { stroke-dasharray: 4 3; opacity: 0.55; }
+  .shield { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .shield-line { font-size: 12px; fill: var(--text); }
+  .shield-em { font-style: italic; font-weight: 700; fill: var(--accent-strong); }
+  .shield-sub { font-size: 10.5px; fill: var(--text-muted); }
+  .intercept { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+</style>
