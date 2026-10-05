@@ -64,7 +64,7 @@ export const SITE_INDEX: IndexSection[] = [
   },
   {
     title: 'Conditions & questions',
-    pages: pick('hypothalamic-obesity', 'epp', 'glp1-appetite', 'mc1r-pain', 'oral-peptides', 'mc1r-selectivity', 'dose-curve'),
+    pages: pick('hypothalamic-obesity', 'pomc-deficiency', 'bardet-biedl', 'cachexia', 'epp', 'vitiligo', 'addisons-disease', 'glp1-appetite', 'sexual-function', 'mc1r-pain', 'oral-peptides', 'mc1r-selectivity', 'dose-curve'),
   },
   {
     title: 'Data & tools',

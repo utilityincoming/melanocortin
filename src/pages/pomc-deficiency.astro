@@ -1,0 +1,185 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import PomcTriad from '../components/fig/PomcTriad.astro';
+
+const faqs = [
+  {
+    q: 'What is POMC deficiency?',
+    a: 'POMC deficiency is a rare genetic condition in which the body cannot make proopiomelanocortin (POMC), the precursor protein that is normally cut into several melanocortin hormones. Without it, children develop severe obesity from infancy, adrenal insufficiency, and — because the same precursor feeds the pigment pathway — characteristically red hair and pale skin.',
+  },
+  {
+    q: 'Why does POMC deficiency cause red hair?',
+    a: 'Because α-MSH, the pigment signal that switches on MC1R, is one of the peptides cut from POMC. No POMC means no α-MSH, so MC1R is never told to make dark eumelanin — the same end result as an inactive MC1R gene in a natural redhead. It is a striking visible clue that one broken gene is behind the obesity, the pale skin, and the hormone problem at once.',
+  },
+  {
+    q: 'How is it treated?',
+    a: 'Setmelanotide (Imcivree), an MC4R agonist, re-supplies the appetite signal the missing α-MSH should have provided, and in trials most people with POMC deficiency lost substantial weight. It does not replace the other missing hormones — the adrenal insufficiency still needs lifelong steroid replacement, managed separately by an endocrinologist.',
+  },
+  {
+    q: 'Is LEPR deficiency the same thing?',
+    a: 'It is the neighbouring break in the same circuit. Leptin-receptor (LEPR) deficiency sits one step upstream: the POMC neurons are intact but never hear leptin’s signal to fire. The downstream result — unrelenting hunger and early, severe obesity — is similar, and setmelanotide is approved for both because it acts below the break, at MC4R.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Clément K, van den Akker E, Argente J, et al.',
+    title:
+      'Efficacy and safety of setmelanotide, an MC4R agonist, in individuals with severe obesity due to LEPR or POMC deficiency: single-arm, open-label, multicentre, phase 3 trials.',
+    source:
+      'Lancet Diabetes Endocrinol — the pivotal genetic-obesity trials; 80% (POMC) and 45% (LEPR) achieved ≥10% weight loss at ~1 year. PMID 33137293.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33137293/',
+  },
+  {
+    authors: 'US FDA.',
+    title:
+      'FDA approves first treatment for weight management for people with certain rare genetic conditions.',
+    source: 'News release — the November 2020 approval of setmelanotide for POMC, PCSK1, and LEPR deficiency.',
+    year: '2020',
+    url: 'https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-first-treatment-weight-management-people-certain-rare-genetic-conditions',
+  },
+  {
+    authors: 'Markham A. / StatPearls.',
+    title: 'Setmelanotide.',
+    source: 'NCBI Bookshelf (NBK589641) — mechanism, genetic-obesity indications, and adverse effects.',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
+  },
+];
+---
+
+<PageLayout
+  title="POMC & leptin-receptor deficiency: when the appetite signal is missing from birth"
+  kicker="The condition"
+  description="POMC deficiency is the rare genetic disease that proved the melanocortin appetite circuit is real in humans — a single missing precursor that causes severe childhood obesity, adrenal failure, and red hair at once. It was also the first condition setmelanotide was approved to treat."
+  thread="One precursor gone, and three systems fall silent together — the clearest proof that a single melanocortin gene can hold colour, hormones, and hunger in one hand."
+  updated="2026"
+  about={[
+    { name: 'Proopiomelanocortin deficiency', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+    { name: 'Melanocortin 4 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_4_receptor'] },
+    { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'POMC deficiency is a rare genetic disease in which the melanocortin precursor POMC is absent — so every peptide normally cut from it goes missing at once.',
+      'The result is a striking triad: severe early-onset obesity (no α-MSH at MC4R), adrenal insufficiency (no ACTH), and red hair with pale skin (no α-MSH at MC1R).',
+      'It is the clearest natural proof that the leptin–melanocortin appetite circuit is real in humans: break the signal at its source and hunger becomes relentless from infancy.',
+      'Leptin-receptor (LEPR) deficiency is the neighbouring break — POMC neurons intact but deaf to leptin — with the same downstream hunger, which is why one drug treats both.',
+      'Setmelanotide (Imcivree) re-supplies the missing appetite signal at MC4R and was first approved for exactly these conditions in 2020 — but it replaces only that arm, not the adrenal one.',
+    ]}
+  />
+
+  <p>
+    If you wanted a single disease to prove that the <a href="/receptors/mc4r">melanocortin
+    appetite circuit</a> is not a mouse curiosity but a real human control system, this is
+    it. <strong>POMC deficiency</strong> is what happens when the body cannot make{" "}
+    <a href="/system">proopiomelanocortin</a> — the precursor protein that is supposed to be
+    cut, tissue by tissue, into the melanocortin hormones. Remove the precursor and you do
+    not lose one signal; you lose all of them at once, and the result is a child whose
+    colouring, hormones, and appetite all point back to the same broken gene.<Cite n={3} />
+  </p>
+
+  <h2>One missing precursor, three failures</h2>
+  <p>
+    The hallmark of POMC deficiency is a triad that looks, at first, like three unrelated
+    problems. There is <strong>adrenal insufficiency</strong>, because{" "}
+    <a href="/acth">ACTH</a> — the POMC peptide that drives the adrenal glands — is missing,
+    and this is the dangerous part, present from the newborn period. There is
+    <strong>red hair and pale skin</strong>, because <a href="/alpha-msh">α-MSH</a>, the
+    pigment signal, is also cut from POMC: with none of it reaching{" "}
+    <a href="/receptors/mc1r">MC1R</a>, the pigment switch is never flipped to dark, exactly
+    as in a natural redhead with an inactive MC1R gene. And there is <strong>severe,
+    early-onset obesity</strong> with relentless hunger, because the same α-MSH is missing at{" "}
+    <a href="/receptors/mc4r">MC4R</a>, the brain's appetite brake.<Cite n={3} />
+  </p>
+  <p>
+    That the three travel together is the whole point. It is one of biology's cleanest
+    demonstrations that a single precursor is reused across colour, the stress axis, and
+    energy balance — the thesis this entire site is built on, written in a patient.
+  </p>
+
+  <Figure
+    caption="Why one gene causes three problems: with POMC absent, every peptide cut from it goes missing. ACTH is gone (adrenal insufficiency); α-MSH is gone at MC1R (red hair, pale skin) and at MC4R (severe obesity). Setmelanotide re-supplies the MC4R arm only — which is why the adrenal insufficiency still needs separate hormone replacement."
+    source="Clinical triad and setmelanotide mechanism per StatPearls NBK589641 and Clément et al., Lancet Diabetes Endocrinol 2020 (PMID 33137293). Schematic."
+  >
+    <PomcTriad />
+  </Figure>
+
+  <h2>LEPR deficiency: the neighbouring break</h2>
+  <p>
+    POMC deficiency rarely travels alone in the clinic's thinking, because it has a close
+    neighbour. In <strong>leptin-receptor (LEPR) deficiency</strong>, the POMC neurons
+    themselves are intact — but they never hear the signal to fire. Leptin, the hormone fat
+    releases to report how full the body's energy stores are, arrives at the arcuate nucleus
+    and finds no working receptor to bind. The POMC neurons stay quiet, α-MSH is not
+    released, and the downstream result is the same picture of unrelenting hunger and severe,
+    early obesity.<Cite n={3} /> One disease removes the precursor; the other removes the
+    switch that should turn the precursor's neurons on. Both end at the same silent MC4R.
+  </p>
+
+  <h2>Why one drug treats both</h2>
+  <p>
+    This shared endpoint is exactly why a single drug works for both conditions.{" "}
+    <a href="/setmelanotide">Setmelanotide</a> is an MC4R agonist: it acts <em>below</em> the
+    break, re-supplying the appetite signal that the missing α-MSH — whether absent because
+    POMC is gone or because the leptin signal never arrived — should have carried. In the
+    pivotal Phase 3 trials, about 80% of participants with POMC deficiency and 45% with LEPR
+    deficiency achieved at least 10% weight loss at roughly a year, alongside large
+    reductions in hunger.<Cite n={1} /> On that basis the FDA approved setmelanotide in
+    <strong>November 2020</strong> for obesity due to POMC, PCSK1, or LEPR deficiency — its
+    first approval, and the first drug ever cleared for these diseases.<Cite n={2} />
+  </p>
+  <p>
+    (PCSK1 deficiency belongs in the same group for the same reason: PCSK1 encodes one of the
+    enzymes that actually <em>cuts</em> POMC into its active peptides, so losing it starves the
+    pathway of α-MSH just as losing POMC itself does.)<Cite n={3} />
+  </p>
+
+  <h2>The honest limits</h2>
+  <p>
+    Setmelanotide addresses the appetite arm, and only that arm. The adrenal insufficiency of
+    POMC deficiency is not touched by it and still requires lifelong steroid replacement,
+    managed by an endocrinologist — a reminder that re-supplying one melanocortin signal does
+    not rebuild all the others the missing precursor should have provided.<Cite n={3} /> The
+    drug also carries the melanocortin class's built-in effects, including skin darkening from
+    its action at MC1R and nausea. It is a genuine, disease-specific treatment for a condition
+    that previously had none — not a cure for the underlying genetic defect.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    POMC and LEPR deficiency are rare, but they carry outsized weight in this field: they are
+    the experiments of nature that showed the leptin–melanocortin circuit really governs human
+    appetite, and they are where setmelanotide — now used far more broadly — first proved
+    itself. For the drug, see <a href="/setmelanotide">setmelanotide</a>; for the receptor it
+    targets, see <a href="/receptors/mc4r">MC4R</a>; for the wider catalogue of genes that can
+    break this pathway, see <a href="/genetics">the genetics of the system</a>; and for the
+    acquired version of the same problem, see <a href="/hypothalamic-obesity">hypothalamic
+    obesity</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what POMC and LEPR deficiency are and how melanocortin treatment
+      helps. It is not medical advice, does not diagnose, and gives no dosing instructions.
+      These are serious diagnosed conditions — the adrenal insufficiency in particular is
+      life-threatening if untreated — and their management belongs with a specialist. See the{" "}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="pomc-deficiency" />
+</PageLayout>

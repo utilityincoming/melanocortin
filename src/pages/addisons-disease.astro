@@ -1,0 +1,164 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import BronzingLoop from '../components/fig/BronzingLoop.astro';
+
+const faqs = [
+  {
+    q: 'Why does Addison’s disease darken the skin?',
+    a: 'Because the same signal that tries to rescue the failing adrenal gland also tells the skin to make pigment. In primary adrenal failure the pituitary floods the body with ACTH to drive the adrenal, and ACTH’s first thirteen amino acids are identical to α-MSH, the pigment hormone. So a surge of ACTH is also a surge of melanocortin signal at MC1R in the skin, which responds by making dark eumelanin.',
+  },
+  {
+    q: 'Where does the darkening show up?',
+    a: 'Typically in sun-exposed areas, skin creases and scars, and strikingly on the inside of the mouth and gums and on the palmar creases — places ordinary tanning does not reach. That distribution is a clue that the cause is internal signalling, not sunlight.',
+  },
+  {
+    q: 'Is this the same hyperpigmentation seen with melanocortin drugs?',
+    a: 'Mechanistically, yes — it is the same MC1R pigment pathway. Melanocortin agonist drugs such as setmelanotide and bremelanotide can darken skin as a side effect for exactly this reason. Addison’s disease is the natural, endogenous version: the body’s own excess melanocortin doing what the drugs do on purpose.',
+  },
+  {
+    q: 'Does treating Addison’s reverse the pigmentation?',
+    a: 'Treatment is hormone replacement — cortisol (and often aldosterone) replacement managed by an endocrinologist. Restoring cortisol restores the pituitary’s brake, ACTH falls back toward normal, and the excess pigment signal eases. This page explains the biology; it is not medical advice.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Yamamoto R, Kaur J. / StatPearls.',
+    title: 'Physiology, Adrenocorticotropic Hormone (ACTH).',
+    source: 'NCBI Bookshelf (NBK500031) — POMC processing, the HPA axis, and ACTH’s melanotropic sequence.',
+    year: '2025',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK500031/',
+  },
+  {
+    authors: 'Munir S, Quintanilla Rodriguez BS, Waseem M. / StatPearls.',
+    title: 'Addison Disease.',
+    source: 'NCBI Bookshelf (NBK441994) — primary adrenal insufficiency, hyperpigmentation, and management.',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK441994/',
+  },
+  {
+    authors: 'ScienceDirect Topics.',
+    title: 'Melanocortin — an overview.',
+    source: 'Aggregated reference on POMC-derived peptides and MC1R-driven pigmentation.',
+    year: '2024',
+    url: 'https://www.sciencedirect.com/topics/neuroscience/melanocortin',
+  },
+];
+---
+
+<PageLayout
+  title="Addison's disease: why a hormone problem turns the skin bronze"
+  kicker="The condition"
+  description="The bronzing of Addison's disease is one of medicine's most elegant physical signs — and it is pure melanocortin biology. A failing adrenal gland makes the pituitary flood the body with ACTH, and because ACTH carries α-MSH inside it, that flood darkens the skin through the same MC1R pigment switch a tanning drug uses."
+  thread="A rescue signal that cannot be heard where it is aimed, overheard instead by the skin — the body writing its diagnosis in pigment."
+  updated="2026"
+  about={[
+    { name: 'Addison disease', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Addison%27s_disease'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Addison’s disease is primary adrenal insufficiency — the adrenal glands fail to make enough cortisol — and its classic sign is a bronzing of the skin.',
+      'That bronzing is pure melanocortin biology: low cortisol removes the pituitary’s brake, so it pours out POMC and ACTH to try to drive the adrenal.',
+      'ACTH’s first thirteen amino acids are identical to α-MSH, the pigment signal — so a flood of ACTH is also a flood of melanocortin at MC1R in the skin.',
+      'MC1R answers the way it always does: by making dark eumelanin. The darkening favours mouth, gums, scars, and skin creases — places sunlight never reaches, marking the cause as internal.',
+      'It is the natural version of the skin-darkening that melanocortin agonist drugs cause on purpose — and it reverses as hormone replacement restores the feedback brake and ACTH falls.',
+    ]}
+  />
+
+  <p>
+    Of all the places the melanocortin system surfaces, few are as clinically beautiful as
+    this one. <strong>Addison’s disease</strong> — primary adrenal insufficiency — is a
+    disorder of a missing hormone, cortisol. Yet its most famous sign is written on the skin:
+    a deepening, bronze pigmentation. The connection between a failing adrenal gland and a
+    darkening skin looks mysterious until you know the melanocortin system, at which point it
+    becomes almost inevitable.<Cite n={2} />
+  </p>
+
+  <h2>A rescue signal overheard by the skin</h2>
+  <p>
+    The adrenal glands sit under the control of the pituitary, which drives them with{" "}
+    <a href="/acth">ACTH</a>. Normally cortisol feeds back to the pituitary and tells it when
+    to ease off — a thermostat. In Addison’s disease the adrenal cortex is damaged and
+    cannot make cortisol, so that feedback signal never arrives. The pituitary, sensing no
+    cortisol, does the only thing it can: it pushes harder, manufacturing ever more{" "}
+    <a href="/system">POMC</a> and releasing ever more ACTH in a bid to flog a gland that
+    cannot respond.<Cite n={1} />
+  </p>
+  <p>
+    Here is the twist that makes it a pigment disease. ACTH is cut from POMC, and its first
+    thirteen amino acids are <em>identical</em> to <a href="/alpha-msh">α-MSH</a>, the
+    melanocortin that drives pigmentation. ACTH is, in effect, α-MSH with a tail. So when the
+    pituitary floods the body with ACTH, it is also flooding it with melanocortin signal — and
+    the <a href="/receptors/mc1r">MC1R</a> receptors on the skin’s pigment cells read that
+    signal exactly as they would read a tan command, and make dark eumelanin.<Cite n={1} /> The
+    rescue signal aimed at the adrenal is overheard by the skin.
+  </p>
+
+  <Figure
+    caption="The bronzing explained: the adrenal can't make cortisol, so the pituitary loses its brake and pours out ACTH. Because ACTH's first 13 residues are α-MSH, that surge is also a melanocortin surge at MC1R — and the skin answers with pigment. The missing cortisol and the dark skin are the same loop read at two ends."
+    source="POMC/ACTH structure and the HPA axis per StatPearls NBK500031; clinical hyperpigmentation per StatPearls Addison Disease NBK441994. Schematic."
+  >
+    <BronzingLoop />
+  </Figure>
+
+  <h2>Where it shows, and why that matters</h2>
+  <p>
+    The distribution of the darkening is itself a diagnostic clue, and it is where this
+    differs from a suntan. Addison’s hyperpigmentation favours sun-exposed skin but also,
+    tellingly, places the sun never reaches: the inside of the cheeks and the gums, the creases
+    of the palms, recent scars, and pressure points.<Cite n={2} /> A tan stops at the clothing
+    line; this does not. That pattern tells a clinician the pigment is being driven from within,
+    by a circulating signal, rather than from without by light — melanocortin biology leaving a
+    visible signature.
+  </p>
+
+  <h2>The same pathway the drugs use</h2>
+  <p>
+    This is the endogenous mirror image of a theme that runs through the therapeutic pages on
+    this site. Melanocortin agonist drugs — <a href="/setmelanotide">setmelanotide</a>,{" "}
+    <a href="/bremelanotide">bremelanotide</a>, the <a href="/melanotan">melanotan</a> peptides —
+    can all darken skin and gums as a side effect, precisely because they engage MC1R the way
+    excess ACTH does.<Cite n={1} /> Addison’s disease is what happens when the body itself,
+    through sheer physiological necessity, produces that same melanocortin excess. The drugs do
+    deliberately, and locally, what the failing feedback loop does by accident and bodywide. For
+    why skin-darkening comes built into melanocortin agonism, see{" "}
+    <a href="/effects">the trade-off</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Addison’s disease is not treated through the melanocortin system — its care is cortisol
+    (and usually aldosterone) replacement, and the adrenal insufficiency itself is serious and
+    can be life-threatening in a crisis. But the disease earns its place here because its signature
+    sign is one of the clearest readouts of melanocortin physiology in all of medicine: restore the
+    cortisol, the pituitary’s brake returns, ACTH falls, and the excess pigment signal fades. For
+    the hormone at the centre of it, see <a href="/acth">ACTH</a>; for the receptor that reads it in
+    the skin, see <a href="/receptors/mc1r">MC1R</a>; for the adrenal receptor ACTH is actually aimed
+    at, see <a href="/receptors/mc2r">MC2R</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains why Addison’s disease darkens the skin. It is not medical advice and
+      gives no dosing or diagnostic instructions. Adrenal insufficiency is a serious condition —
+      an adrenal crisis is a medical emergency — and its diagnosis and treatment belong with a
+      clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="addisons-disease" />
+</PageLayout>

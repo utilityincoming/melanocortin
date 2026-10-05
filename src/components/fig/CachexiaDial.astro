@@ -1,0 +1,89 @@
+---
+// cachexia-dial — cachexia as the appetite rheostat stuck the wrong way. In
+// obesity the melanocortin dial is under-driven and sticks on "eat / store". In
+// cachexia the opposite happens: illness-driven inflammation pushes the
+// hypothalamic melanocortin tone UP, over-activating MC4R so the dial jams on
+// "stop eating / burn" exactly when the body can least afford it — driving
+// anorexia, raised energy expenditure, and the breakdown of muscle and fat. An
+// MC4R antagonist (TCMCB07, PF-07258669) turns the dial back toward eating.
+// Schematic; SVG-only, wrap in <Figure>.
+---
+
+<svg
+  class="cd-fig"
+  viewBox="0 0 640 300"
+  role="img"
+  aria-labelledby="cd-t cd-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="cd-t">Cachexia: the appetite rheostat jammed toward wasting</title>
+  <desc id="cd-d"
+    >In cachexia, illness-driven inflammation pushes the hypothalamic
+    melanocortin tone up, over-activating MC4R. The appetite rheostat jams toward
+    stop-eating and burn, which drives anorexia, raised energy expenditure, and
+    the breakdown of muscle and fat — wasting. An MC4R antagonist such as
+    TCMCB07 blocks the over-active receptor and turns the dial back toward
+    eating, the opposite of what setmelanotide does in obesity.</desc
+  >
+
+  <!-- driver -->
+  <rect class="card" x="20" y="40" width="168" height="66" rx="11" />
+  <text x="104" y="66" text-anchor="middle" class="card-t">Illness + inflammation</text>
+  <text x="104" y="85" text-anchor="middle" class="sub">cancer · CKD · heart failure</text>
+  <text x="104" y="99" text-anchor="middle" class="sub">cytokines push on the hypothalamus</text>
+
+  <path class="flow accent-flow" d="M188 73 H246" marker-end="url(#cd-arr-a)" />
+
+  <!-- MC4R overdriven -->
+  <rect class="card accent" x="248" y="40" width="186" height="66" rx="11" />
+  <text x="341" y="66" text-anchor="middle" class="card-t accent-t">MC4R over-activated</text>
+  <text x="341" y="85" text-anchor="middle" class="sub">melanocortin tone forced up —</text>
+  <text x="341" y="99" text-anchor="middle" class="sub">dial jammed on "stop / burn"</text>
+
+  <!-- three wasting outputs -->
+  <path class="flow" d="M341 106 V140" marker-end="url(#cd-arr)" />
+  <rect class="card" x="150" y="142" width="380" height="58" rx="11" />
+  <text x="340" y="165" text-anchor="middle" class="card-t">Three outputs, all toward wasting</text>
+  <text x="340" y="186" text-anchor="middle" class="sub">appetite ↓  ·  energy expenditure ↑  ·  muscle &amp; fat broken down</text>
+
+  <!-- antagonist turns it back -->
+  <rect class="drug" x="150" y="230" width="380" height="48" rx="12" />
+  <text x="340" y="252" text-anchor="middle" class="drug-t">An MC4R antagonist (TCMCB07, PF-07258669) blocks the over-active receptor —</text>
+  <text x="340" y="269" text-anchor="middle" class="drug-t">turning the dial back toward eating. The opposite of setmelanotide in obesity.</text>
+  <path class="flow back" d="M340 230 V206" marker-end="url(#cd-arr-back)" />
+
+  <defs>
+    <marker id="cd-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+    </marker>
+    <marker id="cd-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+    <marker id="cd-arr-back" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .cd-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card.accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .card-t { font-size: 12.5px; font-weight: 700; fill: var(--text); }
+  .card-t.accent-t { fill: var(--accent-strong); }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow.accent-flow { stroke: var(--accent); }
+  .flow.back { stroke: var(--accent); stroke-dasharray: 4 3; }
+  .drug { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 2; }
+  .drug-t { font-size: 10.5px; font-style: italic; fill: var(--accent-strong); }
+</style>
