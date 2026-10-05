@@ -1,0 +1,213 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import PorphyriaBlock from '../components/fig/PorphyriaBlock.astro';
+
+const faqs = [
+  {
+    q: 'What is erythropoietic protoporphyria (EPP)?',
+    a: 'EPP is a rare inherited disorder in which the last enzyme of heme synthesis, ferrochelatase, is deficient. The pathway’s final intermediate, protoporphyrin IX, builds up instead of being finished into heme. In the skin that build-up absorbs visible light and causes severe, burning pain within minutes of exposure — the defining feature of the disease.',
+  },
+  {
+    q: 'Why does a melanocortin site cover EPP?',
+    a: 'Because EPP is the disease the melanocortin pigment system was first turned into a drug for. Afamelanotide (Scenesse), an α-MSH analogue that switches on MC1R to build protective pigment, became the first treatment ever approved for EPP in 2019. The oral MC1R agonist dersimelagon is in trials for the same condition. EPP is where MC1R pharmacology left the lab.',
+  },
+  {
+    q: 'Is EPP triggered by UV light like sunburn?',
+    a: 'No — and that is what makes it unusual. Ordinary sunburn is driven by ultraviolet. EPP is driven by visible violet-blue light around 400–410 nm, which passes through ordinary window glass and cloud. Patients can react indoors by a window or on an overcast day, and the reaction is immediate pain rather than a delayed burn.',
+  },
+  {
+    q: 'Do melanocortin drugs cure EPP?',
+    a: 'No. They do not fix the enzyme or lower protoporphyrin. They add a layer of light-absorbing pigment that raises the threshold for pain and lengthens the time a person can tolerate light. It is photoprotection, not a cure — a way to manage a disease that otherwise has no approved treatment beyond strict avoidance of light.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Lecha M, Puy H, Deybach JC.',
+    title: 'Erythropoietic protoporphyria.',
+    source: 'Orphanet J Rare Dis. 4:19 — mechanism, genetics, and clinical picture.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19772619/',
+  },
+  {
+    authors: 'Langendonk JG, Balwani M, Anderson KE, et al.',
+    title: 'Afamelanotide for erythropoietic protoporphyria.',
+    source: 'N Engl J Med. 373(1):48–59 — the pivotal trials of increased pain-free light exposure.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/26132941/',
+  },
+  {
+    authors: 'US FDA.',
+    title: 'SCENESSE (afamelanotide) implant — prescribing information.',
+    source: 'FDA label (NDA 210797) — first approved EPP therapy, 8 October 2019.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+  {
+    authors: 'Balwani M, Bissell DM, Bonkovsky HL, et al.',
+    title: 'Dersimelagon in erythropoietic protoporphyrias.',
+    source: 'N Engl J Med. 388(15):1376–1385 — Phase 2 (ENDEAVOR) of the oral MC1R agonist.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37043653/',
+  },
+];
+---
+
+<PageLayout
+  title="Erythropoietic protoporphyria: the light disease melanocortins learned to treat"
+  kicker="The condition"
+  description="EPP is a rare porphyria in which a deficient final enzyme lets protoporphyrin IX build up in the skin, where visible light turns it into burning pain within minutes. It is also the disease that first turned the melanocortin pigment switch into an approved medicine."
+  thread="A pathway that stops one step short of heme — and a body that answers the mistake with a pigment the melanocortin system already knew how to build."
+  updated="2026"
+  about={[
+    { name: 'Erythropoietic protoporphyria', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Erythropoietic_protoporphyria'] },
+    { name: 'Ferrochelatase', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Ferrochelatase'] },
+    { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'EPP is a rare inherited porphyria: the last enzyme of heme synthesis, ferrochelatase, runs short, so protoporphyrin IX (PPIX) backs up instead of becoming heme.',
+      'In the skin, accumulated PPIX absorbs visible violet-blue light (~400–410 nm) and hands the energy to oxygen — producing reactive oxygen that causes intense, burning pain within minutes.',
+      'It is driven by visible light, not UV, so it is triggered through window glass and on cloudy days and the pain is immediate rather than a delayed burn — which is why it is so often missed for years.',
+      'It belongs on this site because EPP is where MC1R pharmacology became medicine: afamelanotide (Scenesse) was the first drug ever approved for it, in 2019.',
+      'Melanocortin drugs do not fix the enzyme. They drive MC1R to build eumelanin, a pigment that absorbs the light before it reaches PPIX — photoprotection that lengthens tolerable light exposure, not a cure.',
+    ]}
+  />
+
+  <p>
+    Most pages on this site start from a receptor and work outward to what it does.
+    This one starts from a disease and works back to why the melanocortin system
+    turned out to be the answer. <strong>Erythropoietic protoporphyria</strong> is a
+    rare inherited disorder of how the body builds <strong>heme</strong> — the
+    iron-centred molecule that carries oxygen in blood and sits at the heart of
+    countless enzymes. It is also the first condition for which the melanocortin
+    pigment switch, <a href="/receptors/mc1r">MC1R</a>, was deliberately turned into
+    an approved drug.<Cite n={3} />
+  </p>
+
+  <h2>A pathway that stops one step short</h2>
+  <p>
+    Heme is assembled in eight enzymatic steps. The very last one is carried out by an
+    enzyme called <strong>ferrochelatase</strong>, whose single job is to insert an iron
+    atom into the finished ring — a molecule called <strong>protoporphyrin IX</strong>
+    (PPIX) — to complete heme. In EPP, ferrochelatase activity is reduced, typically to
+    somewhere around a third of normal. The pathway runs right up to PPIX and then
+    stalls, so PPIX accumulates in red blood cell precursors, spills into the plasma,
+    and reaches the skin.<Cite n={1} />
+  </p>
+  <p>
+    The genetics are quietly interesting. Most patients are not simple recessives: they
+    carry a severe loss-of-function mutation in the ferrochelatase gene on one
+    chromosome <em>and</em>, on the other, a common low-expression variant (the
+    “IVS3-48C” allele) that much of the population also carries harmlessly. Only when a
+    damaging mutation lands opposite that weak allele does total activity fall far enough
+    for disease — which is why EPP can appear to move through a family in a way that
+    looks neither cleanly dominant nor cleanly recessive.<Cite n={1} /> A small minority
+    have a closely related disease, X-linked protoporphyria, where the problem is an
+    overactive upstream enzyme making too much PPIX rather than a failure to clear it —
+    same molecule, same light reaction, different starting point.<Cite n={1} />
+  </p>
+
+  <h2>Why light becomes pain</h2>
+  <p>
+    PPIX is not an inert waste product. It is a <strong>photosensitiser</strong>: a
+    molecule built to absorb light. Its strongest absorption sits in the violet-blue
+    band around <strong>400–410 nm</strong> — visible light, not ultraviolet. When
+    sunlight reaches PPIX sitting in the small blood vessels of the skin, the molecule
+    is kicked into an excited state and passes that energy to nearby oxygen, generating
+    <strong>reactive oxygen species</strong> that damage the vessel walls and surrounding
+    tissue. The result is not a slow burn but an immediate, stinging, burning pain, often
+    with swelling and redness, within minutes of exposure.<Cite n={1} />
+  </p>
+  <p>
+    This is the detail that sets EPP apart from ordinary sun sensitivity, and the reason
+    it is so often missed for years. Because the trigger is visible light rather than UV,
+    it passes through ordinary window glass and through cloud; sunscreen aimed at UV does
+    little; and the reaction is pain in real time rather than a sunburn that shows up
+    hours later. Children with EPP learn to fear sunny windows and car rides, and the
+    diagnosis is frequently delayed because the skin may show no blister to point to —
+    only a child in agony with, to an onlooker, nothing visibly wrong.<Cite n={1} />
+  </p>
+
+  <Figure
+    caption="EPP in one view: ferrochelatase falls short, so protoporphyrin IX backs up instead of becoming heme; in the skin it absorbs violet light and turns oxygen into tissue-damaging reactive oxygen — pain in minutes. The melanocortin drugs act on the light, not the enzyme, laying down a pigment shield upstream of the injury."
+    source="Mechanism and genetics per Lecha et al., Orphanet J Rare Dis 2009 (PMID 19772619). Schematic; wavelengths approximate."
+  >
+    <PorphyriaBlock />
+  </Figure>
+
+  <h2>The cost beyond the skin</h2>
+  <p>
+    EPP is dominated by the skin, but it is not only a skin disease. The excess PPIX is
+    cleared by the liver into bile, and that load can form gallstones and, in a small but
+    serious fraction of patients, overwhelm the liver and threaten protoporphyric liver
+    failure. Many patients are also mildly anaemic. None of this changes the day-to-day
+    reality — a life organised around avoiding light — but it is why EPP is monitored as
+    a whole-body condition and not treated as a cosmetic nuisance.<Cite n={1} />
+  </p>
+
+  <h2>Where the melanocortin system comes in</h2>
+  <p>
+    For most of its history EPP had no treatment at all, only avoidance: heavy clothing,
+    shade, and a life lived around the sun. The insight that changed things did not come
+    from fixing the enzyme. It came from the other end — from the skin’s own defence.
+    The pigment <a href="/alpha-msh">α-MSH</a> normally drives, eumelanin, happens to be
+    an excellent absorber of exactly the visible light that excites PPIX. Build up more of
+    it, and you put a shield between the light and the culprit molecule.
+  </p>
+  <p>
+    That is precisely what <a href="/afamelanotide">afamelanotide (Scenesse)</a> does. It
+    is a durable copy of α-MSH that switches on MC1R to lay down protective eumelanin
+    <em>independent of sunlight</em> — so a person who cannot safely tan the normal way can
+    still accumulate the pigment that buys them time in the light. In the pivotal trials,
+    patients given the implant spent significantly more pain-free time in sunlight than
+    those given placebo.<Cite n={2} /> On the strength of that, the FDA approved it on
+    <strong>8 October 2019</strong>, the first therapy ever cleared for EPP.<Cite n={3} />
+  </p>
+  <p>
+    The approach is now being pushed from implant toward pill. <a href="/dersimelagon">
+    Dersimelagon</a>, an oral small-molecule MC1R agonist, drives the same pigment response
+    by mouth; a Phase 2 trial reported in 2023 showed it lengthened the time EPP patients
+    could tolerate sunlight before symptoms began.<Cite n={4} /> Both drugs share the same
+    logic and the same honest limit: they treat the light reaction, not the enzyme. PPIX
+    still accumulates; the liver risk is unchanged; what improves is how much daylight a
+    person can bear.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    EPP is a clean illustration of the theme this whole site runs on — one economical
+    system, reused far from where you would expect. A defect in heme chemistry, with
+    nothing obviously to do with pigment, turned out to be best managed by borrowing the
+    melanocortin pigment switch and running it on purpose. It is not a cure, and the
+    field is still working toward one that addresses the protoporphyrin itself. But it is
+    a real answer to a disease that had none, and it is where MC1R pharmacology first
+    proved it could leave the laboratory. For the drug, see{' '}
+    <a href="/afamelanotide">afamelanotide</a>; for the oral successor, see{' '}
+    <a href="/dersimelagon">dersimelagon</a>; for the receptor they both act on, see{' '}
+    <a href="/receptors/mc1r">MC1R — the pigment switch</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains what EPP is and why melanocortin drugs help. It is not medical
+      advice, does not diagnose, and does not give dosing or usage instructions. EPP is a
+      serious diagnosed condition whose management — including liver monitoring — belongs
+      with a specialist. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="epp" />
+</PageLayout>
