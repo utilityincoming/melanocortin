@@ -1,0 +1,338 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'Is there a cream that gives you a real tan without the sun?',
+    a: 'Not yet — not one you can buy. A real tan means your own cells building brown eumelanin, and that has been done topically in the lab: forskolin darkened pale mice, and small-molecule SIK inhibitors darkened human skin samples. But neither has become an approved or marketed product, and no over-the-counter cream has been shown to switch on genuine melanin in human skin. The tanning lotions on shelves today do something completely different.',
+  },
+  {
+    q: 'So how do fake-tan lotions and mousses work, then?',
+    a: 'They stain you. The active ingredient, dihydroxyacetone (DHA), is a simple sugar that reacts with proteins in the dead outer layer of your skin — a browning reaction, chemically the same kind that browns toast — to make brown pigments called melanoidins. It is a surface dye on dead cells, not melanin, so it fades as those cells shed over a few days and your living pigment cells are never involved.',
+  },
+  {
+    q: 'Does a DHA fake tan protect me from the sun?',
+    a: 'Treat it as no protection. The brown colour sits in dead surface skin and offers at most a trivial, short-lived sun factor — nothing like the DNA-shielding power of real eumelanin — and it does nothing to the living cells where UV damage happens. Some research even suggests the DHA reaction can generate free radicals in skin, more so under UV. Keep using normal sun protection. This page is education, not medical advice.',
+  },
+  {
+    q: 'What is a SIK inhibitor and why does it matter for tanning?',
+    a: 'SIK (salt-inducible kinase) is an enzyme that normally holds back MITF, the master switch for pigment genes. Block SIK and you release that switch, so the cell makes melanin — the same end point UV reaches, but triggered chemically. In 2017 a Harvard/MGH team engineered SIK inhibitors able to penetrate human skin and showed they darkened human skin samples topically. It is the most convincing proof so far that a true topical tan is possible, but it is still a laboratory result.',
+  },
+  {
+    q: 'Can I just rub melanotan on my skin instead of injecting it?',
+    a: 'No — a melanotan cream will not tan you. Melanotan is a peptide, a fairly large molecule that does not cross intact skin in any useful amount, which is exactly why the grey-market product is injected or sprayed into the nose to reach the bloodstream. A topical peptide tanner would have to solve the skin-barrier problem the small-molecule approaches were specifically built for.',
+  },
+  {
+    q: 'Why does topical tanning work in mice but not yet in a human product?',
+    a: 'Mostly the barrier. Human epidermis is far less permeable than mouse skin, so a compound that darkens a mouse may never reach the pigment cells in a person. That is the wall the forskolin work ran into and the wall the SIK-inhibitor work was designed to climb — getting an active molecule through the stratum corneum at a dose that works, safely and evenly, is the hard part.',
+  },
+];
+
+const references = [
+  {
+    authors: "D'Orazio JA, Nobuhisa T, Cui R, et al.",
+    title: 'Topical drug rescue strategy and skin protection based on the role of Mc1r in UV-induced tanning.',
+    source: 'Nature. 443(7109):340–4.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16988713/',
+  },
+  {
+    authors: 'Mujahid N, Liang Y, Murakami R, et al.',
+    title: 'A UV-independent topical small-molecule approach for melanin production in human skin.',
+    source: 'Cell Rep. 19(11):2177–2184.',
+    year: '2017',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5549921/',
+  },
+  {
+    authors: 'Swope VB, Abdel-Malek ZA.',
+    title: 'MC1R: front and center in the bright side of dark eumelanin and DNA repair.',
+    source: 'Int J Mol Sci. 19(9):2667.',
+    year: '2018',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/30205559/',
+  },
+  {
+    authors: 'Barnetson RS, Ooi TK, Zhuang L, et al.',
+    title: '[Nle4-D-Phe7]-α-melanocyte-stimulating hormone significantly increased pigmentation and decreased UV damage in fair-skinned Caucasian volunteers.',
+    source: 'J Invest Dermatol. 126(8):1869–78.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16763547/',
+  },
+  {
+    authors: 'Spry ML, Vanover JC, Scott T, et al.',
+    title: 'Prolonged treatment of fair-skinned mice with topical forskolin causes persistent tanning and UV protection.',
+    source: 'Pigment Cell Melanoma Res. 22(2):219–29.',
+    year: '2009',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/19040670/',
+  },
+  {
+    authors: 'Turner GA, Matz H, Davis CN, et al.',
+    title: 'In search of the perfect tan: chemical activity, biological effects, business considerations, and consumer implications of dihydroxyacetone sunless tanning products.',
+    source: 'J Cosmet Dermatol (review).',
+    year: '2023',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10083914/',
+  },
+  {
+    authors: 'Jung K, Seifert M, Herrling T, Fuchs J.',
+    title: 'UV-generated free radicals (FR) in skin: their prevention by sunscreens and their induction by self-tanning agents.',
+    source: 'Spectrochim Acta A Mol Biomol Spectrosc. 69(5):1423–8.',
+    year: '2008',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/18024215/',
+  },
+  {
+    authors: 'Hadley ME, Dorr RT.',
+    title: 'Melanocortin peptide therapeutics: historical milestones, clinical studies and commercialization.',
+    source: 'Peptides. 27(4):921–30.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16412534/',
+  },
+];
+---
+
+<PageLayout
+  title="Topical tanning: the real science of a tan in a cream"
+  kicker="Pigment on demand"
+  description="The dream of a lotion that tans you without the sun splits cleanly in two: fake tans that stain dead skin, and genuine topical pigment-switches that make your own melanin. Here's what actually works, what's still in the lab, and why the skin barrier is the whole game — explained plainly and cited."
+  thread="One pathway, two routes in — the MC1R pigment switch reached through the skin instead of a needle, and the barrier standing in the way."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Dihydroxyacetone', type: 'ChemicalSubstance', sameAs: ['https://en.wikipedia.org/wiki/Dihydroxyacetone'] },
+    { name: 'Forskolin', type: 'ChemicalSubstance', sameAs: ['https://en.wikipedia.org/wiki/Forskolin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      '“Topical tanning” covers two completely different things: fake tans that stain the dead surface of your skin, and experimental agents that switch on your own melanin from the outside.',
+      'Today’s self-tan lotions work by DHA, a sugar that browns dead surface proteins in a Maillard (browning) reaction — a temporary surface dye, not melanin, with no meaningful sun protection.',
+      'Genuine topical tanning has been shown in the lab: forskolin darkened pale mice through the cAMP pathway, and engineered SIK inhibitors darkened human skin samples — but neither is an approved or marketed product.',
+      'The hard part is the barrier: human epidermis blocks most molecules, which is why mouse results don’t automatically transfer and why a melanotan cream can’t work — peptides don’t cross skin.',
+      'The prize is real eumelanin, the photoprotective pigment that shields DNA — so a true topical tan would be about skin-cancer protection as much as cosmetics. That remains a goal, not a product.',
+    ]}
+  />
+
+  <p>
+    "A tan from a bottle, no sun required" is one of the oldest promises in
+    cosmetics — and it hides a genuine scientific split. There are two entirely
+    different ways to make skin look darker without UV, and they share almost
+    nothing. One <em>stains</em> the dead surface of your skin a browned colour.
+    The other actually persuades your living pigment cells to build real melanin —
+    the same thing the sun does, reached chemically instead. The first you can buy
+    today; the second is one of the more interesting frontiers in pigment biology.
+    This page separates them, and explains why the harder one has stayed in the lab.
+    It is education, not medical advice or a product recommendation.
+  </p>
+
+  <h2>Two meanings of "a tan in a cream"</h2>
+  <p>
+    A real suntan is pigment cells (melanocytes) responding to a signal — UV light
+    switches on <a href="/receptors/mc1r">MC1R</a>, which raises the messenger
+    cyclic AMP and pushes the cell to make brown-black <em>eumelanin</em>, the
+    pigment that shields DNA.<Cite n={3} /> Any "topical tan" is judged against that.
+    The two routes to a darker look are:
+  </p>
+  <ul>
+    <li>
+      <strong>A stain on dead skin</strong> — self-tan lotions, mousses and sprays.
+      These colour the dead, outermost skin layer with a brown dye. No pigment cell
+      is involved, nothing is signalled, and it fades as the surface sheds.
+    </li>
+    <li>
+      <strong>A switch for real pigment</strong> — experimental creams that act on
+      your own melanocytes, turning on genuine eumelanin from the outside. This is
+      the one with real photoprotective potential, and the one that is still
+      experimental.
+    </li>
+  </ul>
+  <p>
+    They look superficially similar in a mirror and could not be more different
+    underneath. Confusing them is where most of the marketing — and most of the
+    misplaced hope about "safe tanning" — comes from.
+  </p>
+
+  <h2>What today's fake tan actually does</h2>
+  <p>
+    The self-tanner in every pharmacy works through one ingredient:
+    <strong>dihydroxyacetone (DHA)</strong>, a small sugar. When you rub it on, it
+    reacts with amino acids in the proteins of your <em>stratum corneum</em> — the
+    dead, flattened cells at the very surface — in a <em>Maillard reaction</em>, the
+    same non-enzymatic browning chemistry that colours a seared steak or a slice of
+    toast. The products are brown pigments called <em>melanoidins</em>.<Cite n={6} />
+  </p>
+  <p>
+    Three consequences follow, and they define what a fake tan is and isn't:
+  </p>
+  <ul>
+    <li>
+      <strong>It is on dead cells, not in living ones.</strong> The colour lives in
+      the surface layer that is already on its way off your body, so it fades over
+      roughly three to seven days as those cells slough — no melanocyte ever
+      participates.
+    </li>
+    <li>
+      <strong>It is not melanin.</strong> Melanoidins are a different class of
+      molecule, built by a chemical reaction rather than by a cell's pigment
+      machinery, so none of melanin's biology comes with them.
+    </li>
+    <li>
+      <strong>It does not protect you.</strong> A DHA tan offers at best a trivial,
+      short-lived sun factor and nothing resembling eumelanin's DNA protection, and
+      the reaction may even generate free radicals in skin, more so under UV.<Cite n={7} />
+      The one real safety benefit of self-tanner is indirect: it can replace the
+      urge to bake in UV in the first place. Normal sun protection still applies.
+    </li>
+  </ul>
+  <p>
+    So a fake tan is a cosmetic surface stain — useful, mostly safe, and completely
+    unrelated to the melanocortin pigment system this site is built around. The
+    interesting science is the other route.
+  </p>
+
+  <h2>The real goal: switching on your own melanin, from the outside</h2>
+  <p>
+    The genuinely hard, genuinely valuable idea is a topical agent that reaches your
+    melanocytes and tells them to make eumelanin without any UV. Why bother, when
+    injected <a href="/melanotan">melanotan</a> already does something similar? Two
+    reasons. A cream avoids a needle and an unregulated peptide of unknown quality.
+    And more importantly, the pigment it would build is the <em>protective</em>
+    kind — the landmark trials of the injected medical analogue showed melanocortin
+    tanning cuts UV-induced DNA damage markers substantially — so a real topical tan
+    is as much a skin-cancer-prevention idea as a cosmetic one.<Cite n={4} /> The
+    biology is sound; the delivery is the wall.
+  </p>
+
+  <h3>Forskolin: the proof of concept in mice</h3>
+  <p>
+    The pivotal experiment came from David Fisher's group in 2006. Red-haired,
+    fair-skinned mice carry a broken MC1R, so UV doesn't tan them — their pigment
+    switch can't be flipped the normal way. The researchers reasoned that if you
+    stimulate the pathway <em>downstream</em> of the faulty receptor, you should
+    rescue the tan. They used <strong>forskolin</strong>, a plant compound that
+    raises cyclic AMP directly, applied to the skin — and the pale mice turned dark,
+    with no UV at all.<Cite n={1} /> Crucially, that induced pigment was
+    <em>protective</em>: it reduced UV-driven DNA damage and skin tumours in a
+    cancer-prone strain, and a 2009 follow-up showed prolonged topical forskolin
+    produced a persistent, protective tan.<Cite n={1} /><Cite n={5} /> This is the proof
+    that a topical small molecule can build real, shielding melanin by borrowing the
+    melanocortin pathway. It also proved the catch: it was done in mice, whose thin
+    skin a drug crosses far more easily than ours.
+  </p>
+
+  <h3>SIK inhibitors: making it work on human skin</h3>
+  <p>
+    The 2006 result stalled on exactly that barrier — human epidermis is much less
+    permeable, and forskolin didn't translate. The breakthrough came in 2017, again
+    from the Fisher lab at Massachusetts General Hospital. Instead of forskolin they
+    targeted <strong>SIK (salt-inducible kinase)</strong>, an enzyme that normally
+    restrains <em>MITF</em>, the master transcription factor for pigment genes.
+    Inhibit SIK and MITF is released, so the cell ramps up melanin — the same
+    endpoint, reached one step differently.<Cite n={2} />
+  </p>
+  <p>
+    The key engineering was permeability: they designed SIK inhibitors
+    specifically to penetrate the human skin barrier. Applied topically, the
+    compounds induced pigment in MC1R-deficient mice <em>and</em> darkened intact
+    human skin samples, depositing eumelanin near the surface in a pattern
+    resembling a UV tan.<Cite n={2} /> This is the strongest evidence to date that a
+    true topical tan is achievable in human skin. The honest caveat is equally
+    important: these were laboratory and skin-explant studies, not a tested consumer
+    product, and a great deal of safety and efficacy work stands between that result
+    and anything you could put on your face — deliberately switching on the pigment
+    machinery across large areas of real skin is not a step to take lightly.
+  </p>
+
+  <h2>Why "just use a melanotan cream" doesn't work</h2>
+  <p>
+    A reasonable question: if injected melanotan tans people, why not formulate it
+    as a lotion and skip the whole barrier problem? Because the barrier <em>is</em>
+    the problem. Melanotan and the natural hormone α-MSH are <strong>peptides</strong> —
+    relatively large, water-loving molecules that do not cross intact skin in any
+    useful amount. That is precisely why grey-market melanotan is injected or
+    sprayed into the nose: to get into the bloodstream and reach the receptor from
+    the inside.<Cite n={8} /> A peptide rubbed on the skin mostly sits on top of it. The
+    small-molecule approaches above — forskolin, and especially the skin-penetrating
+    SIK inhibitors — exist because the molecule has to be small and lipophilic
+    enough to make the crossing a peptide never will.
+  </p>
+
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Approach</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">How it works</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Real melanin?</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Photoprotective?</th>
+          <th class="py-2 font-semibold text-[var(--text)]">Status</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">DHA self-tanner</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Browns dead surface proteins (Maillard reaction)</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">No — a surface stain</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">No (trivial at most)</td>
+          <td class="py-2 text-[var(--text-muted)]">On sale everywhere</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Topical forskolin</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Raises cAMP downstream of MC1R</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Yes</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Yes (shown in mice)</td>
+          <td class="py-2 text-[var(--text-muted)]">Lab / mouse only</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 text-[var(--text)]">Topical SIK inhibitor</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Releases MITF, the pigment master switch</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Yes</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Expected (eumelanin)</td>
+          <td class="py-2 text-[var(--text-muted)]">Human skin samples; not a product</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 text-[var(--text)]">Topical melanotan / α-MSH</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">Peptide agonist of MC1R</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">In principle</td>
+          <td class="py-2 pr-4 text-[var(--text-muted)]">In principle</td>
+          <td class="py-2 text-[var(--text-muted)]">Doesn't cross skin — ineffective topically</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    If you want darker skin today without UV, the only real option is a DHA
+    self-tanner — and it is a cosmetic surface stain, not a tan, with no meaningful
+    sun protection and no connection to your pigment cells. The genuine prize, a
+    cream that switches on your own protective eumelanin, is real science and has
+    been demonstrated in human skin samples through the melanocortin/cAMP pathway —
+    but it remains a laboratory result, not a product on a shelf. The gap between
+    the two is almost entirely about the skin barrier and about proving such a
+    thing safe. Until that gap is closed, the elegant truth stands: the switch for a
+    real tan exists in your skin, and we can now reach it from the outside in the
+    lab — but not yet, and not safely, from a bottle. For the injected route and its
+    documented risks, see the <a href="/melanotan">melanotan explainer</a>; for the
+    pigment switch itself, <a href="/receptors/mc1r">MC1R</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains how topical tanning works and where the science stands. It
+      is not a product recommendation, a usage guide, or medical advice, and the
+      experimental agents described here are not approved tanning products. No tan,
+      topical or otherwise, replaces sun protection. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="topical-tanning" />
+</PageLayout>

@@ -18,6 +18,7 @@ export const ogPages = [
   { slug: 'bremelanotide', eyebrow: 'EXPLAINER', title: 'Bremelanotide (PT-141)' },
   { slug: 'setmelanotide', eyebrow: 'EXPLAINER', title: 'Setmelanotide (Imcivree)' },
   { slug: 'pt-141-vs-melanotan', eyebrow: 'COMPARISON', title: 'PT-141 vs Melanotan' },
+  { slug: 'topical-tanning', eyebrow: 'PIGMENT ON DEMAND', title: 'Topical tanning — the real science' },
   { slug: 'hypothalamic-obesity', eyebrow: 'EXPLAINER', title: 'Hypothalamic obesity' },
   { slug: 'glp1-appetite', eyebrow: 'APPETITE · GLP-1', title: 'GLP-1 drugs & the appetite system' },
   { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
