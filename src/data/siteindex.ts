@@ -51,6 +51,7 @@ export const SITE_INDEX: IndexSection[] = [
       'afamelanotide',
       'bremelanotide',
       'melanotan',
+      'topical-tanning',
       'pt-141-vs-melanotan',
       'dersimelagon',
       'bivamelagon',
