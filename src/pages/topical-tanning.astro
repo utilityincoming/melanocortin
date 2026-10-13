@@ -90,13 +90,20 @@ const references = [
     year: '2006',
     url: 'https://pubmed.ncbi.nlm.nih.gov/16412534/',
   },
+  {
+    authors: 'US Food & Drug Administration.',
+    title: 'Tanning pills — canthaxanthin is not approved for use in tanning products and may cause harm, including retinal crystal deposits.',
+    source: 'FDA consumer information (Cosmetics).',
+    year: '2024',
+    url: 'https://www.fda.gov/cosmetics/cosmetic-products/tanning-pills',
+  },
 ];
 ---
 
 <PageLayout
   title="Topical tanning: the real science of a tan in a cream"
   kicker="Pigment on demand"
-  description="The dream of a lotion that tans you without the sun splits cleanly in two: fake tans that stain dead skin, and genuine topical pigment-switches that make your own melanin. Here's what actually works, what's still in the lab, and why the skin barrier is the whole game — explained plainly and cited."
+  description="The dream of a lotion that tans you without the sun splits cleanly in two: fake tans that stain dead skin, and genuine topical pigment-switches that make your own melanin. Here's what actually works, what's still in the lab, how tanning pills differ, and why the skin barrier is the whole game — explained plainly and cited."
   thread="One pathway, two routes in — the MC1R pigment switch reached through the skin instead of a needle, and the barrier standing in the way."
   updated="2026"
   about={[
@@ -111,6 +118,7 @@ const references = [
       'Today’s self-tan lotions work by DHA, a sugar that browns dead surface proteins in a Maillard (browning) reaction — a temporary surface dye, not melanin, with no meaningful sun protection.',
       'Genuine topical tanning has been shown in the lab: forskolin darkened pale mice through the cAMP pathway, and engineered SIK inhibitors darkened human skin samples — but neither is an approved or marketed product.',
       'The hard part is the barrier: human epidermis blocks most molecules, which is why mouse results don’t automatically transfer and why a melanotan cream can’t work — peptides don’t cross skin.',
+      'Tanning pills are a different category entirely: ingested, not topical — carotenoid colourants like canthaxanthin (linked to retinal crystals) and oral “melanin” supplements such as Melaline®/Melatine®, with thin evidence and no real photoprotection.',
       'The prize is real eumelanin, the photoprotective pigment that shields DNA — so a true topical tan would be about skin-cancer protection as much as cosmetics. That remains a goal, not a product.',
     ]}
   />
@@ -257,6 +265,42 @@ const references = [
     small-molecule approaches above — forskolin, and especially the skin-penetrating
     SIK inhibitors — exist because the molecule has to be small and lipophilic
     enough to make the crossing a peptide never will.
+  </p>
+
+  <h2>A note on tanning pills — a different thing again</h2>
+  <p>
+    People searching for topical tanning often land on <em>tanning pills</em>, so
+    it is worth drawing the line clearly: these are <strong>ingested</strong>, not
+    applied to the skin, and they are a separate category from everything above.
+    Two kinds circulate:
+  </p>
+  <ul>
+    <li>
+      <strong>Carotenoid colourants</strong> — high-dose <em>canthaxanthin</em> (and
+      β-carotene) pills that tint the skin orange-brown by depositing pigment in
+      fat and skin, not by making melanin. Canthaxanthin is approved only as a
+      food colour in small amounts; its use in tanning pills is <em>not</em>
+      approved, and at tanning doses it has been linked to crystal deposits in the
+      retina (canthaxanthin retinopathy), among other harms. The route it took is
+      telling — an application to approve it as a tanning agent was withdrawn once
+      the eye findings emerged.<Cite n={9} />
+    </li>
+    <li>
+      <strong>Oral "melanin" supplements</strong> — tablets built on patented
+      melanin extracts (sold under ingredient names such as Melaline®/Melatine®,
+      derived from wool) and marketed to help you tan or slow greying hair. These
+      are food supplements, not medicines; independent clinical evidence for the
+      tanning claim is thin, and the premise is mechanistically doubtful, since
+      eating melanin does not simply route it into your own pigment cells. Their own
+      labels still say to keep using sun protection.
+    </li>
+  </ul>
+  <p>
+    Neither is "topical," neither builds a protective eumelanin tan the way the
+    experimental skin agents aim to, and the carotenoid route carries real
+    documented risk. They are included here only to clear up a common search-box
+    confusion between creams, pills and the injected
+    <a href="/melanotan">melanotan</a> route.
   </p>
 
   <div class="not-prose my-8 overflow-x-auto">
