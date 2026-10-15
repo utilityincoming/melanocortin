@@ -25,7 +25,7 @@ const pick = (...slugs: string[]): PageMeta[] =>
 export const SITE_INDEX: IndexSection[] = [
   {
     title: 'The system',
-    pages: pick('system', 'why-melanocortins', 'genetics', 'inflammation', 'effects', 'structures'),
+    pages: pick('system', 'pomc', 'why-melanocortins', 'genetics', 'inflammation', 'effects', 'structures'),
   },
   {
     title: 'The receptors',

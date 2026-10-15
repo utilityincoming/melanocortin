@@ -1,0 +1,404 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Byline from '../components/Byline.astro';
+import FAQ from '../components/FAQ.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import PomcTree from '../components/PomcTree.astro';
+import {
+  POMC_TREE,
+  TISSUES,
+  CLASS_LABEL,
+  type PomcNode,
+  type PomcClass,
+} from '../data/pomc';
+
+// Flatten the tree into an id-keyed map for the detail panel, tagging each node
+// with whether it needs PC2 (any PC2 cut on its path from POMC).
+interface FlatNode {
+  id: string;
+  name: string;
+  aka?: string;
+  enzyme: string;
+  nodeClass: PomcClass;
+  classLabel: string;
+  detail: string;
+  receptors?: string;
+  href?: string;
+  needsPC2: boolean;
+}
+const flat: Record<string, FlatNode> = {};
+const walk = (node: PomcNode, parentNeedsPC2: boolean) => {
+  const needsPC2 = parentNeedsPC2 || node.enzyme === 'PC2';
+  flat[node.id] = {
+    id: node.id,
+    name: node.name,
+    aka: node.aka,
+    enzyme: node.enzyme,
+    nodeClass: node.nodeClass,
+    classLabel: CLASS_LABEL[node.nodeClass],
+    detail: node.detail,
+    receptors: node.receptors,
+    href: node.href,
+    needsPC2,
+  };
+  node.children?.forEach((c) => walk(c, needsPC2));
+};
+walk(POMC_TREE, false);
+
+const data = { nodes: flat, tissues: TISSUES };
+
+const legendClasses: PomcClass[] = ['melanocortin', 'intermediate', 'opioid', 'other'];
+
+const faqs = [
+  {
+    q: 'What is the POMC cleavage tree?',
+    a: 'It is the branching set of peptides produced when the precursor protein pro-opiomelanocortin (POMC) is cut by enzymes. POMC is biologically inert until prohormone convertases snip it at pairs of basic amino acids, releasing — step by step — ACTH, the melanocyte-stimulating hormones (α-, β- and γ-MSH), and β-endorphin.',
+  },
+  {
+    q: 'Why does the same POMC gene make ACTH in the pituitary but α-MSH in the brain and skin?',
+    a: 'Because the tissues carry different enzymes. The first cuts are made by prohormone convertase PC1/3, which is present everywhere POMC is made, and they stop at ACTH and β-lipotropin. The second round of cuts needs PC2, which is present in the hypothalamus, skin and intermediate lobe of the pituitary but not in anterior-pituitary corticotrophs. Only where PC2 is present does ACTH get cut further into α-MSH.',
+  },
+  {
+    q: 'Which POMC products are melanocortins and which are not?',
+    a: 'The melanocortins — the peptides that act on the MC1R–MC5R receptors through a shared His-Phe-Arg-Trp core — are α-, β- and γ-MSH and ACTH. The same precursor also releases β-endorphin, an opioid peptide that acts on the opioid receptors, plus processing fragments such as the joining peptide and CLIP that have no melanocortin activity.',
+  },
+  {
+    q: 'Are agouti and AgRP part of the POMC tree?',
+    a: 'No. Agouti signalling protein (ASIP) and agouti-related peptide (AgRP) are the system’s two natural brakes, but they are made from their own separate genes — they are not cut from POMC. They act as antagonists at the same receptors the POMC melanocortins switch on.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Harno E, Gali Ramamoorthy T, Coll AP, White A.',
+    title: 'POMC: The Physiological Power of Hormone Processing.',
+    source: 'Physiol Rev. 98(4):2381–2430.',
+    year: '2018',
+    url: 'https://journals.physiology.org/doi/full/10.1152/physrev.00024.2017',
+  },
+  {
+    authors: 'Cawley NX, Li Z, Loh YP.',
+    title: 'Biosynthesis, trafficking, and secretion of POMC-derived peptides.',
+    source: 'Review (PMC4899099).',
+    year: '2016',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4899099/',
+  },
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+];
+---
+
+<BaseLayout
+  title="The POMC cleavage tree — one gene, every melanocortin — melanocortin.com"
+  description="An interactive map of how pro-opiomelanocortin (POMC) is cut into ACTH, α-, β- and γ-MSH and β-endorphin. Switch the tissue to see why the pituitary makes ACTH while the brain and skin make α-MSH from the very same gene."
+  pageType="article"
+  dateModified="2026"
+  about={[
+    { name: 'Pro-opiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+    { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+  ]}
+>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Interactive</p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      The POMC cleavage tree
+    </h1>
+    <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
+      One inert precursor is cut, step by step, into the whole melanocortin
+      family. The twist is that <em>where</em> the cutting happens decides
+      {' '}<em>what</em> gets made. Switch the tissue below and watch the tree change:
+      the anterior pituitary stops at ACTH, while the brain and skin carry a
+      second enzyme that unlocks α-MSH, β-endorphin, and the rest.
+    </p>
+    <Byline updated="2026" />
+
+    <!-- Tissue toggle -->
+    <div class="not-prose mt-8">
+      <p class="text-sm font-medium">Where is POMC being processed?</p>
+      <div id="tissue-toggle" class="mt-2 inline-flex flex-wrap gap-2" role="group" aria-label="Choose a tissue">
+        {
+          TISSUES.map((t, i) => (
+            <button
+              type="button"
+              class="tissue-btn"
+              data-tissue={t.id}
+              aria-pressed={i === TISSUES.length - 1 ? 'true' : 'false'}
+            >
+              <span class="font-medium">{t.label}</span>
+              <span class="tissue-enz">{t.short}</span>
+            </button>
+          ))
+        }
+      </div>
+      <p id="tissue-note" class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-muted)]"></p>
+    </div>
+
+    <!-- Legend -->
+    <ul class="pomc-legend not-prose mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[var(--text-muted)]">
+      {
+        legendClasses.map((c) => (
+          <li>
+            <span class={`swatch cls-${c}`} />
+            {CLASS_LABEL[c]}
+          </li>
+        ))
+      }
+      <li><span class="enz-key enz-pc1">PC1/3</span> first cut</li>
+      <li><span class="enz-key enz-pc2">PC2</span> second cut</li>
+    </ul>
+
+    <!-- The tree -->
+    <div class="not-prose mt-5 rounded-lg border border-[var(--border)] bg-[var(--bg)] p-5 sm:p-7">
+      <div id="pomc-root" class="pomc-tree-wrap">
+        <PomcTree nodes={[POMC_TREE]} />
+      </div>
+    </div>
+
+    <!-- Detail panel -->
+    <div
+      id="pomc-detail"
+      class="not-prose mt-6 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6"
+      aria-live="polite"
+    >
+      <p class="text-sm text-[var(--text-muted)]">
+        Select any peptide in the tree to see what it is, which enzyme cuts it
+        out, and what it does.
+      </p>
+    </div>
+
+    <!-- Prose -->
+    <div class="prose-body mt-12">
+      <h2 class="font-serif text-2xl font-semibold tracking-tight">One gene, two scissors</h2>
+      <p class="mt-3 leading-relaxed">
+        POMC is a <strong>prohormone</strong>: a long, inactive chain that only
+        becomes useful once it is cut. The cutting is done by{' '}
+        <strong>prohormone convertases</strong>, enzymes that recognise pairs of
+        basic amino acids and snip the chain there. Two of them do almost all the
+        branching. <strong>PC1/3</strong> makes the first cuts and is present in
+        every POMC-expressing cell, releasing the N-terminal fragment, the
+        joining peptide, ACTH, and β-lipotropin. <strong>PC2</strong> makes a
+        second round of cuts — but only in tissues that carry it.
+      </p>
+      <p class="mt-4 leading-relaxed">
+        That is the whole trick of the system’s economy. In the anterior
+        pituitary, which lacks PC2, processing stops at ACTH: the gland’s job is
+        the cortisol stress axis. In the hypothalamus, the skin, and the
+        intermediate lobe of the pituitary, PC2 keeps going — cutting ACTH into
+        α-MSH, β-lipotropin into β-endorphin, and liberating β- and γ-MSH. Same
+        precursor, same first cuts, a different set of final messengers, decided
+        entirely by which scissors the cell owns.
+      </p>
+
+      <h2 class="mt-10 font-serif text-2xl font-semibold tracking-tight">The finishing touches</h2>
+      <p class="mt-3 leading-relaxed">
+        A few more enzymes tidy up the ends after the convertases cut.{' '}
+        <strong>Carboxypeptidase E</strong> trims the leftover basic residues
+        from each new C-terminus; the amidating enzyme <strong>PAM</strong> caps
+        many of the peptides with an amide; and an{' '}
+        <strong>N-acetyltransferase</strong> acetylates α-MSH at its front end,
+        which stabilises it and sharpens its activity. These steps are why the
+        mature α-MSH is written as <em>acetyl-ACTH(1–13)-amide</em> rather than a
+        bare fragment — but they trim and cap rather than branch, so they sit
+        off the tree above.
+      </p>
+
+      <h2 class="mt-10 font-serif text-2xl font-semibold tracking-tight">What is <em>not</em> on the tree</h2>
+      <p class="mt-3 leading-relaxed">
+        Two important players are missing by design. The system’s natural brakes
+        — <a href="/asip">agouti signalling protein</a> and{' '}
+        <a href="/agrp">AgRP</a> — are antagonists at the melanocortin receptors,
+        but they are made from their own separate genes, not cut from POMC. And
+        β-endorphin, though it rides out of the same precursor, is an{' '}
+        <em>opioid</em>, not a melanocortin: it is the clearest sign of how much
+        functional range one gene can hold. For the bigger picture of how these
+        products act once released, see{' '}
+        <a href="/system">the melanocortin system</a> and the{' '}
+        <a href="/receptors">five receptors</a> that read them.
+      </p>
+    </div>
+
+    <FAQ items={faqs} />
+
+    <References items={references} />
+
+    <RelatedPages slug="pomc" />
+
+    <script type="application/json" id="pomc-data" set:html={JSON.stringify(data)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .tissue-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 0.55rem;
+    background: var(--bg-elevated);
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      border-color 0.15s,
+      background-color 0.15s;
+  }
+  .tissue-btn:hover {
+    border-color: var(--accent);
+  }
+  .tissue-btn[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .tissue-enz {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+  .tissue-btn[aria-pressed='true'] .tissue-enz {
+    color: var(--accent-strong);
+  }
+
+  .pomc-legend li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border-left: 3px solid;
+    background: var(--bg-elevated);
+  }
+  .swatch.cls-melanocortin { border-left-color: var(--accent); }
+  .swatch.cls-intermediate { border-left-color: var(--color-ink-400); }
+  .swatch.cls-opioid { border-left-color: var(--color-pigment-300); }
+  .swatch.cls-other { border-left-color: var(--border); border: 1px solid var(--border); }
+  .enz-key {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 0.12rem 0.4rem;
+    border-radius: 0.3rem;
+  }
+  .enz-key.enz-pc1 { background: var(--surface, #ecebe7); color: var(--text-muted); }
+  .enz-key.enz-pc2 { background: var(--accent-soft); color: var(--accent-strong); }
+
+  .prose-body a {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+  .prose-body a:hover {
+    color: var(--accent);
+  }
+</style>
+
+<script>
+  interface FlatNode {
+    id: string;
+    name: string;
+    aka?: string;
+    enzyme: string;
+    nodeClass: string;
+    classLabel: string;
+    detail: string;
+    receptors?: string;
+    href?: string;
+    needsPC2: boolean;
+  }
+  interface Tissue {
+    id: string;
+    label: string;
+    short: string;
+    enzymes: string[];
+    note: string;
+  }
+  interface Data {
+    nodes: Record<string, FlatNode>;
+    tissues: Tissue[];
+  }
+
+  const el = document.getElementById('pomc-data');
+  if (el) {
+    const data: Data = JSON.parse(el.textContent || '{}');
+    const tree = document.querySelector('.pomc-tree') as HTMLElement | null;
+    const detail = document.getElementById('pomc-detail')!;
+    const note = document.getElementById('tissue-note')!;
+    const esc = (s: string) =>
+      s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    let currentTissue =
+      data.tissues.find((t) => t.enzymes.includes('PC2')) ?? data.tissues[0];
+    let selectedId: string | null = null;
+
+    const hasPC2 = (t: Tissue) => t.enzymes.includes('PC2');
+
+    function renderDetail(id: string) {
+      const n = data.nodes[id];
+      if (!n) return;
+      const madeHere = !n.needsPC2 || hasPC2(currentTissue);
+      const enzLine =
+        n.enzyme === 'none'
+          ? 'The intact precursor — nothing has been cut yet.'
+          : `Cut out by <span class="font-mono font-semibold">${n.enzyme}</span>.`;
+      const aka = n.aka
+        ? `<span class="ml-1 align-middle text-xs font-normal text-[var(--text-muted)]">${esc(n.aka)}</span>`
+        : '';
+      const madeBadge = madeHere
+        ? ''
+        : `<p class="mt-3 rounded-md border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-muted)]"><strong class="text-[var(--text)]">Not made in ${esc(currentTissue.label.toLowerCase())}.</strong> This peptide needs PC2, which this tissue lacks — so processing stops before it.</p>`;
+      const recLine = n.receptors
+        ? `<p class="mt-3 text-sm"><span class="font-mono text-xs uppercase tracking-wide" style="color:var(--accent)">Receptors</span> <span class="text-[var(--text-muted)]">${esc(n.receptors)}</span></p>`
+        : '';
+      const link = n.href
+        ? `<p class="mt-4"><a href="${n.href}" class="text-sm underline decoration-dotted hover:text-[var(--accent)]">Full page on ${esc(n.name)} →</a></p>`
+        : '';
+      detail.innerHTML =
+        `<p class="font-serif text-xl font-semibold tracking-tight">${esc(n.name)}${aka}</p>` +
+        `<p class="mt-1 text-xs uppercase tracking-wide text-[var(--text-muted)]">${esc(n.classLabel)} · ${enzLine}</p>` +
+        madeBadge +
+        `<p class="mt-3 leading-relaxed text-[var(--text-muted)]">${esc(n.detail)}</p>` +
+        recLine +
+        link;
+    }
+
+    function selectNode(id: string) {
+      selectedId = id;
+      tree?.querySelectorAll('.pomc-node.sel').forEach((n) => n.classList.remove('sel'));
+      tree?.querySelector(`.pomc-node[data-node="${id}"]`)?.classList.add('sel');
+      renderDetail(id);
+    }
+
+    function applyTissue(t: Tissue) {
+      currentTissue = t;
+      tree?.classList.toggle('no-pc2', !hasPC2(t));
+      document.querySelectorAll<HTMLElement>('.tissue-btn').forEach((b) =>
+        b.setAttribute('aria-pressed', b.dataset.tissue === t.id ? 'true' : 'false')
+      );
+      note.textContent = t.note;
+      if (selectedId) renderDetail(selectedId);
+    }
+
+    tree?.querySelectorAll<HTMLElement>('.pomc-node[data-node]').forEach((b) =>
+      b.addEventListener('click', () => selectNode(b.dataset.node!))
+    );
+    document.querySelectorAll<HTMLElement>('.tissue-btn').forEach((b) =>
+      b.addEventListener('click', () => {
+        const t = data.tissues.find((x) => x.id === b.dataset.tissue);
+        if (t) applyTissue(t);
+      })
+    );
+
+    applyTissue(currentTissue);
+  }
+</script>

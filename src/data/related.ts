@@ -30,6 +30,11 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'The melanocortin system',
     blurb: 'How one precursor, POMC, becomes the peptides that signal across pigment, stress, appetite, and inflammation.',
   },
+  pomc: {
+    href: '/pomc',
+    title: 'The POMC cleavage tree',
+    blurb: 'An interactive map of how one precursor is cut into ACTH, the MSH peptides, and β-endorphin — and why the tissue decides which appear.',
+  },
   'fearfully-and-wonderfully-made': {
     href: '/fearfully-and-wonderfully-made',
     title: 'Fearfully and Wonderfully Made',
@@ -273,7 +278,8 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
-  system: ['receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation', 'binding-matrix'],
+  system: ['pomc', 'receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation'],
+  pomc: ['system', 'alpha-msh', 'acth', 'beta-msh', 'gamma-msh', 'receptors'],
   'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
   receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix', 'structures'],
   'binding-matrix': ['explorer', 'receptors', 'alpha-msh', 'afamelanotide', 'melanocortin-agonists', 'structures', 'mc1r-selectivity'],
@@ -284,13 +290,13 @@ export const RELATED: Record<string, string[]> = {
   'receptors/mc3r': ['gamma-msh', 'receptors/mc4r', 'inflammation', 'agrp', 'genetics'],
   'receptors/mc4r': ['setmelanotide', 'bivamelagon', 'agrp', 'sexual-function', 'shu9119', 'structures', 'melanocortin-agonists'],
   'receptors/mc5r': ['alpha-msh', 'receptors/mc1r', 'system'],
-  'alpha-msh': ['system', 'receptors/mc1r', 'receptors/mc4r', 'inflammation', 'agrp', 'binding-matrix'],
-  acth: ['receptors/mc2r', 'addisons-disease', 'alpha-msh', 'system'],
+  'alpha-msh': ['system', 'pomc', 'receptors/mc1r', 'receptors/mc4r', 'agrp', 'binding-matrix'],
+  acth: ['receptors/mc2r', 'addisons-disease', 'alpha-msh', 'pomc', 'system'],
   'addisons-disease': ['acth', 'receptors/mc1r', 'receptors/mc2r', 'alpha-msh', 'system', 'effects'],
   vitiligo: ['afamelanotide', 'receptors/mc1r', 'epp', 'effects', 'mc1r-selectivity', 'alpha-msh'],
   agrp: ['alpha-msh', 'receptors/mc4r', 'asip', 'tcmcb07', 'shu9119', 'binding-matrix'],
-  'beta-msh': ['alpha-msh', 'receptors/mc4r', 'system'],
-  'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'system'],
+  'beta-msh': ['alpha-msh', 'receptors/mc4r', 'pomc', 'system'],
+  'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'pomc', 'system'],
   asip: ['receptors/mc1r', 'agrp', 'alpha-msh', 'melanotan'],
   afamelanotide: ['epp', 'vitiligo', 'receptors/mc1r', 'dersimelagon', 'melanotan', 'topical-tanning'],
   dersimelagon: ['epp', 'afamelanotide', 'receptors/mc1r', 'inflammation', 'oral-peptides', 'pipeline'],
