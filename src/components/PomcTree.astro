@@ -1,0 +1,174 @@
+---
+// Recursive renderer for the POMC cleavage cascade (see src/data/pomc.ts).
+// Each node is a button that opens a detail panel (wired by the page script).
+// `needsPC2` is computed cumulatively down the tree: a node carries it if any
+// PC2 cut lies on its path from POMC. The page toggles a tissue that does or
+// doesn't carry PC2, and dims the nodes that can't be made there.
+import type { PomcNode } from '../data/pomc';
+import Self from './PomcTree.astro';
+
+interface Props {
+  nodes: PomcNode[];
+  parentNeedsPC2?: boolean;
+  depth?: number;
+}
+const { nodes, parentNeedsPC2 = false, depth = 0 } = Astro.props;
+---
+
+<ul class={depth === 0 ? 'pomc-tree not-prose' : 'pomc-subtree'}>
+  {
+    nodes.map((node) => {
+      const needsPC2 = parentNeedsPC2 || node.enzyme === 'PC2';
+      return (
+        <li data-id={node.id} data-pc2={needsPC2 ? 'true' : 'false'}>
+          <button type="button" class={`pomc-node cls-${node.nodeClass}`} data-node={node.id}>
+            {node.enzyme !== 'none' && (
+              <span class={`enz ${node.enzyme === 'PC2' ? 'enz-pc2' : 'enz-pc1'}`}>
+                {node.enzyme}
+              </span>
+            )}
+            <span class="pomc-name">{node.name}</span>
+            <span class="pomc-tag">{node.tagline}</span>
+          </button>
+          {node.children && node.children.length > 0 && (
+            <Self nodes={node.children} parentNeedsPC2={needsPC2} depth={depth + 1} />
+          )}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .pomc-tree {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Nested levels get a file-tree rail. */
+  .pomc-subtree {
+    list-style: none;
+    margin: 0;
+    padding-left: 0.5rem;
+  }
+  .pomc-subtree > li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+  /* vertical rail down the group */
+  .pomc-subtree > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-left: 1.5px solid var(--border);
+  }
+  /* horizontal connector into each node */
+  .pomc-subtree > li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.5rem;
+    width: 1rem;
+    border-top: 1.5px solid var(--border);
+  }
+  /* last child: rail stops at its own connector */
+  .pomc-subtree > li:last-child::before {
+    bottom: auto;
+    height: 1.5rem;
+  }
+
+  li {
+    margin-top: 0.5rem;
+  }
+  .pomc-tree > li {
+    margin-top: 0;
+  }
+
+  .pomc-node {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 0.1rem 0.6rem;
+    width: 100%;
+    max-width: 30rem;
+    text-align: left;
+    cursor: pointer;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: 0.55rem;
+    padding: 0.55rem 0.8rem;
+    color: inherit;
+    transition:
+      border-color 0.15s,
+      background-color 0.15s,
+      opacity 0.2s;
+  }
+  .pomc-node:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .pomc-node:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* class accents on the left border */
+  .cls-precursor { border-left-color: var(--text-muted); }
+  .cls-intermediate { border-left-color: var(--color-ink-400, var(--text-muted)); }
+  .cls-melanocortin { border-left-color: var(--accent); }
+  .cls-opioid { border-left-color: var(--color-pigment-300, var(--accent)); }
+  .cls-other { border-left-color: var(--border); }
+
+  .enz {
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.12rem 0.4rem;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+  }
+  .enz-pc1 {
+    background: var(--surface, #ecebe7);
+    color: var(--text-muted);
+  }
+  .enz-pc2 {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+
+  .pomc-name {
+    font-weight: 600;
+    font-size: 0.98rem;
+    line-height: 1.2;
+  }
+  .pomc-tag {
+    grid-column: 2;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.2;
+  }
+
+  /* A node that this tissue cannot make (PC2 absent). */
+  :global(.pomc-tree.no-pc2) li[data-pc2='true'] > .pomc-node {
+    opacity: 0.4;
+    filter: grayscale(0.5);
+  }
+  :global(.pomc-tree.no-pc2) li[data-pc2='true'] > .pomc-node .pomc-name {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+
+  /* Selected node. */
+  .pomc-node.sel {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+</style>
