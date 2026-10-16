@@ -1,0 +1,495 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Byline from '../components/Byline.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import { bindingRows, toNanomolar } from '../data/binding';
+import { receptorIds, receptorTag, KIND_LABEL } from '../data/ligands';
+
+// Fixed p-value domain so bar lengths are comparable across ligands when you
+// switch between them. The tightest value in the dataset is 10.0 (afamelanotide
+// at MC1R); the weakest curated is 4.9.
+const P_MIN = 4.5;
+const P_MAX = 10.5;
+const widthPct = (p: number) =>
+  Math.max(4, Math.round(((p - P_MIN) / (P_MAX - P_MIN)) * 100));
+
+type Verdict = 'single' | 'broad' | 'modest' | 'selective' | 'high';
+const VERDICT_LABEL: Record<Verdict, string> = {
+  single: 'One receptor only',
+  broad: 'Broadly non-selective',
+  modest: 'Modest preference',
+  selective: 'Selective',
+  high: 'Highly selective',
+};
+
+const fmtFold = (f: number) => (f >= 10 ? `${Math.round(f)}×` : `${f.toFixed(1)}×`);
+
+// Build a view-model per ligand: ordered cells, the tightest ("primary")
+// receptor, and a selectivity window = fold-gap between the tightest and the
+// second-tightest curated receptor.
+const ligands = bindingRows.map((row) => {
+  const curated = receptorIds
+    .map((rid) => ({ rid, cell: row.cells[rid] }))
+    .filter((x) => x.cell) as { rid: (typeof receptorIds)[number]; cell: NonNullable<(typeof row.cells)[keyof typeof row.cells]> }[];
+
+  const sorted = [...curated].sort((a, b) => b.cell.p - a.cell.p);
+  const primary = sorted[0]?.rid;
+  const action = curated.every((c) => c.cell.action === 'agonist')
+    ? 'agonist'
+    : curated.every((c) => c.cell.action === 'antagonist')
+      ? 'antagonist'
+      : 'mixed';
+
+  let window = 0;
+  let verdict: Verdict = 'single';
+  if (sorted.length >= 2) {
+    window = Math.pow(10, sorted[0].cell.p - sorted[1].cell.p);
+    verdict = window < 3 ? 'broad' : window < 10 ? 'modest' : window < 50 ? 'selective' : 'high';
+  }
+
+  const rows = receptorIds.map((rid) => {
+    const c = row.cells[rid];
+    return {
+      rid,
+      tag: receptorTag[rid],
+      has: !!c,
+      p: c?.p ?? 0,
+      display: c?.display ?? '',
+      nm: c ? toNanomolar(c.p) : '',
+      action: c?.action ?? null,
+      species: c?.species ?? null,
+      width: c ? widthPct(c.p) : 0,
+      primary: rid === primary,
+    };
+  });
+
+  return {
+    id: row.id,
+    name: row.name,
+    kind: row.kind,
+    kindLabel: KIND_LABEL[row.kind],
+    role: row.role,
+    href: row.href,
+    action,
+    primary,
+    primaryTag: primary ? receptorTag[primary] : '',
+    window,
+    windowDisplay: window ? fmtFold(window) : '',
+    verdict,
+    verdictLabel: VERDICT_LABEL[verdict],
+    secondRid: sorted[1]?.rid ?? '',
+    rows,
+  };
+});
+
+// Spectrum order: most selective first; single-value ligands last.
+const spectrum = [...ligands].sort((a, b) => {
+  if (!a.window && !b.window) return 0;
+  if (!a.window) return 1;
+  if (!b.window) return -1;
+  return b.window - a.window;
+});
+
+const defaultId = 'bremelanotide'; // a clean, high-window example to open on
+
+const faqs = [
+  {
+    q: 'What is a selectivity window?',
+    a: 'It is how much more tightly a ligand binds its favourite receptor than its next-favourite — the fold-gap between the tightest and second-tightest receptor. A big window (say 25×) means a relatively clean, single-target molecule; a window near 1–2× means the ligand grips several receptors almost equally and is effectively non-selective.',
+  },
+  {
+    q: 'Why is there no clean, single-receptor melanocortin?',
+    a: 'Because the five receptors share the same binding core (His-Phe-Arg-Trp), a ligand that fits one tends to fit the others. The fingerprints here show it directly: the natural peptides and most drugs sit at low selectivity windows, binding three or four receptors within an order of magnitude. Bremelanotide and the natural brakes are among the few with a clear single-receptor preference.',
+  },
+  {
+    q: 'Does tight binding mean a strong effect?',
+    a: 'Not always. Binding is how well a ligand sticks; function is what the receptor then does. Setmelanotide is the clearest example: by raw binding it grips MC1R, MC3R and MC4R at similar strength, yet it is used as an MC4R drug because its signalling is biased toward MC4R. The fingerprint shows affinity, not the downstream signal.',
+  },
+  {
+    q: 'Where do these numbers come from?',
+    a: 'Every value is the same curated affinity (pKi, pKd) or functional potency (pIC50) used across this site, from the IUPHAR/BPS Guide to Pharmacology, each traced to a primary paper. The full table with per-value citations is on the binding matrix page.',
+  },
+];
+---
+
+<BaseLayout
+  title="The selectivity visualizer — how cleanly each melanocortin picks a receptor — melanocortin.com"
+  description="An interactive, per-ligand fingerprint of melanocortin receptor selectivity. Pick any peptide or drug to see how tightly it binds MC1R–MC5R and its selectivity window — the fold-gap that decides whether a clean single-target drug is even possible."
+  pageType="article"
+  dateModified="2026"
+  about={[
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Binding selectivity', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Binding_selectivity'] },
+  ]}
+>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Interactive</p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      The selectivity visualizer
+    </h1>
+    <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
+      Every melanocortin binds more than one receptor. The question that decides
+      whether a clean drug is even possible is <em>how much</em> it prefers its
+      favourite. Pick a ligand to see its fingerprint across MC1R–MC5R — and its
+      <strong class="text-[var(--text)]">selectivity window</strong>, the fold-gap
+      between its tightest and second-tightest receptor.
+    </p>
+    <Byline updated="2026" />
+
+    <!-- Ligand selector -->
+    <div class="not-prose mt-8">
+      <p class="text-sm font-medium">Choose a ligand</p>
+      <div id="sv-picker" class="mt-2 flex flex-wrap gap-2" role="group" aria-label="Choose a ligand">
+        {
+          ligands.map((l) => (
+            <button
+              type="button"
+              class="sv-pick"
+              data-pick={l.id}
+              aria-pressed={l.id === defaultId ? 'true' : 'false'}
+            >
+              {l.name}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Fingerprint panels (one per ligand; only the active one is shown) -->
+    <div class="not-prose mt-6">
+      {
+        ligands.map((l) => (
+          <article
+            class="sv-panel rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 sm:p-7"
+            data-panel={l.id}
+            hidden={l.id !== defaultId}
+            data-action={l.action}
+          >
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h2 class="font-serif text-2xl font-semibold tracking-tight">
+                {l.name}
+                <span class="ml-1 align-middle text-xs font-normal uppercase tracking-wide text-[var(--text-muted)]">
+                  {l.kindLabel}
+                </span>
+              </h2>
+              {l.href && (
+                <a
+                  href={l.href}
+                  class="text-sm underline decoration-dotted hover:text-[var(--accent)]"
+                >
+                  Full page →
+                </a>
+              )}
+            </div>
+            <p class="mt-1 text-sm text-[var(--text-muted)]">{l.role}</p>
+
+            {/* Selectivity readout */}
+            <div class="sv-readout mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+              <div>
+                <span class="sv-k">Primary target</span>
+                <span class="sv-v font-mono">{l.primary ?? '—'}</span>
+                {l.primaryTag && <span class="sv-sub">{l.primaryTag}</span>}
+              </div>
+              <div>
+                <span class="sv-k">Selectivity window</span>
+                {l.window ? (
+                  <>
+                    <span class="sv-v font-mono">{l.windowDisplay}</span>
+                    <span class="sv-sub">over {l.secondRid}</span>
+                  </>
+                ) : (
+                  <span class="sv-v font-mono">n/a</span>
+                )}
+              </div>
+              <span class={`sv-verdict v-${l.verdict} ${l.action === 'antagonist' ? 'is-anta' : ''}`}>
+                {l.verdictLabel}
+                {l.action === 'antagonist' ? ' · blocker' : ''}
+              </span>
+            </div>
+
+            {/* Fingerprint bars */}
+            <div class={`sv-chart mt-5 ${l.action === 'antagonist' ? 'anta' : ''}`}>
+              {l.rows.map((r) => (
+                <div class={`sv-row ${r.primary ? 'is-primary' : ''}`}>
+                  <div class="sv-rlabel">
+                    <span class="rid font-mono">{r.rid}</span>
+                    <span class="rtag">{r.tag}</span>
+                  </div>
+                  {r.has ? (
+                    <div class="sv-track">
+                      <div class="sv-bar" style={`width:${r.width}%`} />
+                      <span class="sv-val">
+                        <span class="pv font-mono">{r.display}{r.species === 'mouse' ? 'ᵐ' : ''}</span>
+                        <span class="nm">
+                          {r.action === 'antagonist' ? 'blocks · ' : ''}≈{r.nm}
+                        </span>
+                      </span>
+                      {r.primary && <span class="sv-flag">primary</span>}
+                    </div>
+                  ) : (
+                    <div class="sv-track">
+                      <span class="sv-none">no curated value</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="not-prose mt-3 text-xs text-[var(--text-muted)]">
+      Bars are sized by binding strength (p-value, on a fixed MC1R–MC5R scale);
+      <span class="font-mono">ᵐ</span> marks a mouse value. This view has its own
+      link — copy the address bar to share the selected ligand.
+    </p>
+
+    <!-- Selectivity spectrum -->
+    <div class="not-prose mt-10">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">The selectivity spectrum</h2>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+        Every catalogued ligand, ranked by how cleanly it prefers one receptor —
+        from the few genuinely selective molecules down to the broad binders that
+        grip three or four receptors at once. Select any to see its fingerprint.
+      </p>
+      <ul class="sv-spectrum mt-4 flex flex-col gap-1.5">
+        {
+          spectrum.map((l) => (
+            <li>
+              <button type="button" class="sv-srow" data-pick={l.id}>
+                <span class="sv-sname">{l.name}</span>
+                <span class={`sv-schip v-${l.verdict}`}>{l.verdictLabel}</span>
+                <span class="sv-sfold font-mono">{l.window ? l.windowDisplay : '—'}</span>
+                <span class="sv-starget font-mono">{l.primary ?? ''}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Prose -->
+    <div class="prose-body mt-12">
+      <h2 class="font-serif text-2xl font-semibold tracking-tight">Why the window matters</h2>
+      <p class="mt-3 leading-relaxed">
+        The five melanocortin receptors read the same molecular signal — a shared
+        His-Phe-Arg-Trp core — so a ligand shaped to fit one tends to fit the
+        others. That is the deep reason a perfectly clean, single-receptor drug is
+        so hard to make here, and the fingerprints show it: the natural peptides
+        and most of the drugs sit at low windows, binding several receptors within
+        an order of magnitude. A few stand out —{' '}
+        <a href="/bremelanotide">bremelanotide</a> leans clearly on MC4R, the
+        natural brakes <a href="/agrp">AgRP</a> and <a href="/asip">agouti</a>{' '}
+        each prefer a single switch — but the rule is breadth, not precision. For
+        the full argument, see <a href="/mc1r-selectivity">why there's no clean
+        tanning drug</a>.
+      </p>
+      <p class="mt-4 leading-relaxed">
+        One caveat the chart cannot show: <strong>binding is not function</strong>.
+        These bars measure how tightly a ligand holds each receptor, not what the
+        receptor then does.{' '}
+        <a href="/setmelanotide">Setmelanotide</a> is the lesson — broad by
+        binding, yet used as an MC4R medicine because its <em>signalling</em> is
+        biased toward MC4R. For the qualitative agonist/antagonist picture see the{' '}
+        <a href="/explorer">receptor–ligand explorer</a>; for every number with its
+        citation, the <a href="/binding-matrix">binding matrix</a>.
+      </p>
+    </div>
+
+    <FAQ items={faqs} />
+
+    <section class="mt-14 border-t border-[var(--border)] pt-8">
+      <h2 class="font-serif text-2xl font-semibold tracking-tight">Source</h2>
+      <p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
+        All affinity values are drawn from the{' '}
+        <strong class="text-[var(--text)]">IUPHAR/BPS Guide to PHARMACOLOGY</strong>{' '}
+        (Harding SD, et al. <span class="italic">Nucleic Acids Res.</span>
+        2024;52:D1438–D1449), each traced to a primary paper. The selectivity
+        window is derived here from those values. For the complete table with a
+        citation on every value, see the{' '}
+        <a href="/binding-matrix" class="underline decoration-dotted hover:text-[var(--accent)]">binding matrix</a>.
+        This is an educational resource, not medical advice — see the{' '}
+        <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
+      </p>
+    </section>
+
+    <RelatedPages slug="selectivity" />
+
+    <script type="application/json" id="sv-default" set:html={JSON.stringify({ defaultId })} />
+  </section>
+</BaseLayout>
+
+<style>
+  .sv-pick {
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background: var(--bg-elevated);
+    color: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+  }
+  .sv-pick:hover { border-color: var(--accent); color: var(--accent); }
+  .sv-pick[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* Readout */
+  .sv-readout { font-size: 0.85rem; }
+  .sv-k { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+  .sv-v { font-size: 1.05rem; font-weight: 700; }
+  .sv-sub { margin-left: 0.4rem; font-size: 0.72rem; color: var(--text-muted); }
+  .sv-verdict {
+    align-self: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .sv-verdict.v-broad { background: var(--surface, #ecebe7); color: var(--text-muted); }
+  .sv-verdict.v-modest { background: var(--accent-soft); color: var(--accent-strong); }
+  .sv-verdict.is-anta { background: var(--block-soft); color: var(--block); }
+
+  /* Chart */
+  .sv-chart { --bar: var(--accent); }
+  .sv-chart.anta { --bar: var(--block); }
+  .sv-row {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+  }
+  .sv-rlabel { display: flex; flex-direction: column; line-height: 1.15; }
+  .sv-rlabel .rid { font-size: 0.9rem; font-weight: 600; }
+  .sv-row.is-primary .rid { color: var(--bar); }
+  .sv-rlabel .rtag { font-size: 0.66rem; color: var(--text-muted); }
+  .sv-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 1.5rem;
+  }
+  .sv-bar {
+    height: 0.85rem;
+    border-radius: 0 4px 4px 0;
+    background: var(--bar);
+    opacity: 0.45;
+    flex: 0 0 auto;
+    transition: width 0.3s ease;
+  }
+  .sv-row.is-primary .sv-bar { opacity: 1; }
+  .sv-val { display: flex; align-items: baseline; gap: 0.4rem; white-space: nowrap; }
+  .sv-val .pv { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .sv-val .nm { font-size: 0.68rem; color: var(--text-muted); }
+  .sv-flag {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--bar);
+    border: 1px solid currentColor;
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.3rem;
+  }
+  .sv-none { font-size: 0.72rem; color: var(--text-muted); opacity: 0.6; font-style: italic; }
+
+  /* Spectrum */
+  .sv-spectrum { list-style: none; margin: 0; padding: 0; }
+  .sv-srow {
+    display: grid;
+    grid-template-columns: 1fr auto 3.2rem 3rem;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--bg-elevated);
+    color: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .sv-srow:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .sv-sname { font-weight: 600; font-size: 0.9rem; }
+  .sv-schip {
+    justify-self: start;
+    font-size: 0.64rem;
+    font-weight: 600;
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+    background: var(--surface, #ecebe7);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .sv-schip.v-selective, .sv-schip.v-high { background: var(--accent-soft); color: var(--accent-strong); }
+  .sv-sfold { justify-self: end; font-size: 0.85rem; font-weight: 700; }
+  .sv-starget { justify-self: end; font-size: 0.72rem; color: var(--text-muted); }
+
+  .prose-body a {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+  .prose-body a:hover { color: var(--accent); }
+
+  /* Agonist/antagonist blocker hue (shared with the binding matrix). */
+  :global(:root) { --block: #4f6d8c; --block-soft: #e6edf3; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) { --block: #8fabc7; --block-soft: var(--color-ink-800); }
+  }
+</style>
+
+<script>
+  const picks = Array.from(document.querySelectorAll<HTMLElement>('[data-pick]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-panel]'));
+  const ids = new Set(panels.map((p) => p.dataset.panel!));
+
+  const defEl = document.getElementById('sv-default');
+  const defaultId: string = defEl ? (JSON.parse(defEl.textContent || '{}').defaultId ?? '') : '';
+
+  function pressed(id: string) {
+    document.querySelectorAll<HTMLElement>('.sv-pick[data-pick]').forEach((b) =>
+      b.setAttribute('aria-pressed', b.dataset.pick === id ? 'true' : 'false')
+    );
+  }
+
+  function show(id: string, pushUrl = true) {
+    if (!ids.has(id)) return;
+    panels.forEach((p) => {
+      p.hidden = p.dataset.panel !== id;
+    });
+    pressed(id);
+    if (pushUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('ligand', id);
+      history.replaceState(null, '', url);
+    }
+  }
+
+  picks.forEach((b) =>
+    b.addEventListener('click', () => {
+      const id = b.dataset.pick!;
+      show(id);
+      // Keep the fingerprint in view when chosen from the spectrum below.
+      if (b.classList.contains('sv-srow')) {
+        document.querySelector(`[data-panel="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    })
+  );
+
+  // Open on the deep-linked ligand if present (?ligand=… or #…), else the default.
+  const params = new URLSearchParams(window.location.search);
+  const want = params.get('ligand') || window.location.hash.replace('#', '');
+  show(want && ids.has(want) ? want : defaultId, false);
+</script>

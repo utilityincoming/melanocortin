@@ -115,11 +115,15 @@ export const bindingRows: BindingRow[] = [
 ];
 
 // Approximate molar affinity from a p-value: nM = 10^(9 − p).
+// Two significant figures, but plain decimals rather than exponential notation
+// for the 100–1000 range (so e.g. 316 nM reads "316 nM", not "3.2e+2 nM").
 export function toNanomolar(p: number): string {
   const nM = Math.pow(10, 9 - p);
-  if (nM >= 1000) return `${(nM / 1000).toPrecision(2)} µM`;
-  if (nM >= 10) return `${nM.toPrecision(2)} nM`;
-  if (nM >= 1) return `${nM.toPrecision(2)} nM`;
+  if (nM >= 1000) {
+    const uM = nM / 1000;
+    return `${uM >= 100 ? Math.round(uM) : Number(uM.toPrecision(2))} µM`;
+  }
+  if (nM >= 100) return `${Math.round(nM)} nM`;
   return `${nM.toPrecision(2)} nM`;
 }
 
