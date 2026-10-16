@@ -270,6 +270,11 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'The binding matrix',
     blurb: 'How tightly every ligand holds each of the five receptors — the cited numbers behind the words.',
   },
+  selectivity: {
+    href: '/selectivity',
+    title: 'The selectivity visualizer',
+    blurb: 'Pick any ligand to see its binding fingerprint across MC1R–MC5R and its selectivity window — the fold-gap that decides whether a clean drug is possible.',
+  },
   structures: {
     href: '/structures',
     title: 'The receptor structures',
@@ -282,8 +287,9 @@ export const RELATED: Record<string, string[]> = {
   pomc: ['system', 'alpha-msh', 'acth', 'beta-msh', 'gamma-msh', 'receptors'],
   'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
   receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix', 'structures'],
-  'binding-matrix': ['explorer', 'receptors', 'alpha-msh', 'afamelanotide', 'melanocortin-agonists', 'structures', 'mc1r-selectivity'],
-  'mc1r-selectivity': ['melanocortin-agonists', 'binding-matrix', 'receptors/mc1r', 'melanotan', 'afamelanotide', 'structures'],
+  'binding-matrix': ['selectivity', 'explorer', 'receptors', 'alpha-msh', 'melanocortin-agonists', 'mc1r-selectivity'],
+  selectivity: ['binding-matrix', 'mc1r-selectivity', 'explorer', 'bremelanotide', 'receptors', 'melanocortin-agonists'],
+  'mc1r-selectivity': ['selectivity', 'melanocortin-agonists', 'binding-matrix', 'receptors/mc1r', 'melanotan', 'afamelanotide'],
   structures: ['receptors', 'receptors/mc4r', 'binding-matrix', 'alpha-msh', 'receptors/mc1r', 'agrp'],
   'receptors/mc1r': ['afamelanotide', 'epp', 'vitiligo', 'addisons-disease', 'mc1r-pain', 'alpha-msh', 'genetics', 'topical-tanning'],
   'receptors/mc2r': ['acth', 'addisons-disease', 'alpha-msh', 'system'],

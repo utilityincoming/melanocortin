@@ -69,7 +69,7 @@ export const SITE_INDEX: IndexSection[] = [
   },
   {
     title: 'Data & tools',
-    pages: pick('binding-matrix', 'explorer', 'glossary'),
+    pages: pick('binding-matrix', 'selectivity', 'explorer', 'glossary'),
   },
   {
     title: 'About',

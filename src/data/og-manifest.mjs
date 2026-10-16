@@ -22,6 +22,7 @@ export const ogPages = [
   { slug: 'hypothalamic-obesity', eyebrow: 'EXPLAINER', title: 'Hypothalamic obesity' },
   { slug: 'glp1-appetite', eyebrow: 'APPETITE · GLP-1', title: 'GLP-1 drugs & the appetite system' },
   { slug: 'pomc', eyebrow: 'INTERACTIVE', title: 'The POMC cleavage tree' },
+  { slug: 'selectivity', eyebrow: 'INTERACTIVE', title: 'The selectivity visualizer' },
   { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
   { slug: 'dose-curve', eyebrow: 'INTERACTIVE', title: 'Dose, delivery & the side-effect peak' },
   { slug: 'pipeline', eyebrow: 'PIPELINE · 2026', title: 'The melanocortin pipeline' },
