@@ -31,6 +31,13 @@ export const NETWORK: Record<string, NetworkLink[]> = {
       blurb:
         'Two peptides from the same lab, almost the same molecule, opposite fates. A study in receptor selectivity.',
     },
+    {
+      href: 'https://melanotanii.com/articles/not-melatonin',
+      site: 'Tan Lines',
+      title: 'Melanotan is not melatonin',
+      blurb:
+        'One letter apart, nothing else alike: the sleep hormone versus the unapproved tanning peptide.',
+    },
   ],
   'pt-141-vs-melanotan': [
     {
@@ -105,6 +112,22 @@ export const NETWORK: Record<string, NetworkLink[]> = {
       title: 'The middle-ground agonist already exists',
       blurb:
         'Afamelanotide as the approved, rigorously tested melanocortin drug locked inside a rare-disease label.',
+    },
+    {
+      href: 'https://melanotanii.com/articles/the-vitiligo-readout',
+      site: 'Tan Lines',
+      title: "The vitiligo readout: what CUV105 settles",
+      blurb:
+        'What the Phase III vitiligo trial of afamelanotide can and cannot establish for melanocortin pigment drugs.',
+    },
+  ],
+  dersimelagon: [
+    {
+      href: 'https://melanotanii.com/articles/the-pipeline-right-now',
+      site: 'Tan Lines',
+      title: 'The melanocortin sun drugs in trials now',
+      blurb:
+        'A 2026 snapshot of the real pipeline, including the oral MC1R agonist approaching an FDA decision.',
     },
   ],
   receptors: [
