@@ -140,6 +140,16 @@ export const pipeline: PipelineEntry[] = [
     href: '/tcmcb07',
   },
   {
+    name: 'Resomelagon (AP1189)',
+    target: 'Biased MC1R/MC3R agonist',
+    indication: 'Rheumatoid arthritis · membranous nephropathy',
+    sponsor: 'SynAct Pharma',
+    stage: 2,
+    status: 'active',
+    note: 'Oral pro-resolution agonist; Phase 2b ADVANCE (2026) missed its primary DAS28-CRP endpoint on a high placebo response but showed a 40 mg ACR20 gap, subgroup significance and clean safety; SynAct is pursuing a Phase 3 discussion',
+    href: '/resomelagon',
+  },
+  {
     name: 'Dersimelagon (immunology)',
     target: 'Oral MC1R agonist',
     indication: 'Diffuse cutaneous systemic sclerosis',

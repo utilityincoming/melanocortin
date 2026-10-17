@@ -1,0 +1,246 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import BiasedAgonism from '../components/fig/BiasedAgonism.astro';
+
+const faqs = [
+  {
+    q: 'What is resomelagon (AP1189)?',
+    a: 'Resomelagon — development code AP1189 — is SynAct Pharma’s investigational oral, once-daily melanocortin agonist. It is a biased agonist selective for the MC1R and MC3R receptors on immune cells, developed to resolve inflammation rather than broadly suppress the immune system. Its lead indication is rheumatoid arthritis.',
+  },
+  {
+    q: 'What does "biased agonist" mean here?',
+    a: 'A receptor can send more than one signal downstream. Resomelagon switches on the MC1R/MC3R but drives only one of those arms — ERK1/2 signalling, the one tied to pro-resolution behaviour in macrophages — while leaving the cAMP arm largely untouched. Because melanin production runs through cAMP, the drug raises no pigment; because it does not act on MC2R, it does not raise cortisol the way ACTH does.',
+  },
+  {
+    q: 'Did resomelagon work in rheumatoid arthritis?',
+    a: 'The story is mixed and worth stating plainly. An earlier combination study (EXPAND) with methotrexate read out strongly — 82% of treated patients reached ACR20 versus 52% on placebo. But the larger Phase 2b ADVANCE trial (2026) missed its primary DAS28-CRP endpoint, undercut by an unusually high placebo response. It still showed a meaningful ACR20 gap at the 40 mg dose, significant effects in a pre-specified subgroup, clean biomarker and safety data, and SynAct is carrying it toward a Phase 3 discussion with the FDA.',
+  },
+  {
+    q: 'Is resomelagon approved or available?',
+    a: 'No. Resomelagon is investigational and not approved for any use anywhere. It is not available as a treatment, and this page does not provide dosing or usage information — it explains the drug’s mechanism and trial record only.',
+  },
+];
+
+const references = [
+  {
+    authors: 'SynAct Pharma.',
+    title: 'Resomelagon (AP1189) — development program: mechanism and indications.',
+    source: 'Company program page — oral biased MC1R/MC3R agonist; RA, idiopathic membranous nephropathy, and host-directed antiviral programs.',
+    year: '2026',
+    url: 'https://www.synactpharma.com/en/development-program/resomelagon/',
+  },
+  {
+    authors: 'Montero-Meléndez T, Gobbetti T, Cooray SN, et al.',
+    title:
+      'Biased agonism as a novel strategy to harness the proresolving properties of melanocortin receptors without eliciting melanogenic effects.',
+    source: 'J Immunol. 194(7):3381–8 — AP1189 drives ERK1/2 without cAMP, promotes efferocytosis, and does not induce melanogenesis.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25725103/',
+  },
+  {
+    authors: 'SynAct Pharma.',
+    title: 'Resomelagon proposed as the international nonproprietary name (INN) for AP1189.',
+    source: 'Press release — the stem “resom-” marks a compound acting on the resolution of inflammation.',
+    year: '2022',
+    url: 'https://www.synactpharma.com/en/wp-content/uploads/sites/2/2022/08/press-release-resomelagon-proposed-international-nonproprietary-name-inn-for-ap1189-220816.pdf',
+  },
+  {
+    authors: 'SynAct Pharma (ACR Convergence).',
+    title:
+      'Efficacy and safety of the biased melanocortin receptor agonist AP1189/resomelagon with methotrexate in DMARD-naïve rheumatoid arthritis: the EXPAND trial.',
+    source: 'Conference abstract — 82% ACR20 (resomelagon + MTX, n=28) vs 52% (placebo + MTX, n=27).',
+    year: '2024',
+    url: 'https://acrabstracts.org/abstract/efficacy-and-safety-of-the-biased-melanocortin-receptor-agonist-ap1189-resomelagon-in-combination-with-methotrexate-in-dmard-naive-rheumatoid-arthritis-patients-the-expand-trial/',
+  },
+  {
+    authors: 'SynAct Pharma.',
+    title: 'Phase 2b ADVANCE study of resomelagon in rheumatoid arthritis — topline results.',
+    source: 'Company report — primary DAS28-CRP endpoint not met amid a high placebo response; 40 mg ACR20 76.4% vs 60.8% placebo; significant effect in the ACR/EULAR class II–III subgroup.',
+    year: '2026',
+    url: 'https://www.synactpharma.com/en/synact-pharma-publishes-q2-2026-interim-results/',
+  },
+  {
+    authors: 'Edison Group.',
+    title: 'SynAct Pharma — ADVANCE data support continued development.',
+    source: 'Analyst note — reads the Phase 2b as mixed: primary missed, but dose selection, biomarker and safety data support a Phase 3 discussion.',
+    year: '2026',
+    url: 'https://www.edisongroup.com/research/advance-data-support-continued-development/',
+  },
+];
+---
+
+<PageLayout
+  title="Resomelagon (AP1189): the melanocortin agonist built to resolve"
+  kicker="The resolution bet"
+  description="Resomelagon (AP1189) is SynAct Pharma’s oral biased MC1R/MC3R agonist — designed to drive inflammation’s resolution without the pigment or cortisol baggage. Its lead program is rheumatoid arthritis, where the Phase 2b ADVANCE trial missed its primary endpoint but left a signal the company is carrying toward Phase 3."
+  thread="The system’s quieting signal, narrowed to one path — resolution, without the tan or the cortisol."
+  updated="2026"
+  about={[
+    { name: 'Resomelagon', type: 'Drug', sameAs: ['https://www.synactpharma.com/en/development-program/resomelagon/'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+    { name: 'Rheumatoid arthritis', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Rheumatoid_arthritis'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Resomelagon (AP1189) is SynAct Pharma’s investigational oral, once-daily melanocortin agonist — a biased agonist selective for the MC1R and MC3R receptors on immune cells.',
+      'The point of the "bias" is to split the wanted effect from the unwanted ones: it drives the ERK1/2 arm tied to resolution, but not the cAMP arm that builds pigment, and it does not touch MC2R, so it raises no cortisol.',
+      'Its name encodes its ambition — the INN stem marks a drug meant to act on the resolution of inflammation, not merely to blockade it.',
+      'The lead indication is rheumatoid arthritis. The combination EXPAND study read 82% ACR20 vs 52% on placebo, but the larger Phase 2b ADVANCE trial (2026) missed its primary endpoint against an unusually high placebo response.',
+      'Despite the miss, the 40 mg dose showed a real ACR20 gap, a significant effect in a pre-specified subgroup, clean biomarkers and safety, and SynAct is carrying it toward a Phase 3 discussion — with further programs in membranous nephropathy and antiviral host-directed therapy.',
+    ]}
+  />
+
+  <p>
+    Most anti-inflammatory drugs work by holding the immune system <em>down</em>. Resomelagon is
+    built on a different idea: help it <em>finish</em>. Known through most of its development by
+    the code <strong>AP1189</strong>, it is <a href="https://www.synactpharma.com">SynAct
+    Pharma</a>’s investigational oral, once-daily melanocortin agonist — and it is the clearest
+    bet in the whole <a href="/pipeline">melanocortin pipeline</a> on a modern idea called
+    resolution pharmacology.<Cite n={1} /> The name is not an accident. The international
+    nonproprietary name <em>resomelagon</em> carries a stem meant to flag exactly what it is
+    supposed to do: act on the <strong>resolution</strong> of inflammation.<Cite n={3} />
+  </p>
+
+  <h2>Biased by design</h2>
+  <p>
+    Resomelagon aims at <a href="/receptors/mc1r">MC1R</a> and <a href="/receptors/mc3r">MC3R</a>,
+    the two melanocortin receptors most involved in calming <a href="/inflammation">inflammation</a>.
+    What makes it unusual is that it is a <strong><a href="/effects">biased</a> agonist</strong>.
+    A receptor is not a simple on/off switch; it can route its signal down more than one pathway,
+    and a biased drug is one that deliberately favours some of those pathways over others.<Cite n={2} />
+  </p>
+  <p>
+    In resomelagon’s case the split is the entire point. In the defining laboratory work, AP1189
+    switched on MC1R and MC3R but did <strong>not</strong> drive the classic cAMP second-messenger
+    pathway — and instead drove <strong>ERK1/2</strong> phosphorylation, the arm tied to
+    pro-resolving behaviour in immune cells.<Cite n={2} /> That one choice pays off twice. Because
+    the pigment-building machinery runs through cAMP, the drug produced no melanogenesis in the
+    lab — so it should not come with the skin-darkening that trails most{' '}
+    <a href="/melanocortin-agonists">melanocortin agonists</a>. And because it does not act on{' '}
+    <a href="/receptors/mc2r">MC2R</a>, the adrenal receptor, it does not raise cortisol the way
+    the old melanocortin anti-inflammatory — <a href="/acth">ACTH</a> — does.<Cite n={1} />
+  </p>
+
+  <Figure
+    caption="Resomelagon binds MC1R and MC3R but takes only one of the two downstream paths. It leaves the cAMP arm largely untouched — so it builds no pigment, and because it ignores MC2R it raises no cortisol — while driving the ERK1/2 arm that switches macrophages toward resolution."
+    source="Mechanism per Montero-Meléndez et al., J Immunol 2015 (AP1189 drives ERK1/2 without cAMP; no melanogenesis) and SynAct Pharma’s resomelagon program description."
+  >
+    <BiasedAgonism />
+  </Figure>
+
+  <h2>Resolution, not suppression</h2>
+  <p>
+    Ending an inflammatory response is not a matter of simply turning inflammation off. It is an
+    active, built-in program: the immune system has to clear the dead and dying cells and the
+    debris left behind, a step called <strong>resolution</strong>. Melanocortin signalling helps
+    drive it — in particular through MC3R, which pushes macrophages to engulf spent neutrophils
+    (efferocytosis) and switch the whole response toward shutdown.<Cite n={2} /> Resomelagon is a
+    deliberate attempt to bottle that: a drug that nudges the immune system to resolve cleanly
+    rather than one that clamps it down and leaves it there. For the broader biology this sits
+    inside, see the <a href="/inflammation">fourth axis — melanocortin control of inflammation</a>.
+  </p>
+
+  <h2>The rheumatoid arthritis story</h2>
+  <p>
+    Resomelagon’s lead indication is <strong>rheumatoid arthritis</strong>, and its clinical arc
+    there is an honest lesson in how a real frontier behaves — not a straight line up. Three
+    studies tell it:
+  </p>
+
+  <div class="overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Study</th>
+          <th>Design</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>BEGIN</td>
+          <td>Early Phase 2, resomelagon alone in newly diagnosed RA</td>
+          <td>Missed in the full group; signal in patients with high systemic inflammation</td>
+        </tr>
+        <tr>
+          <td>EXPAND</td>
+          <td>Phase 2a, resomelagon + methotrexate, DMARD-naïve RA</td>
+          <td>82% ACR20 (n=28) vs 52% on placebo + MTX (n=27)</td>
+        </tr>
+        <tr>
+          <td>ADVANCE</td>
+          <td>Phase 2b, resomelagon + methotrexate (2026)</td>
+          <td>Primary DAS28-CRP endpoint not met; 40 mg ACR20 76.4% vs 60.8% placebo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The combination study, <strong>EXPAND</strong>, was the encouraging one: added to methotrexate
+    in patients new to disease-modifying drugs, resomelagon pushed the ACR20 response — the
+    standard "20% better" bar in RA trials — to 82%, against 52% on methotrexate alone.<Cite n={4} />
+    The larger confirmatory Phase 2b, <strong>ADVANCE</strong>, is where it got hard. The trial
+    <strong>missed its primary endpoint</strong> on DAS28-CRP, undercut by an unusually strong
+    placebo response that narrowed the gap.<Cite n={5} /> That is the headline, and it should be
+    read as the setback it is.
+  </p>
+  <p>
+    What keeps the program alive is everything underneath that headline. At the 40 mg dose the
+    ACR20 response was 76.4% versus 60.8% on placebo, the effect reached significance in the
+    pre-specified ACR/EULAR class II–III subgroup that made up most of the trial, inflammatory
+    markers like CRP fell meaningfully, and the safety profile stayed clean — notably with no
+    evidence of the immunosuppression that dogs conventional RA drugs.<Cite n={5} /> Analysts have
+    read the readout as genuinely mixed rather than fatal: enough to select a dose, and enough to
+    justify an end-of-Phase-2 conversation with the FDA about a <strong>Phase 3</strong>
+    design.<Cite n={6} /> Whether that confirms or collapses is exactly the open question — the
+    kind this field is full of.
+  </p>
+
+  <h2>Beyond arthritis</h2>
+  <p>
+    Because the mechanism is about resolving inflammation in general, resomelagon is not a
+    one-disease drug on paper. SynAct has taken it into <strong>idiopathic membranous
+    nephropathy</strong> — an autoimmune kidney disease that drives nephrotic-range protein loss —
+    in a Phase 2a study, and into <strong>host-directed antiviral</strong> work (the RESOVIR
+    program), testing whether calming the immune overreaction to a respiratory infection can speed
+    recovery.<Cite n={1} /> These are earlier and more speculative than the arthritis program, but
+    they show the shape of the bet: one pro-resolution switch, aimed wherever an inflammatory
+    response needs help finishing rather than suppressing.
+  </p>
+
+  <h2>Where it sits</h2>
+  <p>
+    Resomelagon is one of a small cluster of drugs trying to turn the melanocortin
+    anti-inflammatory axis into medicine. It runs alongside Palatin’s <a href="/pl-8177">PL-8177</a>{' '}
+    (an oral MC1R agonist aimed locally at the colon in ulcerative colitis) and{' '}
+    <a href="/dersimelagon">dersimelagon</a> (an MC1R agonist studied for the fibrosis of systemic
+    sclerosis) — each a different way of asking the same system to quiet a different organ. What
+    sets resomelagon apart is the explicit bet on biased agonism as the way to keep the benefit and
+    drop the baggage. Track all of them, dated and sourced, on the{' '}
+    <a href="/pipeline">pipeline page</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug and its trial record. It does not provide dosing
+      or usage instructions and is not medical advice. Resomelagon is not approved; its safety and
+      efficacy are still being established. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="resomelagon" />
+</PageLayout>

@@ -77,6 +77,7 @@ export const ogPages = [
   { slug: 'inflammation', eyebrow: 'THE FOURTH AXIS', title: 'Melanocortin control of inflammation' },
   { slug: 'mc1r-pain', eyebrow: 'MC1R · PAIN', title: 'Red hair, MC1R & pain' },
   { slug: 'bivamelagon', eyebrow: 'EXPLAINER', title: 'Bivamelagon — oral MC4R agonist' },
+  { slug: 'resomelagon', eyebrow: 'EXPLAINER', title: 'Resomelagon (AP1189)' },
   { slug: 'melanocortin-agonists', eyebrow: 'THERAPEUTICS · HUB', title: 'Melanocortin agonists' },
 
   // Essay.
