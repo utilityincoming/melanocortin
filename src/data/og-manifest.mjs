@@ -37,6 +37,13 @@ export const ogPages = [
   { slug: 'selectivity-acth', eyebrow: 'RECEPTOR SELECTIVITY', title: 'ACTH · MC2R, 16×' },
   { slug: 'selectivity-agrp', eyebrow: 'RECEPTOR SELECTIVITY', title: 'AgRP · blocks MC4R, 40×' },
   { slug: 'selectivity-asip', eyebrow: 'RECEPTOR SELECTIVITY', title: 'Agouti · blocks MC1R, 20×' },
+
+  // Per-receptor selectivity pages (/selectivity/receptor/<rid>).
+  { slug: 'selectivity-receptor-mc1r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC1R · what binds the pigment switch' },
+  { slug: 'selectivity-receptor-mc2r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC2R · the ACTH-only receptor' },
+  { slug: 'selectivity-receptor-mc3r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC3R · what binds it' },
+  { slug: 'selectivity-receptor-mc4r', eyebrow: 'RECEPTOR SELECTIVITY', title: "MC4R · what's selective for it" },
+  { slug: 'selectivity-receptor-mc5r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC5R · nothing is selective for it' },
   { slug: 'dose-curve', eyebrow: 'INTERACTIVE', title: 'Dose, delivery & the side-effect peak' },
   { slug: 'pipeline', eyebrow: 'PIPELINE · 2026', title: 'The melanocortin pipeline' },
   { slug: 'binding-matrix', eyebrow: 'REFERENCE · DATA', title: 'The melanocortin binding matrix' },

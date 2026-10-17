@@ -124,3 +124,70 @@ export function bySelectivity(ligands: LigandView[]): LigandView[] {
     return b.window - a.window;
   });
 }
+
+// ── Per-receptor view: who binds a given receptor, and who is selective FOR it ──
+
+export interface ReceptorLigand {
+  id: string;
+  name: string;
+  href?: string;
+  kindLabel: string;
+  /** This ligand's binding at the receptor in question. */
+  p: number;
+  display: string;
+  nm: string;
+  width: number;
+  action: 'agonist' | 'antagonist' | null;
+  species: 'mouse' | 'rat' | null;
+  /** Is this receptor the ligand's tightest (primary) target? */
+  isPrimary: boolean;
+  /** The ligand's overall selectivity window + verdict (context for ranking). */
+  window: number;
+  windowDisplay: string;
+  verdict: Verdict;
+  verdictLabel: string;
+}
+
+export interface ReceptorSelectivityView {
+  rid: ReceptorId;
+  tag: string;
+  /** Every ligand with a curated value here, tightest first. */
+  binders: ReceptorLigand[];
+  /** Ligands whose tightest target is THIS receptor — i.e. selective for it. */
+  selectiveFor: ReceptorLigand[];
+}
+
+export function buildReceptors(): ReceptorSelectivityView[] {
+  const ligands = buildLigands();
+  return receptorIds.map((rid) => {
+    const binders: ReceptorLigand[] = [];
+    for (const l of ligands) {
+      const row = l.rows.find((r) => r.rid === rid);
+      if (!row?.has) continue;
+      binders.push({
+        id: l.id,
+        name: l.name,
+        href: l.href,
+        kindLabel: l.kindLabel,
+        p: row.p,
+        display: row.display,
+        nm: row.nm,
+        width: row.width,
+        action: row.action,
+        species: row.species,
+        isPrimary: l.primary === rid,
+        window: l.window,
+        windowDisplay: l.windowDisplay,
+        verdict: l.verdict,
+        verdictLabel: l.verdictLabel,
+      });
+    }
+    binders.sort((a, b) => b.p - a.p);
+    // Selective-for: tightest target is this receptor. A single-value ligand
+    // (window 0 but genuinely selective, e.g. γ-MSH at MC3R) ranks at the top.
+    const selectiveFor = binders
+      .filter((b) => b.isPrimary)
+      .sort((a, b) => (b.window || Infinity) - (a.window || Infinity));
+    return { rid, tag: receptorTag[rid], binders, selectiveFor };
+  });
+}
