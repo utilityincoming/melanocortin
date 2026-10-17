@@ -1,0 +1,117 @@
+---
+// resomelagon-biased-agonism — one receptor, two downstream paths. Resomelagon
+// (AP1189) binds MC1R/MC3R but does NOT drive the cAMP arm (so no melanogenesis,
+// and it leaves MC2R untouched, so no cortisol rise). It drives the ERK1/2 arm,
+// which is the one tied to pro-resolution macrophage behaviour. SVG-only.
+---
+
+<svg
+  class="bias-fig"
+  viewBox="0 0 860 360"
+  role="img"
+  aria-labelledby="bias-t bias-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="bias-t">Biased agonism: one receptor, two paths</title>
+  <desc id="bias-d"
+    >Resomelagon binds the MC1R and MC3R receptors but takes only one of the two
+    downstream signalling paths. It does not drive the cAMP path, so it builds no
+    pigment and raises no cortisol. It does drive the ERK1/2 path, which switches
+    macrophages toward resolution — clearing debris and ending inflammation.</desc
+  >
+
+  <!-- resomelagon pill -->
+  <rect class="pill" x="40" y="166" width="52" height="18" rx="9" />
+  <line class="pill-score" x1="66" y1="167" x2="66" y2="183" />
+  <text x="66" y="202" text-anchor="middle" class="card-t">resomelagon</text>
+  <text x="66" y="217" text-anchor="middle" class="sub">oral biased agonist</text>
+
+  <!-- to receptor -->
+  <path class="wire" d="M98 175 H214" marker-end="url(#bias-ah)" />
+  <circle class="rec-glow" cx="240" cy="175" r="24" />
+  <rect class="receptor" x="224" y="153" width="30" height="44" rx="9" />
+  <text x="239" y="139" text-anchor="middle" class="cap-a">MC1R · MC3R</text>
+  <text x="239" y="216" text-anchor="middle" class="cap">on immune cells</text>
+
+  <!-- branches -->
+  <path class="branch branch-off" d="M262 164 Q350 128 432 112" marker-end="url(#bias-ah-off)" />
+  <path class="branch" d="M262 188 Q350 228 432 262" marker-end="url(#bias-ah)" />
+
+  <!-- Card A: the path NOT taken (cAMP) -->
+  <rect class="card card-off" x="432" y="56" width="404" height="116" rx="10" />
+  <text x="452" y="84" class="card-t card-t-off">cAMP path</text>
+  <rect class="badge badge-off" x="690" y="66" width="128" height="20" rx="10" />
+  <text x="754" y="80" text-anchor="middle" class="badge-t badge-t-off">biased away</text>
+  <circle class="dot dot-off" cx="454" cy="109" r="4" />
+  <text x="468" y="113" class="line line-off">no melanogenesis — no skin darkening</text>
+  <circle class="dot dot-off" cx="454" cy="131" r="4" />
+  <text x="468" y="135" class="line line-off">MC2R untouched — no cortisol rise</text>
+  <text x="452" y="160" class="status status-off">the off-target bundle, left switched off</text>
+
+  <!-- Card B: the path taken (ERK1/2 → resolution) -->
+  <rect class="card" x="432" y="200" width="404" height="116" rx="10" />
+  <text x="452" y="228" class="card-t">ERK1/2 path</text>
+  <rect class="badge" x="708" y="210" width="110" height="20" rx="10" />
+  <text x="763" y="224" text-anchor="middle" class="badge-t">engaged</text>
+  <circle class="dot" cx="454" cy="253" r="4" />
+  <text x="468" y="257" class="line">macrophages clear debris (efferocytosis)</text>
+  <circle class="dot" cx="454" cy="275" r="4" />
+  <text x="468" y="279" class="line">inflammation resolves, not just suppressed</text>
+  <text x="452" y="304" class="status">the one signal tied to pro-resolution</text>
+
+  <defs>
+    <marker id="bias-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+    </marker>
+    <marker id="bias-ah-off" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead-off" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .bias-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .pill { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
+  .pill-score { stroke: #fdf5ea; stroke-width: 1; opacity: 0.7; }
+  .card-t { font-size: 12.5px; font-weight: 600; fill: var(--accent-strong); }
+  .sub { font-size: 10px; fill: var(--text-muted); }
+  .wire { stroke: var(--border); stroke-width: 2; fill: none; }
+  .arrowhead { fill: var(--text-muted); }
+  .arrowhead-off { fill: var(--text-muted); opacity: 0.45; }
+  .rec-glow { fill: var(--accent); opacity: 0; animation: bias-glow 4.5s ease-in-out infinite; }
+  .receptor { fill: var(--accent); }
+  .cap-a { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }
+  .cap { font-size: 11px; fill: var(--text-muted); }
+  .branch { fill: none; stroke: var(--accent); stroke-width: 1.8; opacity: 0.6; }
+  .branch-off { stroke: var(--text-muted); opacity: 0.4; stroke-dasharray: 4 4; }
+  .card { fill: none; stroke: var(--border); stroke-width: 1; }
+  .card-off { stroke-dasharray: 4 4; opacity: 0.85; }
+  .badge { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+  .badge-off { fill: none; stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+  .badge-t { font-size: 9.5px; font-weight: 600; fill: var(--accent-strong); }
+  .badge-t-off { fill: var(--text-muted); }
+  .dot { fill: var(--accent); }
+  .dot-off { fill: var(--text-muted); opacity: 0.6; }
+  .line { font-size: 11.5px; fill: var(--text); }
+  .line-off { fill: var(--text-muted); }
+  .status { font-size: 11px; font-weight: 600; fill: var(--accent-strong); }
+  .status-off { fill: var(--text-muted); font-weight: 500; }
+  .card-t-off { fill: var(--text-muted); }
+
+  @keyframes bias-glow {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.8; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rec-glow { animation: none; opacity: 0.5; }
+  }
+</style>

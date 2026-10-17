@@ -55,6 +55,7 @@ export const SITE_INDEX: IndexSection[] = [
       'pt-141-vs-melanotan',
       'dersimelagon',
       'bivamelagon',
+      'resomelagon',
       'pl-8177',
       'pl-9643',
       'tcmcb07',
