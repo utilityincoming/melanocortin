@@ -24,6 +24,9 @@
 //      (the default below).
 //
 //   Overrides (optional):
+//     GSC_SA_KEY_JSON='{...}'                   # inline service-account JSON —
+//                                               #   how a cloud/CI env supplies it
+//                                               #   as a secret (no file needed)
 //     GSC_SA_KEY_FILE=C:/path/to/key.json      # force a specific key file
 //     GSC_SITE_URL="sc-domain:melanocortin.com" # or pass as the first CLI arg
 //
@@ -87,13 +90,23 @@ function base64url(input) {
 
 async function getAccessToken(keyFile) {
   let sa
-  try {
-    sa = JSON.parse(await readFile(resolve(keyFile), 'utf8'))
-  } catch (e) {
-    fail(`Could not read/parse key file at ${keyFile}: ${e.message}`)
+  // Inline JSON via env wins — this is how a cloud/CI environment supplies the
+  // credential as a secret without a file on disk. Falls back to the key file.
+  if (process.env.GSC_SA_KEY_JSON) {
+    try {
+      sa = JSON.parse(process.env.GSC_SA_KEY_JSON)
+    } catch (e) {
+      fail(`GSC_SA_KEY_JSON is set but is not valid JSON: ${e.message}`)
+    }
+  } else {
+    try {
+      sa = JSON.parse(await readFile(resolve(keyFile), 'utf8'))
+    } catch (e) {
+      fail(`Could not read/parse key file at ${keyFile}: ${e.message}`)
+    }
   }
   if (!sa.client_email || !sa.private_key) {
-    fail('Key file is missing client_email / private_key — is it a service-account JSON?')
+    fail('Service-account JSON is missing client_email / private_key.')
   }
 
   const now = Math.floor(Date.now() / 1000)
@@ -199,10 +212,12 @@ function csvEscape(v) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
   const KEY_FILE = await resolveKeyFile()
-  if (!KEY_FILE) {
+  if (!KEY_FILE && !process.env.GSC_SA_KEY_JSON) {
     fail(
-      'No service-account key found. Put a Google service-account JSON in ~/.secrets/,\n' +
-        '  or set GSC_SA_KEY_FILE to its path. See the setup notes at the top of this file.',
+      'No service-account credential found. Either set GSC_SA_KEY_JSON to the\n' +
+        '  service-account JSON (how a cloud/CI environment supplies it as a secret),\n' +
+        '  put the JSON in ~/.secrets/, or set GSC_SA_KEY_FILE to its path.\n' +
+        '  See the setup notes at the top of this file.',
     )
   }
 
