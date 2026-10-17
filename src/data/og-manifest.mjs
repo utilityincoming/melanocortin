@@ -24,6 +24,26 @@ export const ogPages = [
   { slug: 'pomc', eyebrow: 'INTERACTIVE', title: 'The POMC cleavage tree' },
   { slug: 'selectivity', eyebrow: 'INTERACTIVE', title: 'The selectivity visualizer' },
   { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
+
+  // Per-ligand selectivity pages (/selectivity/<id>). Bespoke social cards whose
+  // title carries the headline: primary receptor + selectivity window (the fold
+  // values mirror the computed data in src/data/selectivity.ts).
+  { slug: 'selectivity-bremelanotide', eyebrow: 'RECEPTOR SELECTIVITY', title: 'Bremelanotide · MC4R, 25×' },
+  { slug: 'selectivity-setmelanotide', eyebrow: 'RECEPTOR SELECTIVITY', title: 'Setmelanotide · broad, 2.0×' },
+  { slug: 'selectivity-afamelanotide', eyebrow: 'RECEPTOR SELECTIVITY', title: 'Afamelanotide · MC1R, 10×' },
+  { slug: 'selectivity-melanotan-2', eyebrow: 'RECEPTOR SELECTIVITY', title: 'Melanotan II · broad, 2.5×' },
+  { slug: 'selectivity-a-msh', eyebrow: 'RECEPTOR SELECTIVITY', title: 'α-MSH · broadly non-selective' },
+  { slug: 'selectivity-g-msh', eyebrow: 'RECEPTOR SELECTIVITY', title: 'γ-MSH · MC3R-selective' },
+  { slug: 'selectivity-acth', eyebrow: 'RECEPTOR SELECTIVITY', title: 'ACTH · MC2R, 16×' },
+  { slug: 'selectivity-agrp', eyebrow: 'RECEPTOR SELECTIVITY', title: 'AgRP · blocks MC4R, 40×' },
+  { slug: 'selectivity-asip', eyebrow: 'RECEPTOR SELECTIVITY', title: 'Agouti · blocks MC1R, 20×' },
+
+  // Per-receptor selectivity pages (/selectivity/receptor/<rid>).
+  { slug: 'selectivity-receptor-mc1r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC1R · what binds the pigment switch' },
+  { slug: 'selectivity-receptor-mc2r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC2R · the ACTH-only receptor' },
+  { slug: 'selectivity-receptor-mc3r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC3R · what binds it' },
+  { slug: 'selectivity-receptor-mc4r', eyebrow: 'RECEPTOR SELECTIVITY', title: "MC4R · what's selective for it" },
+  { slug: 'selectivity-receptor-mc5r', eyebrow: 'RECEPTOR SELECTIVITY', title: 'MC5R · nothing is selective for it' },
   { slug: 'dose-curve', eyebrow: 'INTERACTIVE', title: 'Dose, delivery & the side-effect peak' },
   { slug: 'pipeline', eyebrow: 'PIPELINE · 2026', title: 'The melanocortin pipeline' },
   { slug: 'binding-matrix', eyebrow: 'REFERENCE · DATA', title: 'The melanocortin binding matrix' },

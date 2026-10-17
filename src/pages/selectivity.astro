@@ -3,94 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Byline from '../components/Byline.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedPages from '../components/RelatedPages.astro';
-import { bindingRows, toNanomolar } from '../data/binding';
-import { receptorIds, receptorTag, KIND_LABEL } from '../data/ligands';
+import SelectivityFingerprint from '../components/SelectivityFingerprint.astro';
+import { buildLigands, bySelectivity } from '../data/selectivity';
+import { receptorIds, receptorTag } from '../data/ligands';
 
-// Fixed p-value domain so bar lengths are comparable across ligands when you
-// switch between them. The tightest value in the dataset is 10.0 (afamelanotide
-// at MC1R); the weakest curated is 4.9.
-const P_MIN = 4.5;
-const P_MAX = 10.5;
-const widthPct = (p: number) =>
-  Math.max(4, Math.round(((p - P_MIN) / (P_MAX - P_MIN)) * 100));
-
-type Verdict = 'single' | 'broad' | 'modest' | 'selective' | 'high';
-const VERDICT_LABEL: Record<Verdict, string> = {
-  single: 'One receptor only',
-  broad: 'Broadly non-selective',
-  modest: 'Modest preference',
-  selective: 'Selective',
-  high: 'Highly selective',
-};
-
-const fmtFold = (f: number) => (f >= 10 ? `${Math.round(f)}×` : `${f.toFixed(1)}×`);
-
-// Build a view-model per ligand: ordered cells, the tightest ("primary")
-// receptor, and a selectivity window = fold-gap between the tightest and the
-// second-tightest curated receptor.
-const ligands = bindingRows.map((row) => {
-  const curated = receptorIds
-    .map((rid) => ({ rid, cell: row.cells[rid] }))
-    .filter((x) => x.cell) as { rid: (typeof receptorIds)[number]; cell: NonNullable<(typeof row.cells)[keyof typeof row.cells]> }[];
-
-  const sorted = [...curated].sort((a, b) => b.cell.p - a.cell.p);
-  const primary = sorted[0]?.rid;
-  const action = curated.every((c) => c.cell.action === 'agonist')
-    ? 'agonist'
-    : curated.every((c) => c.cell.action === 'antagonist')
-      ? 'antagonist'
-      : 'mixed';
-
-  let window = 0;
-  let verdict: Verdict = 'single';
-  if (sorted.length >= 2) {
-    window = Math.pow(10, sorted[0].cell.p - sorted[1].cell.p);
-    verdict = window < 3 ? 'broad' : window < 10 ? 'modest' : window < 50 ? 'selective' : 'high';
-  }
-
-  const rows = receptorIds.map((rid) => {
-    const c = row.cells[rid];
-    return {
-      rid,
-      tag: receptorTag[rid],
-      has: !!c,
-      p: c?.p ?? 0,
-      display: c?.display ?? '',
-      nm: c ? toNanomolar(c.p) : '',
-      action: c?.action ?? null,
-      species: c?.species ?? null,
-      width: c ? widthPct(c.p) : 0,
-      primary: rid === primary,
-    };
-  });
-
-  return {
-    id: row.id,
-    name: row.name,
-    kind: row.kind,
-    kindLabel: KIND_LABEL[row.kind],
-    role: row.role,
-    href: row.href,
-    action,
-    primary,
-    primaryTag: primary ? receptorTag[primary] : '',
-    window,
-    windowDisplay: window ? fmtFold(window) : '',
-    verdict,
-    verdictLabel: VERDICT_LABEL[verdict],
-    secondRid: sorted[1]?.rid ?? '',
-    rows,
-  };
-});
-
-// Spectrum order: most selective first; single-value ligands last.
-const spectrum = [...ligands].sort((a, b) => {
-  if (!a.window && !b.window) return 0;
-  if (!a.window) return 1;
-  if (!b.window) return -1;
-  return b.window - a.window;
-});
-
+const ligands = buildLigands();
+const spectrum = bySelectivity(ligands);
 const defaultId = 'bremelanotide'; // a clean, high-window example to open on
 
 const faqs = [
@@ -160,82 +78,17 @@ const faqs = [
     <div class="not-prose mt-6">
       {
         ligands.map((l) => (
-          <article
-            class="sv-panel rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 sm:p-7"
-            data-panel={l.id}
-            hidden={l.id !== defaultId}
-            data-action={l.action}
-          >
-            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h2 class="font-serif text-2xl font-semibold tracking-tight">
-                {l.name}
-                <span class="ml-1 align-middle text-xs font-normal uppercase tracking-wide text-[var(--text-muted)]">
-                  {l.kindLabel}
-                </span>
-              </h2>
-              {l.href && (
-                <a
-                  href={l.href}
-                  class="text-sm underline decoration-dotted hover:text-[var(--accent)]"
-                >
-                  Full page →
-                </a>
-              )}
-            </div>
-            <p class="mt-1 text-sm text-[var(--text-muted)]">{l.role}</p>
-
-            {/* Selectivity readout */}
-            <div class="sv-readout mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
-              <div>
-                <span class="sv-k">Primary target</span>
-                <span class="sv-v font-mono">{l.primary ?? '—'}</span>
-                {l.primaryTag && <span class="sv-sub">{l.primaryTag}</span>}
-              </div>
-              <div>
-                <span class="sv-k">Selectivity window</span>
-                {l.window ? (
-                  <>
-                    <span class="sv-v font-mono">{l.windowDisplay}</span>
-                    <span class="sv-sub">over {l.secondRid}</span>
-                  </>
-                ) : (
-                  <span class="sv-v font-mono">n/a</span>
-                )}
-              </div>
-              <span class={`sv-verdict v-${l.verdict} ${l.action === 'antagonist' ? 'is-anta' : ''}`}>
-                {l.verdictLabel}
-                {l.action === 'antagonist' ? ' · blocker' : ''}
-              </span>
-            </div>
-
-            {/* Fingerprint bars */}
-            <div class={`sv-chart mt-5 ${l.action === 'antagonist' ? 'anta' : ''}`}>
-              {l.rows.map((r) => (
-                <div class={`sv-row ${r.primary ? 'is-primary' : ''}`}>
-                  <div class="sv-rlabel">
-                    <span class="rid font-mono">{r.rid}</span>
-                    <span class="rtag">{r.tag}</span>
-                  </div>
-                  {r.has ? (
-                    <div class="sv-track">
-                      <div class="sv-bar" style={`width:${r.width}%`} />
-                      <span class="sv-val">
-                        <span class="pv font-mono">{r.display}{r.species === 'mouse' ? 'ᵐ' : ''}</span>
-                        <span class="nm">
-                          {r.action === 'antagonist' ? 'blocks · ' : ''}≈{r.nm}
-                        </span>
-                      </span>
-                      {r.primary && <span class="sv-flag">primary</span>}
-                    </div>
-                  ) : (
-                    <div class="sv-track">
-                      <span class="sv-none">no curated value</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </article>
+          <div class="sv-slot" data-slot={l.id} hidden={l.id !== defaultId}>
+            <SelectivityFingerprint l={l} />
+            <p class="mt-2 text-sm">
+              <a
+                href={`/selectivity/${l.id}`}
+                class="underline decoration-dotted hover:text-[var(--accent)]"
+              >
+                Open the dedicated {l.name} selectivity page →
+              </a>
+            </p>
+          </div>
         ))
       }
     </div>
@@ -268,6 +121,25 @@ const faqs = [
           ))
         }
       </ul>
+    </div>
+
+    <!-- By receptor -->
+    <div class="not-prose mt-10">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Or start from a receptor</h2>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+        Flip the question around: for each of the five receptors, which ligands
+        bind it — and which, if any, are selective for it.
+      </p>
+      <div class="mt-4 grid gap-2 sm:grid-cols-2">
+        {
+          receptorIds.map((rid) => (
+            <a href={`/selectivity/receptor/${rid.toLowerCase()}`} class="sv-rlink">
+              <span class="font-mono font-semibold">{rid}</span>
+              <span class="sv-rlink-tag">{receptorTag[rid]}</span>
+            </a>
+          ))
+        }
+      </div>
     </div>
 
     <!-- Prose -->
@@ -312,7 +184,7 @@ const faqs = [
         <a href="/binding-matrix" class="underline decoration-dotted hover:text-[var(--accent)]">binding matrix</a>.
         This is an educational resource, not medical advice — see the{' '}
         <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
-      </p>
+    </p>
     </section>
 
     <RelatedPages slug="selectivity" />
@@ -340,70 +212,6 @@ const faqs = [
     color: #fff;
   }
 
-  /* Readout */
-  .sv-readout { font-size: 0.85rem; }
-  .sv-k { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
-  .sv-v { font-size: 1.05rem; font-weight: 700; }
-  .sv-sub { margin-left: 0.4rem; font-size: 0.72rem; color: var(--text-muted); }
-  .sv-verdict {
-    align-self: center;
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    background: var(--accent-soft);
-    color: var(--accent-strong);
-  }
-  .sv-verdict.v-broad { background: var(--surface, #ecebe7); color: var(--text-muted); }
-  .sv-verdict.v-modest { background: var(--accent-soft); color: var(--accent-strong); }
-  .sv-verdict.is-anta { background: var(--block-soft); color: var(--block); }
-
-  /* Chart */
-  .sv-chart { --bar: var(--accent); }
-  .sv-chart.anta { --bar: var(--block); }
-  .sv-row {
-    display: grid;
-    grid-template-columns: 7.5rem 1fr;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.35rem 0;
-  }
-  .sv-rlabel { display: flex; flex-direction: column; line-height: 1.15; }
-  .sv-rlabel .rid { font-size: 0.9rem; font-weight: 600; }
-  .sv-row.is-primary .rid { color: var(--bar); }
-  .sv-rlabel .rtag { font-size: 0.66rem; color: var(--text-muted); }
-  .sv-track {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 1.5rem;
-  }
-  .sv-bar {
-    height: 0.85rem;
-    border-radius: 0 4px 4px 0;
-    background: var(--bar);
-    opacity: 0.45;
-    flex: 0 0 auto;
-    transition: width 0.3s ease;
-  }
-  .sv-row.is-primary .sv-bar { opacity: 1; }
-  .sv-val { display: flex; align-items: baseline; gap: 0.4rem; white-space: nowrap; }
-  .sv-val .pv { font-size: 0.82rem; font-weight: 700; color: var(--text); }
-  .sv-val .nm { font-size: 0.68rem; color: var(--text-muted); }
-  .sv-flag {
-    font-size: 0.58rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-    color: var(--bar);
-    border: 1px solid currentColor;
-    border-radius: 0.25rem;
-    padding: 0.05rem 0.3rem;
-  }
-  .sv-none { font-size: 0.72rem; color: var(--text-muted); opacity: 0.6; font-style: italic; }
-
-  /* Spectrum */
   .sv-spectrum { list-style: none; margin: 0; padding: 0; }
   .sv-srow {
     display: grid;
@@ -443,17 +251,26 @@ const faqs = [
   }
   .prose-body a:hover { color: var(--accent); }
 
-  /* Agonist/antagonist blocker hue (shared with the binding matrix). */
-  :global(:root) { --block: #4f6d8c; --block-soft: #e6edf3; }
-  @media (prefers-color-scheme: dark) {
-    :global(:root:not([data-theme='light'])) { --block: #8fabc7; --block-soft: var(--color-ink-800); }
+  .sv-rlink {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--bg-elevated);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s, background-color 0.15s;
   }
+  .sv-rlink:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .sv-rlink-tag { font-size: 0.72rem; color: var(--text-muted); }
 </style>
 
 <script>
   const picks = Array.from(document.querySelectorAll<HTMLElement>('[data-pick]'));
-  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-panel]'));
-  const ids = new Set(panels.map((p) => p.dataset.panel!));
+  const slots = Array.from(document.querySelectorAll<HTMLElement>('[data-slot]'));
+  const ids = new Set(slots.map((p) => p.dataset.slot!));
 
   const defEl = document.getElementById('sv-default');
   const defaultId: string = defEl ? (JSON.parse(defEl.textContent || '{}').defaultId ?? '') : '';
@@ -466,8 +283,8 @@ const faqs = [
 
   function show(id: string, pushUrl = true) {
     if (!ids.has(id)) return;
-    panels.forEach((p) => {
-      p.hidden = p.dataset.panel !== id;
+    slots.forEach((p) => {
+      p.hidden = p.dataset.slot !== id;
     });
     pressed(id);
     if (pushUrl) {
@@ -481,9 +298,8 @@ const faqs = [
     b.addEventListener('click', () => {
       const id = b.dataset.pick!;
       show(id);
-      // Keep the fingerprint in view when chosen from the spectrum below.
       if (b.classList.contains('sv-srow')) {
-        document.querySelector(`[data-panel="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.querySelector(`[data-slot="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     })
   );

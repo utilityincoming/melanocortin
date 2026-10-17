@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Byline from '../../../components/Byline.astro';
+import { buildReceptors, type ReceptorSelectivityView } from '../../../data/selectivity';
+import { receptors } from '../../../data/receptors';
+
+export async function getStaticPaths() {
+  return buildReceptors().map((view) => {
+    const meta = receptors.find((r) => r.id === view.rid)!;
+    return { params: { rid: view.rid.toLowerCase() }, props: { view, meta } };
+  });
+}
+
+interface Props {
+  view: ReceptorSelectivityView;
+  meta: (typeof receptors)[number];
+}
+const { view, meta } = Astro.props as Props;
+const { rid, tag, binders, selectiveFor } = view;
+
+const tightest = binders[0];
+const topSel = selectiveFor[0];
+const n = binders.length;
+const lig = n === 1 ? 'ligand' : 'ligands';
+const bindv = n === 1 ? 'binds' : 'bind';
+
+// Unique, data-derived lead.
+const lead =
+  selectiveFor.length > 0
+    ? `${n} catalogued melanocortin ${lig} ${bindv} ${rid} with a curated affinity. The tightest is ${tightest.name} (≈${tightest.nm}). The most ${rid}-selective is ${topSel.name}${topSel.window ? `, which prefers ${rid} by ${topSel.windowDisplay}` : ` (${rid} is its only curated target)`} — because the five receptors share one binding core, a ligand that truly prefers ${rid} is the exception, not the rule.`
+    : `${n} catalogued melanocortin ${lig} ${bindv} ${rid}, but none prefer it: every one grips another receptor more tightly. That is much of why ${rid} (${tag}) remains the least-drugged of the five — there is no ligand selective for it to build on.`;
+
+const title = `${rid} selectivity — which melanocortins bind and prefer it`;
+const description =
+  selectiveFor.length > 0
+    ? `Which melanocortin ligands bind ${rid} (${tag}), ranked by affinity, and which are selective for it — led by ${topSel.name}. From cited binding data across MC1R–MC5R.`
+    : `Which melanocortin ligands bind ${rid} (${tag}), ranked by affinity — and why none is selective for it. From cited binding data across MC1R–MC5R.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  pageType="article"
+  dateModified="2026"
+  about={[
+    { name: meta.name, type: 'MedicalEntity' },
+    { name: 'Binding selectivity', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Binding_selectivity'] },
+  ]}
+>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+      <a href="/selectivity" class="no-underline hover:text-[var(--accent-strong)]">Selectivity</a> · by receptor
+    </p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      {rid}: ligand selectivity
+    </h1>
+    <p class="mt-1 font-mono text-sm text-[var(--text-muted)]">{meta.name} · {tag}</p>
+    <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">{lead}</p>
+    <Byline updated="2026" />
+
+    <!-- Most selective for this receptor -->
+    <div class="not-prose mt-9">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">
+        Most {rid}-selective
+      </h2>
+      {
+        selectiveFor.length > 0 ? (
+          <>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+              Ligands whose tightest target of the five receptors is {rid} —
+              ranked by selectivity window (how cleanly they prefer it).
+            </p>
+            <ul class="rl-list mt-4">
+              {selectiveFor.map((b) => (
+                <li class="rl-chip">
+                  <a href={`/selectivity/${b.id}`} class="rl-cname">{b.name}</a>
+                  <span class="rl-cwin font-mono">{b.window ? b.windowDisplay : `${rid}-only`}</span>
+                  <span class="rl-ckind">{b.verdictLabel}{b.action === 'antagonist' ? ' · blocker' : ''}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p class="mt-2 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4 text-sm leading-relaxed text-[var(--text-muted)]">
+            <strong class="text-[var(--text)]">No catalogued ligand is {rid}-selective.</strong>{' '}
+            Every ligand that binds {rid} binds another receptor more tightly, so
+            {rid} is always a secondary target — the central reason it has no
+            dedicated drug.
+          </p>
+        )
+      }
+    </div>
+
+    <!-- All binders, ranked by affinity -->
+    <div class="not-prose mt-10">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">
+        Everything that binds {rid}
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+        Ranked by binding strength. Filled bars are agonists; blue bars are
+        blockers. Select a ligand for its full fingerprint across all five
+        receptors.
+      </p>
+      <ul class="rl-bars mt-4">
+        {
+          binders.map((b) => (
+            <li class={`rl-row ${b.action === 'antagonist' ? 'anta' : ''} ${b.isPrimary ? 'is-primary' : ''}`}>
+              <a href={`/selectivity/${b.id}`} class="rl-name">{b.name}</a>
+              <div class="rl-track">
+                <div class="rl-bar" style={`width:${b.width}%`} />
+                <span class="rl-val">
+                  <span class="pv font-mono">{b.display}{b.species === 'mouse' ? 'ᵐ' : ''}</span>
+                  <span class="nm">{b.action === 'antagonist' ? 'blocks · ' : ''}≈{b.nm}</span>
+                </span>
+                {b.isPrimary && <span class="rl-flag">selective for {rid}</span>}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="prose-body mt-10">
+      <p class="leading-relaxed">
+        Binding is not the whole story: these bars show how tightly each ligand
+        holds {rid}, not what the receptor then does once bound. For the receptor's
+        own biology — where it sits, what it controls, and what breaks when it
+        fails — see <a href={`/receptors/${meta.slug}`}>the {rid} page</a>. To put
+        any one ligand next to the others, use the{' '}
+        <a href="/selectivity">selectivity visualizer</a>; for every value with its
+        citation, the <a href="/binding-matrix">binding matrix</a>.
+      </p>
+    </div>
+
+    <nav class="not-prose mt-10 border-t border-[var(--border)] pt-8" aria-label="Related pages">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Related</h2>
+      <ul class="mt-4 flex flex-col gap-2">
+        <li><a href={`/receptors/${meta.slug}`} class="rl-link">{rid} — the receptor page →</a></li>
+        <li><a href="/selectivity" class="rl-link">Compare all ligands — the selectivity visualizer →</a></li>
+        <li><a href="/binding-matrix" class="rl-link">The binding matrix — every value, with citations →</a></li>
+        <li><a href="/mc1r-selectivity" class="rl-link">Why there's no clean tanning drug →</a></li>
+      </ul>
+    </nav>
+
+    <p class="mt-8 text-sm leading-relaxed text-[var(--text-muted)]">
+      Affinity values from the IUPHAR/BPS Guide to PHARMACOLOGY; selectivity is
+      derived from them. Educational resource, not medical advice — see the{' '}
+      <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Selective-for chips */
+  .rl-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .rl-chip {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--bg-elevated);
+  }
+  .rl-cname { font-weight: 600; font-size: 0.92rem; text-decoration: none; color: var(--text); }
+  .rl-cname:hover { color: var(--accent); }
+  .rl-cwin { font-size: 0.9rem; font-weight: 700; color: var(--accent-strong); }
+  .rl-ckind { font-size: 0.72rem; color: var(--text-muted); margin-left: auto; }
+
+  /* Affinity bars */
+  .rl-bars { list-style: none; margin: 0; padding: 0; }
+  .rl-row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0;
+    --bar: var(--accent);
+  }
+  .rl-row.anta { --bar: var(--block); }
+  .rl-name { font-weight: 600; font-size: 0.88rem; text-decoration: none; color: var(--text); white-space: nowrap; }
+  .rl-name:hover { color: var(--accent); }
+  .rl-track { position: relative; display: flex; align-items: center; gap: 0.5rem; min-height: 1.4rem; }
+  .rl-bar {
+    height: 0.8rem;
+    border-radius: 0 4px 4px 0;
+    background: var(--bar);
+    opacity: 0.45;
+    flex: 0 0 auto;
+  }
+  .rl-row.is-primary .rl-bar { opacity: 1; }
+  .rl-row.is-primary .rl-name { color: var(--bar); }
+  .rl-val { display: flex; align-items: baseline; gap: 0.4rem; white-space: nowrap; }
+  .rl-val .pv { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+  .rl-val .nm { font-size: 0.66rem; color: var(--text-muted); }
+  .rl-flag {
+    font-size: 0.56rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    color: var(--bar);
+    border: 1px solid currentColor;
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.3rem;
+    white-space: nowrap;
+  }
+
+  .rl-link, .prose-body a, .page-lede a {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+  .rl-link:hover, .prose-body a:hover { color: var(--accent); }
+
+  /* Blocker hue (shared with the binding matrix). */
+  :global(:root) { --block: #4f6d8c; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) { --block: #8fabc7; }
+  }
+</style>

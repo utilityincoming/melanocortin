@@ -1,0 +1,155 @@
+---
+// The selectivity fingerprint for a single ligand: the readout (primary target,
+// window, verdict) and the MC1R–MC5R affinity bars. Shared by the /selectivity
+// hub (one per ligand) and the per-ligand pages at /selectivity/<id>.
+import type { LigandView } from '../data/selectivity';
+
+interface Props {
+  l: LigandView;
+  /** The hub hides all but the active panel and drives it with JS. */
+  hidden?: boolean;
+  /** Heading level for the ligand name (h2 on the hub, h1-adjacent elsewhere). */
+  as?: 'h2' | 'div';
+}
+const { l, hidden = false, as = 'h2' } = Astro.props;
+const Name = as;
+---
+
+<article
+  class="sv-panel rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 sm:p-7"
+  data-panel={l.id}
+  hidden={hidden}
+  data-action={l.action}
+>
+  <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+    <Name class="font-serif text-2xl font-semibold tracking-tight">
+      {l.name}
+      <span class="ml-1 align-middle text-xs font-normal uppercase tracking-wide text-[var(--text-muted)]">
+        {l.kindLabel}
+      </span>
+    </Name>
+    {l.href && (
+      <a href={l.href} class="text-sm underline decoration-dotted hover:text-[var(--accent)]">
+        Full page →
+      </a>
+    )}
+  </div>
+  <p class="mt-1 text-sm text-[var(--text-muted)]">{l.role}</p>
+
+  <div class="sv-readout mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+    <div>
+      <span class="sv-k">Primary target</span>
+      <span class="sv-v font-mono">{l.primary ?? '—'}</span>
+      {l.primaryTag && <span class="sv-sub">{l.primaryTag}</span>}
+    </div>
+    <div>
+      <span class="sv-k">Selectivity window</span>
+      {l.window ? (
+        <>
+          <span class="sv-v font-mono">{l.windowDisplay}</span>
+          <span class="sv-sub">over {l.secondRid}</span>
+        </>
+      ) : (
+        <span class="sv-v font-mono">n/a</span>
+      )}
+    </div>
+    <span class={`sv-verdict v-${l.verdict} ${l.action === 'antagonist' ? 'is-anta' : ''}`}>
+      {l.verdictLabel}
+      {l.action === 'antagonist' ? ' · blocker' : ''}
+    </span>
+  </div>
+
+  <div class={`sv-chart mt-5 ${l.action === 'antagonist' ? 'anta' : ''}`}>
+    {l.rows.map((r) => (
+      <div class={`sv-row ${r.primary ? 'is-primary' : ''}`}>
+        <div class="sv-rlabel">
+          <span class="rid font-mono">{r.rid}</span>
+          <span class="rtag">{r.tag}</span>
+        </div>
+        {r.has ? (
+          <div class="sv-track">
+            <div class="sv-bar" style={`width:${r.width}%`} />
+            <span class="sv-val">
+              <span class="pv font-mono">{r.display}{r.species === 'mouse' ? 'ᵐ' : ''}</span>
+              <span class="nm">{r.action === 'antagonist' ? 'blocks · ' : ''}≈{r.nm}</span>
+            </span>
+            {r.primary && <span class="sv-flag">primary</span>}
+          </div>
+        ) : (
+          <div class="sv-track">
+            <span class="sv-none">no curated value</span>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</article>
+
+<style>
+  .sv-readout { font-size: 0.85rem; }
+  .sv-k { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+  .sv-v { font-size: 1.05rem; font-weight: 700; }
+  .sv-sub { margin-left: 0.4rem; font-size: 0.72rem; color: var(--text-muted); }
+  .sv-verdict {
+    align-self: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .sv-verdict.v-broad { background: var(--surface, #ecebe7); color: var(--text-muted); }
+  .sv-verdict.v-modest { background: var(--accent-soft); color: var(--accent-strong); }
+  .sv-verdict.is-anta { background: var(--block-soft); color: var(--block); }
+
+  .sv-chart { --bar: var(--accent); }
+  .sv-chart.anta { --bar: var(--block); }
+  .sv-row {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+  }
+  .sv-rlabel { display: flex; flex-direction: column; line-height: 1.15; }
+  .sv-rlabel .rid { font-size: 0.9rem; font-weight: 600; }
+  .sv-row.is-primary .rid { color: var(--bar); }
+  .sv-rlabel .rtag { font-size: 0.66rem; color: var(--text-muted); }
+  .sv-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 1.5rem;
+  }
+  .sv-bar {
+    height: 0.85rem;
+    border-radius: 0 4px 4px 0;
+    background: var(--bar);
+    opacity: 0.45;
+    flex: 0 0 auto;
+    transition: width 0.3s ease;
+  }
+  .sv-row.is-primary .sv-bar { opacity: 1; }
+  .sv-val { display: flex; align-items: baseline; gap: 0.4rem; white-space: nowrap; }
+  .sv-val .pv { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .sv-val .nm { font-size: 0.68rem; color: var(--text-muted); }
+  .sv-flag {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--bar);
+    border: 1px solid currentColor;
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.3rem;
+  }
+  .sv-none { font-size: 0.72rem; color: var(--text-muted); opacity: 0.6; font-style: italic; }
+
+  /* Agonist/antagonist blocker hue (shared with the binding matrix). */
+  :global(:root) { --block: #4f6d8c; --block-soft: #e6edf3; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) { --block: #8fabc7; --block-soft: var(--color-ink-800); }
+  }
+</style>

@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Byline from '../../components/Byline.astro';
+import SelectivityFingerprint from '../../components/SelectivityFingerprint.astro';
+import { buildLigands, type LigandView } from '../../data/selectivity';
+
+export async function getStaticPaths() {
+  return buildLigands().map((l) => ({ params: { ligand: l.id }, props: { l } }));
+}
+
+interface Props {
+  l: LigandView;
+}
+const { l } = Astro.props as Props;
+
+const primaryRow = l.rows.find((r) => r.primary);
+const isBlocker = l.action === 'antagonist';
+const verb = isBlocker ? 'blocks' : 'binds';
+
+// A unique, data-derived lead so each page stands on its own content. The
+// verdict interpretation lives in the paragraph below, so the lead stays to
+// the facts (and reads cleanly for every window band).
+let lead: string;
+if (l.verdict === 'single') {
+  lead = `${l.name} is among the most receptor-selective melanocortins: of the five receptors, only ${l.primary} has a curated binding value in this dataset, at about ${primaryRow?.nm}. It ${verb} ${l.primary} and shows little activity at the others.`;
+} else {
+  lead = `${l.name} ${verb} ${l.primary} most tightly of the five melanocortin receptors — about ${primaryRow?.nm} — and prefers it over ${l.secondRid} by roughly ${l.windowDisplay}, a ${l.verdictLabel.toLowerCase()} fingerprint.`;
+}
+
+const meaning: Record<string, string> = {
+  high: `A clear, single-receptor preference — rare in a family where the five receptors share one binding core.`,
+  selective: `A genuine single-receptor lean — one of the few melanocortins that is not broadly promiscuous.`,
+  modest: `A modest preference: ${l.name} favours ${l.primary} but still engages other receptors within an order of magnitude.`,
+  broad: `Effectively non-selective: ${l.name} grips several receptors within an order of magnitude of each other, so it is not a clean single-target molecule.`,
+  single: `Only one receptor has a curated binding value here, so a selectivity window cannot be quantified from this dataset — but the published pharmacology marks ${l.name} as strongly ${l.primary}-leaning.`,
+};
+
+const title = `${l.name} — melanocortin receptor selectivity & binding fingerprint`;
+const description =
+  l.verdict === 'single'
+    ? `${l.name} is strongly ${l.primary}-selective among the melanocortin receptors. Its binding fingerprint across MC1R–MC5R, from cited affinity data.`
+    : `${l.name} ${verb} ${l.primary} most tightly of MC1R–MC5R, with a ${l.windowDisplay} selectivity window (${l.verdictLabel.toLowerCase()}). Its full binding fingerprint across the five melanocortin receptors, from cited affinity data.`;
+
+const related = [
+  l.href ? { href: l.href, label: `${l.name} — the full page` } : null,
+  { href: '/selectivity', label: 'Compare all ligands — the selectivity visualizer' },
+  { href: '/binding-matrix', label: 'The binding matrix — every value, with citations' },
+  { href: '/mc1r-selectivity', label: "Why there's no clean tanning drug" },
+].filter(Boolean) as { href: string; label: string }[];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  pageType="article"
+  dateModified="2026"
+  about={[
+    { name: l.name, type: 'MedicalEntity' },
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Binding selectivity', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Binding_selectivity'] },
+  ]}
+>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+      <a href="/selectivity" class="no-underline hover:text-[var(--accent-strong)]">Selectivity</a> · fingerprint
+    </p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+      {l.name}: receptor selectivity
+    </h1>
+    <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">{lead}</p>
+    <Byline updated="2026" />
+
+    <div class="not-prose mt-8">
+      <SelectivityFingerprint l={l} as="div" />
+    </div>
+
+    <p class="not-prose mt-3 text-xs text-[var(--text-muted)]">
+      Bars are sized by binding strength (p-value, on a fixed MC1R–MC5R scale);
+      <span class="font-mono">ᵐ</span> marks a mouse value.
+    </p>
+
+    <div class="prose-body mt-8">
+      <p class="leading-relaxed">{meaning[l.verdict]}</p>
+      <p class="mt-4 leading-relaxed">
+        The <strong>selectivity window</strong> is the fold-gap between a ligand's
+        tightest and second-tightest receptor — a compact measure of how cleanly it
+        picks a target. One caveat it cannot capture: <strong>binding is not
+        function</strong>. These bars show how tightly {l.name} holds each receptor,
+        not what the receptor then does downstream. To put this ligand next to the
+        others, use the{' '}
+        <a href="/selectivity">selectivity visualizer</a>; for every value with its
+        citation, the <a href="/binding-matrix">binding matrix</a>.
+      </p>
+    </div>
+
+    <nav class="not-prose mt-12 border-t border-[var(--border)] pt-8" aria-label="Related pages">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Related</h2>
+      <ul class="mt-4 flex flex-col gap-2">
+        {
+          related.map((r) => (
+            <li>
+              <a
+                href={r.href}
+                class="underline decoration-dotted hover:text-[var(--accent)]"
+              >
+                {r.label} →
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <p class="mt-8 text-sm leading-relaxed text-[var(--text-muted)]">
+      Affinity values from the IUPHAR/BPS Guide to PHARMACOLOGY; the selectivity
+      window is derived from them. Educational resource, not medical advice — see
+      the <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose-body a,
+  .page-lede a {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+  .prose-body a:hover { color: var(--accent); }
+</style>
