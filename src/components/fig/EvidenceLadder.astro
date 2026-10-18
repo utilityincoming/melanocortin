@@ -1,0 +1,95 @@
+---
+// antibody-evidence-ladder — the same rungs the International Working Group for
+// Antibody Validation set out, read as a strength gradient: a band on a blot is
+// the weakest evidence an antibody is specific; the signal vanishing in a
+// knockout is the strongest. Rising bars, weak (muted) to strong (accent). SVG-only.
+---
+
+<svg
+  class="ladder-fig"
+  viewBox="0 0 860 392"
+  role="img"
+  aria-labelledby="lad-t lad-d"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id="lad-t">The antibody evidence ladder</title>
+  <desc id="lad-d"
+    >Five rungs of evidence that an antibody detects what its label claims,
+    from weakest to strongest: a right-size band on a blot; staining removed by a
+    blocking peptide; two independent antibodies agreeing; agreement with an
+    antibody-free method such as mRNA or mass spectrometry; and the signal
+    disappearing in a knockout, the gold standard.</desc
+  >
+
+  <!-- baseline -->
+  <line class="base" x1="64" y1="316" x2="820" y2="316" />
+
+  <!-- rung 1 -->
+  <rect class="bar bar-1" x="78" y="256" width="118" height="60" rx="4" />
+  <text x="137" y="248" text-anchor="middle" class="rank rank-weak">1</text>
+  <text x="137" y="336" text-anchor="middle" class="lbl"><tspan x="137" dy="0">Right-size band</tspan><tspan x="137" dy="13">on a blot</tspan></text>
+
+  <!-- rung 2 -->
+  <rect class="bar bar-2" x="226" y="216" width="118" height="100" rx="4" />
+  <text x="285" y="208" text-anchor="middle" class="rank rank-weak">2</text>
+  <text x="285" y="336" text-anchor="middle" class="lbl"><tspan x="285" dy="0">Staining removed</tspan><tspan x="285" dy="13">by a blocking peptide</tspan></text>
+
+  <!-- rung 3 -->
+  <rect class="bar bar-3" x="374" y="176" width="118" height="140" rx="4" />
+  <text x="433" y="168" text-anchor="middle" class="rank rank-mid">3</text>
+  <text x="433" y="336" text-anchor="middle" class="lbl"><tspan x="433" dy="0">Two antibodies,</tspan><tspan x="433" dy="13">different epitopes, agree</tspan></text>
+
+  <!-- rung 4 -->
+  <rect class="bar bar-4" x="522" y="130" width="118" height="186" rx="4" />
+  <text x="581" y="122" text-anchor="middle" class="rank rank-strong">4</text>
+  <text x="581" y="336" text-anchor="middle" class="lbl"><tspan x="581" dy="0">Matches an</tspan><tspan x="581" dy="13">antibody-free method</tspan></text>
+
+  <!-- rung 5 -->
+  <rect class="bar bar-5" x="670" y="80" width="118" height="236" rx="4" />
+  <text x="729" y="72" text-anchor="middle" class="rank rank-gold">5</text>
+  <text x="729" y="106" text-anchor="middle" class="gold-tag">gold standard</text>
+  <text x="729" y="336" text-anchor="middle" class="lbl lbl-strong"><tspan x="729" dy="0">Signal vanishes</tspan><tspan x="729" dy="13">in the knockout</tspan></text>
+
+  <!-- strength arrow -->
+  <line class="axis" x1="78" y1="372" x2="788" y2="372" marker-end="url(#lad-ah)" />
+  <text x="78" y="388" class="axis-lbl">weaker evidence of specificity</text>
+  <text x="788" y="388" text-anchor="end" class="axis-lbl axis-lbl-strong">stronger</text>
+
+  <defs>
+    <marker id="lad-ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+    </marker>
+  </defs>
+</svg>
+
+<style>
+  .ladder-fig {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--bg-elevated);
+    padding: 0.6rem 0.5rem;
+  }
+  .base { stroke: var(--border); stroke-width: 1.5; }
+  .bar { stroke: var(--accent-strong); stroke-width: 1; }
+  .bar-1 { fill: var(--text-muted); opacity: 0.32; }
+  .bar-2 { fill: var(--text-muted); opacity: 0.5; }
+  .bar-3 { fill: var(--accent); opacity: 0.6; }
+  .bar-4 { fill: var(--accent); opacity: 0.82; }
+  .bar-5 { fill: var(--accent); opacity: 1; }
+  .rank { font-size: 15px; font-weight: 700; }
+  .rank-weak { fill: var(--text-muted); }
+  .rank-mid { fill: var(--accent); }
+  .rank-strong { fill: var(--accent-strong); }
+  .rank-gold { fill: var(--accent-strong); }
+  .gold-tag { font-size: 9.5px; font-weight: 600; fill: var(--accent-strong); letter-spacing: 0.02em; }
+  .lbl { font-size: 10.5px; fill: var(--text-muted); }
+  .lbl-strong { fill: var(--text); font-weight: 500; }
+  .axis { stroke: var(--text-muted); stroke-width: 1.5; opacity: 0.6; }
+  .arrowhead { fill: var(--text-muted); }
+  .axis-lbl { font-size: 10px; fill: var(--text-muted); }
+  .axis-lbl-strong { fill: var(--accent-strong); font-weight: 600; }
+</style>

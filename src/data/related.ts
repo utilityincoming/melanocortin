@@ -285,16 +285,22 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'The receptor structures',
     blurb: 'What MC1R–MC5R actually look like — the seven-helix fold, the calcium in the pocket, and how the switch flips on.',
   },
+  'receptor-antibodies': {
+    href: '/receptor-antibodies',
+    title: 'The trouble with MC-receptor antibodies',
+    blurb: 'Why melanocortin-receptor antibodies so often fail to be specific — and the evidence ladder that tells a trustworthy reagent from a decorative one.',
+  },
 };
 
 export const RELATED: Record<string, string[]> = {
   system: ['pomc', 'receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation'],
   pomc: ['system', 'alpha-msh', 'acth', 'beta-msh', 'gamma-msh', 'receptors'],
   'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
-  receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix', 'structures'],
-  'binding-matrix': ['selectivity', 'explorer', 'receptors', 'alpha-msh', 'melanocortin-agonists', 'mc1r-selectivity'],
+  receptors: ['system', 'alpha-msh', 'therapeutics', 'genetics', 'binding-matrix', 'structures', 'receptor-antibodies'],
+  'binding-matrix': ['selectivity', 'explorer', 'receptors', 'alpha-msh', 'melanocortin-agonists', 'mc1r-selectivity', 'receptor-antibodies'],
   selectivity: ['binding-matrix', 'mc1r-selectivity', 'explorer', 'bremelanotide', 'receptors', 'melanocortin-agonists'],
-  'mc1r-selectivity': ['selectivity', 'melanocortin-agonists', 'binding-matrix', 'receptors/mc1r', 'melanotan', 'afamelanotide'],
+  'mc1r-selectivity': ['selectivity', 'melanocortin-agonists', 'binding-matrix', 'receptors/mc1r', 'melanotan', 'afamelanotide', 'receptor-antibodies'],
+  'receptor-antibodies': ['mc1r-selectivity', 'binding-matrix', 'receptors', 'structures', 'selectivity', 'about'],
   structures: ['receptors', 'receptors/mc4r', 'binding-matrix', 'alpha-msh', 'receptors/mc1r', 'agrp'],
   'receptors/mc1r': ['afamelanotide', 'epp', 'vitiligo', 'addisons-disease', 'mc1r-pain', 'alpha-msh', 'genetics', 'topical-tanning'],
   'receptors/mc2r': ['acth', 'addisons-disease', 'alpha-msh', 'system'],
