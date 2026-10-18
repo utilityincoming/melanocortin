@@ -1,0 +1,186 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Figure from '../components/Figure.astro';
+import EvidenceLadder from '../components/fig/EvidenceLadder.astro';
+
+const faqs = [
+  {
+    q: 'Are melanocortin-receptor antibodies reliable?',
+    a: 'Treat each one as unproven until shown otherwise. Across G-protein-coupled receptors — the family the melanocortin receptors belong to — a lack of selectivity has repeatedly turned out to be the rule rather than the exception, with many commercial antibodies binding tissue that no longer contains the receptor. No one has published the systematic knockout test for MC1R–MC5R antibodies specifically, so the reassurance simply isn’t on the record either way. The answer depends entirely on how a given antibody was validated, not on the receptor name on the vial.',
+  },
+  {
+    q: 'What does a "knockout-validated" antibody mean?',
+    a: 'It means the antibody was tested on tissue or cells in which the target gene has been deleted — and the signal disappeared. If an antibody still stains a knockout that no longer makes the receptor, it is detecting something else. A vanishing signal in the knockout is the single strongest piece of evidence that an antibody is specific, which is why it sits at the top of the validation ladder.',
+  },
+  {
+    q: 'Why are GPCR antibodies so often non-specific?',
+    a: 'Several reasons stack up: these receptors are expressed at low levels, they are embedded in the membrane with most of the protein buried, and the usable epitopes are short. For the melanocortin receptors there is an extra problem — the five of them are one close-knit subfamily, so an antibody raised against one can cross-react with its structural cousins.',
+  },
+  {
+    q: 'Can I trust an MC4R or MC3R ELISA kit?',
+    a: 'The same validation question applies to an ELISA as to an antibody for staining or a blot: what independent evidence shows it measures the intended receptor and nothing else? A kit that reports only a standard curve, with no genetic or orthogonal control, has shown you precision, not specificity. This page explains how to tell the difference; it does not endorse or rank any vendor’s product.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Michel MC, Wieland T, Tsujimoto G.',
+    title: 'How reliable are G-protein-coupled receptor antibodies?',
+    source: 'Naunyn-Schmiedeberg’s Arch Pharmacol. 379(4):385–8 — the editorial for an issue that found poor selectivity across 49 antibodies to 19 receptor subtypes.',
+    year: '2009',
+    url: 'https://link.springer.com/article/10.1007/s00210-009-0395-y',
+  },
+  {
+    authors: 'Uhlén M, Bandrowski A, Carr S, et al. (International Working Group for Antibody Validation).',
+    title: 'A proposal for validation of antibodies.',
+    source: 'Nat Methods 13(10):823–7 — the five “conceptual pillars” of antibody validation (genetic/knockout, orthogonal, independent antibody, tagged expression, immunocapture–MS).',
+    year: '2016',
+    url: 'https://v16.proteinatlas.org/blog/2016-09-05/proposed-guidelines-for-antibody-validation',
+  },
+  {
+    authors: 'Herrera M, et al.',
+    title: 'Validation of six commercially available angiotensin II type 1 receptor antibodies.',
+    source: 'A modern knockout test of a peptide-GPCR reagent — most of the commercial antibodies failed to behave specifically in knockout or knockdown tissue.',
+    year: '2025',
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12130704/',
+  },
+  {
+    authors: 'Antibody validation (review).',
+    title: 'Negative controls and the case for genetic knockouts in antibody validation.',
+    source: 'Why disappearance of staining after peptide blocking is not sufficient, and knockout cells provide the best negative control.',
+    year: '2014',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3891910/',
+  },
+];
+---
+
+<PageLayout
+  title="The trouble with melanocortin-receptor antibodies"
+  kicker="The reagent problem"
+  description="A melanocortin-receptor antibody is a research reagent, not a fact. Across the GPCR family, non-specific antibodies are the rule rather than the exception — and the melanocortin receptors are a hard case. Here is why, and the evidence ladder that separates a trustworthy MC1R–MC5R antibody from a decorative one."
+  thread="A reagent is a claim about the system, not a reading of it — and a claim is only as good as the evidence it was validated against."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Antibody', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Antibody'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'A melanocortin-receptor antibody is a research reagent, not a fact — what it shows you is only as trustworthy as the way it was validated.',
+      'Across G-protein-coupled receptors, non-specificity has repeatedly proven to be the rule rather than the exception: a landmark survey found poor selectivity across 49 antibodies to 19 receptor subtypes.',
+      'The melanocortin receptors are a hard case for a specific reason — the five of them (MC1R–MC5R) are one close-knit subfamily, so an antibody can cross-react with the receptor’s structural cousins.',
+      'The strongest proof of specificity is simple to state: the signal should disappear in a knockout that no longer makes the receptor. A right-size band on a blot is the weakest.',
+      'No one has published that systematic knockout test for the melanocortin antibodies in particular — which is the honest point: the reassurance isn’t on the record, so the burden stays on the reagent.',
+    ]}
+  />
+
+  <p>
+    Somewhere in most melanocortin papers is a figure that depends on an antibody: a slice of
+    hypothalamus stained for <a href="/receptors/mc4r">MC4R</a>, a blot probed for{' '}
+    <a href="/receptors/mc1r">MC1R</a>, an ELISA counting receptor in a lysate. It is worth saying
+    plainly what that antibody is. It is not a measurement of where the receptor is — it is a
+    <strong>reagent making a claim</strong> about where the receptor is, and that claim is only as
+    good as the evidence the reagent was validated against. For this receptor family, that
+    distinction turns out to matter a great deal.
+  </p>
+
+  <h2>The rule, not the exception</h2>
+  <p>
+    The uncomfortable fact is not specific to melanocortins; it runs through the whole
+    <strong>G-protein-coupled receptor</strong> family these five belong to. When a landmark survey
+    tested commercial antibodies against GPCRs systematically, it found poor selectivity across 49
+    antibodies to 19 receptor subtypes — and concluded that a lack of selectivity "appears to be
+    the rule rather than the exception" for antibodies against these receptors.<Cite n={1} /> That
+    was not a one-off scare. The same result keeps recurring: a 2025 knockout test of six
+    commercial antibodies to the angiotensin II type-1 receptor — another peptide-binding GPCR —
+    found most of them failed to behave specifically when checked against tissue that no longer
+    made the receptor.<Cite n={3} />
+  </p>
+  <p>
+    The failure usually hides in plain sight because the reassurance offered is too weak to carry
+    the weight. A single band of the right size on a Western blot, or staining that fades when you
+    pre-incubate with a blocking peptide, is routinely presented as proof of specificity. Neither
+    is: proteins of similar size are everywhere, and blocking peptides have themselves been shown
+    to be non-selective.<Cite n={4} /> The only unforgiving negative control is tissue in which the
+    gene has been deleted.<Cite n={4} />
+  </p>
+
+  <h2>Why the melanocortin receptors are a hard case</h2>
+  <p>
+    Everything that makes GPCR antibodies difficult applies here, and then one thing more. The
+    melanocortin receptors are expressed at low levels, they sit in the membrane with most of the
+    protein buried in the lipid or folded tight, and the stretches left exposed for an antibody to
+    grab are short. On top of that, the five receptors are not strangers to each other — they are a
+    single <a href="/receptors">subfamily</a>, close structural cousins that share the pockets and
+    loops a binding molecule reads. That is the same family resemblance that makes a{' '}
+    <a href="/mc1r-selectivity">clean, receptor-selective drug</a> so hard to design, and it cuts
+    the same way for antibodies: a reagent raised against one melanocortin receptor can quietly
+    recognise another.
+  </p>
+  <p>
+    So what has the systematic knockout test shown for MC1R through MC5R? That is the honest gap:
+    the comprehensive, published knockout survey that has embarrassed antibodies to other GPCRs has
+    not been done for the melanocortin family as a whole. The absence cuts one way only — it means
+    there is no blanket reassurance to lean on, and the burden of proof stays on each individual
+    reagent.
+  </p>
+
+  <h2>How to tell a real one</h2>
+  <p>
+    None of this means the antibodies are useless — it means they have to earn trust, and there is
+    a well-worked standard for how. In 2016 an international working group laid out the ways an
+    antibody can be validated, and they stack neatly into a ladder from weakest evidence to
+    strongest.<Cite n={2} /> Reading a reagent against this ladder is the whole skill:
+  </p>
+
+  <Figure
+    caption="The evidence that an antibody detects what its label claims, weakest to strongest. A right-size band is the floor; the gold standard is the signal disappearing in a knockout that no longer makes the receptor. Agreement between two independent antibodies, or with an antibody-free method, sits in between."
+    source="Rungs after the International Working Group for Antibody Validation (Uhlén et al., Nat Methods 2016); the knockout control follows Michel et al. (2009) and standard validation practice."
+  >
+    <EvidenceLadder />
+  </Figure>
+
+  <p>
+    The practical reading is blunt. If a vendor or a paper offers only rung one or two, you have
+    been shown precision, not specificity — the reagent is consistent, but you do not yet know what
+    it is consistent <em>about</em>. Two independent antibodies agreeing, or an antibody-free method
+    (receptor mRNA, a tagged knock-in, mass spectrometry) pointing to the same place, is real
+    evidence. And a signal that vanishes in the knockout is as close to proof as this work gets.
+    The question to ask of any MC-receptor antibody or ELISA is therefore not "is it validated?" but
+    "<strong>validated how far up the ladder?</strong>"
+  </p>
+
+  <h2>Why this lives on a knowledge site, not a catalogue</h2>
+  <p>
+    We don’t sell reagents and don’t rank vendors — and that is exactly why this page belongs here.
+    The same instinct runs through everything on this site: a result is only as trustworthy as its
+    provenance, which is why the <a href="/binding-matrix">binding data</a> is cited to its primary
+    source and the <a href="/about">editorial standards</a> say where every number comes from. An
+    antibody is just another link in that chain. When a published localisation or an expression
+    number rests on an unvalidated reagent, the uncertainty doesn’t go away — it simply moves
+    downstream, into the conclusion. Knowing where on the ladder the evidence actually sits is how
+    you keep the map honest.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">A note on reagents</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page is about how to judge the evidence behind a research antibody or ELISA — it is
+      independent, names no products, and endorses no vendor. It is not laboratory or purchasing
+      advice. For how we handle provenance across the site, see the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="receptor-antibodies" />
+</PageLayout>
