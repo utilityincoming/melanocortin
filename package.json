@@ -13,6 +13,7 @@
     "check:ws": "node scripts/check-link-whitespace.mjs",
     "preview": "astro preview",
     "gsc": "node scripts/gsc-report.mjs",
+    "gsc:check": "node scripts/gsc-report.mjs --check",
     "astro": "astro",
     "pagedates": "node scripts/pagedates.mjs",
     "indexnow": "node scripts/indexnow.mjs"
