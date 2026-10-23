@@ -32,6 +32,7 @@
 //
 // Run:  npm run gsc                 # last 90 days, melanocortin.com
 //       npm run gsc -- --days=28    # narrower window
+//       npm run gsc:check           # validate the credential only (no API call)
 //       node scripts/gsc-report.mjs "sc-domain:example.com" --days=180
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises'
@@ -88,17 +89,21 @@ function base64url(input) {
     .replace(/\//g, '_')
 }
 
-async function getAccessToken(keyFile) {
+// Load and field-validate the service account — inline JSON via env wins (how a
+// cloud/CI environment supplies the credential as a secret with no file on
+// disk), else the key file. Returns { sa, source }. No network.
+async function loadServiceAccount(keyFile) {
   let sa
-  // Inline JSON via env wins — this is how a cloud/CI environment supplies the
-  // credential as a secret without a file on disk. Falls back to the key file.
+  let source
   if (process.env.GSC_SA_KEY_JSON) {
+    source = 'env GSC_SA_KEY_JSON'
     try {
       sa = JSON.parse(process.env.GSC_SA_KEY_JSON)
     } catch (e) {
       fail(`GSC_SA_KEY_JSON is set but is not valid JSON: ${e.message}`)
     }
   } else {
+    source = `file ${keyFile}`
     try {
       sa = JSON.parse(await readFile(resolve(keyFile), 'utf8'))
     } catch (e) {
@@ -108,6 +113,11 @@ async function getAccessToken(keyFile) {
   if (!sa.client_email || !sa.private_key) {
     fail('Service-account JSON is missing client_email / private_key.')
   }
+  return { sa, source }
+}
+
+async function getAccessToken(keyFile) {
+  const { sa } = await loadServiceAccount(keyFile)
 
   const now = Math.floor(Date.now() / 1000)
   const header = base64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }))
@@ -209,8 +219,48 @@ function csvEscape(v) {
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
 }
 
+// ── Credential check (--check) ───────────────────────────────────────────────
+// Validates that the credential is present and well-formed WITHOUT calling the
+// API: parses the JSON, checks the required fields, and does a local RSA sign to
+// confirm the private key is usable. It cannot confirm Search Console access —
+// that needs a real request (run the full report for that).
+async function checkCredential() {
+  console.log('\nGSC credential check (no API call)\n')
+  const keyFile = await resolveKeyFile()
+  if (!keyFile && !process.env.GSC_SA_KEY_JSON) {
+    console.error('✗ No credential found.')
+    console.error('  Set GSC_SA_KEY_JSON to the service-account JSON (how a cloud/CI')
+    console.error('  environment supplies it as a secret), put the JSON in ~/.secrets/,')
+    console.error('  or set GSC_SA_KEY_FILE to its path.')
+    process.exitCode = 1
+    return
+  }
+
+  const { sa, source } = await loadServiceAccount(keyFile)
+
+  // Local sign test — proves the private key parses and can sign (no network).
+  try {
+    createSign('RSA-SHA256').update('gsc-check').sign(sa.private_key)
+  } catch (e) {
+    fail(`private_key is present but not usable for signing: ${e.message}`)
+  }
+
+  console.log(`✓ Source:        ${source}`)
+  console.log(`✓ client_email:  ${sa.client_email}`)
+  console.log(`✓ project_id:    ${sa.project_id || '(not in key)'}`)
+  console.log(`✓ private_key:   parses and signs OK (RSA-SHA256)`)
+  console.log(`✓ Target property (GSC_SITE_URL): ${SITE_URL}`)
+  console.log(
+    '\nCredential looks valid. This does NOT confirm Search Console access —\n' +
+      `  the service account must be a user on ${SITE_URL}. Run \`npm run gsc\`\n` +
+      '  to make a real request and confirm end to end.\n',
+  )
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
+  if (flags.check) return checkCredential()
+
   const KEY_FILE = await resolveKeyFile()
   if (!KEY_FILE && !process.env.GSC_SA_KEY_JSON) {
     fail(
