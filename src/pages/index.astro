@@ -2,6 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIndex from '../components/SiteIndex.astro';
 import { ALL_PAGES } from '../data/siteindex';
+import { pipeline } from '../data/pipeline';
+
+// Agents actively in clinical development (Phase 1+), excluding approved and
+// discontinued programs. Derived from the pipeline data so the headline count
+// can never drift from the page it points at.
+const clinicCount = pipeline.filter((e) => e.status === 'active' && e.stage >= 1).length;
 
 const receptors = [
   { id: 'MC1R', note: 'Skin & hair pigmentation' },
@@ -16,16 +22,45 @@ const proof = [
     stat: 'One gene',
     label: 'runs the whole system',
     body: 'POMC is cut, tissue by tissue, into the peptides that set pigment, the stress axis, appetite, and inflammation — read by five receptors, held in check by two natural brakes.',
+    href: '/system',
+    cta: 'See the system',
   },
   {
     stat: '3 in 24 months',
     label: 'first-in-class approvals',
     body: 'For decades, no drug was designed to hit a melanocortin receptor. Between 2019 and 2020, three did — for a pigment disorder, sexual dysfunction, and genetic obesity.',
+    href: '/therapeutics',
+    cta: 'The approvals',
   },
   {
-    stat: '~12 agents',
+    stat: `${clinicCount} agents`,
     label: 'now in the clinic',
     body: 'The pipeline is going oral and broad: obesity, dry eye, ulcerative colitis, cancer cachexia — and the first oral MC4R and MC1R drugs are moving through trials.',
+    href: '/pipeline',
+    cta: 'The live pipeline',
+  },
+];
+
+const tools = [
+  {
+    href: '/explorer',
+    title: 'Receptor–ligand explorer',
+    body: 'Map which peptides and drugs act on which of the five receptors — agonist, antagonist, or inverse agonist — and what each interaction does.',
+  },
+  {
+    href: '/selectivity',
+    title: 'Selectivity visualizer',
+    body: 'See how cleanly each ligand picks a single receptor — and the fold-gap that decides whether a clean single-target drug is even possible.',
+  },
+  {
+    href: '/binding-matrix',
+    title: 'The binding matrix',
+    body: 'Every affinity value, receptor by receptor and ligand by ligand — each number traceable to the source it came from.',
+  },
+  {
+    href: '/dose-curve',
+    title: 'Dose & side-effect model',
+    body: 'Why the concentration peak — not the dose — drives the nausea, and how switching delivery route changes it.',
   },
 ];
 
@@ -53,7 +88,7 @@ const pillars = [
 
 <BaseLayout
   title="Melanocortin: the system, the five receptors, and the drugs"
-  description="An open, citation-first field guide to the melanocortin system: how one gene, POMC, becomes the peptides that steer pigment, the stress axis, appetite, and inflammation through the MC1R-MC5R receptors, and the drugs now built on them."
+  description="An open, citation-first field guide to the melanocortin system: how one gene, POMC, becomes the peptides that steer pigment, the stress axis, appetite, and inflammation through the MC1R–MC5R receptors, and the drugs now built on them."
 >
   <!-- Hero -->
   <section class="relative overflow-hidden">
@@ -130,13 +165,17 @@ const pillars = [
     <div class="mt-10 grid gap-6 sm:grid-cols-3">
       {
         proof.map((p) => (
-          <div class="flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6">
+          <a
+            href={p.href}
+            class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
+          >
             <span class="font-serif text-3xl font-semibold tracking-tight text-[var(--accent)]">
               {p.stat}
             </span>
             <span class="mt-1 text-sm font-medium">{p.label}</span>
             <span class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{p.body}</span>
-          </div>
+            <span class="mt-4 text-sm font-medium text-[var(--accent)]">{p.cta} →</span>
+          </a>
         ))
       }
     </div>
@@ -168,6 +207,31 @@ const pillars = [
             <span class="mt-3 font-serif text-xl font-semibold tracking-tight">{p.title}</span>
             <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{p.body}</span>
             <span class="mt-4 text-sm font-medium text-[var(--accent)]">Read →</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Explore interactively -->
+  <section class="mx-auto max-w-5xl border-t border-[var(--border)] px-6 py-20">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Explore the data</p>
+    <h2 class="mt-3 font-serif text-2xl font-semibold tracking-tight">Interactive tools</h2>
+    <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
+      Don't just read it — turn it over. Four views built straight from the
+      cited data, for how the peptides, the drugs, and the five receptors
+      actually fit together.
+    </p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {
+        tools.map((t) => (
+          <a
+            href={t.href}
+            class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
+          >
+            <span class="font-serif text-xl font-semibold tracking-tight">{t.title}</span>
+            <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{t.body}</span>
+            <span class="mt-4 text-sm font-medium text-[var(--accent)]">Open the tool →</span>
           </a>
         ))
       }
