@@ -35,7 +35,7 @@ const meaning: Record<string, string> = {
   single: `Only one receptor has a curated binding value here, so a selectivity window cannot be quantified from this dataset — but the published pharmacology marks ${l.name} as strongly ${l.primary}-leaning.`,
 };
 
-const title = `${l.name} — melanocortin receptor selectivity & binding fingerprint`;
+const title = `${l.name}: melanocortin receptor selectivity`;
 const description =
   l.verdict === 'single'
     ? `${l.name} is strongly ${l.primary}-selective among the melanocortin receptors. Its binding fingerprint across MC1R–MC5R, from cited affinity data.`

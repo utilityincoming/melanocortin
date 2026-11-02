@@ -5,6 +5,12 @@ import NetworkLinks from '../components/NetworkLinks.astro';
 
 interface Props {
   title: string;
+  /**
+   * Concise SERP title for the <title>/OG/schema name, kept under ~60 chars.
+   * The visible <h1> always uses the full narrative `title`; this only trims
+   * what search engines show. Falls back to `title` when not set.
+   */
+  seoTitle?: string;
   description?: string;
   kicker?: string;
   status?: string;
@@ -15,12 +21,12 @@ interface Props {
   about?: Array<{ name: string; type?: string; sameAs?: string[] }>;
 }
 
-const { title, description, kicker, status, author, updated, reviewed, thread, about } =
+const { title, seoTitle, description, kicker, status, author, updated, reviewed, thread, about } =
   Astro.props;
 ---
 
 <BaseLayout
-  title={`${title} — melanocortin.com`}
+  title={seoTitle ?? title}
   description={description}
   pageType="article"
   dateModified={updated ?? '2026'}
