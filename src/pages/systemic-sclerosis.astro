@@ -1,0 +1,153 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is systemic sclerosis?',
+    a: 'Systemic sclerosis (scleroderma) is a serious autoimmune disease in which the immune system, blood vessels and connective tissue all go wrong together — leading to hardening and scarring of the skin and, often, internal organs such as the lungs, gut and heart. The diffuse cutaneous form progresses faster and reaches deeper into the organs.',
+  },
+  {
+    q: 'What does systemic sclerosis have to do with melanocortins?',
+    a: 'MC1R sits not only on pigment cells but on immune cells, vascular endothelium and fibroblasts — the three cell types that drive sclerosis. Activating MC1R in preclinical models damps inflammation, eases vascular dysfunction and suppresses fibrosis, which is why an oral MC1R agonist is being tested as a potential disease-modifying therapy.',
+  },
+  {
+    q: 'Is there a melanocortin drug for systemic sclerosis?',
+    a: 'Dersimelagon (MT-7117), an oral selective MC1R agonist best known for its Phase 3 programme in erythropoietic protoporphyria, also has a Phase 2 proof-of-concept study in diffuse cutaneous systemic sclerosis (73 patients). Nothing melanocortin-based is approved for the disease.',
+  },
+  {
+    q: 'Is this the same as using melanocortins for pigment?',
+    a: 'Same receptor, different job. In EPP, MC1R activation builds protective eumelanin. In systemic sclerosis the bet is anti-inflammatory and anti-fibrotic signalling on immune, vascular and fibroblast cells — pigment side effects can still appear because the receptor is shared.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Open-access study (PMC).',
+    title:
+      'Dersimelagon, a novel oral melanocortin 1 receptor agonist, demonstrates disease-modifying effects in preclinical models of systemic sclerosis.',
+    source: 'Preclinical evidence for MC1R activation in fibrosis. PMID 36050717.',
+    year: '2022',
+    url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9434962/',
+  },
+  {
+    authors: 'ClinicalTrials.gov.',
+    title:
+      'Efficacy, safety, and tolerability of MT-7117 in subjects with diffuse cutaneous systemic sclerosis.',
+    source: 'Phase 2 proof-of-concept trial record (NCT04440592) in dcSSc — 73 patients.',
+    year: '2024',
+    url: 'https://clinicaltrials.gov/study/NCT04440592',
+  },
+  {
+    authors: 'Ogasawara A, Ogawa K, Ide R, et al.',
+    title:
+      'Results from a first-in-human study of dersimelagon, an investigational oral selective MC1R agonist.',
+    source: 'Eur J Clin Pharmacol. 79(6):801–13.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37060458/',
+  },
+  {
+    authors: 'Tanabe Pharma America.',
+    title:
+      'Positive topline results for dersimelagon in erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP).',
+    source: 'Phase 3 INSPIRE trial press release — context for the same molecule’s lead programme.',
+    year: '2026',
+    url: 'https://www.prnewswire.com/news-releases/tanabe-pharma-america-announces-positive-topline-results-for-dersimelagon-in-erythropoietic-protoporphyria-epp-and-x-linked-protoporphyria-xlp-302663740.html',
+  },
+];
+---
+
+<PageLayout
+  title="Systemic sclerosis: pointing the pigment receptor at fibrosis"
+  seoTitle="Systemic sclerosis & MC1R pharmacology"
+  kicker="The condition"
+  description="Systemic sclerosis scars skin and organs via immune, vascular and fibroblast failure. MC1R sits on all three — why an oral MC1R agonist is tested as more than a pigment drug."
+  thread="A receptor famous for colour, asked to quiet the scarring that hardens skin and lungs."
+  updated="2026"
+  about={[
+    { name: 'Systemic scleroderma', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Systemic_scleroderma'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Dersimelagon', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Dersimelagon'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Systemic sclerosis is an autoimmune disease of immune activation, vasculopathy and progressive fibrosis of skin and internal organs — especially in the diffuse cutaneous form.',
+      'MC1R is expressed on immune cells, vascular endothelium and fibroblasts, not only on melanocytes — so the pigment receptor is also a plausible anti-inflammatory and anti-fibrotic lever.',
+      'In preclinical models, the oral MC1R agonist dersimelagon showed disease-modifying effects across inflammation, vascular dysfunction and fibrosis.',
+      'A Phase 2 proof-of-concept study enrolled 73 patients with diffuse cutaneous systemic sclerosis; no melanocortin drug is approved for the disease.',
+      'This is MC1R’s second life beyond pigment — the same receptor dersimelagon uses for EPP, pointed at scarring.',
+    ]}
+  />
+
+  <p>
+    Most of this site meets <a href="/receptors/mc1r">MC1R</a> as the pigment switch. Systemic
+    sclerosis is the case that forces a wider reading: the same receptor sits on the cells that
+    drive a fibrotic autoimmune disease, and turning it on looks, in models, like a way to calm
+    inflammation <em>and</em> slow scarring.<Cite n={1} />
+  </p>
+
+  <h2>What breaks</h2>
+  <p>
+    Systemic sclerosis (scleroderma) is not one lesion. It is a triad — autoimmunity,
+    microvascular injury, and progressive deposition of collagen — that hardens the skin and
+    often reaches the lungs, gut, heart and kidneys. The <strong>diffuse cutaneous</strong> form
+    spreads faster and deeper. Disease-modifying options remain limited relative to the damage
+    the disease can do, which is why any pathway that touches all three arms of the triad draws
+    attention.
+  </p>
+
+  <h2>Why MC1R is on the board</h2>
+  <p>
+    MC1R is best known on melanocytes, but it is also expressed on macrophages and other immune
+    cells, on the endothelium that lines blood vessels, and on fibroblasts — exactly the cast
+    that drives sclerosis. Preclinical work with{' '}
+    <a href="/dersimelagon">dersimelagon</a> (MT-7117), an oral selective MC1R agonist, reported
+    disease-modifying effects in models of systemic sclerosis: less inflammatory signalling,
+    improved vascular function, and suppressed fibrosis.<Cite n={1} /> That is the melanocortin
+    anti-inflammatory axis from the <a href="/inflammation">inflammation</a> page, extended into
+    connective-tissue scarring.
+  </p>
+
+  <h2>What the pipeline is doing</h2>
+  <p>
+    Dersimelagon’s lead programme is in <a href="/epp">erythropoietic protoporphyria</a>, where
+    its Phase 3 INSPIRE trial met its primary sunlight-tolerance endpoint in 2026.<Cite n={4} />
+    Its second life is immunology: a Phase 2 proof-of-concept study enrolled{' '}
+    <strong>73</strong> patients with diffuse cutaneous systemic sclerosis to test whether the
+    same once-daily oral MC1R agonist can modify disease in people.<Cite n={2} /> The molecule’s
+    human pharmacology — and its expected pigment side effects of hyperpigmentation and
+    lentigines — are already characterised from earlier studies.<Cite n={3} /> On the{' '}
+    <a href="/pipeline">pipeline</a> table this appears as the separate “Dersimelagon
+    (immunology)” row, still early relative to the EPP programme.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Systemic sclerosis is a high-stakes, still-unproven test of whether MC1R activation can be
+    disease-modifying outside pigment biology. The preclinical rationale is coherent; the
+    clinical answer is not in yet. For the drug see <a href="/dersimelagon">dersimelagon</a>; for
+    neighbouring resolution programmes see <a href="/resomelagon">resomelagon</a>,{' '}
+    <a href="/ulcerative-colitis">ulcerative colitis</a>, and{' '}
+    <a href="/membranous-nephropathy">membranous nephropathy</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains a disease and an investigational approach. It does not provide dosing
+      or usage instructions and is not medical advice. Dersimelagon is not approved for systemic
+      sclerosis. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="systemic-sclerosis" />
+</PageLayout>

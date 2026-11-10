@@ -45,17 +45,14 @@ agent is only mentioned in passing. Each of these is a real, citeable page.
 
 ### Medium priority
 
-- **`/dry-eye-disease`** — PL-9643's indication; the melanocortin
-  anti-inflammatory story on the ocular surface. Currently only reachable via the
-  drug page `/pl-9643`.
-- **`/ulcerative-colitis`** — PL-8177's indication; gut mucosal
-  resolution/inflammation, which connects to the existing `/inflammation` and
-  `/resomelagon` resolution-pharmacology themes.
-- **`/systemic-sclerosis`** — dersimelagon's immunology indication (diffuse
-  cutaneous systemic sclerosis), currently only a line on `/therapeutics`.
-- **`/membranous-nephropathy`** — one of resomelagon's indications and a
-  historically interesting ACTH/corticotropin indication; good anchor for the
-  "why corticotropin, mechanistically" question.
+- **`/dry-eye-disease`** — *(Shipped.)* PL-9643's indication; ocular-surface
+  inflammation and the melanocortin eye-drop bet.
+- **`/ulcerative-colitis`** — *(Shipped.)* PL-8177's indication; gut mucosal
+  resolution/inflammation.
+- **`/systemic-sclerosis`** — *(Shipped.)* Dersimelagon's immunology indication
+  (diffuse cutaneous systemic sclerosis).
+- **`/membranous-nephropathy`** — *(Shipped.)* Resomelagon Phase 2a indication;
+  bridges the ACTH/corticotropin glomerular history to biased MC1R/MC3R agonism.
 
 ### Lower priority / watchlist
 
@@ -104,10 +101,11 @@ without new patterns.
 - **Pipeline → page coverage check.** Add a lightweight note/convention that
   every `pipeline.ts` entry whose `href` points at a *shared* page is a candidate
   for a dedicated page, so the backlog above stays current as the table grows.
-- **"Antagonists" as a first-class theme.** The site leans agonist-forward.
-  SHU9119, PF-07258669, AgRP/ASIP, and Atumelnant are all antagonism stories; a
-  short hub page or a clearer thread tying them together would sharpen the
-  mechanism coverage.
+- **"Antagonists" as a first-class theme.** *(Shipped as `/melanocortin-antagonists`.)*
+  Hub covering AgRP/ASIP, SHU9119, TCMCB07, PF-07258669, and Atumelnant, with
+  cross-links from the agonists hub, therapeutics, and the antagonist drug pages.
+  Dedicated `/atumelnant` (and CAH/Cushing’s condition pages) remain high-priority
+  follow-ons above.
 
 ---
 

@@ -87,7 +87,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 3,
     status: 'active',
     note: 'MELODY-1 Phase 3 hit its co-primary symptom endpoint but missed the co-primary sign endpoint (conjunctival staining); FDA accepted the remaining MELODY-2/3 design, now sublicensed and awaiting funding',
-    href: '/pl-9643',
+    href: '/dry-eye-disease',
   },
   {
     name: 'PL-8177',
@@ -97,7 +97,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 2,
     status: 'active',
     note: 'Positive Phase 2 topline (2025); Palatin capped enrollment to out-license and refocus on its obesity program',
-    href: '/pl-8177',
+    href: '/ulcerative-colitis',
   },
   {
     name: 'PL-7737',
@@ -157,7 +157,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 2,
     status: 'active',
     note: 'Repurposing MC1R’s anti-inflammatory action',
-    href: '/therapeutics',
+    href: '/systemic-sclerosis',
   },
   {
     name: 'Dual MC3R/MC4R agonists (710GO)',
@@ -187,7 +187,7 @@ export const pipeline: PipelineEntry[] = [
     stage: 3,
     status: 'active',
     note: 'The first drug built to block a melanocortin receptor at the adrenal; Phase 2 cut adrenal androgens by up to ~80%; pivotal CALM-CAH Phase 3 and a paediatric Phase 2/3 dosing in 2026',
-    href: '/receptors/mc2r',
+    href: '/melanocortin-antagonists',
   },
   {
     name: 'Afamelanotide (vitiligo)',

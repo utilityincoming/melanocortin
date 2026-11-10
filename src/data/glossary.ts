@@ -428,12 +428,27 @@ export const terms: Term[] = [
   {
     term: 'Dry eye disease',
     def: 'A chronic, partly inflammatory disorder of the ocular surface. The indication for PL-9643, a melanocortin pan-agonist eye drop that met its symptom but not its sign endpoint in Phase 3.',
-    href: '/pl-9643',
+    href: '/dry-eye-disease',
   },
   {
     term: 'Ulcerative colitis',
     def: 'An inflammatory disease of the colon lining. The lead indication for PL-8177, an oral MC1R agonist that acts on the colon without being absorbed.',
-    href: '/pl-8177',
+    href: '/ulcerative-colitis',
+  },
+  {
+    term: 'Systemic sclerosis',
+    def: 'An autoimmune disease of fibrosis, vasculopathy and inflammation. Diffuse cutaneous systemic sclerosis is a Phase 2 indication for the oral MC1R agonist dersimelagon.',
+    href: '/systemic-sclerosis',
+  },
+  {
+    term: 'Membranous nephropathy',
+    def: 'An autoimmune glomerular disease causing heavy proteinuria. A Phase 2a indication for resomelagon, and part of the older corticotropin story in nephrotic syndromes.',
+    href: '/membranous-nephropathy',
+  },
+  {
+    term: 'Melanocortin antagonist',
+    def: 'A molecule that blocks one or more melanocortin receptors so α-MSH or ACTH cannot activate them. Includes the natural brakes AgRP and ASIP, the research tool SHU9119, and clinical candidates such as TCMCB07 and atumelnant.',
+    href: '/melanocortin-antagonists',
   },
   {
     term: 'Gut-restricted',

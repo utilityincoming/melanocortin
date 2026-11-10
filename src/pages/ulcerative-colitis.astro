@@ -1,0 +1,176 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is ulcerative colitis?',
+    a: 'Ulcerative colitis is an inflammatory bowel disease that inflames and ulcerates the lining of the colon and rectum. It causes bloody diarrhoea, urgency and abdominal pain, and it is driven by a dysregulated immune response in the gut mucosa rather than by infection alone.',
+  },
+  {
+    q: 'How do melanocortins relate to ulcerative colitis?',
+    a: 'α-MSH and MC1R signalling calm inflammation and promote resolution — reducing inflammatory cytokines and increasing the clearing of dead cells. An MC1R agonist aimed at the colon lining tries to turn that biology into a local gut drug without needing whole-body immunosuppression.',
+  },
+  {
+    q: 'Is there a melanocortin drug for ulcerative colitis?',
+    a: 'PL-8177 is an investigational oral, selective MC1R agonist formulated to release in the colon and act on the lining without being absorbed. A small Phase 2 study reported clinical remission in 33% versus 0% on placebo, but enrolment stopped at 12 patients, so the result is a signal rather than proof. Palatin is seeking a partner to take it forward.',
+  },
+  {
+    q: 'Why act locally in the colon instead of systemically?',
+    a: 'Because the target — MC1R on immune and epithelial cells of the inflamed lining — sits in the gut wall. A gut-restricted peptide can engage that receptor and leave in the faeces without needing to survive digestion into the bloodstream, which is the usual barrier for oral peptides.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Dodd J, Jordan R, Makhlina M, et al.',
+    title:
+      'A novel oral formulation of the melanocortin-1 receptor agonist PL8177 resolves inflammation in preclinical studies of inflammatory bowel disease and is gut restricted in rats, dogs, and humans.',
+    source: 'Front Immunol. 14:1083333.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36891301/',
+  },
+  {
+    authors: 'Garrido-Mesa J, Thomas BL, Dodd J, Spana C, Perretti M, Montero-Melendez T.',
+    title: 'Pro-resolving and anti-arthritic properties of the MC1 selective agonist PL8177.',
+    source: 'Front Immunol. 13:1078678.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/36505403/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Palatin announces positive topline results from Phase 2 ulcerative colitis (UC) study of oral melanocortin-1 receptor agonist PL8177.',
+    source: 'Company announcement — clinical remission, response and safety.',
+    year: '2025',
+    url: 'https://palatin.com/press_releases/palatin-announces-positive-topline-results-from-phase-2-ulcerative-colitis-uc-study-of-oral-melanocortin-1-receptor-agonist-pl8177/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title:
+      'Palatin announces completion of patient enrollment in Phase 2 study of orally administered melanocortin agonist PL8177 in ulcerative colitis.',
+    source: 'Company announcement — enrolment stopped at 12 to pursue out-licensing.',
+    year: '2024',
+    url: 'https://www.prnewswire.com/news-releases/palatin-announces-completion-of-patient-enrollment-in-phase-2-study-of-orally-administered-melanocortin-agonist-pl8177-in-ulcerative-colitis-302314718.html',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title: 'Palatin reports fiscal year 2026 financial results and provides business update.',
+    source: 'Company update — PL8177 available for partnering.',
+    year: '2026',
+    url: 'https://www.prnewswire.com/news-releases/palatin-reports-fiscal-year-2026-financial-results-and-provides-business-update-302890483.html',
+  },
+  {
+    authors: 'Eves PC, MacNeil S, Haycock JW.',
+    title: 'α-Melanocyte stimulating hormone, inflammation and human melanoma.',
+    source: 'Peptides. 27(2):444–52.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16274844/',
+  },
+];
+---
+
+<PageLayout
+  title="Ulcerative colitis: melanocortin resolution aimed at the colon lining"
+  seoTitle="Ulcerative colitis & melanocortin drugs"
+  kicker="The condition"
+  description="Ulcerative colitis inflames the colon lining; MC1R signalling is a natural resolution pathway. PL-8177 tries to drug that locally, without needing to leave the gut."
+  thread="Inflammation that will not finish — and a peptide told to settle the colon and go no further."
+  updated="2026"
+  about={[
+    { name: 'Ulcerative colitis', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Ulcerative_colitis'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'PL-8177', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Ulcerative colitis is an inflammatory bowel disease of the colon and rectal lining — bloody diarrhoea, urgency, and mucosal injury driven by a dysregulated local immune response.',
+      'Melanocortin signalling through MC1R reduces inflammatory cytokines and increases efferocytosis, the clearing of dead cells that lets tissue return to normal rather than merely go quiet.',
+      'PL-8177 is an investigational oral, selective MC1R agonist formulated to release in the colon and act on the lining without being absorbed into the blood.',
+      'A Phase 2 ulcerative colitis study reported clinical remission in 33% versus 0% on placebo, but stopped at 12 patients — an encouraging signal, not proof.',
+      'The programme is available for partnering; no melanocortin drug is approved for ulcerative colitis.',
+    ]}
+  />
+
+  <p>
+    Ulcerative colitis is where the melanocortin system’s third great role — calming
+    inflammation — meets a tissue that can be reached without a systemic drug. The disease
+    inflames and ulcerates the lining of the colon and rectum; the melanocortin bet is that
+    switching on <a href="/receptors/mc1r">MC1R</a> in that lining can help the mucosa
+    <em>resolve</em> rather than only suppress the immune system that is damaging it.<Cite n={6} />
+  </p>
+
+  <h2>What breaks</h2>
+  <p>
+    Ulcerative colitis is a chronic inflammatory bowel disease confined to the colon’s
+    mucosa. Relapsing flares of bloody diarrhoea, urgency and pain track with neutrophil
+    infiltration, cytokine release and breakdown of the epithelial barrier. Standard drugs
+    range from aminosalicylates and steroids to advanced biologics and small-molecule
+    immunosuppressants — powerful tools, but ones that often act systemically. A local
+    pro-resolving approach is attractive precisely because the pathology sits in a reachable
+    surface.
+  </p>
+
+  <h2>The melanocortin mechanism</h2>
+  <p>
+    <a href="/alpha-msh">α-MSH</a> is a potent anti-inflammatory peptide, and much of that
+    work on immune cells runs through MC1R: less IL-1β, IL-6, TNF-α and CCL2, and more
+    efferocytosis — the clearing of dying cells that lets inflamed tissue finish the job
+    rather than linger in a suppressed half-state.<Cite n={2} /><Cite n={6} /> That
+    distinction between resolution and suppression is the central idea of the{' '}
+    <a href="/inflammation">inflammation</a> page, and it is why a selective MC1R agonist
+    can be aimed at the gut without touching appetite (<a href="/receptors/mc4r">MC4R</a>) or
+    the adrenal axis (<a href="/receptors/mc2r">MC2R</a>).
+  </p>
+
+  <h2>What the pipeline is doing</h2>
+  <p>
+    <a href="/pl-8177">PL-8177</a> is Palatin’s investigational oral cyclic heptapeptide —
+    a potent, selective MC1R agonist enclosed in a polymer coat that releases it in the
+    colon. In rats and dogs the drug concentrates in the colon; in a human microdose study
+    radiolabelled PL-8177 appeared in faeces and not in plasma or urine, which means it
+    acted and broke down inside the gut.<Cite n={1} /> In rat colitis models it preserved
+    colon structure and barrier and moved tissue gene expression back toward healthy
+    controls — the molecular signature of resolution.<Cite n={1} />
+  </p>
+  <p>
+    The human signal is small but striking. A randomised, placebo-controlled Phase 2 study
+    in active ulcerative colitis reported clinical remission in 33% of treated patients
+    (three of nine) versus none on placebo after eight weeks, clinical response in 78%
+    versus 33%, and no drug-attributed adverse events.<Cite n={3} /> The honest caveat:
+    Palatin stopped enrolment at 12 patients rather than the planned 28 while redirecting
+    resources toward obesity programmes and out-licensing, so the study was not powered to
+    prove its result.<Cite n={4} /><Cite n={5} /> As of 2026 the programme is available for
+    a partner.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Ulcerative colitis is a clean test of whether melanocortin resolution pharmacology can
+    work as a local gut drug. The biology and animal data are coherent; the human evidence
+    is early and underpowered. For the molecule see <a href="/pl-8177">PL-8177</a>; for the
+    ocular cousin of the same idea see <a href="/dry-eye-disease">dry eye disease</a> and{' '}
+    <a href="/pl-9643">PL-9643</a>; for the wider resolution cluster see{' '}
+    <a href="/resomelagon">resomelagon</a> and the <a href="/pipeline">pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains a disease and an investigational approach. It does not provide dosing
+      or usage instructions and is not medical advice. PL-8177 is not approved. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="ulcerative-colitis" />
+</PageLayout>
