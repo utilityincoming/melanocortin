@@ -1,0 +1,185 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is dry eye disease?',
+    a: 'Dry eye disease is a chronic disorder of the ocular surface in which the tear film is unstable and the eye’s surface becomes inflamed. It causes burning, grittiness, fluctuating vision and pain — and a large part of it is inflammatory signalling, not just a lack of lubrication.',
+  },
+  {
+    q: 'Why do melanocortins matter for dry eye?',
+    a: 'The eye is a natural home for melanocortin signalling. α-MSH is one of the signals that keeps the inside of the eye immunologically quiet, and in laboratory models it protects corneal epithelial cells. Activating melanocortin receptors on the ocular surface is a way to calm inflammation and promote resolution rather than just adding artificial tears.',
+  },
+  {
+    q: 'Is there a melanocortin drug for dry eye?',
+    a: 'PL-9643 is an investigational melanocortin pan-agonist eye drop developed for dry eye disease. Its Phase 3 MELODY-1 trial met its co-primary symptom endpoint (ocular pain) but not its co-primary sign endpoint (conjunctival staining). Two further Phase 3 trials are designed to show both; the programme is now with Altanispac Labs. Nothing melanocortin-based is approved for dry eye yet.',
+  },
+  {
+    q: 'How is this different from artificial tears or immunosuppressants?',
+    a: 'Artificial tears mainly replace moisture. Broad immunosuppressants quiet the immune system. A melanocortin agonist aims at resolution — damping inflammatory cytokines and helping the tissue finish the inflammatory response — using a pathway the eye already uses to keep itself calm. That is a different bet, still being tested.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Chu C, Huang Y, Ru Y, et al.',
+    title:
+      'α-MSH ameliorates corneal surface dysfunction in scopolamine-induced dry eye rats and human corneal epithelial cells via PKA-CREB and MEK-Erk pathways.',
+    source: 'Exp Eye Res. 210:108685.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34252414/',
+  },
+  {
+    authors: 'Yang T, Zhou Y, Ma B, et al.',
+    title: 'Elevated neuropeptides in dry eye disease and their clinical correlations.',
+    source: 'Cornea. 42(5):557–64.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37000701/',
+  },
+  {
+    authors: 'Evans D, Kenyon K, Ousler G, et al.',
+    title: 'Efficacy and safety of the melanocortin pan-agonist PL9643 in a phase 2 study of patients with dry eye disease.',
+    source: 'J Ocul Pharmacol Ther. 39(9):600–10.',
+    year: '2023',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/37677000/',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title: 'Palatin announces results of PL9643 MELODY-1 pivotal Phase 3 clinical trial in patients with dry eye disease (DED).',
+    source: 'Company announcement — co-primary endpoints, secondary endpoints and safety.',
+    year: '2024',
+    url: 'https://palatin.com/press_releases/palatin-announces-results-of-pl9643-melody-1-pivotal-phase-3-clinical-trial-in-patients-with-dry-eye-disease-ded/',
+  },
+  {
+    authors: 'Ophthalmology Times.',
+    title: "FDA confirms acceptability of Palatin's remaining Phase 3 pivotal clinical trials for PL9643 in DED.",
+    source: 'Independent coverage of the MELODY-2 and MELODY-3 design agreement.',
+    year: '2024',
+    url: 'https://www.ophthalmologytimes.com/view/fda-confirms-acceptability-of-palatin-s-remaining-phase-3-pivotal-clinical-trials-for-pl9643-in-ded',
+  },
+  {
+    authors: 'Palatin Technologies.',
+    title: 'Palatin reports second quarter fiscal year 2026 financial results and provides corporate update.',
+    source: 'Company update — PL9643 sublicensed to Altanispac Labs.',
+    year: '2026',
+    url: 'https://palatin.com/press_releases/palatin-reports-second-quarter-fiscal-year-2026-financial-results-and-provides-corporate-update/',
+  },
+  {
+    authors: 'Ng TF, Dawit K, Taylor AW.',
+    title: 'Melanocortin receptor agonists suppress experimental autoimmune uveitis.',
+    source: 'Exp Eye Res. 218:108986.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/35196505/',
+  },
+];
+---
+
+<PageLayout
+  title="Dry eye disease: when the ocular surface asks the melanocortin system for quiet"
+  seoTitle="Dry eye disease & melanocortin pharmacology"
+  kicker="The condition"
+  description="Dry eye is partly ocular-surface inflammation — and the eye already uses melanocortin signals to stay quiet. PL-9643 is the first serious attempt to drug that biology as a drop."
+  thread="A surface that cannot keep its own calm — and a drug asking the eye’s oldest quieting peptide to finish the job."
+  updated="2026"
+  about={[
+    { name: 'Dry eye syndrome', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Dry_eye_syndrome'] },
+    { name: 'Alpha-melanocyte-stimulating hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Alpha-melanocyte-stimulating_hormone'] },
+    { name: 'PL-9643', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Dry eye disease is a chronic ocular-surface disorder driven in large part by inflammation and an unstable tear film — not only by “not enough tears.”',
+      'The eye already uses melanocortin biology: α-MSH helps keep ocular tissues immunologically quiet and protects corneal epithelium in models of dry eye.',
+      'PL-9643 is an investigational melanocortin pan-agonist eye drop that applies that anti-inflammatory, pro-resolution arm directly to the surface of the eye.',
+      'Phase 3 MELODY-1 met its symptom co-primary (ocular pain) but missed its sign co-primary (conjunctival staining); MELODY-2 and MELODY-3 are designed to show both.',
+      'No melanocortin drug is approved for dry eye yet — the remaining trials, now with Altanispac Labs, still have to deliver.',
+    ]}
+  />
+
+  <p>
+    Most people meet dry eye as a lubrication problem. The melanocortin angle is that a large
+    part of it is also an <strong>inflammatory</strong> problem of the ocular surface — and the
+    eye already keeps itself quiet with the same peptides this site maps everywhere else.
+    That is why a melanocortin eye drop is not a stretch: it is asking a tissue to do more of
+    what it already knows how to do.<Cite n={1} />
+  </p>
+
+  <h2>An inflamed surface, not just a dry one</h2>
+  <p>
+    Dry eye disease sits at the intersection of tear-film instability, neurosensory
+    symptoms, and chronic low-grade inflammation of the cornea and conjunctiva. Patients feel
+    burning, grittiness, fluctuating vision and pain; clinicians measure staining, tear
+    break-up time and other signs that do not always move in lockstep with how the eye feels.
+    That signs-versus-symptoms split is exactly why dry-eye trials are hard — and why a drug
+    that only lubricates can leave the inflammatory driver untouched.<Cite n={2} />
+  </p>
+
+  <h2>Why the eye already speaks melanocortin</h2>
+  <p>
+    Inside the eye, <a href="/alpha-msh">α-MSH</a> is part of the quiet that maintains ocular
+    immune privilege. On the surface itself, α-MSH protects corneal epithelial cells in a rat
+    model of dry eye and in human corneal epithelium, and people with dry eye show altered
+    levels of α-MSH and related neuropeptides that track with clinical measures.<Cite n={1} /><Cite n={2} />
+    The broader ocular melanocortin story also includes uveitis models in which agonists
+    suppress autoimmune inflammation — evidence that several melanocortin receptors, not just
+    one, sit on the immune cells of the eye.<Cite n={7} />
+  </p>
+  <p>
+    So the mechanism bet is straightforward: activate melanocortin receptors on the ocular
+    surface to dampen inflammatory cytokines and nudge the tissue toward resolution, rather
+    than flooding it with lubricant or broadly suppressing immunity. That is the same
+    anti-inflammatory arm mapped on the <a href="/inflammation">inflammation</a> page, aimed
+    at a tissue that already uses it.
+  </p>
+
+  <h2>What the pipeline is doing</h2>
+  <p>
+    The clinical vehicle for this idea is <a href="/pl-9643">PL-9643</a> — an investigational
+    melanocortin pan-agonist eye drop (active at every melanocortin receptor except adrenal
+    MC2R) originally developed by Palatin. In Phase 2 it did not beat vehicle on primary
+    endpoints in the whole population, but improved several signs in the moderate-to-severe
+    subgroup and set up a pivotal programme.<Cite n={3} />
+  </p>
+  <p>
+    The pivotal <strong>MELODY-1</strong> trial enrolled 575 patients with moderate-to-severe
+    dry eye. It met its co-primary <em>symptom</em> endpoint of ocular pain — with improvement
+    emerging by week 2 and a favourable safety profile — but missed its co-primary{' '}
+    <em>sign</em> endpoint of conjunctival staining.<Cite n={4} /> Two further trials,{' '}
+    <strong>MELODY-2</strong> and <strong>MELODY-3</strong>, are designed to evaluate both
+    signs and symptoms; the FDA has accepted that design, and in early 2026 Palatin sublicensed
+    the programme to Altanispac Labs, which now owns the remaining Phase 3 work subject to
+    funding.<Cite n={5} /><Cite n={6} />
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Dry eye is a natural melanocortin indication because the eye already runs on this quieting
+    biology — but a positive symptom readout is not an approval, and the remaining trials still
+    have to show both what patients feel and what clinicians measure. For the drug itself see{' '}
+    <a href="/pl-9643">PL-9643</a>; for the sister gut programme that uses the same resolution
+    idea in a different organ, see <a href="/ulcerative-colitis">ulcerative colitis</a> and{' '}
+    <a href="/pl-8177">PL-8177</a>; for the dated snapshot across the field, see the{' '}
+    <a href="/pipeline">pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains a disease and an investigational approach. It does not provide dosing
+      or usage instructions and is not medical advice. PL-9643 is not approved. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="dry-eye-disease" />
+</PageLayout>

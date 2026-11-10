@@ -80,6 +80,13 @@ export const ogPages = [
   { slug: 'bivamelagon', eyebrow: 'EXPLAINER', title: 'Bivamelagon — oral MC4R agonist' },
   { slug: 'resomelagon', eyebrow: 'EXPLAINER', title: 'Resomelagon (AP1189)' },
   { slug: 'melanocortin-agonists', eyebrow: 'THERAPEUTICS · HUB', title: 'Melanocortin agonists' },
+  { slug: 'melanocortin-antagonists', eyebrow: 'THERAPEUTICS · HUB', title: 'Melanocortin antagonists' },
+
+  // Condition pages for pipeline indications.
+  { slug: 'dry-eye-disease', eyebrow: 'THE CONDITION', title: 'Dry eye disease' },
+  { slug: 'ulcerative-colitis', eyebrow: 'THE CONDITION', title: 'Ulcerative colitis' },
+  { slug: 'systemic-sclerosis', eyebrow: 'THE CONDITION', title: 'Systemic sclerosis' },
+  { slug: 'membranous-nephropathy', eyebrow: 'THE CONDITION', title: 'Membranous nephropathy' },
 
   // Essay.
   { slug: 'fearfully-and-wonderfully-made', eyebrow: 'ESSAY', title: 'Fearfully and Wonderfully Made' },

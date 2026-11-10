@@ -1,0 +1,257 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is a melanocortin antagonist?',
+    a: 'A melanocortin antagonist binds one or more of the five melanocortin receptors and blocks them so the natural activator (α-MSH or ACTH) cannot switch the receptor on. Some go further: AgRP is also an inverse agonist at MC4R, pushing the receptor below its resting activity. Antagonists are the mirror image of agonists such as setmelanotide or afamelanotide.',
+  },
+  {
+    q: 'Why block a melanocortin receptor instead of activating it?',
+    a: 'Because some diseases are driven by too much melanocortin tone, not too little. Over-active central MC4R signalling collapses appetite in cachexia; excess ACTH signalling at adrenal MC2R drives androgen overproduction in congenital adrenal hyperplasia and cortisol excess in ACTH-dependent Cushing’s. Blocking the receptor treats the direction of the problem.',
+  },
+  {
+    q: 'What are the body’s own melanocortin antagonists?',
+    a: 'Two peptides, made from their own genes rather than from POMC: agouti-related peptide (AgRP), which blocks MC3R and MC4R to drive hunger, and agouti signalling protein (ASIP), which blocks MC1R to switch pigment from dark eumelanin toward lighter pheomelanin.',
+  },
+  {
+    q: 'Are any melanocortin antagonists FDA-approved?',
+    a: 'Not yet as purpose-built melanocortin antagonists. The clinical antagonists — TCMCB07 for cachexia, atumelnant for CAH/Cushing’s, and the discontinued PF-07258669 — remain investigational. SHU9119 is a research tool, not a medicine.',
+  },
+  {
+    q: 'How is an antagonist different from an inverse agonist?',
+    a: 'A neutral antagonist occupies the receptor and blocks the agonist without changing the receptor’s baseline activity. An inverse agonist actively suppresses constitutive (agonist-independent) signalling. AgRP behaves as an inverse agonist at MC4R; PF-07258669 was designed as a neutral antagonist.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–49.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+  {
+    authors: 'Hruby VJ, Lu D, Sharma SD, et al.',
+    title:
+      'Cyclic lactam α-melanotropin analogues with bulky aromatic amino acids at position 7 show high antagonist potency and selectivity at specific melanocortin receptors.',
+    source: 'J Med Chem. 38(18):3454–61 — the SHU9119 design paper.',
+    year: '1995',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/7650689/',
+  },
+  {
+    authors: 'Ollmann MM, Wilson BD, Yang YK, et al.',
+    title: 'Antagonism of central melanocortin receptors in vitro and in vivo by agouti-related protein.',
+    source: 'Science. 278(5335):135–8.',
+    year: '1997',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/9311920/',
+  },
+  {
+    authors: 'Zhu X, et al.',
+    title:
+      'Melanocortin-4 receptor antagonist TCMCB07 ameliorates cancer- and chronic kidney disease–associated cachexia.',
+    source: 'J Clin Invest. 130(9):4921–34.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/32544094/',
+  },
+  {
+    authors: 'Garnsey MR, Smith AC, et al.',
+    title:
+      'Discovery of the potent and selective MC4R antagonist PF-07258669 for the potential treatment of appetite loss.',
+    source: 'J Med Chem. 66(5):3195–3211.',
+    year: '2023',
+    url: 'https://pubs.acs.org/doi/10.1021/acs.jmedchem.2c02012',
+  },
+  {
+    authors: 'Srirangalingam U, Bruera D, Ayala A, et al.',
+    title:
+      'Once-daily oral atumelnant (CRN04894) induces rapid, substantial, and sustained reductions of androstenedione and 17-hydroxyprogesterone in adults with classical congenital adrenal hyperplasia: interim results from a 12-week, phase 2, open-label study.',
+    source: 'J Endocr Soc. 9(Suppl 1):bvaf149.272 (OR07-06) — Phase 2 CAH readout for the first clinical MC2R antagonist.',
+    year: '2025',
+    url: 'https://academic.oup.com/jes/article/9/Supplement_1/bvaf149.272/8298490',
+  },
+];
+---
+
+<PageLayout
+  title="Melanocortin antagonists: the drugs and peptides that switch the system off"
+  seoTitle="Melanocortin antagonists: switching the system off"
+  kicker="The off-switch"
+  description="A melanocortin antagonist blocks a receptor so α-MSH or ACTH cannot activate it — the map of natural brakes, research tools, and clinical antagonists for cachexia and adrenal disease."
+  thread="Every agonist story has a mirror — the same receptors, held shut, where too much signal is the disease."
+  updated="2026"
+  about={[
+    { name: 'Receptor antagonist', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Receptor_antagonist'] },
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Agouti-related peptide', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Agouti-related_peptide'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'A melanocortin antagonist blocks one or more of MC1R–MC5R so the natural agonist cannot activate it — the opposite of setmelanotide, afamelanotide and the rest of the agonist field.',
+      'The body already makes two: AgRP (hunger — blocks MC3R/MC4R, and is an inverse agonist at MC4R) and ASIP/agouti (pigment — blocks MC1R).',
+      'SHU9119 is the classic research antagonist that proved blocking central MC4R drives eating; it is a lab tool, not a medicine.',
+      'Clinical antagonists aim at two problems of excess tone: MC4R blockers for cachexia (TCMCB07; the discontinued PF-07258669) and the MC2R blocker atumelnant for CAH and ACTH-dependent Cushing’s.',
+      'No purpose-built melanocortin antagonist is FDA-approved yet — this half of the ledger is earlier than the agonist half, and just as mechanistically clean.',
+    ]}
+  />
+
+  <p>
+    Nearly every headline melanocortin drug switches a receptor <em>on</em>. The quieter half
+    of the field switches one <em>off</em>. Antagonists matter because several diseases are
+    driven by too much melanocortin tone — appetite jammed shut in{' '}
+    <a href="/cachexia">cachexia</a>, adrenal androgens roaring under excess ACTH — and because
+    the body already runs on natural brakes. This is the map of them: the endogenous blockers,
+    the research tools that proved the biology, and the clinical antagonists now in
+    trials.<Cite n={1} />
+  </p>
+
+  <h2>What "antagonist" means here</h2>
+  <p>
+    An <strong>antagonist</strong> binds a receptor and blocks it, so the natural signal cannot
+    get through. A <em>neutral</em> antagonist occupies the site without changing the receptor’s
+    baseline activity; an <em>inverse</em> agonist goes further and suppresses constitutive
+    signalling. At melanocortin receptors the distinction is real: Pfizer’s{' '}
+    <a href="/pf-07258669">PF-07258669</a> was designed as a neutral MC4R antagonist, while the
+    body’s own <a href="/agrp">AgRP</a> behaves as an inverse agonist at MC4R.<Cite n={3} /><Cite n={5} />
+    The counterpart page — the drugs that turn the system on — is{' '}
+    <a href="/melanocortin-agonists">melanocortin agonists</a>.
+  </p>
+
+  <h2>The body makes its own brakes</h2>
+  <p>
+    Two peptides, from genes outside <a href="/pomc">POMC</a>, are the system’s natural
+    antagonists:
+  </p>
+  <ul>
+    <li>
+      <strong><a href="/agrp">AgRP</a></strong> — expressed in the arcuate nucleus; blocks
+      MC3R and MC4R and drives hunger. It is the endogenous reason an MC4R antagonist can
+      restore appetite.<Cite n={3} />
+    </li>
+    <li>
+      <strong><a href="/asip">ASIP</a> (agouti signalling protein)</strong> — the pigment
+      off-switch; blocks <a href="/receptors/mc1r">MC1R</a> and tips melanin production from
+      dark eumelanin toward lighter pheomelanin.
+    </li>
+  </ul>
+  <p>
+    Together they are the proof that antagonism is not a drug-company invention — it is how the
+    system is wired.
+  </p>
+
+  <h2>The classic research tool: SHU9119</h2>
+  <p>
+    <a href="/shu9119">SHU9119</a> is the reference melanocortin antagonist: a cyclic peptide
+    from the same Arizona chemistry that produced Melanotan II, flipped into a blocker by a
+    bulky D-Nal substitution at position 7.<Cite n={2} /> It antagonises MC3R and MC4R, is a
+    partial agonist at MC5R, and is an agonist at MC1R — which is why it can silence the
+    appetite receptor while leaving the pigment receptor on. Injected into the brain it makes
+    animals eat. That experiment is the foundation under every later MC4R-antagonist drug.
+  </p>
+
+  <h2>Clinical antagonists — two diseases of excess</h2>
+  <p>
+    The therapeutic antagonists cluster around two problems where the system is over-driven:
+  </p>
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-[var(--border)] text-left align-bottom">
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Antagonist</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Target</th>
+          <th class="py-2 pr-4 font-semibold text-[var(--text)]">Status</th>
+          <th class="py-2 font-semibold text-[var(--text)]">Developed for</th>
+        </tr>
+      </thead>
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">
+            <a href="/tcmcb07">TCMCB07 (mifomelatide)</a>
+          </td>
+          <td class="py-2 pr-4 text-[var(--text)]">MC3R/MC4R</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Phase 2</td>
+          <td class="py-2 text-[var(--text)]">Cancer cachexia / wasting</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">
+            <a href="/pf-07258669">PF-07258669</a>
+          </td>
+          <td class="py-2 pr-4 text-[var(--text)]">MC4R (neutral)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Discontinued (Phase 1)</td>
+          <td class="py-2 text-[var(--text)]">Appetite loss / malnutrition</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">
+            Atumelnant (CRN04894)
+          </td>
+          <td class="py-2 pr-4 text-[var(--text)]">MC2R</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Phase 3</td>
+          <td class="py-2 text-[var(--text)]">CAH · ACTH-dependent Cushing’s</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">
+            <a href="/shu9119">SHU9119</a>
+          </td>
+          <td class="py-2 pr-4 text-[var(--text)]">MC3R/MC4R (tool)</td>
+          <td class="py-2 pr-4 text-[var(--text)]">Research only</td>
+          <td class="py-2 text-[var(--text)]">Maps the appetite brake</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Cachexia — MC4R in reverse</h3>
+  <p>
+    In <a href="/cachexia">cachexia</a>, inflammatory signals over-activate central MC4R and jam
+    the appetite rheostat toward “stop eating and burn.” An MC4R antagonist lifts that brake.{' '}
+    <a href="/tcmcb07">TCMCB07</a> (mifomelatide) is the peptide in Phase 2 for cancer
+    cachexia — effectively a drug version of AgRP’s job.<Cite n={4} />{' '}
+    <a href="/pf-07258669">PF-07258669</a> was Pfizer’s oral small-molecule attempt at the same
+    target: potent, selective, structure-designed, efficacious in aged-rat cachexia, then
+    discontinued in Phase 1 for a business decision rather than a safety concern.<Cite n={5} />
+  </p>
+
+  <h3>Adrenal disease — the first MC2R blocker</h3>
+  <p>
+    Atumelnant (CRN04894) is the clearest clinical example of blocking a melanocortin receptor
+    as a therapeutic strategy. It is an oral <a href="/receptors/mc2r">MC2R</a> antagonist aimed
+    at congenital adrenal hyperplasia and ACTH-dependent Cushing’s — conditions driven by too
+    much ACTH signalling at the adrenal. In Phase 2 it cut adrenal androgen precursors
+    substantially and has moved into pivotal Phase 3 work.<Cite n={6} /> Until it earns its own
+    page, the mechanism lives on the MC2R receptor page and in the{' '}
+    <a href="/pipeline">pipeline</a> table. It is also the antagonist that balances the site’s
+    agonist-heavy framing: melanocortin medicine is not only “turn it on.”
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Antagonists are the smaller, earlier half of melanocortin pharmacology — and the half that
+    makes the system bidirectional. Natural brakes (AgRP, ASIP), a definitive research tool
+    (SHU9119), cachexia programmes that run MC4R backwards, and an MC2R blocker in Phase 3 for
+    adrenal disease: that is the off-switch ledger. Read it next to the{' '}
+    <a href="/melanocortin-agonists">agonists hub</a>, and track status on the{' '}
+    <a href="/pipeline">pipeline</a> and <a href="/therapeutics">therapeutics</a> pages.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page maps the melanocortin antagonist landscape. It does not provide dosing,
+      sourcing, or usage instructions, and it is not medical advice or an endorsement of
+      unapproved use. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="melanocortin-antagonists" />
+</PageLayout>

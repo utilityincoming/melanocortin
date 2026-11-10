@@ -1,0 +1,155 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is membranous nephropathy?',
+    a: 'Membranous nephropathy is an autoimmune kidney disease in which antibodies attack the filtration barrier of the glomerulus, so protein spills into the urine (often at nephrotic range). It is one of the classic causes of nephrotic syndrome in adults.',
+  },
+  {
+    q: 'Why do melanocortins show up in kidney disease?',
+    a: 'Long before modern MC1R/MC3R agonists, repository corticotropin (ACTH gel) was used in nephrotic syndromes, including membranous nephropathy. That history is part of why pro-resolution melanocortin agonists are being tested in the kidney — asking whether the benefit can be kept without ACTH’s adrenal and pigment baggage.',
+  },
+  {
+    q: 'Is there a melanocortin drug for membranous nephropathy?',
+    a: 'Resomelagon (AP1189), SynAct’s oral biased MC1R/MC3R agonist, has a Phase 2a programme in idiopathic membranous nephropathy alongside its lead work in rheumatoid arthritis. Nothing melanocortin-based is approved specifically for membranous nephropathy today.',
+  },
+  {
+    q: 'How is this different from giving ACTH?',
+    a: 'ACTH activates MC2R and raises cortisol, and it also hits other melanocortin receptors. Resomelagon is built to drive the MC1R/MC3R resolution arm (ERK1/2) while largely sparing cAMP-linked pigment signalling and ignoring MC2R — the same therapeutic idea without the stress-hormone lever.',
+  },
+];
+
+const references = [
+  {
+    authors: 'SynAct Pharma.',
+    title: 'Resomelagon (AP1189) — development program: mechanism and indications.',
+    source:
+      'Company program page — oral biased MC1R/MC3R agonist; RA, idiopathic membranous nephropathy, and host-directed antiviral programs.',
+    year: '2026',
+    url: 'https://www.synactpharma.com/en/development-program/resomelagon/',
+  },
+  {
+    authors: 'Montero-Melendez T, Gobbetti T, Cooray SN, Jonassen TE, Perretti M.',
+    title:
+      'Biased agonism as a novel strategy to harness the proresolving properties of melanocortin receptors without eliciting melanogenic effects.',
+    source: 'J Immunol. 194(7):3381–8 — AP1189 drives ERK1/2 without cAMP; no melanogenesis.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25716996/',
+  },
+  {
+    authors: 'Bomback AS, Canetta PA, Beck LH Jr, Radhakrishnan J, Appel GB.',
+    title: 'Treatment of resistant glomerular diseases with adrenocorticotropic hormone gel.',
+    source: 'Nephrol Dial Transplant. — clinical context for ACTH/corticotropin in membranous and related nephropathies.',
+    year: '2011',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/21292815/',
+  },
+  {
+    authors: 'Gong R.',
+    title: 'The renaissance of corticotropin therapy in proteinuric nephropathies.',
+    source: 'Nat Rev Nephrol. 8(2):122–8 — why ACTH re-entered glomerular disease, beyond cortisol.',
+    year: '2012',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/22143333/',
+  },
+];
+---
+
+<PageLayout
+  title="Membranous nephropathy: the kidney chapter of melanocortin resolution"
+  seoTitle="Membranous nephropathy & melanocortins"
+  kicker="The condition"
+  description="Membranous nephropathy dumps protein into urine when autoantibodies wreck the glomerular filter. Melanocortins enter via an old ACTH clue — and a biased agonist trying to keep the benefit without the baggage."
+  thread="A filtration barrier under autoimmune fire — and a resolution signal the kidney has answered before, now rebuilt without the stress hormone."
+  updated="2026"
+  about={[
+    { name: 'Membranous nephropathy', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Membranous_nephropathy'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'Resomelagon', type: 'Drug', sameAs: ['https://www.synactpharma.com/en/development-program/resomelagon/'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Membranous nephropathy is an autoimmune glomerular disease that causes heavy proteinuria and nephrotic syndrome when antibodies attack the kidney’s filtration barrier.',
+      'Repository corticotropin (ACTH gel) has a long, imperfect clinical history in proteinuric nephropathies — a clue that melanocortin receptors on immune and kidney cells matter beyond cortisol.',
+      'Resomelagon (AP1189) is an oral biased MC1R/MC3R agonist in Phase 2a for idiopathic membranous nephropathy, built to drive resolution signalling without MC2R/cortisol or pigment-linked cAMP.',
+      'The kidney programme is earlier and more speculative than resomelagon’s rheumatoid-arthritis lead; no melanocortin drug is approved for membranous nephropathy.',
+      'This page is the condition-side entry to a story the site already tells on /resomelagon and /therapeutics#corticotropin.',
+    ]}
+  />
+
+  <p>
+    Membranous nephropathy is where an old melanocortin drug and a new one meet in the kidney.
+    The disease is autoimmune injury to the glomerular filter; the historical tool was
+    repository <a href="/acth">corticotropin</a>; the modern attempt is a biased agonist that
+    tries to keep melanocortin’s resolving effects without ACTH’s adrenal cost.<Cite n={3} /><Cite n={1} />
+  </p>
+
+  <h2>What breaks</h2>
+  <p>
+    In membranous nephropathy, autoantibodies (most often against PLA2R on podocytes) deposit
+    along the glomerular basement membrane. The filtration barrier leaks protein — often enough
+    to cause nephrotic-range proteinuria, oedema and a higher risk of clotting and infection.
+    Treatment today runs through supportive care, immunosuppression and, increasingly,
+    B-cell–targeted biologics; it is effective for many patients and hard for others, which is
+    why alternative immune-modulating pathways stay interesting.
+  </p>
+
+  <h2>The ACTH clue</h2>
+  <p>
+    Long before anyone spoke of biased MC1R/MC3R agonists, clinicians used repository
+    corticotropin gel in difficult proteinuric diseases, including membranous nephropathy.
+    Some of that effect is cortisol, but a persistent theme in the literature is that ACTH’s
+    benefit in the kidney is not fully explained by steroids alone — melanocortin receptors on
+    immune cells and resident kidney cells are part of the proposed mechanism.<Cite n={3} /><Cite n={4} />
+    That is the historical bridge from the <a href="/therapeutics">therapeutics</a> corticotropin
+    story to today’s resolution pharmacology.
+  </p>
+
+  <h2>What the pipeline is doing</h2>
+  <p>
+    <a href="/resomelagon">Resomelagon</a> (AP1189) is SynAct’s oral, once-daily biased agonist
+    selective for <a href="/receptors/mc1r">MC1R</a> and <a href="/receptors/mc3r">MC3R</a> on
+    immune cells. In the defining laboratory work it drives the ERK1/2 arm tied to
+    pro-resolution macrophage behaviour while leaving the cAMP arm — and therefore melanogenesis
+    — largely untouched, and it ignores MC2R so it does not raise cortisol the way ACTH
+    does.<Cite n={2} /> SynAct has taken that molecule into a Phase 2a study in idiopathic
+    membranous nephropathy alongside its lead rheumatoid-arthritis programme and earlier
+    host-directed antiviral work.<Cite n={1} />
+  </p>
+  <p>
+    The honest framing matches the drug page: the kidney indication is earlier and more
+    speculative than the arthritis programme, which itself posted a mixed Phase 2b ADVANCE
+    readout in 2026. Membranous nephropathy is a test of whether “one resolution switch, many
+    inflamed organs” holds — not a claim that it already does.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Membranous nephropathy earns a page because it links three things the site already tracks:
+    corticotropin’s odd durability in glomerular disease, MC1R/MC3R resolution biology, and a
+    live biased-agonist programme. For the molecule see <a href="/resomelagon">resomelagon</a>;
+    for neighbouring organ bets see <a href="/ulcerative-colitis">ulcerative colitis</a>,{' '}
+    <a href="/systemic-sclerosis">systemic sclerosis</a>, and{' '}
+    <a href="/inflammation">the inflammation axis</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains a disease and an investigational approach. It does not provide dosing
+      or usage instructions and is not medical advice. Resomelagon is not approved. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="membranous-nephropathy" />
+</PageLayout>
