@@ -12,6 +12,12 @@ interface Props {
    */
   seoTitle?: string;
   description?: string;
+  /**
+   * Tight meta description (~150–160 chars) for the SERP snippet, OG and schema.
+   * The visible lede under the <h1> always uses the full `description`; this only
+   * trims what search engines and social cards show. Falls back to `description`.
+   */
+  seoDescription?: string;
   kicker?: string;
   status?: string;
   author?: string;
@@ -21,13 +27,13 @@ interface Props {
   about?: Array<{ name: string; type?: string; sameAs?: string[] }>;
 }
 
-const { title, seoTitle, description, kicker, status, author, updated, reviewed, thread, about } =
+const { title, seoTitle, description, seoDescription, kicker, status, author, updated, reviewed, thread, about } =
   Astro.props;
 ---
 
 <BaseLayout
   title={seoTitle ?? title}
-  description={description}
+  description={seoDescription ?? description}
   pageType="article"
   dateModified={updated ?? '2026'}
   about={about}

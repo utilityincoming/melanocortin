@@ -78,7 +78,12 @@ const jobs = [
   },
 ];
 
-for (const j of jobs) {
+// Optional slug filter: `node scripts/make-og.mjs epp vitiligo` renders only those
+// cards, so adding a page does not re-rasterise (and churn) every existing PNG.
+const only = process.argv.slice(2);
+const todo = only.length ? jobs.filter((j) => only.includes(j.name)) : jobs;
+
+for (const j of todo) {
   await sharp(Buffer.from(j.svg)).png().toFile(`public/og/${j.name}.png`);
 }
-console.log(`OG cards written: ${jobs.length} → public/og/`);
+console.log(`OG cards written: ${todo.length} → public/og/`);
