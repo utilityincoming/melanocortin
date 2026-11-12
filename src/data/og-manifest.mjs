@@ -90,4 +90,14 @@ export const ogPages = [
 
   // Essay.
   { slug: 'fearfully-and-wonderfully-made', eyebrow: 'ESSAY', title: 'Fearfully and Wonderfully Made' },
+
+  // Condition, concept & drug pages that were falling back to default.png.
+  { slug: 'epp', eyebrow: 'THE CONDITION', title: 'Erythropoietic protoporphyria (EPP)' },
+  { slug: 'vitiligo', eyebrow: 'THE CONDITION', title: 'Vitiligo & the MC1R repigment bet' },
+  { slug: 'cachexia', eyebrow: 'THE CONDITION', title: 'Cachexia — MC4R in reverse' },
+  { slug: 'sexual-function', eyebrow: 'DESIRE · MC4R', title: 'Melanocortins & sexual function' },
+  { slug: 'addisons-disease', eyebrow: 'THE CONDITION', title: "Addison's — why the skin turns bronze" },
+  { slug: 'bardet-biedl', eyebrow: 'THE CONDITION', title: 'Bardet–Biedl syndrome & MC4R' },
+  { slug: 'pomc-deficiency', eyebrow: 'THE CONDITION', title: 'POMC & LEPR deficiency' },
+  { slug: 'why-melanocortins', eyebrow: 'WHY THIS SITE EXISTS', title: 'Why melanocortins' },
 ];

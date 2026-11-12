@@ -39,7 +39,7 @@ const title = `${l.name}: melanocortin receptor selectivity`;
 const description =
   l.verdict === 'single'
     ? `${l.name} is strongly ${l.primary}-selective among the melanocortin receptors. Its binding fingerprint across MC1R–MC5R, from cited affinity data.`
-    : `${l.name} ${verb} ${l.primary} most tightly of MC1R–MC5R, with a ${l.windowDisplay} selectivity window (${l.verdictLabel.toLowerCase()}). Its full binding fingerprint across the five melanocortin receptors, from cited affinity data.`;
+    : `${l.name} ${verb} ${l.primary} most tightly of MC1R–MC5R (${l.windowDisplay} window, ${l.verdictLabel.toLowerCase()}). Its binding fingerprint across all five receptors, from cited data.`;
 
 const related = [
   l.href ? { href: l.href, label: `${l.name} — the full page` } : null,
