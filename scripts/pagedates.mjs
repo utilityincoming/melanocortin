@@ -39,7 +39,31 @@ for (const abs of files) {
   route = route.replace(/(^|\/)index$/, '');
   const key = route ? `/${route}` : '/';
   const date = gitDate(rel, { trustRoot: true });
-  if (date) dates[key] = date;
+  if (date) {
+    dates[key] = date;
+    // Concrete sitemap paths, not the bracket filename. A shallow Vercel
+    // clone cannot date [ligand].astro, and lastmod() looks the built URL
+    // up in this manifest. Without these keys every selectivity page falls
+    // through to the 2026-01-01 fallback.
+    for (const concrete of expandDynamic(key)) dates[concrete] = date;
+  }
+}
+
+/** Param values for the dynamic routes this site actually builds. */
+function expandDynamic(key) {
+  if (key === '/selectivity/[ligand]') {
+    const src = readFileSync(join(ROOT, 'src/data/binding.ts'), 'utf8');
+    return [...src.matchAll(/^\s+id: '([^']+)',/gm)].map((m) => `/selectivity/${m[1]}`);
+  }
+  if (key === '/selectivity/receptor/[rid]') {
+    const src = readFileSync(join(ROOT, 'src/data/ligands.ts'), 'utf8');
+    const block = src.match(/export const receptorIds[\s\S]*?\[([^\]]+)\]/);
+    if (!block) return [];
+    return [...block[1].matchAll(/'([^']+)'/g)].map(
+      (m) => `/selectivity/receptor/${m[1].toLowerCase()}`,
+    );
+  }
+  return [];
 }
 
 const sorted = Object.fromEntries(Object.entries(dates).sort(([a], [b]) => a.localeCompare(b)));

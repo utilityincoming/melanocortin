@@ -23,6 +23,10 @@ const faqs = [
     q: 'Is AgRP related to the agouti coat-colour protein?',
     a: 'They are cousins, not the same molecule. AgRP (agouti-related peptide) works in the brain on appetite receptors MC3R and MC4R. The original agouti protein (ASIP) works in the skin on the pigment receptor MC1R. Both are natural melanocortin blockers, which is why they share a name and a mechanism but not a job.',
   },
+  {
+    q: 'What is an AgRP antibody?',
+    a: 'A research reagent that binds agouti-related peptide so the peptide can be seen in tissue. It is not a medicine, and it is not an antibody against the MC4R receptor. A published stain found AgRP in NPY terminals of the paraventricular hypothalamus, marking them as coming from the arcuate nucleus. A stain is not, by itself, proof the reagent is specific, and this site does not compare or recommend clones.',
+  },
 ];
 
 const references = [
@@ -55,15 +59,23 @@ const references = [
     year: '2024',
     url: 'https://www.sciencedirect.com/topics/neuroscience/agouti-related-peptide',
   },
+  {
+    authors: 'Broberger C, Visser TJ, Kuhar MJ, Hökfelt T.',
+    title:
+      'Neuropeptide Y innervation and neuropeptide-Y-Y1-receptor-expressing neurons in the paraventricular hypothalamic nucleus of the mouse.',
+    source: 'Neuroendocrinology. 70(5):295–305.',
+    year: '1999',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/10567855/',
+  },
 ];
 ---
 
 <PageLayout
-  title="AgRP (agouti-related peptide): the hunger signal that fights α-MSH"
-  seoTitle="AgRP (agouti-related peptide): the hunger signal"
+  title="AgRP antibody and agouti-related peptide: the hunger signal that fights α-MSH"
+  seoTitle="AgRP antibody and agouti-related peptide: the hunger signal"
   kicker="The hunger signal"
   description="AgRP is the body's built-in hunger peptide — the direct opponent of α-MSH at the appetite receptors. As both an antagonist and an inverse agonist at MC4R, it doesn't just block the 'full' signal, it actively drives eating."
-  seoDescription="AgRP is the body's built-in hunger peptide. As an antagonist and inverse agonist at MC4R it doesn't just block the 'full' signal — it actively drives eating."
+  seoDescription="AgRP antibody: a research reagent that binds agouti-related peptide so the hunger peptide can be seen in tissue. Not a drug, and not an MC4R antibody."
   thread="The system keeps its own brakes — AgRP is the hand that pushes back, the reason appetite is a balance and not a switch."
   updated="2026"
   about={[
@@ -78,6 +90,7 @@ const references = [
       'At MC4R it is both an antagonist and an inverse agonist — it silences the fullness signal and pushes the receptor below its resting activity, a uniquely powerful way to drive hunger.',
       'The push–pull between AgRP neurons and POMC (α-MSH) neurons in the arcuate nucleus is the core appetite thermostat of the melanocortin system.',
       'It is a cousin of the skin’s agouti protein (ASIP): same trick — blocking a melanocortin receptor — but AgRP works on appetite, ASIP on pigment.',
+      'An AgRP antibody is a research reagent for seeing that peptide in tissue — not a drug, and not an antibody against MC4R.',
     ]}
   />
 
@@ -87,6 +100,21 @@ const references = [
     Agouti-related peptide is the body's built-in orexigenic, or appetite-stimulating,
     peptide, and understanding it is the other half of understanding how this system
     controls body weight.<Cite n={1} />
+  </p>
+
+  <h2>What an AgRP antibody is</h2>
+  <p>
+    An AgRP antibody is a research reagent that binds agouti-related peptide so the peptide
+    can be seen in tissue. It is not a drug, and it is not an antibody against{' '}
+    <a href="/receptors/mc4r">MC4R</a>. In the mouse paraventricular hypothalamus, NPY-immunoreactive
+    terminals co-stained for AgRP, which marked them as coming from the arcuate nucleus — a map of
+    the hunger circuit, not a treatment.<Cite n={5} />
+  </p>
+  <p>
+    What the stain shows is only as trustworthy as the reagent. AgRP is a secreted peptide, not
+    one of the five receptors, so this is a different problem from a{' '}
+    <a href="/receptor-antibodies">melanocortin-receptor antibody</a>. It is still a reagent, not
+    a fact. This page does not compare vendors or recommend a clone.
   </p>
 
   <h2>A dedicated hunger circuit</h2>

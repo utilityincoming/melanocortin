@@ -484,7 +484,7 @@ export const terms: Term[] = [
   },
   {
     term: 'Bivamelagon',
-    def: 'LB54640. An oral small-molecule MC4R agonist from Rhythm, in Phase 2 for acquired hypothalamic obesity with Phase 3 planned; an oral alternative to setmelanotide.',
+    def: 'LB54640. An oral small-molecule MC4R agonist from Rhythm. Phase 2 cut BMI 16.6% at one year on 600 mg; a pivotal Phase 3 in acquired hypothalamic obesity is expected by year-end 2026.',
     href: '/bivamelagon',
   },
   {
