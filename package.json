@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "sharp": "^0.35.2"
+  },
+  "overrides": {
+    "path-to-regexp": "6.3.0"
   }
 }
