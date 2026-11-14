@@ -116,7 +116,7 @@ export const pipeline: PipelineEntry[] = [
     sponsor: 'Rhythm',
     stage: 2,
     status: 'active',
-    note: 'Oral small-molecule alternative to setmelanotide; Phase 2 SIGNAL cut BMI 9.3% at the top dose (2025); pivotal Phase 3 in acquired hypothalamic obesity planned for 2026',
+    note: 'Oral small-molecule alternative to setmelanotide; Phase 2 SIGNAL cut BMI 9.3% at 14 weeks (2025) and 16.6% at one year on continued 600 mg; pivotal Phase 3 in acquired hypothalamic obesity expected by year-end 2026',
     href: '/bivamelagon',
   },
   {
