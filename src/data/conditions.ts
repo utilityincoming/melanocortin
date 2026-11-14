@@ -189,8 +189,8 @@ export const CONDITIONS: Condition[] = [
     receptor: 'MC1R / MC3R',
     approach: 'Resomelagon, an oral biased agonist aimed at resolving inflammation',
     status: 'Phase 2b missed its primary endpoint in 2026, with a subgroup signal.',
-    href: '/resomelagon',
-    dedicated: false,
+    href: '/rheumatoid-arthritis',
+    dedicated: true,
   },
   {
     name: 'Systemic sclerosis',

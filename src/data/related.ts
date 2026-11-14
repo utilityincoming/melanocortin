@@ -275,6 +275,11 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'Cushing’s disease',
     blurb: 'A pituitary tumour that keeps sending ACTH — too much melanocortin signal at the adrenal, and sometimes in the skin.',
   },
+  'rheumatoid-arthritis': {
+    href: '/rheumatoid-arthritis',
+    title: 'Rheumatoid arthritis',
+    blurb: 'Inflammation that never gets the signal to stop — and the oral MC1R/MC3R agonist built to send it.',
+  },
   'addisons-disease': {
     href: '/addisons-disease',
     title: 'Addison’s disease & skin bronzing',
@@ -333,6 +338,7 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
+  'rheumatoid-arthritis': ['resomelagon', 'inflammation', 'ulcerative-colitis', 'membranous-nephropathy', 'receptors/mc1r', 'receptors/mc3r', 'conditions'],
   'congenital-adrenal-hyperplasia': ['cushings-disease', 'addisons-disease', 'acth', 'receptors/mc2r', 'melanocortin-antagonists', 'conditions'],
   'cushings-disease': ['congenital-adrenal-hyperplasia', 'addisons-disease', 'acth', 'receptors/mc2r', 'melanocortin-antagonists', 'conditions'],
   conditions: ['pipeline', 'therapeutics', 'melanocortin-agonists', 'melanocortin-antagonists', 'inflammation', 'receptors'],
@@ -363,7 +369,7 @@ export const RELATED: Record<string, string[]> = {
   epp: ['afamelanotide', 'dersimelagon', 'receptors/mc1r', 'alpha-msh', 'mc1r-selectivity', 'therapeutics'],
   'pl-8177': ['ulcerative-colitis', 'alpha-msh', 'receptors/mc1r', 'inflammation', 'resomelagon', 'pl-9643', 'therapeutics'],
   'pl-9643': ['dry-eye-disease', 'alpha-msh', 'pl-8177', 'inflammation', 'resomelagon', 'therapeutics', 'pipeline'],
-  resomelagon: ['membranous-nephropathy', 'inflammation', 'receptors/mc3r', 'receptors/mc1r', 'pl-8177', 'dersimelagon', 'pipeline'],
+  resomelagon: ['membranous-nephropathy', 'inflammation', 'receptors/mc3r', 'receptors/mc1r', 'pl-8177', 'dersimelagon', 'pipeline', 'rheumatoid-arthritis'],
   tcmcb07: ['cachexia', 'melanocortin-antagonists', 'agrp', 'receptors/mc4r', 'shu9119', 'pf-07258669', 'pipeline'],
   cachexia: ['tcmcb07', 'melanocortin-antagonists', 'pf-07258669', 'shu9119', 'receptors/mc4r', 'setmelanotide', 'agrp'],
   shu9119: ['melanocortin-antagonists', 'receptors/mc4r', 'agrp', 'tcmcb07', 'pf-07258669', 'melanotan', 'binding-matrix'],
@@ -371,7 +377,7 @@ export const RELATED: Record<string, string[]> = {
   'dry-eye-disease': ['pl-9643', 'inflammation', 'alpha-msh', 'ulcerative-colitis', 'pl-8177', 'pipeline'],
   'ulcerative-colitis': ['pl-8177', 'inflammation', 'dry-eye-disease', 'resomelagon', 'membranous-nephropathy', 'oral-peptides'],
   'systemic-sclerosis': ['dersimelagon', 'inflammation', 'receptors/mc1r', 'resomelagon', 'membranous-nephropathy', 'pipeline'],
-  'membranous-nephropathy': ['resomelagon', 'acth', 'inflammation', 'systemic-sclerosis', 'ulcerative-colitis', 'therapeutics'],
+  'membranous-nephropathy': ['resomelagon', 'acth', 'inflammation', 'systemic-sclerosis', 'ulcerative-colitis', 'therapeutics', 'rheumatoid-arthritis'],
   'melanocortin-antagonists': ['melanocortin-agonists', 'shu9119', 'tcmcb07', 'pf-07258669', 'agrp', 'asip', 'cachexia', 'receptors/mc2r', 'conditions', 'congenital-adrenal-hyperplasia', 'cushings-disease'],
   melanotan: ['topical-tanning', 'pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'shu9119', 'receptors/mc1r'],
   'topical-tanning': ['melanotan', 'receptors/mc1r', 'afamelanotide', 'mc1r-selectivity', 'effects', 'alpha-msh'],
@@ -383,7 +389,7 @@ export const RELATED: Record<string, string[]> = {
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'sexual-function', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'pomc-deficiency', 'bardet-biedl', 'glp1-appetite', 'receptors/mc4r', 'genetics'],
   genetics: ['receptors/mc1r', 'receptors/mc4r', 'pomc-deficiency', 'setmelanotide', 'hypothalamic-obesity', 'fearfully-and-wonderfully-made'],
-  inflammation: ['alpha-msh', 'receptors/mc3r', 'resomelagon', 'pl-8177', 'pl-9643', 'dersimelagon', 'dry-eye-disease', 'ulcerative-colitis', 'systemic-sclerosis', 'conditions'],
+  inflammation: ['alpha-msh', 'receptors/mc3r', 'resomelagon', 'pl-8177', 'pl-9643', 'dersimelagon', 'dry-eye-disease', 'ulcerative-colitis', 'systemic-sclerosis', 'conditions', 'rheumatoid-arthritis'],
   'mc1r-pain': ['receptors/mc1r', 'receptors/mc4r', 'alpha-msh', 'effects'],
   bivamelagon: ['setmelanotide', 'receptors/mc4r', 'hypothalamic-obesity', 'oral-peptides', 'melanocortin-agonists'],
   'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],

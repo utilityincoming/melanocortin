@@ -82,6 +82,7 @@ export const SITE_INDEX: IndexSection[] = [
       'ulcerative-colitis',
       'systemic-sclerosis',
       'membranous-nephropathy',
+      'rheumatoid-arthritis',
       'glp1-appetite',
       'sexual-function',
       'mc1r-pain',

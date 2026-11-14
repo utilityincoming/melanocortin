@@ -101,6 +101,7 @@ export const ogPages = [
   { slug: 'pomc-deficiency', eyebrow: 'THE CONDITION', title: 'POMC & LEPR deficiency' },
   { slug: 'congenital-adrenal-hyperplasia', eyebrow: 'THE CONDITION', title: 'Congenital adrenal hyperplasia' },
   { slug: 'cushings-disease', eyebrow: 'THE CONDITION', title: "Cushing's disease & the ACTH signal" },
+  { slug: 'rheumatoid-arthritis', eyebrow: 'THE CONDITION', title: 'Rheumatoid arthritis & resolution' },
   { slug: 'conditions', eyebrow: 'THE CONDITIONS MAP', title: 'What melanocortins treat — by evidence' },
   { slug: 'why-melanocortins', eyebrow: 'WHY THIS SITE EXISTS', title: 'Why melanocortins' },
 ];
