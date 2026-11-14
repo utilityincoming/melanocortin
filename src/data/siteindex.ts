@@ -76,6 +76,8 @@ export const SITE_INDEX: IndexSection[] = [
       'epp',
       'vitiligo',
       'addisons-disease',
+      'congenital-adrenal-hyperplasia',
+      'cushings-disease',
       'dry-eye-disease',
       'ulcerative-colitis',
       'systemic-sclerosis',

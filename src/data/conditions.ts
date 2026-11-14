@@ -142,8 +142,8 @@ export const CONDITIONS: Condition[] = [
     receptor: 'MC2R',
     approach: 'An oral antagonist blocks ACTH at the adrenal',
     status: 'Pivotal adult Phase 3 enrolling; no results yet.',
-    href: '/melanocortin-antagonists',
-    dedicated: false,
+    href: '/congenital-adrenal-hyperplasia',
+    dedicated: true,
   },
   {
     name: 'Dry eye disease',
@@ -162,8 +162,8 @@ export const CONDITIONS: Condition[] = [
     receptor: 'MC2R',
     approach: 'The same adrenal antagonist, paired with cortisol replacement',
     status: 'Small early-phase cohorts only.',
-    href: '/melanocortin-antagonists',
-    dedicated: false,
+    href: '/cushings-disease',
+    dedicated: true,
   },
   {
     name: 'Cachexia',

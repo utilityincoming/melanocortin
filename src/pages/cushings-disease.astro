@@ -1,0 +1,207 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is the difference between Cushing’s disease and Cushing’s syndrome?',
+    a: 'Cushing’s syndrome is the general state of prolonged cortisol excess, whatever the cause. Cushing’s disease is one specific cause: a pituitary tumour that makes too much ACTH. It is the most common form of endogenous Cushing’s syndrome.',
+  },
+  {
+    q: 'Why is Cushing’s disease a melanocortin condition?',
+    a: 'Because the tumour is made of the pituitary cells that cut ACTH out of POMC, and ACTH is a melanocortin that acts on the adrenal through MC2R. The excess cortisol is the adrenal’s faithful response to an excess melanocortin signal.',
+  },
+  {
+    q: 'What does "ACTH-dependent" mean?',
+    a: 'It means the cortisol excess is being driven by ACTH, either from a pituitary tumour (Cushing’s disease) or from a tumour elsewhere in the body (ectopic ACTH syndrome). In ACTH-independent Cushing’s syndrome the adrenal overproduces cortisol on its own and ACTH is low.',
+  },
+  {
+    q: 'Can Cushing’s cause skin darkening?',
+    a: 'Sometimes. ACTH carries the α-MSH sequence, so very high levels can activate the pigment receptor MC1R. Darkening is most associated with ectopic ACTH syndrome, where ACTH can run especially high, and with Nelson’s syndrome, in which a pituitary tumour grows after the adrenals have been removed.',
+  },
+  {
+    q: 'Is there a melanocortin drug for Cushing’s disease?',
+    a: 'Not an approved one. An investigational MC2R antagonist that blocks ACTH at the adrenal has been tested in small, short, open-label cohorts. The first-line treatment for Cushing’s disease is surgery to remove the pituitary tumour, and existing medicines act at other points in the pathway.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Fleseriu M, Auchus R, Bancos I, Ben-Shlomo A, et al.',
+    title: 'Consensus on diagnosis and management of Cushing’s disease: a guideline update.',
+    source: 'Lancet Diabetes Endocrinol. 9(12):847–875.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/34687601/',
+  },
+  {
+    authors: 'Lacroix A, Feelders RA, Stratakis CA, Nieman LK.',
+    title: 'Cushing’s syndrome.',
+    source: 'Lancet. 386(9996):913–927.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/26004339/',
+  },
+  {
+    authors: 'Isidori AM, Kaltsas GA, Pozza C, et al.',
+    title:
+      'The ectopic adrenocorticotropin syndrome: clinical features, diagnosis, management, and long-term follow-up.',
+    source: 'J Clin Endocrinol Metab. 91(2):371–377.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/16303835/',
+  },
+  {
+    authors: 'Reincke M, Albani A, Assie G, et al.',
+    title:
+      'Corticotroph tumor progression after bilateral adrenalectomy (Nelson’s syndrome): systematic review and expert consensus recommendations.',
+    source: 'Eur J Endocrinol. 184(3):P1–P16.',
+    year: '2021',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33444221/',
+  },
+  {
+    authors: 'Crinetics Pharmaceuticals.',
+    title:
+      'Crinetics announces positive initial findings at ENDO 2024 for atumelnant in two ongoing, open-label studies for the treatment of congenital adrenal hyperplasia (CAH) and ACTH-dependent Cushing’s syndrome (ADCS).',
+    source: 'Company press release — an interested-party source for the first small cohort.',
+    year: '2024',
+    url: 'https://www.biospace.com/crinetics-announces-positive-initial-findings-at-endo-2024-for-atumelnant-in-two-ongoing-open-label-studies-for-the-treatment-of-congenital-adrenal-hyperplasia-cah-and-acth-dependent-cushing-s-syndrome-adcs',
+  },
+];
+---
+
+<PageLayout
+  title="Cushing's disease: a pituitary tumour that will not stop sending ACTH"
+  seoTitle="Cushing's disease: ACTH excess & the melanocortin axis"
+  kicker="The condition"
+  description="Cushing's disease is cortisol excess driven from the pituitary: a small tumour of the cells that cut ACTH out of POMC, sending a melanocortin signal the adrenal faithfully obeys. It is the clearest example of too much melanocortin tone at MC2R — and of why the same family that tans skin and sets appetite also runs the stress axis."
+  seoDescription="Cushing's disease is a pituitary tumour overproducing ACTH — a melanocortin that drives cortisol excess through adrenal MC2R. The biology, plainly."
+  thread="The adrenal is doing exactly what it is told. The fault is upstream, in the cells that make the message."
+  updated="2026"
+  about={[
+    { name: "Cushing's disease", type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Cushing%27s_disease'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'ACTH receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/ACTH_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Cushing’s syndrome is prolonged cortisol excess from any cause; Cushing’s disease is the specific case of a pituitary tumour overproducing ACTH, and it is the most common endogenous form.',
+      'The tumour arises from corticotrophs, the pituitary cells that cut ACTH out of POMC — so this is a disease of too much melanocortin signal.',
+      'ACTH acts on MC2R at the adrenal cortex, which answers with cortisol. The adrenal is healthy; it is obeying a signal that is only partly restrained by feedback.',
+      'Because ACTH carries the α-MSH sequence, very high levels can also darken skin through MC1R — most associated with ectopic ACTH syndrome and Nelson’s syndrome.',
+      'First-line treatment is surgery on the pituitary tumour. An MC2R antagonist that would block ACTH at the adrenal is investigational, with only small early cohorts so far.',
+    ]}
+  />
+
+  <p>
+    The stress axis is a relay with three stations: hypothalamus, pituitary, adrenal. The
+    middle station speaks melanocortin. Pituitary cells called corticotrophs make the
+    precursor <a href="/pomc">POMC</a>, cut <a href="/acth">ACTH</a> out of it, and release it
+    into the blood, where it tells the adrenal cortex to make cortisol.
+    <strong>Cushing's disease</strong> is what happens when a small tumour of those cells
+    keeps sending that message, mostly regardless of whether anyone needs it.<Cite n={2} />
+  </p>
+
+  <h2>Syndrome versus disease</h2>
+  <p>
+    The naming trips everyone up, so it is worth getting straight. <em>Cushing's syndrome</em>
+    is the clinical state of long-term cortisol excess, whatever is causing it, including
+    glucocorticoid medication. <em>Cushing's disease</em> is one cause of it: a pituitary
+    tumour secreting ACTH. Among the endogenous causes it is the most common, accounting for
+    the majority of cases.<Cite n={2} /> The rest divide between tumours elsewhere in the body
+    that make ACTH — ectopic ACTH syndrome — and adrenal tumours that make cortisol with no
+    ACTH involved at all.
+  </p>
+  <p>
+    That gives the split clinicians actually work with. If ACTH is driving the cortisol, the
+    condition is <em>ACTH-dependent</em>, and the question becomes where the ACTH is coming
+    from. If ACTH is suppressed, the adrenal is acting alone. Only the first group is a
+    melanocortin story.
+  </p>
+
+  <h2>A healthy gland following a bad signal</h2>
+  <p>
+    ACTH is a melanocortin, a sibling of the peptides that tan skin and set appetite. It is
+    the only one that can activate <a href="/receptors/mc2r">MC2R</a>, the receptor on the
+    adrenal cortex, because that receptor demands a stretch of the ACTH chain the shorter MSH
+    peptides do not have. When ACTH binds, the adrenal makes cortisol, and under sustained
+    stimulation it also grows.<Cite n={2} />
+  </p>
+  <p>
+    Normally cortisol feeds back to the pituitary and the signal eases. The tumour in
+    Cushing's disease is characteristically less sensitive to that feedback than normal
+    corticotrophs, so ACTH keeps coming at cortisol levels that should have shut it
+    off.<Cite n={2} /> The result is the reverse of{' '}
+    <a href="/addisons-disease">Addison's disease</a> and the cousin of{' '}
+    <a href="/congenital-adrenal-hyperplasia">congenital adrenal hyperplasia</a>: in all
+    three, ACTH is high, but here the adrenal can do everything it is asked, and does.
+  </p>
+
+  <h2>The pigment clue</h2>
+  <p>
+    The first thirteen residues of ACTH are <a href="/alpha-msh">α-MSH</a>. So wherever ACTH
+    runs high enough, the pigment receptor <a href="/receptors/mc1r">MC1R</a> can pick it up,
+    and skin darkens. In ordinary Cushing's disease ACTH is often only modestly raised and
+    darkening is not a leading feature. It is more characteristic of ectopic ACTH syndrome,
+    where a non-pituitary tumour can produce ACTH in much larger amounts.<Cite n={3} />
+  </p>
+  <p>
+    The most striking example is <strong>Nelson's syndrome</strong>. If both adrenals are
+    removed to control cortisol, the pituitary tumour loses what feedback it still had and can
+    progress, with ACTH climbing and the skin darkening as it does.<Cite n={4} /> It is the
+    same physiology as Addison's bronzing, arrived at by surgery: no cortisol brake, a great
+    deal of ACTH, and a skin receptor that cannot tell ACTH from the tanning signal.
+  </p>
+
+  <h2>How it is treated, and where the receptor fits</h2>
+  <p>
+    The recommended first-line treatment for Cushing's disease is surgery to remove the
+    pituitary tumour.<Cite n={1} /> When surgery does not cure the condition or cannot be
+    done, the options include further surgery, radiotherapy and medical therapy, and the
+    existing medicines act at three different points: on the pituitary tumour, on the
+    adrenal's steroid-making enzymes, or on the glucocorticoid receptor in the body's
+    tissues.<Cite n={1} /> None of them blocks the receptor that sits between the signal and
+    the response.
+  </p>
+  <p>
+    That gap is what an MC2R antagonist is meant to fill. Block ACTH at the adrenal and, in
+    principle, it no longer matters whether the ACTH comes from the pituitary or from an
+    ectopic tumour. The idea has reached people only in small, short, open-label cohorts run
+    with the US National Institutes of Health, in which an investigational oral antagonist
+    lowered cortisol within days and participants then needed cortisol
+    replacement.<Cite n={5} /> That is an early pharmacology result from a handful of
+    patients, reported by the sponsor. It is not evidence of long-term benefit, and it leaves
+    open the questions a longer trial has to answer, including what a pituitary tumour does
+    when its target organ stops responding. The wider class is covered on the{' '}
+    <a href="/melanocortin-antagonists">antagonists hub</a>.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Cushing's disease is not treated through the melanocortin system today. It belongs on this
+    site because it is the cleanest demonstration that ACTH is a working melanocortin: one
+    peptide from POMC, one receptor at the adrenal, and a whole-body illness when the peptide
+    is overproduced. The pigment sign, where it appears, is the family resemblance showing
+    through. For the hormone, see <a href="/acth">ACTH</a>; for the receptor,{' '}
+    <a href="/receptors/mc2r">MC2R</a>; and for how this compares with every other condition
+    the system touches, the <a href="/conditions">conditions map</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of Cushing's disease. It is not medical advice and gives
+      no diagnostic, dosing or treatment instructions. Cortisol excess is a serious condition
+      whose diagnosis and care belong with an endocrinologist. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="cushings-disease" />
+</PageLayout>

@@ -265,6 +265,16 @@ export const PAGES: Record<string, PageMeta> = {
     title: 'Bardet–Biedl syndrome',
     blurb: 'A ciliopathy whose obesity is a melanocortin disease by a back door — the appetite receptor stranded short of the cilium it works on.',
   },
+  'congenital-adrenal-hyperplasia': {
+    href: '/congenital-adrenal-hyperplasia',
+    title: 'Congenital adrenal hyperplasia',
+    blurb: 'A missing enzyme leaves ACTH without a brake — the melanocortin signal that drives the adrenal into androgen excess.',
+  },
+  'cushings-disease': {
+    href: '/cushings-disease',
+    title: 'Cushing’s disease',
+    blurb: 'A pituitary tumour that keeps sending ACTH — too much melanocortin signal at the adrenal, and sometimes in the skin.',
+  },
   'addisons-disease': {
     href: '/addisons-disease',
     title: 'Addison’s disease & skin bronzing',
@@ -323,6 +333,8 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
+  'congenital-adrenal-hyperplasia': ['cushings-disease', 'addisons-disease', 'acth', 'receptors/mc2r', 'melanocortin-antagonists', 'conditions'],
+  'cushings-disease': ['congenital-adrenal-hyperplasia', 'addisons-disease', 'acth', 'receptors/mc2r', 'melanocortin-antagonists', 'conditions'],
   conditions: ['pipeline', 'therapeutics', 'melanocortin-agonists', 'melanocortin-antagonists', 'inflammation', 'receptors'],
   system: ['pomc', 'receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation'],
   pomc: ['system', 'alpha-msh', 'acth', 'beta-msh', 'gamma-msh', 'receptors'],
@@ -334,13 +346,13 @@ export const RELATED: Record<string, string[]> = {
   'receptor-antibodies': ['mc1r-selectivity', 'binding-matrix', 'receptors', 'structures', 'selectivity', 'about'],
   structures: ['receptors', 'receptors/mc4r', 'binding-matrix', 'alpha-msh', 'receptors/mc1r', 'agrp'],
   'receptors/mc1r': ['afamelanotide', 'epp', 'vitiligo', 'addisons-disease', 'mc1r-pain', 'alpha-msh', 'genetics', 'topical-tanning'],
-  'receptors/mc2r': ['acth', 'addisons-disease', 'melanocortin-antagonists', 'alpha-msh', 'system'],
+  'receptors/mc2r': ['acth', 'addisons-disease', 'melanocortin-antagonists', 'alpha-msh', 'system', 'congenital-adrenal-hyperplasia', 'cushings-disease'],
   'receptors/mc3r': ['gamma-msh', 'receptors/mc4r', 'inflammation', 'agrp', 'genetics'],
   'receptors/mc4r': ['setmelanotide', 'bivamelagon', 'agrp', 'sexual-function', 'shu9119', 'structures', 'melanocortin-agonists', 'melanocortin-antagonists'],
   'receptors/mc5r': ['alpha-msh', 'receptors/mc1r', 'system'],
   'alpha-msh': ['system', 'pomc', 'receptors/mc1r', 'receptors/mc4r', 'agrp', 'binding-matrix'],
-  acth: ['receptors/mc2r', 'addisons-disease', 'alpha-msh', 'pomc', 'system'],
-  'addisons-disease': ['acth', 'receptors/mc1r', 'receptors/mc2r', 'alpha-msh', 'system', 'effects'],
+  acth: ['receptors/mc2r', 'addisons-disease', 'alpha-msh', 'pomc', 'system', 'congenital-adrenal-hyperplasia', 'cushings-disease'],
+  'addisons-disease': ['acth', 'receptors/mc1r', 'receptors/mc2r', 'alpha-msh', 'system', 'effects', 'congenital-adrenal-hyperplasia', 'cushings-disease'],
   vitiligo: ['afamelanotide', 'receptors/mc1r', 'epp', 'effects', 'mc1r-selectivity', 'alpha-msh'],
   'beta-msh': ['alpha-msh', 'receptors/mc4r', 'pomc', 'system'],
   'gamma-msh': ['receptors/mc3r', 'alpha-msh', 'pomc', 'system'],
@@ -360,7 +372,7 @@ export const RELATED: Record<string, string[]> = {
   'ulcerative-colitis': ['pl-8177', 'inflammation', 'dry-eye-disease', 'resomelagon', 'membranous-nephropathy', 'oral-peptides'],
   'systemic-sclerosis': ['dersimelagon', 'inflammation', 'receptors/mc1r', 'resomelagon', 'membranous-nephropathy', 'pipeline'],
   'membranous-nephropathy': ['resomelagon', 'acth', 'inflammation', 'systemic-sclerosis', 'ulcerative-colitis', 'therapeutics'],
-  'melanocortin-antagonists': ['melanocortin-agonists', 'shu9119', 'tcmcb07', 'pf-07258669', 'agrp', 'asip', 'cachexia', 'receptors/mc2r', 'conditions'],
+  'melanocortin-antagonists': ['melanocortin-agonists', 'shu9119', 'tcmcb07', 'pf-07258669', 'agrp', 'asip', 'cachexia', 'receptors/mc2r', 'conditions', 'congenital-adrenal-hyperplasia', 'cushings-disease'],
   melanotan: ['topical-tanning', 'pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'shu9119', 'receptors/mc1r'],
   'topical-tanning': ['melanotan', 'receptors/mc1r', 'afamelanotide', 'mc1r-selectivity', 'effects', 'alpha-msh'],
   bremelanotide: ['sexual-function', 'pt-141-vs-melanotan', 'melanotan', 'oral-peptides', 'receptors/mc4r'],

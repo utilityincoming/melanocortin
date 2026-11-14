@@ -99,6 +99,8 @@ export const ogPages = [
   { slug: 'addisons-disease', eyebrow: 'THE CONDITION', title: "Addison's — why the skin turns bronze" },
   { slug: 'bardet-biedl', eyebrow: 'THE CONDITION', title: 'Bardet–Biedl syndrome & MC4R' },
   { slug: 'pomc-deficiency', eyebrow: 'THE CONDITION', title: 'POMC & LEPR deficiency' },
+  { slug: 'congenital-adrenal-hyperplasia', eyebrow: 'THE CONDITION', title: 'Congenital adrenal hyperplasia' },
+  { slug: 'cushings-disease', eyebrow: 'THE CONDITION', title: "Cushing's disease & the ACTH signal" },
   { slug: 'conditions', eyebrow: 'THE CONDITIONS MAP', title: 'What melanocortins treat — by evidence' },
   { slug: 'why-melanocortins', eyebrow: 'WHY THIS SITE EXISTS', title: 'Why melanocortins' },
 ];
