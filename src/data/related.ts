@@ -10,6 +10,11 @@ export interface PageMeta {
 }
 
 export const PAGES: Record<string, PageMeta> = {
+  conditions: {
+    href: '/conditions',
+    title: 'The conditions map',
+    blurb: 'Every condition a melanocortin drug treats or is being tested in, sorted by how strong the evidence is.',
+  },
   'why-melanocortins': {
     href: '/why-melanocortins',
     title: 'Why melanocortins',
@@ -318,6 +323,7 @@ export const PAGES: Record<string, PageMeta> = {
 };
 
 export const RELATED: Record<string, string[]> = {
+  conditions: ['pipeline', 'therapeutics', 'melanocortin-agonists', 'melanocortin-antagonists', 'inflammation', 'receptors'],
   system: ['pomc', 'receptors', 'alpha-msh', 'therapeutics', 'genetics', 'inflammation'],
   pomc: ['system', 'alpha-msh', 'acth', 'beta-msh', 'gamma-msh', 'receptors'],
   'fearfully-and-wonderfully-made': ['receptors/mc1r', 'genetics', 'system', 'alpha-msh', 'effects'],
@@ -354,7 +360,7 @@ export const RELATED: Record<string, string[]> = {
   'ulcerative-colitis': ['pl-8177', 'inflammation', 'dry-eye-disease', 'resomelagon', 'membranous-nephropathy', 'oral-peptides'],
   'systemic-sclerosis': ['dersimelagon', 'inflammation', 'receptors/mc1r', 'resomelagon', 'membranous-nephropathy', 'pipeline'],
   'membranous-nephropathy': ['resomelagon', 'acth', 'inflammation', 'systemic-sclerosis', 'ulcerative-colitis', 'therapeutics'],
-  'melanocortin-antagonists': ['melanocortin-agonists', 'shu9119', 'tcmcb07', 'pf-07258669', 'agrp', 'asip', 'cachexia', 'receptors/mc2r'],
+  'melanocortin-antagonists': ['melanocortin-agonists', 'shu9119', 'tcmcb07', 'pf-07258669', 'agrp', 'asip', 'cachexia', 'receptors/mc2r', 'conditions'],
   melanotan: ['topical-tanning', 'pt-141-vs-melanotan', 'bremelanotide', 'afamelanotide', 'shu9119', 'receptors/mc1r'],
   'topical-tanning': ['melanotan', 'receptors/mc1r', 'afamelanotide', 'mc1r-selectivity', 'effects', 'alpha-msh'],
   bremelanotide: ['sexual-function', 'pt-141-vs-melanotan', 'melanotan', 'oral-peptides', 'receptors/mc4r'],
@@ -365,13 +371,13 @@ export const RELATED: Record<string, string[]> = {
   'pt-141-vs-melanotan': ['melanotan', 'bremelanotide', 'sexual-function', 'effects'],
   'hypothalamic-obesity': ['setmelanotide', 'pomc-deficiency', 'bardet-biedl', 'glp1-appetite', 'receptors/mc4r', 'genetics'],
   genetics: ['receptors/mc1r', 'receptors/mc4r', 'pomc-deficiency', 'setmelanotide', 'hypothalamic-obesity', 'fearfully-and-wonderfully-made'],
-  inflammation: ['alpha-msh', 'receptors/mc3r', 'resomelagon', 'pl-8177', 'pl-9643', 'dersimelagon', 'dry-eye-disease', 'ulcerative-colitis', 'systemic-sclerosis'],
+  inflammation: ['alpha-msh', 'receptors/mc3r', 'resomelagon', 'pl-8177', 'pl-9643', 'dersimelagon', 'dry-eye-disease', 'ulcerative-colitis', 'systemic-sclerosis', 'conditions'],
   'mc1r-pain': ['receptors/mc1r', 'receptors/mc4r', 'alpha-msh', 'effects'],
   bivamelagon: ['setmelanotide', 'receptors/mc4r', 'hypothalamic-obesity', 'oral-peptides', 'melanocortin-agonists'],
   'glp1-appetite': ['setmelanotide', 'hypothalamic-obesity', 'receptors/mc4r', 'therapeutics'],
   effects: ['dose-curve', 'vitiligo', 'addisons-disease', 'mc1r-pain', 'alpha-msh', 'receptors/mc1r'],
   'oral-peptides': ['dose-curve', 'effects', 'bivamelagon', 'bremelanotide', 'dersimelagon'],
-  pipeline: ['therapeutics', 'setmelanotide', 'dersimelagon', 'resomelagon', 'receptors/mc2r', 'glp1-appetite', 'melanocortin-agonists', 'melanocortin-antagonists'],
-  therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'inflammation', 'resomelagon', 'pipeline', 'melanocortin-agonists', 'melanocortin-antagonists'],
-  'melanocortin-agonists': ['melanocortin-antagonists', 'therapeutics', 'receptors/mc4r', 'setmelanotide', 'bivamelagon', 'binding-matrix', 'alpha-msh', 'mc1r-selectivity'],
+  pipeline: ['therapeutics', 'setmelanotide', 'dersimelagon', 'resomelagon', 'receptors/mc2r', 'glp1-appetite', 'melanocortin-agonists', 'melanocortin-antagonists', 'conditions'],
+  therapeutics: ['setmelanotide', 'afamelanotide', 'bremelanotide', 'inflammation', 'resomelagon', 'pipeline', 'melanocortin-agonists', 'melanocortin-antagonists', 'conditions'],
+  'melanocortin-agonists': ['melanocortin-antagonists', 'therapeutics', 'receptors/mc4r', 'setmelanotide', 'bivamelagon', 'binding-matrix', 'alpha-msh', 'mc1r-selectivity', 'conditions'],
 };

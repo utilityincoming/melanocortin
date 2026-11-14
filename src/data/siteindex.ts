@@ -68,6 +68,7 @@ export const SITE_INDEX: IndexSection[] = [
   {
     title: 'Conditions & questions',
     pages: pick(
+      'conditions',
       'hypothalamic-obesity',
       'pomc-deficiency',
       'bardet-biedl',
