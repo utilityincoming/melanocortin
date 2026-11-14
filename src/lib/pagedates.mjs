@@ -22,7 +22,7 @@
 // Everything is wrapped so a missing git history degrades gracefully.
 
 import { execSync } from 'node:child_process';
-import { readFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 // The build (and dev) always runs from the project root, and unlike
@@ -54,6 +54,28 @@ export function candidateFiles(pathname) {
     `src/pages/${clean}.mdx`,
     `src/pages/${clean}.md`,
   ];
+}
+
+/**
+ * Dynamic route that owns a concrete URL, e.g. /selectivity/a-msh is built
+ * from src/pages/selectivity/[ligand].astro. The manifest key is the bracket
+ * route the regenerator also writes, so a shallow clone can still date it.
+ */
+export function dynamicSource(pathname) {
+  const parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+  if (parts.length === 0) return null;
+  const dir = join(ROOT, 'src/pages', ...parts.slice(0, -1));
+  let names;
+  try {
+    names = readdirSync(dir);
+  } catch {
+    return null;
+  }
+  const dyn = names.find((n) => /^\[[^\]]+\]\.astro$/.test(n));
+  if (!dyn) return null;
+  const rel = ['src/pages', ...parts.slice(0, -1), dyn].join('/');
+  const manifestKey = '/' + [...parts.slice(0, -1), dyn.replace(/\.astro$/, '')].join('/');
+  return { file: rel, manifestKey };
 }
 
 /**
@@ -96,6 +118,10 @@ export function lastmod(pathname) {
     if (date) break;
   }
   date ??= readManifest()[key] ?? null;
+  if (!date) {
+    const dyn = dynamicSource(key);
+    if (dyn) date = gitDate(dyn.file) ?? readManifest()[dyn.manifestKey] ?? null;
+  }
   if (!date) {
     for (const file of candidateFiles(pathname)) {
       date = fsDate(file);
