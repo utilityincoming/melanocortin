@@ -68,6 +68,7 @@ export const SITE_INDEX: IndexSection[] = [
   {
     title: 'Conditions & questions',
     pages: pick(
+      'conditions',
       'hypothalamic-obesity',
       'pomc-deficiency',
       'bardet-biedl',
@@ -75,10 +76,13 @@ export const SITE_INDEX: IndexSection[] = [
       'epp',
       'vitiligo',
       'addisons-disease',
+      'congenital-adrenal-hyperplasia',
+      'cushings-disease',
       'dry-eye-disease',
       'ulcerative-colitis',
       'systemic-sclerosis',
       'membranous-nephropathy',
+      'rheumatoid-arthritis',
       'glp1-appetite',
       'sexual-function',
       'mc1r-pain',

@@ -183,7 +183,7 @@ export const pipeline: PipelineEntry[] = [
     name: 'Atumelnant (CRN04894)',
     target: 'Oral MC2R antagonist',
     indication: 'Congenital adrenal hyperplasia · ACTH-dependent Cushing’s',
-    sponsor: 'Crinetics',
+    sponsor: 'Vertex (Crinetics)',
     stage: 3,
     status: 'active',
     note: 'The first drug built to block a melanocortin receptor at the adrenal; Phase 2 cut adrenal androgens by up to ~80%; pivotal CALM-CAH Phase 3 and a paediatric Phase 2/3 dosing in 2026',

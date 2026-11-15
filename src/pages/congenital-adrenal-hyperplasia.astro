@@ -1,0 +1,248 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is congenital adrenal hyperplasia?',
+    a: 'Congenital adrenal hyperplasia (CAH) is a group of inherited conditions in which the adrenal glands lack an enzyme needed to make cortisol. In the great majority of cases the missing enzyme is 21-hydroxylase. Without cortisol the pituitary keeps sending ACTH, which enlarges the adrenals and pushes them to overproduce androgens.',
+  },
+  {
+    q: 'Why is CAH a melanocortin condition?',
+    a: 'Because the hormone doing the damage is ACTH, a melanocortin cut from POMC, acting on MC2R, the melanocortin receptor on the adrenal cortex. The enzyme defect starts the problem, but the excess androgens are driven by a melanocortin signal that has lost its brake.',
+  },
+  {
+    q: 'How is CAH treated today?',
+    a: 'With lifelong hormone replacement managed by an endocrinologist: a glucocorticoid to replace cortisol, and often a mineralocorticoid as well. The difficulty is that quieting ACTH usually takes more glucocorticoid than simple replacement would, and long-term excess steroid carries its own harms. This page describes the biology and is not treatment advice.',
+  },
+  {
+    q: 'What newer treatments target the ACTH signal itself?',
+    a: 'Two approaches. Crinecerfont, approved by the FDA in December 2024, blocks the CRF1 receptor at the pituitary so less ACTH is released. An investigational drug, atumelnant, blocks MC2R at the adrenal so the gland cannot respond to ACTH; it is in a Phase 3 trial and is not approved.',
+  },
+  {
+    q: 'Does CAH darken the skin the way Addison’s disease does?',
+    a: 'It can. When ACTH runs very high, some of it activates MC1R in the skin, the same mechanism behind the bronzing of Addison’s disease. Darkening is described in CAH, particularly when the condition is untreated or poorly controlled.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Speiser PW, Arlt W, Auchus RJ, Baskin LS, et al.',
+    title:
+      'Congenital adrenal hyperplasia due to steroid 21-hydroxylase deficiency: an Endocrine Society clinical practice guideline.',
+    source: 'J Clin Endocrinol Metab. 103(11):4043–4088.',
+    year: '2018',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/30272171/',
+  },
+  {
+    authors: 'El-Maouche D, Arlt W, Merke DP.',
+    title: 'Congenital adrenal hyperplasia.',
+    source: 'Lancet. 390(10108):2194–2210.',
+    year: '2017',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/28576284/',
+  },
+  {
+    authors: 'Claahsen-van der Grinten HL, Speiser PW, Ahmed SF, et al.',
+    title: 'Congenital adrenal hyperplasia — current insights in pathophysiology, diagnostics, and management.',
+    source: 'Endocr Rev. 43(1):91–159.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33961029/',
+  },
+  {
+    authors: 'Merke DP, Auchus RJ.',
+    title: 'The evolution of new approaches to the treatment of congenital adrenal hyperplasia.',
+    source: 'Endocr Rev. bnag033 (online ahead of print).',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42639844/',
+  },
+  {
+    authors: 'Auchus RJ, Hamidi O, Pivonello R, et al.',
+    title: 'Phase 3 trial of crinecerfont in adult congenital adrenal hyperplasia.',
+    source: 'N Engl J Med. 391(6):504–514.',
+    year: '2024',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/38828955/',
+  },
+  {
+    authors: 'US Food and Drug Administration.',
+    title: 'FDA approves new treatment for congenital adrenal hyperplasia.',
+    source: 'Press announcement on the approval of crinecerfont (Crenessity).',
+    year: '2024',
+    url: 'https://www.fda.gov/news-events/press-announcements/fda-approves-new-treatment-congenital-adrenal-hyperplasia',
+  },
+  {
+    authors: 'Srirangalingam U, Bruera D, Ayala A, et al.',
+    title:
+      'Once-daily oral atumelnant (CRN04894) induces rapid, substantial, and sustained reductions of androstenedione and 17-hydroxyprogesterone in adults with classical congenital adrenal hyperplasia: interim results from a 12-week, phase 2, open-label study.',
+    source: 'J Endocr Soc. 9(Suppl 1):bvaf149.272 (OR07-06).',
+    year: '2025',
+    url: 'https://academic.oup.com/jes/article/9/Supplement_1/bvaf149.272/8298490',
+  },
+  {
+    authors: 'Crinetics Pharmaceuticals.',
+    title: 'Crinetics announces first patient dosed in pivotal adult trial of atumelnant in congenital adrenal hyperplasia (CAH).',
+    source: 'Company announcement of the CALM-CAH Phase 3 trial — an interested-party source.',
+    year: '2025',
+    url: 'https://crinetics.com/press-releases/crinetics-announces-first-patient-dosed-in-pivotal-adult-trial-of-atumelnant-in-congenital-adrenal-hyperplasia-cah/',
+  },
+];
+---
+
+<PageLayout
+  title="Congenital adrenal hyperplasia: when the ACTH signal never hears 'enough'"
+  seoTitle="Congenital adrenal hyperplasia (CAH) & the ACTH signal"
+  kicker="The condition"
+  description="In congenital adrenal hyperplasia a single missing enzyme means the adrenal cannot finish making cortisol. The pituitary answers the only way it can — more ACTH — and that runaway melanocortin signal, landing on MC2R, is what drives the gland to overproduce androgens. It is the disease that turned the ACTH receptor into a drug target."
+  seoDescription="CAH is an enzyme defect that leaves ACTH without a brake: the melanocortin signal at adrenal MC2R drives androgen excess. The biology and the new drugs."
+  thread="A thermostat with a broken sensor: the furnace is not the fault, but it is the furnace that burns the house."
+  updated="2026"
+  about={[
+    { name: 'Congenital adrenal hyperplasia', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Congenital_adrenal_hyperplasia'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+    { name: 'ACTH receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/ACTH_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Congenital adrenal hyperplasia (CAH) is an inherited block in cortisol synthesis — in the great majority of cases, a deficiency of the enzyme 21-hydroxylase.',
+      'Without cortisol the pituitary loses its feedback brake and pours out ACTH, the melanocortin that drives the adrenal through MC2R.',
+      'The over-driven gland enlarges and diverts its backed-up steroid precursors into androgens — the cause of most of the condition’s long-term problems.',
+      'Standard care replaces the missing hormones, but quieting ACTH often takes more glucocorticoid than the body would naturally make.',
+      'Two newer strategies aim at the signal itself: a CRF1 antagonist that lowers ACTH release (approved 2024) and an MC2R antagonist that blocks ACTH at the adrenal (in Phase 3, not approved).',
+    ]}
+  />
+
+  <p>
+    Most of the conditions on this site are about a melanocortin signal that is missing.
+    <strong>Congenital adrenal hyperplasia</strong> is the opposite case, and one of the most
+    instructive: the signal is intact, the receptor is intact, and the disease comes from
+    the signal never being told to stop. If you want to understand why{' '}
+    <a href="/acth">ACTH</a> belongs in the melanocortin family at all, and what happens when
+    it runs without a brake, this is the condition to study.
+  </p>
+
+  <h2>One missing enzyme</h2>
+  <p>
+    The adrenal cortex builds cortisol from cholesterol in a chain of enzymatic steps. CAH is
+    the family of inherited conditions in which one of those steps is broken, and in the great
+    majority of cases the broken step is 21-hydroxylase, encoded by the gene
+    <em>CYP21A2</em>.<Cite n={1} /> The condition is autosomal recessive, and its classic,
+    severe form is found in roughly one in 14,000 to 18,000 births, which is why many
+    countries screen newborns for it.<Cite n={1} />
+  </p>
+  <p>
+    The enzyme sits on the route to cortisol and to aldosterone, the salt-retaining hormone.
+    So in the most severe form an infant cannot hold on to sodium, and an untreated
+    salt-wasting crisis in the first weeks of life is a medical emergency.<Cite n={2} /> A
+    milder, non-classic form exists too, with enough residual enzyme that it may only surface
+    later.<Cite n={3} />
+  </p>
+
+  <h2>Where the melanocortin system comes in</h2>
+  <p>
+    Here is the part that makes this a melanocortin page. Cortisol is not just a product; it is
+    the feedback signal that tells the hypothalamus and pituitary the job is done. Take cortisol
+    away and the pituitary does what it is built to do: it makes more{' '}
+    <a href="/pomc">POMC</a> and releases more ACTH. That ACTH lands on{' '}
+    <a href="/receptors/mc2r">MC2R</a>, the one melanocortin receptor that answers to ACTH and
+    nothing else, and tells the adrenal to grow and to work harder.<Cite n={2} />
+  </p>
+  <p>
+    The gland obeys. It enlarges — the "hyperplasia" of the name — and runs its steroid
+    assembly line flat out. But the line is blocked at 21-hydroxylase, so the intermediates pile
+    up behind the block, most visibly 17-hydroxyprogesterone, the marker newborn screening
+    looks for. With nowhere else to go, those precursors spill down the one branch that does not
+    need the missing enzyme: the route to androgens.<Cite n={3} /> The enzyme defect is the
+    cause. The melanocortin signal is the amplifier.
+  </p>
+  <p>
+    It is the mirror of a story told elsewhere on this site. In{' '}
+    <a href="/addisons-disease">Addison's disease</a> the adrenal fails and ACTH climbs for the
+    same reason, a missing cortisol brake. And as there, ACTH at high enough levels is overheard
+    by <a href="/receptors/mc1r">MC1R</a> in the skin, because its first thirteen residues are{' '}
+    <a href="/alpha-msh">α-MSH</a>: skin darkening is a recognised sign when CAH goes untreated
+    or is poorly controlled.<Cite n={2} />
+  </p>
+
+  <h2>Why the standard treatment is a compromise</h2>
+  <p>
+    Treatment is hormone replacement: a glucocorticoid to stand in for cortisol, and usually a
+    mineralocorticoid for the missing aldosterone.<Cite n={1} /> That is life-saving, and it
+    has been the standard of care for decades. The trouble is that it asks one drug to do two
+    jobs. Replacing cortisol takes a modest dose. Suppressing a pituitary that has been
+    shouting since before birth usually takes more, given at times of day the body would never
+    choose.<Cite n={4} />
+  </p>
+  <p>
+    So clinicians and patients walk a line. Too little glucocorticoid and the androgens escape,
+    with consequences for growth and fertility.
+    Too much and the cost is the long list of harms that chronic steroid excess brings.
+    Long-term studies of adults with CAH show raised rates of the complications tied to that
+    over-treatment.<Cite n={4} /> For anyone who thinks about hormones as a control system,
+    the flaw is obvious: you are fixing a signalling problem with the output of the system
+    instead of with the signal.
+  </p>
+
+  <h2>Treating the signal instead</h2>
+  <p>
+    That is the idea behind the newer drugs, sometimes called a block-and-replace approach: give
+    a physiologic dose of glucocorticoid for replacement, and use a second agent to deal with
+    the ACTH-driven excess.<Cite n={4} /> There are two places to intervene, and they sit at
+    opposite ends of the relay.
+  </p>
+  <ul>
+    <li>
+      <strong>Upstream, at the pituitary.</strong> Crinecerfont blocks CRF1, the receptor through
+      which the hypothalamus tells the pituitary to release ACTH. In its adult Phase 3 trial it
+      allowed a larger reduction in glucocorticoid dose than placebo while androgens stayed
+      controlled,<Cite n={5} /> and the FDA approved it in December 2024 as an add-on to
+      glucocorticoid replacement in classic CAH.<Cite n={6} /> It is not a melanocortin drug,
+      but it works by lowering a melanocortin.
+    </li>
+    <li>
+      <strong>Downstream, at the adrenal.</strong> Atumelnant is an investigational oral
+      antagonist of MC2R itself. In an open-label Phase 2 study in adults it produced rapid,
+      sustained falls in androstenedione and 17-hydroxyprogesterone,<Cite n={7} /> and a
+      randomised, placebo-controlled Phase 3 trial is under way.<Cite n={8} /> It is not
+      approved, and the Phase 3 result is what will decide whether it should be. It is covered
+      with the system's other blockers on the{' '}
+      <a href="/melanocortin-antagonists">antagonists hub</a>.
+    </li>
+  </ul>
+  <p>
+    Neither approach removes the need for cortisol replacement, and neither changes the
+    underlying enzyme defect. What they change is which lever does the suppressing.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    CAH earns its place here for the same reason Addison's disease does: it is melanocortin
+    physiology made visible. A gland is not overactive because it is diseased; it is
+    overactive because a faithful receptor is following a signal that has lost its brake. The
+    older treatment works around that. The newer ones go at it directly, one approved and one
+    still to prove itself in a controlled trial. For the hormone, see{' '}
+    <a href="/acth">ACTH</a>; for the receptor and its unusual biology,{' '}
+    <a href="/receptors/mc2r">MC2R</a>; for the sister condition driven by too much ACTH from a
+    tumour, <a href="/cushings-disease">Cushing's disease</a>; and for where this sits among
+    everything else the system treats, the <a href="/conditions">conditions map</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology of congenital adrenal hyperplasia. It is not medical
+      advice and gives no dosing or treatment instructions. CAH requires lifelong specialist
+      care, and an adrenal crisis is a medical emergency. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="congenital-adrenal-hyperplasia" />
+</PageLayout>

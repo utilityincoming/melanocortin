@@ -1,0 +1,224 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import { TIERS, CONDITIONS, DROPPED } from '../data/conditions';
+
+const count = (t: string) => CONDITIONS.filter((c) => c.tier === t).length;
+
+const faqs = [
+  {
+    q: 'What conditions are melanocortin drugs approved to treat?',
+    a: 'Five, through three modern drugs: erythropoietic protoporphyria (afamelanotide); obesity from POMC, PCSK1 or LEPR deficiency, Bardet–Biedl syndrome and acquired hypothalamic obesity (setmelanotide); and hypoactive sexual desire disorder in premenopausal women (bremelanotide). An older ACTH preparation, repository corticotropin, also carries long-standing labels for infantile spasms, multiple-sclerosis relapses and sarcoidosis.',
+  },
+  {
+    q: 'What conditions are melanocortin drugs being tested for?',
+    a: 'In late-stage trials: X-linked protoporphyria, vitiligo, congenital adrenal hyperplasia and dry eye disease. In mid-stage trials: Cushing’s disease, cachexia, ulcerative colitis, rheumatoid arthritis, systemic sclerosis, membranous nephropathy and common obesity. None of these is an approved use, and several have already had a failed or mixed trial.',
+  },
+  {
+    q: 'Why does one hormone system touch such different diseases?',
+    a: 'Because the same few peptides are read by five receptors sitting in different tissues. MC1R is on pigment and immune cells, MC2R on the adrenal, MC3R and MC4R in the brain’s energy circuits, MC5R on exocrine glands. A skin disease, an obesity syndrome and an adrenal disorder can all be melanocortin conditions while having nothing else in common.',
+  },
+  {
+    q: 'Does a melanocortin drug approved for one condition work for the others?',
+    a: 'No. Each approval covers one specific condition, usually a rare one with a clearly identified break in the pathway. Setmelanotide, for example, works where the signal above MC4R is missing; it is not a treatment for common obesity. The tiers on this page are per condition for exactly that reason.',
+  },
+  {
+    q: 'Is this page medical advice?',
+    a: 'No. It is a map of where the evidence stands, kept for readers who want to understand the field. It gives no dosing, sourcing or treatment guidance. Diagnosis and treatment decisions belong with a clinician.',
+  },
+];
+
+const references = [
+  {
+    authors: 'StatPearls.',
+    title: 'Setmelanotide.',
+    source: 'NCBI Bookshelf (NBK589641) — indications and approval history.',
+    year: '2024',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK589641/',
+  },
+  {
+    authors: 'Rhythm Pharmaceuticals.',
+    title: 'FDA approval of IMCIVREE (setmelanotide) for acquired hypothalamic obesity.',
+    source: 'Press release.',
+    year: '2026',
+    url: 'https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-fda-approval-imcivreer-1',
+  },
+  {
+    authors: 'HCPLive.',
+    title: 'FDA approves afamelanotide to treat erythropoietic protoporphyria.',
+    source: 'News.',
+    year: '2019',
+    url: 'https://www.hcplive.com/view/fda-afamelanotide-erythropoietic-protoporphyria',
+  },
+  {
+    authors: 'US FDA.',
+    title: 'VYLEESI (bremelanotide injection) prescribing information.',
+    source: 'Label, NDA 210557.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210557s000lbl.pdf',
+  },
+  {
+    authors: 'Dermatology Times.',
+    title: 'Dersimelagon NDA accepted by FDA with priority review for EPP, XLP.',
+    source: 'News report on the 2026 NDA acceptance and review timeline.',
+    year: '2026',
+    url: 'https://www.dermatologytimes.com/view/dersimelagon-nda-accepted-fda-priority-review-epp-xlp',
+  },
+  {
+    authors: 'Dermatology Times.',
+    title: 'Clinuvel completes enrollment in Phase III afamelanotide vitiligo trial.',
+    source: 'News report on the CUV105 trial.',
+    year: '2025',
+    url: 'https://www.dermatologytimes.com/view/clinuvel-completes-enrollment-in-phase-iii-afamelanotide-vitiligo-trial',
+  },
+  {
+    authors: 'Merke DP, Auchus RJ.',
+    title: 'The evolution of new approaches to the treatment of congenital adrenal hyperplasia.',
+    source: 'Endocr Rev. bnag033 (online ahead of print).',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42639844/',
+  },
+  {
+    authors: 'Shi J, Xiong J, Hao C, et al.',
+    title: 'MC4R antagonists: a promising new hope for the treatment of cachexia and wasting diseases.',
+    source: 'Pharmazie. 81(1–4):51802.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/42057680/',
+  },
+  {
+    authors: 'Prindle CR, Bennett TL, Rajewski BH, et al.',
+    title:
+      'The melanocortin receptors as targets for general obesity: contextualizing clinical failures and analyzing future perspectives.',
+    source: 'Front Endocrinol (Lausanne). 17:1797586.',
+    year: '2026',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/41907544/',
+  },
+];
+---
+
+<PageLayout
+  title="Conditions the melanocortin system treats — sorted by how good the evidence actually is"
+  seoTitle="Melanocortin conditions: what's approved, what's in trials"
+  kicker="The conditions map"
+  description="One peptide family, five receptors, and a surprisingly long list of diseases. This is every condition a melanocortin drug treats or is being tested in, sorted into four honest tiers: approved, late-stage, mid-stage, and biology that explains a disease without treating it."
+  seoDescription="Every condition a melanocortin drug treats or is being tested in, in four evidence tiers: approved, late-stage, mid-stage, and mechanism only."
+  thread="The same signal, read in the skin, the brain, the adrenal and the gut — which is why the list of diseases looks random until you see the receptors underneath it."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
+    { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
+    { name: 'Proopiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      `This page tracks ${CONDITIONS.length} conditions across four tiers: ${count('approved')} approved, ${count('late')} late-stage, ${count('mid')} mid-stage and ${count('mechanism')} where the biology explains the disease without treating it.`,
+      'Every modern approval is for a rare condition with a clearly identified break in the pathway — a missing signal, a missing pigment response — not for a common disease.',
+      'The list looks scattered because the receptors are: MC1R in skin and immune cells, MC2R in the adrenal, MC3R and MC4R in the brain, MC5R in glands.',
+      'The mid-stage tier is where the hype lives. Several programmes there have already had a missed endpoint or a very small trial, and each row says so.',
+      'A drug approved for one condition is not evidence for the next one. Tiers are assigned per condition, not per drug.',
+    ]}
+  />
+
+  <p>
+    If you came to melanocortins through one door — a tanning peptide, a weight-loss drug, a
+    rare-disease diagnosis — the full list of conditions is a shock. Skin that burns in visible
+    light. A child who never feels full. An adrenal gland that will not stop. An inflamed
+    colon. It reads like four unrelated specialties, and it is one signalling system: a single
+    precursor, <a href="/pomc">POMC</a>, cut into a handful of peptides and read by{' '}
+    <a href="/receptors">five receptors</a> in five different places.
+  </p>
+  <p>
+    That breadth is exactly why this field attracts loose claims. So the list below is sorted
+    by the only thing that should sort it: how far the evidence has actually got. Approved
+    means a regulator signed off.<Cite n={1} /><Cite n={2} /><Cite n={3} /><Cite n={4} /> Everything
+    below that line is a bet, and the further down you read, the longer the odds. Each row
+    links to the page that carries its own citations.
+  </p>
+
+  {
+    TIERS.map((t) => (
+      <section>
+        <h2 id={t.id} class="scroll-mt-24">{t.title}</h2>
+        <p>{t.blurb}</p>
+        <div class="not-prose mt-5 flex flex-col gap-3">
+          {CONDITIONS.filter((c) => c.tier === t.id).map((c) => (
+            <a
+              href={c.href}
+              class="group block rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4 no-underline transition-colors hover:border-[var(--accent)]"
+            >
+              <span class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <span class="font-medium text-[var(--text)] group-hover:text-[var(--accent)]">{c.name}</span>
+                <span class="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 font-mono text-[11px] text-[var(--accent-strong)]">
+                  {c.receptor}
+                </span>
+              </span>
+              <span class="mt-1 block text-sm leading-relaxed text-[var(--text)]">{c.approach}</span>
+              <span class="mt-1 block text-sm leading-relaxed text-[var(--text-muted)]">{c.status}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <h2 id="dropped">Tried and dropped</h2>
+  <p>
+    A field that only lists its wins is a brochure. These programmes reached patients and were
+    stopped, and each one taught the field something the survivors are built around — above
+    all that pushing MC4R hard enough to matter can also push blood pressure.<Cite n={9} />
+  </p>
+  <ul>
+    {
+      DROPPED.map((d) => (
+        <li>
+          <strong><a href={d.href}>{d.name}</a></strong> ({d.what.toLowerCase()}). {d.why}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>How to read the pattern</h2>
+  <p>
+    Look down the receptor column and the list stops looking random. The{' '}
+    <a href="/receptors/mc4r">MC4R</a> rows are all about energy balance, run in both
+    directions: agonists where the satiety signal is missing, antagonists where it is jammed
+    on.<Cite n={8} /> The <a href="/receptors/mc1r">MC1R</a> rows split in two — pigment
+    for the light-sensitivity diseases, where an oral agonist is now under regulatory
+    review<Cite n={5} /> and a vitiligo trial is fully enrolled,<Cite n={6} /> and the receptor's quieter anti-inflammatory job for
+    the gut, the eye and scarring skin, the story told on the{' '}
+    <a href="/inflammation">inflammation</a> page. The <a href="/receptors/mc2r">MC2R</a>{' '}
+    rows are the newest idea on the board: not adding a signal but blocking one, at the adrenal,
+    in diseases of too much ACTH.<Cite n={7} />
+  </p>
+  <p>
+    Notice also what the approved tier has in common. Every one of those conditions is rare,
+    and in every one the broken step is known: a missing precursor, a receptor that cannot
+    reach its cilium, a pigment response that light itself cannot safely trigger. That is the
+    real lesson of the last few years. Melanocortin
+    drugs have worked best as precise repairs to a defined fault, and least well as broad
+    levers on common disease. For the drug-by-drug view of the same landscape, see the{' '}
+    <a href="/pipeline">pipeline</a>; for the two directions a receptor can be pushed, the{' '}
+    <a href="/melanocortin-agonists">agonists</a> and{' '}
+    <a href="/melanocortin-antagonists">antagonists</a> hubs.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page maps where the evidence stands. It is not medical advice and gives no dosing,
+      sourcing or treatment guidance. An investigational use is exactly that: unproven. See
+      the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="conditions" />
+</PageLayout>

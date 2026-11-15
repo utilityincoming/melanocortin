@@ -31,14 +31,14 @@ agent is only mentioned in passing. Each of these is a real, citeable page.
   A dedicated page also balances the "melanocortin = agonist" framing with the
   antagonist side of the ledger.
 
-- **`/congenital-adrenal-hyperplasia` — a condition page.**
+- **`/congenital-adrenal-hyperplasia` — a condition page.** *(Shipped.)*
   CAH is Atumelnant's lead indication and a textbook MC2R/ACTH-axis disease, yet
   there is no condition page for it. It pairs naturally with the existing
   `/addisons-disease` page (loss vs. excess of the same axis) and gives the MC2R
   receptor page a downstream "what breaks" link, matching the pattern every other
   receptor page follows.
 
-- **`/cushings-disease` — a condition page.**
+- **`/cushings-disease` — a condition page.** *(Shipped.)*
   Same rationale: ACTH-dependent Cushing's is an MC2R-axis disease and a named
   pipeline indication. It is the natural counterpart to the adrenal-insufficiency
   pages and closes the loop on "too much ACTH signalling."
