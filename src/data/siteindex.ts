@@ -81,6 +81,8 @@ export const SITE_INDEX: IndexSection[] = [
       'cushings-disease',
       'sarcoidosis',
       'multiple-sclerosis-relapse',
+      'infantile-spasms',
+      'mc3r-physiology',
       'dry-eye-disease',
       'ulcerative-colitis',
       'systemic-sclerosis',
