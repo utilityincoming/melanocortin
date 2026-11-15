@@ -68,13 +68,14 @@ are strong search-intent targets:
   still points at `/therapeutics#corticotropin`.
 - **`/red-hair-mc1r`** — *(Shipped.)* MC1R variant biology (the "R alleles"),
   freckling, and the link onward to `/mc1r-pain`.
-- **`/melanotan-safety`** or a clearly-scoped explainer on *why* grey-market
-  melanotan II is risky (mechanism-level, not a protocol) — the site's editorial
-  stance makes this a natural, differentiated page versus the forums. Must stay
-  strictly education-not-sourcing per the `/about` standards.
-- **`/mc3r` physiology deep-dive** — MC3R is the least-understood receptor;
-  a focused page on its emerging roles (fasting response, timing of puberty,
-  rhythm) would be genuinely under-served content.
+- **`/melanotan-safety`** — *(Covered by `/melanotan`.)* That page already carries
+  the mechanism-level risk case (impurity, moles, case-report harms) and the
+  education-not-sourcing bar. A second page would repeat it.
+- **`/mc3r-physiology`** — *(Shipped.)* Fasting response, meal anticipation, and
+  the timing of puberty, kept off the receptor card so the two pages do not
+  duplicate.
+- **`/infantile-spasms`** — *(Shipped.)* The remaining Acthar indication, and the
+  one with randomised evidence. The 2012 AAN guideline is cited as retired.
 
 Each should follow the existing condition-page shape (lede → mechanism →
 what the pipeline is doing → key takeaways → FAQ) so it slots into the site
@@ -87,9 +88,9 @@ without new patterns.
 - **Interlink the adrenal cluster.** *(Shipped.)* `/receptors/mc2r`, `/acth`,
   `/addisons-disease`, `/congenital-adrenal-hyperplasia`, `/cushings-disease`
   and `/atumelnant` cross-link as a neighbourhood.
-- **Pipeline → page coverage check.** Add a lightweight note/convention that
-  every `pipeline.ts` entry whose `href` points at a *shared* page is a candidate
-  for a dedicated page, so the backlog above stays current as the table grows.
+- **Pipeline → page coverage check.** *(Noted in `pipeline.ts`.)* Shared `href`s
+  are listed there as the standing watchlist: PL-7737, the tirzepatide combination,
+  RM-718, and the 710GO dual agonists.
 - **"Antagonists" as a first-class theme.** *(Shipped as `/melanocortin-antagonists`.)*
   Hub covering AgRP/ASIP, SHU9119, TCMCB07, PF-07258669, and Atumelnant, with
   cross-links from the agonists hub, therapeutics, and the antagonist drug pages.

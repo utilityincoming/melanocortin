@@ -1,6 +1,17 @@
 // Melanocortin therapeutics pipeline — a dated snapshot.
 // Pipeline information dates quickly; verified against current sources and
 // reviewed at the year shown on the page. `stage` is the furthest reached.
+//
+// Coverage convention: an `href` that is not the agent's own page is a backlog
+// candidate. Shared on purpose, until each has a distinct citeable story:
+//   /glp1-appetite        bremelanotide + tirzepatide, PL-7737
+//   /bivamelagon          RM-718
+//   /receptors/mc3r       dual MC3R/MC4R agonists (710GO)
+//   /effects              biased / next-gen MC4R agonists; the discontinued obesity agonist
+//   /afamelanotide        the vitiligo programme (the condition has /vitiligo)
+//   /bremelanotide        the sexual-function programme (the condition has /sexual-function)
+//   /therapeutics#...     only when no condition page exists yet
+// When a row earns its own page, point `href` at it in the same change.
 export const stages = ['Preclinical', 'Phase 1', 'Phase 2', 'Phase 3', 'Approved'] as const;
 
 export type Status = 'approved' | 'active' | 'discontinued';

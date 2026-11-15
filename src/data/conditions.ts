@@ -130,9 +130,9 @@ export const CONDITIONS: Condition[] = [
     tier: 'approved',
     receptor: 'MC2R and others',
     approach: 'Repository corticotropin in infants under two',
-    status: 'A long-standing label. No dedicated page yet — the drug is on the therapeutics page.',
-    href: '/therapeutics#corticotropin',
-    dedicated: false,
+    status: 'Labelled as monotherapy under age two. Randomised trials; the 2012 guideline that preferred ACTH is now retired.',
+    href: '/infantile-spasms',
+    dedicated: true,
   },
 
   // ---- Late-stage --------------------------------------------------------
@@ -255,6 +255,15 @@ export const CONDITIONS: Condition[] = [
     approach: 'None — loss-of-function alleles shift pigment from eumelanin to pheomelanin',
     status: 'Genetics of complexion and melanoma risk; no drug programme.',
     href: '/red-hair-mc1r',
+    dedicated: true,
+  },
+  {
+    name: 'The MC3R fasting and puberty axis',
+    tier: 'mechanism',
+    receptor: 'MC3R',
+    approach: 'None — the receptor reports a fast, a scheduled meal, and whether a child is fed enough to mature',
+    status: 'Mouse physiology plus rare human variants. No drug for this job.',
+    href: '/mc3r-physiology',
     dedicated: true,
   },
   {
