@@ -1,0 +1,167 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is familial glucocorticoid deficiency?',
+    a: 'Familial glucocorticoid deficiency (FGD) is a group of inherited conditions in which the adrenal cortex cannot make enough cortisol in response to ACTH. Children typically present in infancy or early childhood with low blood sugar, poor tolerance of illness, and often deeply pigmented skin. Aldosterone is usually preserved, so a salt-losing crisis is not the typical picture.',
+  },
+  {
+    q: 'Why is it a melanocortin disease?',
+    a: 'The two classic causes sit on the ACTH receptor itself. Type 1 is loss-of-function mutations in MC2R. Type 2 is mutations in MRAP, the accessory protein MC2R needs in order to reach the cell surface and bind ACTH. Together those two genes account for about half of cases. The rest are other genes that keep the adrenal cell alive, not other melanocortin receptors.',
+  },
+  {
+    q: 'Why does the skin darken?',
+    a: 'The pituitary senses the missing cortisol and pours out ACTH. ACTH is a melanocortin, and at very high levels it activates MC1R in the skin — the same spillover that bronzes the skin in Addison’s disease. The pigment is a sign of the unbraked signal, not a separate skin disease.',
+  },
+  {
+    q: 'Is there a drug that repairs the receptor?',
+    a: 'No. Care is cortisol replacement, managed by a paediatric endocrinologist. Atumelnant, the MC2R antagonist in trials for congenital adrenal hyperplasia, blocks this receptor; it is the opposite tool, and it has no role here. This page is not treatment advice.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Clark AJ, McLoughlin L, Grossman A.',
+    title: 'Familial glucocorticoid deficiency associated with point mutation in the adrenocorticotropin receptor.',
+    source: 'Lancet. 341(8843):461–462.',
+    year: '1993',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/8094489/',
+  },
+  {
+    authors: 'Metherell LA, Chapple JP, Cooray S, et al.',
+    title:
+      'Mutations in MRAP, encoding a new interacting partner of the ACTH receptor, cause familial glucocorticoid deficiency type 2.',
+    source: 'Nat Genet. 37(2):166–170.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15654338/',
+  },
+  {
+    authors: 'Chung TT, Webb TR, Chan LF, et al.',
+    title:
+      'The majority of ACTH receptor (MC2R) mutations found in familial glucocorticoid deficiency type 1 lead to defective trafficking of the receptor to the cell surface.',
+    source: 'J Clin Endocrinol Metab. 93(12):4948–4954.',
+    year: '2008',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2635546/',
+  },
+  {
+    authors: 'Ramachandrappa S, Gorrigan RJ, Clark AJL, Chan LF.',
+    title: 'The melanocortin receptors and their accessory proteins.',
+    source: 'Front Endocrinol (Lausanne). 4:9.',
+    year: '2013',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3567503/',
+  },
+];
+---
+
+<PageLayout
+  title="Familial glucocorticoid deficiency: when the adrenal cannot hear ACTH"
+  seoTitle="Familial glucocorticoid deficiency and MC2R"
+  kicker="The condition"
+  description="Familial glucocorticoid deficiency is inherited cortisol failure with ACTH running high. The classic causes are a broken MC2R, or a broken MRAP so the receptor never reaches the cell surface. Aldosterone is usually spared. The skin darkens because the unused ACTH spills onto MC1R. There is no drug that repairs the receptor; treatment is cortisol replacement."
+  seoDescription="Familial glucocorticoid deficiency is cortisol failure from a broken MC2R or its chaperone MRAP. ACTH stays high, the skin darkens, and aldosterone is usually spared."
+  thread="The receptor is present in the genome and absent at the membrane. ACTH keeps arriving. Nothing in the adrenal answers, and the skin hears the surplus."
+  updated="2026"
+  about={[
+    { name: 'Familial glucocorticoid deficiency', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Familial_glucocorticoid_deficiency'] },
+    { name: 'ACTH receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/ACTH_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Familial glucocorticoid deficiency is an inherited failure of the adrenal cortex to make cortisol when ACTH asks. Children present with hypoglycaemia, illness, and often deep pigmentation.',
+      'Type 1 is MC2R mutations. Type 2 is MRAP mutations. The two genes together explain about half of cases; the rest are genes for adrenal-cell stress defence, not other melanocortin receptors.',
+      'Most disease-causing MC2R mutations strand the receptor inside the cell rather than breaking the signalling switch. The chaperone can be present and the receptor still never arrives.',
+      'Aldosterone is usually preserved, because salt balance is driven by renin and angiotensin, not by ACTH. That separates FGD from salt-wasting congenital adrenal hyperplasia and from many cases of Addison’s disease.',
+      'Care is cortisol replacement. No melanocortin drug repairs this receptor, and an MC2R antagonist would make the failure worse.',
+    ]}
+  />
+
+  <p>
+    <strong>Familial glucocorticoid deficiency</strong> is what it sounds like: cortisol does
+    not come, in a family pattern, and the rest of the adrenal’s salt hormone usually does.
+    It is the loss-of-function mirror of the diseases elsewhere on this site. In{' '}
+    <a href="/congenital-adrenal-hyperplasia">congenital adrenal hyperplasia</a> the receptor
+    works and the signal never stops. In{' '}
+    <a href="/cushings-disease">Cushing’s disease</a> the signal is overproduced. Here the
+    signal is high because the adrenal cannot hear it.
+  </p>
+
+  <h2>Two ways to lose the same receptor</h2>
+  <p>
+    <a href="/receptors/mc2r">MC2R</a> is the ACTH receptor, and it is useless without its
+    accessory protein, MRAP. MRAP escorts the receptor to the cell surface and lets it bind{' '}
+    <a href="/acth">ACTH</a>. Type 1 FGD is loss-of-function mutations in MC2R itself, first
+    tied to a point mutation in the receptor in 1993.<Cite n={1} /> Type 2 is mutations in
+    MRAP, identified in 2005 as the missing partner.<Cite n={2} /> Type 2 tends to present
+    even earlier. Together the two genes account for roughly half of FGD. The remainder has
+    been traced to genes that defend the adrenal cell against oxidative stress and that
+    repair its DNA, not to MC1R, MC3R, MC4R or MC5R.<Cite n={4} />
+  </p>
+  <p>
+    Most of the MC2R mutations do not simply jam the on-switch. Examined one by one, the
+    majority leave the receptor stranded inside the cell even when MRAP is present. It is a
+    trafficking failure.<Cite n={3} /> That is why “the gene is there” is not the same as
+    “the adrenal can answer.” The structural reason MC2R needs the chaperone at all is on
+    the receptor page: the fold is not stable, and the binding pocket is not the right shape,
+    until MRAP wraps it.
+  </p>
+
+  <h2>What the child actually has</h2>
+  <p>
+    Presentation is in infancy or early childhood: hypoglycaemia, seizures, recurrent
+    infection, failure to thrive, and often deep skin pigmentation.<Cite n={4} /> The
+    pigment is the melanocortin family showing its unity. No cortisol means no brake on the
+    pituitary, ACTH climbs, and the excess activates <a href="/receptors/mc1r">MC1R</a> in
+    the skin — the same spillover described on the{' '}
+    <a href="/addisons-disease">Addison’s disease</a> page. The diseases are not the same.
+    In FGD the gland never learned to hear ACTH, and mineralocorticoid production is
+    characteristically preserved, because aldosterone answers mainly to the
+    renin–angiotensin system.<Cite n={4} /> In autoimmune Addison’s the whole cortex fails,
+    salt hormone included. In salt-wasting CAH the enzyme block hits cortisol and
+    aldosterone together, and the intact MC2R drives androgen excess on top.
+  </p>
+
+  <h2>What medicine does and does not do</h2>
+  <p>
+    There is no drug programme to restore MC2R trafficking. The treatment is replacing the
+    cortisol the adrenal cannot make, under a specialist, for life. The short cosyntropin
+    test — synthetic ACTH, asking MC2R for a cortisol rise — is how adrenal reserve is
+    checked, and in FGD the answer is blunted. That test is described with the receptor,
+    not as a protocol here.
+  </p>
+  <p>
+    <a href="/atumelnant">Atumelnant</a> is an MC2R antagonist in trials for too much ACTH
+    signalling. It is the wrong direction for a child whose receptor already does not work.
+    Naming it is the point of keeping the agonist and antagonist pages honest: blocking this
+    receptor is a therapy only when the receptor is the problem by being too obedient.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    FGD is the cleanest human proof that MC2R and MRAP are one machine. Lose either piece
+    and cortisol fails, ACTH rises, and the skin records the surplus. For the receptor, see{' '}
+    <a href="/receptors/mc2r">MC2R</a>; for the hormone, <a href="/acth">ACTH</a>; for the
+    map of every other condition, <a href="/conditions">conditions</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains familial glucocorticoid deficiency. It is not medical advice and
+      gives no diagnostic or dosing instructions. Cortisol deficiency in a child is an
+      emergency when the child is ill. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="familial-glucocorticoid-deficiency" />
+</PageLayout>

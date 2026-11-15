@@ -65,7 +65,9 @@ are strong search-intent targets:
 
 - **`/sarcoidosis` and `/multiple-sclerosis-relapse`** — *(Shipped.)* The two
   best-known repository-corticotropin (Acthar) indications. Infantile spasms
-  still points at `/therapeutics#corticotropin`.
+  has since shipped as `/infantile-spasms`.
+- **`/familial-glucocorticoid-deficiency`** — *(Shipped.)* MC2R/MRAP cortisol failure.
+- **`/x-linked-protoporphyria`** — *(Shipped.)* The gain-of-function twin of EPP.
 - **`/red-hair-mc1r`** — *(Shipped.)* MC1R variant biology (the "R alleles"),
   freckling, and the link onward to `/mc1r-pain`.
 - **`/melanotan-safety`** — *(Covered by `/melanotan`.)* That page already carries

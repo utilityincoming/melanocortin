@@ -141,9 +141,9 @@ export const CONDITIONS: Condition[] = [
     tier: 'late',
     receptor: 'MC1R',
     approach: 'Dersimelagon, studied alongside EPP in the same programme',
-    status: 'Phase 3 met its primary endpoint; FDA decision expected early 2027.',
-    href: '/dersimelagon',
-    dedicated: false,
+    status: 'Phase 3 met its primary endpoint; FDA decision expected early 2027. The US afamelanotide label names EPP.',
+    href: '/x-linked-protoporphyria',
+    dedicated: true,
   },
   {
     name: 'Vitiligo',
@@ -239,6 +239,15 @@ export const CONDITIONS: Condition[] = [
   },
 
   // ---- Mechanism only ----------------------------------------------------
+  {
+    name: 'Familial glucocorticoid deficiency',
+    tier: 'mechanism',
+    receptor: 'MC2R',
+    approach: 'None — cortisol replacement, not a receptor drug',
+    status: 'MC2R or MRAP mutations. The receptor cannot hear ACTH; an antagonist would make it worse.',
+    href: '/familial-glucocorticoid-deficiency',
+    dedicated: true,
+  },
   {
     name: 'Addison’s disease (the bronzing)',
     tier: 'mechanism',

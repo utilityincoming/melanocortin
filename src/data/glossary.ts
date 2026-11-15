@@ -376,7 +376,7 @@ export const terms: Term[] = [
   {
     term: 'Familial glucocorticoid deficiency (FGD)',
     def: 'An inherited failure of the adrenal cortex to make cortisol in response to ACTH, presenting in childhood with hypoglycaemia and deep pigmentation; type 1 from MC2R mutations, type 2 from MRAP mutations.',
-    href: '/receptors/mc2r',
+    href: '/familial-glucocorticoid-deficiency',
   },
   {
     term: 'Synacthen test',
