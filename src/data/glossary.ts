@@ -390,23 +390,23 @@ export const terms: Term[] = [
   },
   {
     term: 'Repository corticotropin',
-    def: 'A long-acting gel of natural ACTH (brand Acthar), approved since 1952 for infantile spasms, multiple sclerosis relapses and several inflammatory conditions. The original melanocortin drug.',
-    href: '/therapeutics#corticotropin',
+    def: 'A long-acting gel of natural ACTH (brand Acthar), approved since 1952 for infantile spasms, multiple sclerosis relapses and symptomatic sarcoidosis. The original melanocortin drug.',
+    href: '/sarcoidosis',
   },
   {
     term: 'Congenital adrenal hyperplasia (CAH)',
     def: 'An inherited block in cortisol synthesis that sends ACTH soaring and drives adrenal androgen overproduction. The lead indication for atumelnant, an MC2R antagonist that cuts the adrenal response at its receptor.',
-    href: '/receptors/mc2r',
+    href: '/congenital-adrenal-hyperplasia',
   },
   {
     term: 'Cushing’s syndrome',
     def: 'Chronic cortisol excess. The ACTH-dependent forms, from pituitary or ectopic tumours, are a second target for MC2R antagonists.',
-    href: '/receptors/mc2r',
+    href: '/cushings-disease',
   },
   {
     term: 'Atumelnant',
     def: 'CRN04894. An oral, non-peptide MC2R antagonist in Phase 3 for congenital adrenal hyperplasia and in trials for ACTH-dependent Cushing’s syndrome; the first drug built to block a melanocortin receptor at the adrenal.',
-    href: '/pipeline',
+    href: '/atumelnant',
   },
 
   // ── Inflammation ─────────────────────────────────────────────────────

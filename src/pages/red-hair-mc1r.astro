@@ -1,0 +1,184 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'Why does MC1R cause red hair?',
+    a: 'MC1R on melanocytes chooses the pigment. Strong signalling makes brown-black eumelanin. Loss-of-function variants weaken that signal, so the cell makes more reddish pheomelanin instead. The common strong variants are R151C, R160W and D294H.',
+  },
+  {
+    q: 'What is an R allele?',
+    a: '“R” is the shorthand for a strong loss-of-function MC1R allele — enough, especially as two copies, to produce red hair, fair skin that burns, and freckles. “r” means a weak allele, such as V60L, V92M or R163Q, with a smaller, dose-dependent effect. One strong allele often shows up as freckling and sun sensitivity without red hair.',
+  },
+  {
+    q: 'Do red-hair variants raise melanoma risk beyond fair skin?',
+    a: 'Yes. Carrying these variants raises melanoma risk even after accounting for hair colour and complexion. Pheomelanin is a poor sunscreen and can itself feed oxidative damage, and a working MC1R also supports DNA repair in the melanocyte. The risk is real; it is not a diagnosis.',
+  },
+  {
+    q: 'Is red hair in POMC deficiency the same thing?',
+    a: 'Same pigment, different break. In red-hair MC1R variants the receptor is faulty and the ligand is present. In POMC deficiency the receptor is intact and the ligand was never made, so the person has red hair together with obesity and adrenal failure. Setmelanotide replaces the appetite signal; it does not repair MC1R.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Valverde P, Healy E, Jackson I, Rees JL, Thody AJ.',
+    title:
+      'Variants of the melanocyte-stimulating hormone receptor gene are associated with red hair and fair skin in humans.',
+    source: 'Nat Genet. 11(3):328–330.',
+    year: '1995',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/7581459/',
+  },
+  {
+    authors: 'Beaumont KA, Shekar SN, Newton RA, et al.',
+    title:
+      'Receptor function, dominant negative activity and phenotype correlations for MC1R variant alleles.',
+    source: 'Hum Mol Genet. 16(18):2249–2260.',
+    year: '2007',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17616515/',
+  },
+  {
+    authors: 'Beaumont KA, Newton RA, Smit DJ, Leonard JH, Stow JL, Sturm RA.',
+    title:
+      'Altered cell surface expression of human MC1R variant receptor alleles associated with red hair and skin cancer risk.',
+    source: 'Hum Mol Genet. 14(15):2145–2154.',
+    year: '2005',
+    url: 'https://academic.oup.com/hmg/article/14/15/2145/551635',
+  },
+  {
+    authors: 'Nasti TH, Timares L.',
+    title:
+      'MC1R, eumelanin and pheomelanin: their role in determining the susceptibility to skin cancer.',
+    source: 'Photochem Photobiol. 91(1):188–200.',
+    year: '2015',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4299862/',
+  },
+];
+---
+
+<PageLayout
+  title="Red hair and MC1R: the R alleles, freckles, and a pigment that burns"
+  seoTitle="Red hair, MC1R and the R alleles"
+  kicker="The pigment switch"
+  description="Red hair, fair skin that burns, and freckles are the visible result of loss-of-function MC1R variants — the strong “R” alleles, classically R151C, R160W and D294H. Weakened signalling shifts melanocytes from protective eumelanin to pheomelanin. The same alleles raise melanoma risk beyond complexion alone, and they are a different break from the red hair of POMC deficiency."
+  seoDescription="Red hair and freckles come from loss-of-function MC1R alleles, especially R151C, R160W and D294H. They shift pigment to pheomelanin and raise melanoma risk."
+  thread="One receptor on the melanocyte decides whether the pigment is a sunscreen or a liability. The common variants do not break the cell. They turn the switch down."
+  updated="2026"
+  about={[
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Red hair', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Red_hair'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'MC1R is the receptor on melanocytes that chooses the pigment: eumelanin when the signal is strong, pheomelanin when it is weak.',
+      'The strong loss-of-function alleles — the “R” series, classically R151C, R160W and D294H — are the genetic core of red hair, sun-sensitive fair skin and freckling.',
+      'Weaker “r” alleles (V60L, V92M, R163Q) shift the same traits modestly. One strong allele often freckles without reddening the hair; two strong alleles are the usual red-hair genotype.',
+      'Several R alleles fail by never reaching the cell surface in normal amounts, so α-MSH is present and still cannot signal.',
+      'The same variants raise melanoma risk beyond what fair skin explains. A separate page covers the pain and anaesthesia findings. POMC deficiency causes red hair by a different break: no ligand, not a broken receptor.',
+    ]}
+  />
+
+  <p>
+    <a href="/receptors/mc1r">MC1R</a> is the pigment receptor. <a href="/alpha-msh">α-MSH</a>,
+    cut from <a href="/pomc">POMC</a>, lands on it and the melanocyte makes brown-black
+    eumelanin, the pigment that absorbs ultraviolet light. Turn that signal down and the
+    cell makes reddish-yellow <strong>pheomelanin</strong> instead. Red hair, skin that
+    burns rather than tans, and freckles are what that choice looks like from the
+    outside.<Cite n={4} />
+  </p>
+
+  <h2>R alleles and r alleles</h2>
+  <p>
+    The association is thirty years old. In 1995, variants of the melanocyte-stimulating
+    hormone receptor were tied to red hair and fair skin in people.<Cite n={1} /> MC1R has
+    turned out to be one of the most polymorphic genes in the genome, so the field sorts
+    the common coding changes into two grades rather than listing every one as equal.
+  </p>
+  <p>
+    <strong>R alleles</strong> are strong loss-of-function. The classic three are Arg151Cys
+    (R151C), Arg160Trp (R160W) and Asp294His (D294H). Asp84Glu, Arg142His and Ile155Thr sit
+    with them: uncommon, and high-penetrance when present.<Cite n={2} /> Two R alleles is
+    the usual genotype behind unmistakably red hair. One R allele is commoner than red hair
+    itself and more often shows up as freckling, a lighter complexion and a tendency to
+    burn, with hair that may be auburn, blond or brown.
+  </p>
+  <p>
+    <strong>r alleles</strong> are partial. Val60Leu (V60L), Val92Met (V92M) and Arg163Gln
+    (R163Q) reduce signalling modestly, and the phenotype is dose-dependent and easy to
+    miss.<Cite n={2} /> R163Q is the common allele in many East Asian populations, and its
+    link to pigmentation and skin cancer has been reported both ways — a reminder that
+    “MC1R variant” is not one thing. The graded list, with frequencies and mechanisms, is
+    on the <a href="/genetics">genetics</a> page.
+  </p>
+
+  <h2>How a variant actually fails</h2>
+  <p>
+    Several of the strong alleles do not simply bind α-MSH and then refuse to signal. They
+    are mis-trafficked: less receptor reaches the cell surface, so the ligand is there and
+    the lock is not.<Cite n={3} /> That is why the phenotype can be close to a loss of the
+    gene even though a protein is made. The natural brake on the same receptor,{' '}
+    <a href="/asip">agouti signalling protein</a>, produces a related pigment shift in other
+    mammals by blocking a receptor that is otherwise intact. Human red hair is mostly the
+    receptor’s own variants, not an excess of that brake.
+  </p>
+  <p>
+    Pheomelanin is a poor sunscreen, and it can generate reactive oxygen species rather than
+    only failing to block them. A working MC1R does more than pick a pigment: the cAMP
+    signal it raises also supports DNA repair and antioxidant defences inside the
+    melanocyte. Take both away and the melanoma risk of R alleles is larger than fair skin
+    and red hair alone would predict.<Cite n={4} /> Carrying them is a risk factor. It is
+    not a diagnosis, and it is not destiny — ultraviolet dose still dominates what happens
+    to any given person.
+  </p>
+
+  <h2>The same alleles, outside the skin</h2>
+  <p>
+    MC1R is not only a pigment gene. The same loss-of-function variants track with a
+    measurable difference in pain and anaesthesia: more inhaled anaesthetic to prevent
+    movement, less effect from injected lidocaine, and, in the other direction, more relief
+    from certain opioids. That evidence has its own page,{' '}
+    <a href="/mc1r-pain">red hair, MC1R and pain</a>, because it is a nervous-system finding
+    and not a pigment one.
+  </p>
+  <p>
+    There is a second way to get red hair from this pathway, and it is worth not confusing
+    with the first. In <a href="/pomc-deficiency">POMC deficiency</a> the receptor is
+    normal and the ligand was never cut from the precursor. The person has red hair because
+    no α-MSH arrives, together with early obesity and adrenal failure, because the same
+    missing precursor was supposed to supply the appetite signal and ACTH. The R alleles
+    leave appetite and the adrenal alone. They only turn down the pigment receptor.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Red hair is the human phenotype that made MC1R famous, and it is still the cleanest
+    illustration of what the receptor is for: a switch between two pigments, set by how
+    much signal gets through. The R alleles are common, graded, and consequential for sun
+    and for melanoma risk. They are also the wrong explanation for every redhead in a
+    textbook. For the receptor itself, see <a href="/receptors/mc1r">MC1R</a>; for the
+    peptide that normally flips it, <a href="/alpha-msh">α-MSH</a>; for the drug that
+    activates the same receptor to build a protective tan in porphyria,{' '}
+    <a href="/afamelanotide">afamelanotide</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains MC1R variant biology. It is not medical advice, a genetic-test
+      interpretation, or a sun-protection plan. Skin-cancer screening belongs with a
+      clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="red-hair-mc1r" />
+</PageLayout>
