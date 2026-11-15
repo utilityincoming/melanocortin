@@ -1,0 +1,170 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is sarcoidosis?',
+    a: 'Sarcoidosis is an inflammatory disease in which the immune system builds clusters of cells called granulomas, most often in the lungs and lymph nodes, and sometimes in the skin, eyes, heart or nervous system. Many people need no treatment; others have lasting organ damage.',
+  },
+  {
+    q: 'Why is sarcoidosis on a melanocortin site?',
+    a: 'Because repository corticotropin — a long-acting ACTH gel, sold as Acthar — has carried a US label for symptomatic sarcoidosis since the 1950s. ACTH is a melanocortin peptide. Whether the benefit is only the cortisol it releases, or also a direct effect on immune-cell melanocortin receptors, is still debated.',
+  },
+  {
+    q: 'How strong is the evidence?',
+    a: 'The label is old. Modern studies are small. A 2017 single-blind study of 16 people found the gel was steroid-sparing and improved some lung and symptom measures. A later placebo-controlled trial of 55 people was stopped early for slow enrollment and was not powered to prove a difference, though the trends favoured the gel. That is a reason for interest, not a settled therapy.',
+  },
+  {
+    q: 'Is this a treatment recommendation?',
+    a: 'No. First-line care for sarcoidosis that needs treatment is usually glucocorticoids, managed by a clinician. This page is about why an ACTH preparation is on the label at all.',
+  },
+];
+
+const references = [
+  {
+    authors: 'US FDA / DailyMed.',
+    title:
+      'ACTHAR (repository corticotropin injection) prescribing information — labelled indications include symptomatic sarcoidosis.',
+    source: 'Label.',
+    year: '2024',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7b48ddec-e815-45f4-9ca0-5c0daaf56f30',
+  },
+  {
+    authors: 'Baughman RP, Sweiss N, Keijsers R, et al.',
+    title: 'Repository corticotropin for chronic pulmonary sarcoidosis.',
+    source: 'Lung. 195(3):313–322.',
+    year: '2017',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5437201/',
+  },
+  {
+    authors: 'Mirsaeidi M, Baughman RP, Sahoo D, Tarau E.',
+    title:
+      'Results from a phase 4, multicenter, randomized, double-blind, placebo-controlled study of repository corticotropin injection for the treatment of pulmonary sarcoidosis.',
+    source: 'Pulm Ther. 9(2):237–253. Stopped early; not powered for a definitive comparison.',
+    year: '2023',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10113127/',
+  },
+  {
+    authors: 'Gettig J, Cummings JP, Matuszewski K.',
+    title: 'H.P. Acthar Gel and cosyntropin review: clinical and financial implications.',
+    source: 'P T. 34(5):250–257.',
+    year: '2009',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2697107/',
+  },
+];
+---
+
+<PageLayout
+  title="Sarcoidosis: the granulomatous disease on the ACTH label"
+  seoTitle="Sarcoidosis and repository corticotropin"
+  kicker="The condition"
+  description="Sarcoidosis builds inflammatory granulomas, most often in the lung. It is on this site because repository corticotropin — a long-acting ACTH gel — has been labelled for symptomatic sarcoidosis for decades. The modern trials are small, one of them underpowered, and it is still unclear how much of any benefit is cortisol and how much is a direct melanocortin effect on immune cells."
+  seoDescription="Sarcoidosis is on the Acthar label because ACTH is a melanocortin. The modern trials are small, and how much of the effect is cortisol is still debated."
+  thread="An old ACTH gel, a disease of granulomas, and an argument that has never quite settled: is the drug only a roundabout steroid, or is the melanocortin system doing something steroids do not?"
+  updated="2026"
+  about={[
+    { name: 'Sarcoidosis', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Sarcoidosis'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Sarcoidosis is a granulomatous inflammatory disease, most often of the lungs and lymph nodes. Many cases need no drug; severe ones do.',
+      'Repository corticotropin (Acthar Gel), a purified ACTH preparation, is FDA-labelled for symptomatic sarcoidosis — a licence that dates from the 1950s.',
+      'ACTH is a POMC peptide. The classical account is that it works by driving MC2R to release cortisol. A second account invokes melanocortin receptors on immune cells.',
+      'A 2017 study in 16 people was steroid-sparing and improved some measures. A 2023 placebo-controlled trial of 55 was stopped early and was not powered to prove a difference.',
+      'This is not a recommendation. Glucocorticoids remain the usual first drug when sarcoidosis needs treatment.',
+    ]}
+  />
+
+  <p>
+    <strong>Sarcoidosis</strong> is not a disease of the adrenal, and it is not caused by a
+    melanocortin mutation. It is here because one of the oldest melanocortin drugs still
+    carries it on the label. Repository corticotropin — ACTH in a slow-release gel, sold as
+    Acthar — is approved in the United States for symptomatic sarcoidosis, alongside a list
+    of other inflammatory indications that long predates the cloning of the
+    receptors.<Cite n={1} />
+  </p>
+
+  <h2>What the disease is</h2>
+  <p>
+    In sarcoidosis the immune system builds granulomas: tight clusters of macrophages and
+    other cells. They form most often in the lungs and the lymph nodes in the chest, and
+    they can form in skin, eye, heart and nerve. Some people clear the granulomas and never
+    need a drug. Others develop scarring, breathlessness, or organ damage that does. When
+    treatment is required, the drug clinicians reach for first is usually a glucocorticoid.
+    The trouble with that, over years, is the trouble with excess steroid.
+  </p>
+
+  <h2>Why an ACTH gel is on the label</h2>
+  <p>
+    ACTH is cut from <a href="/pomc">POMC</a>. Given as a drug it is a melanocortin agonist,
+    and its classical job is to bind <a href="/receptors/mc2r">MC2R</a> on the adrenal cortex
+    and release cortisol. On that reading, Acthar is an indirect steroid: you inject the
+    signal, the adrenal makes the hormone.<Cite n={4} /> The product has been used since the
+    1950s, which is why the label looks nothing like the labels of{' '}
+    <a href="/setmelanotide">setmelanotide</a> or <a href="/afamelanotide">afamelanotide</a>.
+  </p>
+  <p>
+    The interesting claim is that this is not the whole story. Melanocortin receptors also
+    sit on immune cells, and a steroid-independent anti-inflammatory action through those
+    receptors has been proposed for conditions where steroids alone disappoint. How much of
+    the clinical effect is truly independent of cortisol is still argued, and the product
+    has also drawn scrutiny for its cost.<Cite n={4} /> The mechanism, and the rest of the
+    Acthar story, is on the <a href="/therapeutics#corticotropin">therapeutics page</a>. The
+    sister labelled use in acute <a href="/multiple-sclerosis-relapse">multiple-sclerosis
+    relapses</a> raises the same question.
+  </p>
+
+  <h2>What the newer studies can and cannot say</h2>
+  <p>
+    A 2017 single-blind study enrolled people with chronic pulmonary sarcoidosis whose lung
+    function had slipped while they were on prednisone. They received a short loading course
+    of the gel and were then randomised to 40 or 80 units twice a week. Sixteen people
+    finished 24 weeks. Prednisone doses fell, diffusing capacity and a quality-of-life score
+    improved, and the PET signal in lung lesions dropped. Forced vital capacity did not
+    change significantly, and the two doses did not separate.<Cite n={2} /> That is a
+    steroid-sparing signal in a very small, unblinded-to-treatment study.
+  </p>
+  <p>
+    A later multicentre trial (NCT03320070) did use a placebo. Fifty-five people with
+    pulmonary sarcoidosis were randomised to 80 units twice weekly or placebo for 24 weeks,
+    on top of usual care, with a planned taper of glucocorticoids. The study was stopped
+    early because enrollment collapsed during the COVID-19 pandemic, so it was not powered
+    for a statistical verdict. The trends — a sarcoidosis treatment score, and more people
+    coming off glucocorticoids — favoured the gel, and no new safety signal was
+    reported.<Cite n={3} /> An underpowered trend is not a proof. It is where the evidence
+    actually stands.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Sarcoidosis belongs on this site as a labelled use of an ACTH drug, not as a melanocortin
+    disease in the sense that <a href="/congenital-adrenal-hyperplasia">CAH</a> or{' '}
+    <a href="/epp">erythropoietic protoporphyria</a> are. The biology that makes the label
+    plausible is real: ACTH is a POMC peptide, MC2R releases cortisol, and other melanocortin
+    receptors sit on immune cells. The clinical case for reaching for the gel instead of a
+    steroid is much thinner than the case for the newer, receptor-selective drugs elsewhere
+    on the <a href="/conditions">conditions map</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains why sarcoidosis appears on an ACTH label. It is not medical advice
+      and gives no dosing or treatment instructions. Care of sarcoidosis belongs with a
+      clinician. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="sarcoidosis" />
+</PageLayout>

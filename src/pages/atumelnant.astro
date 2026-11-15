@@ -1,0 +1,237 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is atumelnant?',
+    a: 'Atumelnant (CRN04894) is an investigational once-daily oral drug that blocks MC2R, the adrenal receptor for ACTH. It is being developed by Crinetics for classic congenital adrenal hyperplasia and for ACTH-dependent Cushing’s syndrome. It is not approved.',
+  },
+  {
+    q: 'How is atumelnant different from crinecerfont?',
+    a: 'Both aim to quiet an overdriven adrenal, but they act at different points. Crinecerfont, approved in 2024 for classic CAH, blocks CRF1 at the pituitary so less ACTH is released. Atumelnant blocks MC2R on the adrenal so the gland cannot answer the ACTH that is already there. Crinecerfont is a licensed medicine; atumelnant is still in trials.',
+  },
+  {
+    q: 'What did the Phase 2 CAH study show?',
+    a: 'In a 12-week open-label study, once-daily atumelnant lowered morning androstenedione while glucocorticoid doses were left unchanged: the sponsor reported mean reductions of about 58% at 40 mg, 70% at 80 mg and 80% at 120 mg. A later cohort that also lowered the glucocorticoid dose still showed a mean androstenedione reduction of about 67% at 80 mg, and most of those participants reached a physiologic steroid dose. These are sponsor-reported, uncontrolled results.',
+  },
+  {
+    q: 'Is atumelnant approved?',
+    a: 'No. A randomised, placebo-controlled Phase 3 trial in adults with classic CAH (CALM-CAH) is under way, and a paediatric study has been started. Cushing’s is earlier still. Nothing on this page is a recommendation to use it.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Srirangalingam U, Bruera D, Ayala A, et al.',
+    title:
+      'Once-daily oral atumelnant (CRN04894) induces rapid, substantial, and sustained reductions of androstenedione and 17-hydroxyprogesterone in adults with classical congenital adrenal hyperplasia: interim results from a 12-week, phase 2, open-label study.',
+    source: 'J Endocr Soc. 9(Suppl 1):bvaf149.272 (OR07-06).',
+    year: '2025',
+    url: 'https://academic.oup.com/jes/article/9/Supplement_1/bvaf149.272/8298490',
+  },
+  {
+    authors: 'Crinetics Pharmaceuticals.',
+    title:
+      'Crinetics presents full results from Phase 2 trial of atumelnant in congenital adrenal hyperplasia at ENDO 2026 — cohorts 1–3 (glucocorticoid dose unchanged) and cohort 4 (dose reduced).',
+    source: 'Company presentation summary — an interested-party source.',
+    year: '2026',
+    url: 'https://ir.crinetics.com/news/news-details/2026/Crinetics-Presents-Full-Results-From-Phase-2-Trial-of-Atumelnant-in-Congenital-Adrenal-Hyperplasia-CAH-in-Oral-Presentation-at-ENDO-2026/default.aspx',
+  },
+  {
+    authors: 'Auchus RJ, et al. (abstract).',
+    title:
+      'Study design of a phase 3, randomized, double-blind, placebo-controlled trial (CALM-CAH) to evaluate atumelnant in adult patients with congenital adrenal hyperplasia.',
+    source: 'Eur J Endocrinol. 195(Suppl 1):lvag096.646.',
+    year: '2026',
+    url: 'https://academic.oup.com/ejendo/article/195/Supplement_1/lvag096.646/8755342',
+  },
+  {
+    authors: 'Crinetics Pharmaceuticals.',
+    title:
+      'Crinetics announces first patient dosed in pivotal adult trial of atumelnant in congenital adrenal hyperplasia (CAH).',
+    source: 'Company announcement — an interested-party source.',
+    year: '2025',
+    url: 'https://ir.crinetics.com/news/news-details/2025/Crinetics-Announces-First-Patient-Dosed-in-Pivotal-Adult-Trial-of-Atumelnant-in-Congenital-Adrenal-Hyperplasia-CAH/default.aspx',
+  },
+  {
+    authors: 'Crinetics Pharmaceuticals.',
+    title:
+      'Atumelnant, an oral ACTH-receptor antagonist: Phase 3 CALM-CAH in adults and Phase 2/3 BALANCE-CAH in children, plus a trial in ACTH-dependent Cushing’s syndrome.',
+    source: 'Company pipeline page — an interested-party source.',
+    year: '2026',
+    url: 'https://crinetics.com/pipeline/atumelnant-oral-acth-antagonist/',
+  },
+  {
+    authors: 'Auchus RJ, Hamidi O, Pivonello R, et al.',
+    title: 'Phase 3 trial of crinecerfont in adult congenital adrenal hyperplasia.',
+    source: 'N Engl J Med. 391(6):504–514.',
+    year: '2024',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/38828955/',
+  },
+];
+---
+
+<PageLayout
+  title="Atumelnant (CRN04894): the first drug built to block MC2R"
+  seoTitle="Atumelnant (CRN04894): the oral MC2R antagonist"
+  kicker="Blocking the adrenal receptor"
+  description="Atumelnant is an investigational once-daily oral antagonist of MC2R, the adrenal receptor for ACTH. In open-label Phase 2 it lowered the androgen precursors of classic congenital adrenal hyperplasia, and a placebo-controlled Phase 3 trial is now testing whether that holds while glucocorticoid doses come down. It is also in early study for ACTH-dependent Cushing’s. It is not approved."
+  seoDescription="Atumelnant (CRN04894) is an oral MC2R antagonist in Phase 3 for classic CAH and in earlier trials for ACTH-dependent Cushing’s. Not approved."
+  thread="The agonists switch a melanocortin receptor on. This one is built to switch the adrenal’s receptor off — and still leave the patient with enough cortisol to live."
+  updated="2026"
+  about={[
+    { name: 'Atumelnant', type: 'MedicalEntity' },
+    { name: 'ACTH receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/ACTH_receptor'] },
+    { name: 'Congenital adrenal hyperplasia', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Congenital_adrenal_hyperplasia'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Atumelnant (CRN04894) is a once-daily oral small molecule that blocks MC2R, the receptor through which ACTH drives the adrenal cortex. It is the first clinical drug built to do that.',
+      'Its lead indication is classic congenital adrenal hyperplasia, where excess ACTH pushes the gland to overproduce androgens. ACTH-dependent Cushing’s is the second programme.',
+      'In a 12-week open-label Phase 2 study the sponsor reported mean androstenedione reductions of about 58–80% across 40–120 mg when steroid doses were held, and about 67% at 80 mg in a cohort that also lowered the steroid dose.',
+      'A randomised Phase 3 trial in adults (CALM-CAH) is testing androgen control on a physiologic glucocorticoid dose. A paediatric study has started. Nothing is approved.',
+      'Blocking MC2R can also remove the cortisol a person still needs, so the drug is being studied on top of replacement, not instead of an adrenal.',
+    ]}
+  />
+
+  <h2>Atumelnant at a glance</h2>
+  <div class="not-prose my-8 overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <tbody class="align-top">
+        <tr class="border-b border-[var(--border)]">
+          <td class="w-1/3 py-2 pr-4 font-medium text-[var(--text)]">What it is</td>
+          <td class="py-2 text-[var(--text)]">A once-daily oral, non-peptide antagonist of the ACTH receptor (MC2R)</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Also called</td>
+          <td class="py-2 text-[var(--text)]">CRN04894</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Developer</td>
+          <td class="py-2 text-[var(--text)]">Crinetics Pharmaceuticals</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Lead indication</td>
+          <td class="py-2 text-[var(--text)]">Classic congenital adrenal hyperplasia — Phase 3 (CALM-CAH) enrolling; a paediatric study (BALANCE-CAH) has started</td>
+        </tr>
+        <tr class="border-b border-[var(--border)]">
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Second indication</td>
+          <td class="py-2 text-[var(--text)]">ACTH-dependent Cushing’s syndrome — earlier-stage, still enrolling</td>
+        </tr>
+        <tr>
+          <td class="py-2 pr-4 font-medium text-[var(--text)]">Status</td>
+          <td class="py-2 text-[var(--text)]">Investigational. Not approved.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Most melanocortin drugs are agonists. They copy <a href="/alpha-msh">α-MSH</a> or{' '}
+    <a href="/acth">ACTH</a> and turn a receptor on. <strong>Atumelnant</strong> is the
+    exception that has gone furthest in the clinic: an oral small molecule built to
+    <em>block</em> <a href="/receptors/mc2r">MC2R</a>, the one receptor that answers to
+    ACTH and almost nothing else.<Cite n={5} /> If the rest of this site is about switching
+    the system on, this page is about switching one lock off.
+  </p>
+
+  <h2>Why block the adrenal’s receptor</h2>
+  <p>
+    In <a href="/congenital-adrenal-hyperplasia">classic congenital adrenal hyperplasia</a>{' '}
+    a missing enzyme, usually 21-hydroxylase, means the adrenal cannot finish making
+    cortisol. The pituitary, hearing no cortisol, keeps releasing ACTH. That ACTH lands on
+    MC2R and drives the gland to grow and to spill its backed-up precursors into
+    androgens.<Cite n={1} /> The usual treatment replaces cortisol and uses extra
+    glucocorticoid to hold ACTH down — often more steroid than the body would have made on
+    its own.
+  </p>
+  <p>
+    There are two ways to cut that loop without simply adding more steroid. One, already
+    approved, is upstream: crinecerfont blocks the pituitary receptor that releases ACTH,
+    so less of the hormone is made.<Cite n={6} /> The other is at the gland itself. Block
+    MC2R and the ACTH that is already circulating cannot turn steroidogenesis on. That is
+    atumelnant’s bet, and it is why the same molecule is also being studied in
+    ACTH-dependent <a href="/cushings-disease">Cushing’s</a>, where the problem is too much
+    ACTH from a tumour rather than a missing enzyme.<Cite n={5} />
+  </p>
+  <p>
+    MC2R is an unusually clean target for this. It needs both ACTH and the accessory
+    protein MRAP, and the other four melanocortin receptors do not read ACTH as their
+    ligand. An antagonist built for that address is, in principle, an adrenal drug rather
+    than a whole-family one. The constraint is the obvious one: a person still needs
+    cortisol. The antagonist is meant to be paired with replacement, not to abolish the
+    adrenal.
+  </p>
+
+  <h2>What Phase 2 actually showed</h2>
+  <p>
+    The adult CAH study (NCT05907291) was open-label and twelve weeks long. The first
+    published interim report described rapid, sustained falls in androstenedione and
+    17-hydroxyprogesterone.<Cite n={1} /> The sponsor’s full readout at ENDO 2026 split the
+    result into two designs, and it should be read as a company presentation, not as a
+    peer-reviewed controlled trial.
+  </p>
+  <p>
+    In the cohorts that kept each person’s glucocorticoid dose unchanged, mean morning
+    androstenedione fell about 58% at 40 mg once daily (11 people), about 70% at 80 mg
+    (11), and about 80% at 120 mg (6).<Cite n={2} /> A later cohort took 80 mg and, from
+    week 2, had the steroid dose stepped down toward a physiologic target. At week 12 the
+    mean androstenedione change was about −67%, and seven of the eight people who finished
+    were on a physiologic glucocorticoid dose.<Cite n={2} /> The sponsor also reported no
+    treatment-related severe or serious adverse events in the programme to that point.
+    Numbers this small, without a placebo arm, can move. They are a reason to run Phase 3,
+    not a substitute for it.
+  </p>
+
+  <h2>The trials that have to decide it</h2>
+  <p>
+    CALM-CAH (NCT07144163) is a randomised, double-blind, placebo-controlled trial in
+    adults with classic CAH. Participants are assigned 2:1 to atumelnant 80 mg or placebo
+    once daily for 32 weeks, with an option to go to 120 mg, while glucocorticoid doses
+    are tapered toward a physiologic range. The primary endpoint is the proportion who, at
+    week 32, have morning androstenedione at or below the upper limit of normal{' '}
+    <em>and</em> are on physiologic glucocorticoid replacement.<Cite n={3} /> The first
+    patient was dosed in December 2025.<Cite n={4} /> A paediatric study, BALANCE-CAH, has
+    also been started.<Cite n={5} /> Neither has reported results.
+  </p>
+  <p>
+    Cushing’s is thinner. Early open-label work, run with the NIH and described on the{' '}
+    <a href="/cushings-disease">Cushing’s page</a>, saw cortisol fall within days and then
+    required replacement — a pharmacology result in a handful of people, not a treatment
+    trial. The sponsor says a later study in ACTH-dependent Cushing’s is enrolling.<Cite
+      n={5}
+    /> What a pituitary tumour does when the adrenal stops answering is one of the
+    questions that study has to face.
+  </p>
+
+  <h2>Where it sits</h2>
+  <p>
+    Atumelnant is the adrenal entry on the{' '}
+    <a href="/melanocortin-antagonists">antagonists hub</a>, next to the MC4R blockers
+    aimed at <a href="/cachexia">cachexia</a>. The biology it depends on is on{' '}
+    <a href="/receptors/mc2r">MC2R</a> and <a href="/acth">ACTH</a>. Status across the
+    family is on the <a href="/pipeline">pipeline</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains an investigational drug. It is not medical advice and gives no
+      dosing or access instructions. Atumelnant is not approved. Congenital adrenal
+      hyperplasia and Cushing’s require specialist care, and an adrenal crisis is a medical
+      emergency. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="atumelnant" />
+</PageLayout>

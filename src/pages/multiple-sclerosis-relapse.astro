@@ -1,0 +1,148 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'Why is multiple sclerosis on a melanocortin site?',
+    a: 'Because repository corticotropin, a long-acting ACTH gel, is FDA-labelled for acute exacerbations of multiple sclerosis in adults. ACTH is a melanocortin peptide cut from POMC. High-dose corticosteroids are the usual treatment for a relapse; the gel is an alternative, including when steroids have not worked.',
+  },
+  {
+    q: 'Does ACTH treat MS itself?',
+    a: 'No. The label is for acute relapses, not for preventing them and not as a disease-modifying therapy. Modern MS care uses other drugs for that job. This page is about the relapse indication only.',
+  },
+  {
+    q: 'What did the modern trial show?',
+    a: 'A small placebo-controlled study enrolled 35 adults whose relapse had not responded adequately to high-dose corticosteroids. More people on the gel than on placebo improved on a disability scale by day 42 (about 61% versus about 12%). A quality-of-life scale did not separate. Thirty-five people is a signal, not a definitive trial.',
+  },
+  {
+    q: 'Is the benefit just cortisol?',
+    a: 'Partly, and maybe not only. ACTH drives the adrenal to release cortisol through MC2R, so the gel is at least an indirect steroid. Melanocortin receptors also sit on immune cells, and a steroid-independent effect has been proposed. How much of the clinical effect that accounts for is unresolved.',
+  },
+];
+
+const references = [
+  {
+    authors: 'US FDA / DailyMed.',
+    title:
+      'ACTHAR (repository corticotropin injection) prescribing information — labelled for acute exacerbations of multiple sclerosis in adults.',
+    source: 'Label.',
+    year: '2024',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7b48ddec-e815-45f4-9ca0-5c0daaf56f30',
+  },
+  {
+    authors: 'Wynn D, Goldstick L, Bauer W, et al.',
+    title:
+      'Results from a multicenter, randomized, double-blind, placebo-controlled study of repository corticotropin injection for multiple sclerosis relapse that did not adequately respond to corticosteroids.',
+    source: 'CNS Neurosci Ther. 28(3):364–371. NCT03126760; 35 randomised. Sponsor-supported.',
+    year: '2022',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8841301/',
+  },
+  {
+    authors: 'Gettig J, Cummings JP, Matuszewski K.',
+    title: 'H.P. Acthar Gel and cosyntropin review: clinical and financial implications.',
+    source: 'P T. 34(5):250–257.',
+    year: '2009',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2697107/',
+  },
+];
+---
+
+<PageLayout
+  title="Multiple sclerosis relapses: why an ACTH gel is still on the label"
+  seoTitle="MS relapses and repository corticotropin"
+  kicker="The condition"
+  description="Repository corticotropin, a long-acting ACTH gel, is labelled for acute exacerbations of multiple sclerosis in adults. High-dose corticosteroids are the usual relapse treatment. A small placebo-controlled trial in people who had not responded to steroids found more disability-scale responders on the gel. ACTH is a melanocortin; how much of the effect is cortisol, and how much is direct, is still debated."
+  seoDescription="Acthar, an ACTH gel, is labelled for acute MS relapses. A 35-person trial in steroid non-responders favoured it on one disability scale. The mechanism is still partly cortisol."
+  thread="A relapse is a flare of inflammation in the central nervous system. The oldest melanocortin drug is still licensed to quiet one — mostly, everyone agrees, by making the adrenal release cortisol."
+  updated="2026"
+  about={[
+    { name: 'Multiple sclerosis', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Multiple_sclerosis'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'The US label for repository corticotropin (Acthar Gel) includes acute exacerbations of multiple sclerosis in adults. It is not a disease-modifying MS drug.',
+      'ACTH is a POMC peptide. Its established action is to drive adrenal MC2R and release cortisol, so the gel is at least an indirect steroid.',
+      'A direct anti-inflammatory action through melanocortin receptors on immune cells is proposed and not settled.',
+      'In a 35-person placebo-controlled trial of relapses that had not responded to high-dose steroids, about 61% on the gel versus about 12% on placebo were disability-scale responders at day 42. A symptom scale did not separate.',
+      'Usual care for a relapse that needs treatment is high-dose corticosteroid. This page is the biology and the evidence, not a protocol.',
+    ]}
+  />
+
+  <p>
+    Multiple sclerosis is an immune disease of the central nervous system. A{' '}
+    <strong>relapse</strong> is a new or worsening neurological deficit that lasts, caused by
+    a fresh focus of inflammation. It is not, by itself, a melanocortin disease. It is on
+    this site because repository corticotropin — ACTH in a slow-release gel — is
+    FDA-labelled for the treatment of acute exacerbations of MS in adults.<Cite n={1} /> The
+    same preparation’s other famous inflammatory use is{' '}
+    <a href="/sarcoidosis">symptomatic sarcoidosis</a>.
+  </p>
+
+  <h2>An indirect steroid, and maybe something else</h2>
+  <p>
+    ACTH is cut from <a href="/pomc">POMC</a>. Injected, it binds{' '}
+    <a href="/receptors/mc2r">MC2R</a> on the adrenal cortex and the cortex releases
+    cortisol. For most of the drug’s history that was the whole explanation: Acthar is a
+    way of making the patient produce their own steroid.<Cite n={3} /> High-dose
+    corticosteroids are still the standard drug for an MS relapse that needs treating. The
+    gel sits beside that, not in front of it, and its price has been a long-running
+    argument of its own.<Cite n={3} />
+  </p>
+  <p>
+    The melanocortin-specific claim is the extra one. Receptors of this family are also
+    expressed on immune cells, and a steroid-independent anti-inflammatory effect has been
+    invoked to explain why an ACTH preparation might help when a steroid already has not.
+    The <a href="/therapeutics#corticotropin">therapeutics page</a> keeps the score on that
+    debate. It is plausible pharmacology. It is not, on current evidence, a proven second
+    mechanism you can point to in a patient.
+  </p>
+
+  <h2>The trial in steroid non-responders</h2>
+  <p>
+    The study that matches the “when steroids fail” use (NCT03126760) enrolled adults with
+    relapsing-remitting MS whose relapse had not responded adequately to high-dose
+    corticosteroids. Thirty-five people were randomised: 18 to 80 units of the gel daily for
+    14 days, 17 to placebo. At day 42, 61% of the gel group and 12% of the placebo group met
+    the disability-scale (EDSS) responder definition. A clinician global impression leaned
+    the same way. The MS Impact Scale did not show a meaningful difference, and there were
+    no serious adverse events in the report.<Cite n={2} />
+  </p>
+  <p>
+    Read the size. Thirty-five people, one positive scale, one scale that did not move.
+    That is evidence the gel can do something in a relapse that shrugged off steroids. It is
+    not evidence that it should replace corticosteroids, and it says nothing about
+    preventing the next relapse. Disease-modifying MS drugs are a different category
+    entirely, and none of them is a melanocortin.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Acute MS relapse is a labelled use of an old ACTH drug. The melanocortin content is the
+    peptide and the receptor that turns it into cortisol, plus an unresolved claim about
+    immune-cell receptors. For the hormone, see <a href="/acth">ACTH</a>; for the receptor,{' '}
+    <a href="/receptors/mc2r">MC2R</a>; for every other condition on this map,{' '}
+    <a href="/conditions">the conditions page</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains a labelled use of repository corticotropin. It is not medical
+      advice and gives no dosing or treatment instructions. An MS relapse needs clinical
+      care. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="multiple-sclerosis-relapse" />
+</PageLayout>
