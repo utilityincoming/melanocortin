@@ -1,0 +1,173 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is X-linked protoporphyria?',
+    a: 'X-linked protoporphyria (XLP) is a rare inherited porphyria that looks like erythropoietic protoporphyria: burning pain within minutes of visible light. The enzyme defect is the opposite of EPP. EPP cannot finish heme. XLP’s erythroid ALAS2 is overactive, so protoporphyrin IX is made faster than it can be cleared.',
+  },
+  {
+    q: 'How common is it among people who look like they have EPP?',
+    a: 'On the order of 2 to 10 percent of people with the EPP phenotype turn out to have XLP when the gene is sequenced. A laboratory clue is zinc-chelated protoporphyrin making up a large share of the red-cell protoporphyrin, often cited around 15 to 50 percent, instead of almost all of it being metal-free.',
+  },
+  {
+    q: 'Does the approved melanocortin drug cover XLP?',
+    a: 'The US label for afamelanotide names erythropoietic protoporphyria, not XLP. The pigment strategy does not care which gene overproduced the porphyrin: MC1R still builds eumelanin that absorbs light. The oral MC1R agonist dersimelagon was studied in EPP and XLP together, and that Phase 3 trial met its primary endpoint. It is not approved.',
+  },
+  {
+    q: 'Is XLP a melanocortin disease?',
+    a: 'No. The disease is a heme-pathway disease. Melanocortin drugs are a photoprotective workaround. They do not slow ALAS2 or clear protoporphyrin, and they do not treat the liver injury that accumulated protoporphyrin can cause in a minority of people.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Whatley SD, Ducamp S, Gouya L, et al.',
+    title:
+      'C-terminal deletions in the ALAS2 gene lead to gain of function and cause X-linked dominant protoporphyria without anemia or iron overload.',
+    source: 'Am J Hum Genet. 83(3):408–414.',
+    year: '2008',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/18760763/',
+  },
+  {
+    authors: 'Leaf RK, Dickey AK.',
+    title: 'How I treat erythropoietic protoporphyria and X-linked protoporphyria.',
+    source: 'Blood. 141(24):2921–2931.',
+    year: '2023',
+    url: 'https://ashpublications.org/blood/article/141/24/2921/494865/How-I-treat-erythropoietic-protoporphyria-and-X',
+  },
+  {
+    authors: 'US Food and Drug Administration.',
+    title:
+      'SCENESSE (afamelanotide) label: to increase pain-free light exposure in adult patients with a history of phototoxic reactions from erythropoietic protoporphyria.',
+    source: 'Approved indication, October 2019. The labelled disease is EPP.',
+    year: '2019',
+    url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210797s000lbl.pdf',
+  },
+  {
+    authors: 'Tanabe Pharma America.',
+    title:
+      'Positive topline results for dersimelagon in erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP).',
+    source: 'Sponsor announcement of the INSPIRE Phase 3 primary endpoint — an interested-party source.',
+    year: '2026',
+    url: 'https://www.prnewswire.com/news-releases/tanabe-pharma-america-announces-positive-topline-results-for-dersimelagon-in-erythropoietic-protoporphyria-epp-and-x-linked-protoporphyria-xlp-302663740.html',
+  },
+];
+---
+
+<PageLayout
+  title="X-linked protoporphyria: the same light pain, from too much heme precursor"
+  seoTitle="X-linked protoporphyria (XLP) and melanocortins"
+  kicker="The condition"
+  description="X-linked protoporphyria causes the same burning pain in visible light as erythropoietic protoporphyria, but the enzyme error runs the other way: ALAS2 is overactive, so protoporphyrin IX is overproduced. It is a minority of the EPP phenotype. Afamelanotide’s US label names EPP. The oral MC1R agonist dersimelagon was tested in both, and that Phase 3 trial met its primary endpoint."
+  seoDescription="XLP is protoporphyrin pain from an overactive ALAS2, not a weak ferrochelatase. The US afamelanotide label names EPP; dersimelagon’s Phase 3 included both."
+  thread="Two genes, one phototoxic molecule. The melanocortin drug does not care which gene made the protoporphyrin. It only adds pigment in front of the light."
+  updated="2026"
+  about={[
+    { name: 'X-linked protoporphyria', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/X-linked_protoporphyria'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'X-linked protoporphyria (XLP) is clinically the same light disease as erythropoietic protoporphyria: burning pain within minutes of visible violet-blue light.',
+      'The biochemistry is the opposite error. EPP cannot insert iron into protoporphyrin IX. XLP’s ALAS2 is a gain-of-function, so the pathway makes protoporphyrin faster than a normal ferrochelatase can finish it.',
+      'About 2 to 10 percent of people with the EPP phenotype have XLP. A high fraction of zinc-protoporphyrin in red cells is a clue before the gene test.',
+      'The US afamelanotide label names EPP, not XLP. Dersimelagon’s Phase 3 trial enrolled both and met its primary endpoint in 2026; the drug is not approved.',
+      'Neither drug fixes ALAS2 or clears protoporphyrin. Both are a pigment workaround. Liver injury from the same molecule remains a separate problem.',
+    ]}
+  />
+
+  <p>
+    People with <strong>X-linked protoporphyria</strong> describe the same illness as people
+    with <a href="/epp">erythropoietic protoporphyria</a>: pain in the skin within minutes of
+    daylight, including light through window glass, often with nothing a bystander can see.
+    For years the two were not separated. They still share the photosensitiser, protoporphyrin
+    IX. They do not share the broken step.
+  </p>
+
+  <h2>Too much of the first enzyme, not too little of the last</h2>
+  <p>
+    Heme in red-cell precursors starts with ALAS2, the erythroid form of
+    5-aminolevulinate synthase, and ends when ferrochelatase drops an iron into
+    protoporphyrin IX. EPP is a failure of that last insertion, usually from a bad
+    ferrochelatase allele opposite a common low-expression allele. XLP, described in 2008,
+    is a gain of function at the start: small deletions that remove the C-terminus of
+    ALAS2, so the enzyme runs too fast. Protoporphyrin is produced beyond what a normal
+    ferrochelatase can clear. There is no anaemia and no iron overload of the kind other
+    ALAS2 diseases cause.<Cite n={1} />
+  </p>
+  <p>
+    The inheritance is X-linked. Hemizygous males and heterozygous females can both be
+    affected; a woman’s disease can be as severe as a male relative’s, or she can be nearly
+    silent. “Erythropoietic protoporphyria, X-linked dominant” is a name that flattens that
+    range, which is why the condition is called XLP.<Cite n={1} />
+  </p>
+  <p>
+    Among people who look as if they have EPP, sequencing finds XLP in about 2 to 10
+    percent.<Cite n={2} /> A practical clue sits in the red cell before the gene result.
+    In EPP almost all of the protoporphyrin is metal-free. In XLP a large share is
+    zinc-chelated, on the order of 15 to 50 percent of the total.<Cite n={2} /> Same pain,
+    different fraction, and a reason not to stop at a clinical label of “EPP.”
+  </p>
+
+  <h2>Why a melanocortin drug is even relevant</h2>
+  <p>
+    Nothing about ALAS2 is a melanocortin receptor. The drug rationale is downstream of the
+    light, not downstream of the gene. Protoporphyrin absorbs hardest around 400–410 nm and
+    hands that energy to oxygen. <a href="/receptors/mc1r">MC1R</a> agonism builds eumelanin,
+    which sits in the skin and intercepts light before it reaches the vessel. That is the
+    whole of the <a href="/afamelanotide">afamelanotide</a> idea, and it does not require the
+    porphyrin to have come from a weak ferrochelatase.
+  </p>
+  <p>
+    The regulatory wording is narrower than the mechanism. The US label for afamelanotide
+    is to increase pain-free light exposure in adults with phototoxic reactions from
+    erythropoietic protoporphyria.<Cite n={3} /> It names EPP. It does not name XLP. The
+    oral small-molecule MC1R agonist <a href="/dersimelagon">dersimelagon</a> was studied in
+    a Phase 3 trial that enrolled both, and the sponsor reported in 2026 that the trial met
+    its primary endpoint — time in sunlight before the first warning symptom.<Cite n={4} />
+    That result is a company announcement until the paper is out, and the drug is not
+    approved. Full trial numbers and the regulatory path are on the dersimelagon page.
+  </p>
+
+  <h2>What pigment does not fix</h2>
+  <p>
+    A tan does not slow ALAS2 and does not remove protoporphyrin from blood or liver. A
+    minority of people with protoporphyria develop liver injury because the liver is where
+    the excess porphyrin is excreted and where it can precipitate. That risk belongs to the
+    molecule, so it belongs to XLP as well as to EPP, and it is outside what an MC1R agonist
+    is for.<Cite n={2} /> Avoiding the triggering wavelengths, and the specialist care of the
+    porphyria itself, are not replaced by a melanocortin.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    XLP is the gain-of-function twin of EPP: too much precursor rather than too little
+    finishing enzyme, the same phototoxic product, and the same reason a pigment drug can
+    help without being a cure. For the shared illness, see <a href="/epp">EPP</a>; for the
+    two drugs, <a href="/afamelanotide">afamelanotide</a> and{' '}
+    <a href="/dersimelagon">dersimelagon</a>; for the receptor,{' '}
+    <a href="/receptors/mc1r">MC1R</a>.
+  </p>
+
+  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains X-linked protoporphyria and why melanocortin drugs are studied in
+      it. It is not medical advice and gives no dosing or treatment instructions. See the{' '}
+      <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="x-linked-protoporphyria" />
+</PageLayout>
