@@ -74,7 +74,7 @@ const tags = [
               href={`https://www.ncbi.nlm.nih.gov/snp/${v.rsid}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="underline decoration-dotted hover:text-[var(--accent)]"
+              class="quiet"
             >
               {v.rsid} ↗
             </a>
@@ -91,7 +91,7 @@ const tags = [
               href={`https://www.ncbi.nlm.nih.gov/clinvar/variation/${v.clinvar}/`}
               target="_blank"
               rel="noopener noreferrer"
-              class="underline decoration-dotted hover:text-[var(--accent)]"
+              class="quiet"
             >
               {v.clinvar} ↗
             </a>
@@ -108,7 +108,7 @@ const tags = [
               href={`https://www.omim.org/entry/${v.omim}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="underline decoration-dotted hover:text-[var(--accent)]"
+              class="quiet"
             >
               {v.omim} ↗
             </a>
@@ -136,7 +136,7 @@ const tags = [
             href={s.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[var(--text-muted)] underline decoration-dotted hover:text-[var(--accent)]"
+            class="text-[var(--text-muted)] quiet"
           >
             {s.authors} {s.year} ↗
           </a>

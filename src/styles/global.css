@@ -211,8 +211,32 @@ body {
   outline-offset: 3px;
 }
 
+/* One underline for prose, tool copy, and one-off links. */
+.article-links :is(p, li) a,
+a.quiet {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  text-underline-offset: 0.18em;
+}
+.article-links :is(p, li) a:hover,
+a.quiet:hover {
+  text-decoration-color: var(--accent);
+}
+/* A quiet link may keep a muted color until hover. */
+a.quiet.text-muted,
+a.quiet[class*='text-muted'] {
+  color: var(--text-muted);
+}
+a.quiet.text-muted:hover,
+a.quiet[class*='text-muted']:hover {
+  color: var(--accent);
+}
+
 /* Citation marks stay bare; the prose underline is for words, not [n]. */
+.article-links p sup a,
 p sup a {
+  color: var(--accent);
   text-decoration: none;
 }
 
