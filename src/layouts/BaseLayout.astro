@@ -146,7 +146,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#faf6ee" />
+    <meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#120f0a" media="(prefers-color-scheme: dark)" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
