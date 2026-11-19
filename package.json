@@ -9,8 +9,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/check-link-whitespace.mjs",
+    "postbuild": "node scripts/check-link-whitespace.mjs && node scripts/check-internal-links.mjs",
     "check:ws": "node scripts/check-link-whitespace.mjs",
+    "check:links": "node scripts/check-internal-links.mjs",
     "preview": "astro preview",
     "gsc": "node scripts/gsc-report.mjs",
     "gsc:check": "node scripts/gsc-report.mjs --check",
@@ -24,11 +25,13 @@
     "@astrojs/vercel": "^11.0.2",
     "@tailwindcss/vite": "^4.3.5",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^7.3.2",
+    "astro": "^7.4.13",
     "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
-    "sharp": "^0.35.2"
+    "@astrojs/check": "^0.9.12",
+    "sharp": "^0.35.2",
+    "typescript": "^6.0.3"
   },
   "overrides": {
     "path-to-regexp": "6.3.0"
