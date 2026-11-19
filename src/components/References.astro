@@ -23,7 +23,7 @@ const { items } = Astro.props;
           <span class="italic">{r.source}</span> {r.year}.{' '}
           <a
             href={r.url}
-            class="break-words underline decoration-dotted hover:text-[var(--accent)]"
+            class="break-words text-[var(--accent)] underline decoration-[color-mix(in_oklab,var(--accent)_45%,transparent)] underline-offset-[0.18em] hover:decoration-[var(--accent)]"
             target="_blank"
             rel="noopener noreferrer"
           >
