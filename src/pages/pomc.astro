@@ -294,12 +294,13 @@ const references = [
   .enz-key.enz-pc2 { background: var(--accent-soft); color: var(--accent-strong); }
 
   .prose-body a {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 2px;
+    color: var(--accent);
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    text-underline-offset: 0.18em;
   }
   .prose-body a:hover {
-    color: var(--accent);
+    text-decoration-color: var(--accent);
   }
 </style>
 
@@ -361,7 +362,7 @@ const references = [
         ? `<p class="mt-3 text-sm"><span class="font-mono text-xs uppercase tracking-wide" style="color:var(--accent)">Receptors</span> <span class="text-[var(--text-muted)]">${esc(n.receptors)}</span></p>`
         : '';
       const link = n.href
-        ? `<p class="mt-4"><a href="${n.href}" class="text-sm underline decoration-dotted hover:text-[var(--accent)]">Full page on ${esc(n.name)} →</a></p>`
+        ? `<p class="mt-4"><a href="${n.href}" class="text-sm quiet">Full page on ${esc(n.name)} →</a></p>`
         : '';
       detail.innerHTML =
         `<p class="font-serif text-xl font-semibold tracking-tight">${esc(n.name)}${aka}</p>` +
