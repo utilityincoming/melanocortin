@@ -187,6 +187,25 @@ body {
   }
 }
 
+/* The caveat box repeated at the end of explainers. Same warm panel as
+ * key takeaways, with a pigment edge so it reads as a note, not a card. */
+.aside-note {
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--accent-soft);
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.aside-note > :first-child {
+  margin-top: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
 /* Homepage plates: a pigment rule on the top edge, so cards read as
  * pages rather than identical outlined boxes. */
 .plate {
