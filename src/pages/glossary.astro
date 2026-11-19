@@ -73,7 +73,7 @@ const count = terms.length;
       letters.map((l) => (
         <a
           href={`#letter-${l === 'α–ω' ? 'greek' : l}`}
-          class="flex h-8 min-w-8 items-center justify-center rounded-md border border-[var(--border)] px-2 font-mono text-sm no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          class="flex h-8 min-w-8 items-center justify-center rounded-md border border-[var(--border)] px-2 font-mono text-sm no-underline transition-colors hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:text-[var(--accent)]"
         >
           {l}
         </a>
@@ -97,7 +97,7 @@ const count = terms.length;
                 id={slugify(sortKey(t.term))}
                 class="grid scroll-mt-24 grid-cols-1 gap-1 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6"
               >
-                <dt class="font-mono text-sm font-semibold">
+                <dt class="font-serif text-base font-semibold tracking-tight">
                   {t.href ? (
                     <a href={t.href} class="text-[var(--accent)] no-underline hover:underline">
                       {t.term}
@@ -137,6 +137,6 @@ const count = terms.length;
   <p class="mt-12 text-sm text-[var(--text-muted)]">
     Terms link to the page that covers them in depth. Missing one, or see a
     definition that could be sharper?{' '}
-    <a href="/about#corrections" class="underline decoration-dotted hover:text-[var(--accent)]">Corrections are welcome.</a>
+    <a href="/about#corrections" class="text-[var(--accent)] underline decoration-[color-mix(in_oklab,var(--accent)_45%,transparent)] underline-offset-[0.18em] hover:decoration-[var(--accent)]">Corrections are welcome.</a>
   </p>
 </PageLayout>

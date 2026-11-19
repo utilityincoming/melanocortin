@@ -9,7 +9,7 @@ interface Props {
 const { items, heading = 'Key takeaways' } = Astro.props;
 ---
 
-<aside class="key-takeaways not-prose my-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6">
+<aside class="key-takeaways not-prose my-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 shadow-[inset_3px_0_0_var(--accent)]">
   <p class="!mt-0 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
     {heading}
   </p>
