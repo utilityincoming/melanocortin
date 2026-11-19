@@ -215,3 +215,15 @@ body {
 p sup a {
   text-decoration: none;
 }
+
+/* Opening paragraph on articles and tools. Unlayered so older utility
+ * classes on the same element cannot turn it gray again. */
+.page-lede {
+  margin-top: 1.25rem;
+  max-width: 42rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text);
+  text-wrap: pretty;
+}
