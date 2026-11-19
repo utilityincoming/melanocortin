@@ -1,19 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const ways = [
+  {
+    href: '/system',
+    kicker: 'Start here',
+    title: 'The system',
+    body: 'POMC, the peptides it becomes, and the five receptors that read them.',
+  },
+  {
+    href: '/receptors',
+    kicker: 'Five switches',
+    title: 'The receptors',
+    body: 'MC1R through MC5R — where each one acts, and what breaks when it fails.',
+  },
+  {
+    href: '/therapeutics',
+    kicker: 'The frontier',
+    title: 'The drugs',
+    body: 'Approved medicines and the agents still moving through the clinic.',
+  },
+];
 ---
 
-<BaseLayout title="Not found — melanocortin.com">
-  <section class="mx-auto max-w-3xl px-6 py-32 text-center">
-    <p class="font-mono text-sm uppercase tracking-[0.2em] text-[var(--accent)]">404</p>
-    <h1 class="mt-4 font-serif text-4xl font-semibold tracking-tight">No page at this address</h1>
-    <p class="mx-auto mt-4 max-w-md leading-relaxed text-[var(--text-muted)]">
-      The reference covers the system, the five receptors, and the drugs built
-      on them. Try one of those instead.
-    </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="/" class="ui-sans rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline hover:opacity-90">Home</a>
-      <a href="/receptors" class="ui-sans rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline hover:border-[var(--accent)] hover:text-[var(--accent)]">Receptors</a>
-      <a href="/therapeutics" class="ui-sans rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline hover:border-[var(--accent)] hover:text-[var(--accent)]">Drugs</a>
+<BaseLayout
+  title="Page not found"
+  description="That address is not in the melanocortin reference. Start from the system, the five receptors, or the drugs."
+  noindex
+>
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <header>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">404</p>
+      <h1 class="mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight">
+        No page at this address
+      </h1>
+      <p class="page-lede">
+        The reference covers the system, the five receptors, and the drugs built
+        on them. These three are the way in.
+      </p>
+    </header>
+    <div class="mt-10 grid gap-4 sm:grid-cols-3">
+      {
+        ways.map((w) => (
+          <a href={w.href} class="plate group flex flex-col p-5 no-underline">
+            <span class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
+              {w.kicker}
+            </span>
+            <span class="mt-3 font-serif text-xl font-semibold tracking-tight group-hover:text-[var(--accent)]">
+              {w.title}
+            </span>
+            <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{w.body}</span>
+          </a>
+        ))
+      }
     </div>
-  </section>
+  </article>
 </BaseLayout>
