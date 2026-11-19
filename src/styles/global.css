@@ -204,3 +204,9 @@ body {
     transition: none;
   }
 }
+
+/* Keyboard focus matches the pigment, and stays off mouse clicks. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
