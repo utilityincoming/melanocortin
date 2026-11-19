@@ -210,3 +210,8 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* Citation marks stay bare; the prose underline is for words, not [n]. */
+p sup a {
+  text-decoration: none;
+}

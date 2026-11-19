@@ -5,12 +5,11 @@ interface Props {
 const { n } = Astro.props;
 ---
 
-<sup class="text-[0.7em] font-medium"
+<sup class="font-serif text-[0.72em] font-semibold"
   ><a
     id={`cite-${n}`}
     href={`#ref-${n}`}
-    class="text-[var(--accent)]"
-    style="text-decoration:none"
+    class="text-[var(--accent)] no-underline hover:text-[var(--accent-strong)]"
     aria-label={`Reference ${n}`}>[{n}]</a
   ></sup
 >
