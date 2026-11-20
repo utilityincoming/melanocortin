@@ -9,9 +9,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/check-link-whitespace.mjs && node scripts/check-internal-links.mjs",
+    "postbuild": "node scripts/check-link-whitespace.mjs && node scripts/check-internal-links.mjs && node scripts/check-related-graph.mjs",
     "check:ws": "node scripts/check-link-whitespace.mjs",
     "check:links": "node scripts/check-internal-links.mjs",
+    "check:graph": "node scripts/check-related-graph.mjs",
     "preview": "astro preview",
     "gsc": "node scripts/gsc-report.mjs",
     "gsc:check": "node scripts/gsc-report.mjs --check",
