@@ -1,6 +1,9 @@
 ---
 export interface QA {
   q: string;
+  // The answer. May contain inline anchor markup (e.g. <a href="/foo">text</a>)
+  // for in-answer links; tags are stripped for the FAQPage structured data,
+  // which must stay plain text.
   a: string;
 }
 interface Props {
@@ -9,13 +12,16 @@ interface Props {
 }
 const { items, heading = 'Common questions' } = Astro.props;
 
+// Plain-text form of an answer for JSON-LD (schema text carries no markup).
+const stripTags = (s: string) => s.replace(/<[^>]*>/g, '');
+
 const faqLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: items.map((it) => ({
     '@type': 'Question',
     name: it.q,
-    acceptedAnswer: { '@type': 'Answer', text: it.a },
+    acceptedAnswer: { '@type': 'Answer', text: stripTags(it.a) },
   })),
 };
 ---
@@ -35,7 +41,7 @@ const faqLd = {
               +
             </span>
           </summary>
-          <p class="pb-4 leading-relaxed text-[var(--text-muted)]">{it.a}</p>
+          <p class="pb-4 leading-relaxed text-[var(--text-muted)]" set:html={it.a} />
         </details>
       ))
     }
