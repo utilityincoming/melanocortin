@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Byline from '../../components/Byline.astro';
 import SelectivityFingerprint from '../../components/SelectivityFingerprint.astro';
-import { buildLigands, type LigandView } from '../../data/selectivity';
+import { buildLigands, type LigandView, type RowView } from '../../data/selectivity';
 
 export async function getStaticPaths() {
   return buildLigands().map((l) => ({ params: { ligand: l.id }, props: { l } }));
@@ -14,6 +14,10 @@ interface Props {
 const { l } = Astro.props as Props;
 
 const primaryRow = l.rows.find((r) => r.primary);
+// Curated receptor values, tightest first — the chart rendered as text, so the
+// page carries its own data (and the fingerprint has an accessible equivalent).
+const boundRows = l.rows.filter((r) => r.has).sort((a, b) => b.p - a.p);
+const speciesNote = (s: RowView['species']) => (s === 'mouse' ? ' (mouse)' : s === 'rat' ? ' (rat)' : '');
 const isBlocker = l.action === 'antagonist';
 const verb = isBlocker ? 'blocks' : 'binds';
 
@@ -79,6 +83,29 @@ const related = [
       <span class="font-mono">ᵐ</span> marks a mouse value.
     </p>
 
+    <div class="not-prose mt-7">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">By the numbers</h2>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+        The fingerprint as curated values — every receptor {l.name} has a measured
+        affinity for, ranked tightest first.
+      </p>
+      <ul class="aff-list mt-4">
+        {
+          boundRows.map((r) => (
+            <li class={`aff-row ${r.primary ? 'is-primary' : ''}`}>
+              <span class="aff-rid font-mono">{r.rid}</span>
+              <span class="aff-tag">{r.tag}</span>
+              <span class="aff-nm font-mono">
+                {r.action === 'antagonist' ? 'blocks · ' : ''}≈{r.nm}
+                {speciesNote(r.species)}
+              </span>
+              {r.primary && <span class="aff-flag">tightest</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
     <div class="prose-body mt-8">
       <p class="leading-relaxed">{meaning[l.verdict]}</p>
       <p class="mt-4 leading-relaxed">
@@ -131,5 +158,31 @@ const related = [
   .page-lede a:hover {
     color: var(--accent);
     text-decoration-color: var(--accent);
+  }
+
+  /* Affinity value list — the fingerprint rendered as cited numbers. */
+  .aff-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .aff-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .aff-row:last-child { border-bottom: 1px solid var(--border); }
+  .aff-rid { font-size: 0.85rem; font-weight: 700; color: var(--text); min-width: 3.2rem; }
+  .aff-row.is-primary .aff-rid { color: var(--accent-strong); }
+  .aff-tag { font-size: 0.8rem; color: var(--text-muted); }
+  .aff-nm { font-size: 0.82rem; color: var(--text); margin-left: auto; white-space: nowrap; }
+  .aff-flag {
+    font-size: 0.56rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    color: var(--accent-strong);
+    border: 1px solid currentColor;
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.3rem;
+    white-space: nowrap;
   }
 </style>
