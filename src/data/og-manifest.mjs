@@ -104,4 +104,6 @@ export const ogPages = [
   { slug: 'rheumatoid-arthritis', eyebrow: 'THE CONDITION', title: 'Rheumatoid arthritis & resolution' },
   { slug: 'conditions', eyebrow: 'THE CONDITIONS MAP', title: 'What melanocortins treat — by evidence' },
   { slug: 'why-melanocortins', eyebrow: 'WHY THIS SITE EXISTS', title: 'Why melanocortins' },
+  { slug: 'glp1-and-melanocortin', eyebrow: 'METABOLIC CIRCUITRY', title: 'From GLP-1 to Melanocortin' },
+  { slug: 'biased-agonism', eyebrow: 'DRUG DESIGN', title: 'Biased Agonism & Tissue Delivery' },
 ];
