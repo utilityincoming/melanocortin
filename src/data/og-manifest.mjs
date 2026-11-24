@@ -5,7 +5,7 @@
 // (e.g. /receptors/mc4r → 'receptors-mc4r').
 export const ogPages = [
   { slug: 'home', eyebrow: 'MELANOCORTIN SCIENCE · MC1R–MC5R', title: 'Light on the skin.\nA signal in the blood.' },
-  { slug: 'system', eyebrow: 'OVERVIEW PILLAR', title: 'The melanocortin system' },
+  { slug: 'system', eyebrow: 'OVERVIEW PILLAR', title: 'The melanocortin\nsystem' },
   { slug: 'receptors', eyebrow: 'THE FIVE RECEPTORS', title: 'MC1R through MC5R' },
   { slug: 'receptors-mc1r', eyebrow: 'RECEPTOR · MC1R', title: 'MC1R — the pigment switch' },
   { slug: 'receptors-mc2r', eyebrow: 'RECEPTOR · MC2R', title: 'MC2R — the ACTH receptor' },
@@ -21,7 +21,7 @@ export const ogPages = [
   { slug: 'topical-tanning', eyebrow: 'PIGMENT ON DEMAND', title: 'Topical tanning — the real science' },
   { slug: 'hypothalamic-obesity', eyebrow: 'EXPLAINER', title: 'Hypothalamic obesity' },
   { slug: 'glp1-appetite', eyebrow: 'APPETITE · GLP-1', title: 'GLP-1 drugs & the appetite system' },
-  { slug: 'pomc', eyebrow: 'INTERACTIVE', title: 'The POMC cleavage tree' },
+  { slug: 'pomc', eyebrow: 'INTERACTIVE', title: 'The POMC\ncleavage tree' },
   { slug: 'selectivity', eyebrow: 'INTERACTIVE', title: 'The selectivity visualizer' },
   { slug: 'explorer', eyebrow: 'INTERACTIVE', title: 'Receptor–ligand explorer' },
 
