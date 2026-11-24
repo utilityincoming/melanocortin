@@ -21,14 +21,15 @@ const { nodes, parentNeedsPC2 = false, depth = 0 } = Astro.props;
       const needsPC2 = parentNeedsPC2 || node.enzyme === 'PC2';
       return (
         <li data-id={node.id} data-pc2={needsPC2 ? 'true' : 'false'}>
-          <button type="button" class={`pomc-node cls-${node.nodeClass}`} data-node={node.id}>
+          <button type="button" class={`pomc-node cls-${node.nodeClass}`} data-node={node.id} aria-controls="pomc-detail" aria-pressed="false">
+            <span class="pomc-name">{node.name}</span>
             {node.enzyme !== 'none' && (
-              <span class={`enz ${node.enzyme === 'PC2' ? 'enz-pc2' : 'enz-pc1'}`}>
+              <span class={`enz ${node.enzyme === 'PC2' ? 'enz-pc2' : ''}`}>
                 {node.enzyme}
               </span>
             )}
-            <span class="pomc-name">{node.name}</span>
             <span class="pomc-tag">{node.tagline}</span>
+            {needsPC2 && <span class="pomc-unavailable">Unavailable in this tissue</span>}
           </button>
           {node.children && node.children.length > 0 && (
             <Self nodes={node.children} parentNeedsPC2={needsPC2} depth={depth + 1} />
@@ -40,56 +41,52 @@ const { nodes, parentNeedsPC2 = false, depth = 0 } = Astro.props;
 </ul>
 
 <style>
-  .pomc-tree {
+  .pomc-tree,
+  .pomc-subtree {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  /* Nested levels get a file-tree rail. */
   .pomc-subtree {
-    list-style: none;
-    margin: 0;
-    padding-left: 0.5rem;
+    --branch-indent: clamp(0.85rem, 3vw, 1.5rem);
+    --branch-gap: 0.5rem;
+    --branch-joint: calc(var(--branch-gap) + 1.25rem);
+    margin-inline-start: 0.45rem;
   }
+
   .pomc-subtree > li {
     position: relative;
-    padding-left: 1.4rem;
+    padding-block-start: var(--branch-gap);
+    padding-inline-start: var(--branch-indent);
   }
-  /* vertical rail down the group */
+
+  /* Padding keeps each rail connected through the space between siblings. */
   .pomc-subtree > li::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    border-left: 1.5px solid var(--border);
+    inset-block: 0;
+    inset-inline-start: 0;
+    border-inline-start: 1px solid var(--border);
   }
-  /* horizontal connector into each node */
+
   .pomc-subtree > li::after {
     content: '';
     position: absolute;
-    left: 0;
-    top: 1.5rem;
-    width: 1rem;
-    border-top: 1.5px solid var(--border);
-  }
-  /* last child: rail stops at its own connector */
-  .pomc-subtree > li:last-child::before {
-    bottom: auto;
-    height: 1.5rem;
+    inset-block-start: var(--branch-joint);
+    inset-inline-start: 0;
+    inline-size: var(--branch-indent);
+    border-block-start: 1px solid var(--border);
   }
 
-  li {
-    margin-top: 0.5rem;
-  }
-  .pomc-tree > li {
-    margin-top: 0;
+  .pomc-subtree > li:last-child::before {
+    inset-block-end: auto;
+    block-size: var(--branch-joint);
   }
 
   .pomc-node {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: baseline;
     gap: 0.1rem 0.6rem;
     width: 100%;
@@ -99,13 +96,12 @@ const { nodes, parentNeedsPC2 = false, depth = 0 } = Astro.props;
     background: var(--bg-elevated);
     border: 1px solid var(--border);
     border-left-width: 3px;
-    border-radius: 0.55rem;
+    border-radius: 0.5rem;
     padding: 0.55rem 0.8rem;
     color: inherit;
     transition:
       border-color 0.15s,
-      background-color 0.15s,
-      opacity 0.2s;
+      background-color 0.15s;
   }
   .pomc-node:hover {
     border-color: var(--accent);
@@ -124,51 +120,56 @@ const { nodes, parentNeedsPC2 = false, depth = 0 } = Astro.props;
   .cls-other { border-left-color: var(--border); }
 
   .enz {
-    grid-row: 1 / span 2;
-    align-self: center;
+    grid-column: 2;
+    align-self: start;
     font-family: var(--font-mono, monospace);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.12rem 0.4rem;
+    line-height: 1.4;
+    padding: 0.04rem 0.35rem;
+    border: 1px solid var(--border);
     border-radius: 0.3rem;
+    color: var(--text);
     white-space: nowrap;
   }
-  .enz-pc1 {
-    background: var(--surface, #ecebe7);
-    color: var(--text-muted);
-  }
+
   .enz-pc2 {
     background: var(--accent-soft);
-    color: var(--accent-strong);
+    border-color: var(--accent);
   }
 
   .pomc-name {
-    font-weight: 600;
-    font-size: 0.98rem;
-    line-height: 1.2;
+    font-weight: 650;
+    font-size: 1rem;
+    line-height: 1.3;
   }
-  .pomc-tag {
-    grid-column: 2;
-    font-size: 0.75rem;
+
+  .pomc-tag,
+  .pomc-unavailable {
+    grid-column: 1 / -1;
+    font-size: 0.8125rem;
     color: var(--text-muted);
-    line-height: 1.2;
+    line-height: 1.35;
   }
 
-  /* A node that this tissue cannot make (PC2 absent). */
+  .pomc-unavailable { display: none; }
+
   :global(.pomc-tree.no-pc2) li[data-pc2='true'] > .pomc-node {
-    opacity: 0.4;
-    filter: grayscale(0.5);
-  }
-  :global(.pomc-tree.no-pc2) li[data-pc2='true'] > .pomc-node .pomc-name {
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
+    border-block-style: dashed;
+    border-inline-end-style: dashed;
   }
 
-  /* Selected node. */
-  .pomc-node.sel {
+  :global(.pomc-tree.no-pc2) li[data-pc2='true'] > .pomc-node .pomc-unavailable {
+    display: block;
+    font-weight: 600;
+  }
+
+  .pomc-node[aria-pressed='true'] {
     border-color: var(--accent);
     background: var(--accent-soft);
-    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pomc-node { transition: none; }
   }
 </style>
