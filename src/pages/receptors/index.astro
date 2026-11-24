@@ -1,4 +1,5 @@
 ---
+import HubIllustration from '../../components/HubIllustration.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
@@ -112,6 +113,7 @@ const references = [
     { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
   ]}
 >
+  <HubIllustration hub="receptors" />
   <KeyTakeaways
     items={[
       'The melanocortin system runs on five G-protein-coupled receptors, MC1R–MC5R, each reading the same peptide signal in a different tissue.',
