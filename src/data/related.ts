@@ -18,7 +18,17 @@ export const PAGES: Record<string, PageMeta> = {
   'why-melanocortins': {
     href: '/why-melanocortins',
     title: 'Why melanocortins',
-    blurb: 'The reason this site exists: one ancient gene keeps colour, hunger, stress, and healing in balance.',
+    blurb: 'The reason this site exists: one ancient gene keeps color, hunger, stress, and healing in balance.',
+  },
+  'glp1-and-melanocortin': {
+    href: '/glp1-and-melanocortin',
+    title: 'GLP-1 & melanocortin',
+    blurb: 'How incretin therapies connect to the hypothalamic leptin–POMC–MC4R circuit.',
+  },
+  'biased-agonism': {
+    href: '/biased-agonism',
+    title: 'Biased agonism & delivery',
+    blurb: 'How signaling bias and tissue-restricted delivery separate efficacy from nausea and pigmentation.',
   },
   about: {
     href: '/about',

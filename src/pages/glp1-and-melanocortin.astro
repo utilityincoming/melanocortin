@@ -1,0 +1,145 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+
+const references = [
+  {
+    authors: 'Secher A, Jelsing J, Baquero AF, et al.',
+    title: 'The arcuate nucleus mediates GLP-1 receptor agonist liraglutide-dependent weight loss.',
+    source: 'J Clin Invest. 124(10):4473–4488.',
+    year: '2014',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25202980/',
+  },
+  {
+    authors: 'Cone RD.',
+    title: 'Anatomy and regulation of the central melanocortin system.',
+    source: 'Nat Neurosci. 8(5):571–578.',
+    year: '2005',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/15856065/',
+  },
+  {
+    authors: 'Clément K, van den Akker E, Argente J, et al.',
+    title: 'Efficacy and safety of setmelanotide, an MC4R agonist, in individuals with severe obesity due to LEPR or POMC deficiency: single-arm, open-label, multicentre, phase 3 trials.',
+    source: 'Lancet Diabetes Endocrinol. 8(12):960–970.',
+    year: '2020',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/33137293/',
+  },
+  {
+    authors: 'Krashes MJ, Lowell BB, Garfield AS.',
+    title: 'Melanocortin-4 receptor-regulated energy homeostasis.',
+    source: 'Nat Neurosci. 19(2):206–219.',
+    year: '2016',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/26814590/',
+  },
+];
+---
+
+<PageLayout
+  title="From GLP-1 to Melanocortin: How Incretins and MC4R Connect"
+  seoTitle="GLP-1 and Melanocortin: How Incretins Connect to MC4R"
+  description="GLP-1 receptor agonists act upstream of or parallel to the hypothalamic melanocortin circuit. Here is how leptin, POMC, α-MSH, and MC4R fit into modern metabolic pharmacology."
+  kicker="Metabolic Circuitry"
+  updated="2026"
+  reviewed={true}
+  about={[
+    { name: 'Melanocortin 4 receptor', type: 'Protein' },
+    { name: 'GLP-1 receptor', type: 'Protein' },
+    { name: 'Pro-opiomelanocortin', type: 'Protein' },
+  ]}
+>
+  <p>
+    The GLP-1 era brought hypothalamic appetite biology into mainstream
+    medicine. For readers coming from incretin pharmacology, the melanocortin
+    system is the next node in the circuit: it is the downstream pathway through
+    which long-term energy signals—including leptin and, in part, GLP-1—are
+    translated into satiety and energy expenditure.<Cite n={1} /><Cite n={2} />
+  </p>
+
+  <h2>Where the two pathways meet</h2>
+  <p>
+    In the arcuate nucleus of the hypothalamus, two opposing neuronal
+    populations regulate feeding: <strong>POMC/CART neurons</strong>, which
+    suppress appetite, and <strong>AgRP/NPY neurons</strong>, which drive
+    hunger.<Cite n={2} />
+  </p>
+  <ul>
+    <li>
+      <strong>POMC neurons</strong> cleave{' '}
+      <a href="/pomc">pro-opiomelanocortin (POMC)</a> into{' '}
+      <a href="/alpha-msh">α-MSH</a>, which activates{' '}
+      <a href="/receptors/mc4r">MC4R</a> on downstream paraventricular nucleus
+      (PVN) neurons to promote satiety.<Cite n={2} />
+    </li>
+    <li>
+      <strong>AgRP neurons</strong> release <a href="/agrp">AgRP</a>, an
+      endogenous antagonist and inverse agonist at MC4R that blocks α-MSH
+      signaling.<Cite n={4} />
+    </li>
+    <li>
+      <strong>GLP-1 receptor agonists</strong> (such as liraglutide and
+      semaglutide) access circumventricular organs and the arcuate nucleus,
+      where they directly stimulate POMC/CART neurons and indirectly inhibit
+      AgRP/NPY neurons via GABAergic interneurons.<Cite n={1} />
+    </li>
+  </ul>
+
+  <h2>Why MC4R sits downstream of leptin resistance</h2>
+  <p>
+    In common obesity, circulating leptin is high, but hypothalamic leptin
+    signaling is blunted. Because leptin acts upstream of POMC transcription,
+    upstream leptin resistance leaves POMC/MC4R tone under-activated. In
+    monogenic obesity caused by <em>POMC</em>, <em>PCSK1</em>, or{' '}
+    <em>LEPR</em> deficiency, the upstream signal is broken altogether.<Cite n={3} />
+  </p>
+  <p>
+    Direct <a href="/receptors/mc4r">MC4R</a> agonists such as{' '}
+    <a href="/setmelanotide">setmelanotide</a> (and investigational oral
+    candidates such as <a href="/bivamelagon">bivamelagon</a>) bypass the
+    upstream leptin–POMC step and activate MC4R directly.<Cite n={3} />
+  </p>
+
+  <h2>Key differences between GLP-1 and MC4R pharmacology</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>GLP-1 Receptor Agonists</th>
+        <th>MC4R Agonists</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primary target</td>
+        <td>GLP-1R (pancreas, brainstem, hypothalamus)</td>
+        <td>MC4R (hypothalamic PVN, brainstem)</td>
+      </tr>
+      <tr>
+        <td>Relationship to POMC</td>
+        <td>Upstream/parallel modulator of POMC &amp; AgRP neurons</td>
+        <td>Direct downstream effector</td>
+      </tr>
+      <tr>
+        <td>Approved indications</td>
+        <td>Type 2 diabetes, general obesity, cardiovascular risk</td>
+        <td>Monogenic &amp; syndromic obesity (POMC, LEPR, BBS)</td>
+      </tr>
+      <tr>
+        <td>Characteristic class effects</td>
+        <td>GI motility slowing, nausea</td>
+        <td>Nausea, skin pigmentation (via MC1R cross-reactivity)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Where the field is heading</h2>
+  <p>
+    Current clinical research is testing whether oral small-molecule MC4R
+    agonists can achieve cleaner receptor selectivity—avoiding MC1R-driven
+    pigmentation and blood-pressure elevations—and whether combining incretin
+    therapies with direct melanocortin modulation offers additive weight loss
+    in polygenic or hypothalamic obesity.
+  </p>
+
+  <References items={references} />
+</PageLayout>
