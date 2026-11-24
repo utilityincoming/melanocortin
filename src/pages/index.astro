@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIndex from '../components/SiteIndex.astro';
 import { ALL_PAGES } from '../data/siteindex';
+import { pipeline } from '../data/pipeline';
+
+const clinicCount = pipeline.filter((e) => e.status === 'active' && e.stage >= 1).length;
 
 const receptors = [
   { id: 'MC1R', note: 'Skin & hair pigmentation' },
@@ -193,7 +196,7 @@ const pillars = [
       receptors, early compounds triggered off-target nausea and pigmentation.
       Newer scaffolds are separating those effects.
     </p>
-    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+  </section>
   <!-- Clinical examples -->
   <section class="mx-auto max-w-5xl px-6 py-20">
     <h2 class="max-w-3xl font-serif text-3xl font-semibold tracking-tight">
@@ -218,6 +221,7 @@ const pillars = [
       matters most. The{' '}
       <a href="/pipeline" class="text-[var(--accent)] underline decoration-dotted">live pipeline</a>{' '}
       tracks every active program by phase and primary source.
+    </p>
     <h3 class="mt-12 font-serif text-2xl font-semibold">What would it mean to get a function back?</h3>
     <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text-muted)]">
       More time in daylight. Less of the day organized around an endocrine
@@ -295,10 +299,8 @@ const pillars = [
 
   <!-- Editorial promise -->
   <section class="mx-auto max-w-5xl px-6 pb-4">
-    <div class="rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-8">
-      <h2 class="font-serif text-xl font-semibold tracking-tight">Reverent on the science. Skeptical on the page.</h2>
     <div class="border-l-2 border-[var(--accent)] py-1 pl-6">
-      <h2 class="font-serif text-xl font-semibold tracking-tight">How we read the evidence</h2>
+      <h2 class="font-serif text-xl font-semibold tracking-tight">Reverent on the science. Skeptical on the page.</h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text)]">
         Every page identifies its author and shows when it was updated.
         Clinical claims link to their sources, and emerging or contested findings
