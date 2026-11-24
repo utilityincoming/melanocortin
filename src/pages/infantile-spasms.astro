@@ -1,0 +1,165 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What are infantile spasms?',
+    a: 'Infantile spasms, also called infantile epileptic spasms syndrome, are a severe epilepsy of infancy. The seizures are brief bends or extensions of the body, often in clusters, and the EEG usually shows a chaotic pattern called hypsarrhythmia. Most children who have them later have developmental disabilities. This page is biology, not a treatment plan.',
+  },
+  {
+    q: 'Why is this on a melanocortin site?',
+    a: 'Because repository corticotropin — a long-acting ACTH gel — is FDA-labelled as monotherapy for infantile spasms in children under two. ACTH is a melanocortin peptide. In this use it is acting as a hormone: it drives the adrenal to release cortisol. A separate, steroid-independent effect on the brain has not been shown.',
+  },
+  {
+    q: 'Is ACTH the only treatment?',
+    a: 'No. Hormonal therapy and vigabatrin are the two drug approaches with a real evidence base. A 2012 guideline judged ACTH more effective than vigabatrin in the short term, except that vigabatrin may be preferable when the spasms are caused by tuberous sclerosis. That guideline has since been retired, so it is a historical reading of the evidence, not a current protocol.',
+  },
+  {
+    q: 'How strong is the evidence compared with the other Acthar labels?',
+    a: 'Stronger. Sarcoidosis and multiple-sclerosis relapses rest on old labels plus small modern studies. Infantile spasms has randomised trials, including a trial in which low-dose and high-dose natural ACTH did not clearly separate, and it is the indication for which the gel is labelled as monotherapy in infants.',
+  },
+];
+
+const references = [
+  {
+    authors: 'US FDA / DailyMed.',
+    title:
+      'ACTHAR (repository corticotropin injection) prescribing information — monotherapy for infantile spasms in infants and children under 2 years of age.',
+    source: 'Label.',
+    year: '2024',
+    url: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7b48ddec-e815-45f4-9ca0-5c0daaf56f30',
+  },
+  {
+    authors: 'Go CY, Mackay MT, Weiss SK, et al.',
+    title:
+      'Evidence-based guideline update: medical treatment of infantile spasms. Report of the Guideline Development Subcommittee of the American Academy of Neurology and the Practice Committee of the Child Neurology Society.',
+    source:
+      'Neurology. 78(24):1974–1980. Retired by the AAN; cited as the evidence review, not as a current protocol.',
+    year: '2012',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3369510/',
+  },
+  {
+    authors: 'Gettig J, Cummings JP, Matuszewski K.',
+    title: 'H.P. Acthar Gel and cosyntropin review: clinical and financial implications.',
+    source: 'P T. 34(5):250–257.',
+    year: '2009',
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2697107/',
+  },
+];
+---
+
+<PageLayout
+  title="Infantile spasms: the epilepsy that made ACTH a children’s drug"
+  seoTitle="Infantile spasms and repository corticotropin"
+  kicker="The condition"
+  description="Infantile spasms are a severe epilepsy of infancy. Repository corticotropin, a long-acting ACTH gel, is labelled as monotherapy for them in children under two — the strongest of the old Acthar indications, backed by randomised trials rather than case series. Here the peptide is doing its endocrine job: driving cortisol. A 2012 guideline preferred ACTH to vigabatrin in the short term; that guideline is now retired."
+  seoDescription="Acthar, an ACTH gel, is labelled for infantile spasms under age two. Randomised trials support hormonal therapy; the 2012 guideline preferring ACTH is retired."
+  thread="A brief bend of an infant’s body, dozens of times a day, and one of the oldest melanocortin drugs still used to stop it — by making the adrenal release cortisol."
+  updated="2026"
+  about={[
+    { name: 'Infantile spasms', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Infantile_spasms'] },
+    { name: 'Adrenocorticotropic hormone', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Adrenocorticotropic_hormone'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Infantile spasms are brief, clustered seizures of infancy, usually with a chaotic EEG pattern called hypsarrhythmia. Developmental injury is common.',
+      'Repository corticotropin (Acthar Gel) is FDA-labelled as monotherapy for this condition in children under two. That is a different claim from its older inflammatory labels.',
+      'ACTH is a POMC peptide. In this use the established mechanism is endocrine: MC2R on the adrenal releases cortisol. A direct brain effect is not established.',
+      'A 2012 evidence review found ACTH more effective than vigabatrin in the short term, except in tuberous sclerosis, and found low-dose and high-dose natural ACTH did not clearly separate. The guideline has since been retired.',
+      'This page does not give a regimen. Diagnosis and treatment of infantile spasms are urgent paediatric neurology.',
+    ]}
+  />
+
+  <p>
+    <strong>Infantile spasms</strong> are not an adrenal disease and not an immune disease.
+    They are an epileptic encephalopathy of the first year or two of life: clusters of
+    brief flexor or extensor seizures, and on EEG a high-voltage, disorganised pattern
+    called hypsarrhythmia. The usual epilepsy drugs often do nothing. Most children who
+    have had the syndrome have later developmental disability, and a shorter delay before
+    effective treatment is associated with a better developmental outcome.<Cite n={2} />
+  </p>
+  <p>
+    The condition is on this site because the drug with the longest track record against
+    it is a melanocortin. Repository corticotropin — purified ACTH in a slow-release gel —
+    is labelled in the United States as monotherapy for infantile spasms in infants and
+    children under two.<Cite n={1} /> That is a sharper indication than the gel’s labels for{' '}
+    <a href="/sarcoidosis">sarcoidosis</a> and{' '}
+    <a href="/multiple-sclerosis-relapse">acute multiple-sclerosis relapses</a>, and the
+    evidence behind it is stronger.
+  </p>
+
+  <h2>A hormone, not an immune modulator</h2>
+  <p>
+    ACTH is cut from <a href="/pomc">POMC</a>. It binds <a href="/receptors/mc2r">MC2R</a> on
+    the adrenal cortex, and the cortex releases cortisol. For infantile spasms that is the
+    mechanism to take seriously: the peptide is being used to raise corticosteroids in a
+    developing brain, which is why oral steroids are the comparison treatment and why the
+    arguments about steroid-independent melanocortin receptors on immune cells — live on
+    the <a href="/therapeutics#corticotropin">therapeutics page</a> for the inflammatory
+    uses — do not carry over cleanly here.<Cite n={3} /> Nobody has shown that the
+    anti-spasm effect survives in the absence of a cortisol rise.
+  </p>
+
+  <h2>What the trials can say</h2>
+  <p>
+    The 2012 American Academy of Neurology and Child Neurology Society review is the
+    clearest public summary, and it has to be dated. The Academy has since retired the
+    guideline, so the recommendations are no longer the Academy’s current advice. The
+    evidence it assembled is still the evidence.<Cite n={2} />
+  </p>
+  <p>
+    On that review, ACTH was more effective than vigabatrin for short-term control of
+    spasms, excluding children whose spasms come from tuberous sclerosis, where vigabatrin
+    may be the better drug. Hormonal therapy — ACTH or prednisolone — was also the option
+    associated with better later development when the spasms were cryptogenic, meaning no
+    cause had been found. A Class I randomised trial inside that review compared high-dose
+    and low-dose natural ACTH and did not find a clear difference in stopping the spasms,
+    clearing hypsarrhythmia, or relapse. The review was explicit that there was not enough
+    evidence to call other steroids equivalent to ACTH.<Cite n={2} />
+  </p>
+  <p>
+    Read that as a ranking of old options, not as a recipe. Doses, preparations (natural
+    gel versus synthetic fragments), and what “response” means differ across the studies.
+    The label is not a protocol, and this page will not turn it into one.
+  </p>
+
+  <h2>Why this label is different from the others</h2>
+  <p>
+    Acthar’s inflammatory indications were written in an era before controlled trials were
+    the bar, and the modern studies that exist for sarcoidosis and MS relapse are small.
+    Infantile spasms is the indication where randomised evidence, a paediatric age limit,
+    and the word “monotherapy” all show up together.<Cite n={1} /><Cite n={2} /> It is also
+    the place where the cost argument around the gel has been sharpest, because the
+    alternative is a cheap steroid and the patient is an infant.<Cite n={3} /> Cost is not
+    efficacy. It is part of why the indication is argued about.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    Infantile spasms are the melanocortin system’s oldest job in neurology, and the job is
+    still the adrenal one: ACTH in, cortisol out. For the hormone, see <a href="/acth">ACTH</a>;
+    for the receptor, <a href="/receptors/mc2r">MC2R</a>; for where this sits against every
+    other labelled and experimental use, the <a href="/conditions">conditions map</a>.
+  </p>
+
+  <div class="aside-note not-prose">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains why an ACTH preparation is used in infantile spasms. It is not
+      medical advice and gives no diagnostic or dosing instructions. Suspected infantile
+      spasms need urgent paediatric neurology. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="infantile-spasms" />
+</PageLayout>

@@ -51,11 +51,11 @@ const description =
     <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
       <a href="/selectivity" class="no-underline hover:text-[var(--accent-strong)]">Selectivity</a> · by receptor
     </p>
-    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+    <h1 class="mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight">
       {rid}: ligand selectivity
     </h1>
     <p class="mt-1 font-mono text-sm text-[var(--text-muted)]">{meta.name} · {tag}</p>
-    <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">{lead}</p>
+    <p class="page-lede">{lead}</p>
     <Byline updated="2026" />
 
     <!-- Most selective for this receptor -->
@@ -145,7 +145,7 @@ const description =
     <p class="mt-8 text-sm leading-relaxed text-[var(--text-muted)]">
       Affinity values from the IUPHAR/BPS Guide to PHARMACOLOGY; selectivity is
       derived from them. Educational resource, not medical advice — see the{' '}
-      <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
+      <a href="/about" class="quiet">editorial standards</a>.
     </p>
   </section>
 </BaseLayout>
@@ -206,11 +206,15 @@ const description =
   }
 
   .rl-link, .prose-body a, .page-lede a {
+    color: var(--accent);
     text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    text-underline-offset: 0.18em;
   }
-  .rl-link:hover, .prose-body a:hover { color: var(--accent); }
+  .rl-link:hover, .prose-body a:hover, .page-lede a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
 
   /* Blocker hue (shared with the binding matrix). */
   :global(:root) { --block: #4f6d8c; }

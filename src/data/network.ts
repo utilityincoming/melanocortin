@@ -80,6 +80,15 @@ export const NETWORK: Record<string, NetworkLink[]> = {
         'The same receptor read as a melanoma-risk gene, and the keyhole every Melanotan was cut to fit.',
     },
   ],
+  'red-hair-mc1r': [
+    {
+      href: 'https://melanotanii.com/articles/why-redheads-burn-mc1r',
+      site: 'Tan Lines',
+      title: 'Why redheads burn: the MC1R pigment switch',
+      blurb:
+        'The same R alleles, read from the tanning-peptide side of the receptor.',
+    },
+  ],
   'mc1r-pain': [
     {
       href: 'https://melanotanii.com/articles/why-redheads-burn-mc1r',

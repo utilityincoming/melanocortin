@@ -7,8 +7,10 @@ interface Props {
 const { author = 'melanocortin.com editorial', updated, reviewed = false } = Astro.props;
 ---
 
-<div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--text-muted)]">
-  <span>By <span class="text-[var(--text)]">{author}</span></span>
-  <span aria-hidden="true">·</span>
+<div class="ui-sans mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs tracking-wide text-[var(--text-muted)]">
+  <span>
+    By <span class="font-serif text-sm tracking-normal text-[var(--text)] italic">{author}</span>
+  </span>
+  <span class="text-[var(--accent)]" aria-hidden="true">·</span>
   <span>{reviewed ? 'Last reviewed' : 'Last updated'} {updated}</span>
 </div>

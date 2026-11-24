@@ -2,12 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIndex from '../components/SiteIndex.astro';
 import { ALL_PAGES } from '../data/siteindex';
-import { pipeline } from '../data/pipeline';
-
-// Agents actively in clinical development (Phase 1+), excluding approved and
-// discontinued programs. Derived from the pipeline data so the headline count
-// can never drift from the page it points at.
-const clinicCount = pipeline.filter((e) => e.status === 'active' && e.stage >= 1).length;
 
 const receptors = [
   { id: 'MC1R', note: 'Skin & hair pigmentation' },
@@ -17,7 +11,7 @@ const receptors = [
   { id: 'MC5R', note: 'Exocrine gland function' },
 ];
 
-const proof = [
+const clinicalExamples = [
   {
     stat: 'One gene',
     label: 'feeds five receptors',
@@ -38,6 +32,25 @@ const proof = [
     body: 'Development is shifting toward oral small molecules and biased agonists across obesity, dry eye disease, ulcerative colitis, and cancer cachexia.',
     href: '/pipeline',
     cta: 'The live pipeline',
+    status: 'FDA-approved treatment',
+    title: 'The skin remembers light',
+    body: 'Pigment is part of how skin adapts to its environment. MC1R gives medicine a way into that response. For adults with erythropoietic protoporphyria, the benefit of afamelanotide can be measured in a human unit: more time in direct sunlight without pain.',
+    href: '/afamelanotide',
+    cta: 'Explore afamelanotide',
+  },
+  {
+    status: 'Investigational',
+    title: 'The quiet architecture of hormones',
+    body: 'ACTH carries an instruction the adrenal gland reads through MC2R. In classic congenital adrenal hyperplasia, excess ACTH drives excess androgen production. Atumelnant is being studied to see whether blocking MC2R can reduce that burden.',
+    href: '/atumelnant',
+    cta: 'Explore MC2R blockade',
+  },
+  {
+    status: 'FDA-approved treatment',
+    title: 'Beyond the body’s usual range',
+    body: 'A drug can change the strength, duration, or selectivity of signaling. In certain rare forms of obesity, setmelanotide activates MC4R directly, engaging the satiety pathway downstream of disrupted signaling.',
+    href: '/setmelanotide',
+    cta: 'Explore setmelanotide',
   },
 ];
 
@@ -87,8 +100,8 @@ const pillars = [
 ---
 
 <BaseLayout
-  title="Melanocortin: the system, the five receptors, and the drugs"
-  description="An open, citation-first field guide to the melanocortin system: POMC, the peptides it becomes, the MC1R–MC5R receptors, and the drugs built on them."
+  title="Melanocortin Science in Skin, Metabolism, and Endocrine Disease"
+  description="Explore how melanocortin receptors shape pigmentation, appetite, and adrenal function, with cited guides to approved therapies and emerging research."
 >
   <!-- Hero -->
   <section class="relative overflow-hidden">
@@ -113,19 +126,37 @@ const pillars = [
         selective agonists, oral small molecules, and tissue-restricted therapies.
         This is an open, citation-first reference to the biology and the
         clinical pipeline.
+        Melanocortin science · Skin, metabolism, and the endocrine axis
+      </p>
+      <h1 class="mt-5 max-w-3xl text-balance font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
+        Light on the skin.{' '}
+        <span class="text-[var(--accent)]">A signal in the blood.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+        The skin keeps a record of light. The adrenal gland follows the rhythm
+        of a hormone. In both, melanocortin receptors give a passing signal a
+        consequence that can outlast it.
+      </p>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+        A drug can sustain a protective signal, reach a receptor downstream of
+        an interrupted pathway, or quiet an instruction the body sends in excess.
+        Across skin, metabolism, and endocrine disease, the opportunity is to
+        recover functions that matter in daily life.
       </p>
       <div class="mt-9 flex flex-wrap items-center gap-3">
         <a
           href="/system"
-          class="rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+          class="ui-sans rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
         >
           Explore the system
+          Explore the biology
         </a>
         <a
-          href="/therapeutics"
-          class="rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          href="/pipeline"
+          class="ui-sans rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
           View the clinical pipeline
+          Follow the clinical pipeline
         </a>
       </div>
     </div>
@@ -163,18 +194,21 @@ const pillars = [
       Newer scaffolds are separating those effects.
     </p>
     <div class="mt-10 grid gap-6 sm:grid-cols-3">
+  <!-- Clinical examples -->
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <h2 class="max-w-3xl font-serif text-3xl font-semibold tracking-tight">
+      What changes when we change the signal?
+    </h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
       {
-        proof.map((p) => (
-          <a
-            href={p.href}
-            class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
-          >
-            <span class="font-serif text-3xl font-semibold tracking-tight text-[var(--accent)]">
-              {p.stat}
+        clinicalExamples.map((example) => (
+          <a href={example.href} class="plate group flex flex-col p-6 no-underline">
+            <span class="font-mono text-xs uppercase tracking-wide text-[var(--accent)]">
+              {example.status}
             </span>
-            <span class="mt-1 text-sm font-medium">{p.label}</span>
-            <span class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{p.body}</span>
-            <span class="mt-4 text-sm font-medium text-[var(--accent)]">{p.cta} →</span>
+            <h3 class="mt-2 font-serif text-xl font-semibold">{example.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{example.body}</p>
+            <span class="mt-auto pt-4 text-sm font-medium text-[var(--accent)]">{example.cta} →</span>
           </a>
         ))
       }
@@ -184,12 +218,20 @@ const pillars = [
       matters most. The{' '}
       <a href="/pipeline" class="text-[var(--accent)] underline decoration-dotted">live pipeline</a>{' '}
       tracks every active program by phase and primary source.
+    <h3 class="mt-12 font-serif text-2xl font-semibold">What would it mean to get a function back?</h3>
+    <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text-muted)]">
+      More time in daylight. Less of the day organized around an endocrine
+      disorder. The path toward cure begins with a question specific to each
+      disease. What could a patient get back, and how long could they keep it?
     </p>
+    <a href="/pipeline" class="mt-4 inline-block text-[var(--accent)] quiet">
+      Track the evidence →
+    </a>
   </section>
 
   <!-- Pillars -->
   <section class="mx-auto max-w-5xl border-t border-[var(--border)] px-6 py-20">
-    <h2 class="font-serif text-2xl font-semibold tracking-tight">Three ways in</h2>
+    <h2 class="font-serif text-2xl font-semibold tracking-tight">From signal to treatment</h2>
     <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
       Broad overviews that link down into specific, citeable detail — the
       system, the five receptors, and the drugs built on them.
@@ -199,7 +241,7 @@ const pillars = [
         pillars.map((p) => (
           <a
             href={p.href}
-            class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
+            class="plate group flex flex-col p-6 no-underline"
           >
             <span class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
               {p.kicker}
@@ -216,7 +258,7 @@ const pillars = [
   <!-- Explore interactively -->
   <section class="mx-auto max-w-5xl border-t border-[var(--border)] px-6 py-20">
     <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Explore the data</p>
-    <h2 class="mt-3 font-serif text-2xl font-semibold tracking-tight">Interactive tools</h2>
+    <h2 class="mt-3 font-serif text-2xl font-semibold tracking-tight">Explore the receptor data</h2>
     <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
       Inspect the underlying pharmacology directly. Four interactive views built
       from cited binding and pharmacokinetic data.
@@ -226,7 +268,7 @@ const pillars = [
         tools.map((t) => (
           <a
             href={t.href}
-            class="group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 no-underline transition-colors hover:border-[var(--accent)]"
+            class="plate group flex flex-col p-6 no-underline"
           >
             <span class="font-serif text-xl font-semibold tracking-tight">{t.title}</span>
             <span class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{t.body}</span>
@@ -241,7 +283,7 @@ const pillars = [
   <section class="mx-auto max-w-5xl border-t border-[var(--border)] px-6 py-20" aria-labelledby="site-index">
     <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">The whole map</p>
     <h2 id="site-index" class="mt-3 font-serif text-2xl font-semibold tracking-tight">
-      Every page on the site
+      Browse the reference
     </h2>
     <p class="mt-2 max-w-2xl text-[var(--text-muted)]">
       {ALL_PAGES.length} pages, each one cited: the system, the five receptors,
@@ -255,17 +297,16 @@ const pillars = [
   <section class="mx-auto max-w-5xl px-6 pb-4">
     <div class="rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-8">
       <h2 class="font-serif text-xl font-semibold tracking-tight">Reverent on the science. Skeptical on the page.</h2>
+    <div class="border-l-2 border-[var(--accent)] py-1 pl-6">
+      <h2 class="font-serif text-xl font-semibold tracking-tight">How we read the evidence</h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-[var(--text)]">
-        Reverence only counts if it survives the citations. Every page carries a
-        visible author and a last-updated date. Therapeutic and pipeline claims
-        are checked against current sources before publication, and where the
-        science is uncertain or contested, the page says so — rather than
-        papering over it. When the frontier is genuinely unsettled, we call it
-        the frontier, not a sure thing.
+        Every page identifies its author and shows when it was updated.
+        Clinical claims link to their sources, and emerging or contested findings
+        are identified as such.
       </p>
       <p class="mt-4 text-sm text-[var(--text-muted)]">
         This is an educational resource, not medical advice.{' '}
-        <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">Read the editorial standards →</a>
+        <a href="/about" class="quiet">Read the editorial standards →</a>
       </p>
     </div>
   </section>

@@ -1,4 +1,5 @@
 ---
+import HubIllustration from '../../components/HubIllustration.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
@@ -103,6 +104,7 @@ const references = [
 
 <PageLayout
   title="The five receptors"
+  seoTitle="The five melanocortin receptors (MC1R–MC5R)"
   kicker="Five switches"
   description="Five G-protein-coupled receptors, MC1R–MC5R, reading one melanocortin signal across five tissues: pigment, cortisol, appetite, inflammation, and secretion."
   thread="The genius of the system is thrift — one signal, read five ways, so a single family of hormones can watch over skin, stress, hunger, and repair at once."
@@ -111,6 +113,7 @@ const references = [
     { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
   ]}
 >
+  <HubIllustration hub="receptors" />
   <KeyTakeaways
     items={[
       'The melanocortin system runs on five G-protein-coupled receptors, MC1R–MC5R, each reading the same peptide signal in a different tissue.',
@@ -189,7 +192,7 @@ const references = [
               <td>
                 <a
                   href={`/receptors/${r.slug}`}
-                  class="font-mono font-semibold text-[var(--accent)] underline decoration-dotted"
+                  class="font-mono font-semibold text-[var(--accent)] quiet"
                 >
                   {r.id}
                 </a>
@@ -218,7 +221,7 @@ const references = [
       receptors.map((r) => (
         <a
           href={`/receptors/${r.slug}`}
-          class="group block rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
+          class="plate group block p-5 no-underline"
         >
           <div class="flex items-baseline justify-between gap-4">
             <span class="flex items-baseline gap-2.5">

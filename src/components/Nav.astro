@@ -36,7 +36,7 @@ const isActive = (href: string) => path.startsWith(href);
               class:list={[
                 'no-underline transition-colors hover:text-[var(--accent)]',
                 isActive(l.href)
-                  ? 'text-[var(--accent)] font-medium'
+                  ? 'font-medium text-[var(--accent)] underline decoration-[var(--accent)] decoration-2 underline-offset-8'
                   : 'text-[var(--text-muted)]',
               ]}
             >

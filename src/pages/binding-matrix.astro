@@ -198,7 +198,7 @@ const datasetLd = {
     shown where the source gives one.
   </p>
 
-  <div class="not-prose mt-8 rounded-lg border border-[var(--border)] bg-[var(--accent-soft)] p-6 text-sm leading-relaxed">
+  <div class="aside-note not-prose">
     <p class="font-medium text-[var(--text)]">How to read these numbers — and how not to</p>
     <p class="mt-2 text-[var(--text)]">
       These are <strong>representative literature values</strong>, not a meta-analysis. They
@@ -219,7 +219,7 @@ const datasetLd = {
     <p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
       All values were compiled from the <strong class="text-[var(--text)]">IUPHAR/BPS Guide to
       PHARMACOLOGY</strong> (Harding SD, et al. <span class="italic">Nucleic Acids Res.</span>
-      2024;52:D1438–D1449; <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-[var(--accent)]">guidetopharmacology.org</a>,
+      2024;52:D1438–D1449; <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener noreferrer" class="quiet">guidetopharmacology.org</a>,
       accessed 18 Aug 2026), which curates each value from the primary literature below.
     </p>
     <ol class="mt-5 flex flex-col gap-3 text-sm">
@@ -229,7 +229,7 @@ const datasetLd = {
           <span class="text-[var(--text)]">{bindingRefs[pmid]}</span>{' '}
           <a
             href={`https://pubmed.ncbi.nlm.nih.gov/${pmid}/`}
-            class="break-words underline decoration-dotted hover:text-[var(--accent)]"
+            class="break-words quiet"
             target="_blank"
             rel="noopener noreferrer"
           >

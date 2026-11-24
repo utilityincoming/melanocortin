@@ -1,0 +1,195 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What is MC3R for, if MC4R already controls appetite?',
+    a: 'MC4R decides how much energy is taken in. MC3R tells the body what nutritional state it is in, so it can spend that energy: mobilise fat in a fast, anticipate a meal that comes at a fixed time, and time growth and puberty to whether the child is fed. Losing MC3R makes a mouse mildly fat without making it eat more.',
+  },
+  {
+    q: 'What fails in a fast when MC3R is missing?',
+    a: 'In mice, a fast normally raises fatty acids released from fat, loads some of that fat into the liver, drives the animal to eat when food returns, and activates the stress axis. MC3R-deficient mice do not mount those responses. Their fat tissue can still break down fat if you stimulate it directly, so the failure is the signal that a fast has started, not a broken fat cell.',
+  },
+  {
+    q: 'How does MC3R set meal timing?',
+    a: 'When food is available only at one time of day, normal mice become active before the meal and shift metabolism to meet it. Mice without MC3R lose that anticipation and no longer line their peripheral clocks up with feeding time. No other melanocortin receptor is known to do this.',
+  },
+  {
+    q: 'Is there a drug for this?',
+    a: 'Not an approved one aimed at fasting or puberty. MC3R is a co-target of biased agonists such as resomelagon in inflammatory disease, and dual MC3R/MC4R agonists are preclinical for obesity. Those programmes are not treatments for delayed puberty or a disordered fast.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Renquist BJ, Murphy JG, Larson EA, et al.',
+    title: 'Melanocortin-3 receptor regulates the normal fasting response.',
+    source: 'Proc Natl Acad Sci U S A. 109(23):E1489–E1498.',
+    year: '2012',
+    url: 'https://www.pnas.org/doi/10.1073/pnas.1201994109',
+  },
+  {
+    authors: 'Sutton GM, Perez-Tilve D, Nogueiras R, et al.',
+    title: 'The melanocortin-3 receptor is required for entrainment to meal intake.',
+    source: 'J Neurosci. 28(48):12946–12955.',
+    year: '2008',
+    url: 'https://www.jneurosci.org/content/28/48/12946',
+  },
+  {
+    authors: 'Lam BYH, Williamson A, Finer S, et al.',
+    title: 'MC3R links nutritional state to childhood growth and the timing of puberty.',
+    source: 'Nature. 599(7885):436–441.',
+    year: '2021',
+    url: 'https://www.nature.com/articles/s41586-021-04088-9',
+  },
+  {
+    authors: 'Cone RD.',
+    title: 'Studies on the physiological functions of the melanocortin system.',
+    source: 'Endocr Rev. 27(7):736–749.',
+    year: '2006',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/17077189/',
+  },
+];
+---
+
+<PageLayout
+  title="What MC3R is for: the fast, the meal, and the timing of growing up"
+  seoTitle="MC3R physiology: fasting, meals, and puberty"
+  kicker="The receptor's job"
+  description="MC3R is the melanocortin receptor that reports nutritional state. Mice without it do not mobilise fat in a fast, do not anticipate a scheduled meal, and do not time puberty to whether they are fed. They get mildly fat without eating more. MC4R is the appetite switch; this is the receptor that decides what to do with the news that food has stopped."
+  seoDescription="MC3R reports nutritional state: the fasting response, meal anticipation, and the timing of puberty. Losing it fattens mice without making them eat more."
+  thread="MC4R asks how much to eat. MC3R asks a prior question: is this a fast, a meal that is about to arrive, or a childhood with enough food to grow on?"
+  updated="2026"
+  about={[
+    { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+    { name: 'Fasting', type: 'MedicalEntity' },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'MC3R-deficient mice are mildly obese without eating more or burning less. The receptor is not a second appetite switch.',
+      'In a fast, the receptor is required to release fatty acids from fat, to load triglyceride into the liver, to drive refeeding, and to activate the stress axis. The fat cells themselves can still respond to a direct stimulus.',
+      'It is also required for food-anticipatory activity: waking and shifting metabolism before a meal that always comes at the same hour.',
+      'In people, loss of MC3R delays puberty, shortens linear growth, and lowers lean mass and IGF-1. The same system that senses a fast is the one that decides a child is fed enough to mature.',
+      'No approved drug is aimed at this physiology. Inflammatory and obesity programmes that touch MC3R are doing something else.',
+    ]}
+  />
+
+  <p>
+    <a href="/receptors/mc4r">MC4R</a> is the receptor people mean when they say melanocortins
+    control appetite. <a href="/receptors/mc3r">MC3R</a> sits in the same hypothalamus, reads
+    the same peptides, and does not do that job. Take it away and a mouse does not become
+    ravenous. It becomes a little fatter, a little less lean, and strangely bad at noticing
+    that it has not eaten.<Cite n={1} /> This page is that physiology. The receptor card
+    itself — structure, variants, the common double haplotype — stays on the{' '}
+    <a href="/receptors/mc3r">MC3R page</a>.
+  </p>
+
+  <h2>Obesity without hunger</h2>
+  <p>
+    The MC3R-knockout mouse was confusing for years because it broke the only story the
+    field had. Melanocortin failure was supposed to mean more food and more fat, the way
+    losing MC4R does. These mice had more fat and less lean mass, and they were not
+    hyperphagic and not hypometabolic in any simple sense.<Cite n={1} /><Cite n={4} /> The
+    fat accumulated because the animal handled a change in food badly, not because it
+    asked for more of it. γ-MSH is a relatively selective natural agonist here, and AgRP
+    antagonises the receptor, but the phenotype is not “AgRP won.” It is “the report that
+    nutrition changed never went out.”<Cite n={4} />
+  </p>
+
+  <h2>The fast that does not register</h2>
+  <p>
+    A fast is a coordinated instruction. Fat tissue releases fatty acids, the liver takes
+    some of them up as triglyceride, the animal eats hard when food returns, and the
+    adrenal stress axis wakes up to hold blood glucose. In wild-type mice a sixteen-hour
+    fast raises circulating fatty acids. In MC3R-deficient mice it does not. Liver
+    triglyceride does not rise either. Put the same fat tissue in a dish and stimulate it
+    directly, and it releases fatty acids perfectly well — so the lipase machinery is
+    intact. What is missing is the order to use it.<Cite n={1} />
+  </p>
+  <p>
+    The same animals also fail the other half of the fast. They do not show the normal
+    refeeding drive, and fasting does not regulate their adipostatic signals or fully
+    activate the hypothalamic–pituitary–adrenal axis. Their corticosterone nadir sits
+    high, and the fasting-induced rise is blunted. The authors noted that the package —
+    fat up, lean and bone down, corticosterone awry — resembles Cushing physiology, which
+    is a warning about interpretation, not a claim that these mice have Cushing’s.<Cite
+      n={1}
+    /> The point that survives is narrower and solid: MC3R is how nutritional deprivation
+    is announced to hypothalamus, adrenal, fat, and liver at once.
+  </p>
+
+  <h2>Knowing a meal is coming</h2>
+  <p>
+    Quantity is only half of nutrition. Timing is the other half, and it belongs to this
+    receptor more than to any other in the family. Restrict mice to a single daily meal
+    and they learn it. Activity and waking rise in the hours before the food, and clocks
+    in peripheral organs shift to meet it. Mice without MC3R lose that food-anticipatory
+    behaviour and no longer entrain those clocks to feeding time.<Cite n={2} /> They can
+    still eat. They cannot get ready.
+  </p>
+  <p>
+    That is a different statement from “MC3R controls circadian rhythm.” Light still sets
+    the master clock. What fails is the feeding-dependent clock: the one that should move
+    when dinner moves. Sutton and colleagues’ result is why MC3R is described as the
+    receptor for nutritional timing, and why a page about appetite that only mentions
+    MC4R is missing a limb.<Cite n={2} />
+  </p>
+
+  <h2>The same report, read as permission to grow</h2>
+  <p>
+    The human evidence arrived later and made the mouse result legible. People with
+    loss-of-function MC3R variants, including one person with two broken copies, had later
+    puberty, less linear growth, less lean mass, and lower IGF-1. Mice lacking the
+    receptor were late to mature, and their reproductive cycle stopped answering normally
+    to nutritional state.<Cite n={3} /> A childhood body asks one question of its energy
+    system before it spends years on a growth spurt: is there enough? MC4R answers how
+    much to acquire. MC3R answers whether the answer is yes.<Cite n={3} />
+  </p>
+  <p>
+    The common partial variants, and the rare complete ones, are catalogued on the{' '}
+    <a href="/receptors/mc3r">receptor page</a> and under <a href="/genetics">genetics</a>.
+    They are not the same phenotype. Partial loss leans toward a fatter child. Complete
+    loss leans toward a child who grows and matures late.
+  </p>
+
+  <h2>What drug programmes are not doing</h2>
+  <p>
+    Nothing in the clinic is trying to restore the fasting response or the timing of
+    puberty. <a href="/resomelagon">Resomelagon</a> is a biased MC1R/MC3R agonist aimed at
+    inflammation. Dual MC3R/MC4R agonists sit in the <a href="/pipeline">pipeline</a> as an
+    obesity idea, still preclinical, folded onto the receptor page because they are not yet
+    their own story. Both are uses of the protein. Neither is a treatment for the
+    physiology on this page, and it would be a mistake to read a mouse fasting defect as a
+    reason to take either.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    MC3R is the melanocortin receptor for a change of state. A fast, a meal on a schedule,
+    a childhood with or without enough food: those are its inputs, and fat-versus-lean,
+    anticipation, and the clock of puberty are its outputs. For the ligand that prefers
+    it, see <a href="/gamma-msh">γ-MSH</a>; for the appetite receptor it is forever
+    compared with, <a href="/receptors/mc4r">MC4R</a>.
+  </p>
+
+  <div class="aside-note not-prose">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains MC3R physiology, mostly from mouse experiments and rare human
+      variants. It is not medical advice and not a guide to fasting, puberty, or any drug.
+      See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="mc3r-physiology" />
+</PageLayout>

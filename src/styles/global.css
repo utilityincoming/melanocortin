@@ -1,10 +1,45 @@
 @import 'tailwindcss';
+@import './scientific-figures.css';
+
+/* Latin only, woff2 only. Weights 400 and 600, roman and italic. */
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-400-italic.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../../node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-600-normal.woff2')
+    format('woff2');
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../../node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-600-italic.woff2')
+    format('woff2');
+}
 
 /* ------------------------------------------------------------------ *
  * melanocortin.com — "pigment & parchment"
  * A warm, editorial identity built from the subject itself: melanin.
- * Sienna-amber pigment on a cream/sepia parchment ground, set in a
- * serif. Deliberately warm and organic — the opposite of a cool,
+ * Sienna-amber pigment on a cream/sepia parchment ground, set in
+ * Source Serif 4. Deliberately warm and organic — the opposite of a cool,
  * clinical data-platform look — and distinct from sister sites.
  * ------------------------------------------------------------------ */
 
@@ -34,9 +69,9 @@
   --color-ink-900: #1c1812;
   --color-ink-950: #120f0a;
 
-  /* Typography — editorial serif display, system sans body */
-  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
-    'Times New Roman', serif;
+  /* Typography — Source Serif 4 for display and article text */
+  --font-serif: 'Source Serif 4', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    Georgia, 'Times New Roman', serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas,
@@ -64,7 +99,8 @@
     --border: var(--color-ink-800);
     --accent: var(--color-pigment-300);
     --accent-strong: var(--color-pigment-200);
-    --accent-soft: var(--color-ink-800);
+    /* Warm pigment in the dark ground — hero wash, hovers, takeaway panels. */
+    --accent-soft: color-mix(in oklab, var(--color-pigment-800) 46%, var(--color-ink-950));
     color-scheme: dark;
   }
 }
@@ -76,14 +112,43 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  font-weight: 400;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Interface stays sans. In @layer base so text-sm and other utilities still win. */
+@layer base {
+  header,
+  footer,
+  table,
+  .ui-sans {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  table {
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
 }
 
 ::selection {
   background-color: var(--accent-soft);
   color: var(--color-ink-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background-color: var(--color-pigment-700);
+    color: var(--color-ink-50);
+  }
 }
 
 /* In @layer base so Tailwind text-color utilities on links still win. */
@@ -121,4 +186,88 @@ body {
   .skip-link {
     transition: none;
   }
+}
+
+/* The caveat box repeated at the end of explainers. Same warm panel as
+ * key takeaways, with a pigment edge so it reads as a note, not a card. */
+.aside-note {
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--accent-soft);
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.aside-note > :first-child {
+  margin-top: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* Homepage plates: a pigment rule on the top edge, so cards read as
+ * pages rather than identical outlined boxes. */
+.plate {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-elevated);
+  box-shadow: inset 0 2px 0 var(--accent);
+  transition: border-color 150ms ease;
+}
+.plate:hover {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+}
+@media (prefers-reduced-motion: reduce) {
+  .plate {
+    transition: none;
+  }
+}
+
+/* Keyboard focus matches the pigment, and stays off mouse clicks. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* One underline for prose, tool copy, and one-off links. */
+.article-links :is(p, li) a,
+a.quiet {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  text-underline-offset: 0.18em;
+}
+.article-links :is(p, li) a:hover,
+a.quiet:hover {
+  text-decoration-color: var(--accent);
+}
+/* A quiet link may keep a muted color until hover. */
+a.quiet.text-muted,
+a.quiet[class*='text-muted'] {
+  color: var(--text-muted);
+}
+a.quiet.text-muted:hover,
+a.quiet[class*='text-muted']:hover {
+  color: var(--accent);
+}
+
+/* Citation marks stay bare; the prose underline is for words, not [n]. */
+.article-links p sup a,
+p sup a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Opening paragraph on articles and tools. Unlayered so older utility
+ * classes on the same element cannot turn it gray again. */
+.page-lede {
+  margin-top: 1.25rem;
+  max-width: 42rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text);
+  text-wrap: pretty;
 }

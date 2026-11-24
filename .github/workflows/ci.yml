@@ -1,0 +1,35 @@
+name: CI
+
+# Build + type-check every push and PR so a broken page, type error, glued
+# inline link, or dead internal link is caught here instead of at the Vercel
+# deploy. `npm run build` runs the postbuild guards
+# (check-link-whitespace + check-internal-links) on its own.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Type-check (astro check)
+        run: npx astro check
+      - name: Build + link guards
+        run: npm run build

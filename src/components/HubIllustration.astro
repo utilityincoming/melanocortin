@@ -1,0 +1,24 @@
+---
+import { hubIllustrations, hubMotif } from '../data/hub-illustrations.mjs';
+
+interface Props {
+  hub: 'system' | 'receptors';
+}
+
+const { hub } = Astro.props;
+---
+
+<svg viewBox="0 0 240 180" aria-hidden="true" focusable="false" set:html={hubMotif(hubIllustrations[hub])} />
+
+<style>
+  svg {
+    display: block;
+    width: min(100%, 15rem);
+    height: auto;
+    margin: 1rem auto 1.5rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+</style>

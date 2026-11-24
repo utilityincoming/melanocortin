@@ -1,0 +1,201 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import FAQ from '../components/FAQ.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+
+const faqs = [
+  {
+    q: 'What do melanocortins have to do with rheumatoid arthritis?',
+    a: 'Two of the melanocortin receptors, MC1R and MC3R, sit on immune cells, where activating them is broadly anti-inflammatory and promotes the active shutdown of inflammation known as resolution. Rheumatoid arthritis is a disease of joint inflammation that fails to resolve, which makes it a natural place to test that biology.',
+  },
+  {
+    q: 'Is there a melanocortin drug for rheumatoid arthritis?',
+    a: 'Not an approved one. Resomelagon (AP1189), an investigational oral agonist of MC1R and MC3R, is the melanocortin drug furthest along in rheumatoid arthritis. Its larger Phase 2b trial missed its primary endpoint in 2026, so its future depends on further trials.',
+  },
+  {
+    q: 'What does "resolving" inflammation mean, as opposed to suppressing it?',
+    a: 'Most arthritis drugs block a signal that drives inflammation. Resolution is the body’s own programme for ending an inflammatory response: stopping the recruitment of new immune cells and clearing the dead ones. A pro-resolving drug aims to switch that programme on instead of blocking the attack.',
+  },
+  {
+    q: 'Why would a melanocortin drug for arthritis not darken the skin?',
+    a: 'Resomelagon was designed as a biased agonist. In laboratory studies it triggered one signalling route from the receptor without the cyclic-AMP route that drives pigment, and it did not induce melanin production. That is a design goal supported by early data, not a guarantee established in large trials.',
+  },
+  {
+    q: 'How is rheumatoid arthritis treated today?',
+    a: 'With disease-modifying antirheumatic drugs, started early and adjusted to a target of low disease activity or remission, under a rheumatologist’s care. Methotrexate is the usual first drug, with biologic and targeted synthetic agents added when needed. This page explains the biology and is not treatment advice.',
+  },
+];
+
+const references = [
+  {
+    authors: 'Smolen JS, Aletaha D, McInnes IB.',
+    title: 'Rheumatoid arthritis.',
+    source: 'Lancet. 388(10055):2023–2038.',
+    year: '2016',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/27156434/',
+  },
+  {
+    authors: 'Montero-Meléndez T, Gobbetti T, Cooray SN, et al.',
+    title:
+      'Biased agonism as a novel strategy to harness the proresolving properties of melanocortin receptors without eliciting melanogenic effects.',
+    source: 'J Immunol. 194(7):3381–8.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25725103/',
+  },
+  {
+    authors: 'SynAct Pharma (ACR Convergence).',
+    title:
+      'Efficacy and safety of the biased melanocortin receptor agonist AP1189/resomelagon with methotrexate in DMARD-naïve rheumatoid arthritis: the EXPAND trial.',
+    source: 'Conference abstract — 82% ACR20 (resomelagon + MTX, n=28) vs 52% (placebo + MTX, n=27).',
+    year: '2024',
+    url: 'https://acrabstracts.org/abstract/efficacy-and-safety-of-the-biased-melanocortin-receptor-agonist-ap1189-resomelagon-in-combination-with-methotrexate-in-dmard-naive-rheumatoid-arthritis-patients-the-expand-trial/',
+  },
+  {
+    authors: 'SynAct Pharma.',
+    title: 'Phase 2b ADVANCE study of resomelagon in rheumatoid arthritis — topline results.',
+    source: 'Company report — an interested-party source. Primary DAS28-CRP endpoint not met amid a high placebo response.',
+    year: '2026',
+    url: 'https://www.synactpharma.com/en/synact-pharma-publishes-q2-2026-interim-results/',
+  },
+  {
+    authors: 'Edison Group.',
+    title: 'SynAct Pharma — ADVANCE data support continued development.',
+    source: 'Analyst note — reads the Phase 2b as mixed.',
+    year: '2026',
+    url: 'https://www.edisongroup.com/research/advance-data-support-continued-development/',
+  },
+];
+---
+
+<PageLayout
+  title="Rheumatoid arthritis: can a melanocortin switch inflammation off instead of blocking it?"
+  seoTitle="Rheumatoid arthritis & melanocortins: the resolution bet"
+  kicker="The condition"
+  description="Rheumatoid arthritis is inflammation that never gets the signal to stop. Melanocortin receptors on immune cells are part of the body's own off-switch, and an oral drug built on that idea has now been through a mid-stage trial — with a result that is neither the win its backers wanted nor a clean failure."
+  seoDescription="Rheumatoid arthritis is inflammation that fails to resolve. MC1R and MC3R on immune cells are part of the off-switch — and a Phase 2b trial tested it."
+  thread="Not another wall against the attack — an attempt to hand the immune system its own stand-down order."
+  updated="2026"
+  about={[
+    { name: 'Rheumatoid arthritis', type: 'MedicalCondition', sameAs: ['https://en.wikipedia.org/wiki/Rheumatoid_arthritis'] },
+    { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
+    { name: 'Melanocortin 3 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_3_receptor'] },
+  ]}
+>
+  <KeyTakeaways
+    items={[
+      'Rheumatoid arthritis is a chronic autoimmune disease in which inflammation of the joint lining persists and, untreated, destroys cartilage and bone.',
+      'The melanocortin angle is resolution: MC1R and MC3R on immune cells help run the body’s own programme for ending an inflammatory response.',
+      'Resomelagon (AP1189) is an oral agonist of those two receptors, designed as a biased agonist to avoid the pigment pathway.',
+      'In a small early trial with methotrexate, 82% of patients reached an ACR20 response against 52% on methotrexate alone.',
+      'The larger Phase 2b ADVANCE trial in 2026 missed its primary endpoint on a high placebo response. No melanocortin drug is approved for rheumatoid arthritis.',
+    ]}
+  />
+
+  <p>
+    Rheumatoid arthritis is the big one on the anti-inflammatory side of the melanocortin
+    story — the common disease that the rare-disease successes keep pointing toward. It is
+    also where this field has most recently been told "not yet." Both halves of that are
+    worth understanding.
+  </p>
+
+  <h2>Inflammation that does not end</h2>
+  <p>
+    In rheumatoid arthritis the immune system turns on the synovium, the thin lining of the
+    joints. The lining thickens, fills with immune cells, and becomes a source of the
+    inflammatory signals that erode cartilage and bone. It is chronic and systemic, and without
+    effective treatment the damage is cumulative.<Cite n={1} />
+  </p>
+  <p>
+    Modern treatment is one of medicine's quieter triumphs: start a disease-modifying drug
+    early, measure disease activity, and adjust until it is low or gone. Methotrexate is the
+    usual anchor, with biologic and targeted agents behind it.<Cite n={1} /> Nearly all of
+    those drugs work the same way in principle. They find a signal that drives the
+    inflammation and block it. That works for many people, not all, and it means dampening
+    part of the immune system for as long as the drug is taken.
+  </p>
+
+  <h2>The other way to stop a fire</h2>
+  <p>
+    A healthy inflammatory response does not just fade. It is ended, on purpose, by a
+    programme called resolution: the flow of new immune cells is halted, and the spent ones
+    are cleared away by macrophages so the tissue can return to normal. This is where the
+    melanocortin system comes in. <a href="/receptors/mc1r">MC1R</a> and{' '}
+    <a href="/receptors/mc3r">MC3R</a> are found on immune cells, and activating them pushes
+    those cells toward exactly that stand-down behaviour — the fourth job of the system,
+    alongside pigment, stress and appetite, laid out on the{' '}
+    <a href="/inflammation">inflammation</a> page.<Cite n={2} />
+  </p>
+  <p>
+    The clue is old. <a href="/acth">ACTH</a> was used in inflammatory arthritis long before
+    anyone knew it was a melanocortin, and its benefit was credited entirely to the cortisol
+    it releases. The modern reading is that part of the effect never needed the adrenal at
+    all. If so, a drug that activates the immune-cell receptors directly, and leaves{' '}
+    <a href="/receptors/mc2r">MC2R</a> alone, could keep the anti-inflammatory action without
+    the steroid — a line of reasoning set out, with its sources, on the{' '}
+    <a href="/inflammation">inflammation</a> page.
+  </p>
+
+  <h2>Biased on purpose</h2>
+  <p>
+    There is an obvious catch. MC1R is also the pigment switch, and nobody wants an arthritis
+    pill that tans. The answer is one of the more elegant ideas in current pharmacology. A
+    receptor does not have a single output; it can signal down more than one route inside the
+    cell. <a href="/resomelagon">Resomelagon</a> was developed as a <em>biased</em> agonist:
+    in laboratory work it activated one route linked to pro-resolving behaviour without
+    raising the cyclic AMP that drives melanin, and it did not induce pigment
+    production.<Cite n={2} /> The same compound, in other words, is meant to ask the receptor
+    for only one of the things it can do. Why that trade-off matters across the whole drug
+    class is the subject of <a href="/effects">the trade-off</a> page.
+  </p>
+
+  <h2>What the trials showed</h2>
+  <p>
+    The early signal was strong. In the EXPAND study, people with newly diagnosed rheumatoid
+    arthritis who had not yet had a disease-modifying drug took resomelagon alongside
+    methotrexate, and 82% reached an ACR20 response — the field's standard "at least 20%
+    better" bar — against 52% on methotrexate alone.<Cite n={3} /> That was a small trial,
+    about 28 patients an arm.
+  </p>
+  <p>
+    The larger test did not confirm it cleanly. The Phase 2b ADVANCE trial, reported in 2026,
+    missed its primary endpoint, with an unusually high response in the placebo group
+    narrowing the gap.<Cite n={4} /> The sponsor points to a difference at the 40 mg dose, a
+    significant effect in a pre-specified subgroup, and a clean safety record, and independent
+    analysts have read the result as mixed and still worth a further trial.<Cite n={5} /> All
+    of that can be true and the headline still stands: the trial designed to show the drug
+    works did not show it. Subgroup findings generate the next hypothesis. They do not
+    replace a met endpoint.
+  </p>
+
+  <h2>The honest bottom line</h2>
+  <p>
+    The biology here is real and the idea is a good one. Ending inflammation through the
+    body's own stand-down programme, by mouth, without a steroid and without suppressing
+    immunity, would be a different kind of arthritis drug. But as of 2026 it is an idea with
+    one encouraging small trial and one missed larger one, which puts rheumatoid arthritis in
+    the mid-stage tier of the <a href="/conditions">conditions map</a> and not higher. The
+    same receptors are being tested in the gut for{' '}
+    <a href="/ulcerative-colitis">ulcerative colitis</a> and in the kidney for{' '}
+    <a href="/membranous-nephropathy">membranous nephropathy</a>; the drug itself is covered
+    on the <a href="/resomelagon">resomelagon</a> page.
+  </p>
+
+  <div class="aside-note not-prose">
+    <p class="font-medium text-[var(--text)]">Education, not a protocol</p>
+    <p class="mt-2 text-[var(--text)]">
+      This page explains the biology and the state of the evidence. It is not medical advice
+      and gives no dosing or treatment instructions. Resomelagon is investigational and not
+      approved. Rheumatoid arthritis has effective established treatments, and decisions about
+      them belong with a rheumatologist. See the <a href="/about">editorial standards</a>.
+    </p>
+  </div>
+
+  <FAQ items={faqs} />
+
+  <References items={references} />
+
+  <RelatedPages slug="rheumatoid-arthritis" />
+</PageLayout>

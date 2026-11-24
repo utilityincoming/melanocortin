@@ -1,0 +1,25 @@
+/* Panel corners and connector strokes belong to diagrams, not molecular shapes. */
+.figure-diagram-panel {
+  rx: 8px;
+}
+
+.figure-diagram-connector {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.figure-diagram-arrowhead {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.figure-diagram-heading {
+  font-size: 13px;
+  font-weight: 600;
+}

@@ -63,26 +63,26 @@ const cols = [
 
     {cols.map((c) => (
       <g>
-        <text x={c.cx} y="32" text-anchor="middle" class="col-t">{c.t1}</text>
+        <text x={c.cx} y="32" text-anchor="middle" class="col-t figure-diagram-heading">{c.t1}</text>
         <text x={c.cx} y="48" text-anchor="middle" class="col-s">{c.t2}</text>
 
         {/* supply */}
-        <rect class="box" x={c.cx - 100} y="96" width="60" height="30" rx="7" />
+        <rect class="box figure-diagram-panel" x={c.cx - 100} y="96" width="60" height="30" />
         <text x={c.cx - 70} y="115" text-anchor="middle" class="box-t">supply</text>
         {c.breakSupply && (
           <g class="xbad"><line x1={c.cx - 78} y1="102" x2={c.cx - 62} y2="120" /><line x1={c.cx - 62} y1="102" x2={c.cx - 78} y2="120" /></g>
         )}
 
-        <line class="wire" x1={c.cx - 38} y1="111" x2={c.cx - 12} y2="111" marker-end="url(#kl-a)" />
+        <line class="figure-diagram-connector" x1={c.cx - 38} y1="111" x2={c.cx - 12} y2="111" marker-end="url(#kl-a)" />
 
         {/* MC4R */}
-        <rect class="box mc" x={c.cx - 8} y="96" width="44" height="30" rx="7" />
+        <rect class="box mc figure-diagram-panel" x={c.cx - 8} y="96" width="44" height="30" />
         <text x={c.cx + 14} y="115" text-anchor="middle" class="mc-t">MC4R</text>
         {c.breakReceptor && (
           <g class="xbad"><line x1={c.cx + 6} y1="102" x2={c.cx + 22} y2="120" /><line x1={c.cx + 22} y1="102" x2={c.cx + 6} y2="120" /></g>
         )}
 
-        <line class="wire" x1={c.cx + 38} y1="111" x2={c.cx + 58} y2="111" marker-end="url(#kl-a)" />
+        <line class="figure-diagram-connector" x1={c.cx + 38} y1="111" x2={c.cx + 58} y2="111" marker-end="url(#kl-a)" />
         <circle class={`dot ${c.outcome}`} cx={c.cx + 72} cy="111" r="9" />
 
         {/* setmelanotide from below */}
@@ -100,7 +100,7 @@ const cols = [
 
     <defs>
       <marker id="kl-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+        <path d="M1 0.75 L6 3 L1 5.25" class="figure-diagram-arrowhead" />
       </marker>
     </defs>
   </svg>
@@ -138,15 +138,13 @@ const cols = [
     padding: 0.6rem 0.5rem;
   }
   .divider { stroke: var(--border); stroke-width: 1; opacity: 0.6; }
-  .col-t { font-size: 12.5px; font-weight: 600; fill: var(--text); }
+  .col-t { fill: var(--text); }
   .col-s { font-size: 10px; fill: var(--text-muted); }
   .box { fill: var(--accent-soft); stroke: var(--border); stroke-width: 1; }
   .box.mc { fill: var(--accent); stroke: var(--accent-strong); }
   .box-t { font-size: 10.5px; fill: var(--text); }
   .mc-t { font-size: 10.5px; font-weight: 600; fill: #fff; }
   .xbad line { stroke: var(--hunger); stroke-width: 2.6; stroke-linecap: round; }
-  .wire { stroke: var(--text-muted); stroke-width: 1.6; fill: none; }
-  .arrowhead { fill: var(--text-muted); }
   .sm-wire { stroke: var(--accent); stroke-width: 1.8; fill: none; }
   .sm-lbl { font-size: 9.5px; fill: var(--text-muted); }
   .dot.ok { fill: var(--accent); }

@@ -43,14 +43,14 @@ const faqs = [
 >
   <section class="mx-auto max-w-3xl px-6 py-16">
     <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Interactive</p>
-    <h1 class="mt-3 font-serif text-4xl leading-tight font-semibold tracking-tight">
+    <h1 class="mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight">
       The selectivity visualizer
     </h1>
-    <p class="page-lede mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
+    <p class="page-lede">
       Every melanocortin binds more than one receptor. The question that decides
       whether a clean drug is even possible is <em>how much</em> it prefers its
       favourite. Pick a ligand to see its fingerprint across MC1R–MC5R — and its
-      <strong class="text-[var(--text)]">selectivity window</strong>, the fold-gap
+      <strong class="font-semibold">selectivity window</strong>, the fold-gap
       between its tightest and second-tightest receptor.
     </p>
     <Byline updated="2026" />
@@ -83,7 +83,7 @@ const faqs = [
             <p class="mt-2 text-sm">
               <a
                 href={`/selectivity/${l.id}`}
-                class="underline decoration-dotted hover:text-[var(--accent)]"
+                class="quiet"
               >
                 Open the dedicated {l.name} selectivity page →
               </a>
@@ -181,9 +181,9 @@ const faqs = [
         2024;52:D1438–D1449), each traced to a primary paper. The selectivity
         window is derived here from those values. For the complete table with a
         citation on every value, see the{' '}
-        <a href="/binding-matrix" class="underline decoration-dotted hover:text-[var(--accent)]">binding matrix</a>.
+        <a href="/binding-matrix" class="quiet">binding matrix</a>.
         This is an educational resource, not medical advice — see the{' '}
-        <a href="/about" class="underline decoration-dotted hover:text-[var(--accent)]">editorial standards</a>.
+        <a href="/about" class="quiet">editorial standards</a>.
     </p>
     </section>
 
@@ -245,11 +245,12 @@ const faqs = [
   .sv-starget { justify-self: end; font-size: 0.72rem; color: var(--text-muted); }
 
   .prose-body a {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 2px;
+    color: var(--accent);
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    text-underline-offset: 0.18em;
   }
-  .prose-body a:hover { color: var(--accent); }
+  .prose-body a:hover { text-decoration-color: var(--accent); }
 
   .sv-rlink {
     display: flex;

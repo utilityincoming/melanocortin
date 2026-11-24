@@ -22,23 +22,16 @@ agent is only mentioned in passing. Each of these is a real, citeable page.
 
 ### High priority
 
-- **`/atumelnant` (CRN04894) — the first clinical MC2R *antagonist*.**
-  The pipeline routes Atumelnant to `/receptors/mc2r`, but it deserves its own
-  page: it is the clearest example on the whole site of *blocking* a melanocortin
-  receptor as a therapeutic strategy, in contrast to the agonists that dominate
-  the field. Indications (congenital adrenal hyperplasia and ACTH-dependent
-  Cushing's) tie directly into MC2R/ACTH biology the site already explains.
-  A dedicated page also balances the "melanocortin = agonist" framing with the
-  antagonist side of the ledger.
+- **`/atumelnant` (CRN04894) — the first clinical MC2R *antagonist*.** *(Shipped.)*
 
-- **`/congenital-adrenal-hyperplasia` — a condition page.**
+- **`/congenital-adrenal-hyperplasia` — a condition page.** *(Shipped.)*
   CAH is Atumelnant's lead indication and a textbook MC2R/ACTH-axis disease, yet
   there is no condition page for it. It pairs naturally with the existing
   `/addisons-disease` page (loss vs. excess of the same axis) and gives the MC2R
   receptor page a downstream "what breaks" link, matching the pattern every other
   receptor page follows.
 
-- **`/cushings-disease` — a condition page.**
+- **`/cushings-disease` — a condition page.** *(Shipped.)*
   Same rationale: ACTH-dependent Cushing's is an MC2R-axis disease and a named
   pipeline indication. It is the natural counterpart to the adrenal-insufficiency
   pages and closes the loop on "too much ACTH signalling."
@@ -70,20 +63,21 @@ agent is only mentioned in passing. Each of these is a real, citeable page.
 Beyond the pipeline, these fill gaps in the "Conditions & questions" cluster and
 are strong search-intent targets:
 
-- **`/sarcoidosis` and `/multiple-sclerosis-relapse`** — the two best-known
-  repository-corticotropin (Acthar) indications. The site explains corticotropin
-  on `/therapeutics#corticotropin`; a condition page each would catch readers
-  searching the disease rather than the drug.
-- **`/red-hair-mc1r`** — MC1R variant biology (the "R alleles"), freckling, UV
-  response, and the MC1R–pain link the site already covers at `/mc1r-pain`.
-  High-interest, high-search, squarely on-topic for pigmentation.
-- **`/melanotan-safety`** or a clearly-scoped explainer on *why* grey-market
-  melanotan II is risky (mechanism-level, not a protocol) — the site's editorial
-  stance makes this a natural, differentiated page versus the forums. Must stay
-  strictly education-not-sourcing per the `/about` standards.
-- **`/mc3r` physiology deep-dive** — MC3R is the least-understood receptor;
-  a focused page on its emerging roles (fasting response, timing of puberty,
-  rhythm) would be genuinely under-served content.
+- **`/sarcoidosis` and `/multiple-sclerosis-relapse`** — *(Shipped.)* The two
+  best-known repository-corticotropin (Acthar) indications. Infantile spasms
+  has since shipped as `/infantile-spasms`.
+- **`/familial-glucocorticoid-deficiency`** — *(Shipped.)* MC2R/MRAP cortisol failure.
+- **`/x-linked-protoporphyria`** — *(Shipped.)* The gain-of-function twin of EPP.
+- **`/red-hair-mc1r`** — *(Shipped.)* MC1R variant biology (the "R alleles"),
+  freckling, and the link onward to `/mc1r-pain`.
+- **`/melanotan-safety`** — *(Covered by `/melanotan`.)* That page already carries
+  the mechanism-level risk case (impurity, moles, case-report harms) and the
+  education-not-sourcing bar. A second page would repeat it.
+- **`/mc3r-physiology`** — *(Shipped.)* Fasting response, meal anticipation, and
+  the timing of puberty, kept off the receptor card so the two pages do not
+  duplicate.
+- **`/infantile-spasms`** — *(Shipped.)* The remaining Acthar indication, and the
+  one with randomised evidence. The 2012 AAN guideline is cited as retired.
 
 Each should follow the existing condition-page shape (lede → mechanism →
 what the pipeline is doing → key takeaways → FAQ) so it slots into the site
@@ -93,19 +87,16 @@ without new patterns.
 
 ## 3. Enhancements to existing pages
 
-- **Interlink the adrenal cluster.** `/receptors/mc2r`, `/acth`,
-  `/addisons-disease`, and any new CAH/Cushing's pages should cross-link as a
-  tight neighbourhood (the way the appetite pages already do). The MC2R page is
-  currently the catch-all for several pipeline agents that would be better served
-  by their own pages plus a short MC2R "see also."
-- **Pipeline → page coverage check.** Add a lightweight note/convention that
-  every `pipeline.ts` entry whose `href` points at a *shared* page is a candidate
-  for a dedicated page, so the backlog above stays current as the table grows.
+- **Interlink the adrenal cluster.** *(Shipped.)* `/receptors/mc2r`, `/acth`,
+  `/addisons-disease`, `/congenital-adrenal-hyperplasia`, `/cushings-disease`
+  and `/atumelnant` cross-link as a neighbourhood.
+- **Pipeline → page coverage check.** *(Noted in `pipeline.ts`.)* Shared `href`s
+  are listed there as the standing watchlist: PL-7737, the tirzepatide combination,
+  RM-718, and the 710GO dual agonists.
 - **"Antagonists" as a first-class theme.** *(Shipped as `/melanocortin-antagonists`.)*
   Hub covering AgRP/ASIP, SHU9119, TCMCB07, PF-07258669, and Atumelnant, with
   cross-links from the agonists hub, therapeutics, and the antagonist drug pages.
-  Dedicated `/atumelnant` (and CAH/Cushing’s condition pages) remain high-priority
-  follow-ons above.
+  `/atumelnant` and the CAH/Cushing’s condition pages have since shipped.
 
 ---
 

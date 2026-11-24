@@ -20,6 +20,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
+      filter: (page) => !page.includes('/404'),
       // Emit a real <lastmod> per URL from each page's last git commit date.
       // Reader-facing bylines stay year-only by editorial policy; this is a
       // machine-only freshness signal for crawlers.

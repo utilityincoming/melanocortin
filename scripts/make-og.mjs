@@ -3,6 +3,7 @@
 // rasterising locally avoids depending on fonts in the CI build environment.
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
+import { hubIllustrations, hubMotif } from '../src/data/hub-illustrations.mjs';
 import { ogPages } from '../src/data/og-manifest.mjs';
 
 const esc = (s) =>
@@ -25,8 +26,15 @@ function wrap(text, maxChars, maxLines) {
   return lines.slice(0, maxLines);
 }
 
-function card({ eyebrow, title }) {
-  const lines = wrap(title, 24, 3);
+function card({ slug, eyebrow, title }) {
+  const motif = hubIllustrations[slug];
+  const illustration = motif
+    ? `<g transform="translate(790 219) scale(1.3)" color="#9a531f">
+      <rect width="240" height="180" rx="8" fill="#f4e7d6" stroke="#decdb5"/>
+      ${hubMotif(motif)}
+    </g>`
+    : '';
+  const lines = title.includes('\n') ? title.split('\n') : wrap(title, 24, 3);
   const fontSize = lines.length >= 3 ? 56 : 64;
   const lineH = fontSize + 10;
   const blockTop = 372 - ((lines.length - 1) * lineH) / 2;
@@ -50,15 +58,16 @@ function card({ eyebrow, title }) {
     </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="#faf6ee"/>
-  <rect width="1200" height="630" fill="url(#wash)"/>
+  ${motif ? '' : '<rect width="1200" height="630" fill="url(#wash)"/>'}
   <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#e0d8c8" stroke-width="2"/>
 
-  <circle cx="104" cy="86" r="17" fill="url(#dot)"/>
+  <circle cx="104" cy="86" r="17" fill="${motif ? '#b96a23' : 'url(#dot)'}"/>
   <text x="132" y="95" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="#1c1812">melanocortin.com</text>
 
   <text x="90" y="210" font-family="Consolas, 'Courier New', monospace" font-size="22" letter-spacing="4" fill="#9a531f">${esc(eyebrow)}</text>
 
   ${titleSvg}
+  ${illustration}
 
   <rect x="90" y="492" width="120" height="4" rx="2" fill="#9a531f"/>
   <text x="90" y="540" font-family="Consolas, 'Courier New', monospace" font-size="19" letter-spacing="2" fill="#6f6555">Citation-first · research-grade, not medical</text>
