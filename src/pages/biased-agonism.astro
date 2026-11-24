@@ -1,0 +1,119 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Cite from '../components/Cite.astro';
+import References from '../components/References.astro';
+
+const references = [
+  {
+    authors: 'Lotta LA, Mokrosinski J, Mendes de Oliveira E, et al.',
+    title: 'Human gain-of-function MC4R variants show signaling bias and protect against obesity.',
+    source: 'Cell. 177(3):597–607.e9.',
+    year: '2019',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/31002796/',
+  },
+  {
+    authors: 'Ghamari-Langroudi M, Digby GJ, Sebag JA, et al.',
+    title: 'G-protein-independent coupling of MC4R to Kir7.1 in hypothalamic neurons.',
+    source: 'Nature. 520(7545):94–98.',
+    year: '2015',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/25600267/',
+  },
+  {
+    authors: 'Spana C, Jordan R, Fischkoff S.',
+    title: 'Effect of bremelanotide on body weight of obese women: data from two phase 1 randomized controlled trials.',
+    source: 'Diabetes Obes Metab. 24(6):1084–1093.',
+    year: '2022',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/35137517/',
+  },
+];
+---
+
+<PageLayout
+  title="Biased Agonism & Tissue-Restricted Delivery"
+  seoTitle="Biased Agonism & Tissue-Restricted Delivery in Melanocortins"
+  description="Why early melanocortin drugs triggered nausea, pigmentation, and blood-pressure spikes—and how biased signaling and tissue-restricted delivery are solving the selectivity problem."
+  kicker="Pharmacology & Drug Design"
+  updated="2026"
+  reviewed={true}
+  about={[
+    { name: 'Biased agonism', type: 'Thing' },
+    { name: 'Melanocortin 4 receptor', type: 'Protein' },
+    { name: 'Melanocortin 1 receptor', type: 'Protein' },
+  ]}
+>
+  <p>
+    For decades, the central challenge in melanocortin drug discovery was not
+    potency—it was selectivity. Because <a href="/receptors/mc1r">MC1R</a>{' '}
+    through <a href="/receptors/mc5r">MC5R</a> share a conserved binding pocket,
+    early peptide agonists activated multiple receptors at once, pairing
+    intended metabolic or anti-inflammatory effects with nausea, flushing, and
+    skin darkening.
+  </p>
+
+  <h2>1. Receptor selectivity (the fold-gap)</h2>
+  <p>
+    The first layer of selectivity is binding affinity: how tightly a ligand
+    binds its target receptor compared with its closest siblings. You can
+    inspect these ratios directly in the{' '}
+    <a href="/selectivity">selectivity visualizer</a> and{' '}
+    <a href="/binding-matrix">binding matrix</a>. When the fold-gap between
+    MC4R and MC1R is narrow, therapeutic doses spill over onto melanocytes,
+    producing pigmentation.
+  </p>
+
+  <h2>2. Biased agonism (pathway selectivity)</h2>
+  <p>
+    Even at a single receptor such as <a href="/receptors/mc4r">MC4R</a>,
+    different ligands can stabilize distinct receptor conformations that
+    preferentially recruit one intracellular transducer over another:<Cite n={1} />
+  </p>
+  <ul>
+    <li>
+      <strong>Gαs / cAMP signaling</strong> is the canonical pathway coupled to
+      melanocortin receptors.
+    </li>
+    <li>
+      <strong>β-arrestin recruitment</strong> and{' '}
+      <strong>Gαq/11 or Kir7.1 channel coupling</strong> mediate distinct
+      physiological outputs, including receptor internalization and neuronal
+      firing.<Cite n={1} /><Cite n={2} />
+    </li>
+  </ul>
+  <p>
+    Human genetic studies of gain-of-function <em>MC4R</em> variants that
+    protect against obesity show that variants biased toward β-arrestin
+    recruitment—rather than cAMP alone—drive strong metabolic protection
+    without proportional blood-pressure elevation.<Cite n={1} /> Designing
+    small-molecule or peptide agonists with intentional signaling bias is a
+    major focus of next-generation MC4R programs.
+  </p>
+
+  <h2>3. Pharmacokinetic &amp; tissue-restricted delivery</h2>
+  <p>
+    When receptor selectivity alone is not enough, drug developers restrict
+    <em>where</em> and <em>how fast</em> the molecule arrives:
+  </p>
+  <ul>
+    <li>
+      <strong>Flattening C<sub>max</sub>:</strong> As shown in the{' '}
+      <a href="/dose-curve">dose &amp; side-effect model</a>, rapid peak plasma
+      concentrations (C<sub>max</sub>) drive acute nausea, whereas extended-release
+      or oral-steady-state profiles widen the tolerability window.<Cite n={3} />
+    </li>
+    <li>
+      <strong>Gut-restricted oral delivery:</strong> Investigational MC1R
+      agonists such as <a href="/pl-8177">PL-8177</a> are formulated for
+      colonic release with minimal systemic absorption, targeting{' '}
+      <a href="/ulcerative-colitis">ulcerative colitis</a> locally without
+      systemic pigmentation.
+    </li>
+    <li>
+      <strong>Topical &amp; ophthalmic delivery:</strong> Agents such as{' '}
+      <a href="/pl-9643">PL-9643</a> are delivered directly to the ocular
+      surface for <a href="/dry-eye-disease">dry eye disease</a>, keeping
+      systemic exposure negligible.
+    </li>
+  </ul>
+
+  <References items={references} />
+</PageLayout>
