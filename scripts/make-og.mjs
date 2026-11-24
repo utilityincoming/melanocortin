@@ -26,7 +26,7 @@ function wrap(text, maxChars, maxLines) {
 }
 
 function card({ eyebrow, title }) {
-  const lines = wrap(title, 24, 3);
+  const lines = title.includes('\n') ? title.split('\n') : wrap(title, 24, 3);
   const fontSize = lines.length >= 3 ? 56 : 64;
   const lineH = fontSize + 10;
   const blockTop = 372 - ((lines.length - 1) * lineH) / 2;
