@@ -21,8 +21,8 @@ const { caption = true } = Astro.props;
     >
 
     <!-- broken supply line -->
-    <rect class="supply" x="36" y="84" width="290" height="60" rx="10" />
-    <text x="181" y="107" text-anchor="middle" class="supply-t">α-MSH supply line</text>
+    <rect class="supply figure-diagram-panel" x="36" y="84" width="290" height="60" />
+    <text x="181" y="107" text-anchor="middle" class="supply-t figure-diagram-heading">α-MSH supply line</text>
     <text x="181" y="129" text-anchor="middle" class="supply-s">leptin ▸ POMC ▸ α-MSH</text>
     <g class="break">
       <line x1="232" y1="98" x2="250" y2="130" /><line x1="250" y1="98" x2="232" y2="130" />
@@ -48,7 +48,7 @@ const { caption = true } = Astro.props;
     </g>
 
     <!-- output -->
-    <line class="wire" x1="528" y1="114" x2="604" y2="114" marker-end="url(#as-a)" />
+    <line class="figure-diagram-connector" x1="528" y1="114" x2="604" y2="114" marker-end="url(#as-a)" />
     <text x="690" y="118" text-anchor="middle" class="out-hunger">still hungry</text>
     <g class="out-enough">
       <text x="690" y="110" text-anchor="middle" class="enough-t">“enough”</text>
@@ -57,7 +57,7 @@ const { caption = true } = Astro.props;
 
     <defs>
       <marker id="as-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+        <path d="M1 0.75 L6 3 L1 5.25" class="figure-diagram-arrowhead" />
       </marker>
       <marker id="as-x" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
         <path d="M0 0 L6 3 L0 6 Z" class="arrowhead-dim" />
@@ -103,7 +103,7 @@ const { caption = true } = Astro.props;
   }
 
   .supply { fill: var(--accent-soft); stroke: var(--hunger); stroke-width: 1.5; stroke-dasharray: 5 3; opacity: 0.8; }
-  .supply-t { font-size: 13px; font-weight: 600; fill: var(--text); }
+  .supply-t { fill: var(--text); }
   .supply-s { font-size: 11px; fill: var(--text-muted); }
   .break line { stroke: var(--hunger); stroke-width: 3; stroke-linecap: round; }
   .cause { font-size: 10.5px; fill: var(--text-muted); }
@@ -119,8 +119,6 @@ const { caption = true } = Astro.props;
   .sm-tok { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
   .sm-t { font-size: 12px; font-weight: 600; fill: var(--on-accent); }
   .sm-s { font-size: 10.5px; fill: var(--text-muted); }
-  .arrowhead { fill: var(--accent); }
-  .wire { stroke: var(--border); stroke-width: 2; fill: none; }
 
   .out-hunger { font-size: 13px; font-weight: 600; fill: var(--hunger); }
   .enough-t { font-size: 14px; font-weight: 700; fill: var(--accent-strong); }

@@ -16,11 +16,11 @@
   <!-- dersimelagon pill -->
   <rect class="pill" x="44" y="158" width="46" height="18" rx="9" />
   <line class="pill-score" x1="67" y1="159" x2="67" y2="175" />
-  <text x="67" y="194" text-anchor="middle" class="card-t">dersimelagon</text>
+  <text x="67" y="194" text-anchor="middle" class="card-t figure-diagram-heading">dersimelagon</text>
   <text x="67" y="209" text-anchor="middle" class="sub">once-daily MC1R pill</text>
 
   <!-- to MC1R -->
-  <path class="wire" d="M96 167 H206" marker-end="url(#two-ah)" />
+  <path class="figure-diagram-connector" d="M96 167 H206" marker-end="url(#two-ah)" />
   <circle class="mc1r-glow" cx="232" cy="167" r="22" />
   <rect class="receptor" x="218" y="147" width="28" height="40" rx="9" />
   <text x="232" y="133" text-anchor="middle" class="cap-a">MC1R</text>
@@ -31,8 +31,8 @@
   <path class="branch" d="M256 178 Q345 220 430 269" marker-end="url(#two-ah)" />
 
   <!-- Card A: EPP -->
-  <rect class="card" x="430" y="62" width="406" height="118" rx="10" />
-  <text x="450" y="90" class="card-t">Erythropoietic protoporphyria</text>
+  <rect class="card figure-diagram-panel" x="430" y="62" width="406" height="118" />
+  <text x="450" y="90" class="card-t figure-diagram-heading">Erythropoietic protoporphyria</text>
   <rect class="badge" x="708" y="72" width="120" height="20" rx="10" />
   <text x="768" y="86" text-anchor="middle" class="badge-t">Phase 3 · 2026</text>
   <circle class="dot" cx="452" cy="115" r="4" />
@@ -42,8 +42,8 @@
   <text x="450" y="166" class="status">INSPIRE Phase 3 · n=165 · met endpoint</text>
 
   <!-- Card B: dcSSc -->
-  <rect class="card" x="430" y="210" width="406" height="118" rx="10" />
-  <text x="450" y="238" class="card-t">Diffuse cutaneous systemic sclerosis</text>
+  <rect class="card figure-diagram-panel" x="430" y="210" width="406" height="118" />
+  <text x="450" y="238" class="card-t figure-diagram-heading">Diffuse cutaneous systemic sclerosis</text>
   <rect class="badge badge-open" x="748" y="220" width="80" height="20" rx="10" />
   <text x="788" y="234" text-anchor="middle" class="badge-t">Phase 2</text>
   <circle class="dot" cx="452" cy="263" r="4" />
@@ -54,7 +54,7 @@
 
   <defs>
     <marker id="two-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+      <path d="M1 0.75 L6 3 L1 5.25" class="figure-diagram-arrowhead" />
     </marker>
   </defs>
 </svg>
@@ -72,10 +72,8 @@
   }
   .pill { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
   .pill-score { stroke: #fdf5ea; stroke-width: 1; opacity: 0.7; }
-  .card-t { font-size: 12.5px; font-weight: 600; fill: var(--accent-strong); }
+  .card-t { fill: var(--accent-strong); }
   .sub { font-size: 10px; fill: var(--text-muted); }
-  .wire { stroke: var(--border); stroke-width: 2; fill: none; }
-  .arrowhead { fill: var(--text-muted); }
   .mc1r-glow { fill: var(--accent); opacity: 0; animation: two-glow 4.5s ease-in-out infinite; }
   .receptor { fill: var(--accent); }
   .cap-a { font-size: 12px; font-weight: 600; fill: var(--accent-strong); }

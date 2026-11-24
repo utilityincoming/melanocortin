@@ -23,11 +23,11 @@
   <!-- resomelagon pill -->
   <rect class="pill" x="40" y="166" width="52" height="18" rx="9" />
   <line class="pill-score" x1="66" y1="167" x2="66" y2="183" />
-  <text x="66" y="202" text-anchor="middle" class="card-t">resomelagon</text>
+  <text x="66" y="202" text-anchor="middle" class="card-t figure-diagram-heading">resomelagon</text>
   <text x="66" y="217" text-anchor="middle" class="sub">oral biased agonist</text>
 
   <!-- to receptor -->
-  <path class="wire" d="M98 175 H214" marker-end="url(#bias-ah)" />
+  <path class="figure-diagram-connector" d="M98 175 H214" marker-end="url(#bias-ah)" />
   <circle class="rec-glow" cx="240" cy="175" r="24" />
   <rect class="receptor" x="224" y="153" width="30" height="44" rx="9" />
   <text x="239" y="139" text-anchor="middle" class="cap-a">MC1R · MC3R</text>
@@ -38,7 +38,7 @@
   <path class="branch" d="M262 188 Q350 228 432 262" marker-end="url(#bias-ah)" />
 
   <!-- Card A: the path NOT taken (cAMP) -->
-  <rect class="card card-off" x="432" y="56" width="404" height="116" rx="10" />
+  <rect class="card card-off figure-diagram-panel" x="432" y="56" width="404" height="116" />
   <text x="452" y="84" class="card-t card-t-off">cAMP path</text>
   <rect class="badge badge-off" x="690" y="66" width="128" height="20" rx="10" />
   <text x="754" y="80" text-anchor="middle" class="badge-t badge-t-off">biased away</text>
@@ -49,8 +49,8 @@
   <text x="452" y="160" class="status status-off">the off-target bundle, left switched off</text>
 
   <!-- Card B: the path taken (ERK1/2 → resolution) -->
-  <rect class="card" x="432" y="200" width="404" height="116" rx="10" />
-  <text x="452" y="228" class="card-t">ERK1/2 path</text>
+  <rect class="card figure-diagram-panel" x="432" y="200" width="404" height="116" />
+  <text x="452" y="228" class="card-t figure-diagram-heading">ERK1/2 path</text>
   <rect class="badge" x="708" y="210" width="110" height="20" rx="10" />
   <text x="763" y="224" text-anchor="middle" class="badge-t">engaged</text>
   <circle class="dot" cx="454" cy="253" r="4" />
@@ -61,7 +61,7 @@
 
   <defs>
     <marker id="bias-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0 0 L6 3 L0 6 Z" class="arrowhead" />
+      <path d="M1 0.75 L6 3 L1 5.25" class="figure-diagram-arrowhead" />
     </marker>
     <marker id="bias-ah-off" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
       <path d="M0 0 L6 3 L0 6 Z" class="arrowhead-off" />
@@ -82,10 +82,8 @@
   }
   .pill { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 1; }
   .pill-score { stroke: #fdf5ea; stroke-width: 1; opacity: 0.7; }
-  .card-t { font-size: 12.5px; font-weight: 600; fill: var(--accent-strong); }
+  .card-t { fill: var(--accent-strong); }
   .sub { font-size: 10px; fill: var(--text-muted); }
-  .wire { stroke: var(--border); stroke-width: 2; fill: none; }
-  .arrowhead { fill: var(--text-muted); }
   .arrowhead-off { fill: var(--text-muted); opacity: 0.45; }
   .rec-glow { fill: var(--accent); opacity: 0; animation: bias-glow 4.5s ease-in-out infinite; }
   .receptor { fill: var(--accent); }

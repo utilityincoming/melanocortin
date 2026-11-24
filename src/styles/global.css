@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './scientific-figures.css';
 
 /* Latin only, woff2 only. Weights 400 and 600, roman and italic. */
 @font-face {
