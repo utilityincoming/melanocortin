@@ -4,7 +4,7 @@
 // `slug`: '/' → 'home'; otherwise the path with '/' replaced by '-'
 // (e.g. /receptors/mc4r → 'receptors-mc4r').
 export const ogPages = [
-  { slug: 'home', eyebrow: 'POMC · MC1R–MC5R · THE MELANOCORTIN AXIS', title: 'The melanocortin system, explained.' },
+  { slug: 'home', eyebrow: 'MELANOCORTIN SCIENCE · MC1R–MC5R', title: 'Light on the skin.\nA signal in the blood.' },
   { slug: 'system', eyebrow: 'OVERVIEW PILLAR', title: 'The melanocortin system' },
   { slug: 'receptors', eyebrow: 'THE FIVE RECEPTORS', title: 'MC1R through MC5R' },
   { slug: 'receptors-mc1r', eyebrow: 'RECEPTOR · MC1R', title: 'MC1R — the pigment switch' },
