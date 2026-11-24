@@ -455,6 +455,8 @@ export const RELATED: Record<string, string[]> = {
   effects: ['dose-curve', 'vitiligo', 'addisons-disease', 'mc1r-pain', 'alpha-msh', 'receptors/mc1r'],
   'oral-peptides': ['dose-curve', 'effects', 'bivamelagon', 'bremelanotide', 'dersimelagon', 'ulcerative-colitis'],
   pipeline: ['atumelnant', 'therapeutics', 'setmelanotide', 'dersimelagon', 'resomelagon', 'receptors/mc2r', 'melanocortin-antagonists', 'conditions'],
-  therapeutics: ['infantile-spasms', 'sarcoidosis', 'multiple-sclerosis-relapse', 'setmelanotide', 'afamelanotide', 'bremelanotide', 'pipeline', 'melanocortin-antagonists', 'conditions'],
+  therapeutics: ['infantile-spasms', 'sarcoidosis', 'multiple-sclerosis-relapse', 'setmelanotide', 'afamelanotide', 'bremelanotide', 'pipeline', 'melanocortin-antagonists', 'conditions', 'biased-agonism', 'glp1-and-melanocortin'],
+  'glp1-and-melanocortin': ['system', 'pomc', 'receptors/mc4r', 'setmelanotide', 'glp1-appetite'],
+  'biased-agonism': ['selectivity', 'binding-matrix', 'dose-curve', 'therapeutics', 'pl-8177'],
   'melanocortin-agonists': ['melanocortin-antagonists', 'therapeutics', 'receptors/mc4r', 'setmelanotide', 'bivamelagon', 'binding-matrix', 'alpha-msh', 'mc1r-selectivity', 'conditions'],
 };

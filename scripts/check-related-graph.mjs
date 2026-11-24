@@ -19,11 +19,11 @@
 // Exit: 0 if clean, 1 if any hard failure.
 
 import { readdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const { PAGES, RELATED } = await import(join(root, 'src/data/related.ts'));
+const { PAGES, RELATED } = await import(pathToFileURL(join(root, 'src/data/related.ts')).href);
 
 // Build the set of real page slugs from src/pages. A slug is the route path
 // without the leading slash: "foo.astro" -> "foo", "receptors/mc1r.astro" ->
