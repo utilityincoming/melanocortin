@@ -149,12 +149,12 @@ const references = [
           </li>
         ))
       }
-      <li><span class="enz-key enz-pc1">PC1/3</span> first cut</li>
+      <li><span class="enz-key">PC1/3</span> first cut</li>
       <li><span class="enz-key enz-pc2">PC2</span> second cut</li>
     </ul>
 
     <!-- The tree -->
-    <div class="not-prose mt-5 rounded-lg border border-[var(--border)] bg-[var(--bg)] p-5 sm:p-7">
+    <div class="not-prose mt-5 rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 sm:p-7">
       <div id="pomc-root" class="pomc-tree-wrap">
         <PomcTree nodes={[POMC_TREE]} />
       </div>
@@ -285,13 +285,18 @@ const references = [
   .swatch.cls-other { border-left-color: var(--border); border: 1px solid var(--border); }
   .enz-key {
     font-family: var(--font-mono);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    padding: 0.12rem 0.4rem;
+    line-height: 1.4;
+    padding: 0.04rem 0.35rem;
+    border: 1px solid var(--border);
     border-radius: 0.3rem;
+    color: var(--text);
   }
-  .enz-key.enz-pc1 { background: var(--surface, #ecebe7); color: var(--text-muted); }
-  .enz-key.enz-pc2 { background: var(--accent-soft); color: var(--accent-strong); }
+  .enz-key.enz-pc2 {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
 
   .prose-body a {
     color: var(--accent);
@@ -375,8 +380,8 @@ const references = [
 
     function selectNode(id: string) {
       selectedId = id;
-      tree?.querySelectorAll('.pomc-node.sel').forEach((n) => n.classList.remove('sel'));
-      tree?.querySelector(`.pomc-node[data-node="${id}"]`)?.classList.add('sel');
+      tree?.querySelector('.pomc-node[aria-pressed="true"]')?.setAttribute('aria-pressed', 'false');
+      tree?.querySelector(`.pomc-node[data-node="${id}"]`)?.setAttribute('aria-pressed', 'true');
       renderDetail(id);
     }
 
