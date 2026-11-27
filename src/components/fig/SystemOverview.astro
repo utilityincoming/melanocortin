@@ -1,0 +1,26 @@
+---
+import Figure from '../Figure.astro';
+---
+
+<Figure caption="Tissue-specific processing of POMC generates melanocortins such as ACTH and α-MSH. ACTH drives adrenal cortisol production through MC2R, while α-MSH signals through receptors including MC1R and MC4R.">
+  <svg class="schematic" viewBox="0 0 400 274" role="img" aria-label="Selected pathways from POMC to pigmentation, cortisol production and appetite regulation">
+    <desc>Tissue-specific processing yields ACTH and α-MSH. ACTH signals through MC2R to stimulate cortisol production. α-MSH signals through MC1R and MC4R to influence pigmentation and appetite, respectively.</desc>
+    <g>
+      <rect class="node" x="133" y="17" width="134" height="40" rx="6" />
+      <text x="200" y="43">POMC</text>
+      <text class="detail" x="200" y="83">Tissue-specific processing</text>
+      <path class="flow" d="M200 57 V64 M200 93 V100 H80 V115 m-5-5 5 5 5-5 M200 100 H259 V115 m-5-5 5 5 5-5" />
+      <rect class="active-node" x="22" y="122" width="116" height="37" rx="6" />
+      <rect class="active-node" x="201" y="122" width="116" height="37" rx="6" />
+      <text x="80" y="147">ACTH</text>
+      <text x="259" y="147">α-MSH</text>
+      <path class="flow" d="M80 159 V191 m-5-5 5 5 5-5 M259 159 V174 H200 V191 m-5-5 5 5 5-5 M259 174 H320 V191 m-5-5 5 5 5-5" />
+      <rect class="node" x="24" y="199" width="112" height="60" rx="6" />
+      <rect class="node" x="144" y="199" width="112" height="60" rx="6" />
+      <rect class="node" x="264" y="199" width="112" height="60" rx="6" />
+      <text x="80" y="224">MC2R<tspan class="detail" x="80" dy="22">Cortisol</tspan></text>
+      <text x="200" y="224">MC1R<tspan class="detail" x="200" dy="22">Pigmentation</tspan></text>
+      <text x="320" y="224">MC4R<tspan class="detail" x="320" dy="22">Appetite</tspan></text>
+    </g>
+  </svg>
+</Figure>

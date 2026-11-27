@@ -1,5 +1,5 @@
 ---
-import HubIllustration from '../../components/HubIllustration.astro';
+import ReceptorOverview from '../../components/fig/ReceptorOverview.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Cite from '../../components/Cite.astro';
 import References from '../../components/References.astro';
@@ -106,18 +106,18 @@ const references = [
   title="The five receptors"
   seoTitle="The five melanocortin receptors (MC1R–MC5R)"
   kicker="Five switches"
-  description="Five G-protein-coupled receptors, MC1R–MC5R, reading one melanocortin signal across five tissues: pigment, cortisol, appetite, inflammation, and secretion."
+  description="Five related receptors respond to POMC-derived hormones. Their distribution and ligand preferences help explain how the same peptide family regulates pigmentation, cortisol, appetite and secretion."
   thread="The genius of the system is thrift — one signal, read five ways, so a single family of hormones can watch over skin, stress, hunger, and repair at once."
   updated="2026"
   about={[
     { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
   ]}
 >
-  <HubIllustration hub="receptors" />
+  <div slot="opening-figure"><ReceptorOverview /></div>
   <KeyTakeaways
     items={[
       'The melanocortin system runs on five G-protein-coupled receptors, MC1R–MC5R, each reading the same peptide signal in a different tissue.',
-      'All five are switched on by the shared His-Phe-Arg-Trp core of melanocortin peptides and signal mainly through Gs → cyclic AMP.',
+      'Melanocortin peptides share a His-Phe-Arg-Trp recognition core. MC2R also requires ACTH-specific residues and the accessory protein MRAP1. The receptors signal mainly through Gs → cyclic AMP.',
       'Their jobs diverge by location: pigment (MC1R), cortisol (MC2R), energy partitioning (MC3R), appetite (MC4R), and exocrine secretion (MC5R).',
       'Two are drug targets today — MC1R (afamelanotide) and MC4R (setmelanotide, bremelanotide) — and MC2R uniquely cannot work without the accessory protein MRAP.',
     ]}
@@ -141,9 +141,9 @@ const references = [
     <li>
       <strong>One activation key.</strong> The melanocortin peptides cut from POMC
       all carry the same central <strong>His-Phe-Arg-Trp</strong> motif, and that
-      four-residue core is what physically switches the receptor on. It is why a
-      single hormone family can address five receptors — and why drugs copy that
-      exact sequence.<Cite n={1} />
+      four-residue core helps these peptides activate their receptors. MC2R also
+      recognizes ACTH-specific residues, and synthetic agonists can use modified
+      versions of the core.<Cite n={1} />
     </li>
     <li>
       <strong>One main wire.</strong> Activated, each receptor couples to the

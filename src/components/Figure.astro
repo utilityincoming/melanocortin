@@ -26,6 +26,11 @@ const { caption, source } = Astro.props;
   .fig-body {
     display: block;
   }
+  @media (max-width: 30rem) {
+    .fig-body:has(> :global(.schematic)) {
+      margin-inline: -0.5rem;
+    }
+  }
   figcaption {
     margin-top: 0.8rem;
     text-align: center;
@@ -46,6 +51,5 @@ const { caption, source } = Astro.props;
     font-size: 0.72rem;
     line-height: 1.45;
     color: var(--text-muted);
-    opacity: 0.75;
   }
 </style>

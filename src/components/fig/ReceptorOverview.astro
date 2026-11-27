@@ -1,0 +1,30 @@
+---
+import Figure from '../Figure.astro';
+
+const rows = [
+  ['MC1R', 'Melanocytes', 'Pigmentation'],
+  ['MC2R', 'Adrenal cortex', 'Cortisol production'],
+  ['MC3R', 'Brain and periphery', 'Energy partitioning'],
+  ['MC4R', 'Central nervous system', 'Appetite regulation'],
+  ['MC5R', 'Exocrine glands', 'Secretion'],
+];
+---
+
+<Figure caption="Representative sites and functions of the five melanocortin receptors. MC2R requires ACTH and the accessory protein MRAP1.">
+  <svg class="schematic" viewBox="0 0 400 264" role="img" aria-label="Melanocortin receptors and representative sites and functions">
+    <desc>MC1R: pigmentation in melanocytes. MC2R: cortisol production in the adrenal cortex. MC3R: energy partitioning in the brain and periphery. MC4R: appetite regulation in the central nervous system. MC5R: secretion in exocrine glands.</desc>
+    {rows.map(([name, site, functionLabel], i) => (
+      <g transform={`translate(0 ${16 + i * 48})`}>
+        <rect class="active-node" x="15" y="0" width="65" height="39" rx="6" />
+        <text x="47.5" y="26">{name}</text>
+        <path class="flow" d="M87 20 H103 m-5-5 5 5-5 5" />
+        <text class="mapping" x="115" y="13">{functionLabel}</text>
+        <text class="detail mapping" x="115" y="37">{site}</text>
+      </g>
+    ))}
+  </svg>
+</Figure>
+
+<style>
+  .schematic .mapping { text-anchor: start; }
+</style>
