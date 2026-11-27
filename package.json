@@ -18,7 +18,8 @@
     "gsc:check": "node scripts/gsc-report.mjs --check",
     "astro": "astro",
     "pagedates": "node scripts/pagedates.mjs",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "check:figures": "node scripts/check-figures.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.4",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "playwright-core": "^1.65.1",
     "sharp": "^0.35.2",
     "typescript": "^6.0.3"
   },

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SystemOverview from '../components/fig/SystemOverview.astro';
 import SiteIndex from '../components/SiteIndex.astro';
 import { ALL_PAGES } from '../data/siteindex';
 import { pipeline } from '../data/pipeline';
@@ -107,34 +108,22 @@ const pillars = [
   description="Explore how melanocortin receptors shape pigmentation, appetite, and adrenal function, with cited guides to approved therapies and emerging research."
 >
   <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div
-      class="pointer-events-none absolute inset-0"
-      style="background: radial-gradient(78% 95% at 18% -12%, var(--accent-soft), transparent 60%);"
-      aria-hidden="true"
-    >
-    </div>
-    <div class="relative mx-auto max-w-5xl px-6 pt-20 pb-16 sm:pt-28">
+  <section class="mx-auto grid max-w-6xl items-center gap-x-10 px-6 pt-12 pb-10 lg:grid-cols-[1fr_0.95fr] lg:pt-20 lg:pb-16">
+    <div>
       <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
         POMC → MC1R–MC5R · Melanocortin Science
       </p>
       <h1 class="mt-5 max-w-3xl text-balance font-serif text-4xl leading-[1.1] font-semibold tracking-tight sm:text-6xl">
-        Five receptors. One precursor gene.{' '}
-        <span class="text-[var(--accent)]">Reaching almost every organ system.</span>
+        The melanocortin system
       </h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-        Light on the skin. A signal in the blood. One precursor gene—<em>POMC</em>—regulates
-        pigmentation, adrenal cortisol, appetite, and inflammatory resolution.
-      </p>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-        Decades of receptor mapping are now translating into selective agonists,
-        oral small molecules, and tissue-restricted therapies—recovering
-        functions that matter across skin, metabolism, and endocrine disease.
+      <p class="page-lede">
+        One precursor protein, five receptors. Follow the peptide signals that
+        connect POMC to skin pigmentation, adrenal cortisol and appetite.
       </p>
       <div class="mt-9 flex flex-wrap items-center gap-3">
         <a
           href="/system"
-          class="ui-sans rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+          class="ui-sans rounded-md border border-[var(--accent-strong)] bg-[var(--accent-soft)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] no-underline hover:bg-[var(--bg-elevated)]"
         >
           Explore the biology
         </a>
@@ -146,6 +135,7 @@ const pillars = [
         </a>
       </div>
     </div>
+    <SystemOverview />
   </section>
 
   <!-- Receptors strip -->

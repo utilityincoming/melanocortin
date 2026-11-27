@@ -1,5 +1,5 @@
 ---
-import HubIllustration from '../components/HubIllustration.astro';
+import SystemOverview from '../components/fig/SystemOverview.astro';
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import FAQ from '../components/FAQ.astro';
@@ -61,7 +61,7 @@ const faqs = [
 <PageLayout
   title="The melanocortin system"
   kicker="The whole map"
-  description="One gene, cut tissue by tissue into the peptides that set pigment, stress, appetite and inflammation — read by five receptors and held by two natural brakes."
+  description="The POMC precursor yields different peptides in different tissues. Five receptors translate those signals into changes in pigmentation, cortisol, appetite and other functions."
   thread="Everything else on this site is a detail of this one page — the system the body reuses to keep itself whole."
   updated="2026"
   about={[
@@ -69,7 +69,10 @@ const faqs = [
     { name: 'Pro-opiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
   ]}
 >
-  <HubIllustration hub="system" />
+  <div slot="opening-figure">
+    <SystemOverview />
+    <p class="mt-4 text-center text-sm"><a class="quiet" href="/pomc">Explore the POMC cleavage tree</a></p>
+  </div>
   <KeyTakeaways
     items={[
       'The whole system runs from one gene: pro-opiomelanocortin (POMC) is cut, tissue by tissue, into a family of short peptides including α-MSH and ACTH.',
@@ -115,11 +118,14 @@ const faqs = [
       into β-endorphin.<Cite n={2} />
     </li>
   </ul>
-  <p>
-    This is why ACTH is the dominant pituitary output that drives the adrenal
-    gland, while α-MSH — the classic pigment and appetite signal — is generated
-    in the brain and skin.
-  </p>
+  <aside class="aside-note">
+    <p>Why tissue matters</p>
+    <p>
+      ACTH is the dominant pituitary signal to the adrenal gland. Further
+      processing in the brain and skin produces α-MSH, a signal involved in
+      appetite and pigmentation.<Cite n={2} />
+    </p>
+  </aside>
 
   <h2>The melanocortin peptides</h2>
   <p>

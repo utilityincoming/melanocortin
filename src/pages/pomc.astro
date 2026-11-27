@@ -106,23 +106,22 @@ const references = [
   ]}
 >
   <section class="mx-auto max-w-3xl px-6 py-16">
-    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Interactive</p>
-    <h1 class="mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Hormone processing</p>
+    <h1 class="mt-3 text-balance font-serif pillar-title font-semibold tracking-tight">
       The POMC cleavage tree
     </h1>
     <p class="page-lede">
-      One inert precursor is cut, step by step, into the whole melanocortin
-      family. The twist is that <em>where</em> the cutting happens decides
-      {' '}<em>what</em> gets made. Switch the tissue below and watch the tree change:
-      the anterior pituitary stops at ACTH, while the brain and skin carry a
-      second enzyme that unlocks α-MSH, β-endorphin, and the rest.
+      Prohormone convertases cut POMC into different peptides depending on the
+      tissue. PC1/3 releases ACTH and β-lipotropin. Where PC2 is present, further
+      processing yields products including α-MSH and β-endorphin.
     </p>
     <Byline updated="2026" />
 
     <PomcOverview />
+    <p class="mt-4 text-center text-sm"><a class="quiet" href="#tissue-controls">Choose a tissue</a></p>
 
     <!-- Tissue toggle -->
-    <div class="not-prose mt-8">
+    <div id="tissue-controls" class="plate not-prose mt-12 p-5 sm:p-6">
       <p class="text-sm font-medium">Where is POMC being processed?</p>
       <div id="tissue-toggle" class="mt-2 inline-flex flex-wrap gap-2" role="group" aria-label="Choose a tissue">
         {
@@ -176,7 +175,7 @@ const references = [
     </div>
 
     <!-- Prose -->
-    <div class="prose-body mt-12">
+    <div class="prose-body mt-16">
       <h2 class="font-serif text-2xl font-semibold tracking-tight">One gene, two scissors</h2>
       <p class="mt-3 leading-relaxed">
         POMC is a <strong>prohormone</strong>: a long, inactive chain that only
@@ -198,7 +197,7 @@ const references = [
         entirely by which scissors the cell owns.
       </p>
 
-      <h2 class="mt-10 font-serif text-2xl font-semibold tracking-tight">The finishing touches</h2>
+      <h2 class="mt-14 font-serif text-2xl font-semibold tracking-tight">The finishing touches</h2>
       <p class="mt-3 leading-relaxed">
         A few more enzymes tidy up the ends after the convertases cut.{' '}
         <strong>Carboxypeptidase E</strong> trims the leftover basic residues
@@ -211,7 +210,7 @@ const references = [
         off the tree above.
       </p>
 
-      <h2 class="mt-10 font-serif text-2xl font-semibold tracking-tight">What is <em>not</em> on the tree</h2>
+      <h2 class="mt-14 font-serif text-2xl font-semibold tracking-tight">What is <em>not</em> on the tree</h2>
       <p class="mt-3 leading-relaxed">
         Two important players are missing by design. The system’s natural brakes
         — <a href="/asip">agouti signalling protein</a> and{' '}

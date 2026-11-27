@@ -29,6 +29,7 @@ interface Props {
 
 const { title, seoTitle, description, seoDescription, kicker, status, author, updated, reviewed, thread, about } =
   Astro.props;
+const hasOpeningFigure = Astro.slots.has('opening-figure');
 ---
 
 <BaseLayout
@@ -47,7 +48,7 @@ const { title, seoTitle, description, seoDescription, kicker, status, author, up
           </p>
         )
       }
-      <h1 class="mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight">
+      <h1 class:list={["mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight", { "pillar-title": hasOpeningFigure }]}>
         {title}
       </h1>
       {
@@ -66,9 +67,10 @@ const { title, seoTitle, description, seoDescription, kicker, status, author, up
           </p>
         )
       }
+      <slot name="opening-figure" />
     </header>
     <div
-      class="article-links mt-8 leading-relaxed [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_li]:mt-1.5 [&_p]:mt-4 [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_code]:rounded [&_code]:bg-[var(--bg-elevated)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.85em] [&>table]:mt-6 [&>table]:w-full [&>table]:border-collapse [&>table]:text-sm [&>table_th]:border-b [&>table_th]:border-[var(--border)] [&>table_th]:px-3 [&>table_th]:py-2 [&>table_th]:text-left [&>table_th]:align-top [&>table_th]:font-semibold [&>table_td]:border-b [&>table_td]:border-[var(--border)] [&>table_td]:px-3 [&>table_td]:py-2 [&>table_td]:align-top"
+      class:list={['article-links mt-8 leading-relaxed [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_li]:mt-1.5 [&_p]:mt-4 [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_code]:rounded [&_code]:bg-[var(--bg-elevated)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.85em] [&>table]:mt-6 [&>table]:w-full [&>table]:border-collapse [&>table]:text-sm [&>table_th]:border-b [&>table_th]:border-[var(--border)] [&>table_th]:px-3 [&>table_th]:py-2 [&>table_th]:text-left [&>table_th]:align-top [&>table_th]:font-semibold [&>table_td]:border-b [&>table_td]:border-[var(--border)] [&>table_td]:px-3 [&>table_td]:py-2 [&>table_td]:align-top', { 'pillar-body': hasOpeningFigure }]}
     >
       {thread && (
         <p
