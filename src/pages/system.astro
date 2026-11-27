@@ -69,7 +69,10 @@ const faqs = [
     { name: 'Pro-opiomelanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Proopiomelanocortin'] },
   ]}
 >
-  <div slot="opening-figure"><SystemOverview /></div>
+  <div slot="opening-figure">
+    <SystemOverview />
+    <p class="mt-4 text-center text-sm"><a class="quiet" href="/pomc">Explore the POMC cleavage tree</a></p>
+  </div>
   <KeyTakeaways
     items={[
       'The whole system runs from one gene: pro-opiomelanocortin (POMC) is cut, tissue by tissue, into a family of short peptides including α-MSH and ACTH.',

@@ -5,3 +5,15 @@ The reason the project exists is that the science is rich but the open web isn't
 
 It's built so pages are content-first, fast, and search-friendly, with light interactive pieces like a POMC cleavage tree and a receptor explorer only where they earn their place, and every page has to carry an author, a last-reviewed date, and real citations before it can ship. The editorial stance is the part that matters most here, because the peptide space runs on anecdote and this hub runs on evidence: it's education and general information only — not medical advice, and deliberately not a sourcing guide, dosing chart, or protocol — everything is cited, pipeline details are kept current, and where the science is contested or early the page says so rather than smoothing it over. The aim is to help you understand the biology, then take that understanding to a professional.
 The project is open and early-stage — content under Creative Commons (CC BY 4.0), code under MIT, and contributions are welcome as long as every claim comes with a citation.
+
+### Diagram browser checks
+
+With the local dev server running, use Chromium to check the opening diagrams
+and the POMC tissue controls in both color schemes at mobile and desktop widths.
+
+```sh
+CHROMIUM_PATH=/path/to/chromium npm run check:figures
+```
+
+Set `FIGURE_CHECK_URL` to test a different server. If you install Chromium with
+`npx playwright-core install chromium`, you can omit `CHROMIUM_PATH`.

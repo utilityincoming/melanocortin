@@ -113,7 +113,10 @@ const references = [
     { name: 'Melanocortin receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_receptor'] },
   ]}
 >
-  <div slot="opening-figure"><ReceptorOverview /></div>
+  <div slot="opening-figure">
+    <ReceptorOverview />
+    <p class="mt-4 text-center text-sm"><a class="quiet" href="#receptor-guide">Explore each receptor</a></p>
+  </div>
   <KeyTakeaways
     items={[
       'The melanocortin system runs on five G-protein-coupled receptors, MC1R–MC5R, each reading the same peptide signal in a different tissue.',
@@ -209,7 +212,7 @@ const references = [
     </table>
   </div>
 
-  <h2>Explore each receptor</h2>
+  <h2 id="receptor-guide">Explore each receptor</h2>
   <p>
     Each has a full reference page — the mechanism, the human genetics, and the
     drugs that target it. Or trace which ligands hit which receptor in the{' '}
