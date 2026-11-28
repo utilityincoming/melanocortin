@@ -19,7 +19,7 @@ const gridRight = colX + receptorIds.length * colW; // 702
 const bottom = row0 + bindingRows.length * rowH; // 62 + 468 = 530
 ---
 
-<svg class="bind-fig" viewBox="0 0 720 600" role="img" aria-labelledby="bind-t bind-d" xmlns="http://www.w3.org/2000/svg">
+<svg class="figure-diagram bind-fig" viewBox="0 0 720 600" role="img" aria-labelledby="bind-t bind-d" xmlns="http://www.w3.org/2000/svg">
   <title id="bind-t">The melanocortin receptor binding matrix</title>
   <desc id="bind-d"
     >Binding strength of each melanocortin ligand at receptors MC1R through MC5R.
@@ -96,13 +96,7 @@ const bottom = row0 + bindingRows.length * rowH; // 62 + 468 = 530
 
 <style>
   .bind-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .zebra { fill: var(--accent-soft); opacity: 0.28; }
@@ -112,16 +106,12 @@ const bottom = row0 + bindingRows.length * rowH; // 62 + 468 = 530
   .row-name { font-size: 12.5px; font-weight: 600; fill: var(--text); }
   .row-role { font-size: 9.5px; fill: var(--text-muted); }
   .ago { fill: var(--accent); stroke: var(--accent-strong); stroke-width: 0.75; }
-  .anta-ring { fill: none; stroke: var(--block); stroke-width: 2.4; }
-  .anta-bar { stroke: var(--block); stroke-width: 2.4; stroke-linecap: round; }
+  .anta-ring { fill: none; stroke: var(--accent-strong); stroke-width: 1.75; }
+  .anta-bar { stroke: var(--accent-strong); stroke-width: 1.75; stroke-linecap: round; }
   .val { font-size: 11px; font-weight: 600; fill: var(--text); }
-  .val-x { fill: var(--block); }
+  .val-x { fill: var(--accent-strong); }
   .blank { font-size: 13px; fill: var(--text-muted); opacity: 0.4; }
   .leg { font-size: 11px; fill: var(--text-muted); }
   .leg-s { font-size: 10px; fill: var(--text-muted); }
 
-  .bind-fig { --block: #4f6d8c; }
-  @media (prefers-color-scheme: dark) {
-    .bind-fig { --block: #8fabc7; }
-  }
 </style>

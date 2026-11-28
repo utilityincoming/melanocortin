@@ -47,16 +47,15 @@ const faqs = [
       The selectivity visualizer
     </h1>
     <p class="page-lede">
-      Every melanocortin binds more than one receptor. The question that decides
-      whether a clean drug is even possible is <em>how much</em> it prefers its
-      favourite. Pick a ligand to see its fingerprint across MC1R–MC5R — and its
+      Compare the available measurements for each ligand across MC1R–MC5R.
+      When at least two measurements are available, the chart shows the
       <strong class="font-semibold">selectivity window</strong>, the fold-gap
-      between its tightest and second-tightest receptor.
+      between the two highest curated values.
     </p>
     <Byline updated="2026" />
 
     <!-- Ligand selector -->
-    <div class="not-prose mt-8">
+    <div class="not-prose mt-8 border-t border-[var(--border)] pt-5">
       <p class="text-sm font-medium">Choose a ligand</p>
       <div id="sv-picker" class="mt-2 flex flex-wrap gap-2" role="group" aria-label="Choose a ligand">
         {
@@ -94,8 +93,8 @@ const faqs = [
     </div>
 
     <p class="not-prose mt-3 text-xs text-[var(--text-muted)]">
-      Bars are sized by binding strength (p-value, on a fixed MC1R–MC5R scale);
-      <span class="font-mono">ᵐ</span> marks a mouse value. This view has its own
+      Bar lengths use a fixed p-value scale across receptors.
+      <span class="font-mono">ᵐ</span> marks a mouse value and <span class="font-mono">ʳ</span> a rat value. This view has its own
       link — copy the address bar to share the selected ligand.
     </p>
 
@@ -143,7 +142,7 @@ const faqs = [
     </div>
 
     <!-- Prose -->
-    <div class="prose-body mt-12">
+    <div class="prose-body mt-14">
       <h2 class="font-serif text-2xl font-semibold tracking-tight">Why the window matters</h2>
       <p class="mt-3 leading-relaxed">
         The five melanocortin receptors read the same molecular signal — a shared
@@ -158,8 +157,8 @@ const faqs = [
         the full argument, see <a href="/mc1r-selectivity">why there's no clean
         tanning drug</a>.
       </p>
-      <p class="mt-4 leading-relaxed">
-        One caveat the chart cannot show: <strong>binding is not function</strong>.
+      <p class="aside-note">
+        <strong>Reading the chart.</strong> <strong>binding is not function</strong>.
         These bars measure how tightly a ligand holds each receptor, not what the
         receptor then does.{' '}
         <a href="/setmelanotide">Setmelanotide</a> is the lesson — broad by
@@ -205,11 +204,14 @@ const faqs = [
     cursor: pointer;
     transition: border-color 0.15s, background-color 0.15s, color 0.15s;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .sv-pick, .sv-rlink { transition: none; }
+  }
   .sv-pick:hover { border-color: var(--accent); color: var(--accent); }
   .sv-pick[aria-pressed='true'] {
     border-color: var(--accent);
-    background: var(--accent);
-    color: #fff;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
   }
 
   .sv-spectrum { list-style: none; margin: 0; padding: 0; }
@@ -236,7 +238,7 @@ const faqs = [
     font-weight: 600;
     padding: 0.1rem 0.45rem;
     border-radius: 9999px;
-    background: var(--surface, #ecebe7);
+    background: var(--bg-elevated);
     color: var(--text-muted);
     white-space: nowrap;
   }
@@ -300,7 +302,7 @@ const faqs = [
       const id = b.dataset.pick!;
       show(id);
       if (b.classList.contains('sv-srow')) {
-        document.querySelector(`[data-slot="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.querySelector(`[data-slot="${id}"]`)?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'center' });
       }
     })
   );

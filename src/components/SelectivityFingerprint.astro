@@ -13,10 +13,15 @@ interface Props {
 }
 const { l, hidden = false, as = 'h2' } = Astro.props;
 const Name = as;
+const description = l.rows.map((row) => {
+  if (!row.has) return `${row.rid} (${row.tag}): no curated value.`;
+  const species = row.species ? ` (${row.species})` : '';
+  return `${row.rid} (${row.tag}): ${row.display}${species}, approximately ${row.nm}${row.action === 'antagonist' ? ', antagonist' : ''}.`;
+}).join(' ');
 ---
 
 <article
-  class="sv-panel rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-6 sm:p-7"
+  class="plate px-3 py-5 sm:p-7"
   data-panel={l.id}
   hidden={hidden}
   data-action={l.action}
@@ -59,30 +64,36 @@ const Name = as;
     </span>
   </div>
 
-  <div class={`sv-chart mt-5 ${l.action === 'antagonist' ? 'anta' : ''}`}>
-    {l.rows.map((r) => (
-      <div class={`sv-row ${r.primary ? 'is-primary' : ''}`}>
-        <div class="sv-rlabel">
-          <span class="rid font-mono">{r.rid}</span>
-          <span class="rtag">{r.tag}</span>
-        </div>
-        {r.has ? (
-          <div class="sv-track">
-            <div class="sv-bar" style={`width:${r.width}%`} />
-            <span class="sv-val">
-              <span class="pv font-mono">{r.display}{r.species === 'mouse' ? 'ᵐ' : ''}</span>
-              <span class="nm">{r.action === 'antagonist' ? 'blocks · ' : ''}≈{r.nm}</span>
-            </span>
-            {r.primary && <span class="sv-flag">primary</span>}
-          </div>
+  <svg class="schematic affinity-chart" viewBox="0 0 400 260" role="img" aria-label={`${l.name} across MC1R–MC5R`}>
+    <desc>{description}</desc>
+    {l.rows.map((row, index) => (
+      <g transform={`translate(0 ${12 + index * 49})`}>
+        <text class:list={['receptor', { primary: row.primary }]} x="10" y="19">{row.rid}</text>
+        <text class="detail site" x="69" y="19">{row.tag}</text>
+        {row.has ? (
+          <>
+            <text class="detail reading" x="390" y="19">
+              {row.display}{row.species === 'mouse' ? 'ᵐ' : row.species === 'rat' ? 'ʳ' : ''} · ≈{row.nm}
+            </text>
+            <rect class="track" x="10" y="27" width="380" height="8" rx="4" />
+            <rect
+              class:list={['bar', { primary: row.primary, antagonist: row.action === 'antagonist' }]}
+              x="10"
+              y="27"
+              width={380 * row.width / 100}
+              height="8"
+              rx="4"
+            />
+          </>
         ) : (
-          <div class="sv-track">
-            <span class="sv-none">no curated value</span>
-          </div>
+          <text class="detail reading" x="390" y="19">No curated value</text>
         )}
-      </div>
+      </g>
     ))}
-  </div>
+  </svg>
+  {l.rows.some((row) => row.has && row.action === 'antagonist') && (
+    <p class="chart-key">Outlined bars show antagonists.</p>
+  )}
 </article>
 
 <style>
@@ -99,57 +110,21 @@ const Name = as;
     background: var(--accent-soft);
     color: var(--accent-strong);
   }
-  .sv-verdict.v-broad { background: var(--surface, #ecebe7); color: var(--text-muted); }
-  .sv-verdict.v-modest { background: var(--accent-soft); color: var(--accent-strong); }
-  .sv-verdict.is-anta { background: var(--block-soft); color: var(--block); }
+  .sv-verdict.v-broad { background: var(--bg); color: var(--text-muted); }
+  .sv-verdict.is-anta { background: var(--bg); color: var(--text); }
 
-  .sv-chart { --bar: var(--accent); }
-  .sv-chart.anta { --bar: var(--block); }
-  .sv-row {
-    display: grid;
-    grid-template-columns: 7.5rem 1fr;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.35rem 0;
+  .affinity-chart {
+    margin-top: 1.25rem;
+    border: 0;
+    max-width: none;
   }
-  .sv-rlabel { display: flex; flex-direction: column; line-height: 1.15; }
-  .sv-rlabel .rid { font-size: 0.9rem; font-weight: 600; }
-  .sv-row.is-primary .rid { color: var(--bar); }
-  .sv-rlabel .rtag { font-size: 0.66rem; color: var(--text-muted); }
-  .sv-track {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 1.5rem;
-  }
-  .sv-bar {
-    height: 0.85rem;
-    border-radius: 0 4px 4px 0;
-    background: var(--bar);
-    opacity: 0.45;
-    flex: 0 0 auto;
-    transition: width 0.3s ease;
-  }
-  .sv-row.is-primary .sv-bar { opacity: 1; }
-  .sv-val { display: flex; align-items: baseline; gap: 0.4rem; white-space: nowrap; }
-  .sv-val .pv { font-size: 0.82rem; font-weight: 700; color: var(--text); }
-  .sv-val .nm { font-size: 0.68rem; color: var(--text-muted); }
-  .sv-flag {
-    font-size: 0.58rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-    color: var(--bar);
-    border: 1px solid currentColor;
-    border-radius: 0.25rem;
-    padding: 0.05rem 0.3rem;
-  }
-  .sv-none { font-size: 0.72rem; color: var(--text-muted); opacity: 0.6; font-style: italic; }
-
-  /* Agonist/antagonist blocker hue (shared with the binding matrix). */
-  :global(:root) { --block: #4f6d8c; --block-soft: #e6edf3; }
-  @media (prefers-color-scheme: dark) {
-    :global(:root:not([data-theme='light'])) { --block: #8fabc7; --block-soft: var(--color-ink-800); }
-  }
+  .affinity-chart .receptor, .affinity-chart .site { text-anchor: start; }
+  .affinity-chart .reading { text-anchor: end; }
+  .affinity-chart .receptor.primary { fill: var(--accent-strong); }
+  .track { fill: var(--bg); stroke: var(--border); }
+  .bar { fill: var(--accent-soft); stroke: var(--accent); }
+  .bar.primary { fill: var(--accent); stroke: var(--accent-strong); }
+  .bar.antagonist { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
+  .bar.antagonist.primary { stroke: var(--accent-strong); }
+  .chart-key { margin-top: 0.5rem; color: var(--text-muted); font-size: 0.8rem; }
 </style>

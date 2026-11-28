@@ -1,145 +1,56 @@
 ---
+import Figure from './Figure.astro';
+
 interface Props {
   caption?: boolean;
 }
 
 const { caption = true } = Astro.props;
+const explanation = 'Leptin promotes satiety by stimulating POMC neurons and inhibiting AgRP neurons. POMC-derived α-MSH activates MC4R, while AgRP opposes its signaling and favors hunger. Disruption of LEPR, POMC, PCSK1, or MC4R can weaken this satiety pathway. Setmelanotide acts directly at MC4R, downstream of LEPR, POMC, and PCSK1.';
 ---
 
-<figure class="appetite-circuit not-prose my-8">
-  <svg
-    viewBox="0 0 400 430"
-    role="img"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <title>The leptin–melanocortin appetite circuit</title>
-    <desc>
-      Leptin from adipose tissue stimulates POMC neurons and inhibits AgRP/NPY
-      neurons in the arcuate nucleus. POMC-derived alpha-MSH activates MC4R and
-      promotes satiety. AgRP opposes MC4R signaling and favors hunger.
-      Setmelanotide directly activates MC4R.
-    </desc>
+<Figure caption={caption ? explanation : undefined}>
+  <svg class="schematic" viewBox="0 0 400 450" role="img" aria-label="The leptin–melanocortin appetite circuit">
+    <desc>{explanation}</desc>
 
-    <g text-anchor="middle">
-      <rect class="node" x="112" y="16" width="176" height="52" rx="8" />
-      <text class="label" x="200" y="37">Adipose tissue</text>
-      <text class="detail" x="200" y="56">Releases leptin</text>
+    <rect class="node" x="108" y="15" width="184" height="62" />
+    <text x="200" y="40">Adipose tissue</text>
+    <text class="detail" x="200" y="64">Releases leptin</text>
 
-      <rect class="region" x="16" y="96" width="368" height="146" rx="12" />
-      <text class="heading" x="200" y="119">Arcuate nucleus</text>
+    <rect class="brain-region" x="12" y="109" width="376" height="143" rx="6" />
+    <path class="flow" d="M200 77 V94 H106 V174 m-5-5 5 5 5-5" />
+    <path class="flow muted-flow" d="M200 94 H294 V174 m-5 0 h10" />
+    <text x="200" y="136">Arcuate nucleus</text>
+    <text class="detail" x="158" y="161">Stimulates</text>
+    <text class="detail" x="253" y="161">Inhibits</text>
 
-      <g class="connector">
-        <path d="M200 68 V82 H106 V168 M200 82 H294 V168" />
-        <path d="m102 163 4 5 4-5 M289 168 H299" />
-      </g>
-      <text class="detail" x="154" y="154">Stimulates</text>
-      <text class="detail" x="248" y="154">Inhibits</text>
+    <rect class="active-node" x="25" y="182" width="162" height="57" />
+    <text x="106" y="205">POMC neurons</text>
+    <text class="detail" x="106" y="229">Release α-MSH</text>
 
-      <rect class="node activation" x="37" y="176" width="138" height="48" rx="8" />
-      <text class="label" x="106" y="196">POMC neurons</text>
-      <text class="detail" x="106" y="214">Release α-MSH</text>
+    <rect class="node" x="210" y="182" width="168" height="57" />
+    <text x="294" y="205">AgRP/NPY neurons</text>
+    <text class="detail" x="294" y="229">Release AgRP</text>
 
-      <rect class="node" x="225" y="176" width="138" height="48" rx="8" />
-      <text class="label" x="294" y="196">AgRP / NPY neurons</text>
-      <text class="detail" x="294" y="214">Release AgRP</text>
+    <path class="flow" d="M106 239 V334 H148 m-5-5 5 5-5 5" />
+    <path class="flow muted-flow" d="M294 239 V334 H252 m0-5 v10" />
+    <text class="detail" x="154" y="277">Activates</text>
+    <text class="detail" x="247" y="277">Opposes</text>
+    <text class="detail" x="200" y="301">Activation promotes satiety</text>
 
-      <g class="connector">
-        <path d="M106 224 V310 H156 m-5-4 5 4-5 4" />
-        <path d="M294 224 V310 H244 m0-5 v10" />
-      </g>
-      <text class="detail" x="61" y="266">α-MSH</text>
-      <text class="detail" x="61" y="284">Activates</text>
-      <text class="detail" x="339" y="266">AgRP</text>
-      <text class="detail" x="339" y="284">Opposes</text>
+    <rect class="active-node" x="156" y="314" width="88" height="40" />
+    <text x="200" y="340">MC4R</text>
 
-      <rect class="node activation" x="164" y="287" width="72" height="46" rx="8" />
-      <text class="label" x="200" y="316">MC4R</text>
-      <text class="detail" x="200" y="273">Activation promotes satiety</text>
-
-      <g class="connector">
-        <path d="M200 365 V341 m-4 5 4-5 4 5" />
-      </g>
-      <rect class="node" x="110" y="365" width="180" height="49" rx="8" />
-      <text class="label" x="200" y="386">Setmelanotide</text>
-      <text class="detail" x="200" y="404">Directly activates MC4R</text>
-    </g>
+    <path class="flow" d="M200 374 V362 m-5 5 5-5 5 5" />
+    <rect class="active-node" x="91" y="374" width="218" height="62" />
+    <text x="200" y="399">Setmelanotide</text>
+    <text class="detail" x="200" y="423">Directly activates MC4R</text>
   </svg>
-
-  {
-    caption && (
-      <figcaption>
-        Leptin promotes satiety by stimulating POMC neurons and inhibiting AgRP
-        neurons. POMC-derived α-MSH activates MC4R, while AgRP opposes its
-        signaling and favors hunger. Disruption of LEPR, POMC, PCSK1, or MC4R
-        can weaken this satiety pathway. Setmelanotide acts directly at MC4R,
-        downstream of LEPR, POMC, and PCSK1.
-      </figcaption>
-    )
-  }
-</figure>
+</Figure>
 
 <style>
-  .appetite-circuit {
-    max-width: 34rem;
-    margin-inline: auto;
-  }
-
-  svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
-    font-family: var(--font-sans, system-ui);
-  }
-
-  .heading {
-    fill: var(--text);
-    font-family: var(--font-serif, Georgia);
-    font-size: 19px;
-    font-weight: 600;
-  }
-
-  .label {
-    fill: var(--text);
-    font-size: 14px;
-    font-weight: 650;
-  }
-
-  .detail {
-    fill: var(--text-muted);
-    font-size: 14px;
-  }
-
-  .region,
-  .node {
-    stroke: var(--border);
-    stroke-width: 1.25;
-  }
-
-  .region { fill: none; }
-  .node { fill: var(--bg-elevated); }
-
-  .activation {
-    fill: var(--accent-soft);
-    stroke: var(--accent);
-  }
-
-  .connector {
+  .brain-region {
     fill: none;
-    stroke: var(--text-muted);
-    stroke-width: 1.75;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  figcaption {
-    max-width: 42rem;
-    margin: 0.75rem auto 0;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    line-height: 1.55;
-    text-align: center;
+    stroke: var(--border);
   }
 </style>

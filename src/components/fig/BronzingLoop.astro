@@ -9,7 +9,7 @@
 ---
 
 <svg
-  class="bl-fig"
+  class="figure-diagram bl-fig"
   viewBox="0 0 640 318"
   role="img"
   aria-labelledby="bl-t bl-d"
@@ -66,23 +66,17 @@
 
   <defs>
     <marker id="bl-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--text-muted)" />
     </marker>
     <marker id="bl-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--accent)" />
     </marker>
   </defs>
 </svg>
 
 <style>
   .bl-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .card { fill: none; stroke: var(--border); stroke-width: 1; }
@@ -95,7 +89,7 @@
   .side { font-size: 10px; fill: var(--text-muted); }
   .keytxt { font-size: 12px; font-weight: 700; fill: var(--text); }
   .keytxt.accent-t { fill: var(--accent-strong); }
-  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
   .flow.accent-flow { stroke: var(--accent); }
   .band { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
   .band-t { font-size: 11px; fill: var(--text); }

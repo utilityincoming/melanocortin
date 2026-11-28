@@ -105,21 +105,26 @@ const references = [
     { name: 'Melanocortin', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin'] },
   ]}
 >
-  <section class="mx-auto max-w-3xl px-6 py-16">
-    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Hormone processing</p>
-    <h1 class="mt-3 text-balance font-serif pillar-title font-semibold tracking-tight">
-      The POMC cleavage tree
-    </h1>
-    <p class="page-lede">
-      Prohormone convertases cut POMC into different peptides depending on the
-      tissue. PC1/3 releases ACTH and β-lipotropin. Where PC2 is present, further
-      processing yields products including α-MSH and β-endorphin.
-    </p>
-    <Byline updated="2026" />
+  <header class="pillar-intro mx-auto max-w-6xl px-6 pt-16 pb-5">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">Hormone processing</p>
+      <h1 class="mt-3 text-balance font-serif pillar-title font-semibold tracking-tight">
+        The POMC cleavage tree
+      </h1>
+      <p class="page-lede">
+        Prohormone convertases cut POMC into different peptides depending on the
+        tissue. PC1/3 releases ACTH and β-lipotropin. Where PC2 is present, further
+        processing yields products including α-MSH and β-endorphin.
+      </p>
+      <Byline updated="2026" />
+    </div>
+    <div class="pillar-visual">
+      <PomcOverview />
+      <p class="mt-4 text-center text-sm"><a class="quiet" href="#tissue-controls">Choose a tissue</a></p>
+    </div>
+  </header>
 
-    <PomcOverview />
-    <p class="mt-4 text-center text-sm"><a class="quiet" href="#tissue-controls">Choose a tissue</a></p>
-
+  <section class="mx-auto max-w-3xl px-6 pb-16">
     <!-- Tissue toggle -->
     <div id="tissue-controls" class="plate not-prose mt-12 p-5 sm:p-6">
       <p class="text-sm font-medium">Where is POMC being processed?</p>

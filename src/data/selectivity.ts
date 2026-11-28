@@ -18,7 +18,7 @@ export const widthPct = (p: number) =>
 
 export type Verdict = 'single' | 'broad' | 'modest' | 'selective' | 'high';
 export const VERDICT_LABEL: Record<Verdict, string> = {
-  single: 'One receptor only',
+  single: 'One measured receptor',
   broad: 'Broadly non-selective',
   modest: 'Modest preference',
   selective: 'Selective',

@@ -4,24 +4,29 @@
 // attribution line in the site's voice. Visuals stay self-contained; this
 // only standardises the caption + provenance styling beneath them.
 interface Props {
-  caption: string;
+  caption?: string;
   source?: string;
 }
 const { caption, source } = Astro.props;
 ---
 
-<figure class="cited-figure not-prose my-8">
+<figure class="cited-figure not-prose">
   <div class="fig-body"><slot /></div>
-  <figcaption>
-    <span class="fig-cap">{caption}</span>
-    {source && <span class="fig-source">{source}</span>}
-  </figcaption>
+  {(caption || source) && (
+    <figcaption>
+      {caption && <span class="fig-cap">{caption}</span>}
+      {source && <span class="fig-source">{source}</span>}
+    </figcaption>
+  )}
 </figure>
 
 <style>
   .cited-figure {
     max-width: 46rem;
-    margin-inline: auto;
+    margin: clamp(2rem, 5vw, 3rem) auto;
+  }
+  :global(.pillar-visual) .cited-figure {
+    margin-block: 0;
   }
   .fig-body {
     display: block;

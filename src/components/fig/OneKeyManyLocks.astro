@@ -1,4 +1,5 @@
 ---
+const core = ['His', 'Phe', 'Arg', 'Trp'];
 const receptors = [
   ['MC1R', 'Pigmentation'],
   ['MC3R', 'Energy partitioning'],
@@ -8,11 +9,16 @@ const receptors = [
 ---
 
 <svg class="schematic" viewBox="0 0 400 345" role="img" aria-label="One key, many locks: receptor selectivity of α-MSH">
-  <desc>α-MSH can activate MC1R, MC3R, MC4R and MC5R. MC2R instead requires ACTH and the accessory protein MRAP1.</desc>
+  <desc>The shared core is histidine, phenylalanine, arginine and tryptophan. α-MSH can activate MC1R, MC3R, MC4R and MC5R. MC2R instead requires ACTH and the accessory protein MRAP1.</desc>
   <rect class="active-node" x="16" y="20" width="107" height="45" rx="6" />
   <text x="69.5" y="49">α-MSH</text>
   <text class="detail" x="69.5" y="90">Shared core</text>
-  <text class="detail" x="69.5" y="113">H–F–R–W</text>
+  {core.map((residue, index) => (
+    <g transform={`translate(0 ${104 + index * 35})`}>
+      <rect class="active-node" x="31" y="0" width="77" height="29" />
+      <text x="69.5" y="21">{residue}</text>
+    </g>
+  ))}
   <path class="flow" d="M123 42 H145 V228" />
   {receptors.map(([name, functionLabel], i) => (
     <g transform={`translate(0 ${42 + 62 * i})`}>

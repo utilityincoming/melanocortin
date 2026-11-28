@@ -39,38 +39,40 @@ const hasOpeningFigure = Astro.slots.has('opening-figure');
   dateModified={updated ?? '2026'}
   about={about}
 >
-  <article class="mx-auto max-w-3xl px-6 py-16">
-    <header class="border-b border-[var(--border)] pb-8">
-      {
-        kicker && (
-          <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-            {kicker}
-          </p>
-        )
-      }
-      <h1 class:list={["mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight", { "pillar-title": hasOpeningFigure }]}>
-        {title}
-      </h1>
-      {
-        description && (
-          <p class="page-lede">
-            {description}
-          </p>
-        )
-      }
-      {updated && <Byline author={author} updated={updated} reviewed={reviewed} />}
-      {
-        status && (
-          <p class="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--text-muted)]">
-            <span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)]"></span>
-            {status}
-          </p>
-        )
-      }
-      <slot name="opening-figure" />
+  <article class:list={["mx-auto px-6 py-16", hasOpeningFigure ? "max-w-6xl" : "max-w-3xl"]}>
+    <header class:list={["border-b border-[var(--border)] pb-8", { "pillar-intro": hasOpeningFigure }]}>
+      <div>
+        {
+          kicker && (
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
+              {kicker}
+            </p>
+          )
+        }
+        <h1 class:list={["mt-3 text-balance font-serif text-4xl leading-tight font-semibold tracking-tight", { "pillar-title": hasOpeningFigure }]}>
+          {title}
+        </h1>
+        {
+          description && (
+            <p class="page-lede">
+              {description}
+            </p>
+          )
+        }
+        {updated && <Byline author={author} updated={updated} reviewed={reviewed} />}
+        {
+          status && (
+            <p class="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--text-muted)]">
+              <span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)]"></span>
+              {status}
+            </p>
+          )
+        }
+      </div>
+      {hasOpeningFigure && <div class="pillar-visual"><slot name="opening-figure" /></div>}
     </header>
     <div
-      class:list={['article-links mt-8 leading-relaxed [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_li]:mt-1.5 [&_p]:mt-4 [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_code]:rounded [&_code]:bg-[var(--bg-elevated)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.85em] [&>table]:mt-6 [&>table]:w-full [&>table]:border-collapse [&>table]:text-sm [&>table_th]:border-b [&>table_th]:border-[var(--border)] [&>table_th]:px-3 [&>table_th]:py-2 [&>table_th]:text-left [&>table_th]:align-top [&>table_th]:font-semibold [&>table_td]:border-b [&>table_td]:border-[var(--border)] [&>table_td]:px-3 [&>table_td]:py-2 [&>table_td]:align-top', { 'pillar-body': hasOpeningFigure }]}
+      class:list={['article-links mt-8 leading-relaxed [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_li]:mt-1.5 [&_p]:mt-4 [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_code]:rounded [&_code]:bg-[var(--bg-elevated)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.85em] [&>table]:mt-6 [&>table]:w-full [&>table]:border-collapse [&>table]:text-sm [&>table_th]:border-b [&>table_th]:border-[var(--border)] [&>table_th]:px-3 [&>table_th]:py-2 [&>table_th]:text-left [&>table_th]:align-top [&>table_th]:font-semibold [&>table_td]:border-b [&>table_td]:border-[var(--border)] [&>table_td]:px-3 [&>table_td]:py-2 [&>table_td]:align-top', { 'pillar-body mx-auto max-w-[45rem]': hasOpeningFigure }]}
     >
       {thread && (
         <p
@@ -80,6 +82,6 @@ const hasOpeningFigure = Astro.slots.has('opening-figure');
       )}
       <slot />
     </div>
-    <NetworkLinks />
+    <div class="mx-auto max-w-[45rem]"><NetworkLinks /></div>
   </article>
 </BaseLayout>

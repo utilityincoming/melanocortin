@@ -10,7 +10,7 @@
 ---
 
 <svg
-  class="cd-fig"
+  class="figure-diagram cd-fig"
   viewBox="0 0 640 300"
   role="img"
   aria-labelledby="cd-t cd-d"
@@ -54,26 +54,20 @@
 
   <defs>
     <marker id="cd-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--text-muted)" />
     </marker>
     <marker id="cd-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--accent)" />
     </marker>
     <marker id="cd-arr-back" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--accent)" />
     </marker>
   </defs>
 </svg>
 
 <style>
   .cd-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .card { fill: none; stroke: var(--border); stroke-width: 1; }
@@ -81,7 +75,7 @@
   .card-t { font-size: 12.5px; font-weight: 700; fill: var(--text); }
   .card-t.accent-t { fill: var(--accent-strong); }
   .sub { font-size: 10px; fill: var(--text-muted); }
-  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
   .flow.accent-flow { stroke: var(--accent); }
   .flow.back { stroke: var(--accent); stroke-dasharray: 4 3; }
   .drug { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 2; }
