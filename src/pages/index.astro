@@ -108,8 +108,8 @@ const pillars = [
   description="Explore how melanocortin receptors shape pigmentation, appetite, and adrenal function, with cited guides to approved therapies and emerging research."
 >
   <!-- Hero -->
-  <section class="pillar-intro mx-auto max-w-6xl px-6 pt-12 pb-10 lg:pt-20 lg:pb-16">
-    <div>
+  <section class="pillar-intro home-intro mx-auto max-w-6xl px-6 pt-12 pb-10 lg:pt-20 lg:pb-16">
+    <div class="home-lede">
       <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
         POMC → MC1R–MC5R · Melanocortin Science
       </p>
@@ -120,22 +120,22 @@ const pillars = [
         One precursor protein, five receptors. Follow the peptide signals that
         connect POMC to skin pigmentation, adrenal cortisol and appetite.
       </p>
-      <div class="mt-9 flex flex-wrap items-center gap-3">
-        <a
-          href="/system"
-          class="ui-sans rounded-md border border-[var(--accent-strong)] bg-[var(--accent-soft)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] no-underline hover:bg-[var(--bg-elevated)]"
-        >
-          Explore the biology
-        </a>
-        <a
-          href="/pipeline"
-          class="ui-sans rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-        >
-          Follow the clinical pipeline
-        </a>
-      </div>
     </div>
     <div class="pillar-visual"><SystemOverview /></div>
+    <div class="home-intro-links flex flex-wrap items-center gap-3">
+      <a
+        href="/system"
+        class="ui-sans rounded-md border border-[var(--accent-strong)] bg-[var(--accent-soft)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-strong)] no-underline hover:bg-[var(--bg-elevated)]"
+      >
+        Explore the biology
+      </a>
+      <a
+        href="/pipeline"
+        class="ui-sans rounded-md border border-[var(--border)] px-5 py-2.5 text-sm font-medium no-underline transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      >
+        Follow the clinical pipeline
+      </a>
+    </div>
   </section>
 
   <!-- Receptors strip -->
@@ -286,3 +286,11 @@ const pillars = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  @media (min-width: 64rem) {
+    .home-intro .pillar-visual { grid-column: 2; grid-row: 1 / span 2; }
+    .home-lede { align-self: end; }
+    .home-intro-links { align-self: start; }
+  }
+</style>

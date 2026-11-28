@@ -5,7 +5,7 @@ const baseURL = process.env.FIGURE_CHECK_URL ?? 'http://localhost:4321';
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_PATH || undefined,
 });
-const pillarRoutes = ['/', '/system', '/pomc', '/receptors'];
+const pillarRoutes = ['/', '/system', '/pomc', '/receptors', '/receptors/mc2r'];
 const routes = [
   ...pillarRoutes, '/receptors/mc4r',
   '/pomc-deficiency', '/setmelanotide', '/mc1r-selectivity', '/selectivity',
