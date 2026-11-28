@@ -10,7 +10,7 @@
 ---
 
 <svg
-  class="dnp-fig"
+  class="figure-diagram dnp-fig"
   viewBox="0 0 640 316"
   role="img"
   aria-labelledby="dnp-t dnp-d"
@@ -61,23 +61,17 @@
 
   <defs>
     <marker id="dnp-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--text-muted)" />
     </marker>
     <marker id="dnp-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--accent)" />
     </marker>
   </defs>
 </svg>
 
 <style>
   .dnp-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .col { fill: none; stroke: var(--border); stroke-width: 1; }
@@ -90,8 +84,8 @@
   .node-t { font-size: 12.5px; font-weight: 600; fill: var(--text); }
   .node-t.accent-t { fill: var(--accent-strong); }
   .node-s { font-size: 10.5px; fill: var(--text-muted); }
-  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
   .flow.accent-flow { stroke: var(--accent); }
-  .bridge { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .bridge { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
   .bridge-t { font-size: 10px; font-style: italic; fill: var(--text-muted); }
 </style>

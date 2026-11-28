@@ -14,7 +14,7 @@ const beads = Array.from({ length: 13 }, (_, i) => {
 const cyc = (c: number) => beads[c - 1].x;
 ---
 
-<svg class="syn-fig" viewBox="0 0 860 300" role="img" aria-labelledby="syn-t syn-d" xmlns="http://www.w3.org/2000/svg">
+<svg class="figure-diagram syn-fig" viewBox="0 0 860 300" role="img" aria-labelledby="syn-t syn-d" xmlns="http://www.w3.org/2000/svg">
   <title id="syn-t">Solid-phase synthesis of afamelanotide</title>
   <desc id="syn-d"
     >One identical cycle — remove the protecting group, couple the next residue —
@@ -76,13 +76,7 @@ const cyc = (c: number) => beads[c - 1].x;
 
 <style>
   .syn-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .kicker {

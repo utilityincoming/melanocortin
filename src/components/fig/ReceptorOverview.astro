@@ -11,15 +11,15 @@ const rows = [
 ---
 
 <Figure caption="Representative sites and functions of the five melanocortin receptors. MC2R requires ACTH and the accessory protein MRAP1.">
-  <svg class="schematic" viewBox="0 0 400 264" role="img" aria-label="Melanocortin receptors and representative sites and functions">
+  <svg class="schematic" viewBox="0 0 400 290" role="img" aria-label="Melanocortin receptors and representative sites and functions">
     <desc>MC1R: pigmentation in melanocytes. MC2R: cortisol production in the adrenal cortex. MC3R: energy partitioning in the brain and periphery. MC4R: appetite regulation in the central nervous system. MC5R: secretion in exocrine glands.</desc>
     {rows.map(([name, site, functionLabel], i) => (
-      <g transform={`translate(0 ${16 + i * 48})`}>
-        <rect class="active-node" x="15" y="0" width="65" height="39" rx="6" />
-        <text x="47.5" y="26">{name}</text>
-        <path class="flow" d="M87 20 H103 m-5-5 5 5-5 5" />
-        <text class="mapping" x="115" y="13">{functionLabel}</text>
-        <text class="detail mapping" x="115" y="37">{site}</text>
+      <g transform={`translate(0 ${18 + i * 52})`}>
+        <rect class="active-node" x="17" y="0" width="82" height="40" rx="6" />
+        <text x="58" y="26">{name}</text>
+        <path class="flow" d="M107 20 H125 m-5-5 5 5-5 5" />
+        <text class="mapping" x="138" y="13">{functionLabel}</text>
+        <text class="detail mapping" x="138" y="37">{site}</text>
       </g>
     ))}
   </svg>

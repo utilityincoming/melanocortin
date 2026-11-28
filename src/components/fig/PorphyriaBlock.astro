@@ -10,7 +10,7 @@
 ---
 
 <svg
-  class="pb-fig"
+  class="figure-diagram pb-fig"
   viewBox="0 0 640 372"
   role="img"
   aria-labelledby="pb-t pb-d"
@@ -89,26 +89,20 @@
 
   <defs>
     <marker id="pb-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong, var(--text-muted))" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--border-strong, var(--text-muted))" />
     </marker>
     <marker id="pb-arr-weak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)" opacity="0.5" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--text-muted)" opacity="0.5" />
     </marker>
     <marker id="pb-arr-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--accent)" />
     </marker>
   </defs>
 </svg>
 
 <style>
   .pb-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .act { font-size: 12px; font-weight: 700; fill: var(--text); letter-spacing: 0.02em; }
@@ -124,11 +118,11 @@
   .sub { font-size: 10.5px; fill: var(--text-muted); }
   .enz { font-size: 10.5px; font-style: italic; fill: var(--text-muted); }
   .enz-sub { font-size: 10px; fill: var(--text-muted); opacity: 0.85; }
-  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .flow { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
   .flow.weak { stroke-dasharray: 4 3; opacity: 0.55; }
   .shield { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
   .shield-line { font-size: 12px; fill: var(--text); }
   .shield-em { font-style: italic; font-weight: 700; fill: var(--accent-strong); }
   .shield-sub { font-size: 10.5px; fill: var(--text-muted); }
-  .intercept { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+  .intercept { fill: none; stroke: var(--accent); stroke-width: 1.75; }
 </style>

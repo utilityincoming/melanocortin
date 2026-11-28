@@ -10,7 +10,7 @@
 ---
 
 <svg
-  class="ca-fig"
+  class="figure-diagram ca-fig"
   viewBox="0 0 640 300"
   role="img"
   aria-labelledby="ca-t ca-d"
@@ -68,20 +68,14 @@
 
   <defs>
     <marker id="ca-arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+      <path class="figure-diagram-chevron" d="M4 1 L8 5 L4 9" stroke="var(--accent)" />
     </marker>
   </defs>
 </svg>
 
 <style>
   .ca-fig {
-    width: 100%;
-    height: auto;
-    display: block;
     overflow: visible;
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--bg-elevated);
     padding: 0.6rem 0.5rem;
   }
   .col-h { font-size: 13px; font-weight: 700; fill: var(--text); }
@@ -98,7 +92,7 @@
   .anno-s { font-size: 9.5px; fill: var(--text-muted); }
   .foot { font-size: 10px; fill: var(--text-muted); }
   .foot.accent-t { fill: var(--accent-strong); }
-  .ferry { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+  .ferry { fill: none; stroke: var(--text-muted); stroke-width: 1.75; }
   .ferry.accent-st { stroke: var(--accent); }
   .ferry.broken { stroke: var(--text-muted); stroke-dasharray: 3 3; opacity: 0.6; }
   .xmark { stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }

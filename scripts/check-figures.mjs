@@ -5,7 +5,11 @@ const baseURL = process.env.FIGURE_CHECK_URL ?? 'http://localhost:4321';
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_PATH || undefined,
 });
-const routes = ['/', '/system', '/pomc', '/receptors', '/pomc-deficiency', '/setmelanotide', '/mc1r-selectivity'];
+const pillarRoutes = ['/', '/system', '/pomc', '/receptors'];
+const routes = [
+  ...pillarRoutes, '/receptors/mc4r',
+  '/pomc-deficiency', '/setmelanotide', '/mc1r-selectivity', '/selectivity',
+];
 
 async function checkLabels(svg) {
   return svg.evaluate((figure) => {
@@ -68,10 +72,30 @@ try {
         const response = await page.goto(new URL(route, baseURL).href);
         assert.ok(response?.ok(), `Could not load ${context}`);
         await page.evaluate(() => document.fonts.ready);
-        const figures = await page.locator('svg.schematic').all();
+        const figures = await page.locator('svg.schematic:visible').all();
         assert.ok(figures.length, `No schematic on ${context}`);
         for (const svg of figures) {
           assert.deepEqual(await checkLabels(svg), [], context);
+        }
+        if (pillarRoutes.includes(route)) {
+          const heading = await page.locator('h1').boundingBox();
+          const visual = await page.locator('.pillar-visual').boundingBox();
+          assert.ok(heading && visual, context);
+          assert.ok(
+            width >= 1024 ? visual.x > heading.x + heading.width : visual.y > heading.y + heading.height,
+            `Opening figure should follow the intro in the expected layout: ${context}`,
+          );
+        }
+        if (route === '/selectivity') {
+          const picker = page.getByRole('group', { name: 'Choose a ligand' });
+          for (const button of await picker.getByRole('button').all()) {
+            await button.click();
+            const visible = page.locator('svg.affinity-chart:visible');
+            const name = await button.innerText();
+            assert.equal(await button.getAttribute('aria-pressed'), 'true', name);
+            assert.equal(await visible.count(), 1, name);
+            assert.deepEqual(await checkLabels(visible), [], `${context}: ${name}`);
+          }
         }
         if (route === '/pomc') await checkTissueControls(page);
         console.log(`OK ${context}`);
