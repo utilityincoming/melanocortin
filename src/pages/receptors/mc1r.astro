@@ -86,15 +86,22 @@ const references = [
 <PageLayout
   title="MC1R — the pigment switch"
   kicker="Receptor · Melanocortin 1 receptor"
-  description="The melanocortin 1 receptor gene (MC1R, chromosome 16q24.3) and the receptor on melanocytes that decides between protective brown-black eumelanin and reddish pheomelanin. Its weak variants explain red hair and fair skin — and carry an independent melanoma risk."
-  seoDescription="MC1R is the melanocyte receptor that chooses between dark eumelanin and red pheomelanin. Its weak variants explain red hair, fair skin and melanoma risk."
-  thread="Pigment is the system made visible — the one receptor that turns a hormone into a shield, and the color of a person into an act of protection."
+  description="MC1R helps determine what kind of melanin your skin and hair make. When α-MSH activates MC1R on pigment-producing cells, they make more brown-black eumelanin. Reduced MC1R activity favors reddish-yellow pheomelanin."
+  seoDescription="MC1R helps determine what kind of melanin your skin and hair make. Learn how MC1R controls pigmentation and why drugs are hard to target selectively."
   updated="2026"
   about={[
     { name: 'Melanocortin 1 receptor', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/Melanocortin_1_receptor'] },
     { name: 'Afamelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Afamelanotide'] },
   ]}
 >
+  <nav class="aside-note" aria-label="Explore MC1R">
+    <p>Explore MC1R</p>
+    <ul class="mt-2">
+      <li><a href="#pigmentation">How MC1R controls pigmentation</a></li>
+      <li><a href="/mc1r-selectivity">Why MC1R is hard to target selectively</a></li>
+    </ul>
+  </nav>
+
   <ReceptorFacts receptor={receptor} />
 
   <KeyTakeaways
@@ -113,7 +120,7 @@ const references = [
     cells produce.<Cite n={1} />
   </p>
 
-  <h2>The pigment switch</h2>
+  <h2 id="pigmentation" class="scroll-mt-24">The pigment switch</h2>
   <p>
     Melanocytes can make two broad classes of pigment: <strong>eumelanin</strong>,
     the brown-black pigment that absorbs UV and protects DNA, and
