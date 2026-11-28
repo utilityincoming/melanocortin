@@ -1,0 +1,34 @@
+---
+interface Props {
+  guide: 'pipeline' | 'therapeutics';
+}
+
+const { guide } = Astro.props;
+const destination = guide === 'pipeline'
+  ? { label: 'Browse the clinical pipeline', description: 'See investigational candidates, trial stages, and discontinued programs.' }
+  : { label: 'Compare approved treatments', description: 'See the FDA-approved medicines and their uses.' };
+---
+
+<aside class="aside-note">
+  <p>
+    <a class="quiet" href={`/${guide}`} data-clinical-link="guide">{destination.label}</a>
+  </p>
+  <p class="mt-1">{destination.description}</p>
+</aside>
+
+<script>
+  import { track } from '@vercel/analytics';
+
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const link = event.target.closest<HTMLAnchorElement>('a[data-clinical-link]');
+    if (!link || event.defaultPrevented) return;
+
+    const destination = new URL(link.href);
+    track('Clinical guide onward click', {
+      source: window.location.pathname.replace(/\/$/, ''),
+      destination: destination.pathname + destination.hash,
+      kind: link.dataset.clinicalLink ?? 'guide',
+    });
+  });
+</script>

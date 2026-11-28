@@ -1,4 +1,5 @@
 ---
+import ClinicalGuideLink from '../components/ClinicalGuideLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Byline from '../components/Byline.astro';
 import FAQ from '../components/FAQ.astro';
@@ -171,12 +172,12 @@ const references = [
       The melanocortin pipeline
     </h1>
     <p class="page-lede">
-      From <strong class="font-semibold">zero approved melanocortin medicines before 2019 to four today</strong>
-      — with a deepening pipeline of agonists and antagonists behind them. A dated
-      snapshot of where the field stands, what moved this year, and what it has
-      learned from its failures.
+      Follow melanocortin drug candidates by receptor, indication, and furthest
+      development stage. This 2026 snapshot includes approved agents for context
+      and discontinued programs that shaped the field.
     </p>
     <Byline updated="2026" />
+    <ClinicalGuideLink guide="therapeutics" />
 
     <!-- Distribution bar -->
     <div class="not-prose mt-8">
@@ -219,7 +220,7 @@ const references = [
             <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
               <span class="font-medium">
                 {e.href ? (
-                  <a href={e.href} class="text-[var(--text)] no-underline hover:text-[var(--accent)]">{e.name}</a>
+                  <a href={e.href} data-clinical-link="entry" class="quiet">{e.name}</a>
                 ) : (
                   e.name
                 )}
