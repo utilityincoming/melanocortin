@@ -150,7 +150,7 @@ const references = [
 <PageLayout
   title="MC2R — the ACTH receptor"
   kicker="Receptor · Melanocortin 2 receptor"
-  description="The adrenal receptor at the bottom of the stress axis. Uniquely, it answers only to ACTH — and it cannot even reach the cell surface without a dedicated chaperone, MRAP. Its gene, its chaperone, its disease, its structure, and the drugs now being built to block it."
+  description="In the adrenal cortex, ACTH activates MC2R to stimulate cortisol production. The accessory protein MRAP1 helps MC2R reach the cell surface and respond to ACTH."
   seoDescription="MC2R is the adrenal ACTH receptor at the bottom of the stress axis: it answers only to ACTH and needs the chaperone MRAP. Gene, disease, structure, drugs."
   thread="Here the same family that colors skin reaches all the way to the adrenal — one signal, stretched from the body's surface to the chemistry of stress."
   updated="2026"
@@ -160,6 +160,15 @@ const references = [
     { name: 'Melanocortin 2 receptor accessory protein', type: 'MedicalEntity', sameAs: ['https://en.wikipedia.org/wiki/MRAP_(gene)'] },
   ]}
 >
+  <div slot="opening-figure">
+    <Figure
+      caption="MRAP1 helps MC2R reach the cell surface and respond to ACTH. ACTH carries the shared His–Phe–Arg–Trp core and a basic sequence that MSH peptides lack. In the adrenal cortex, ACTH activation of MC2R stimulates cortisol production."
+      source="Metherell et al. (2005), Sebag & Hinkle (2007), Dores (2009), Luo et al. (2023)."
+    >
+      <TwoComponentReceptor />
+    </Figure>
+  </div>
+
   <ReceptorFacts receptor={receptor} />
 
   <KeyTakeaways
@@ -182,13 +191,6 @@ const references = [
     own. What follows is the story of a receptor that needs a partner, reads a
     password, and was the first in the family to explain a human disease.
   </p>
-
-  <Figure
-    caption="A two-component receptor. Alone, MC2R is stranded inside the cell; MRAP1 escorts it to the surface and reshapes it to read ACTH. The ligand must carry both the shared His-Phe-Arg-Trp message and a basic address the MSH peptides lack — which is why only ACTH makes cortisol."
-    source="Schematic, after Metherell et al. 2005, Sebag & Hinkle 2007, Dores 2009 and Luo et al. 2023."
-  >
-    <TwoComponentReceptor />
-  </Figure>
 
   <h2>The end of the stress axis</h2>
   <p>
