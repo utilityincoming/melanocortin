@@ -1,0 +1,30 @@
+---
+import Figure from '../Figure.astro';
+---
+
+<Figure
+  caption="POMC-derived α-MSH activates MC4R. Agouti-related peptide (AgRP) opposes α-MSH and can reduce baseline MC4R activity. In the appetite circuit, MC4R activation promotes satiety."
+  source="Cone · Endocrine Reviews (2006); Fansa & Acosta · Current Obesity Reports (2024)."
+>
+  <svg class="schematic" viewBox="0 0 400 244" role="img" aria-label="Opposing signals at the melanocortin 4 receptor">
+    <desc>Alpha-MSH activates MC4R, while AgRP reduces MC4R signaling. MC4R activation promotes satiety.</desc>
+
+    <rect class="active-node" x="20" y="16" width="148" height="59" />
+    <text x="94" y="40">α-MSH</text>
+    <text class="detail" x="94" y="63">Activates</text>
+
+    <rect class="node" x="232" y="16" width="148" height="59" />
+    <text x="306" y="40">AgRP</text>
+    <text class="detail" x="306" y="63">Inhibits signaling</text>
+
+    <path class="flow" d="M94 75 V123 H135 m-5-5 5 5-5 5" />
+    <path class="flow muted-flow" d="M306 75 V123 H265 m0-5 v10" />
+
+    <rect class="active-node" x="143" y="102" width="114" height="42" />
+    <text x="200" y="130">MC4R</text>
+
+    <path class="flow" d="M200 144 V181 m-5-5 5 5 5-5" />
+    <rect class="node" x="108" y="189" width="184" height="39" />
+    <text x="200" y="215">Promotes satiety</text>
+  </svg>
+</Figure>

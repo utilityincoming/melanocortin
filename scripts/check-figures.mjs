@@ -5,9 +5,9 @@ const baseURL = process.env.FIGURE_CHECK_URL ?? 'http://localhost:4321';
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM_PATH || undefined,
 });
-const pillarRoutes = ['/', '/system', '/pomc', '/receptors', '/receptors/mc2r'];
+const pillarRoutes = ['/', '/system', '/pomc', '/receptors', '/receptors/mc2r', '/receptors/mc4r'];
 const routes = [
-  ...pillarRoutes, '/receptors/mc4r',
+  ...pillarRoutes,
   '/pomc-deficiency', '/setmelanotide', '/mc1r-selectivity', '/selectivity',
 ];
 
@@ -85,6 +85,13 @@ try {
             width >= 1024 ? visual.x > heading.x + heading.width : visual.y > heading.y + heading.height,
             `Opening figure should follow the intro in the expected layout: ${context}`,
           );
+        }
+        if (route === '/receptors/mc4r') {
+          assert.equal(figures.length, 2, 'MC4R should show the overview and the full circuit');
+          const link = page.getByRole('link', { name: 'See the full appetite circuit' });
+          await link.focus();
+          await page.keyboard.press('Enter');
+          assert.equal(new URL(page.url()).hash, '#appetite-circuit');
         }
         if (route === '/selectivity') {
           const picker = page.getByRole('group', { name: 'Choose a ligand' });
