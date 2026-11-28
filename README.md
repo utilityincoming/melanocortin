@@ -1,19 +1,28 @@
 # melanocortin
-Melanocortin.com is a signal-over-noise knowledge hub on the melanocortin system — the POMC-derived peptides, the MC1R through MC5R receptors, and the drugs that target them — written for people who actually read the mechanism. The GLP-1 era pulled a lot of us into caring about the biology of appetite and metabolism not as spectators but as participants, and for anyone primed by that, melanocortins are the next node worth understanding: leptin signals to POMC neurons, POMC is cleaved into α-MSH, α-MSH activates MC4R in the hypothalamus, and MC4R is one of the master switches for energy balance. It's the same receptor setmelanotide targets, and the same circuitry the GLP-1 conversation keeps circling back to. It's also the family where pigmentation, metabolism, inflammation, and sexual function all run through five receptors — which makes it a genuinely under-mapped frontier in peptide science.
 
-The reason the project exists is that the science is rich but the open web isn't: melanocortins live in dense journals on one side and hype, half-truths, and forum lore on the other, with very little in between. This is the in-between — an open, rigorously organised reference that respects the reader's intelligence and serves several audiences on the same pages: researchers who want real mechanism and primary citations, clinicians and curious readers who want an accurate plain-language picture, the forward-thinking peptide and metabolic-health community that's done with bro-science, and anyone arriving from a search engine who deserves a credible answer instead of a content farm.
+Open educational reference on the melanocortin system — the POMC-derived peptides, the five receptors (MC1R–MC5R), and the therapeutics that target them.
 
-It's built so pages are content-first, fast, and search-friendly, with light interactive pieces like a POMC cleavage tree and a receptor explorer only where they earn their place, and every page has to carry an author, a last-reviewed date, and real citations before it can ship. The editorial stance is the part that matters most here, because the peptide space runs on anecdote and this hub runs on evidence: it's education and general information only — not medical advice, and deliberately not a sourcing guide, dosing chart, or protocol — everything is cited, pipeline details are kept current, and where the science is contested or early the page says so rather than smoothing it over. The aim is to help you understand the biology, then take that understanding to a professional.
-The project is open and early-stage — content under Creative Commons (CC BY 4.0), code under MIT, and contributions are welcome as long as every claim comes with a citation.
+[melanocortin.com](https://melanocortin.com)
 
-### Diagram browser checks
+## Why this exists
 
-With the local dev server running, use Chromium to check the opening diagrams
-and the POMC tissue controls in both color schemes at mobile and desktop widths.
+The science is well-mapped in journals and poorly served on the open web. Between dense primary literature and the volume of hype, half-truths, and sales content around peptides, there is little that is both rigorous and readable. This is the middle layer: accurate enough to cite, plain enough to follow.
 
-```sh
-CHROMIUM_PATH=/path/to/chromium npm run check:figures
-```
+It serves researchers and students who need mechanism and primary sources, clinicians and curious readers who want a clear picture, and anyone arriving from a search who deserves something better than a content farm.
 
-Set `FIGURE_CHECK_URL` to test a different server. If you install Chromium with
-`npx playwright-core install chromium`, you can omit `CHROMIUM_PATH`.
+## What it covers
+
+- The POMC cleavage cascade and tissue-specific processing
+- The five melanocortin receptors (MC1R–MC5R) and their primary roles
+- Endogenous agonists and antagonists (α-MSH, ACTH, AgRP, ASIP, etc.)
+- Approved and investigational therapeutics
+- Genetics, physiology, and selected conditions
+- Grey-market compounds treated as pharmacology, not products
+
+## What it deliberately does not do
+
+No dosing charts, cycle guides, vendor comparisons, reconstitution instructions, or protocols. Education only — not medical advice.
+
+## Editorial standards
+
+Every substantive claim is cited to primary literature or regulatory sources. Uncertainty is stated plainly. Pipeline status is dated and includes discontinued programs. Diagrams are original schematics drawn in code. Content is under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); code is MIT. See the [About page](https://melanocortin.com/about) for full standards.
