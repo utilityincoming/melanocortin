@@ -1,4 +1,5 @@
 ---
+import ClinicalGuideLink from '../components/ClinicalGuideLink.astro';
 import PageLayout from '../layouts/PageLayout.astro';
 import Cite from '../components/Cite.astro';
 import References from '../components/References.astro';
@@ -168,11 +169,9 @@ const faqs = [
 ---
 
 <PageLayout
-  title="Therapeutics & the clinical pipeline"
+  title="Approved melanocortin therapies"
   kicker="Clinical Translation"
-  description="Four FDA-approved melanocortin drugs—and a new wave of oral, biased, and tissue-restricted candidates—turning one receptor family into targeted therapies across obesity, inflammation, and photoprotection."
-  seoDescription="Four FDA-approved melanocortin drugs and a pipeline of oral, biased, and tissue-restricted candidates across obesity, inflammation, and photoprotection."
-  thread="Every drug here solves a distinct clinical problem—bypassing leptin resistance, resolving inflammation without steroids, or restoring photoprotection—by aiming one shared signal at a single receptor."
+  description="Compare four FDA-approved melanocortin medicines, their receptor targets, and the conditions they treat."
   updated="2026"
   about={[
     { name: 'Setmelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Setmelanotide'] },
@@ -180,6 +179,36 @@ const faqs = [
     { name: 'Bremelanotide', type: 'Drug', sameAs: ['https://en.wikipedia.org/wiki/Bremelanotide'] },
   ]}
 >
+  <ClinicalGuideLink guide="pipeline" />
+
+  <div class="not-prose mt-6 overflow-hidden rounded-lg border border-[var(--border)]">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-[var(--bg-elevated)] text-xs uppercase tracking-wide text-[var(--text-muted)]">
+        <tr>
+          <th class="px-2 py-3 sm:px-4 font-medium">Agent</th>
+          <th class="px-2 py-3 sm:px-4 font-medium">Target</th>
+          <th class="px-2 py-3 font-medium sm:px-4">Approved for</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-[var(--border)]">
+        {
+          approved.map((d) => (
+            <tr>
+              <td class="px-2 py-3 sm:px-4">
+                <a href={d.href} data-clinical-link="section" class="font-medium text-[var(--accent)] no-underline hover:underline">
+                  {d.name}
+                </a>
+                <span class="block text-xs text-[var(--text-muted)]">{d.brand}</span>
+              </td>
+              <td class="px-2 py-3 sm:px-4 font-mono text-xs">{d.target}</td>
+              <td class="px-2 py-3 text-[var(--text-muted)] sm:px-4">{d.use}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
   <KeyTakeaways
     items={[
       'Four melanocortin agents are FDA-approved, each hitting a different receptor: setmelanotide (MC4R, obesity), afamelanotide (MC1R, photoprotection), bremelanotide (central MCRs, sexual desire), and repository corticotropin/Acthar (MC2R-led, inflammation).',
@@ -211,34 +240,6 @@ const faqs = [
     off-target effects.
   </p>
 
-  <div class="not-prose mt-6 overflow-hidden rounded-lg border border-[var(--border)]">
-    <table class="w-full text-left text-sm">
-      <thead class="bg-[var(--bg-elevated)] text-xs uppercase tracking-wide text-[var(--text-muted)]">
-        <tr>
-          <th class="px-4 py-3 font-medium">Agent</th>
-          <th class="px-4 py-3 font-medium">Target</th>
-          <th class="hidden px-4 py-3 font-medium sm:table-cell">Approved for</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-[var(--border)]">
-        {
-          approved.map((d) => (
-            <tr>
-              <td class="px-4 py-3">
-                <a href={d.href} class="font-medium text-[var(--accent)] no-underline hover:underline">
-                  {d.name}
-                </a>
-                <span class="block text-xs text-[var(--text-muted)]">{d.brand}</span>
-              </td>
-              <td class="px-4 py-3 font-mono text-xs">{d.target}</td>
-              <td class="hidden px-4 py-3 text-[var(--text-muted)] sm:table-cell">{d.use}</td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
-  </div>
-
   <h2 id="setmelanotide" class="scroll-mt-24">Setmelanotide (Imcivree) — MC4R</h2>
   <p>
     Setmelanotide is an <a href="/receptors/mc4r">MC4R</a> agonist that restores
@@ -261,7 +262,7 @@ const faqs = [
   <p>
     For the full story — how it repairs the appetite circuit, why it is not "the next
     Ozempic," and what the pivotal trial showed — see the dedicated{' '}
-    <a href="/setmelanotide">setmelanotide explainer</a> and the page on{' '}
+    <a data-clinical-link="profile" href="/setmelanotide">setmelanotide explainer</a> and the page on{' '}
     <a href="/hypothalamic-obesity">hypothalamic obesity</a>, the condition behind its
     2026 approval.
   </p>
@@ -286,7 +287,7 @@ const faqs = [
   <p>
     For the full story — the disease it treats, how pigment-on-demand works, and its
     tangled relationship to the Melanotan peptides — see the dedicated{' '}
-    <a href="/afamelanotide">afamelanotide explainer</a>.
+    <a data-clinical-link="profile" href="/afamelanotide">afamelanotide explainer</a>.
   </p>
 
   <h2 id="bremelanotide" class="scroll-mt-24">Bremelanotide (Vyleesi) — central MCRs</h2>
@@ -309,7 +310,7 @@ const faqs = [
     consideration across MC4R-active agents. For why the nausea and skin-darkening
     happen at all, see <a href="/effects">why melanocortin agonists make you queasy
     and tan</a>; for its origin in the melanotan lineage, see the{' '}
-    <a href="/bremelanotide">bremelanotide / PT-141 explainer</a>.
+    <a data-clinical-link="profile" href="/bremelanotide">bremelanotide / PT-141 explainer</a>.
   </p>
 
   <h2 id="corticotropin" class="scroll-mt-24">Repository corticotropin (Acthar Gel) — the original</h2>
